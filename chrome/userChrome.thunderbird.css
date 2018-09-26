@@ -1,0 +1,22 @@
+toolbarbutton.bookmark-item .toolbarbutton-icon, .tab-content .tab-icon-image {
+	display:none !important;
+}
+
+.tab-content .tab-throbber, .tab-icon-image, .tab-content .tab-icon-pending {
+	display:none !important;
+}
+
+#tabbrowser-tabs, #tabbrowser-tab {
+	--tab-line-color:#2a2a2a;
+	border:0 !important;
+}
+
+#folderTree treechildren::-moz-tree-row(selected,focus) {
+	outline:none !important;
+	background-image:none !important;
+}
+
+#threadTree treechildren::-moz-tree-row(selected,focus) {
+	outline:none !important;
+	background-image:none !important;
+}

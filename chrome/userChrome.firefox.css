@@ -1,0 +1,36 @@
+*:not(deck) {
+	font-family:"Terminus";
+	font-weight:bold;
+}
+
+toolbarbutton.bookmark-item .toolbarbutton-icon, .tab-content .tab-icon-image {
+	display:none !important;
+}
+
+toolbarbutton.bookmark-item {
+	padding:5px !important;
+}
+
+.tab-content .tab-throbber, .tab-content .tab-throbber-fallback, .tab-icon-image, .tab-content .tab-icon-pending,  {
+	display:none !important;
+}
+
+#tabbrowser-tabs, #tabbrowser-tab {
+	--tab-line-color:#2a2a2a !important;
+	border:0 !important;
+}
+
+textbox#urlbar, #navigator-toolbox .searchbar-textbox {
+	background:none !important;
+	border:0 !important;
+}
+
+
+box#identity-box {
+	display:none;
+}
+
+toolbarbutton#back-button, toolbarbutton#forward-button, toolbaritem#stop-reload-button, toolbarbutton#home-button {
+	display:none !important;
+}
+

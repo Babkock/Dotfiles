@@ -1,0 +1,6 @@
+set autoindent
+set historylog
+set morespace
+set tabsize 4
+set mouse
+

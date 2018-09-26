@@ -1,0 +1,12 @@
+# Volume control
+"pactl set-sink-volume @DEFAULT_SINK@ +1000"
+    XF86AudioRaiseVolume
+    m:0x0 + c:123
+
+"pactl set-sink-volume @DEFAULT_SINK@ -1000"
+    XF86AudioLowerVolume
+    m:0x0 + c:122
+
+"pactl set-sink-mute @DEFAULT_SINK toggle"
+    XF86AudioMute
+    m:0x0 + c:121
