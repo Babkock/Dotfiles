@@ -1,4 +1,7 @@
 # babkock-dotfiles
+
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/MainImage.png)
+
 My personal configuration files for various GNU/Linux programs. These were tested on Debian.
 
 ## Programs included
@@ -9,3 +12,8 @@ My personal configuration files for various GNU/Linux programs. These were teste
 * Nano
 * Ncmpcpp music player
 * Ranger
+
+## My desktop
+
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/Clean-Desktop.png)
+
