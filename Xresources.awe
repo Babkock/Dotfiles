@@ -1,0 +1,47 @@
+URxvt*scrollBar: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+
+URxvt*depth: 32
+URxvt*background: [65]black
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.font: xft:Terminus:pixelsize=17
+
+! special
+URxvt*foreground:   #c5c8c6
+URxvt*cursorColor:  #c5c8c6
+
+! black
+URxvt*color0:       #1d1f21
+URxvt*color8:       #969896
+
+! red
+URxvt*color1:       #cd342b
+URxvt*color9:       #cd342b
+
+! green
+URxvt*color2:       #198844
+URxvt*color10:      #198844
+
+! yellow
+URxvt*color3:       #fba922
+URxvt*color11:      #fba922
+
+! blue
+URxvt*color4:       #3971ed
+URxvt*color12:      #3971ed
+
+! magenta
+URxvt*color5:       #a36ac7
+URxvt*color13:      #a36ac7
+
+! cyan
+URxvt*color6:       #39b4ec
+URxvt*color14:      #39b4ec
+
+! white
+URxvt*color7:       #c5c8c6
+URxvt*color15:      #ffffff
+

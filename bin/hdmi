@@ -1,0 +1,7 @@
+#!/bin/bash
+gtf 1366 768 60 -x
+xrandr --newmode "1366x768_60.00"  172.80 1366 2040 2248 2576  768 1081 1084 1118 -HSync +Vsync
+xrandr --addmode HDMI1 1366x768_60.00
+xrandr --output HDMI1 --mode 1366x768
+pavucontrol
+exit

@@ -3,7 +3,7 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 URxvt*depth: 32
-URxvt*background: [70]black
+URxvt*background: [65]black
 
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0

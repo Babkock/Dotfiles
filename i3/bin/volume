@@ -1,0 +1,6 @@
+#!/usr/bin/ruby
+
+volume,mute=`amixer get Master`.split("\n").last.split(" ").slice(4,2)
+puts volume
+puts volume
+puts "#FA7D04"

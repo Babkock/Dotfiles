@@ -41,7 +41,7 @@ end
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/babkock/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt -depth 32 -bg rgba:0005/0005/0005/afaf"
+terminal = "urxvt -depth 32 -bg rgba:0005/0005/0005/a1a1"
 editor = os.getenv("EDITOR") or "nano" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -106,17 +106,17 @@ end
 
 mymainmenu = awful.menu({
 	items = {
-		{ "Firefox", "firefox https://www.google.com" },
+		{ "Firefox", "firefox https://www.duckduckgo.com" },
 		{ "Ncmpcpp", terminal .. " -e ncmpcpp" },
 		{ "Ranger", terminal .. " -e ranger" },
 		{ "Transmission", terminal .. " -e transmission-remote-cli" },
 		{ "Thunderbird", os.getenv("HOME") .. "/thunderbird/thunderbird" },
+		{ "Soulseek", os.getenv("HOME") .. "/bin/soulseek" },
 		{ "VLC", "vlc" },
 --		{ "Tor Browser", terminal .. " -e torbrowser" },
 		{ "Htop", terminal .. " -e htop" },
 	}
 })
-
 
 powermenu = awful.menu({
 	items = {
@@ -224,14 +224,11 @@ batteryw = lain.widget.bat({
 	timeout = 2,
 	settings = function()
 		bat_perc = tonumber(bat_now.perc)
-		widget:set_text(" " .. bat_perc .. "% ")
---		if bat_perc == 10 then
---			execute_command("notify-send --urgency=critical '<b>Low Battery</b>'")
---		elseif bat_perc == 8 then
---			execute_command("notify-send --urgency=critical '<b>Low Battery</b>'")
---		elseif bat_perc == 6 then
---			execute_command("notify-send --urgency=critical '<b>Low Battery</b>'")
---		end
+		if bat_perc < 21 then
+			widget:set_markup(" " .. markup.fg.color("#fd2028", bat_perc .. "%") .. " ")
+		else
+			widget:set_markup(" " .. bat_perc .. "% ")
+		end
 	end
 })
 

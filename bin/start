@@ -2,3 +2,5 @@
 xbindkeys
 xinput --set-prop 14 "libinput Accel Speed" 0.55
 xinput --set-prop 14 "libinput Tapping Enabled" 1
+cp /home/babkock/.Xresources.awe /home/babkock/.Xresources
+xrdb -merge /home/babkock/.Xresources
