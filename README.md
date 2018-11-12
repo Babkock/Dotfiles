@@ -17,5 +17,5 @@ My personal configuration files for various GNU/Linux programs. These were teste
 
 ## My desktop
 
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/Clean-Desktop.png)
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/Clean-Desktop.i3.png)
 
