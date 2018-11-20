@@ -9,7 +9,7 @@ URxvt*depth: 32
 
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
-URxvt.font: xft:Terminus:pixelsize=17
+URxvt.font: xft:Anonymous Pro:pixelsize=15
 
 ! special
 URxvt*foreground:   #cdd9d9

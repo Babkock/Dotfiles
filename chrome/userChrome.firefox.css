@@ -1,6 +1,7 @@
 *:not(deck) {
-	font-family:"Terminus";
+	font-family:"Anonymous Pro";
 	font-weight:bold;
+    font-size:15px;
 }
 
 toolbarbutton.bookmark-item .toolbarbutton-icon, .tab-content .tab-icon-image {
