@@ -10,15 +10,17 @@ echo ".config/awesome/themes/babkock/theme.lua..."
 cp /home/babkock/.config/awesome/themes/babkock/theme.lua ./awesome/themes/babkock/theme.lua
 echo ".config/awesome/themes/babkock/desktop.jpg..."
 cp /home/babkock/.config/awesome/themes/babkock/desktop.jpg ./awesome/themes/babkock/desktop.jpg
+echo ".bash_aliases..."
+cp /home/babkock/.bash_aliases ./bash_aliases
 echo ".bashrc..."
 cp /home/babkock/.bashrc ./bashrc
 echo "bin/battery..."
 cp /home/babkock/bin/battery ./bin/battery
 echo "bin/hdmi..."
 cp /home/babkock/bin/hdmi ./bin/hdmi
-echo "bin/start.sh..."
+echo "bin/start..."
 cp /home/babkock/bin/start ./bin/start
-echo "bin/volume.sh..."
+echo "bin/volume..."
 cp /home/babkock/bin/volume ./bin/volume
 echo ".config/i3/config..."
 cp /home/babkock/.config/i3/config ./i3/config
@@ -48,6 +50,8 @@ echo ".nanorc..."
 cp /home/babkock/.nanorc ./nanorc
 echo ".config/ranger/rc.conf..."
 cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
+echo ".vimrc..."
+cp /home/babkock/.vimrc ./vimrc
 echo ".xbindkeysrc..."
 cp /home/babkock/.xbindkeysrc ./xbindkeysrc
 echo ".Xresources.awe..."
