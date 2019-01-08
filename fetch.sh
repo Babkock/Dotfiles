@@ -24,16 +24,8 @@ echo "bin/volume..."
 cp /home/babkock/bin/volume ./bin/volume
 echo ".config/i3/config..."
 cp /home/babkock/.config/i3/config ./i3/config
-echo ".config/i3/i3blocks.conf..."
-cp /home/babkock/.config/i3/i3blocks.conf ./i3/i3blocks.conf
-echo ".config/i3/bin/alsaToggleSpeaker..."
-cp /home/babkock/.config/i3/bin/alsaToggleSpeaker ./i3/bin/alsaToggleSpeaker
-echo ".config/i3/bin/bandwidth2.c..."
-cp /home/babkock/.config/i3/bin/bandwidth2.c ./i3/bin/bandwidth2.c
-echo ".config/i3/bin/Makefile..."
-cp /home/babkock/.config/i3/bin/Makefile ./i3/bin/Makefile
-echo ".config/i3/bin/volume..."
-cp /home/babkock/.config/i3/bin/volume ./i3/bin/volume
+echo ".config/polybar/config..."
+cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/i3/wallpaper.jpg..."
 cp /home/babkock/.config/i3/wallpaper.jpg ./i3/wallpaper.jpg
 echo ".ncmpcpp/config..."

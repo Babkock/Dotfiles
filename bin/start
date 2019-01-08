@@ -2,5 +2,9 @@
 xbindkeys
 xinput --set-prop 14 "libinput Accel Speed" 0.55
 xinput --set-prop 14 "libinput Tapping Enabled" 1
+xmodmap -e "keycode 80=Up"
+xmodmap -e "keycode 88=Down"
+xmodmap -e "keycode 83=Left"
+xmodmap -e "keycode 85=Right"
 cp /home/babkock/.Xresources.awe /home/babkock/.Xresources
 xrdb -merge /home/babkock/.Xresources

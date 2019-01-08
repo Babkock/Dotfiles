@@ -158,4 +158,4 @@ function git_branch {
 
 PS1+="\[\$(git_color)\]"
 PS1+="\$(git_branch)"
-PS1+="\[$COLOR_RESET\]\$ "
+PS1+="\[$COLOR_RESET\]\n\\$ "

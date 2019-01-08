@@ -1,7 +1,0 @@
-#!/usr/bin/newlisp
-
-(letn ( (alsaOut (exec "amixer set Speaker toggle"))
-        (status (first (regex "\[[onf]+\]" (last alsaOut)))) )
-  (exec (join (list {notify-send -t 1000 "SpeakerToggle" "Speakers are now } (first (regex "on|off" status)) {"}))))
-
-(exit)

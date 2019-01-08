@@ -1,0 +1,236 @@
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+
+
+[colors]
+background = #30101510
+background-alt = #444
+
+foreground = #bcc8cfc8
+foreground-alt = #777
+
+primary = #5b9099
+secondary = #e60053
+alert = #bd2c40
+pseudo-transparency = true
+
+[bar/example]
+bottom = true
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 23
+radius = 0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 0
+
+font-0 = Anonymous Pro:fontformat=truetype:size=13;0
+font-1 = Anonymice Nerd Font Complete:fontformat=truetype:size=13:antialias=true:file=/usr/share/fonts/truetype/nerd/Anonymice Nerd Font Complete.ttf
+
+modules-left = i3
+modules-right = mpd memory pavolume cpu battery date powermenu
+
+tray-position = right
+tray-padding = 0
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = pointer
+
+[module/bspwm]
+type = internal/bspwm9
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-foreground = #000
+label-focused-background = #aff4e899
+label-focused-underline = #f4e899
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = #ddc83143
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song> <icon-prev> <toggle> <icon-next>
+
+label-active-font = 2
+
+icon-play = 
+icon-pause = 
+icon-stop = +
+icon-prev = 
+icon-next = 
+
+label-song-maxlen = 110
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #971728
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #1d4f6f
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = " %b %d,"
+date-alt = " %Y-%m-%d"
+
+time = "%I:%M:%S %p "
+time-alt = "%H:%M:%S "
+
+format-background = #aff4e898
+format-foreground = #000
+format-prefix-foreground = #000
+format-underline = #f4e898
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #a98f1f
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = " "
+label-open-foreground = #989a98
+label-close = " "
+label-close-foreground = #989a98
+label-separator = " "
+label-separator-foreground = #787a78
+
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
+menu-0-1 = 
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = 
+menu-1-0-exec = menu-open-0
+menu-1-1 = 
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = 
+menu-2-0-exec = sudo poweroff -h now
+menu-2-1 = 
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+[global/wm]
+margin-left = 10
+margin-top = 7
+margin-bottom = 10
+margin-right = 7
+
