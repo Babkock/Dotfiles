@@ -8,11 +8,12 @@ My personal configuration files for various GNU/Linux programs. These were teste
 
 * Awesome Window Manager
 * Bash
-* i3 (with i3blocks)
+* i3
 * Mozilla Firefox
 * Mozilla Thunderbird
 * Nano
 * Ncmpcpp music player
+* Polybar
 * Ranger
 
 ## My desktop
