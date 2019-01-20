@@ -1,12 +1,11 @@
+# i3 config file (v4)
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font Anonymous Pro 11
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:AnonymousPro 12
+font pango:AnonymousPro 10
 
-set $termParams -depth 32 -bg rgba:2f18/0000/1515/9999
+set $termParams -depth 32 -bg rgba:2f18/0000/1515/8989
 set $myfont 'Anonymous Pro:16'
 set $up l
 set $down k
@@ -22,11 +21,16 @@ bindsym Mod4+Return exec rxvt-unicode $termParams
 # kill focused window
 bindsym Mod4+Shift+c kill
 
-gaps inner 3
-gaps outer 2
+# Default inner and outer gap setting
+set $gDefInner 3
+set $gDefOuter 2
+# Interval at which the gaps mode adjusts them
+set $gInt 4
 
 smart_borders on
 smart_gaps on
+gaps inner $gDefInner
+gaps outer $gDefOuter
 
 # change focus
 bindsym Mod4+$left focus left
@@ -61,6 +65,9 @@ bindsym Mod4+v split v
 # enter fullscreen mode for the focused container
 bindsym Mod4+f fullscreen toggle
 
+# lockscreen
+bindsym Mod4+Tab exec --no-startup-id $HOME/bin/lockscreen
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym Mod4+s layout stacking
 bindsym Mod4+w layout tabbed
@@ -83,8 +90,6 @@ bindsym Mod4+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window. If 
 # there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
-bindsym Mod4+x exec alacritty
-bindsym Mod4+n exec pavucontrol
 
 exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.jpg
 
@@ -101,7 +106,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
 
 # switch to workspace
 bindsym Mod4+1 workspace $ws1
@@ -127,20 +131,91 @@ bindsym Mod4+Shift+8 move container to workspace $ws8
 bindsym Mod4+Shift+9 move container to workspace $ws9
 bindsym Mod4+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
+# Control Commands: **WARNING** May not always Nag!
+# Mod + Shift + q		Reload Configuration
+# Mod + Shift + r		Restart i3 inplace
+# Mod + Shift + e		Exit i3 / Log out
+# Mod + Shift + z		Power off
+# Mod + Shift + m		Reboot
 bindsym Mod4+Shift+q reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod4+Shift+r restart
-# exit i3 (logs you out of your X session)
 bindsym Mod4+Shift+e exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit' -f $myfont
 bindsym Mod4+Shift+z exec i3-nagbar -t error -m 'Do you want to power off the system?' -b 'Shut Down' 'sudo shutdown -h now' -f $myfont
 bindsym Mod4+Shift+m exec i3-nagbar -t error -m 'Do you want to reboot the system?' -b 'Reboot' 'sudo reboot' -f $myfont
 
+# Common Applications: Firefox, Thunderbird, Transmission, Ncmpcpp, Ranger
+# Mod + Enter		Urxvt
+# Mod + x			Alacritty
+# Mod + d			Dmenu
+# Mod + .			Firefox
+# Mod + ,			Thunderbird
+# Mod + /			Transmission-remote-cli
+# Mod + \			Ncmpcpp
+# Mod + p			Ranger
+# Mod + n			Pavucontrol
+# Mod + Shift + v	Take screenshot
 bindsym Mod4+period exec "firefox"
 bindsym Mod4+comma exec "thunderbird"
 bindsym Mod4+slash exec rxvt-unicode $termParams -e transmission-remote-cli
 bindsym Mod4+backslash exec rxvt-unicode $termParams -e ncmpcpp
 bindsym Mod4+p exec rxvt-unicode $termParams -e ranger
+bindsym Mod4+x exec alacritty
+bindsym Mod4+n exec pavucontrol
+bindsym Mod4+d exec dmenu_run -nf '#c8cfc8' -nb '#101510' -sb '#F4E899' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
+bindsym Mod4+Shift+v exec --no-startup-id $HOME/bin/screenshot
+
+# Gaps: Mod4+g to use gaps mode. Use direction keys to adjust
+# Comma resets inner gaps, period resets outer gaps
+mode "gaps" {
+	# These bindings trigger as soon as you enter the gaps mode
+	bindsym Left		gaps horizontal  current plus $gInt
+	bindsym Right		gaps horizontal  current minus $gInt
+	bindsym Up			gaps vertical	 current plus $gInt
+	bindsym Down		gaps vertical	 current minus $gInt
+	bindsym Shift+Left	gaps horizontal  all plus $gInt
+	bindsym Shift+Right gaps horizontal  all minus $gInt
+	bindsym Shift+Up	gaps vertical	 all plus $gInt
+	bindsym Shift+Down	gaps vertical	 all minus $gInt
+	
+	bindsym plus		gaps top	 current plus $gInt
+	bindsym Shift+plus	gaps top	 current minus $gInt
+	bindsym minus		gaps bottom  current plus $gInt
+	bindsym Shift+minus	gaps bottom  current minus $gInt
+
+	bindsym semicolon		 gaps left	 current plus $gInt
+	bindsym Shift+semicolon  gaps left	 current minus $gInt
+	bindsym apostrophe		 gaps right	 current plus $gInt
+	bindsym Shift+apostrophe gaps right	 current minus $gInt
+	
+	bindsym comma	gaps inner all set $gDefInner
+	bindsym period	gaps outer all set $gDefOuter
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym Mod4+g mode "default"
+}
+
+bindsym Mod4+g mode "gaps"
+
+mode "surf" {
+	bindsym 1	exec surf
+	bindsym 2	exec surf localhost
+	bindsym 3	exec surf -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
+	bindsym 4	exec surf -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
+	bindsym 5	exec surf -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+	bindsym 6	exec surf -C /home/babkock/.surf/styles/tumblr.css https://tumblr.com/dashboard
+	bindsym 7	exec surf -C /home/babkock/.surf/styles/420chan.css http://www.420chan.org/
+	bindsym 8	exec surf https://passthepopcorn.me
+	bindsym 9	exec surf https://broadcasthe.net
+	bindsym 0	exec surf https://www.github.com/
+	bindsym minus	exec surf https://bitbucket.org/
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym Mod4+u mode "default"
+}
+
+bindsym Mod4+u mode "surf"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,23 +244,26 @@ mode "resize" {
 
 bindsym Mod4+r mode "resize"
 
-# class                 border  bground text    indicator child_border
-client.focused			#020202 #CF5B42 #020202 #DDE5EB   #050405
-client.focused_inactive	#050505 #085893 #FFFFFF #DDE5EB   #060806
-client.unfocused		#333333 #222222 #888888 #292D2E   #222222
-client.urgent			#A52325 #FCCD3E #D04F26 #900000	  #900000
-client.placeholder		#000000 #0C0C0C #D04F26 #000000   #0C0C0C
+# class                 border  bground   text    indicator child_border
+client.focused			#020202 #F4E899B7 #020202 #F4E899   #050405
+client.focused_inactive	#050505 #E2D489A8 #010101 #E1D382   #060806
+client.unfocused		#333333 #22222235 #777777 #141D14   #222222
+client.urgent			#A52325 #FAEC9FCF #D04F26 #900000   #900000
+client.placeholder		#000000 #0C0C0CFF #D04F26 #000000   #0C0C0C
 
 client.background       #000000
 
-bindsym Mod4+d exec dmenu_run -nf '#c8cfc8' -nb '#101510' -sb '#F4E899' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
-
+# Xbindkeys - set mouse acceleration and enable tapping
+# Also map the numpad's arrow keys to the actual arrow keys
 exec --no-startup-id xbindkeys
+exec cp $HOME/.Xresources.i3 $HOME/.Xresources
+exec xrdb -merge $HOME/.Xresources
 exec xinput --set-prop 14 'libinput Accel Speed' 0.55
 exec xinput --set-prop 14 'libinput Tapping Enabled' 1
 exec xmodmap -e 'keycode 80=Up'
 exec xmodmap -e 'keycode 88=Down'
 exec xmodmap -e 'keycode 83=Left'
 exec xmodmap -e 'keycode 85=Right'
+# Go go gadget Polybar and Compton
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id compton -b --opengl --blur-background --blur-kern 5x5box --sw-opti
