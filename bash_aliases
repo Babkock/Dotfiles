@@ -21,5 +21,6 @@ alias s="ssh tababcock@tannerbabcock.com -p 2222"
 alias tre="transmission-remote"
 alias trc="transmission-remote-cli"
 alias m="mpv "
+alias sshme="ssh tababcock@tannerbabcock.com -p 2222"
 alias r="ranger"
 

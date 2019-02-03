@@ -117,7 +117,7 @@ fi
 LS_COLORS=$LS_COLORS'*.txt=1;93:*.log=1;93:*.php=1;31;40:*.js=1;32;40:*.json=1;93:*.html=0;35;40:*.xml=0;35;40:*.yaml=0;35;40:*.shtml=0;35;40:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32;40:*.lua=1;32:*.css=0;36;40:*.scss=0;36;40:*.less=0;36;40:*.c=1;93:*.h=1;31:*.cpp=1;32;40:*.rs=1;31:*.rb=1;31:*.py=1;31;40:*.pl=1;32;40:*.md=1;93:*.rtf=1;93;40:*.o=0;33;40:*.so=0;33;40:*.lock=1;93'
 PS1='\e[1;32m\u:\e \e[1;34m\W\e[0m '
 
-PATH=$PATH:/home/babkock/bin
+PATH=$PATH:/home/babkock/bin:/usr/local/bin/firefox-dev:/home/babkock/.config/composer/vendor/bin
 
 # please remove all below this if this doesn't work
 COLOR_RED="\033[0;31m"

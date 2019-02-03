@@ -5,7 +5,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local shape = require("gears.shape")
-local lain = require("lain")
+-- local lain = require("lain")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 
@@ -204,11 +204,11 @@ netdown_icon = wibox.widget.imagebox()
 netdown_icon.image = beautiful.net_down
 netup_icon = wibox.widget.imagebox()
 netup_icon.image = beautiful.net_up
-netwidget = lain.widget.net({
-	settings = function()
-		widget:set_markup(markup.font("Terminus 12", " ") .. markup.fg.color("#428aec", net_now.received) .. " - " .. markup.fg.color("#22ed62", net_now.sent))
-	end
-})
+--netwidget = lain.widget.net({
+--	settings = function()
+--		widget:set_markup(markup.font("Terminus 12", " ") .. markup.fg.color("#428aec", net_now.received) .. " - " .. markup.fg.color("#22ed62", net_now.sent))
+--	end
+--})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -219,18 +219,18 @@ powerlauncher = awful.widget.launcher({ image = beautiful.power_icon,
 batteryimage = wibox.widget.imagebox()
 batteryimage.image = beautiful.battery_icon
 
-batteryw = lain.widget.bat({
-	battery = "BAT0",
-	timeout = 2,
-	settings = function()
-		bat_perc = tonumber(bat_now.perc)
-		if bat_perc < 21 then
-			widget:set_markup(" " .. markup.fg.color("#fd2028", bat_perc .. "%") .. " ")
-		else
-			widget:set_markup(" " .. bat_perc .. "% ")
-		end
-	end
-})
+--batteryw = lain.widget.bat({
+--	battery = "BAT0",
+--	timeout = 2,
+--	settings = function()
+--		bat_perc = tonumber(bat_now.perc)
+--		if bat_perc < 21 then
+--			widget:set_markup(" " .. markup.fg.color("#fd2028", bat_perc .. "%") .. " ")
+--		else
+--			widget:set_markup(" " .. bat_perc .. "% ")
+--		end
+--	end
+--})
 
 volumeimage = wibox.widget.imagebox()
 volumeimage.image = beautiful.volume_icon

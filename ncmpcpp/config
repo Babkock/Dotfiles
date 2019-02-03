@@ -1,4 +1,4 @@
-ncmpcpp_directory = ~/.ncmpcpp
+ncmpcpp_directory = ~/.config/ncmpcpp
 
 #lyrics_directory = ~/.lyrics
 
@@ -203,7 +203,7 @@ playlist_editor_display_mode = columns
 
 #discard_colors_if_item_is_selected = yes
 
-show_duplicate_tags = no
+#show_duplicate_tags = no
 
 incremental_seeking = yes
 
@@ -225,7 +225,7 @@ user_interface = alternative
 
 media_library_primary_tag = artist
 
-media_library_albums_split_by_date = yes
+#media_library_albums_split_by_date = yes
 
 #default_find_mode = wrapped
 
@@ -357,7 +357,7 @@ volume_color = green
 
 state_line_color = black
 
-state_flags_color = black:b
+state_flags_color = black
 
 main_window_color = default
 
@@ -365,17 +365,17 @@ color1 = red
 
 color2 = green
 
-progressbar_color = black:b
+progressbar_color = black
 
-progressbar_elapsed_color = green:b
+progressbar_elapsed_color = green
 
 statusbar_color = yellow
 
-statusbar_time_color = default:b
+#statusbar_time_color = default
 
-player_state_color = black:b
+#player_state_color = black
 
-alternative_ui_separator_color = black:b
+alternative_ui_separator_color = black
 
 #window_border_color = green
 

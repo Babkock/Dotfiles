@@ -42,8 +42,8 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 0
 
-font-0 = Anonymous Pro:fontformat=truetype:size=13;1
-font-1 = Anonymice Nerd Font Complete:fontformat=truetype:size=13:antialias=true:file=/usr/share/fonts/truetype/nerd/Anonymice Nerd Font Complete.ttf
+font-0 = Anonymous Pro:fontformat=truetype:antialias=true:hinting=0:size=11;1
+font-1 = Anonymice Nerd Font Complete:fontformat=truetype:size=11:antialias=true:file=/usr/share/fonts/truetype/nerd/Anonymice Nerd Font Complete.ttf
 
 modules-left = i3
 modules-right = mpd memory pavolume cpu battery date powermenu

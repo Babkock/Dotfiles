@@ -145,7 +145,7 @@ bindsym Mod4+Shift+m exec i3-nagbar -t error -m 'Do you want to reboot the syste
 
 # Common Applications: Firefox, Thunderbird, Transmission, Ncmpcpp, Ranger
 # Mod + Enter		Urxvt
-# Mod + x			Alacritty
+# Mod + x			Arandr
 # Mod + d			Dmenu
 # Mod + .			Firefox
 # Mod + ,			Thunderbird
@@ -154,12 +154,12 @@ bindsym Mod4+Shift+m exec i3-nagbar -t error -m 'Do you want to reboot the syste
 # Mod + p			Ranger
 # Mod + n			Pavucontrol
 # Mod + Shift + v	Take screenshot
-bindsym Mod4+period exec "firefox"
+bindsym Mod4+period exec "/usr/local/bin/firefox-dev/firefox"
 bindsym Mod4+comma exec "thunderbird"
 bindsym Mod4+slash exec rxvt-unicode $termParams -e transmission-remote-cli
 bindsym Mod4+backslash exec rxvt-unicode $termParams -e ncmpcpp
 bindsym Mod4+p exec rxvt-unicode $termParams -e ranger
-bindsym Mod4+x exec alacritty
+bindsym Mod4+x exec arandr
 bindsym Mod4+n exec pavucontrol
 bindsym Mod4+d exec dmenu_run -nf '#c8cfc8' -nb '#101510' -sb '#F4E899' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
 bindsym Mod4+Shift+v exec --no-startup-id $HOME/bin/screenshot
@@ -198,17 +198,17 @@ mode "gaps" {
 bindsym Mod4+g mode "gaps"
 
 mode "surf" {
-	bindsym 1	exec surf
-	bindsym 2	exec surf localhost
-	bindsym 3	exec surf -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
-	bindsym 4	exec surf -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
-	bindsym 5	exec surf -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
-	bindsym 6	exec surf -C /home/babkock/.surf/styles/tumblr.css https://tumblr.com/dashboard
-	bindsym 7	exec surf -C /home/babkock/.surf/styles/420chan.css http://www.420chan.org/
-	bindsym 8	exec surf https://passthepopcorn.me
-	bindsym 9	exec surf https://broadcasthe.net
-	bindsym 0	exec surf https://www.github.com/
-	bindsym minus	exec surf https://bitbucket.org/
+	bindsym 1	exec surf2 https://duckduckgo.com/
+	bindsym 2	exec surf2 localhost
+	bindsym 3	exec surf2 -t /home/babkock/.surf/styles/4chan.css https://4chan.org/
+	bindsym 4	exec surf2 -t /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
+	bindsym 5	exec surf2 -t /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+	bindsym 6	exec surf2 -t /home/babkock/.surf/styles/tumblr.css https://tumblr.com/dashboard
+	bindsym 7	exec surf2 -t /home/babkock/.surf/styles/420chan.css http://www.420chan.org/
+	bindsym 8	exec surf2 https://passthepopcorn.me
+	bindsym 9	exec surf2 https://broadcasthe.net
+	bindsym 0	exec surf2 https://www.github.com/
+	bindsym minus	exec surf2 https://bitbucket.org/
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -264,6 +264,7 @@ exec xmodmap -e 'keycode 80=Up'
 exec xmodmap -e 'keycode 88=Down'
 exec xmodmap -e 'keycode 83=Left'
 exec xmodmap -e 'keycode 85=Right'
+exec --no-startup-id xrandr --output eDP-1 --brightness 0.7
 # Go go gadget Polybar and Compton
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id compton -b --opengl --blur-background --blur-kern 5x5box --sw-opti

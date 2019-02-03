@@ -28,8 +28,8 @@ echo ".config/polybar/config..."
 cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/i3/wallpaper.jpg..."
 cp /home/babkock/.config/i3/wallpaper.jpg ./i3/wallpaper.jpg
-echo ".ncmpcpp/config..."
-cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
+echo ".config/ncmpcpp/config..."
+cp /home/babkock/.config/ncmpcpp/config ./ncmpcpp/config
 echo ".config/neofetch/config..."
 cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
 echo ".mozilla/firefox/*.dev-edition-default/chrome/userChrome.css..."
@@ -50,4 +50,10 @@ echo ".Xresources.awe..."
 cp /home/babkock/.Xresources.awe ./Xresources.awe
 echo ".Xresources.i3..."
 cp /home/babkock/.Xresources.i3 ./Xresources.i3
+echo "Documents/dwm/config.h..."
+cp /home/babkock/Documents/dwm/config.h ./dwm/config.h
+echo "Documents/dwm/dwm.c..."
+cp /home/babkock/Documents/dwm/dwm.c ./dwm/dwm.c
+echo "Documents/slstatus/config.h..."
+cp /home/babkock/Documents/slstatus/config.h ./slstatus/config.h
 echo "Done fetching"
