@@ -1,9 +1,9 @@
 # Dotfiles
 
 ![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/MainImage.png)
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/collage.png)
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/collage.png)
 
-My personal configuration files for various GNU/Linux programs. These were tested on Debian.
+My personal configuration files for various GNU/Linux programs. These were tested on Devuan.
 
 ## Programs included
 
@@ -22,5 +22,5 @@ My personal configuration files for various GNU/Linux programs. These were teste
 
 ## My desktop
 
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/Clean-Desktop.i3.png)
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/Clean-Desktop.i3.png)
 
