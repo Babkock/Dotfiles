@@ -35,15 +35,15 @@ visualizer_output_name = Visualizer feed
 ##
 visualizer_in_stereo = yes
 
-visualizer_sync_interval = 29
+visualizer_sync_interval = 30
 
 ## Available values: spectrum, wave, wave_filled, ellipse.
-visualizer_type = ellipse
+visualizer_type = spectrum
 
 visualizer_look = ●▮
 
 #visualizer_color = magenta, red, green, cyan, yellow, blue, white
-visualizer_color = 25, 89, 122, 200, 65, 78, 174, 207, 94, 141, 102, 160, 48
+visualizer_color = 6, 40, 136, 108, 219, 54, 91, 155, 207, 94, 199, 102, 160, 20
 
 #system_encoding = ""
 

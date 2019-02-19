@@ -10,16 +10,18 @@
 [colors]
 background = #30101510
 background-alt = #444
+background-bsp = #82101010
 
-foreground = #bcc8cfc8
+foreground = #b2c2c4c2
 foreground-alt = #777
+foreground-bsp = #a9b1b1b1
 
 primary = #5b9099
 secondary = #e60053
 alert = #bd2c40
 pseudo-transparency = true
 
-[bar/mybar]
+[bar/i3bar]
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -46,7 +48,7 @@ font-0 = Anonymous Pro:fontformat=truetype:antialias=true:hinting=0:size=11;1
 font-1 = Anonymice Nerd Font Complete:fontformat=truetype:size=11:antialias=true:file=/usr/share/fonts/truetype/nerd/Anonymice Nerd Font Complete.ttf
 
 modules-left = i3
-modules-right = mpd memory pavolume cpu battery date powermenu
+modules-right = mpd memory cpu battery date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -59,24 +61,66 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = pointer
 
+[bar/bspbar]
+bottom = true
+width = 100%
+height = 23
+radius = 0
+fixed-center = false
+
+background = #92141214
+foreground = #a9efefef
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Anonymous Pro:fontformat=truetype:antialias=true:hinting=0:size=11;1
+font-1 = Anonymice Nerd Font Complete:fontformat=truetype:size=11:antialias=true:file=/usr/share/fonts/truetype/nerd/Anonymice Nerd Font Complete.ttf
+
+modules-left = bspwm
+modules-right = mpd memorybsp cpubsp batterybsp datebsp powermenu
+
+tray-position = right
+tray-padding = 0
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = pointer
+
 [module/bspwm]
-type = internal/bspwm9
+type = internal/bspwm
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-background = #ef40afef
+label-focused-foreground = #ff000000
+label-focused-underline = #ef40afef
+label-focused-padding = 1
 
 label-occupied = %index%
-label-occupied-padding = 2
+label-occupied-padding = 1
+label-occupied-background = #9210183f
+label-occupied-foreground = #ffefefef
 
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 [module/i3]
 type = internal/i3
@@ -113,6 +157,12 @@ label-urgent = %index%
 label-urgent-background = #ddc83143
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
+[module/title]
+type = internal/xwindow
+format = <label>
+format-foreground = ${colors.foreground-alt}
+label = %title%
+label-maxlen = = 10
 
 [module/mpd]
 type = internal/mpd
@@ -129,6 +179,16 @@ icon-next = 
 label-song-maxlen = 110
 label-song-ellipsis = true
 
+[module/cpubsp]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = #b72730
+format-background = #300405
+format-underline = #a21728
+format-padding = 1
+label = %percentage:2%%
+
 [module/cpu]
 type = internal/cpu
 interval = 2
@@ -137,12 +197,22 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #971728
 label = %percentage:2%%
 
+[module/memorybsp]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-padding = 1
+format-prefix-foreground = #ef129e21
+format-background = #a2002f10
+format-underline = #ff15a526
+label = %percentage_used%%
+
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #1d4f6f
+format-underline = #ff005462
 label = %percentage_used%%
 
 [module/date]
@@ -155,12 +225,66 @@ date-alt = " %Y-%m-%d"
 time = "%I:%M:%S %p "
 time-alt = "%H:%M:%S "
 
-format-background = #aff4e898
+format-background = #aff4e899
 format-foreground = #000
 format-prefix-foreground = #000
-format-underline = #f4e898
+format-underline = #f4f4e899
 
 label = %date% %time%
+
+[module/datebsp]
+type = internal/date
+interval = 1
+
+date = "  %b %d,"
+date-alt = " %Y-%m-%d"
+
+time = "%I:%M:%S "
+time-alt = "%H:%M:%S "
+
+format-background = #af12dce5
+format-foreground = #000
+format-prefix-foreground = #000
+format-underline = #af12dce5
+
+label = %date% %time%
+
+[module/batterybsp]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+format-charging-padding = 1
+
+format-charging = <animation-charging> <label-charging>
+format-charging-background = #af302e10
+format-charging-underline = #cf808219
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-background = #af302e10
+format-discharging-underline = #cf808219
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = #ef99a220
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = #ef99a220
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = #ef99a220
+animation-discharging-framerate = 750
 
 [module/battery]
 type = internal/battery
@@ -169,7 +293,7 @@ adapter = AC0
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #a98f1f
+format-charging-underline = #cda98f1f
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -202,9 +326,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = " "
+label-open = "  "
 label-open-foreground = #989a98
-label-close = " "
+label-close = "  "
 label-close-foreground = #989a98
 label-separator = " "
 label-separator-foreground = #787a78

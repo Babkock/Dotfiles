@@ -5,7 +5,8 @@ font Anonymous Pro 11
 
 font pango:AnonymousPro 10
 
-set $termParams -depth 32 -bg rgba:2f18/0000/1515/8989
+# I used this when I used urxvt
+#set $termParams -depth 32 -bg rgba:2f18/0000/1515/8989
 set $myfont 'Anonymous Pro:16'
 set $up l
 set $down k
@@ -16,14 +17,14 @@ set $right semicolon
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec rxvt-unicode $termParams
+bindsym Mod4+Return exec st
 
 # kill focused window
 bindsym Mod4+Shift+c kill
 
 # Default inner and outer gap setting
-set $gDefInner 3
-set $gDefOuter 2
+set $gDefInner 4
+set $gDefOuter 5
 # Interval at which the gaps mode adjusts them
 set $gInt 4
 
@@ -156,9 +157,9 @@ bindsym Mod4+Shift+m exec i3-nagbar -t error -m 'Do you want to reboot the syste
 # Mod + Shift + v	Take screenshot
 bindsym Mod4+period exec "/usr/local/bin/firefox-dev/firefox"
 bindsym Mod4+comma exec "thunderbird"
-bindsym Mod4+slash exec rxvt-unicode $termParams -e transmission-remote-cli
-bindsym Mod4+backslash exec rxvt-unicode $termParams -e ncmpcpp
-bindsym Mod4+p exec rxvt-unicode $termParams -e ranger
+bindsym Mod4+slash exec st -e transmission-remote-cli
+bindsym Mod4+backslash exec st -e ncmpcpp
+bindsym Mod4+p exec st -e ranger
 bindsym Mod4+x exec arandr
 bindsym Mod4+n exec pavucontrol
 bindsym Mod4+d exec dmenu_run -nf '#c8cfc8' -nb '#101510' -sb '#F4E899' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
@@ -198,17 +199,17 @@ mode "gaps" {
 bindsym Mod4+g mode "gaps"
 
 mode "surf" {
-	bindsym 1	exec surf2 https://duckduckgo.com/
-	bindsym 2	exec surf2 localhost
-	bindsym 3	exec surf2 -t /home/babkock/.surf/styles/4chan.css https://4chan.org/
-	bindsym 4	exec surf2 -t /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
-	bindsym 5	exec surf2 -t /home/babkock/.surf/styles/reddit.css https://old.reddit.com
-	bindsym 6	exec surf2 -t /home/babkock/.surf/styles/tumblr.css https://tumblr.com/dashboard
-	bindsym 7	exec surf2 -t /home/babkock/.surf/styles/420chan.css http://www.420chan.org/
-	bindsym 8	exec surf2 https://passthepopcorn.me
-	bindsym 9	exec surf2 https://broadcasthe.net
-	bindsym 0	exec surf2 https://www.github.com/
-	bindsym minus	exec surf2 https://bitbucket.org/
+	bindsym 1	exec surf2 -b -D -g https://duckduckgo.com/
+	bindsym 2	exec surf2 -b -D -g localhost
+	bindsym 3	exec surf2 -b -D -g -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
+	bindsym 4	exec surf2 -b -D -g -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
+	bindsym 5	exec surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+	bindsym 6	exec surf2 -b -D -g -C /home/babkock/.surf/styles/tumblr.css https://tumblr.com/dashboard
+	bindsym 7	exec surf2 -b -D -g -C /home/babkock/.surf/styles/420chan.css http://www.420chan.org/
+	bindsym 8	exec surf2 -b -D -g https://passthepopcorn.me
+	bindsym 9	exec surf2 -b -D -g https://broadcasthe.net
+	bindsym 0	exec surf2 -b -D -g https://www.github.com/
+	bindsym minus	exec surf2 -b -D -g https://bitbucket.org/
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -266,5 +267,5 @@ exec xmodmap -e 'keycode 83=Left'
 exec xmodmap -e 'keycode 85=Right'
 exec --no-startup-id xrandr --output eDP-1 --brightness 0.7
 # Go go gadget Polybar and Compton
-exec --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id compton -b --opengl --blur-background --blur-kern 5x5box --sw-opti
+exec --no-startup-id $HOME/.config/polybar/launch.sh i3bar
+exec --no-startup-id compton -b --opengl --blur-background --blur-kern 5x5box --sw-opti &

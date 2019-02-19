@@ -1,7 +1,6 @@
 # Dotfiles
 
 ![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/MainImage.png)
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/collage.png)
 
 My personal configuration files for various GNU/Linux programs. These were tested on Devuan.
 
@@ -9,6 +8,7 @@ My personal configuration files for various GNU/Linux programs. These were teste
 
 * [Awesome Window Manager](https://github.com/awesomeWM/awesome)
 * [Bash](https://www.gnu.org/software/bash)
+* [Bspwm](https://github.com/baskerville/bspwm)
 * [DWM](https://dwm.suckless.org)
 * [i3](https://github.com/Airblader/i3)
 * Mozilla Firefox
@@ -18,6 +18,7 @@ My personal configuration files for various GNU/Linux programs. These were teste
 * [Polybar](https://github.com/jaagr/polybar)
 * [Ranger](https://github.com/ranger/ranger)
 * [Slstatus](https://github.com/drkhsh/slstatus)
+* [SXHKD](https://github.com/baskerville/sxhkd)
 * [VIM](https://www.vim.org)
 
 ## My desktop

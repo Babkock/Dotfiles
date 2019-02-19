@@ -1,0 +1,50 @@
+#!/bin/sh
+
+#PANEL_FIFO=/tmp/panel-fifo
+#PANEL_HEIGHT=24
+#PANEL_FONT="-*-Anonymous Pro-*-*-*-*-14-*-*-*-*-*-*-*"
+#PANEL_FONT="Anonymous Pro:fontformat=truetype:antialias=true:hinting=0:size=11;1"
+#PANEL_WM_NAME=bspwm_panel
+#export PANEL_FIFO PANEL_HEIGHT PANEL_FONT PANEL_WM_NAME
+
+#[ -e "$PANEL_FIFO" ] && bspc subscribe report > "$PANEL_FIFO" &
+#pgrep -x panel > /dev/null || panel &
+
+SXHKD_FIFO=/tmp/sxhkd-fifo
+export SXHKD_FIFO
+
+[ -e "$SXHKD_FIFO" ] && rm "$SXHKD_FIFO"
+mkfifo "$SXHKD_FIFO"
+sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
+
+feh --bg-scale ~/.config/bspwm/wallpaper.jpg &
+
+#bspc monitor -d I II III IV V VI VII VIII IX
+bspc monitor -d I II III IV V VI
+
+bspc config border_width         1
+bspc config window_gap          8
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+#xbindkeys
+xinput --set-prop 14 'libinput Accel Speed' 0.55
+xinput --set-prop 14 'libinput Tapping Enabled' 1
+xmodmap -e 'keycode 80=Up'
+xmodmap -e 'keycode 88=Down'
+xmodmap -e 'keycode 83=Left'
+xmodmap -e 'keycode 85=Right'
+
+killall polybar
+polybar -r -log=error bspbar &
+killall compton
+compton -b --opengl --blur-background --blur-kern 5x5box --sw-opti &
+

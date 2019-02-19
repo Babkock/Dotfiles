@@ -7,7 +7,7 @@ const unsigned int interval = 1000;
 static const char unknown_str[] = "n/a";
 
 /* maximum output string length */
-#define MAXLEN 2048
+#define MAXLEN 512
 
 /*
  * function            description                     argument (example)
@@ -61,8 +61,7 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ run_command, "\x01  %s -",		"mpc --format %artist% | head -n 1"},
-	{ run_command, " %s",		"mpc --format %title% | head -n 1"},
+	{ run_command, "\x01  %s ",		"mpc status | head -n 1"},
 	{ battery_perc, "\x05  %s%% ",	"BAT0" },
 	{ cpu_perc, "\x03  %s%% ",		NULL },
 	{ ram_perc, "\x06  %s%% ",		NULL },

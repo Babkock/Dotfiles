@@ -79,7 +79,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
+    alias grep='grep --color=auto'
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
 fi
@@ -159,3 +159,5 @@ function git_branch {
 PS1+="\[\$(git_color)\]"
 PS1+="\$(git_branch)"
 PS1+="\[$COLOR_RESET\]\n\\$ "
+
+

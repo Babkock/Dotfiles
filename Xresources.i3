@@ -5,11 +5,18 @@ URxvt*urgentOnBell: true
 URxvt*fading: 10
 URxvt*fadecolor: #b3a2a2
 
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.hinting: 0
+Xft.hintstyle: hintnone
+! Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
 URxvt*depth: 32
 
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
-URxvt.font: xft:Anonymous Pro:pixelsize=15
+URxvt.font: xft:Anonymous Pro:antialias=true:pixelsize=14
 URxvt.letterSpace: 0
 
 ! special
