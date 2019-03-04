@@ -5,15 +5,15 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 
 static const unsigned int gappx		= 5;		/* gap pixel between windows */
 
-static const unsigned int baralpha	= 0xd0;
+//static const unsigned int baralpha	= 0xd0;
 
-static const unsigned int borderalpha = OPAQUE;
+//static const unsigned int borderalpha = OPAQUE;
 
 static const unsigned int snap      = 20;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:size=11" };
-static const char dmenufont[]       = "Terminus:size=11";
+static const char *fonts[]          = { "Terminus:size=11:antialias=true:hinting=true:format=truetype", "Terminess (TTF) Nerd Font Complete:size=11:file=/home/babkock/.local/share/fonts/Terminess (TTF) Nerd Font Complete.ttf" };
+static const char dmenufont[]       = "Termius:size=11:antialias=true:hinting=true:format=truetype";
 static const char col_gray1[]       = "#121412";
 static const char col_gray2[]       = "#141814";
 static const char col_gray3[]       = "#bbbeba";
@@ -30,16 +30,21 @@ static const char col_green[]		= "#116513";
 static const char col_green2[]		= "#116815";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeWarn] = { col_black, col_yellow, col_yellow2 },
-	[SchemeUrgent] = { col_gray3, col_red, col_red2 },
-	[SchemeThree] = { col_gray3, col_blue, col_blue2 },
-	[SchemeFour] = { col_gray3, col_green, col_green2 }
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },		// \x01
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },		// \x02
+	[SchemeWarn] = { col_black, col_yellow, col_yellow2 },	// \x03
+	[SchemeUrgent] = { col_gray3, col_red, col_red2 },		// \x04
+	[SchemeThree] = { col_gray3, col_blue, col_blue2 },		// \x05
+	[SchemeFour] = { col_gray3, col_green, col_green2 },	// \x06
+	// transitions
+	[SchemeTrans1] = { col_blue2, col_gray1, col_gray2 },	// \x07
+	[SchemeTrans2] = { col_yellow2, col_blue2, col_blue2 },	// \x08
+	[SchemeTrans3] = { col_green2, col_yellow2, col_yellow2 }, // \x09
+	[SchemeTrans4] = { col_red2, col_green2, col_green2 },	// \x0a
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -48,7 +53,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,		0,           -1 },
+	{ "mpv",	  NULL,		  NULL,		  1 << 2,		0,			 -1 }
 };
 
 /* layout(s) */
@@ -92,15 +98,15 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,						XK_period, spawn,		   {.v = firefox } },
-	{ MODKEY,						XK_comma,  spawn,		   {.v = ncmpcpp } },
-	{ MODKEY|ShiftMask,				XK_b,	   spawn,		   {.v = trans } },
-	{ MODKEY,						XK_q,	   spawn,		   { .v = ranger } },
-	{ MODKEY,						XK_n,	   spawn,		   { .v = surf1 } },
-	{ MODKEY,						XK_w,	   spawn,		   { .v = surf2 } },
-	{ MODKEY|ShiftMask,				XK_n,	   spawn,		   { .v = surf3 } },
-	{ MODKEY|ShiftMask,				XK_w,	   spawn,		   { .v = surf4 } },
-	{ MODKEY,						XK_a,	   spawn,		   { .v = surf5 } },
+	{ MODKEY,			XK_period, spawn,	   {.v = firefox } },
+	{ MODKEY,			XK_comma,  spawn,	   {.v = ncmpcpp } },
+	{ MODKEY|ShiftMask,		XK_b,	   spawn,	   {.v = trans } },
+	{ MODKEY,			XK_q,	   spawn,	   {.v = ranger } },
+	{ MODKEY,			XK_n,	   spawn,	   { .v = surf1 } },
+	{ MODKEY,			XK_w,	   spawn,	   { .v = surf2 } },
+	{ MODKEY|ShiftMask,		XK_n,	   spawn,	   { .v = surf3 } },
+	{ MODKEY|ShiftMask,		XK_w,	   spawn,	   { .v = surf4 } },
+	{ MODKEY,			XK_a,	   spawn,	   { .v = surf5 } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

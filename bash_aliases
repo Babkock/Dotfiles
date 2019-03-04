@@ -22,5 +22,6 @@ alias tre="transmission-remote"
 alias trc="transmission-remote-cli"
 alias m="mpv "
 alias sshme="ssh tababcock@tannerbabcock.com -p 2222"
+alias jcommit="git commit -m '$(date)'; git push"
 alias r="ranger"
 

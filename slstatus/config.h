@@ -62,8 +62,13 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 	{ run_command, "\x01  %s ",		"mpc status | head -n 1"},
+	{ run_command, "\x07 ", NULL },
 	{ battery_perc, "\x05  %s%% ",	"BAT0" },
+	{ run_command, "\x08 ", NULL },
 	{ cpu_perc, "\x03  %s%% ",		NULL },
+	{ run_command, "\x09 ", NULL },
 	{ ram_perc, "\x06  %s%% ",		NULL },
-	{ datetime, "\x04 %s",           "%b %d, %I:%M:%S %p" },
+	{ run_command, "\x0a ", NULL },
+	{ datetime, "\x04 %s",           "%b %d, %I:%M:%S" },
 };
+

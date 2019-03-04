@@ -24,7 +24,7 @@ super + slash
 	st3 -e transmission-remote-cli
 
 super + p
-	rxvt-unicode -depth 32 -bg rgba:2f2f/0202/0404/acac -e ranger
+	bspc desktop --focus ^5; rxvt-unicode -depth 32 -bg rgba:2f2f/0202/0404/acac -e ranger
 
 super + l
 	surf2 -b -D -g https://duckduckgo.com/
@@ -37,6 +37,9 @@ super + e
 
 super + a
 	surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+
+super + d
+	bspc desktop --focus ^4; subl
 
 super + n
 	pavucontrol

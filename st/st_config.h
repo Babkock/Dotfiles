@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Anonymous Pro:pixelsize=14:antialias=true:autohint=true";
+static char *font = "Anonymice Powerline:pixelsize=14:antialias=true:format=truetype:autohint=true:file=/home/babkock/.local/share/fonts/Anonymice Powerline.ttf";
 static int borderpx = 2;
 unsigned int alpha = 0x9f;
 

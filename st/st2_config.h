@@ -5,9 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Anonymous Pro:pixelsize=14:autohint=true:format=truetype"; //:file=/usr/share/fonts/truetype/anonymous-pro/Anonymice Nerd Font Complete.ttf";
+static char *font = "Terminus:pixelsize=15:antialias=true:hinting=true:format=truetype:file=/home/babkock/.local/share/fonts/Terminess (TTF) Nerd Font Complete.ttf";
 static int borderpx = 2;
-unsigned int alpha = 0xa9;
+unsigned int alpha = 0xa4;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -88,30 +88,30 @@ unsigned int tabspaces = 4;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#001b26",
-	"#e33632",
-	"#789800",
-	"#b89600",
-	"#298ed5",
-	"#738ac8",
-	"#2aa199",
-	"#93a1a1",
+	"#040404",		// black
+	"#de120f",		// red
+	"#4f9b07",		// green
+	"#d7d208",		// yellow
+	"#3d98df",		// blue
+	"#d45ec9",		// magenta
+	"#08c7d1",		// cyan
+	"#d4d7cf",		// white
 
 	/* 8 bright colors */
-	"#05202a",
-	"#e63a38",
-	"#7b9a06",
-	"#bca106",
-	"#2d97d8",
-	"#7a82ca",
-	"#32a99d",
-	"#99a4a4",
+	"#070707",		// black
+	"#ef2a2a",		// red
+	"#8ae234",		// green
+	"#d9e444",		// yellow
+	"#6dbde2",		// blue
+	"#d983d1",		// magenta
+	"#34e2e4",		// cyan
+	"#ededec",		// white
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#b2b2b2",
-	"#2f0204",
+	"#b2b2b2",		// cursor color
+	"#020302",		// background color
 	"#eeeeee"
 };
 

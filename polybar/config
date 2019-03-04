@@ -103,22 +103,31 @@ cursor-scroll = pointer
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-4 = V;
+ws-icon-5 = VI;
+ws-icon-3 = IV;
+ws-icon-6 = VII;
+ws-icon-7 = VIII;
+
+label-focused = %icon%
 label-focused-background = #ef40afef
 label-focused-foreground = #ff000000
 label-focused-underline = #ef40afef
 label-focused-padding = 1
 
-label-occupied = %index%
+label-occupied = %icon%
 label-occupied-padding = 1
 label-occupied-background = #9210183f
 label-occupied-foreground = #ffefefef
 
-label-urgent = %index%!
+label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = %index%
+label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
 
@@ -128,6 +137,17 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = true
 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
@@ -136,33 +156,33 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %icon%
 label-focused-foreground = #000
 label-focused-background = #aff4e899
 label-focused-underline = #f4e899
 label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = 1
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-background = #ddc83143
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/title]
 type = internal/xwindow
 format = <label>
-format-foreground = ${colors.foreground-alt}
-label = %title%
-label-maxlen = = 10
+format-foreground = #cd0000
+
+label-padding = 1
 
 [module/mpd]
 type = internal/mpd
@@ -184,7 +204,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = #b72730
-format-background = #300405
+format-background = #b2320607
 format-underline = #a21728
 format-padding = 1
 label = %percentage:2%%
@@ -261,13 +281,18 @@ format-charging = <animation-charging> <label-charging>
 format-charging-background = #af302e10
 format-charging-underline = #cf808219
 
+format-discharging-padding = 1
+
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-background = #af302e10
 format-discharging-underline = #cf808219
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = #ef99a220
+format-full-background = #af302e10
 format-full-underline = ${self.format-charging-underline}
+
+format-full-padding = 1
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -333,20 +358,50 @@ label-close-foreground = #989a98
 label-separator = " "
 label-separator-foreground = #787a78
 
-menu-0-0 = 
+menu-0-0 = ⏼
 menu-0-0-exec = menu-open-1
-menu-0-1 = 
+menu-0-1 = ⏾
 menu-0-1-exec = menu-open-2
 
 menu-1-0 = 
 menu-1-0-exec = menu-open-0
-menu-1-1 = 
+menu-1-1 = ⏼
 menu-1-1-exec = sudo reboot
 
-menu-2-0 = 
+menu-2-0 = ⏾
 menu-2-0-exec = sudo poweroff -h now
 menu-2-1 = 
 menu-2-1-exec = menu-open-0
+
+[module/trans-mpd-memory]
+type = custom/text
+content = 
+content-foreground = ${module/memorybsp.format-background}
+content-background = ${colors.background-bsp}
+
+[module/trans-memory-cpu]
+type = custom/text
+content = 
+content-foreground = #300305
+content-background = ${module/memorybsp.format-background}
+
+[module/trans-cpu-battery]
+type = custom/text
+content = 
+content-foreground = #2e2c0f
+content-background = ${module/cpubsp.format-background}
+
+[module/trans-battery-date]
+type = custom/text
+content = 
+content-foreground = ${module/datebsp.format-background}
+content-background = ${module/batterybsp.format-charging-background}
+
+[module/trans-date-power]
+type = custom/text
+content = 
+content-foreground = #101010
+content-background = ${module/datebsp.format-background}
 
 [settings]
 screenchange-reload = true
@@ -358,3 +413,7 @@ margin-top = 7
 margin-bottom = 10
 margin-right = 7
 
+
+;      
+;    
+  

@@ -160,4 +160,11 @@ PS1+="\[\$(git_color)\]"
 PS1+="\$(git_branch)"
 PS1+="\[$COLOR_RESET\]\n\\$ "
 
+function _update_ps1() {
+	PS1=$(powerline-shell $?)
+}
+
+#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#	PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
 
