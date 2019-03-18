@@ -4,59 +4,32 @@
 
 # terminal emulator
 super + Return
-	st3
+	st
 
 # program launcher
-super + r
-	dmenu_run -nf '#efefef' -nb '#141214' -sb '#40afef' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
+super + @space
+	dmenu_run -sb "#ef3031" -sf "#020202" -nb "#6b6910" -nf "#efefef" -fn "Anonymous Pro:pixelsize=18:antialias=true" -p "$"
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	/usr/local/bin/firefox-dev/firefox
+	chromium-browser
 
 super + comma
-	st3 -e ncmpcpp
-
-super + slash
-	st3 -e transmission-remote-cli
-
-super + p
-	bspc desktop --focus ^5; rxvt-unicode -depth 32 -bg rgba:2f2f/0202/0404/acac -e ranger
-
-super + l
-	surf2 -b -D -g https://duckduckgo.com/
-
-super + q
-	surf2 -b -D -g -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
-
-super + e
-	surf2 -b -D -g -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
-
-super + a
-	surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
-
-super + d
-	bspc desktop --focus ^4; subl
-
-super + n
-	pavucontrol
-
-super + x
-	arandr
+	st -e "transmission-remote-cli"
 
 #
 # bspwm hotkeys
 #
 
 # quit/restart bspwm
-super + shift + {e,r}
+super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + shift + q
+super + {_,shift + }c
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -96,7 +69,7 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
+super + {_,shift + }p
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
