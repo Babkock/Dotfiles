@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	st3
+	st
 
 # program launcher
 super + r
@@ -15,13 +15,13 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	/usr/local/bin/firefox-dev/firefox
+	firefox
 
 super + comma
-	st3 -e ncmpcpp
+	st -e ncmpcpp
 
 super + slash
-	st3 -e transmission-remote-cli
+	st -e transmission-remote-cli
 
 super + p
 	bspc desktop --focus ^5; rxvt-unicode -depth 32 -bg rgba:2f2f/0202/0404/acac -e ranger
@@ -56,7 +56,7 @@ super + shift + {e,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + shift + q
+super + shift + c
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -96,7 +96,7 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
+super + {_,shift + }q
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor

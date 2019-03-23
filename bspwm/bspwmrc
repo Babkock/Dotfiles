@@ -20,7 +20,9 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a Gimp desktop='^5' state=floating
-bspc rule -a 'Firefox Developer Edition' desktop='^2' state=tiled
+bspc rule -a 'Mozilla Firefox' desktop='^2' state=tiled
+bspc rule -a 'Sublime Text 3' desktop='^4' state=tiled
+bspc rule -a 'Sublime' desktop='^4' state=tiled
 bspc rule -a Thunderbird desktop='^6' state=tiled
 bspc rule -a mpv desktop='^3' state=floating focus=on
 bspc rule -a Kupfer.py focus=on
