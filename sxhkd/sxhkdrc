@@ -20,6 +20,9 @@ super + period
 super + comma
 	st -e "transmission-remote-cli"
 
+super + slash
+	st -e "ssh babkock@192.168.0.3"
+
 #
 # bspwm hotkeys
 #
