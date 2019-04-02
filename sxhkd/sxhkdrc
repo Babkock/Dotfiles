@@ -18,25 +18,25 @@ super + period
 	firefox
 
 super + comma
-	st -e ncmpcpp
+	bspc desktop --focus ^3; st -e ncmpcpp
 
 super + slash
 	st -e transmission-remote-cli
 
 super + p
-	bspc desktop --focus ^5; rxvt-unicode -depth 32 -bg rgba:2f2f/0202/0404/acac -e ranger
+	bspc desktop --focus ^5; st -e ranger
 
 super + l
-	surf2 -b -D -g https://duckduckgo.com/
+	bspc desktop --focus ^2; surf2 -b -D -g https://duckduckgo.com/
 
 super + q
-	surf2 -b -D -g -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
+	bspc desktop --focus ^2; surf2 -b -D -g -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
 
 super + e
-	surf2 -b -D -g -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
+	bspc desktop --focus ^2; surf2 -b -D -g -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
 
 super + a
-	surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+	bspc desktop --focus ^2;surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
 
 super + d
 	bspc desktop --focus ^4; subl

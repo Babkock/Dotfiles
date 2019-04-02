@@ -9,22 +9,42 @@ sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
 feh --bg-scale ~/.config/bspwm/wallpaper.jpg &
 
-#bspc monitor -d I II III IV V VI VII VIII IX
-bspc monitor -d I II III IV V VI
+bspc monitor -d I II III IV V VI VII
 
-bspc config border_width         1
-bspc config window_gap          8
+bspc config focused_border_color	\#128230
+bspc config active_border_color		\#812017
+bspc config normal_border_color		\#020402
+bspc config focus_follows_pointer	true
+bspc config border_width			1
+bspc config window_gap				8
+bspc config focus_follows_pointer	true
+bspc config initial_polarity		first_child
+bspc config center_pseudo_tiled		true
+bspc config single_monocle			true
 
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config split_ratio				0.5
+bspc config borderless_monocle		true
+bspc config gapless_monocle			true
 
 bspc rule -a Gimp desktop='^5' state=floating
-bspc rule -a 'Mozilla Firefox' desktop='^2' state=tiled
+bspc rule -a ranger desktop='^5' state=monocle focus=on follow=on
+bspc rule -a feh state=floating follow=on focus=on
+bspc rule -a 'Firefox Developer Edition' desktop='^2' state=tiled
+bspc rule -a 'Firefox Developer Edition':Dialog desktop='^2' state=floating
+bspc rule -a 'Firefox Developer Edition':Browser desktop='^2' state=tiled
 bspc rule -a 'Sublime Text 3' desktop='^4' state=tiled
 bspc rule -a 'Sublime' desktop='^4' state=tiled
 bspc rule -a Thunderbird desktop='^6' state=tiled
-bspc rule -a mpv desktop='^3' state=floating focus=on
+bspc rule -a mpv desktop='^3' state=floating focus=on follow=on
+bspc rule -a *:Dialog state=floating
+bspc rule -a Firefox:Dialog desktop='^2' state=floating
+bspc rule -a Firefox:Places desktop='^2' state=floating
+bspc rule -a Firefox:Browser desktop='^2' state=tiled
+bspc rule -a Firefox:Toplevel desktop='^2' state=tiled
+bspc rule -a Firefox-esr:Dialog desktop='^2' state=floating
+bspc rule -a Firefox-esr:Places desktop='^2' state=floating
+bspc rule -a Firefox-esr:Browser desktop='^2' state=tiled
+bspc rule -a Firefox-esr:Toplevel desktop='^2' state=tiled
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 

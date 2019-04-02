@@ -14,7 +14,7 @@
 #echo ".bash_aliases..."
 #cp /home/babkock/.bash_aliases ./bash_aliases
 #echo ".bashrc..."
-cp /home/babkock/.bashrc ./bashrc
+#cp /home/babkock/.bashrc ./bashrc
 #echo "bin/battery..."
 #cp /home/babkock/bin/battery ./bin/battery
 #echo "bin/hdmi..."
@@ -45,10 +45,10 @@ cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
 #cp /home/babkock/.thunderbird/*.default/chrome/userChrome.css ./chrome/userChrome.thunderbird.css
 echo ".nanorc..."
 cp /home/babkock/.nanorc ./nanorc
-echo ".config/ranger/rc.conf..."
-cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
-#echo ".vimrc..."
-#cp /home/babkock/.vimrc ./vimrc
+#echo ".config/ranger/rc.conf..."
+#cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
+echo ".vimrc..."
+cp /home/babkock/.vimrc ./vimrc
 #echo ".xbindkeysrc..."
 #cp /home/babkock/.xbindkeysrc ./xbindkeysrc
 #echo ".Xresources.awe..."

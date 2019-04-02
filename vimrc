@@ -1,3 +1,4 @@
+set rtp+=~/.vim/bundle/vundle/
 syntax on
 color peachpuff
 set tabstop=4
@@ -12,9 +13,16 @@ set laststatus=2  " Always show statusline
 set encoding=utf-8  " Necessary to show Unicode glyphs
 set t_Co=256
 
-if filereadable(expand("~/.vimrc.plug"))
-	source ~/.vimrc.plug
-endif
+set nocompatible
+filetype off
+call vundle#rc()
+
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'Lokaltog/vim-powerline.git'
+Plugin 'powerline/powerline.git'
+Plugin 'jiangmiao/auto-pairs.git'
+filetype plugin indent on
 
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'solarized256'
