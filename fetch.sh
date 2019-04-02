@@ -4,7 +4,7 @@
 # Please don't run this from outside of the root directory of the repo.
 # It should be "./fetch.sh" every time.
 #
-#echo "=== Fetching ===";
+echo "=== Fetching ===";
 #echo ".config/awesome/rc.lua..."
 #cp /home/babkock/.config/awesome/rc.lua ./awesome/rc.lua
 #echo ".config/awesome/themes/babkock/theme.lua..."
@@ -47,6 +47,12 @@ echo ".nanorc..."
 cp /home/babkock/.nanorc ./nanorc
 #echo ".config/ranger/rc.conf..."
 #cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
+echo ".surf/styles/4chan.css..."
+cp /home/babkock/.surf/styles/4chan.css ./styles/4chan.css
+echo ".surf/styles/wikipedia.css..."
+cp /home/babkock/.surf/styles/wikipedia.css ./styles/wikipedia.css
+echo ".surf/styles/reddit.css"
+cp /home/babkock/.surf/styles/reddit.css
 echo ".vimrc..."
 cp /home/babkock/.vimrc ./vimrc
 #echo ".xbindkeysrc..."

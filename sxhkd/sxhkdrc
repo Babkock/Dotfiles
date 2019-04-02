@@ -7,7 +7,7 @@ super + Return
 	st
 
 # program launcher
-super + r
+super + @space
 	dmenu_run -nf '#efefef' -nb '#141214' -sb '#40afef' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
 
 # make sxhkd reload its configuration files:
