@@ -21,7 +21,19 @@ super + comma
 	st -e "transmission-remote-cli"
 
 super + slash
-	st -e "ssh babkock@192.168.0.3"
+	st -e "ranger"
+
+super + p
+	surf -d -g -n https://passthepopcorn.me
+
+super + q
+	surf -d -g -n https://broadcasthe.net
+
+super + e
+	surf -d -g -n https://github.com/Babkock
+
+super + l
+	surf -d -g -n https://duckduckgo.com
 
 #
 # bspwm hotkeys

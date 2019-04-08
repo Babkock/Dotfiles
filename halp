@@ -1,0 +1,20 @@
+#!/bin/bash
+printf "\e[33m========  Programs  ========\e[91m\n"
+printf "\n"
+printf "\e[33m| Key Binding     \t\t| Program \t\t|\n"
+printf "\e[33m_________________________________________\e[91m\n"
+printf "\e[92m| (Mod) + Return |\t\t\e[91m| st   \t\t\t|\n"
+printf "\e[92m| (Mod) + Space  |\t\t\e[91m| dmenu \t\t|\n"
+printf "\e[92m| (Mod) + period |\t\t\e[91m| Chromium \t\t|\n"
+printf "\e[92m| (Mod) + comma  |\t\t\e[91m| Transmission\t|\n"
+printf "\e[92m| (Mod) + slash  |\t\t\e[91m| Ranger\t\t|\n"
+printf "\e[33m-----------------------------------------\e[91m\n"
+
+printf "\e[97m========    Surf    ========\e[38m\n"
+printf "\e[33m_____________________________________________\e[94m\n"
+printf "\e[94m| (Mod) + P      |\t\t\e[96m| PassThePopcorn\t|\n"
+printf "\e[94m| (Mod) + Q      |\t\t\e[96m| BroadcasTheNet\t|\n"
+printf "\e[94m| (Mod) + E      |\t\t\e[96m| GitHub\t\t\t|\n"
+printf "\e[94m| (Mod) + L      |\t\t\e[96m| DuckDuckGo\t\t|\n"
+printf "\e[33m---------------------------------------------\e[33m\n"
+exit
