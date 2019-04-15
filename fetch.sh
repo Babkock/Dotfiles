@@ -9,14 +9,14 @@ echo "=== Fetching ===";
 #cp /home/babkock/.bash_aliases ./bash_aliases
 echo ".bashrc..."
 cp /home/pi/.bashrc ./bashrc
-#echo "/usr/bin/panel..."
-#cp /usr/bin/panel ./bin/panel
-#echo "/usr/bin/panel_bar..."
-#cp /usr/bin/panel_bar ./bin/panel_bar
-#echo "/usr/bin/panel_colors..."
-#cp /usr/bin/panel_colors ./bin/panel_colors
-#echo ".config/bspwm/bspwmrc..."
-#cp /home/pi/.config/bspwm/bspwmrc ./bspwm/bspwmrc
+echo "/usr/bin/panel..."
+cp /usr/bin/panel ./bin/panel
+echo "/usr/bin/panel_bar..."
+cp /usr/bin/panel_bar ./bin/panel_bar
+echo "/usr/bin/panel_colors..."
+cp /usr/bin/panel_colors ./bin/panel_colors
+echo ".config/bspwm/bspwmrc..."
+cp /home/pi/.config/bspwm/bspwmrc ./bspwm/bspwmrc
 #echo ".config/i3/config..."
 #cp /home/pi/.config/i3/config ./i3/config
 #echo ".config/i3/wallpaper.jpg..."

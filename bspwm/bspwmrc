@@ -15,7 +15,7 @@ feh --bg-scale ~/.config/bspwm/wallpaper.jpg &
 
 bspc monitor -d I II III IV V VI
 
-bspc config focused_border_color	\#CF1214
+bspc config focused_border_color	\#9F8F12
 bspc config normal_border_color		\#808080
 bspc config single_monocle		true
 bspc config initial_polarity		first_child
@@ -24,13 +24,13 @@ bspc config border_width         	2
 bspc config window_gap          	12
 
 bspc config split_ratio          	0.5
-bspc config borderless_monocle   	true
+bspc config borderless_monocle		true
 bspc config gapless_monocle      	true
 bspc config center_pseudo_tiled		true
 
-bspc rule -a Chromium desktop='^2'
-bspc rule -a VLC desktop='^3' follow=on focus=on
-bspc rule -a 'VLC Media Player' desktop='^3' follow=on focus=on
+bspc rule -a feh focus=on state=floating
+bspc rule -a Chromium focus=on desktop=^2
+bspc rule -a vlc focus=on follow=on desktop=^3
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 

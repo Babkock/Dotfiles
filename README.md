@@ -1,7 +1,5 @@
 # Dotfiles
 
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/MainImage.png)
-
 My personal configuration files for various GNU/Linux programs. These were tested on Devuan.
 
 ## Programs included
@@ -20,8 +18,4 @@ My personal configuration files for various GNU/Linux programs. These were teste
 * [Slstatus](https://github.com/drkhsh/slstatus)
 * [SXHKD](https://github.com/baskerville/sxhkd)
 * [VIM](https://www.vim.org)
-
-## My desktop
-
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/Clean-Desktop.i3.png)
 
