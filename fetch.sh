@@ -14,7 +14,7 @@ echo "=== Fetching ===";
 #echo ".bash_aliases..."
 #cp /home/babkock/.bash_aliases ./bash_aliases
 #echo ".bashrc..."
-#cp /home/babkock/.bashrc ./bashrc
+cp /home/babkock/.bashrc ./bashrc
 #echo "bin/battery..."
 #cp /home/babkock/bin/battery ./bin/battery
 #echo "bin/hdmi..."
@@ -37,10 +37,10 @@ echo ".config/sxhkd/sxhkdrc..."
 cp /home/babkock/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
 echo ".config/neofetch/config..."
 cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
-#echo ".mozilla/firefox/*.dev-edition-default/chrome/userChrome.css..."
-#cp /home/babkock/.mozilla/firefox/*.dev-edition-default/chrome/userChrome.css ./chrome/userChrome.firefox.css
-#echo ".mozilla/firefox/*.dev-edition-default/chrome/userContent.css..."
-#cp /home/babkock/.mozilla/firefox/*.dev-edition-default/chrome/userContent.css ./chrome/userContent.firefox.css
+echo ".mozilla/firefox/*.dev-edition-default/chrome/userChrome.css..."
+cp /home/babkock/.mozilla/firefox/*.dev-edition-default/chrome/userChrome.css ./chrome/userChrome.firefox.css
+echo ".mozilla/firefox/*.dev-edition-default/chrome/userContent.css..."
+cp /home/babkock/.mozilla/firefox/*.dev-edition-default/chrome/userContent.css ./chrome/userContent.firefox.css
 #echo ".thunderbird/*.default/chrome/userChrome.css..."
 #cp /home/babkock/.thunderbird/*.default/chrome/userChrome.css ./chrome/userChrome.thunderbird.css
 echo ".nanorc..."

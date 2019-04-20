@@ -7,17 +7,17 @@ const unsigned int interval = 1000;
 static const char unknown_str[] = "n/a";
 
 /* maximum output string length */
-#define MAXLEN 512
+#define MAXLEN 2048
 
 /*
  * function            description                     argument (example)
  *
  * battery_perc        battery percentage              battery name (BAT0)
- *                                                     NULL on OpenBSD
+ *                                                     NULL on OpenBSD/FreeBSD
  * battery_state       battery charging state          battery name (BAT0)
- *                                                     NULL on OpenBSD
+ *                                                     NULL on OpenBSD/FreeBSD
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
- *                                                     NULL on OpenBSD
+ *                                                     NULL on OpenBSD/FreeBSD
  * cpu_perc            cpu usage in percent            NULL
  * cpu_freq            cpu frequency in MHz            NULL
  * datetime            date and time                   format string (%F %T)
@@ -52,6 +52,8 @@ static const char unknown_str[] = "n/a";
  * temp                temperature in degree celsius   sensor file
  *                                                     (/sys/class/thermal/...)
  *                                                     NULL on OpenBSD
+ *                                                     thermal zone on FreeBSD
+ *                                                     (tz0, tz1, etc.)
  * uid                 UID of current user             NULL
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
@@ -61,14 +63,13 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ run_command, "\x01  %s ",		"mpc status | head -n 1"},
-	{ run_command, "\x07 ", NULL },
-	{ battery_perc, "\x05  %s%% ",	"BAT0" },
-	{ run_command, "\x08 ", NULL },
-	{ cpu_perc, "\x03  %s%% ",		NULL },
-	{ run_command, "\x09 ", NULL },
-	{ ram_perc, "\x06  %s%% ",		NULL },
-	{ run_command, "\x0a ", NULL },
-	{ datetime, "\x04 %s",           "%b %d, %I:%M:%S" },
+	{ run_command,	" %s ",		"mpc -h 127.0.0.2 -p 6600 | head -1"},
+	{ run_command, "\x07", 		NULL },
+	{ datetime, 	"\x03  %s ",		"%b %d, %I:%M:%S" },
+	{ run_command, "\x08", 		NULL },
+	{ battery_perc, "\x04  %s%% ",		"BAT0" },
+	{ run_command, "\x09", 		NULL },
+	{ cpu_perc, 	"\x05  %s%% ",	NULL },
+	{ run_command, "\x0a",		NULL },
+	{ ram_perc,	"\x06  %s%%",	NULL },
 };
-

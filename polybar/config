@@ -372,7 +372,7 @@ menu-1-1 = ⏼
 menu-1-1-exec = sudo reboot
 
 menu-2-0 = ⏾
-menu-2-0-exec = sudo poweroff -h now
+menu-2-0-exec = sudo shutdown -h now
 menu-2-1 = 
 menu-2-1-exec = menu-open-0
 

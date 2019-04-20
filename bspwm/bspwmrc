@@ -32,6 +32,9 @@ bspc rule -a feh state=floating follow=on focus=on
 bspc rule -a 'Firefox Developer Edition' desktop='^2' state=tiled
 bspc rule -a 'Firefox Developer Edition':Dialog desktop='^2' state=floating
 bspc rule -a 'Firefox Developer Edition':Browser desktop='^2' state=tiled
+bspc rule -a surf desktop='^2' state=tiled
+bspc rule -a surf2 desktop='^2' state=tiled
+bspc rule -a Surf desktop='^2' state=tiled
 bspc rule -a 'Sublime Text 3' desktop='^4' state=tiled
 bspc rule -a 'Sublime' desktop='^4' state=tiled
 bspc rule -a Thunderbird desktop='^6' state=tiled

@@ -22,6 +22,7 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'Lokaltog/vim-powerline.git'
 Plugin 'powerline/powerline.git'
 Plugin 'jiangmiao/auto-pairs.git'
+Plugin 'rust-lang/rust.vim.git'
 filetype plugin indent on
 
 let g:Powerline_symbols = 'fancy'
