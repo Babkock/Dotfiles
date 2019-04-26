@@ -1,6 +1,6 @@
 # Dotfiles
 
-My personal configuration files for various GNU/Linux programs. These were tested on Debian, Ubuntu, Devuan, and Void Linux. The "pi" branch is my Raspberry Pi Dotfiles.
+My personal configuration files for various GNU/Linux programs. These were tested on multiple distros. The "pi" branch is my Raspberry Pi Dotfiles.
 
 ## Programs included
 
@@ -22,7 +22,5 @@ My personal configuration files for various GNU/Linux programs. These were teste
 ## My desktops
 
 ![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/Clean-Desktop.png)
-
-![](https://tannerbabcock.com/images/blog/20.png)
 
 

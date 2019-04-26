@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + Return
-	st
+	urxvt -bg rgba:1313/1111/0000/a2a2 -depth 32
 
 # program launcher
 super + @space
-	dmenu_run -nf '#efefef' -nb '#141214' -sb '#40afef' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
+	dmenu_run -nf '#efefef' -nb '#141214' -sb '#ef2d6e' -sf '#000000' -fn 'Hack-13' -p '$'
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -18,13 +18,10 @@ super + period
 	firefox
 
 super + comma
-	bspc desktop --focus ^3; st -e ncmpcpp
+	bspc desktop --focus ^3; urxvt -bg rgba:1313/1313/0000/a2a2 -depth 32 -e ncmpcpp
 
 super + slash
-	st -e transmission-remote-cli
-
-super + p
-	bspc desktop --focus ^5; st -e ranger
+	bspc desktop --focus ^5; urxvt -fn 'xft:Terminus:size=16:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf' -bg rgba:1717/1717/0000/9a9a -depth 32 -e ranger
 
 super + l
 	bspc desktop --focus ^2; surf2 -b -D -g https://duckduckgo.com/
@@ -37,9 +34,6 @@ super + e
 
 super + a
 	bspc desktop --focus ^2;surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
-
-super + d
-	bspc desktop --focus ^4; subl
 
 super + n
 	pavucontrol

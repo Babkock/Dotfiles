@@ -1,0 +1,60 @@
+URxvt*scrollBar: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt*urgentOnBell: true
+URxvt*fading: 10
+URxvt*fadecolor: #a2a2a2
+URxvt*internalBorder: 10
+
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.hinting: 1
+Xft.hintstyle: hintnone
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+URxvt*depth: 32
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.font: xft:Terminus:pixelsize=14:antialias=true:hinting=true:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf
+URxvt.letterSpace: 0
+
+! special
+URxvt.foreground:   #c0b793
+URxvt.background:   #0f0f04
+URxvt.cursorColor:  #c0b18b
+
+! black
+URxvt.color0:       #202020
+URxvt.color8:       #202020
+
+! red
+URxvt.color1:       #e17d4a
+URxvt.color9:       #e48c4a
+
+! green
+URxvt.color2:       #8bb165
+URxvt.color10:      #8cb969
+
+! yellow
+URxvt.color3:       #bfb65c
+URxvt.color11:      #bfb640
+
+! blue
+URxvt.color4:       #539d9f
+URxvt.color12:      #529b9e
+
+! magenta
+URxvt.color5:       #9f595b
+URxvt.color13:      #80585a
+
+! cyan
+URxvt.color6:       #8d987e
+URxvt.color14:      #889c79
+
+! white
+URxvt.color7:       #c9b18b
+URxvt.color15:      #978965
+
+
