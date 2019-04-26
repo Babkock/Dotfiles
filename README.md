@@ -1,8 +1,6 @@
 # Dotfiles
 
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/MainImage.png)
-
-My personal configuration files for various GNU/Linux programs. These were tested on Devuan.
+My personal configuration files for various GNU/Linux programs. These were tested on Debian, Ubuntu, Devuan, and Void Linux. The "pi" branch is my Raspberry Pi Dotfiles.
 
 ## Programs included
 
@@ -21,7 +19,10 @@ My personal configuration files for various GNU/Linux programs. These were teste
 * [SXHKD](https://github.com/baskerville/sxhkd)
 * [VIM](https://www.vim.org)
 
-## My desktop
+## My desktops
 
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/Clean-Desktop.i3.png)
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/Clean-Desktop.png)
+
+![](https://tannerbabcock.com/images/blog/20.png)
+
 
