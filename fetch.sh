@@ -7,8 +7,8 @@
 echo "=== Fetching ===";
 #echo ".bash_aliases..."
 #cp /home/babkock/.bash_aliases ./bash_aliases
-echo ".bashrc..."
-cp /home/pi/.bashrc ./bashrc
+#echo ".bashrc..."
+#cp /home/pi/.bashrc ./bashrc
 echo "/usr/bin/panel..."
 cp /usr/bin/panel ./bin/panel
 echo "/usr/bin/panel_bar..."
@@ -43,8 +43,6 @@ cp /home/pi/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
 #cp /home/pi/.vimrc ./vimrc
 #echo ".xbindkeysrc..."
 #cp /home/pi/.xbindkeysrc ./xbindkeysrc
-#echo ".Xresources.awe..."
-#cp /home/pi/.Xresources.awe ./Xresources.awe
-#echo ".Xresources.i3..."
-#cp /home/pi/.Xresources.i3 ./Xresources.i3
+echo ".zshrc..."
+cp /home/pi/.zshrc ./zshrc
 echo "Done fetching"
