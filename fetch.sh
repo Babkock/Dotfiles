@@ -5,16 +5,10 @@
 # It should be "./fetch.sh" every time.
 #
 echo "=== Fetching ===";
-#echo ".config/awesome/rc.lua..."
-#cp /home/babkock/.config/awesome/rc.lua ./awesome/rc.lua
-#echo ".config/awesome/themes/babkock/theme.lua..."
-#cp /home/babkock/.config/awesome/themes/babkock/theme.lua ./awesome/themes/babkock/theme.lua
-#echo ".config/awesome/themes/babkock/desktop.jpg..."
-#cp /home/babkock/.config/awesome/themes/babkock/desktop.jpg ./awesome/themes/babkock/desktop.jpg
-echo ".bash_aliases..."
-cp /home/babkock/.bash_aliases ./bash_aliases
-echo ".bashrc..."
-cp /home/babkock/.bashrc ./bashrc
+#echo ".bash_aliases..."
+#cp /home/babkock/.bash_aliases ./bash_aliases
+#echo ".bashrc..."
+#cp /home/babkock/.bashrc ./bashrc
 #echo "bin/battery..."
 #cp /home/babkock/bin/battery ./bin/battery
 #echo "bin/hdmi..."
@@ -29,8 +23,8 @@ cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
 #cp /home/babkock/.config/i3/config ./i3/config
 #echo ".config/i3/wallpaper.jpg..."
 #cp /home/babkock/.config/i3/wallpaper.jpg ./i3/wallpaper.jpg
-echo ".config/ncmpcpp/config..."
-cp /home/babkock/.config/ncmpcpp/config ./ncmpcpp/config
+echo ".ncmpcpp/config..."
+cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
 echo ".config/polybar/config..."
 cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/sxhkd/sxhkdrc..."
@@ -65,6 +59,8 @@ echo ".xinitrc..."
 cp /home/babkock/.xinitrc ./xinitrc
 echo ".Xresources..."
 cp /home/babkock/.Xresources ./Xresources
+echo ".zshrc..."
+cp /home/babkock/.zshrc ./zshrc
 #echo "Documents/slstatus/config.h..."
 #cp /home/babkock/Documents/slstatus/config.h ./slstatus/config.h
 echo "Done fetching"

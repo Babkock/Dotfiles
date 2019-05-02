@@ -23,7 +23,10 @@ Plugin 'Lokaltog/vim-powerline.git'
 Plugin 'powerline/powerline.git'
 Plugin 'jiangmiao/auto-pairs.git'
 Plugin 'rust-lang/rust.vim.git'
+Plugin 'edkolev/tmuxline.vim.git'
 filetype plugin indent on
+
+let g:tmuxline_preset = 'full'
 
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'solarized256'

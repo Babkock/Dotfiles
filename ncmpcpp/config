@@ -1,8 +1,8 @@
-ncmpcpp_directory = ~/.config/ncmpcpp
+ncmpcpp_directory = ~/.ncmpcpp
 
 #lyrics_directory = ~/.lyrics
 
-mpd_host = localhost
+mpd_host = 127.0.0.2
 
 mpd_port = 6600
 
@@ -43,7 +43,7 @@ visualizer_type = spectrum
 visualizer_look = ●▮
 
 #visualizer_color = magenta, red, green, cyan, yellow, blue, white
-visualizer_color = 6, 40, 136, 108, 219, 54, 91, 155, 207, 94, 199, 102, 160, 20
+visualizer_color = 6, 46, 152, 95, 219, 54, 91, 155, 207, 94, 199, 102, 160, 20
 
 #system_encoding = ""
 
@@ -243,11 +243,11 @@ cyclic_scrolling = yes
 
 #lines_scrolled = 2
 
-#lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
+lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
 
 follow_now_playing_lyrics = no
 
-fetch_lyrics_for_current_song_in_background = no
+fetch_lyrics_for_current_song_in_background = yes
 
 store_lyrics_in_song_dir = no
 

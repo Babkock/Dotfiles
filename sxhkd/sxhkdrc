@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	urxvt -bg rgba:1313/1111/0000/a2a2 -depth 32
+	st
 
 # program launcher
 super + @space
@@ -18,28 +18,34 @@ super + period
 	firefox
 
 super + comma
-	bspc desktop --focus ^3; urxvt -bg rgba:1313/1313/0000/a2a2 -depth 32 -e ncmpcpp
+	bspc desktop --focus ^3; st -e ncmpcpp
 
 super + slash
-	bspc desktop --focus ^5; urxvt -fn 'xft:Terminus:size=16:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf' -bg rgba:1717/1717/0000/9a9a -depth 32 -e ranger
+	bspc desktop --focus ^5; urxvt -fn 'xft:Terminus:size=16:hinting=2:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf' -bg rgba:1717/1717/0000/9a9a -depth 32 -e ranger
 
 super + l
-	bspc desktop --focus ^2; surf2 -b -D -g https://duckduckgo.com/
+	bspc desktop --focus ^2; surf -D -g -I -n https://duckduckgo.com/
 
 super + q
-	bspc desktop --focus ^2; surf2 -b -D -g -C /home/babkock/.surf/styles/4chan.css https://4chan.org/
+	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/4chan.css https://4chan.org/
 
 super + e
-	bspc desktop --focus ^2; surf2 -b -D -g -C /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
+	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
 
 super + a
-	bspc desktop --focus ^2;surf2 -b -D -g -C /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/reddit.css https://old.reddit.com
+
+super + p
+	bspc desktop --focus ^2; surf -D -g -I -n https://github.com/Babkock
 
 super + n
 	pavucontrol
 
 super + x
 	arandr
+
+super + z
+	bspc desktop --focus ^2; surf -D -g -I -n https://tannerbabcock.com/home
 
 #
 # bspwm hotkeys
