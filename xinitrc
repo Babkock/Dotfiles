@@ -1,6 +1,7 @@
 #!/bin/sh
-feh --bg-scale /home/babkock/wallpaper.jpg
-xrdb -merge /home/babkock/.Xresources
+feh --bg-scale /home/babkock/.config/herbstluftwm/wallpaper.jpg
+#xrdb -merge /home/babkock/.Xresources
 tinyserve &
-bspwm
+#bspwm
+herbstluftwm
 

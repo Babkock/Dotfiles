@@ -19,10 +19,8 @@ echo "=== Fetching ===";
 #cp /home/babkock/bin/volume ./bin/volume
 echo ".config/bspwm/bspwmrc..."
 cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
-#echo ".config/i3/config..."
-#cp /home/babkock/.config/i3/config ./i3/config
-#echo ".config/i3/wallpaper.jpg..."
-#cp /home/babkock/.config/i3/wallpaper.jpg ./i3/wallpaper.jpg
+echo ".config/herbstluftwm/autostart..."
+cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
 echo ".ncmpcpp/config..."
 cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
 echo ".config/polybar/config..."

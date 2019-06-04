@@ -124,7 +124,7 @@ module-margin-right = 0
 font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
 ;font-1 = Terminess:size=12:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Terminess (TTF) Nerd Font Complete.ttf
 
-modules-left = bspwm
+modules-left = workspaces
 modules-right = mpd memorybsp cpubsp battery datebsp powermenu
 
 tray-position = right
@@ -132,6 +132,40 @@ tray-padding = 0
 
 cursor-click = x
 cursor-scroll = x
+
+[module/workspaces]
+type = internal/xworkspaces
+enable-click = true
+enable-scroll = true
+pin-workspaces = false
+
+format = <label-state>
+
+icon-0 = default;
+icon-1 = 1;
+icon-2 = 2;
+icon-4 = 4;
+icon-5 = 5;
+icon-3 = 3;
+
+label-active = %icon%
+label-active-background = #ef8cb969
+label-active-foreground = #ff000000
+label-active-underline = #ef8cb969
+label-active-padding = 1
+
+label-normal = %icon%
+label-normal-padding = 1
+label-normal-background = #ef0d5908
+label-normal-foreground = #ffefefef
+
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
 
 [module/bspwm]
 type = internal/bspwm
