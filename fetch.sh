@@ -17,14 +17,10 @@ echo "/usr/bin/panel_colors..."
 cp /usr/bin/panel_colors ./bin/panel_colors
 echo ".config/bspwm/bspwmrc..."
 cp /home/pi/.config/bspwm/bspwmrc ./bspwm/bspwmrc
-#echo ".config/i3/config..."
-#cp /home/pi/.config/i3/config ./i3/config
-#echo ".config/i3/wallpaper.jpg..."
-#cp /home/pi/.config/i3/wallpaper.jpg ./i3/wallpaper.jpg
-#echo ".config/ncmpcpp/config..."
-#cp /home/babkock/.config/ncmpcpp/config ./ncmpcpp/config
-#echo ".config/polybar/config..."
-#cp /home/babkock/.config/polybar/config ./polybar/config
+echo ".config/herbstluftwm/autostart..."
+cp /home/pi/.config/herbstluftwm/autostart ./herbstluftwm/autostart
+echo ".config/herbstluftwm/panel.sh..."
+cp /home/pi/.config/herbstluftwm/panel.sh ./herbstluftwm/panel.sh
 echo ".config/sxhkd/sxhkdrc..."
 cp /home/pi/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
 #echo ".config/neofetch/config..."

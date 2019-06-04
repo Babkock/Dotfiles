@@ -21,7 +21,7 @@ super + comma
 	st -e "transmission-remote-cli"
 
 super + slash
-	st -e "ranger"
+	bigst -e "ranger"
 
 super + p
 	surf -d -g -n https://passthepopcorn.me
