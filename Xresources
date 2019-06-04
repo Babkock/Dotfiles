@@ -8,8 +8,8 @@ URxvt*internalBorder: 10
 
 Xft.antialias: 1
 Xft.autohint: 0
-Xft.hinting: 1
-Xft.hintstyle: hintnone
+Xft.hinting: 0
+! Xft.hintstyle: hintnone
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
@@ -17,8 +17,8 @@ URxvt*depth: 32
 
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
-URxvt.font: xft:Terminus:pixelsize=14:antialias=true:hinting=true:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf
-URxvt.letterSpace: 0
+URxvt.font: xft:Terminus:format=truetype:size=16:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed3.ttf
+URxvt.letterSpace: 1
 
 ! special
 URxvt.foreground:   #c0b793

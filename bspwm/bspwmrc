@@ -1,30 +1,28 @@
 #!/bin/sh
 
-xrdb -merge /home/babkock/.Xresources
-
-SXHKD_FIFO=/tmp/sxhkd-fifo
+SXHKD_FIFO=/tmp/sxhkd.fifo
 export SXHKD_FIFO
 
 [ -e "$SXHKD_FIFO" ] && rm "$SXHKD_FIFO"
 mkfifo "$SXHKD_FIFO"
 sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
-bspc monitor -d I II III IV V VI VII
+bspc monitor -d I II III IV V VI
 
-bspc config focused_border_color	\#918c20
-bspc config active_border_color		\#812017
-bspc config normal_border_color		\#020402
-bspc config focus_follows_pointer	true
-bspc config border_width			1
-bspc config window_gap				4
-bspc config focus_follows_pointer	true
-bspc config initial_polarity		first_child
-bspc config center_pseudo_tiled		true
-bspc config single_monocle			true
+bspc config focused_border_color    \#918c20
+bspc config active_border_color	    \#812017
+bspc config normal_border_color	    \#020402
+bspc config focus_follows_pointer   true
+bspc config border_width            1
+bspc config window_gap              4
+bspc config focus_follows_pointer   true
+bspc config initial_polarity        first_child
+bspc config center_pseudo_tiled     true
+bspc config single_monocle          true
 
-bspc config split_ratio				0.5
-bspc config borderless_monocle		true
-bspc config gapless_monocle			true
+bspc config split_ratio             0.5
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
 
 bspc rule -a Gimp desktop='^5' state=floating
 bspc rule -a ranger desktop='^5' state=monocle focus=on follow=on
@@ -34,6 +32,7 @@ bspc rule -a 'Mozilla Firefox' desktop='^2' state=tiled
 bspc rule -a 'Firefox Developer Edition' desktop='^2' state=tiled
 bspc rule -a 'Firefox Developer Edition':Dialog desktop='^2' state=floating
 bspc rule -a 'Firefox Developer Edition':Browser desktop='^2' state=tiled
+bspc rule -a vlc desktop='^3' state=floating focus=on follow=on
 bspc rule -a surf desktop='^2' state=tiled
 bspc rule -a surf2 desktop='^2' state=tiled
 bspc rule -a Surf desktop='^2' state=tiled
@@ -54,8 +53,8 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 #xbindkeys
-xinput --set-prop 14 'libinput Accel Speed' 0.55
-xinput --set-prop 14 'libinput Tapping Enabled' 1
+xinput --set-prop 14 'Synaptics Tap Action' 1, 1, 1, 1, 1, 1, 1
+xinput --set-prop 14 'Synaptics Tap Time' 120
 xmodmap -e 'keycode 80=Up'
 xmodmap -e 'keycode 88=Down'
 xmodmap -e 'keycode 83=Left'
@@ -64,5 +63,5 @@ xmodmap -e 'keycode 85=Right'
 killall polybar
 polybar -r -log=error bspbar &
 killall compton
-compton -b &
+compton -b -c --blur-background --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox"' &
 xrandr --output eDP1 --brightness 0.8

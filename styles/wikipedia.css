@@ -105,6 +105,14 @@ div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div
     background-color: #444 !important;
   }
 
+#mp-other-lower {
+    border:0 !important;
+}
+
+h2#mp-lang, h2#mp-sister, h2#mp-tfl-h2 {
+    background:none !important;
+}
+
   body.ns-100 .mw-body-content th,
     body.ns-100 .mw-body-content div,
     body.ns-100 #portal td,

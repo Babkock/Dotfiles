@@ -24,6 +24,7 @@ Plugin 'powerline/powerline.git'
 Plugin 'jiangmiao/auto-pairs.git'
 Plugin 'rust-lang/rust.vim.git'
 Plugin 'edkolev/tmuxline.vim.git'
+Plugin 'ryanoasis/vim-devicons.git'
 filetype plugin indent on
 
 let g:tmuxline_preset = 'full'

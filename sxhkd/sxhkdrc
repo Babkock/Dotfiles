@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	dmenu_run -nf '#efefef' -nb '#141214' -sb '#ef2d6e' -sf '#000000' -fn 'Hack-13' -p '$'
+	dmenu_run -nf '#efefef' -nb '#141214' -sb '#8cb969' -sf '#000000' -fn 'Hack-13' -p '$'
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -17,11 +17,23 @@ super + Escape
 super + period
 	firefox
 
+super + Shift + period
+	chromium
+
 super + comma
-	bspc desktop --focus ^3; st -e ncmpcpp
+	bspc desktop --focus ^3; st -e ncmpcpp 
+
+super + semicolon
+	bspc desktop --focus ^5; urxvt -bg rgba:1212/0202/0000/a9a9 -depth 32 -e ranger
 
 super + slash
-	bspc desktop --focus ^5; urxvt -fn 'xft:Terminus:size=16:hinting=2:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf' -bg rgba:1717/1717/0000/9a9a -depth 32 -e ranger
+	bspc desktop --focus ^5; bigst -e ranger
+
+super + shift + slash
+	st -e man halp
+
+super + backslash
+	bspc desktop --focus ^3; nicotine
 
 super + l
 	bspc desktop --focus ^2; surf -D -g -I -n https://duckduckgo.com/
@@ -42,10 +54,13 @@ super + n
 	pavucontrol
 
 super + x
-	arandr
+	thunderbird
 
 super + z
 	bspc desktop --focus ^2; surf -D -g -I -n https://tannerbabcock.com/home
+
+super + w
+	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/8chan.css https://8ch.net
 
 #
 # bspwm hotkeys

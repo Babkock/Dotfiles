@@ -67,7 +67,7 @@ height = 23
 radius = 0
 fixed-center = false
 
-background = #89141214
+background = #82141214
 foreground = #a9efefef
 
 line-size = 3
@@ -96,8 +96,42 @@ wm-restack = bspwm
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
-cursor-click = pointer
-cursor-scroll = pointer
+cursor-click = x
+cursor-scroll = x
+
+[bar/hlbar]
+bottom = true
+width = 100%
+height = 23
+radius = 0
+fixed-center = false
+
+background = #82141214
+foreground = #a9efefef
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
+;font-1 = Terminess:size=12:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Terminess (TTF) Nerd Font Complete.ttf
+
+modules-left = bspwm
+modules-right = mpd memorybsp cpubsp battery datebsp powermenu
+
+tray-position = right
+tray-padding = 0
+
+cursor-click = x
+cursor-scroll = x
 
 [module/bspwm]
 type = internal/bspwm
@@ -108,18 +142,16 @@ ws-icon-2 = III;
 ws-icon-4 = V;
 ws-icon-5 = VI;
 ws-icon-3 = IV;
-ws-icon-6 = VII;
-ws-icon-7 = VIII;
 
 label-focused = %icon%
-label-focused-background = #eff62261
+label-focused-background = #ef8cb969
 label-focused-foreground = #ff000000
-label-focused-underline = #eff62261
+label-focused-underline = #ef8cb969
 label-focused-padding = 1
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = #ef3c0019
+label-occupied-background = #ef0d5908
 label-occupied-foreground = #ffefefef
 
 label-urgent = %icon%!
@@ -205,9 +237,9 @@ label-song-ellipsis = true
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #b72730
-format-background = #89141214
-format-underline = #a21728
+format-prefix-foreground = #e48c4a
+format-background = #72141214
+format-underline = #e17d4a
 format-padding = 1
 label = %percentage:2%%
 
@@ -223,9 +255,9 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-padding = 1
-format-prefix-foreground = #ef129e21
-format-background = #89141214
-format-underline = #ff15a526
+format-prefix-foreground = #ef8cb969
+format-background = #72141214
+format-underline = #ff8bb165
 label = %percentage_used%%
 
 [module/memory]
@@ -264,7 +296,7 @@ date-alt = " %Y-%m-%d"
 time = "%I:%M:%S "
 time-alt = "%H:%M:%S "
 
-format-background = #89141214
+format-background = #72141214
 format-foreground = #d9b1b1b1
 format-prefix-foreground = #ef2192b9
 format-underline = #ef2192b9
@@ -311,7 +343,7 @@ adapter = AC0
 full-at = 98
 
 format-charging = <animation-charging> <label-charging> 
-format-charging-underline = #cdb9931f
+format-charging-underline = #cdbfb640
 
 format-charging-padding = 1
 
@@ -334,7 +366,7 @@ ramp-capacity-foreground = ${colors.foreground-alt}
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = #cdb9931f
+animation-charging-foreground = #cdbfb640
 animation-charging-framerate = 750
 
 animation-discharging-0 = 
@@ -371,36 +403,6 @@ menu-2-0 = ⏾
 menu-2-0-exec = sudo shutdown -h now
 menu-2-1 = 
 menu-2-1-exec = menu-open-0
-
-[module/trans-mpd-memory]
-type = custom/text
-content = 
-content-foreground = ${module/memorybsp.format-background}
-content-background = ${colors.background-bsp}
-
-[module/trans-memory-cpu]
-type = custom/text
-content = 
-content-foreground = #300305
-content-background = ${module/memorybsp.format-background}
-
-[module/trans-cpu-battery]
-type = custom/text
-content = 
-content-foreground = #2e2c0f
-content-background = ${module/cpubsp.format-background}
-
-[module/trans-battery-date]
-type = custom/text
-content = 
-content-foreground = ${module/datebsp.format-background}
-content-background = ${module/batterybsp.format-charging-background}
-
-[module/trans-date-power]
-type = custom/text
-content = 
-content-foreground = #101010
-content-background = ${module/datebsp.format-background}
 
 [settings]
 screenchange-reload = true

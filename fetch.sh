@@ -43,8 +43,8 @@ echo "mpd.conf..."
 cp /etc/mpd.conf ./mpd.conf
 #echo ".nanorc..."
 #cp /home/babkock/.nanorc ./nanorc
-echo ".config/ranger/rc.conf..."
-cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
+#echo ".config/ranger/rc.conf..."
+#cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
 #echo ".surf/styles/4chan.css..."
 #cp /home/babkock/.surf/styles/4chan.css ./styles/4chan.css
 #echo ".surf/styles/wikipedia.css..."
