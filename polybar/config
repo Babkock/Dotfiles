@@ -96,9 +96,6 @@ wm-restack = bspwm
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
-cursor-click = x
-cursor-scroll = x
-
 [bar/hlbar]
 bottom = true
 width = 100%
@@ -129,9 +126,6 @@ modules-right = mpd memorybsp cpubsp battery datebsp powermenu
 
 tray-position = right
 tray-padding = 0
-
-cursor-click = x
-cursor-scroll = x
 
 [module/workspaces]
 type = internal/xworkspaces

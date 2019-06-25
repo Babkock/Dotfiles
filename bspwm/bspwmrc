@@ -1,5 +1,7 @@
 #!/bin/sh
 
+xsetroot -cursor_name left_ptr
+
 SXHKD_FIFO=/tmp/sxhkd.fifo
 export SXHKD_FIFO
 

@@ -19,16 +19,16 @@ echo "=== Fetching ===";
 #cp /home/babkock/bin/volume ./bin/volume
 echo ".config/bspwm/bspwmrc..."
 cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
-echo ".config/herbstluftwm/autostart..."
-cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
+#echo ".config/herbstluftwm/autostart..."
+#cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
 echo ".ncmpcpp/config..."
 cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
 echo ".config/polybar/config..."
 cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/sxhkd/sxhkdrc..."
 cp /home/babkock/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
-echo ".config/neofetch/config..."
-cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
+#echo ".config/neofetch/config..."
+#cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
 echo ".gitconfig..."
 cp /home/babkock/.gitconfig ./gitconfig
 #echo ".mozilla/firefox/*.dev-edition-default/chrome/userChrome.css..."
@@ -39,6 +39,8 @@ cp /home/babkock/.gitconfig ./gitconfig
 #cp /home/babkock/.thunderbird/*.default/chrome/userChrome.css ./chrome/userChrome.thunderbird.css
 echo "mpd.conf..."
 cp /etc/mpd.conf ./mpd.conf
+echo "mpv.conf..."
+cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
 #echo ".nanorc..."
 #cp /home/babkock/.nanorc ./nanorc
 #echo ".config/ranger/rc.conf..."

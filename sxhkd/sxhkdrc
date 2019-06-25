@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	dmenu_run -nf '#efefef' -nb '#141214' -sb '#8cb969' -sf '#000000' -fn 'Hack-13' -p '$'
+	dmenu_run -nf '#efefef' -nb '#141214' -sb '#8cb969' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -33,7 +33,7 @@ super + shift + slash
 	st -e man halp
 
 super + backslash
-	bspc desktop --focus ^3; nicotine
+	bspc desktop --focus ^3; filezilla
 
 super + l
 	bspc desktop --focus ^2; surf -D -g -I -n https://duckduckgo.com/
