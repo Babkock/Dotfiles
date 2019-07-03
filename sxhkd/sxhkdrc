@@ -2,6 +2,9 @@
 # wm independent hotkeys
 #
 
+super + minus
+	st -e "transmission-remote-cli"
+
 # terminal emulator
 super + Return
 	st

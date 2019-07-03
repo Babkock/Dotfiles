@@ -258,7 +258,7 @@ icon-stop = +
 icon-prev = 
 icon-next = 
 
-label-song-maxlen = 110
+label-song-maxlen = 60
 label-song-ellipsis = true
 
 [module/cpubsp]
