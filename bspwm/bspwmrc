@@ -56,8 +56,8 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 #xbindkeys
-xinput --set-prop 14 'Synaptics Tap Action' 1, 1, 1, 1, 1, 1, 1
-xinput --set-prop 14 'Synaptics Tap Time' 120
+xinput --set-prop 18 'Synaptics Tap Action' 1, 1, 1, 1, 1, 1, 1
+xinput --set-prop 18 'Synaptics Tap Time' 120
 xmodmap -e 'keycode 80=Up'
 xmodmap -e 'keycode 88=Down'
 xmodmap -e 'keycode 83=Left'
@@ -66,5 +66,5 @@ xmodmap -e 'keycode 85=Right'
 killall polybar
 polybar -r -log=error bspbar &
 killall compton
-compton -b -c --blur-background --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox"' &
+compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox"' &
 xrandr --output eDP1 --brightness 0.8

@@ -51,14 +51,14 @@ cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
 #cp /home/babkock/.surf/styles/wikipedia.css ./styles/wikipedia.css
 #echo ".surf/styles/reddit.css"
 #cp /home/babkock/.surf/styles/reddit.css
-echo ".vimrc..."
-cp /home/babkock/.vimrc ./vimrc
+#echo ".vimrc..."
+#cp /home/babkock/.vimrc ./vimrc
 #echo ".xbindkeysrc..."
 #cp /home/babkock/.xbindkeysrc ./xbindkeysrc
 echo ".xinitrc..."
 cp /home/babkock/.xinitrc ./xinitrc
-echo ".Xresources..."
-cp /home/babkock/.Xresources ./Xresources
+#echo ".Xresources..."
+#cp /home/babkock/.Xresources ./Xresources
 echo ".zshrc..."
 cp /home/babkock/.zshrc ./zshrc
 #echo "Documents/slstatus/config.h..."

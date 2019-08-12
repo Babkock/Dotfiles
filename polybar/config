@@ -8,9 +8,9 @@
 
 
 [colors]
-background = #30101510
+background = #00101510
 background-alt = #444
-background-bsp = #82101010
+background-bsp = #00101010
 
 foreground = #b2c2c4c2
 foreground-alt = #777
@@ -67,8 +67,8 @@ height = 23
 radius = 0
 fixed-center = false
 
-background = #82141214
-foreground = #a9efefef
+background = #40141214
+foreground = #b2efefef
 
 line-size = 3
 line-color = #f00
@@ -86,7 +86,7 @@ font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Ner
 ;font-1 = Terminess:size=12:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Terminess (TTF) Nerd Font Complete.ttf
 
 modules-left = bspwm
-modules-right = mpd memorybsp cpubsp battery datebsp powermenu
+modules-right = mpd memorybsp cpubsp battery datebsp
 
 tray-position = right
 tray-padding = 0
@@ -95,71 +95,6 @@ wm-restack = bspwm
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
-
-[bar/hlbar]
-bottom = true
-width = 100%
-height = 23
-radius = 0
-fixed-center = false
-
-background = #82141214
-foreground = #a9efefef
-
-line-size = 3
-line-color = #f00
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 0
-module-margin-right = 0
-
-font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
-;font-1 = Terminess:size=12:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Terminess (TTF) Nerd Font Complete.ttf
-
-modules-left = workspaces
-modules-right = mpd memorybsp cpubsp battery datebsp powermenu
-
-tray-position = right
-tray-padding = 0
-
-[module/workspaces]
-type = internal/xworkspaces
-enable-click = true
-enable-scroll = true
-pin-workspaces = false
-
-format = <label-state>
-
-icon-0 = default;
-icon-1 = 1;
-icon-2 = 2;
-icon-4 = 4;
-icon-5 = 5;
-icon-3 = 3;
-
-label-active = %icon%
-label-active-background = #ef8cb969
-label-active-foreground = #ff000000
-label-active-underline = #ef8cb969
-label-active-padding = 1
-
-label-normal = %icon%
-label-normal-padding = 1
-label-normal-background = #ef0d5908
-label-normal-foreground = #ffefefef
-
-label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
 
 [module/bspwm]
 type = internal/bspwm
@@ -172,14 +107,14 @@ ws-icon-5 = VI;
 ws-icon-3 = IV;
 
 label-focused = %icon%
-label-focused-background = #ef8cb969
+label-focused-background = #efdd3939
 label-focused-foreground = #ff000000
-label-focused-underline = #ef8cb969
+label-focused-underline = #efdd3939
 label-focused-padding = 1
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = #ef0d5908
+label-occupied-background = #ef6d0808
 label-occupied-foreground = #ffefefef
 
 label-urgent = %icon%!
@@ -236,13 +171,6 @@ label-urgent = %icon%
 label-urgent-background = #ddc83143
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-[module/title]
-type = internal/xwindow
-format = <label>
-format-foreground = #cd0000
-
-label-padding = 1d
-
 [module/mpd]
 type = internal/mpd
 format-online = <label-song> <icon-prev> <toggle> <icon-next>
@@ -258,16 +186,17 @@ icon-stop = +
 icon-prev = 
 icon-next = 
 
-label-song-maxlen = 60
+label-song-maxlen = 68
 label-song-ellipsis = true
 
 [module/cpubsp]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #e48c4a
-format-background = #72141214
-format-underline = #e17d4a
+format-prefix-foreground = #dbe34d4d
+;format-foreground = #ede35050
+;format-background = #72141214
+format-underline = #efe34d4d
 format-padding = 1
 label = %percentage:2%%
 
@@ -283,9 +212,10 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-padding = 1
-format-prefix-foreground = #ef8cb969
-format-background = #72141214
-format-underline = #ff8bb165
+format-prefix-foreground = #ef86bd55
+;format-foreground = #ef86bd55
+;format-background = #72141214
+format-underline = #ef86bd55
 label = %percentage_used%%
 
 [module/memory]
@@ -308,7 +238,7 @@ time-alt = "%H:%M:%S "
 format-background = #aff4e899
 format-foreground = #000
 format-prefix-foreground = #000
-format-underline = #f4f4e899
+format-underline = #f4647da5
 
 label = %date% %time%
 
@@ -324,10 +254,10 @@ date-alt = " %Y-%m-%d"
 time = "%I:%M:%S "
 time-alt = "%H:%M:%S "
 
-format-background = #72141214
-format-foreground = #d9b1b1b1
-format-prefix-foreground = #ef2192b9
-format-underline = #ef2192b9
+;format-background = #72141214
+format-foreground = #ef6c8dbb
+format-prefix-foreground = #ef647db5
+format-underline = #ef6c8dbb
 
 label = %date% %time%
 
@@ -340,28 +270,32 @@ full-at = 98
 format-charging-padding = 1
 
 format-charging = <animation-charging> <label-charging>
-format-charging-background = #af302e10
-format-charging-underline = #cf808219
+;format-charging-background = #af302e10
+format-charging-underline = #cfdbae52
 
 format-discharging-padding = 1
 
+format-charging-foreground = #dfdcaf53
+format-discharging-foreground = #dfdcaf53
+format-full-foreground = #dfdcaf53
+
 format-discharging = <animation-discharging> <label-discharging>
-format-discharging-background = #af302e10
-format-discharging-underline = #cf808219
+;format-discharging-background = #af302e10
+format-discharging-underline = #cfdbae52
 
 format-full-prefix = " "
-format-full-prefix-foreground = #ef99a220
-format-full-background = #af302e10
+format-full-prefix-foreground = #efdbae52
+;format-full-background = #af302e10
 format-full-underline = ${self.format-charging-underline}
 
 format-full-padding = 1
 
-ramp-capacity-foreground = #b9a211
+ramp-capacity-foreground = #dbae52
 
-animation-charging-foreground = #b9a211
+animation-charging-foreground = #dbae52
 animation-charging-framerate = 750
 
-animation-discharging-foreground = #b9a211
+animation-discharging-foreground = #dbae52
 animation-discharging-framerate = 750
 
 [module/battery]
