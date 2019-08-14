@@ -37,10 +37,10 @@ cp /home/babkock/.gitconfig ./gitconfig
 #cp /home/babkock/.mozilla/firefox/*.dev-edition-default/chrome/userContent.css ./chrome/userContent.firefox.css
 #echo ".thunderbird/*.default/chrome/userChrome.css..."
 #cp /home/babkock/.thunderbird/*.default/chrome/userChrome.css ./chrome/userChrome.thunderbird.css
-echo "mpd.conf..."
-cp /etc/mpd.conf ./mpd.conf
-echo "mpv.conf..."
-cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
+#echo "mpd.conf..."
+#cp /etc/mpd.conf ./mpd.conf
+#echo "mpv.conf..."
+#cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
 #echo ".nanorc..."
 #cp /home/babkock/.nanorc ./nanorc
 #echo ".config/ranger/rc.conf..."
@@ -55,10 +55,10 @@ cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
 #cp /home/babkock/.vimrc ./vimrc
 #echo ".xbindkeysrc..."
 #cp /home/babkock/.xbindkeysrc ./xbindkeysrc
-echo ".xinitrc..."
-cp /home/babkock/.xinitrc ./xinitrc
-#echo ".Xresources..."
-#cp /home/babkock/.Xresources ./Xresources
+#echo ".xinitrc..."
+#cp /home/babkock/.xinitrc ./xinitrc
+echo ".Xresources..."
+cp /home/babkock/.Xresources ./Xresources
 echo ".zshrc..."
 cp /home/babkock/.zshrc ./zshrc
 #echo "Documents/slstatus/config.h..."

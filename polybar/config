@@ -13,7 +13,7 @@ background-alt = #444
 background-bsp = #00101010
 
 foreground = #b2c2c4c2
-foreground-alt = #777
+foreground-alt = #ddb5a165
 foreground-bsp = #a9b1b1b1
 
 primary = #5b9099
@@ -68,7 +68,7 @@ radius = 0
 fixed-center = false
 
 background = #40141214
-foreground = #b2efefef
+foreground = #c0c5b175
 
 line-size = 3
 line-color = #f00
@@ -115,7 +115,7 @@ label-focused-padding = 1
 label-occupied = %icon%
 label-occupied-padding = 1
 label-occupied-background = #ef6d0808
-label-occupied-foreground = #ffefefef
+label-occupied-foreground = #ffd0c19b
 
 label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
@@ -193,10 +193,8 @@ label-song-ellipsis = true
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #dbe34d4d
-;format-foreground = #ede35050
-;format-background = #72141214
-format-underline = #efe34d4d
+format-prefix-foreground = #dbd37b49
+format-underline = #efd37b49
 format-padding = 1
 label = %percentage:2%%
 
@@ -212,10 +210,8 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-padding = 1
-format-prefix-foreground = #ef86bd55
-;format-foreground = #ef86bd55
-;format-background = #72141214
-format-underline = #ef86bd55
+format-prefix-foreground = #df7f8b49
+format-underline = #ef7e8c4a
 label = %percentage_used%%
 
 [module/memory]
@@ -254,10 +250,9 @@ date-alt = " %Y-%m-%d"
 time = "%I:%M:%S "
 time-alt = "%H:%M:%S "
 
-;format-background = #72141214
-format-foreground = #ef6c8dbb
-format-prefix-foreground = #ef647db5
-format-underline = #ef6c8dbb
+format-foreground = #ef727f7f
+format-prefix-foreground = #db727f7f
+format-underline = #ef727f7f
 
 label = %date% %time%
 

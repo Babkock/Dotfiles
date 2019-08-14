@@ -1,3 +1,5 @@
+st.alpha: 170;
+
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
@@ -17,44 +19,46 @@ URxvt*depth: 32
 
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
-URxvt.font: xft:Terminus:format=truetype:size=16:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed3.ttf
+URxvt.font: xft:Terminus:format=truetype:size=16:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Fixed2.ttf
 URxvt.letterSpace: 1
 
+*.blinktimeout: 5000
+
 ! special
-URxvt.foreground:   #c0b793
-URxvt.background:   #0f0f04
-URxvt.cursorColor:  #c0b18b
+*.foreground:   #b5a165
+*.background:   #100b0b
+*.cursorColor:  #c0b18b
 
 ! black
-URxvt.color0:       #202020
-URxvt.color8:       #202020
+*.color0:       #241113
+*.color8:       #3a2627
 
 ! red
-URxvt.color1:       #e17d4a
-URxvt.color9:       #e48c4a
+*.color1:       #c25f34
+*.color9:       #d37b49
 
 ! green
-URxvt.color2:       #8bb165
-URxvt.color10:      #8cb969
+*.color2:       #6e823b
+*.color10:      #7d8a48
 
 ! yellow
-URxvt.color3:       #bfb65c
-URxvt.color11:      #bfb640
+*.color3:       #b1765a
+*.color11:      #c28967
 
 ! blue
-URxvt.color4:       #539d9f
-URxvt.color12:      #529b9e
+*.color4:       #606368
+*.color12:      #6d7070
 
 ! magenta
-URxvt.color5:       #9f595b
-URxvt.color13:      #80585a
+*.color5:       #775757
+*.color13:      #876565
 
 ! cyan
-URxvt.color6:       #8d987e
-URxvt.color14:      #889c79
+*.color6:       #6d715e
+*.color14:      #7e7c6d
 
 ! white
-URxvt.color7:       #c9b18b
-URxvt.color15:      #978965
+*.color7:       #b5a165
+*.color15:      #c0b18b
 
 
