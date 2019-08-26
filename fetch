@@ -2,7 +2,7 @@
 #
 # This script updates the copies of my dotfiles for my dotfiles repository.
 # Please don't run this from outside of the root directory of the repo.
-# It should be "./fetch.sh" every time.
+# It should be "./fetch" every time.
 #
 echo "=== Fetching ===";
 #echo ".bash_aliases..."
@@ -23,6 +23,8 @@ cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
 #cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
 echo ".ncmpcpp/config..."
 cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
+echo ".ncmpcpp/bindings..."
+cp /home/babkock/.ncmpcpp/bindings ./ncmpcpp/bindings
 echo ".config/polybar/config..."
 cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/sxhkd/sxhkdrc..."

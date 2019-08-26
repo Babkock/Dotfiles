@@ -1,0 +1,51 @@
+def_key "mouse"
+	mouse_event
+
+def_key "backspace"
+	delete_playlist_items
+
+def_key "delete"
+	delete_stored_playlist
+
+def_key "space"
+	add_item_to_playlist
+
+def_key "space"
+	toggle_visualization_type
+
+def_key "enter"
+	enter_directory
+
+def_key "enter"
+	run_action
+
+def_key "enter"
+	play_item
+
+def_key "R"
+	toggle_consume
+
+def_key "/"
+	find_item_forward
+
+def_key "?"
+	find_item_backward
+
+def_key "e"
+	edit_song
+
+def_key "e"
+	edit_library_album
+
+def_key "e"
+	edit_directory_name
+
+def_key "e"
+	edit_playlist_name
+
+def_key "i"
+	show_song_info
+
+def_key "I"
+	show_artist_info
+

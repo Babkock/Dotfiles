@@ -86,7 +86,7 @@ font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Ner
 ;font-1 = Terminess:size=12:antialias=true:file=/usr/share/fonts/NerdFonts/ttf/Terminess (TTF) Nerd Font Complete.ttf
 
 modules-left = bspwm
-modules-right = mpd memorybsp cpubsp battery datebsp
+modules-right = mpd memorybsp cpubsp battery datebsp github
 
 tray-position = right
 tray-padding = 0
@@ -95,6 +95,22 @@ wm-restack = bspwm
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
+
+[module/github]
+type = internal/github
+
+token = 340cd30b73450297e73df6a492ae124649db01e7
+
+format = <label>
+format-prefix-foreground = #df7f8b49
+format-prefix = " "
+format-prefix-underline = #df7f8b49
+
+label = %notifications%
+label-underline = #df7f8b49
+
+empty-notifications = true
+interval = 15
 
 [module/bspwm]
 type = internal/bspwm
@@ -375,3 +391,4 @@ margin-right = 7
 ;      
 ;    
   
+
