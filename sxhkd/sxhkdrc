@@ -11,17 +11,14 @@ super + Return
 
 # program launcher
 super + @space
-	dmenu_run -nf '#c0b18b' -nb '#141214' -sb '#dd3939' -sf '#000000' -fn 'Anonymous Pro-13' -p '$'
+	dmenu_run -i -fn 'Anonymous Pro-13' -p '$'
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#super + period
-#	firefox
-
 super + period
-	surf -a "@" -I -N -z 1.1 http://localhost:8000
+	surf -a "@" -I -N -z 1 http://localhost:8000
 
 super + Shift + period
 	thunderbird
@@ -41,32 +38,8 @@ super + shift + slash
 super + backslash
 	bspc desktop --focus ^3; filezilla
 
-super + l
-	bspc desktop --focus ^2; surf -D -g -I -n https://duckduckgo.com/
-
-super + q
-	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/4chan.css https://4chan.org/
-
-super + e
-	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/wikipedia.css https://en.wikipedia.org/wiki/Main_page
-
-super + a
-	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/reddit.css https://old.reddit.com
-
-super + p
-	bspc desktop --focus ^2; surf -D -g -I -n https://github.com/Babkock
-
 super + n
 	pavucontrol
-
-#super + x
-#	thunderbird
-
-super + z
-	bspc desktop --focus ^2; surf -D -g -I -n https://tannerbabcock.com/home
-
-super + w
-	bspc desktop --focus ^2; surf -D -g -I -n -t /home/babkock/.surf/styles/8chan.css https://8ch.net
 
 #
 # bspwm hotkeys

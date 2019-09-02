@@ -21,14 +21,16 @@ echo "=== Fetching ===";
 #cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
 echo ".config/herbstluftwm/autostart..."
 cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
-echo ".ncmpcpp/config..."
-cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
-echo ".ncmpcpp/bindings..."
-cp /home/babkock/.ncmpcpp/bindings ./ncmpcpp/bindings
+#echo ".ncmpcpp/config..."
+#cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
+#echo ".ncmpcpp/bindings..."
+#cp /home/babkock/.ncmpcpp/bindings ./ncmpcpp/bindings
 #echo ".config/polybar/config..."
 #cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/sxhkd/sxhkdrc..."
 cp /home/babkock/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
+echo "/usr/share/man/man1/halp.1..."
+cp /usr/share/man/man1/halp.1 ./halp.1
 #echo ".config/neofetch/config..."
 #cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
 echo ".gitconfig..."
@@ -45,16 +47,16 @@ cp /home/babkock/.gitconfig ./gitconfig
 #cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
 #echo ".nanorc..."
 #cp /home/babkock/.nanorc ./nanorc
-echo ".config/ranger/rc.conf..."
-cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
-echo ".surf/styles/4chan.css..."
-cp /home/babkock/.surf/styles/4chan.css ./surf/styles/4chan.css
-echo ".surf/styles/wikipedia.css..."
-cp /home/babkock/.surf/styles/wikipedia.css ./surf/styles/wikipedia.css
-echo ".surf/styles/reddit.css"
-cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
-echo ".surf/styles/github.css"
-cp /home/babkock/.surf/styles/github.css ./surf/styles/github.css
+#echo ".config/ranger/rc.conf..."
+#cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
+#echo ".surf/styles/4chan.css..."
+#cp /home/babkock/.surf/styles/4chan.css ./surf/styles/4chan.css
+#echo ".surf/styles/wikipedia.css..."
+#cp /home/babkock/.surf/styles/wikipedia.css ./surf/styles/wikipedia.css
+#echo ".surf/styles/reddit.css"
+#cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
+#echo ".surf/styles/github.css"
+#cp /home/babkock/.surf/styles/github.css ./surf/styles/github.css
 echo ".surf/bookmarks"
 cp /home/babkock/.surf/bookmarks ./surf/bookmarks.txt
 echo ".surf/script.js"
