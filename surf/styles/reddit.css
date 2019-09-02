@@ -25,6 +25,8 @@ body {
 #siteTable .link:first-child a.title { font-size:35px !important; }
 .sitetable .link { border:none !important; }
 
+.awardings-bar, .premium-banner-outer { display:none !important; }
+
 body a, body a:hover { color:#6a6a6a !important; }
 .domain { font-size:13px !important; }
 

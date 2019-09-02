@@ -99,7 +99,7 @@ scroll-down = bspwm-deskprev
 [module/github]
 type = internal/github
 
-token = 340cd30b73450297e73df6a492ae124649db01e7
+token = redacted
 
 format = <label>
 format-prefix-foreground = #df7f8b49

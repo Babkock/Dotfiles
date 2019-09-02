@@ -1,4 +1,4 @@
-st.alpha: 170;
+st.alpha: 170
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
@@ -31,34 +31,34 @@ URxvt.letterSpace: 1
 
 ! black
 *.color0:       #241113
-*.color8:       #3a2627
+*.color8:       #302627
 
 ! red
-*.color1:       #c25f34
-*.color9:       #d37b49
+*.color1:       #c96136
+*.color9:       #db7d4f
 
 ! green
 *.color2:       #6e823b
 *.color10:      #7d8a48
 
 ! yellow
-*.color3:       #b1765a
-*.color11:      #c28967
+*.color3:       #c1765a
+*.color11:      #d28967
 
 ! blue
-*.color4:       #606368
-*.color12:      #6d7070
+*.color4:       #606370
+*.color12:      #6d7079
 
 ! magenta
-*.color5:       #775757
-*.color13:      #876565
+*.color5:       #946767
+*.color13:      #9f6d6d
 
 ! cyan
-*.color6:       #6d715e
-*.color14:      #7e7c6d
+*.color6:       #717c5e
+*.color14:      #80866d
 
 ! white
-*.color7:       #b5a165
-*.color15:      #c0b18b
+*.color7:       #c5b175
+*.color15:      #d0c190
 
 

@@ -17,11 +17,14 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
+#super + period
+#	firefox
+
 super + period
-	firefox
+	surf -a "@" -I -N -z 1.1 http://localhost:8000
 
 super + Shift + period
-	chromium
+	thunderbird
 
 super + comma
 	bspc desktop --focus ^3; st -e ncmpcpp 
@@ -56,8 +59,8 @@ super + p
 super + n
 	pavucontrol
 
-super + x
-	thunderbird
+#super + x
+#	thunderbird
 
 super + z
 	bspc desktop --focus ^2; surf -D -g -I -n https://tannerbabcock.com/home
