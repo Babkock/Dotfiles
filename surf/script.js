@@ -8229,6 +8229,22 @@ tr.js-navigation-item {
 	head.appendChild(style);
 }
 
+if (location.hostname.match('suckless')) {
+	var head = document.getElementsByTagName('head')[0];
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	style.innerHTML = `
+html {
+   -webkit-filter:invert(100%);
+}
+
+#nav, #main {
+   background-color:#f9f6f9;
+}
+	`;
+	head.appendChild(style);
+}
+
 if (location.hostname.match('reddit')) {
 	var head = document.getElementsByTagName('head')[0];
 	var style = document.createElement('style');
@@ -8236,10 +8252,27 @@ if (location.hostname.match('reddit')) {
 	style.innerHTML = `
 * a:active, * a:focus { outline:0 !important; }
 
+body {
+   background-color:#171217 !important;
+   -webkit-filter:invert(100%);
+   overflow-x:hidden !important;
+}
+
+.author-tooltip {
+   display:none !important;
+}
+
+.media-preview-content a img {
+   -webkit-filter:invert(100%) !important;
+}
+
+div#header, div.side, div.footer-parent, div.content {
+   background-color:#f8f2f7 !important;
+}
+
 /* main content background - matches new upvote and downvote images */
 body {
-   color:#222 !important;
-   background-color: #f9f9f9 !important;
+   color:#101010 !important;
    background-image:none !important;
    text-shadow:none !important;
    font-family:"Helvetica" !important;
@@ -8265,16 +8298,19 @@ body a, body a:hover { color:#6a6a6a !important; }
 .domain { font-size:13px !important; }
 
 .link .title { color:#333 !important; font-size:20px !important; }
-.thing.link { border:1px solid #ddd !important; background-color:#f5f5f5 !important; }
-.thing.link:hover { border:1px solid #ddd !important; background-color:#f5f5f5 !important; }
+.thing.link { border:1px solid #ddd !important; background-color:#f7f7f7 !important; color:#121412; }
+.thing.link:hover { border:1px solid #ddd !important; background-color:#f7f7f7 !important; color:#121412; }
 
 .tagline, .flat-list.buttons { font-family:"Arial" !important; font-size:9pt !important; }
 .linkflairlabel { display:none !important; }
 
-.side { background-color:#f9f9f9 !important; }
+.side { background-color:#222 !important; }
 .side .spacer { padding-left:10px !important; padding-right:10px !important; }
 
-/* thumbnails are for pussies */
+div#siteTable {
+   background-color:#eff9ef;
+}
+
 a.thumbnail { display:none !important; }
 .rank { display:none !important; }
 

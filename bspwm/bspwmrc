@@ -28,13 +28,9 @@ bspc config borderless_monocle      true
 bspc config gapless_monocle         true
 
 bspc rule -a Gimp desktop='^5' state=floating
-bspc rule -a ranger desktop='^5' state=monocle focus=on follow=on
 bspc rule -a feh state=floating follow=on focus=on
 bspc rule -a Firefox desktop='^2' state=tiled
 bspc rule -a 'Mozilla Firefox' desktop='^2' state=tiled
-bspc rule -a 'Firefox Developer Edition' desktop='^2' state=tiled
-bspc rule -a 'Firefox Developer Edition':Dialog desktop='^2' state=floating
-bspc rule -a 'Firefox Developer Edition':Browser desktop='^2' state=tiled
 bspc rule -a vlc desktop='^3' state=floating focus=on follow=on
 bspc rule -a surf desktop='^2' state=tiled
 bspc rule -a surf2 desktop='^2' state=tiled
@@ -52,7 +48,6 @@ bspc rule -a Firefox-esr:Dialog desktop='^2' state=floating
 bspc rule -a Firefox-esr:Places desktop='^2' state=floating
 bspc rule -a Firefox-esr:Browser desktop='^2' state=tiled
 bspc rule -a Firefox-esr:Toplevel desktop='^2' state=tiled
-bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 #xbindkeys
@@ -64,7 +59,16 @@ xmodmap -e 'keycode 83=Left'
 xmodmap -e 'keycode 85=Right'
 
 killall polybar
+
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
 polybar -r -log=error bspbar &
+
 killall compton
-compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox"' &
+
+while pgrep -u $UID -x compton >/dev/null; do sleep 1; done
+
+compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
+
 xrandr --output eDP1 --brightness 0.8
+

@@ -31,7 +31,7 @@ HYPHEN_INSENSITIVE="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(gitfast colored-man-pages catimg zsh-autosuggestions)
+plugins=(gitfast colored-man-pages ssh-agent python zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -56,6 +56,18 @@ mkcd() {
 }
 pisend() {
 	scp -i ~/.ssh/laptop2pi "$1" pi@192.168.0.14:~/Downloads
+}
+
+xbcompile() {
+	if [ -z "$1" ]; then
+		printf "Please specify the name of your package\n" > /dev/stderr
+		false
+	else
+		cd ../../..;	
+		./xbps-src build -C -f "$1"
+		cd $OLDPWD
+		true
+	fi
 }
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4f4f53"

@@ -20,7 +20,7 @@ super + Escape
 super + period
 	surf -a "@" -I -N -z 1 http://localhost:8000
 
-super + Shift + period
+super + shift + period
 	thunderbird
 
 super + comma
@@ -40,6 +40,9 @@ super + backslash
 
 super + n
 	pavucontrol
+
+super + e
+	jgmenu --icon-size=0
 
 #
 # bspwm hotkeys

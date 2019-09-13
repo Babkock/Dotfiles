@@ -17,10 +17,10 @@ echo "=== Fetching ===";
 #cp /home/babkock/bin/start ./bin/start
 #echo "bin/volume..."
 #cp /home/babkock/bin/volume ./bin/volume
-#echo ".config/bspwm/bspwmrc..."
-#cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
-echo ".config/herbstluftwm/autostart..."
-cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
+echo ".config/bspwm/bspwmrc..."
+cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
+#echo ".config/herbstluftwm/autostart..."
+#cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
 #echo ".ncmpcpp/config..."
 #cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
 #echo ".ncmpcpp/bindings..."
@@ -53,13 +53,15 @@ cp /home/babkock/.gitconfig ./gitconfig
 #cp /home/babkock/.surf/styles/4chan.css ./surf/styles/4chan.css
 #echo ".surf/styles/wikipedia.css..."
 #cp /home/babkock/.surf/styles/wikipedia.css ./surf/styles/wikipedia.css
-#echo ".surf/styles/reddit.css"
-#cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
-#echo ".surf/styles/github.css"
+echo ".surf/styles/reddit.css..."
+cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
+#echo ".surf/styles/github.css..."
 #cp /home/babkock/.surf/styles/github.css ./surf/styles/github.css
-echo ".surf/bookmarks"
+echo ".surf/styles/default.css..."
+cp /home/babkock/.surf/styles/default.css ./surf/styles/default.css
+echo ".surf/bookmarks..."
 cp /home/babkock/.surf/bookmarks ./surf/bookmarks.txt
-echo ".surf/script.js"
+echo ".surf/script.js..."
 cp /home/babkock/.surf/script.js ./surf/script.js
 #echo ".vimrc..."
 #cp /home/babkock/.vimrc ./vimrc
