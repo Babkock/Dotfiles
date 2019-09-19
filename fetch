@@ -33,8 +33,8 @@ echo "/usr/share/man/man1/halp.1..."
 cp /usr/share/man/man1/halp.1 ./halp.1
 #echo ".config/neofetch/config..."
 #cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
-echo ".gitconfig..."
-cp /home/babkock/.gitconfig ./gitconfig
+#echo ".gitconfig..."
+#cp /home/babkock/.gitconfig ./gitconfig
 #echo ".mozilla/firefox/*.dev-edition-default/chrome/userChrome.css..."
 #cp /home/babkock/.mozilla/firefox/*.dev-edition-default/chrome/userChrome.css ./chrome/userChrome.firefox.css
 #echo ".mozilla/firefox/*.dev-edition-default/chrome/userContent.css..."
@@ -43,8 +43,8 @@ cp /home/babkock/.gitconfig ./gitconfig
 #cp /home/babkock/.thunderbird/*.default/chrome/userChrome.css ./chrome/userChrome.thunderbird.css
 #echo "mpd.conf..."
 #cp /etc/mpd.conf ./mpd.conf
-#echo "mpv.conf..."
-#cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
+echo "mpv.conf..."
+cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
 #echo ".nanorc..."
 #cp /home/babkock/.nanorc ./nanorc
 #echo ".config/ranger/rc.conf..."
@@ -53,8 +53,8 @@ cp /home/babkock/.gitconfig ./gitconfig
 #cp /home/babkock/.surf/styles/4chan.css ./surf/styles/4chan.css
 #echo ".surf/styles/wikipedia.css..."
 #cp /home/babkock/.surf/styles/wikipedia.css ./surf/styles/wikipedia.css
-echo ".surf/styles/reddit.css..."
-cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
+#echo ".surf/styles/reddit.css..."
+#cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
 #echo ".surf/styles/github.css..."
 #cp /home/babkock/.surf/styles/github.css ./surf/styles/github.css
 echo ".surf/styles/default.css..."
@@ -63,12 +63,12 @@ echo ".surf/bookmarks..."
 cp /home/babkock/.surf/bookmarks ./surf/bookmarks.txt
 echo ".surf/script.js..."
 cp /home/babkock/.surf/script.js ./surf/script.js
-#echo ".vimrc..."
-#cp /home/babkock/.vimrc ./vimrc
+echo ".vimrc..."
+cp /home/babkock/.vimrc ./vimrc
 #echo ".xbindkeysrc..."
 #cp /home/babkock/.xbindkeysrc ./xbindkeysrc
-#echo ".xinitrc..."
-#cp /home/babkock/.xinitrc ./xinitrc
+echo ".xinitrc..."
+cp /home/babkock/.xinitrc ./xinitrc
 echo ".Xresources..."
 cp /home/babkock/.Xresources ./Xresources
 echo ".zshrc..."

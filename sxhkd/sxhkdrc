@@ -9,6 +9,10 @@ super + minus
 super + Return
 	st
 
+# tabbed terminal
+super + shift + Return
+	tabbed -r 2 st -w '' -e zsh
+
 # program launcher
 super + @space
 	dmenu_run -i -fn 'Anonymous Pro-13' -p '$'
@@ -18,7 +22,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	surf -a "@" -I -N -z 1 http://localhost:8000
+	tabbed-surf http://localhost:8000
 
 super + shift + period
 	thunderbird

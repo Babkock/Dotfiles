@@ -33,6 +33,7 @@ bspc rule -a Firefox desktop='^2' state=tiled
 bspc rule -a 'Mozilla Firefox' desktop='^2' state=tiled
 bspc rule -a vlc desktop='^3' state=floating focus=on follow=on
 bspc rule -a surf desktop='^2' state=tiled
+bspc rule -a tabbed-surf desktop='^2' state=tiled
 bspc rule -a surf2 desktop='^2' state=tiled
 bspc rule -a Surf desktop='^2' state=tiled
 bspc rule -a 'Sublime Text 3' desktop='^4' state=tiled
@@ -70,5 +71,5 @@ while pgrep -u $UID -x compton >/dev/null; do sleep 1; done
 
 compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
 
-xrandr --output eDP1 --brightness 0.8
+xrandr --output eDP1 --brightness 0.6
 

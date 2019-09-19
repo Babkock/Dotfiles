@@ -70,6 +70,98 @@ xbcompile() {
 	fi
 }
 
+conf() {
+	if [ -z "$1" ]; then
+		printf "Specify which program you want to configure\n" > /dev/stderr
+		printf "[x | bash | bspwm | sxhkd | polybar | vim | zsh | ncmpcpp | herbstluftwm | i3 ]\n" > /dev/stderr
+		printf "[mpv | mpd | ranger | runit | jgmenu | filezilla ]\n" > /dev/stderr
+		false
+	else
+		case "$1" in
+			x)
+				vim ~/.xinitrc
+				printf "Configured X\n"
+				;;
+			bash)
+				vim ~/.bashrc
+				printf "Configured Bash\n"
+				;;
+			bspwm)
+				vim ~/.config/bspwm/bspwmrc
+				printf "Configured bspwm\n"
+				;;
+			herbstluftwm)
+				vim ~/.config/herbstluftwm/autostart
+				printf "Configured Herbstluftwm\n"
+				;;
+			i3)
+				vim ~/.config/i3/config
+				printf "Configured i3\n"
+				;;
+			mpv)
+				vim ~/.config/mpv/mpv.conf
+				printf "Configured mpv\n"
+				;;
+			sxhkd)
+				vim ~/.config/sxhkd/sxhkdrc
+				printf "Configured sxhkd\n"
+				;;
+			polybar)
+				vim ~/.config/polybar/config
+				printf "Configured Polybar\n"
+				;;
+			filezilla)
+				vim ~/.config/filezilla/filezilla.xml
+				printf "Configured Filezilla\n"
+				;;
+			jgmenu)
+				vim ~/.config/jgmenu/jgmenurc
+				printf "Configured jgmenu\n"
+				;;
+			vim)
+				vim ~/.vimrc
+				printf "Configured Vim\n"
+				;;
+			ncmpcpp)
+				vim ~/.ncmpcpp/config
+				printf "Configured ncmpcpp\n"
+				;;
+			nbindings)
+				vim ~/.ncmpcpp/bindings
+				printf "Configured ncmpcpp bindings\n"
+				;;
+			mpd)
+				sudo vim /etc/mpd.conf
+				printf "Configured MPD\n"
+				;;
+			ranger)
+				vim ~/.config/ranger/rc.conf
+				printf "Configured ranger\n"
+				;;
+			runit1)
+				sudo vim /etc/runit/1
+				printf "Configured runit stage 1: Warning, changes will take effect next boot\n"
+				;;
+			runit2)
+				sudo vim /etc/runit/2
+				printf "Configured runit stage 2: Warning, changes will take effect next reboot\n"
+				;;
+			runit3)
+				sudo vim /etc/runit/3
+				printf "Configured runit stage 3: Warning, changes will take effect next shutdown\n"
+				;;
+			zsh)
+				vim ~/.zshrc
+				printf "Configured Zsh\n"
+				;;
+			*)
+				printf "Program to configure '%s' not found\n" "$1"
+				false
+				;;
+		esac
+	fi
+}
+
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4f4f53"
 alias ..="cd .."
 alias c="cd "

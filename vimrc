@@ -27,7 +27,5 @@ Plugin 'edkolev/tmuxline.vim.git'
 Plugin 'ryanoasis/vim-devicons.git'
 filetype plugin indent on
 
-let g:tmuxline_preset = 'full'
-
 let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme = 'solarized256'
+let g:Powerline_colorscheme = 'solarized16'

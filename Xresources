@@ -1,4 +1,4 @@
-st.alpha: 170
+st.alpha: 140
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
