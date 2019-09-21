@@ -65,6 +65,8 @@ echo ".surf/script.js..."
 cp /home/babkock/.surf/script.js ./surf/script.js
 echo ".vimrc..."
 cp /home/babkock/.vimrc ./vimrc
+echo "c.vim..."
+cp /usr/share/vim/vim81/syntax/c.vim ./c.vim
 #echo ".xbindkeysrc..."
 #cp /home/babkock/.xbindkeysrc ./xbindkeysrc
 echo ".xinitrc..."

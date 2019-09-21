@@ -1,6 +1,6 @@
 set rtp+=~/.vim/bundle/vundle/
 syntax on
-color peachpuff
+color industry
 set tabstop=4
 set softtabstop=4
 set number
@@ -28,4 +28,4 @@ Plugin 'ryanoasis/vim-devicons.git'
 filetype plugin indent on
 
 let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme = 'solarized16'
+let g:Powerline_colorscheme = 'solarized256'
