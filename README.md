@@ -21,6 +21,6 @@ My personal configuration files for various GNU/Linux programs. These were teste
 
 ## My desktops
 
-![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/Clean-Desktop.png)
+![](https://raw.githubusercontent.com/Babkock/babkock-dotfiles/master/pics/bspNew-Dirty.png)
 
 
