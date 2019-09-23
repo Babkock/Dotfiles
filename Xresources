@@ -1,4 +1,4 @@
-st.alpha: 140
+st.alpha: 155
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
@@ -25,40 +25,40 @@ URxvt.letterSpace: 1
 *.blinktimeout: 5000
 
 ! special
-*.foreground:   #b5a165
-*.background:   #100b0b
-*.cursorColor:  #c0b18b
+*.foreground:   #b4b4b4
+*.background:   #101010
+*.cursorColor:  #b4b4b4
 
 ! black
-*.color0:       #241113
-*.color8:       #302627
+*.color0:       #000000
+*.color8:       #121212
 
 ! red
-*.color1:       #c96136
-*.color9:       #db7d4f
+*.color1:       #9f6061
+*.color9:       #b37778
 
 ! green
-*.color2:       #6e823b
-*.color10:      #7d8a48
+*.color2:       #769476
+*.color10:      #80a580
 
 ! yellow
-*.color3:       #c1765a
-*.color11:      #d28967
+*.color3:       #879058
+*.color11:      #929a62
 
 ! blue
-*.color4:       #606370
-*.color12:      #6d7079
+*.color4:       #606085
+*.color12:      #71719c
 
 ! magenta
-*.color5:       #946767
-*.color13:      #9f6d6d
+*.color5:       #844768
+*.color13:      #9f5d7d
 
 ! cyan
-*.color6:       #717c5e
-*.color14:      #80866d
+*.color6:       #428592
+*.color14:      #5195a1
 
 ! white
-*.color7:       #c5b175
-*.color15:      #d0c190
+*.color7:       #c0c0c0
+*.color15:      #dfdfdf
 
 

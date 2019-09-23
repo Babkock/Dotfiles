@@ -25,8 +25,8 @@ cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
 #cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
 #echo ".ncmpcpp/bindings..."
 #cp /home/babkock/.ncmpcpp/bindings ./ncmpcpp/bindings
-#echo ".config/polybar/config..."
-#cp /home/babkock/.config/polybar/config ./polybar/config
+echo ".config/polybar/config..."
+cp /home/babkock/.config/polybar/config ./polybar/config
 echo ".config/sxhkd/sxhkdrc..."
 cp /home/babkock/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
 echo "/usr/share/man/man1/halp.1..."

@@ -8,4 +8,5 @@ gsettings set org.gnome.gedit.preferences.editor editor-font "Anonymous Pro Regu
 gsettings set org.gnome.gedit.preferences.editor scheme "oblivion"
 gsettings set org.gnome.gedit.preferences.editor display-overview-map true
 gsettings set org.gnome.gedit.preferences.editor tabs-size 4
+#dwm
 bspwm

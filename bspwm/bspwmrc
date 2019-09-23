@@ -12,8 +12,8 @@ sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
 bspc monitor -d I II III IV V VI
 
-bspc config focused_border_color    \#918c20
-bspc config active_border_color	    \#812017
+bspc config focused_border_color    \#949894
+bspc config active_border_color	    \#202020
 bspc config normal_border_color	    \#020402
 bspc config focus_follows_pointer   true
 bspc config border_width            1
