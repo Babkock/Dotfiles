@@ -152,7 +152,7 @@ conf() {
 				;;
 			zsh)
 				vim ~/.zshrc
-				printf "Configured Zsh\n"
+				printf "Configured zsh\n"
 				;;
 			*)
 				printf "Program to configure '%s' not found\n" "$1"
@@ -164,7 +164,9 @@ conf() {
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4f4f53"
 alias ..="cd .."
+alias a="bat --wrap character -n "
 alias c="cd "
+alias cat="bat --wrap character -n "
 alias e="cargo build --release"
 alias k="make"
 alias kc="make clean"
@@ -188,8 +190,18 @@ alias reboot="sudo reboot"
 alias shutdown="sudo shutdown -h now"
 alias x="sudo zsh"
 alias df="df -h -T"
-alias ls="ls -hNF --color=auto --group-directories-first"
-alias l="ls -hNF --color=auto --group-directories-first"
+case "$(tty)" in
+	*tty*)
+		alias lsa="ls -FAla --group-directories-first --color=auto"
+		alias ls="ls -FA --group-directories-first --color=auto"
+		;;
+	*pts*)
+		alias lst="lsd -FlaA --tree --group-dirs first --date relative"
+		alias lsa="lsd -FlaA --group-dirs first --date relative"
+		alias ls="lsd -FA --group-dirs first --date relative"
+		;;
+esac
+alias l="lsd -FA --group-dirs first --date relative"
 alias s="ssh tababcock@tannerbabcock.com -p 2222"
 alias spi="ssh pi@192.168.0.14 -i ~/.ssh/laptop2pi"
 alias jcommit="git commit -m '$(date)'; git push"

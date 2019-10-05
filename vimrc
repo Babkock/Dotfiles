@@ -27,5 +27,12 @@ Plugin 'edkolev/tmuxline.vim.git'
 Plugin 'ryanoasis/vim-devicons.git'
 filetype plugin indent on
 
+map <F1> :set background=dark<CR>
+map <F2> :color peachpuff<CR>
+map <F3> :color slate<CR>
+map <F4> :NERDTreeToggle<CR>
+map <F5> :echo 'Time: ' . strftime('%c')<CR>
+map <F6> :Tmuxline vim_powerline<CR>
+
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'solarized256'
