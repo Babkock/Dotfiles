@@ -123,22 +123,6 @@ modules-right = mpd memorybsp cpubsp battery datebsp github
 tray-position = right
 tray-padding = 0
 
-[module/github]
-type = internal/github
-
-token = 463c61391eaba63813a511c21e27be87f79dd52d
-
-format = <label>
-format-prefix-foreground = #df7f8b49
-format-prefix = " "
-format-prefix-underline = #df7f8b49
-
-label = %notifications%
-label-underline = #df7f8b49
-
-empty-notifications = true
-interval = 15
-
 [module/workspaces]
 type = internal/xworkspaces
 enable-click = true
