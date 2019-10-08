@@ -1,7 +1,9 @@
 fun! tmuxline#presets#powerline#get()
   let bar = tmuxline#new()
 
-  call bar.left.add('z', '#(mpc --host 127.0.0.2 | head -1)')
+  call bar.left.add('z', '#(ps -aux | wc -l)')
+  call bar.left.add_left_sep()
+  call bar.left.add('y', '#(mpc --host 127.0.0.2 | head -1)')
   call bar.left.add_left_sep()
   call bar.left.add('a', '#S')
   call bar.left.add_left_sep()

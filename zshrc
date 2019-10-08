@@ -170,8 +170,8 @@ alias cat="bat --wrap character -n "
 alias e="cargo build --release"
 alias k="make"
 alias kc="make clean"
-alias q="qemu-system-x86_64 -smp 1 -m size=1200M -hda os-image.bin"
-alias qd="qemu-system-x86_64 -gdb tcp::1234,ipv4 -smp 1 -m size=1200M -S -hda os-image.bin"
+# alias q="qemu-system-x86_64 -smp 1 -m size=1200M -hda os-image.bin"
+# alias qd="qemu-system-x86_64 -gdb tcp::1234,ipv4 -smp 1 -m size=1200M -S -hda os-image.bin"
 alias f="feh"
 alias u="cd ~/Music"
 alias o="cd ~/Documents"
@@ -192,13 +192,13 @@ alias x="sudo zsh"
 alias df="df -h -T"
 case "$(tty)" in
 	*tty*)
-		alias lsa="ls -FAla --group-directories-first --color=auto"
-		alias ls="ls -FA --group-directories-first --color=auto"
+		alias lsa="ls -FAl --group-directories-first --color=auto"
+		alias ls="ls -F --group-directories-first --color=auto"
 		;;
 	*pts*)
-		alias lst="lsd -FlaA --tree --group-dirs first --date relative"
-		alias lsa="lsd -FlaA --group-dirs first --date relative"
-		alias ls="lsd -FA --group-dirs first --date relative"
+		alias lst="lsd -FlA --tree --group-dirs first --date relative"
+		alias lsa="lsd -FlA --group-dirs first --date relative"
+		alias ls="lsd -F --group-dirs first --date relative"
 		;;
 esac
 alias l="lsd -FA --group-dirs first --date relative"
