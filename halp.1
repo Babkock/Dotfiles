@@ -118,8 +118,8 @@ Ctrl + W
 "e"
 --   'cargo build --release' - compiles Rust project
 
-"f [image file]"
---   Opens the specified image in Feh, image viewer
+"f [image]"
+--   Opens the image in Feh, image viewer
 
 "g [command] [options]"
 --   'git' with no arguments - add 'push', 'pull', etc.
@@ -128,10 +128,10 @@ Ctrl + W
 --   'git add' - adds a file to staging area
 
 "gc [commit or branch] -- [file]"
---   'git checkout' - checks out a branch, commit, or file
+--   'git checkout' - checks out branch, commit, or file
 
 "gcb [new branch name]"
---   Creates a new branch with specified name, and switches to it
+--   Creates a new branch with name, switches to it
 
 "gcm [commit message]"
 --   Commits with the specified message
@@ -139,14 +139,20 @@ Ctrl + W
 "gl"
 --   'git log' - show last several commits in a pager
 
-"gs"
---   'git status' - show staged and unstaged changes
+"gpush"
+--   'git push origin master' - don't run if pushing to another branch
+
+"gpull"
+--   'git pull origin master'
 
 "gr [file]"
---   'git remove' - removes a file from staging area and deletes it
+--   'git remove' - removes file from staging area and deletes it
 
 "grc [file]"
 --   'git remote --cached' - removes from staging area without deleting
+
+"gs"
+--   'git status' - show staged and unstaged changes
 
 "i"
 --   cds into ~/Videos
