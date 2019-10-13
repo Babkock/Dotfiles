@@ -32,6 +32,9 @@ Mod + Backslash (\\)
 Mod + N
 --   Pulse Audio Control
 
+Mod + E
+--   JGMenu App Launcher
+
 Mod + Shift + Slash (/)
 --   This Man Page Window
 
@@ -89,8 +92,130 @@ Ctrl + W
 "v [query]"
 --   Search on Void Linux wiki
 
-"gf [query]"
---   Search on 4chan
+.SH SHELL ALIASES
+
+"a [file]"
+--   'bat', Rust file viewer and concatenator
+
+"b"
+--   'neofetch', system information tool, with options
+
+"c [directory]"
+--   cds into the specified directory
+
+"cat [file]"
+--   'bat' in place of 'cat'
+
+"conf [program]"
+--   Edits the main configuration file for a certain program
+
+"d"
+--   cds into ~/Downloads
+
+"df"
+--   'df -h -T' in place of 'df'
+
+"e"
+--   'cargo build --release' - compiles Rust project
+
+"f [image file]"
+--   Opens the specified image in Feh, image viewer
+
+"g [command] [options]"
+--   'git' with no arguments - add 'push', 'pull', etc.
+
+"ga [file]"
+--   'git add' - adds a file to staging area
+
+"gc [commit or branch] -- [file]"
+--   'git checkout' - checks out a branch, commit, or file
+
+"gcb [new branch name]"
+--   Creates a new branch with specified name, and switches to it
+
+"gcm [commit message]"
+--   Commits with the specified message
+
+"gl"
+--   'git log' - show last several commits in a pager
+
+"gs"
+--   'git status' - show staged and unstaged changes
+
+"gr [file]"
+--   'git remove' - removes a file from staging area and deletes it
+
+"grc [file]"
+--   'git remote --cached' - removes from staging area without deleting
+
+"i"
+--   cds into ~/Videos
+
+"jcommit"
+--   Commits with the date for a message, and pushes
+
+"k"
+--   'make', optionally with arguments
+
+"kc"
+--   'make clean'
+
+"l [directory]"
+--   'lsd', Rust file lister, with options
+
+"ls [directory]"
+--   'lsd' in place of 'ls'
+
+"lsl"
+--   'lsd -l', for long listing
+
+"lsa"
+--   'lsd -A', for almost all entries
+
+"lsla"
+--   'lsd -lA', for long listing of all entries
+
+"lst"
+--   'lsd --tree', for tree listing
+
+"m [video file]"
+--   Play specified video file in MPV
+
+"n"
+--   Opens ncmpcpp Music Player
+
+"o"
+--   cds into ~/Documents
+
+"p"
+--   cds into ~/Pictures
+
+"r"
+--   'ranger', command-line file browser
+
+"s"
+--   SSHs into my website
+
+"spi"
+--   SSHs into the Raspberry Pi
+
+"t [torrent file]"
+--   Start Transmission with specified file
+
+"tr [arguments]"
+--   'transmission-remote', with mandatory arguments
+
+"u"
+--   cds into ~/Music
+
+"v [file]"
+--   Opens the specified file in Vim
+
+"x"
+--   Starts a new zsh instance as root
+
+"z [arguments]"
+--   'tmux', optionally with arguments
 
 .SH VIM COMMANDS
 u

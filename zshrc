@@ -8,7 +8,15 @@ export ZSH="/home/babkock/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="wedisagree"
 ZSH_THEME="wedisagree"
+
+ZSH_THEME_RANDOM_CANDIDATES=(
+	"gentoo"
+	"wedisagree"
+	"eastwood"
+
+)
 
 LS_COLORS=$LS_COLORS'*.txt=1;93:*.log=1;93:*.php=1;31:*.js=1;32:*.bin=1;32:*.asm=1;31:*.json=1;93:*.html=0;35;40:*.xml=0;35:*.yaml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32:*.lua=1;32:*.css=0;36:*.scss=0;36:*.less=0;36:*.c=1;93:*.h=1;31:*.cpp=1;32:*.rs=1;31:*.rb=1;31:*.py=1;31:*.pl=1;32:*.md=1;93:*.rtf=1;93:*.o=0;33:*.txt=1;93:*.log=1;93:*.php=1;31:*.js=1;32:*.bin=1;32:*.asm=1;31:*.json=1;93:*.html=0;35:*.xml=0;35:*.yaml=0;35:*.torrent=0;35:*.toml=0;35:*.yml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32:*.lua=1;32:*.css=0;36:*.scss=0;36:*.less=0;36:*.vue=0;36:*.img=1;91:*.iso=1;93:*.c=1;93:*.h=1;31:*.cpp=1;32:*.rs=1;31:*.rb=1;31:*.py=1;31:*.pl=1;32:*.md=1;93:*.rtf=1;93;40:*.o=0;33:*.rlib=0;33:*.d=0;33:*.so=0;33:*.lock=1;93'
 
@@ -31,7 +39,7 @@ HYPHEN_INSENSITIVE="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(gitfast colored-man-pages ssh-agent python zsh-autosuggestions)
+plugins=(gitfast colored-man-pages zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,7 +140,7 @@ conf() {
 				;;
 			mpd)
 				sudo vim /etc/mpd.conf
-				printf "Configured MPD\n"
+				printf "Configured mpd\n"
 				;;
 			ranger)
 				vim ~/.config/ranger/rc.conf
@@ -182,9 +190,13 @@ alias m="mpv"
 alias n="ncmpcpp"
 alias g="git"
 alias ga="git add"
+alias gr="git rm"
+alias grc="git rm --cached"
 alias gs="git status"
 alias gl="git log"
 alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gcm="git commit -m"
 alias v="vim"
 alias reboot="sudo reboot"
 alias shutdown="sudo shutdown -h now"
@@ -192,20 +204,26 @@ alias x="sudo zsh"
 alias df="df -h -T"
 case "$(tty)" in
 	*tty*)
-		alias lsa="ls -FAl --group-directories-first --color=auto"
+		alias lsl="ls -Fl --group-directories-first --color=auto"
+		alias lsa="ls -FA --group-directories-first --color=auto"
+		alias lsla="ls -FlA --group-directories-first --color=auto"
 		alias ls="ls -F --group-directories-first --color=auto"
 		;;
 	*pts*)
-		alias lst="lsd -FlA --tree --group-dirs first --date relative"
-		alias lsa="lsd -FlA --group-dirs first --date relative"
+		alias lst="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+		alias lsla="ls -FlA --group-dirs first --date relative --blocks permission,user,size,date,name"
+		alias lsl="ls -Fl --group-dirs first --date relative --blocks permission,user,size,date,name"
+		alias lsa="lsd -FA --group-dirs first --date relative --blocks permission,user,size,date,name"
 		alias ls="lsd -F --group-dirs first --date relative"
 		;;
 esac
-alias l="lsd -FA --group-dirs first --date relative"
+alias b="neofetch --package_managers on --distro_shorthand tiny --uptime_shorthand tiny --gap -1"
+alias l="lsd -F --group-dirs first --date relative"
 alias s="ssh tababcock@tannerbabcock.com -p 2222"
 alias spi="ssh pi@192.168.0.14 -i ~/.ssh/laptop2pi"
 alias jcommit="git commit -m '$(date)'; git push"
 alias r="ranger"
 alias t="transmission-remote-cli"
 alias tr="transmission-remote"
+alias z="tmux"
 

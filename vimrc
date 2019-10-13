@@ -13,7 +13,6 @@ set laststatus=2  " Always show statusline
 set encoding=utf-8  " Necessary to show Unicode glyphs
 set t_Co=256
 
-set nocompatible
 filetype off
 call vundle#rc()
 

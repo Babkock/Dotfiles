@@ -3,11 +3,11 @@
 #
 
 super + minus
-	st -e "transmission-remote-cli"
+	st -e transmission-remote-cli
 
 # terminal emulator
 super + Return
-	st
+	st -e zsh
 
 # tabbed terminal
 super + shift + Return
@@ -22,13 +22,13 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	tabbed-surf http://localhost:8000
+	rm ~/tmp/tabbed-surf.xid; tabbed-surf http://localhost:8000
 
 super + shift + period
 	thunderbird
 
 super + comma
-	bspc desktop --focus ^3; st -e ncmpcpp 
+	bspc desktop --focus ^3; st -e ncmpcpp
 
 super + semicolon
 	bspc desktop --focus ^5; urxvt -bg rgba:1212/0202/0000/a9a9 -depth 32 -e ranger
