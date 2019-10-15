@@ -22,7 +22,7 @@ LS_COLORS=$LS_COLORS'*.txt=1;93:*.log=1;93:*.php=1;31:*.js=1;32:*.bin=1;32:*.asm
 
 LSCOLORS=$LS_COLORS
 
-ZLS_COLORS=$ZLS_COLORS'*.yaml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32:*.lua=1;32:*.css=0;36:*.scss=0;36:*.less=0;36:*.c=1;93:*.h=1;31:*.cpp=1;32:*.rs=1;31:*.rb=1;31:*.py=1;31:*.pl=1;32:*.md=1;93:*.rtf=1;93:*.o=0;33:*.d=0;33:*.rlib=0;33:*.so=0;33:*.lock=1;93*.txt=1;93:*.log=1;93:*.php=1;31:*.js=1;32:*.bin=1;32:*.asm=1;31:*.json=1;93:*.html=0;35:*.xml=0;35:*.toml=0;35:*.torrent=0;35:*.yml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32:*.img=1;91:*.iso=1;93:*.lua=1;32:*.css=0;36:*.scss=0;36:*.vue=0;36:*.less=0;36:*.c=1;93:*.h=1;31:*.cpp=1;32:*.rs=1;31:*.rb=1;31:*.py=1;31:*.pl=1;32:*.md=1;93:*.rtf=1;93:*.o=0;33:*.rlib=0;33:*.d=0;33:*.so=0;33:*.lock=1;93'
+ZLS_COLORS=$ZLS_COLORS'*.yaml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32:*.lua=1;32:*.css=0;36:*.scss=0;36:*.less=0;36:*.c=1;93:*.h=1;31:*.cpp=1;32:*.rs=1;31:*.rb=1;31:*.py=1;31:*.pl=1;32:*.md=1;93:*.rtf=1;93:*.o=0;33:*.d=0;33:*.rlib=0;33:*.so=0;33:*.lock=1;93:*.txt=1;93:*.log=1;93:*.php=1;31:*.js=1;32:*.bin=1;32:*.asm=1;31:*.json=1;93:*.html=0;35:*.xml=0;35:*.toml=0;35:*.torrent=0;35:*.yml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;33:*.sh=1;32:*.img=1;91:*.iso=1;93:*.lua=1;32:*.css=0;36:*.scss=0;36:*.vue=0;36:*.less=0;36:*.c=1;93:*.h=1;31:*.cpp=1;32:*.rs=1;31:*.rb=1;31:*.py=1;31:*.pl=1;32:*.md=1;93:*.rtf=1;93:*.o=0;33:*.rlib=0;33:*.d=0;33:*.so=0;33:*.lock=1;93'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
