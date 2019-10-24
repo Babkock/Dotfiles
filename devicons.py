@@ -59,7 +59,7 @@ file_node_extensions = {
     'edn'      : '',
     'efi'      : '',
     'zsh-theme' : '',
-    'ejs'      : '',
+    'ejs'      : '',
     'elf'      : '',
     'env'      : '',
     'epub'     : '',
@@ -167,6 +167,7 @@ file_node_extensions = {
     'tgz'      : '',
     'ts'       : '',
     'tiff'      : '',
+    'torrent'   : '蘒',
     'twig'     : '',
     'txt'        : '',
     'vim'      : '',
@@ -334,3 +335,4 @@ file_node_exact_matches = {
 def devicon(file):
   if file.is_directory: return dir_node_exact_matches.get(file.relative_path, '')
   return file_node_exact_matches.get(file.relative_path, file_node_extensions.get(file.extension, ''))
+

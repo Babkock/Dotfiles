@@ -140,7 +140,7 @@ function! s:setDictionaries()
         \ 'xhtml'     : '',
         \ 'slim'     : '',
         \ 'efi'      : '',
-        \ 'ejs'      : '',
+        \ 'ejs'      : '',
         \ 'elf'      : '',
         \ 'css'      : '',
         \ 'less'     : '',
@@ -288,6 +288,7 @@ function! s:setDictionaries()
         \ 'woff2'     : '',
         \ 'otf'       : '',
         \ 'ttf'       : '',
+        \ 'torrent'   : '蘒',
         \}
 
   let s:file_node_exact_matches = {
@@ -733,3 +734,5 @@ unlet s:save_cpo
 
 " modeline syntax:
 " vim: fdm=marker tabstop=2 softtabstop=2 shiftwidth=2 expandtab:
+
+
