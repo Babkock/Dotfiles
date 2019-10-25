@@ -1,4 +1,4 @@
-st.alpha: 155
+st.alpha: 147
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
@@ -34,28 +34,28 @@ URxvt.letterSpace: 1
 *.color8:       #121212
 
 ! red
-*.color1:       #9f6061
-*.color9:       #b37778
+*.color1:       #bf8081
+*.color9:       #c89798
 
 ! green
 *.color2:       #769476
 *.color10:      #80a580
 
 ! yellow
-*.color3:       #879058
+*.color3:       #8a945a
 *.color11:      #929a62
 
 ! blue
-*.color4:       #606085
-*.color12:      #71719c
+*.color4:       #9090a5
+*.color12:      #a1a1bc
 
 ! magenta
-*.color5:       #844768
-*.color13:      #9f5d7d
+*.color5:       #a66788
+*.color13:      #b47396
 
 ! cyan
-*.color6:       #428592
-*.color14:      #5195a1
+*.color6:       #62a5b2
+*.color14:      #71b5c1
 
 ! white
 *.color7:       #c0c0c0

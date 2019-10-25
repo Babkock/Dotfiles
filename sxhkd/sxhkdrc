@@ -11,7 +11,7 @@ super + Return
 
 # tabbed terminal
 super + shift + Return
-	tabbed -r 2 st -w '' -e zsh
+	tabbed -c -r 2 st -w '' -e zsh
 
 # program launcher
 super + @space
