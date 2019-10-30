@@ -1,87 +1,61 @@
 #!/bin/bash
 #
-# This script updates the copies of my dotfiles for my dotfiles repository.
-# Please don't run this from outside of the root directory of the repo.
-# It should be "./fetch" every time.
+# Dotfiles Fetcher
+# by Tanner Babcock 2019
 #
-echo "=== Fetching ===";
-#echo ".bash_aliases..."
-#cp /home/babkock/.bash_aliases ./bash_aliases
-#echo ".bashrc..."
-#cp /home/babkock/.bashrc ./bashrc
-#echo "bin/battery..."
-#cp /home/babkock/bin/battery ./bin/battery
-#echo "bin/hdmi..."
-#cp /home/babkock/bin/hdmi ./bin/hdmi
-#echo "bin/start..."
-#cp /home/babkock/bin/start ./bin/start
-#echo "bin/volume..."
-#cp /home/babkock/bin/volume ./bin/volume
-echo ".config/bspwm/bspwmrc..."
-cp /home/babkock/.config/bspwm/bspwmrc ./bspwm/bspwmrc
-#echo ".config/herbstluftwm/autostart..."
-#cp /home/babkock/.config/herbstluftwm/autostart ./herbstluftwm/autostart
-#echo ".ncmpcpp/config..."
-#cp /home/babkock/.ncmpcpp/config ./ncmpcpp/config
-#echo ".ncmpcpp/bindings..."
-#cp /home/babkock/.ncmpcpp/bindings ./ncmpcpp/bindings
-#echo ".config/polybar/config..."
-#cp /home/babkock/.config/polybar/config ./polybar/config
-echo ".config/sxhkd/sxhkdrc..."
-cp /home/babkock/.config/sxhkd/sxhkdrc ./sxhkd/sxhkdrc
-echo "/usr/share/man/man1/halp.1..."
-cp /usr/share/man/man1/halp.1 ./halp.1
-echo ".vim/bundle/vim-devicons/plugin/webdevicons.vim..."
-cp /home/babkock/.vim/bundle/vim-devicons/plugin/webdevicons.vim ./vim/webdevicons.vim
-echo ".config/ranger/plugins/devicons.py..."
-cp /home/babkock/.config/ranger/plugins/devicons.py ./devicons.py
-#echo ".config/neofetch/config..."
-#cp /home/babkock/.config/neofetch/config.conf ./neofetch/config.conf
-#echo ".gitconfig..."
-#cp /home/babkock/.gitconfig ./gitconfig
-#echo ".mozilla/firefox/*.default/chrome/userChrome.css..."
-#cp /home/babkock/.mozilla/firefox/*.default/chrome/userChrome.css ./chrome/userChrome.firefox.css
-#echo ".mozilla/firefox/*.default/chrome/userContent.css..."
-#cp /home/babkock/.mozilla/firefox/*.default/chrome/userContent.css ./chrome/userContent.firefox.css
-echo ".mozilla/firefox/*.default/user.js..."
-cp /home/babkock/.mozilla/firefox/*.default/user.js ./user.js
-#echo ".thunderbird/*.default/chrome/userChrome.css..."
-#cp /home/babkock/.thunderbird/*.default/chrome/userChrome.css ./chrome/userChrome.thunderbird.css
-#echo "mpd.conf..."
-#cp /etc/mpd.conf ./mpd.conf
-echo "mpv.conf..."
-cp /home/babkock/.config/mpv/mpv.conf ./mpv.conf
-#echo ".nanorc..."
-#cp /home/babkock/.nanorc ./nanorc
-#echo ".config/ranger/rc.conf..."
-#cp /home/babkock/.config/ranger/rc.conf ./ranger/rc.conf
-#echo ".surf/styles/4chan.css..."
-#cp /home/babkock/.surf/styles/4chan.css ./surf/styles/4chan.css
-#echo ".surf/styles/wikipedia.css..."
-#cp /home/babkock/.surf/styles/wikipedia.css ./surf/styles/wikipedia.css
-#echo ".surf/styles/reddit.css..."
-#cp /home/babkock/.surf/styles/reddit.css ./surf/styles/reddit.css
-#echo ".surf/styles/github.css..."
-#cp /home/babkock/.surf/styles/github.css ./surf/styles/github.css
-#echo ".surf/styles/default.css..."
-#cp /home/babkock/.surf/styles/default.css ./surf/styles/default.css
-#echo ".surf/bookmarks..."
-#cp /home/babkock/.surf/bookmarks ./surf/bookmarks.txt
-#echo ".surf/script.js..."
-#cp /home/babkock/.surf/script.js ./surf/script.js
-echo ".vimrc..."
-cp /home/babkock/.vimrc ./vimrc
-echo "c.vim..."
-cp /usr/share/vim/vim81/syntax/c.vim ./vim/c.vim
-#echo ".xbindkeysrc..."
-#cp /home/babkock/.xbindkeysrc ./xbindkeysrc
-echo ".xinitrc..."
-cp /home/babkock/.xinitrc ./xinitrc
-echo ".Xresources..."
-cp /home/babkock/.Xresources ./Xresources
-echo ".zshrc..."
-cp /home/babkock/.zshrc ./zshrc
-#echo "tmux.conf..."
-#cp /home/babkock/.tmux.conf ./tmux.conf
-#echo "tmuxline/presets/powerline.vim..."
-#cp /home/babkock/.vim/bundle/tmuxline.vim/autoload/tmuxline/presets/powerline.vim ./vim/tmuxline/powerline.vim
+# Use however you want
+#
+# What this script does:
+# - Compares each config file on the system with its respective copy in the repository
+# - If the file is not in the repository, add it
+# - If the files are different, copies the system file into the repository, replacing the older version
+# - If the files are the same, do nothing
+#
+# --------------------
+# If you want to use this script, you only have to worry about
+# the contents of the next two arrays
+#
+# Each entry in here is a config file on the hard drive
+system_files=( "$HOME/.bash_aliases" "$HOME/.bashrc" "$HOME/.config/bspwm/bspwmrc" "$HOME/.config/herbstluftwm/autostart" "$HOME/.ncmpcpp/config" "$HOME/.ncmpcpp/bindings" "$HOME/.config/polybar/config" "$HOME/.config/sxhkd/sxhkdrc" "/usr/share/man/man1/halp.1" "$HOME/.vim/bundle/vim-devicons/plugin/webdevicons.vim", "$HOME/.config/ranger/plugins/devicons.py" "$HOME/.config/neofetch/config", "$HOME/.gitconfig" "/etc/mpd.conf" "$HOME/.config/mpv/mpv.conf" "$HOME/.nanorc" "$HOME/.config/ranger/rc.conf" "$HOME/.surf/styles/4chan.css" "$HOME/.surf/styles/wikipedia.css" "$HOME/.surf/styles/reddit.css" "$HOME/.surf/styles/github.css" "$HOME/.surf/styles/default.css" "$HOME/.surf/bookmarks" "$HOME/.surf/script.js" "$HOME/.vimrc" "/usr/share/vim/vim81/syntax/c.vim" "$HOME/.xbindkeysrc" "$HOME/.xinitrc" "$HOME/.Xresources" "$HOME/.zshrc" "$HOME/.tmux.conf" "$HOME/.vim/bundle/tmuxline.vim/autoload/tmuxline/presets/powerline.vim" )
+#
+# --------------------
+#
+# This parallel array holds the corresponding local files in the repository
+repo_files=( "bash_aliases" "bashrc" "bspwm/bspwmrc" "herbstluftwm/autostart" "ncmpcpp/config" "ncmpcpp/bindings" "polybar/config" "sxhkd/sxhkdrc" "halp.1" "vim/webdevicons.vim" "ranger/devicons.py" "neofetch/config.conf" "gitconfig" "mpd.conf" "mpv.conf" "nanorc" "ranger/rc.conf" "surf/styles/4chan.css" "surf/styles/wikipedia.css" "surf/styles/reddit.css" "surf/styles/github.css" "surf/styles/default.css" "surf/bookmarks.txt" "surf/script.js" "vimrc" "vim/c.vim" "xbindkeysrc" "xinitrc" "Xresources" "zshrc" "tmux.conf" "vim/tmuxline/powerline.vim" )
+
+# Don't worry about anything after this
+# --------------------
+
+printf "\e[93;1mThis script will overwrite the contents of this repository with\n"
+printf "\e[93;1mwhatever is in the standard config locations for this user\n\n"
+printf "\e[91;1mContinue? (Y/N) "
+read contin
+if [[ $contin == "y" || $contin == "Y" ]]; then
+	printf "\e[92;1mContinuing...\n"
+	for ((i=0;i<${#system_files[@]};++i)); do
+		sys="${system_files[i]}"
+		rep="${repo_files[i]}"
+		if [[ -f "$sys" ]]; then
+			if [ -f "$rep" ]; then
+				cmp "$sys" "$rep" > /dev/null
+				result=$?
+				if [[ $result == 1 ]]; then
+					cp "$sys" "$rep" > /dev/null
+					printf "\e[92;1mChanged -- \e[95m%s\n" "$rep"
+				elif [[ $result == 0 ]]; then
+					printf "\e[33mUnchanged -- \e[93m%s\n" "$rep"
+				fi
+			else
+				printf "\e[92;1mAdded -- \e[95m%s\n" "$rep"
+				cp "$sys" "$rep" > /dev/null
+			fi
+		else
+			continue
+		fi
+	done
+	printf "\e[93;1mFinished fetching\n"
+else
+	printf "\e[91;mFetch cancelled\n"
+	false
+fi
+
