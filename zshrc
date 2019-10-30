@@ -39,7 +39,8 @@ HYPHEN_INSENSITIVE="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(gitfast colored-man-pages zsh-autosuggestions)
+plugins=(gitfast colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
+
 
 source $ZSH/oh-my-zsh.sh
 

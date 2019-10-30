@@ -21,45 +21,6 @@ secondary = #e60053
 alert = #bd2c40
 pseudo-transparency = true
 
-[bar/i3bar]
-bottom = true
-;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
-height = 23
-radius = 0
-fixed-center = false
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = #f00
-
-border-size = 0
-border-color = #00000000
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 1
-module-margin-right = 0
-
-font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
-
-modules-left = i3
-modules-right = mpd memory cpu battery date powermenu
-
-tray-position = right
-tray-padding = 0
-
-wm-restack = i3
-
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-
-cursor-click = pointer
-cursor-scroll = pointer
-
 [bar/bspbar]
 bottom = true
 width = 100%
@@ -95,68 +56,6 @@ wm-restack = bspwm
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
-[bar/hlbar]
-bottom = true
-width = 100%
-height = 23
-radius = 0
-fixed-center = false
-
-background = #40141214
-foreground = #c0c5b175
-
-line-size = 3
-line-color = #f00
-border-size = 0
-border-color = #00000000
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 0
-module-margin-right = 0
-
-font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
-
-modules-left = workspaces
-modules-right = mpd memorybsp cpubsp battery datebsp github
-tray-position = right
-tray-padding = 0
-
-[module/workspaces]
-type = internal/xworkspaces
-enable-click = true
-enable-scroll = true
-pin-workspaces = false
-
-icon-0 = default;
-icon-1 = 1;
-icon-2 = 2;
-icon-4 = 4;
-icon-5 = 5;
-icon-3 = 3;
-
-format = <label-state>
-
-label-active = %icon%
-label-active-background = #efdd3939
-label-active-foreground = #ff000000
-label-active-underline = #efdd3939
-label-active-padding = 1
-
-label-normal = %icon%
-label-normal-padding = 1
-label-normal-background = #ef6d0808
-label-normal-foreground = #ffd0c19b
-
-label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
-
 [module/bspwm]
 type = internal/bspwm
 
@@ -187,53 +86,6 @@ label-urgent-padding = 1
 label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
-
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = true
-
-ws-icon-0 = 1;1
-ws-icon-1 = 2;2
-ws-icon-2 = 3;3
-ws-icon-3 = 4;4
-ws-icon-4 = 5;5
-ws-icon-5 = 6;6
-ws-icon-6 = 7;7
-ws-icon-7 = 8;8
-ws-icon-8 = 9;9
-ws-icon-9 = 10;10
-
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-
-label-mode-padding = 1
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %icon%
-label-focused-foreground = #000
-label-focused-background = #aff4e899
-label-focused-underline = #f4e899
-label-focused-padding = 1
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon%
-label-unfocused-padding = 1
-
-; visible = Active workspace on unfocused monitor
-label-visible = %icon%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %icon%
-label-urgent-background = #ddc83143
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
@@ -273,13 +125,6 @@ format-underline = #efb6797a
 format-padding = 1
 label = %percentage:2%%
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-foreground = #bf2038
-format-underline = #971728
-label = %percentage:2%%
-
 [module/memorybsp]
 type = internal/memory
 interval = 2
@@ -289,82 +134,21 @@ format-prefix-foreground = #df83ac83
 format-underline = #ef83a983
 label = %percentage_used%%
 
-[module/memory]
-type = internal/memory
-interval = 2
-format-foreground = #103d98
-format-underline = #ff005462
-label = %percentage_used%%
-
-[module/date]
-type = internal/date
-interval = 1
-
-date = " %b %d,"
-date-alt = " %Y-%m-%d"
-
-time = "%I:%M:%S %p "
-time-alt = "%H:%M:%S "
-
-format-background = #aff4e899
-format-foreground = #000
-format-prefix-foreground = #000
-format-underline = #f4647da5
-
-label = %date% %time%
-
 [module/datebsp]
 type = internal/date
 interval = 1
 
-format-prefix = "  "
+format-prefix = "  "
 
-date = "%a %b %d,"
-date-alt = " %Y-%m-%d"
+date = " %a %b %d"
 
-time = "%I:%M:%S "
-time-alt = "%H:%M:%S "
+time = " %I:%M:%S"
 
 format-foreground = #ef71719c
 format-prefix-foreground = #db71719c
 format-underline = #ef71719c
 
 label = %date% %time%
-
-[module/batterybsp]
-type = internal/battery
-battery = BAT0
-adapter = AC0
-full-at = 98
-
-format-charging-padding = 1
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #cf929a62
-
-format-discharging-padding = 1
-
-format-charging-foreground = #df929a62
-format-discharging-foreground = #dfb4b4b4
-format-full-foreground = #dfb4b4b4
-
-format-discharging-prefix-foreground = #df929a62
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = #df929a62
-
-format-full-prefix = " "
-format-full-prefix-foreground = #df929a62
-format-full-underline = ${self.format-charging-underline}
-
-format-full-padding = 1
-
-ramp-capacity-foreground = #dbae52
-
-animation-charging-foreground = #dbae52
-animation-charging-framerate = 750
-
-animation-discharging-foreground = #dbae52
-animation-discharging-framerate = 750
 
 [module/battery]
 type = internal/battery
@@ -437,15 +221,4 @@ menu-2-1-exec = menu-open-0
 [settings]
 screenchange-reload = true
 pseudo-transparency = true
-
-[global/wm]
-margin-left = 10
-margin-top = 7
-margin-bottom = 10
-margin-right = 7
-
-
-;      
-;   
-  
 
