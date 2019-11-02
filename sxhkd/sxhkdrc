@@ -5,6 +5,9 @@
 super + minus
 	st -e transmission-remote-cli
 
+super + equal
+	st -e tmux
+
 # terminal emulator
 super + Return
 	st -e zsh
@@ -29,6 +32,9 @@ super + shift + period
 
 super + comma
 	bspc desktop --focus ^3; st -e ncmpcpp
+
+super + shift + comma
+	bspc desktop --focus ^3; killall bum; bum --server 127.0.0.2 --size "300"
 
 super + semicolon
 	bspc desktop --focus ^5; urxvt -bg rgba:1212/0202/0000/a9a9 -depth 32 -e ranger

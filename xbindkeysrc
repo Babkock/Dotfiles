@@ -1,12 +1,28 @@
 # Volume control
-"pactl set-sink-volume @DEFAULT_SINK@ +1000"
+"pactl set-sink-volume @DEFAULT_SINK@ +2000"
     XF86AudioRaiseVolume
     m:0x0 + c:123
 
-"pactl set-sink-volume @DEFAULT_SINK@ -1000"
+"pactl set-sink-volume @DEFAULT_SINK@ -2000"
     XF86AudioLowerVolume
     m:0x0 + c:122
 
 "pactl set-sink-mute @DEFAULT_SINK toggle"
     XF86AudioMute
     m:0x0 + c:121
+
+"redshift -x; xrandr --output eDP1 --brightness 0.7; redshift -O 5000K"
+	XF86MonBrightnessUp
+	m:0x0 + c:233
+
+"redshift -x; xrandr --output eDP1 --brightness 0.7; redshift -O 3500K"
+	XF86MonBrightnessDown
+	m:0x0 + c:232
+
+"redshift -x; xrandr --output eDP1 --brightness 0.6"
+	XF86ScreenSaver
+	m:0x0 + c:160
+
+"redshift -x; xrandr --output eDP1 --brightness 1.0"
+	XF86WWW
+	m:0x0 + c:158

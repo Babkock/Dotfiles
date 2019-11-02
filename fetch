@@ -54,6 +54,7 @@ if [[ $contin == "y" || $contin == "Y" ]]; then
 		fi
 	done
 	printf "\e[93;1mFinished fetching\n"
+	true
 else
 	printf "\e[91;mFetch cancelled\n"
 	false
