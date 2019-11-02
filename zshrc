@@ -11,6 +11,8 @@ ZLS_COLORS=$ZLS_COLORS'*.yaml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;3
 #ZSH_THEME_RANDOM_CANDIDATES=( "eastwood" "gentoo" "lambda" "wedisagree" )
 #CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
+
+
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(gitfast colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 
@@ -203,4 +205,6 @@ alias r="ranger"
 alias t="transmission-remote-cli"
 alias tr="transmission-remote"
 alias z="tmux"
+
+source /lib/NerdFonts/i_all.sh
 

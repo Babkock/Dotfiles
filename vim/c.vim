@@ -242,8 +242,6 @@ syn match	cCommentStartError display "/\*"me=e-1 contained
 syn match	cWrongComTail	display "\*/"
 
 syn keyword	cOperator	sizeof
-syn keyword     cOperator       __inline
-syn keyword     cOperator       asm
 if exists("c_gnu")
   syn keyword	cStatement	__asm__
   syn keyword	cOperator	typeof __real__ __imag__
@@ -257,8 +255,8 @@ if !exists("c_no_ansi") || exists("c_ansi_typedefs")
 endif
 if !exists("c_no_c99") " ISO C99
   syn keyword	cType		_Bool bool _Complex complex _Imaginary imaginary
-  syn keyword	cType		int8_t int16_t int32_t int64_t int8 int16 int32 int64
-  syn keyword	cType		uint8_t uint16_t uint32_t uint64_t uint8 uint16 uint32 uint64
+  syn keyword	cType		int8_t int16_t int32_t int64_t
+  syn keyword	cType		uint8_t uint16_t uint32_t uint64_t
   if !exists("c_no_bsd")
     " These are BSD specific.
     syn keyword	cType		u_int8_t u_int16_t u_int32_t u_int64_t
@@ -267,36 +265,14 @@ if !exists("c_no_c99") " ISO C99
   syn keyword	cType		uint_least8_t uint_least16_t uint_least32_t uint_least64_t
   syn keyword	cType		int_fast8_t int_fast16_t int_fast32_t int_fast64_t
   syn keyword	cType		uint_fast8_t uint_fast16_t uint_fast32_t uint_fast64_t
-  syn keyword	cType		intptr_t uintptr_t lldiv_t
-  syn keyword	cType		intmax_t uintmax_t pid_t
+  syn keyword	cType		intptr_t uintptr_t
+  syn keyword	cType		intmax_t uintmax_t
 endif
 if exists("c_gnu")
   syn keyword	cType		__label__ __complex__ __volatile__
 endif
 
-syn keyword     cType      Window timespec KeySym Status XWindowAttributes Atom Display XIC Drw Clr Client GtkWidget guint regex_t gint gfloat GString GTlsCertificateFlags GcrCertificate GByteArray GcrCertificateWidget gchar gboolean gpointer GdkDevice GIOChannel GdkDisplay GdkEvent XSetWindowAttributes XClassHint XineramaScreenInfo XClientMessageEvent XConfigureEvent Monitor XWindowChanges XConfigureRequestEvent XDestroyWindowEvent XExposeEvent XFocusChangeEvent XTextProperty XMappingEvent XMapRequestEvent XPropertyEvent XSizeHints XWMHints XEvent KeyCode XRectangle XButtonPressedEvent Visual Colormap XKeyEvent GParamSpec
-
-syn keyword     NonText    printf scanf fprintf fscanf sprintf sscanf memcpy strlen itoa atoi memmove strcpy strncpy puts gets getc putf fgets fgetc fputs fputc fopen fclose fwrite fread fseek rand srand atof atoll atol strtof strtod strtold strtol strtoul strtoll strtoull malloc calloc realloc free aligned_alloc abort exit _Exit at_quick_exit quick_exit atext getenv system
-syn keyword     NonText    bsearch qsort abs labs llabs mblen mbtowc wctomb mbstowcs wcstombs posix_memalign setenv unsetenv mkstemp mkostemp mkdtemp getsubopt rand_r setkey realpath random srandom initstate setstate putenv valloc memalign fopencookie
-syn keyword     NonText    clearenv mktemp mkstemps mkostemps nrand48 mrand48 jrand48 srand48 seed48 lcong48 ptsname l64a a64l drand48 erand48 freopen remove rename feof ferror fflush fgetpos fsetpos putc putchar getchar snprintf vprintf vfprintf vsprintf vsnprintf vscanf vfscanf vsscanf perror setbuf setvbuf fmemopen fdopen popen open_memstream ftello popen fseeko fileno pclose dprintf funlockfile flockfile getw putw fgetln asprintf vasprintf
-
-syn keyword     TabLineSel      chown fchown read write pread pwrite fsync dup close posix_close fdatasync lseek link symlink symlinkat readlink readlinkat unlink unlinkat rmdir truncate ftruncate access
-
-syn keyword     TabLineSel      fork execve execv execl execvp execlp fexecve _exit getpid getppid getpgrp getpgid setpgid setsid getsid setsid isatty ttyname_r ttyname isatty tcgetpgrp tcsetpgrp getuid geteuid getgid getegid getgroups setuid seteuid setgid getlogin getlogin_r gethostname ctermid getopt optarg optind, opterr, optopt
-
-syn keyword     TabLineSel      pathconf fpathconf sysconf confstr lockf gethostid nice sync crypt encrypt swab setpgrp chroot brk sbrk vfork vhangup getpagesize getdtablesize sethostname getdomainname daemon getpass setgroups setusershell endusershell acct syscall execvpe issetugid getentropy setresuid setresgid
-
-syn keyword     NonText         acos acosf acosl acosh acoshf acoshl asin asinf asinhl atan atanf atanl atanh atanhf atanhl cbrt cbrtf ceil ceilf ceill copysign cos cosf cosl copysignf copysignl erf erff erfl erfc erfcf erfcl fabs fabsf fabsl exp expf expl fmod fmodf fmodl frexp frexpf frexpl hypot hypotf hypotl log logf logl logb logbf logbl pow powf powl remainder remainderf remainderl remquo remquof remquol round roundf roundl
-
-syn keyword     NonText         scalbln scalblnf scalblnl sin sinf sinl sinh sinhf sinhl sqrt sqrtf sqrtl tan tanf tanl tanh tgamma tgammaf tgammal truc truncf truncl drem dremf finite finitef significand significandf lgamma_r lgammaf_r sincos sincosf sincosl
-
-syn keyword     NonText         strcat strncat strstr strcmp strncmp strcoll strxf strtok strerror stpcpy stpncpy strnlen strdup strndup strsignal strerror_l strcoll_l strlcat strlcpy explicit_bzero bzero basename memmem strverscmp
-
-syn keyword     TabLineSel      signal die waitpid usage main g_strdup g_strconcat g_strcmp g_strtok g_object_get g_byte_array_unref g_object_unref g_str_has_prefix g_str_has_suffix g_string_free g_string_append g_variant_new g_object_new g_signal_connect g_file_get_contents g_file_put_contents  g_io_channel_unix_new g_io_channel_set_encoding g_io_channel_set_close_on_unref g_io_add_watch g_build_filename g_path_get_dirname g_path_get_basename g_mkdir_with_parents g_strndup g_tls_certificate_new_from_file g_strdup_vprintf g_free g_chmod getpwuid g_strdup_printf XFree XUngrabKey XDestroyWindow XSetInputFocus XSetErrorHandler XUnmapWindow XSync va_start va_arg va_end spawn XCloseDisplay XQueryTree XSelectInput XSetWindowBorder XGetInputFocus XInternAtom XQueryPointer XSendEvent XGetTextProperty XFreeStringList XGrabButton XGrabKey XUngrabButton XKeycodeToKeysym XGrabServer XSetCloseDownMode XGetTransientForHint XRaiseWindow XChangeProperty XMapWindow XRefreshKeyboardMapping XAllowEvents XDeleteProperty XConfigureWindow XGetWindowAttributes XGrabPointer XMaskEvent XUngrabPointer
-
-syn keyword     TabLineSel      XReparentWindow XCreatePixmap XCreateGC XSetLineAttributes XFillRectangle XCreateWindow XFreePixmap XFreeGC XMoveResizeWindow XCopyArea XFetchName XSetForeground XFillRectangles XGetWindowProperty XWithdrawWindow XKeysymToKeycode XLowerWindow XNextEvent
-
-syn keyword	cStructure	struct union enum typedef GTlsCertificate gsize GError ushort uint ulong 
+syn keyword	cStructure	struct union enum typedef
 syn keyword	cStorageClass	static register auto volatile extern const
 if exists("c_gnu")
   syn keyword	cStorageClass	inline __attribute__
@@ -363,7 +339,7 @@ if !exists("c_no_ansi") || exists("c_ansi_constants") || exists("c_gnu")
   syn keyword cConstant FLT_RADIX FLT_ROUNDS FLT_DIG FLT_MANT_DIG FLT_EPSILON DBL_DIG DBL_MANT_DIG DBL_EPSILON
   syn keyword cConstant LDBL_DIG LDBL_MANT_DIG LDBL_EPSILON FLT_MIN FLT_MAX FLT_MIN_EXP FLT_MAX_EXP FLT_MIN_10_EXP FLT_MAX_10_EXP
   syn keyword cConstant DBL_MIN DBL_MAX DBL_MIN_EXP DBL_MAX_EXP DBL_MIN_10_EXP DBL_MAX_10_EXP LDBL_MIN LDBL_MAX LDBL_MIN_EXP LDBL_MAX_EXP
-  syn keyword cConstant LDBL_MIN_10_EXP LDBL_MAX_10_EXP HUGE_VAL CLOCKS_PER_SEC NULL LC_ALL LC_COLLATE LC_CTYPE LC_MONETARY TRUE FALSE true false True False
+  syn keyword cConstant LDBL_MIN_10_EXP LDBL_MAX_10_EXP HUGE_VAL CLOCKS_PER_SEC NULL LC_ALL LC_COLLATE LC_CTYPE LC_MONETARY
   syn keyword cConstant LC_NUMERIC LC_TIME SIG_DFL SIG_ERR SIG_IGN SIGABRT SIGFPE SIGILL SIGHUP SIGINT SIGSEGV SIGTERM
   " Add POSIX signals as well...
   syn keyword cConstant SIGABRT SIGALRM SIGCHLD SIGCONT SIGFPE SIGHUP SIGILL SIGINT SIGKILL SIGPIPE SIGQUIT SIGSEGV
