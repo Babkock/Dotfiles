@@ -14,7 +14,7 @@ super + Return
 
 # tabbed terminal
 super + shift + Return
-	tabbed -c -r 2 st -w '' -e zsh
+	tabbed -n "tabbed-st" -c -r 2 st -w '' -e zsh
 
 # program launcher
 super + @space
@@ -34,16 +34,16 @@ super + comma
 	bspc desktop --focus ^3; st -e ncmpcpp
 
 super + shift + comma
-	bspc desktop --focus ^3; killall bum; bum --server 127.0.0.2 --size "300"
+	killall bum; bspc desktop --focus ^3; bum --server 127.0.0.2 --size "300"
 
 super + semicolon
-	bspc desktop --focus ^5; urxvt -bg rgba:1212/0202/0000/a9a9 -depth 32 -e ranger
+	bspc desktop --focus ^5; urxvt -bg rgba:0000/0202/0202/8d8d -depth 32 -e ranger
 
 super + slash
-	bspc desktop --focus ^5; bigst -e ranger
+	bspc desktop --focus ^5; st -e ranger
 
 super + shift + slash
-	st -e man halp
+	st -n "Help" -e man halp
 
 super + backslash
 	bspc desktop --focus ^3; filezilla

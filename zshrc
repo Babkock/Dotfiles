@@ -174,6 +174,8 @@ alias v="vim"
 alias reboot="sudo reboot"
 alias shutdown="sudo shutdown -h now"
 alias x="sudo zsh"
+alias xk="xbindkeys -k"
+alias xp="xprop"
 alias df="df -h -T"
 case "$(tty)" in
 	*tty*)
@@ -199,11 +201,13 @@ esac
 alias b="neofetch --package_managers on --distro_shorthand tiny --uptime_shorthand tiny --gap -1"
 alias l="lsd -F --group-dirs first --date relative"
 alias s="ssh tababcock@tannerbabcock.com -p 2222"
+alias sc="scrot"
 alias spi="ssh pi@192.168.0.14 -i ~/.ssh/laptop2pi"
 alias jcommit="git commit -m '$(date)'; git push"
 alias r="ranger"
 alias t="transmission-remote-cli"
 alias tr="transmission-remote"
+alias ts="transset"
 alias z="tmux"
 
 source /lib/NerdFonts/i_all.sh

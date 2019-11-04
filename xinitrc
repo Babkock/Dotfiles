@@ -10,7 +10,7 @@ gsettings set org.gnome.gedit.preferences.editor background-pattern "grid"
 gsettings set org.gnome.gedit.preferences.editor scheme "oblivion"
 gsettings set org.gnome.gedit.preferences.editor display-overview-map true
 gsettings set org.gnome.gedit.preferences.editor tabs-size 4
-#bum --server 127.0.0.2 --size "300" &
+bum --server 127.0.0.2 --size "300" &
 bspwm
 killall tinyserve
 killall bum

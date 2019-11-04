@@ -8,6 +8,7 @@ export SXHKD_FIFO
 
 [ -e "$SXHKD_FIFO" ] && rm "$SXHKD_FIFO"
 mkfifo "$SXHKD_FIFO"
+killall sxhkd
 sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
 bspc monitor eDP1 -d I II III IV V VI
@@ -53,7 +54,7 @@ bspc rule -a Firefox-esr:Browser desktop='^2' state=tiled
 bspc rule -a Firefox-esr:Toplevel desktop='^2' state=tiled
 bspc rule -a Screenkey manage=off
 
-xbindkeys
+#xbindkeys
 xinput --set-prop 18 'Synaptics Tap Action' 1, 1, 1, 1, 1, 1, 1
 xinput --set-prop 18 'Synaptics Tap Time' 120
 xmodmap -e 'keycode 80=Up'
@@ -72,4 +73,6 @@ killall compton
 while pgrep -u $UID -x compton >/dev/null; do sleep 1; done
 
 compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
+
+xrandr --output eDP1 --brightness 0.6
 

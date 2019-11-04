@@ -19,23 +19,27 @@ foreground-bsp = #a9b1b1b1
 primary = #5b9099
 secondary = #e60053
 alert = #bd2c40
-pseudo-transparency = true
+pseudo-transparency = false
 
 [bar/bspbar]
-bottom = true
+bottom = false
 width = 100%
 height = 23
 radius = 0
 fixed-center = false
+enable-ipc = true
 
-background = #55000000
-foreground = #c0b4b4b4
+monitor = HDMI1
+monitor-fallback = eDP1
+
+background-1 = #77000000
+background-0 = #89141410
+foreground = #c6c5c5c5
 
 line-size = 3
 line-color = #f00
 
 border-size = 0
-border-color = #00000000
 
 padding-left = 0
 padding-right = 0
@@ -52,9 +56,6 @@ tray-position = right
 tray-padding = 0
 
 wm-restack = bspwm
-
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
 
 [module/bspwm]
 type = internal/bspwm
@@ -87,6 +88,9 @@ label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
 
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
 [module/mpd]
 type = internal/mpd
 format-online = <label-song> <icon-prev> <toggle> <icon-next>
@@ -113,8 +117,8 @@ interval = 10
 fixed-values = true
 
 spacing = 2
-label-mounted = "  %free%"
-label-mounted-foreground = #df9f5d7d
+label-mounted = " %free%"
+label-mounted-foreground = #efbf7e9d
 
 [module/cpubsp]
 type = internal/cpu
@@ -144,8 +148,8 @@ date = " %a %b %d"
 
 time = " %I:%M:%S"
 
-format-foreground = #ef71719c
-format-prefix-foreground = #db71719c
+format-foreground = #ef7979ac
+format-prefix-foreground = #ef7979ac
 format-underline = #ef71719c
 
 label = %date% %time%
@@ -218,7 +222,10 @@ menu-2-0-exec = sudo shutdown -h now
 menu-2-1 = 
 menu-2-1-exec = menu-open-0
 
+[global/wm]
+margin-bottom = 0
+
 [settings]
 screenchange-reload = true
-pseudo-transparency = true
+pseudo-transparency = false
 

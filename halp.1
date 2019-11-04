@@ -11,315 +11,324 @@ halp \- list of my user-defined key shortcuts for several programs
 \fIMod + Space\fR
 --   Dmenu
 
-Mod + Period (.)
+\fIMod + Period\fR (.)
 --   Surf
 
-Mod + Shift + Period (.)
+\fIMod + Shift + Period\fR (.)
 --   Thunderbird
 
-Mod + Comma (,)
+\fIMod + Comma\fR (,)
 --   Ncmpcpp Music Player
 
-Mod + Shift + Comma (,)
+\fIMod + Shift + Comma\fR (,)
 --   Album Art Display (bum)
 
-Mod + Hyphen (-)
+\fIMod + Hyphen\fR (-)
 --   Transmission
 
-Mod + Semicolon (;)
+\fIMod + Semicolon\fR (;)
 --   Ranger File Browser (urxvt)
 
-Mod + Slash (/)
+\fIMod + Slash\fR (/)
 --   Ranger File Browser (st)
 
-Mod + Backslash (\\)
+\fIMod + Backslash\fR (\\)
 --   Filezilla
 
-Mod + N
+\fIMod + N\fR
 --   Pulse Audio Control
 
-Mod + E
+\fIMod + E\fR
 --   JGMenu App Launcher
 
-Mod + Shift + Slash (/)
+\fIMod + Shift + Slash\fR (/)
 --   This Man Page Window
 
 .SH SURF COMMANDS
-Ctrl + Shift + Enter
+\fICtrl + Shift + Enter\fR
 --   Open new tab
 
-Ctrl + H
+\fICtrl + H\fR
 --   Back
 
-Ctrl + L
+\fICtrl + L\fR
 --   Forward
 
-Ctrl + R
+\fICtrl + R\fR
 --   Refresh
 
-Ctrl + G
+\fICtrl + G\fR
 --   Go to address
 
-Ctrl + F
+\fICtrl + F\fR
 --   Find string on web page
 
-Ctrl + N
+\fICtrl + N\fR
 --   Go to next search result
 
-Ctrl + Shift + O
+\fICtrl + Shift + O\fR
 --   Open web inspector
 
-Ctrl + B
+\fICtrl + B\fR
 --   Add current page to bookmarks
 
-Ctrl + Shift + K
+\fICtrl + Shift + K\fR
 --   Zoom in
 
-Ctrl + Shift + J
+\fICtrl + Shift + J\fR
 --   Zoom out
 
-Ctrl + Shift + W
+\fICtrl + Shift + W\fR
 --   Move tab left
 
-Ctrl + Shift + E
+\fICtrl + Shift + E\fR
 --   Move tab right
 
-Ctrl + W
+\fICtrl + W\fR
 --   Play media on page in MPV
 
-.SH SURF ADDRESS BAR PATTERNS
+.SS SURF ADDRESS BAR PATTERNS
 
-" [query]"
+" \fI[query]\fR"
 --   (Note the space) Search Duck Duck Go
 
-"g [query]"
+"\fBg \fR\fI[query]\fR"
 --   Search on Google
 
-"gh [query]"
+"\fBgh \fR\fI[query]\fR"
 --   Search on GitHub
 
-"w [query]"
+"\fBw \fR\fI[query]\fR"
 --   Search on Wikipedia
 
-"y [query]"
+"\fBy \fR\fI[query]\fR"
 --   Search on YouTube
 
-"v [query]"
+"\fBv \fR\fI[query]\fR"
 --   Search on Void Linux wiki
 
 .SH SHELL ALIASES
 
-"a [file]"
+"\fBa \fR\fI[file]\fR"
 --   'bat', Rust file viewer and concatenator
 
-"b"
+"\fBb\fR"
 --   'neofetch', system information tool, with options
 
-"c [directory]"
+"\fBc \fR\fI[directory]\fR"
 --   cds into the specified directory
 
-"cat [file]"
+"\fBcat \fR\fI[file]\fR"
 --   'bat' in place of 'cat'
 
-"conf [program]"
+"\fBconf \fR\fI[program]\fR"
 --   Edits the main configuration file for a certain program
 
-"d"
+"\fBd\fR"
 --   cds into ~/Downloads
 
-"df"
+"\fBdf\fR"
 --   'df -h -T' in place of 'df'
 
-"e"
+"\fBe\fR"
 --   'cargo build --release' - compiles Rust project
 
-"f [image]"
+"\fBf \fR\fI[image]\fR"
 --   Opens the image in Feh, image viewer
 
-"g [command] [options]"
+"\fBg \fR\fI[command] [options]\fR"
 --   'git' with no arguments - add 'push', 'pull', etc.
 
-"ga [file]"
+"\fBga \fR\fI[file]\fR"
 --   'git add' - adds a file to staging area
 
-"gc [commit or branch] -- [file]"
+"\fBgc \fR\fI[commit or branch] -- [file]\fR"
 --   'git checkout' - checks out branch, commit, or file
 
-"gcb [new branch name]"
+"\fBgcb \fR\fI[new branch name]\fR"
 --   Creates a new branch with name, switches to it
 
-"gcm [commit message]"
+"\fBgcm \fR\fI[commit message]\fR"
 --   Commits with the specified message
 
-"gl"
+"\fBgl\fR"
 --   'git log' - show last several commits in a pager
 
-"gpush"
+"\fBgpush\fR"
 --   'git push origin master' - don't run if pushing to another branch
 
-"gpull"
+"\fBgpull\fR"
 --   'git pull origin master'
 
-"gr [file]"
+"\fBgr \fR\fI[file]\fR"
 --   'git remove' - removes file from staging area and deletes it
 
-"grc [file]"
+"\fBgrc \fR\fI[file]\fR"
 --   'git remote --cached' - removes from staging area without deleting
 
-"gs"
+"\fBgs\fR"
 --   'git status' - show staged and unstaged changes
 
-"i"
+"\fBi\fR"
 --   cds into ~/Videos
 
-"jcommit"
+"\fBjcommit\fR"
 --   Commits with the date for a message, and pushes
 
-"k"
+"\fBk\fR"
 --   'make', optionally with arguments
 
-"kc"
+"\fBkc\fR"
 --   'make clean'
 
-"l [directory]"
+"\fBl \fR\fI[directory]\fR"
 --   'lsd', Rust file lister, with options
 
-"ls [directory]"
+"\fBls \fR\fI[directory]\fR"
 --   'lsd' in place of 'ls'
 
-"lsl"
+"\fBlsl\fR"
 --   'lsd -l', for long listing
 
-"lsa"
+"\fBlsa\fR"
 --   'lsd -A', for almost all entries
 
-"lsla"
+"\fBlsla\fR"
 --   'lsd -lA', for long listing of all entries
 
-"lst"
+"\fBlst\fR"
 --   'lsd --tree', for tree listing
 
-"m [video file]"
+"\fBm \fR\fI[video file]\fR"
 --   Play specified video file in MPV
 
-"n"
+"\fBn\fR"
 --   Opens ncmpcpp Music Player
 
-"o"
+"\fBo\fR"
 --   cds into ~/Documents
 
-"p"
+"\fBp\fR"
 --   cds into ~/Pictures
 
-"r"
+"\fBr\fR"
 --   'ranger', command-line file browser
 
-"s"
+"\fBs\fR"
 --   SSHs into my website
 
-"spi"
+"\fBsc \fR\fI[image]\fR"
+--   Take screenshot with 'scrot'
+
+"\fBspi\fR"
 --   SSHs into the Raspberry Pi
 
-"t [torrent file]"
+"\fBt \fR\fI[torrent file]\fR"
 --   Start Transmission with specified file
 
-"tr [arguments]"
+"\fBtr \fR\fI[arguments]\fR"
 --   'transmission-remote', with mandatory arguments
 
-"u"
+"\fBu\fR"
 --   cds into ~/Music
 
-"v [file]"
+"\fBv \fR\fI[file]\fR"
 --   Opens the specified file in Vim
 
-"x"
+"\fBx\fR"
 --   Starts a new zsh instance as root
 
-"z [arguments]"
+"\fBxk\fR"
+--   Show codes for a given key binding
+
+"\fBxp\fR"
+--   Get properties of a window
+
+"\fBz \fR\fI[arguments]\fR"
 --   'tmux', optionally with arguments
 
 .SH VIM COMMANDS
-u
+\fIu\fR
    - Undo
 
-Ctrl + R
+\fICtrl + R\fR
    - Redo
 
-Ctrl + W
+\fICtrl + W\fR
    - Jump to other window
 
-dd
+\fIdd\fR
    - Delete the entire current line
 
-d$
+\fId$\fR
    - Delete the rest of the current line
 
-dG
+\fIdG\fR
    - Deletes entire file
 
-c
+\fIc\fR
    - Cut text in Visual mode
 
-y
+\fIy\fR
    - Copy text in Visual mode
 
-p
+\fIp\fR
    - Paste text in Normal mode
 
-:w
+\fI:w\fR
    - Write buffer to file, or with argument to write new file
 
-:q
+\fI:q\fR
    - Quit after saving
 
-:q!
+\fI:q!\fR
    - Quit without saving
 
-:wq
+\fI:wq\fR
    - Save and quit
 
-G
+\fIG\fR
    - Jump to the bottom of the file
 
-gg
+\fIgg\fR
    - Jump to the top of the file
 
-?
+\fI?\fR
    - Backwards search
 
-/
+\fI/\fR
    - Forwards search
 
 .SH BSPWM SHORTCUTS
-Mod + Shift + E
+\fIMod + Shift + E\fR
 --   Exit BSPWM
 
-Mod + Shift + R
+\fIMod + Shift + R\fR
 --   Restart BSPWM
 
-Mod + Shift + C
+\fIMod + Shift + C\fR
 --   Close Window
 
-Mod + T
+\fIMod + T\fR
 --   Tiled Window State
 
-Mod + S
+\fIMod + S\fR
 --   Floating Window State
 
-Mod + F
+\fIMod + F\fR
 --   Fullscreen Window State
 
-Mod + Shift + Q
+\fIMod + Shift + Q\fR
 --   Switch to Adjacent Window
 
-Mod + O
+\fIMod + O\fR
 --   Switch to Newer Window
 
-Mod + I
+\fIMod + I\fR
 --   Switch to Older Window
 
-Mod + M
+\fIMod + M\fR
 --   Monocle Layout
 
-Mod + Arrow Keys
+\fIMod + Arrow Keys\fR
 --   Move Floating Window
