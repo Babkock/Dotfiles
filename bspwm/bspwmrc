@@ -1,5 +1,11 @@
 #!/bin/sh
-
+#     __                                          
+#    / /_  _________ _      ______ ___  __________
+#   / __ \/ ___/ __ \ | /| / / __ `__ \/ ___/ ___/
+#  / /_/ (__  ) /_/ / |/ |/ / / / / / / /  / /__  
+# /_.___/____/ .___/|__/|__/_/ /_/ /_/_/   \___/  
+#           /_/
+#
 xsetroot -cursor_name left_ptr
 xrdb -merge .Xresources
 
@@ -8,7 +14,7 @@ export SXHKD_FIFO
 
 [ -e "$SXHKD_FIFO" ] && rm "$SXHKD_FIFO"
 mkfifo "$SXHKD_FIFO"
-killall sxhkd
+killall sxhkd 2> /dev/null
 sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
 bspc monitor eDP1 -d I II III IV V VI
@@ -54,7 +60,8 @@ bspc rule -a Firefox-esr:Browser desktop='^2' state=tiled
 bspc rule -a Firefox-esr:Toplevel desktop='^2' state=tiled
 bspc rule -a Screenkey manage=off
 
-#xbindkeys
+killall xbindkeys 2> /dev/null
+xbindkeys
 xinput --set-prop 18 'Synaptics Tap Action' 1, 1, 1, 1, 1, 1, 1
 xinput --set-prop 18 'Synaptics Tap Time' 120
 xmodmap -e 'keycode 80=Up'
@@ -62,15 +69,11 @@ xmodmap -e 'keycode 88=Down'
 xmodmap -e 'keycode 83=Left'
 xmodmap -e 'keycode 85=Right'
 
-killall polybar
-
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+killall polybar 2> /dev/null
 
 polybar -r -log=error bspbar &
 
-killall compton
-
-while pgrep -u $UID -x compton >/dev/null; do sleep 1; done
+killall compton 2> /dev/null
 
 compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
 

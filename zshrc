@@ -1,3 +1,9 @@
+#               __             
+#   ____  _____/ /_  __________
+#  /_  / / ___/ __ \/ ___/ ___/
+#  / /_(__  ) / / / /  / /__  
+# /___/____/_/ /_/_/   \___/  
+#
 export PATH=$PATH:/usr/local/i386elfgcc/bin
 export ZSH="/home/babkock/.oh-my-zsh"
 ZSH_THEME="wedisagree"
@@ -12,7 +18,6 @@ ZLS_COLORS=$ZLS_COLORS'*.yaml=0;35:*.shtml=0;35:*.mkv=1;31:*.conf=1;33:*.ini=1;3
 #CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
 
-
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(gitfast colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 
@@ -21,9 +26,9 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+	export EDITOR='vim'
 else
-   export EDITOR='vim'
+	export EDITOR='vim'
 fi
 
 alias poses="sudo chown babkock:babkock "
@@ -45,6 +50,38 @@ xbcompile() {
 		cd $OLDPWD
 		true
 	fi
+}
+
+t() {
+	if [ -z "$1" ]; then
+		transmission-remote -ep -x -Y -O --utp > /dev/null 
+		transmission-remote-cli
+		printf "\e[91;1mUsage: %s [torrent file] [speed]\n" "$0" > /dev/stderr
+		false
+	elif [ -z "$2" ]; then
+		transmission-remote -ep -x -Y -O --utp > /dev/null
+		transmission-remote-cli "$1" > /dev/null
+		rm -f "$1" > /dev/null
+		printf "\e[92;1mTorrent %s started\n\e[30;m" "$1" > /dev/stdout
+		true
+	else
+		transmission-remote -ep -x -Y -O --utp > /dev/null
+		transmission-remote-cli "$1" > /dev/null
+		rm -f "$1" > /dev/null
+		transmission-remote -as > /dev/null
+		transmission-remote -asd "$2" > /dev/null
+		printf "\e[92;1mTorrent %s started\n" "$1" > /dev/stdout
+		printf "\e[93;1mDownload limit set to %s kB/s\n\e[30;m" "$2" > /dev/stdout
+		true
+	fi
+}
+
+genc() {
+	gpg --passphrase "$1" --encrypt --sign --armor -r babkock@gmail.com "$2"
+}
+
+gdec() {
+	gpg --passphrase "$1" --decrypt "$2" > "$3"
 }
 
 conf() {
@@ -140,6 +177,7 @@ conf() {
 }
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4f4f53"
+alias library="vim ~/TannerBabcock/admin/music.php; pushd ~/TannerBabcock > /dev/null; git add admin/music.php > /dev/null; popd > /dev/null"
 alias ..="cd .."
 alias a="bat --wrap character -n "
 alias c="cd "
@@ -177,27 +215,35 @@ alias x="sudo zsh"
 alias xk="xbindkeys -k"
 alias xp="xprop"
 alias df="df -h -T"
-case "$(tty)" in
-	*tty*)
-		alias lsl="ls -Fl --group-directories-first --color=auto"
-		alias lsa="ls -FA --group-directories-first --color=auto"
-		alias lsla="ls -FlA --group-directories-first --color=auto"
-		alias ls="ls -F --group-directories-first --color=auto"
-		;;
-	*pts*)
-		alias lst="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias lt="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias lsta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias lta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias lstl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias ltl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias lstla="lsd -FlA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-		alias lsla="lsd -FlA --group-dirs first --date relative --blocks permission,user,size,date,name"
-		alias lsl="lsd -Fl --group-dirs first --date relative --blocks permission,user,size,date,name"
-		alias lsa="lsd -FA --group-dirs first --date relative --blocks permission,user,size,date,name"
-		alias ls="lsd -F --group-dirs first --date relative"
-		;;
-esac
+
+if [[ -n $SSH_CONNECTION ]]; then
+	alias lsl="ls -Fl --group-directories-first --color=auto"
+	alias lsa="ls -FA --group-directories-first --color=auto"
+	alias lsla="ls -FlA --group-directories-first --color=auto"
+	alias ls="ls -F --group-directories-first --color=auto"
+else
+	case "$(tty)" in
+		*tty*)
+			alias lsl="ls -Fl --group-directories-first --color=auto"
+			alias lsa="ls -FA --group-directories-first --color=auto"
+			alias lsla="ls -FlA --group-directories-first --color=auto"
+			alias ls="ls -F --group-directories-first --color=auto"
+			;;
+		*pts*)
+			alias lst="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lt="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lsta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lstl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias ltl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lstla="lsd -FlA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lsla="lsd -FlA --group-dirs first --date relative --blocks permission,user,size,date,name"
+			alias lsl="lsd -Fl --group-dirs first --date relative --blocks permission,user,size,date,name"
+			alias lsa="lsd -FA --group-dirs first --date relative --blocks permission,user,size,date,name"
+			alias ls="lsd -F --group-dirs first --date relative"
+			;;
+	esac
+fi
 alias b="neofetch --package_managers on --distro_shorthand tiny --uptime_shorthand tiny --gap -1"
 alias l="lsd -F --group-dirs first --date relative"
 alias s="ssh tababcock@tannerbabcock.com -p 2222"
@@ -205,10 +251,8 @@ alias sc="scrot"
 alias spi="ssh pi@192.168.0.14 -i ~/.ssh/laptop2pi"
 alias jcommit="git commit -m '$(date)'; git push"
 alias r="ranger"
-alias t="transmission-remote-cli"
+alias tc="transmission-remote-cli"
 alias tr="transmission-remote"
 alias ts="transset"
 alias z="tmux"
-
-source /lib/NerdFonts/i_all.sh
 

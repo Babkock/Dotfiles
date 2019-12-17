@@ -1,3 +1,10 @@
+#                                              
+#    ____  _________ ___  ____  _________  ____ 
+#   / __ \/ ___/ __ `__ \/ __ \/ ___/ __ \/ __ \
+#  / / / / /__/ / / / / / /_/ / /__/ /_/ / /_/ /
+# /_/ /_/\___/_/ /_/ /_/ .___/\___/ .___/ .___/ 
+#                     /_/        /_/   /_/
+#
 ncmpcpp_directory = ~/.ncmpcpp
 
 #lyrics_directory = ~/.lyrics
@@ -43,7 +50,7 @@ visualizer_type = spectrum
 visualizer_look = ●▮
 
 #visualizer_color = magenta, red, green, cyan, yellow, blue, white
-visualizer_color = 6, 46, 152, 95, 219, 54, 91, 155, 207, 94, 199, 102, 160, 20
+visualizer_color = 4, 44, 143, 88, 210, 50, 91, 12, 146, 192, 214, 205, 68, 140, 44, 125
 
 #system_encoding = ""
 

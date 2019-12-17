@@ -1,7 +1,10 @@
 #
-# wm independent hotkeys
+#               __    __       __         
+#    ______  __/ /_  / /______/ /_________
+#   / ___/ |/_/ __ \/ //_/ __  / ___/ ___/
+#  (__  )>  </ / / / ,< / /_/ / /  / /__  
+# /____/_/|_/_/ /_/_/|_|\__,_/_/   \___/  
 #
-
 super + minus
 	st -e transmission-remote-cli
 
@@ -159,3 +162,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
