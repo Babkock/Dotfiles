@@ -10,11 +10,11 @@
 [colors]
 background = #00101510
 background-alt = #444
-background-bsp = #00101010
+background-bsp = #00000000
 
-foreground = #b2c2c4c2
-foreground-alt = #ddb4b4b4
-foreground-bsp = #a9b1b1b1
+foreground = #ddc94f87
+foreground-alt = #ddc94f87
+foreground-bsp = #edc94f87
 
 primary = #5b9099
 secondary = #e60053
@@ -32,9 +32,9 @@ enable-ipc = true
 monitor = HDMI1
 monitor-fallback = eDP1
 
-background-1 = #77000000
-background-0 = #89141410
-foreground = #c6c5c5c5
+background-1 = #22000000
+background-0 = #22000000
+foreground = #ef000000
 
 line-size = 3
 line-color = #f00
@@ -70,15 +70,16 @@ ws-icon-3 = IV;
 
 label-focused = %icon%
 
-label-focused-background = #efa8a9a8
-label-focused-foreground = #ff000000
-label-focused-underline = #efa8a9a8
+label-focused-background = #cfa2235c
+label-focused-foreground = #ffc94f87
+label-focused-underline = #cfc6437c
 label-focused-padding = 1
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = #ef232020
-label-occupied-foreground = #ffd4d4d4
+label-occupied-background = #cf107d07
+label-occupied-foreground = #df22ad0d
+label-occupied-underline = #df27b414
 
 label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
@@ -118,14 +119,15 @@ fixed-values = true
 
 spacing = 2
 label-mounted = " %free%"
-label-mounted-foreground = #efbf7e9d
+label-mounted-foreground = #efb64dce
 
 [module/cpubsp]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #dbb6797a
-format-underline = #efb6797a
+format-foreground = #ede2639c
+format-prefix-foreground = #dbd2538c
+format-underline = #efd2538c
 format-padding = 1
 label = %percentage:2%%
 
@@ -134,8 +136,9 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-padding = 1
-format-prefix-foreground = #df83ac83
-format-underline = #ef83a983
+format-foreground = #ef58cc50
+format-prefix-foreground = #ef48bc40
+format-underline = #ef48bc40
 label = %percentage_used%%
 
 [module/datebsp]
@@ -148,8 +151,8 @@ date = " %a %b %d"
 
 time = " %I:%M:%S"
 
-format-foreground = #ef7979ac
-format-prefix-foreground = #ef7979ac
+format-foreground = #df507db8
+format-prefix-foreground = #df32bd1f
 format-underline = #ef71719c
 
 label = %date% %time%
@@ -160,8 +163,9 @@ battery = BAT0
 adapter = AC0
 full-at = 98
 
+format-foreground = #edd57e1c
 format-charging = <animation-charging> <label-charging> 
-format-charging-underline = #cdbfb640
+format-charging-underline = #cdc56e0c
 
 format-charging-padding = 1
 
@@ -184,7 +188,7 @@ ramp-capacity-foreground = ${colors.foreground-alt}
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = #cdbfb640
+animation-charging-foreground = #cdd57e1d
 animation-charging-framerate = 750
 
 animation-discharging-0 = 

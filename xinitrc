@@ -5,12 +5,15 @@
 #  _>  </ / / / / / /_/ /  / /__  
 # /_/|_/_/_/ /_/_/\__/_/   \___/
 #
-feh --bg-scale /home/babkock/.config/bspwm/wallpaper.jpg
+feh --bg-scale /home/babkock/.config/bspwm/color_wall.jpg
 xrdb -merge /home/babkock/.Xresources
 killall tinyserve
 tinyserve &
 killall transmission-daemon
 transmission-daemon
+transmission-remote --download-dir "/home/babkock/Downloads"
+transmission-remote --incomplete-dir "/home/babkock/Downloads"
+transmission-remote --no-lpd --no-dht --pex --utp --ssl
 gsettings set org.gnome.gedit.preferences.editor highlight-current-line true
 gsettings set org.gnome.gedit.preferences.editor use-default-font false
 gsettings set org.gnome.gedit.preferences.editor editor-font "Anonymous Pro Regular 13"

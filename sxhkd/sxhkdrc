@@ -15,6 +15,9 @@ super + equal
 super + Return
 	st -e zsh
 
+super + w
+	transset 0.6
+
 # tabbed terminal
 super + shift + Return
 	tabbed -n "tabbed-st" -c -r 2 st -w '' -e zsh
@@ -55,7 +58,7 @@ super + n
 	pavucontrol
 
 super + e
-	jgmenu --icon-size=0
+	cat ~/.config/jgmenu/root.csv | jgmenu --simple --icon-size=0
 
 #
 # bspwm hotkeys

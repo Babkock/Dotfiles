@@ -5,7 +5,7 @@
 !   /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
 !  /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/
 !
-st.alpha: 147
+st.alpha: 165
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
@@ -33,7 +33,7 @@ URxvt.letterSpace: 1
 
 ! special
 *.foreground:   #b4b4b4
-*.background:   #101010
+*.background:   #12020b
 *.cursorColor:  #b4b4b4
 
 ! black
@@ -41,31 +41,31 @@ URxvt.letterSpace: 1
 *.color8:       #121212
 
 ! red
-*.color1:       #bf8081
-*.color9:       #c89798
+*.color1:       #c94f87
+*.color9:       #d2538c
 
 ! green
-*.color2:       #769476
-*.color10:      #80a580
+*.color2:       #38ac30
+*.color10:      #32bd1f
 
 ! yellow
-*.color3:       #8a945a
-*.color11:      #929a62
+*.color3:       #d57e1d
+*.color11:      #e58d2b
 
 ! blue
-*.color4:       #9090a5
-*.color12:      #a1a1bc
+*.color4:       #46b9cb
+*.color12:      #507db8
 
 ! magenta
 *.color5:       #a66788
-*.color13:      #b47396
+*.color13:      #a63dbe
 
 ! cyan
-*.color6:       #62a5b2
-*.color14:      #71b5c1
+*.color6:       #31cba6
+*.color14:      #29e0b3
 
 ! white
 *.color7:       #c0c0c0
-*.color15:      #dfdfdf
+*.color15:      #e2e2e2
 
 

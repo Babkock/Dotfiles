@@ -815,7 +815,7 @@ if (location.hostname.match('wikipedia')) {
 
   a:hover, a.wbc-editpage:hover
   {
-    color: #bba91a !important;
+    color: #dabd2c !important;
     text-decoration: underline;
   }
 

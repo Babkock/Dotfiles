@@ -36,9 +36,6 @@ mkcd() {
 	mkdir "$1"
 	cd "$1"
 }
-pisend() {
-	scp -i ~/.ssh/laptop2pi "$1" pi@192.168.0.14:~/Downloads
-}
 
 xbcompile() {
 	if [ -z "$1" ]; then
@@ -52,6 +49,14 @@ xbcompile() {
 	fi
 }
 
+# quick transmission torrent starter. one can run "t avengers.torrent" to start
+# up that torrent, and delete the file.
+# you can also do something like this
+#
+#    $ t avengers.torrent 1000
+#    Torrent avengers.torrent started
+#    Download limit set to %s kB/s
+#
 t() {
 	if [ -z "$1" ]; then
 		transmission-remote -ep -x -Y -O --utp > /dev/null 
@@ -76,14 +81,42 @@ t() {
 	fi
 }
 
+# quick GPG encrypt. arg 1 is passphrase, arg 2 is input file
+#
+#    $ genc "123456" hello.txt
+#
+# this creates hello.txt.asc, the armored message, and signs it
 genc() {
 	gpg --passphrase "$1" --encrypt --sign --armor -r babkock@gmail.com "$2"
 }
 
+# quick GPG decrypt. use passphrase for first argument, second argument is input file,
+# and third is output file.
+#
+#    $ gdec "123456" hello.txt.asc hello.real
+#
+# hello.real should be exactly the same as hello.txt, the original input
 gdec() {
 	gpg --passphrase "$1" --decrypt "$2" > "$3"
 }
 
+# hacky function to send something to the Raspberry Pi. change the IP address if
+# need be.
+#
+#    $ picp vimrc important_stuff
+#    vimrc...                   18 kB
+#    important_stuff...          2 kB
+picp() {
+	scp -i ~/.ssh/laptop2pi_new "$@" pi@192.168.0.18:~
+}
+
+# configure a given program by its name. this function opens vim with the main
+# configuration file for the specified program.
+#
+#    $ conf vim   # opens ~/.vimrc
+#    $ conf zsh   # opens ~/.zshrc
+#    $ conf bspwm # opens ~/.config/bspwm/bspwmrc
+#    # etc
 conf() {
 	if [ -z "$1" ]; then
 		printf "Specify which program you want to configure\n" > /dev/stderr
@@ -216,6 +249,10 @@ alias xk="xbindkeys -k"
 alias xp="xprop"
 alias df="df -h -T"
 
+# What this next bit is: Use traditional ls aliases
+# if logged in via ssh. if logged in locally, then determine if using
+# a tty console or something else. use traditional ls aliases for
+# tty always, otherwise use lsd (the rust project) with fancy icons
 if [[ -n $SSH_CONNECTION ]]; then
 	alias lsl="ls -Fl --group-directories-first --color=auto"
 	alias lsa="ls -FA --group-directories-first --color=auto"
@@ -248,7 +285,7 @@ alias b="neofetch --package_managers on --distro_shorthand tiny --uptime_shortha
 alias l="lsd -F --group-dirs first --date relative"
 alias s="ssh tababcock@tannerbabcock.com -p 2222"
 alias sc="scrot"
-alias spi="ssh pi@192.168.0.14 -i ~/.ssh/laptop2pi"
+alias spi="ssh pi@192.168.0.18 -i ~/.ssh/laptop2pi_new"
 alias jcommit="git commit -m '$(date)'; git push"
 alias r="ranger"
 alias tc="transmission-remote-cli"
