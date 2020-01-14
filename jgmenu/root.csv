@@ -1,0 +1,10 @@
+jgmenu demo,^tag(root)
+
+Chromium,chromium-browser,web-browser
+VLC Media Player,vlc,vlc
+Terminal,st,utilities-terminal
+Transmission,st -e transmission-remote-cli
+Text Editor,gedit,applications-editor
+Filezilla,filezilla,filezilla
+Ranger,st -e ranger,folder-documents
+Exit,killall herbstluftwm,vlc

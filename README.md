@@ -1,13 +1,10 @@
-# Dotfiles
+# Dotfiles (Pi Branch)
 
-My personal configuration files for various GNU/Linux programs. These were tested on Devuan.
+My personal configuration files for various GNU/Linux programs. These were tested on several distros.
 
 ## Programs included
 
-* [Awesome Window Manager](https://github.com/awesomeWM/awesome)
-* [Bash](https://www.gnu.org/software/bash)
 * [Bspwm](https://github.com/baskerville/bspwm)
-* [DWM](https://dwm.suckless.org)
 * [i3](https://github.com/Airblader/i3)
 * Mozilla Firefox
 * Mozilla Thunderbird
@@ -15,7 +12,6 @@ My personal configuration files for various GNU/Linux programs. These were teste
 * [Ncmpcpp music player](https://github.com/arybczak/ncmpcpp)
 * [Polybar](https://github.com/jaagr/polybar)
 * [Ranger](https://github.com/ranger/ranger)
-* [Slstatus](https://github.com/drkhsh/slstatus)
-* [SXHKD](https://github.com/baskerville/sxhkd)
 * [VIM](https://www.vim.org)
+* Herbstluftwm
 

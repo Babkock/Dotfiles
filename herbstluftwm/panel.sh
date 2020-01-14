@@ -65,7 +65,7 @@ fi
     while true ; do
         # "date" output is checked once a second, but an event is only
         # generated if the output changed compared to the previous run.
-		date +$'date\t^fg(#949494)%b %d, ^fg(#efefef)%I:%M:%S'
+		date +$'date\t^fg(#9900ef)%b %d, ^fg(#ff0099)%I:%M:%S'
         sleep 1 || break
     done > >(uniq_linebuffered) &
     childpid=$!
@@ -87,19 +87,19 @@ fi
         for i in "${tags[@]}" ; do
             case ${i:0:1} in
                 '#')
-                    echo -n "^bg($selbg)^fg($selfg)"
+                    echo -n "^bg($selfg)^fg($selbg)"
                     ;;
                 '+')
-                    echo -n "^bg(#9CA668)^fg(#141414)"
+                    echo -n "^bg(#a900cf)^fg(#c900ef)"
                     ;;
                 ':')
-                    echo -n "^bg()^fg(#ffffff)"
+                    echo -n "^bg(#202020)^fg(#00bded)"
                     ;;
                 '!')
                     echo -n "^bg(#FF0675)^fg(#141414)"
                     ;;
                 *)
-                    echo -n "^bg()^fg(#ababab)"
+                    echo -n "^bg()^fg(#d0d0d0)"
                     ;;
             esac
             if [ ! -z "$dzen2_svn" ] ; then
@@ -116,7 +116,7 @@ fi
         echo -n "$separator"
         echo -n "^bg()^fg() ${windowtitle//^/^^}"
         # small adjustments
-		right="$separator^bg() $date $separator ^fg(#9d9428) $(disk | head -1) Free ^bg() $separator"
+		right="$separator^bg() $date $separator ^fg(#22cd00) $(/bin/df -h --output=avail | head -2 | tail -1) Free ^bg() $separator"
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
         width=$($textwidth "$font" "$right_text_only    ")
@@ -177,7 +177,7 @@ fi
     # After the data is gathered and processed, the output of the previous block
     # gets piped to dzen2.
 
-} 2> /dev/null | dzen2 -dock -w $panel_width -x 0 -y 746 -fn "Anonymous Pro:pixelsize=19:antialias=true:autohint=true" -h $panel_height \
+} 2> /dev/null | dzen2 -dock -w $panel_width -x 0 -y 746 -fn "Anonymous Pro:size=16:antialias=true" -h $panel_height \
     -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' \
     -ta l -bg "$bgcolor" -fg '#efefef'
 

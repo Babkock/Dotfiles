@@ -18,14 +18,14 @@ Mod=Mod4
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
-hc keybind $Mod-Return spawn ${TERMINAL:-st} # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn st
 
 hc keybind $Mod-period spawn chromium-browser
 hc keybind $Mod-comma spawn st -e transmission-remote-cli
-hc keybind $Mod-slash spawn bigst -e ranger ~
+hc keybind $Mod-slash spawn st -e ranger ~
 hc keybind $Mod-backslash spawn gedit
 
-hc keybind $Mod-space spawn dmenu_run_hlwm -nb "#605810" -nf "#efefef" -sb "d95820" -sf "#000000" -fn "Anonymous Pro:pixelsize=18:antialias=true:autohint=true"
+hc keybind $Mod-space spawn myjgmenu
 
 # basic movement
 # focusing clients
@@ -122,16 +122,16 @@ hc keybind $Mod-i jumpto urgent
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#222222'
-hc set frame_border_normal_color '#101010'
+hc set frame_border_normal_color '#000000'
 hc set frame_bg_normal_color '#565656'
-hc set frame_bg_active_color '#b1d0e8'
+hc set frame_bg_active_color '#a800c9'
 hc set frame_border_width 0
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_gap 0
 
-hc attr theme.active.color '#9f8d12'
+hc attr theme.active.color '#ff0099'
 hc attr theme.normal.color '#202020'
 hc attr theme.urgent.color orange
 hc attr theme.inner_width 2
@@ -140,15 +140,17 @@ hc attr theme.border_width 2
 hc attr theme.floating.border_width 2
 hc attr theme.floating.outer_width 0
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#867900'
+hc attr theme.active.inner_color '#000000'
 hc attr theme.active.outer_color '#050808'
-hc attr theme.background_color '#141414'
+hc attr theme.background_color '#00101f'
 
-hc set window_gap 4
-hc set frame_padding 0
+hc set window_gap 2
+hc set frame_padding 1
 hc set smart_window_surroundings 1
 hc set smart_frame_surroundings 1
 hc set mouse_recenter_gap 0
+hc set focus_follows_mouse 1
+hc set raise_on_focus 1
 
 # rules
 hc unrule -F
@@ -161,7 +163,19 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class='vlc' focus=on tag=3
+hc rule class='Chromium-browser' focus=on tag=2
 
+xrdb -merge ~/.Xresources
+transmission-remote --no-dht --pex 2> /dev/null
+transmission-remote --no-lpd --utp --ssl 2> /dev/null
+transmission-remote --download-dir "/home/pi/Downloads" 2> /dev/null
+transmission-remote --incomplete-dir "/home/pi/Downloads" 2> /dev/null
+gsettings set org.gnome.gedit.preferences.editor highlight-current-line true
+gsettings set org.gnome.gedit.preferences.editor use-default-font false
+gsettings set org.gnome.gedit.preferences.editor editor-font "Anonymous Pro Regular 13"
+gsettings set org.gnome.gedit.preferences.editor background-pattern "grid"
+gsettings set org.gnome.gedit.preferences.editor scheme "oblivion"
+gsettings set org.gnome.gedit.preferences.editor tabs-size 4
 
 # unlock, just to be sure
 hc unlock
