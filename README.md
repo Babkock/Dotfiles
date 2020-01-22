@@ -7,6 +7,11 @@ My personal configuration files for various GNU/Linux programs. These were teste
 This repository includes a [Dotfiles fetcher script](https://github.com/Babkock/Dotfiles/tree/master/fetch) that I use to retrieve my configuration files
 quickly. It revolves around two parallel arrays of file paths.
 
+# 'halp' man page
+
+I have congregated several programs' worth of keybindings and shell aliases
+into a nicely-formatted [man page](https://github.com/Babkock/Dotfiles/tree/master/halp.1) for quick reference.
+
 ## Programs included
 
 * [Bash](https://www.gnu.org/software/bash)
@@ -20,6 +25,7 @@ quickly. It revolves around two parallel arrays of file paths.
 * [Polybar](https://github.com/jaagr/polybar)
 * [Ranger](https://github.com/ranger/ranger)
 * [sxhkd](https://github.com/baskerville/sxhkd)
+* [tmux](https://github.com/tmux/tmux/wiki)
 * [Vim](https://www.vim.org)
 * [zsh](http://zsh.sourceforge.net)
 
