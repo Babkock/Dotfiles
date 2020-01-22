@@ -7,8 +7,10 @@ Terminal,tabbed -n tabbed-st -c -r 2 st -w a -e zsh,utilities-terminal
 Transmission,st -e transmission-remote-cli,transmission
 Ncmpcpp,st -e ncmpcpp,audio-x-generic
 Text Editor,gedit,accessories-text-editor
+Thunderbird,thunderbird,thunderbird
 Ranger,st -e ranger,folder-documents
-Nicotine,nicotine,nicotine-plus
+#Nicotine,nicotine,nicotine-plus
+Audacity,audacity,audacity
 GIMP,gimp,gimp
 Retro Terminal,cool-retro-term,cool-retro-term
 XFBurn,xfburn,
