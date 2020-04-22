@@ -6,7 +6,7 @@ body {
    overflow-x:hidden !important;
 }
 
-.author-tooltip {
+.author-tooltip, #ad_1, #ad_2, .ad-container {
    display:none !important;
 }
 

@@ -87,6 +87,14 @@ t() {
 #
 # this creates hello.txt.asc, the armored message, and signs it
 genc() {
+	if [ -z "$1" ]; then
+		printf "Usage: %s \"passphrase\" [inputfile]\n" "$0" > /dev/stderr
+		false
+	fi
+	if [ -z "$2" ]; then
+		printf "Usage: %s \"passphrase\" [inputfile]\n" "$0" > /dev/stderr
+		false
+	fi
 	gpg --passphrase "$1" --encrypt --sign --armor -r babkock@gmail.com "$2"
 }
 
@@ -97,6 +105,14 @@ genc() {
 #
 # hello.real should be exactly the same as hello.txt, the original input
 gdec() {
+	if [ -z "$1" ]; then
+		printf "Usage: %s \"passphrase\" [input] [outputfile]\n" "$0" > /dev/stderr
+		false
+	fi
+	if [ -z "$2" ]; then
+		printf "Usage: %s \"passphrase\" [input] [outputfile]\n" "$0" > /dev/stderr
+		false
+	fi
 	gpg --passphrase "$1" --decrypt "$2" > "$3"
 }
 
@@ -104,7 +120,7 @@ gdec() {
 # need be.
 #
 #    $ picp vimrc important_stuff
-#    vimrc...                   18 kB
+#    vimrc
 #    important_stuff...          2 kB
 picp() {
 	scp -i ~/.ssh/laptop2pi_new "$@" pi@192.168.0.18:~
@@ -210,7 +226,41 @@ conf() {
 }
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4f4f53"
-alias library="vim ~/TannerBabcock/admin/music.php; pushd ~/TannerBabcock > /dev/null; git add admin/music.php > /dev/null; popd > /dev/null"
+
+
+# What this next bit is: Use traditional ls aliases
+# if logged in via ssh. if logged in locally, then determine if using
+# a tty console or something else. use traditional ls aliases for
+# tty always, otherwise use lsd (the rust project) with fancy icons
+if [[ -n $SSH_CONNECTION ]]; then
+	alias lsl="ls -Fl --group-directories-first --color=auto"
+	alias lsa="ls -FA --group-directories-first --color=auto"
+	alias lsla="ls -FlA --group-directories-first --color=auto"
+	alias ls="ls -F --group-directories-first --color=auto"
+else
+	case "$(tty)" in
+		*tty*)
+			alias lsl="ls -Fl --group-directories-first --color=auto"
+			alias lsa="ls -FA --group-directories-first --color=auto"
+			alias lsla="ls -FlA --group-directories-first --color=auto"
+			alias ls="ls -F --group-directories-first --color=auto"
+			;;
+		*pts*)
+			alias lst="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lt="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lsta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lstl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias ltl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lstla="lsd -FlA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
+			alias lsla="lsd -FlA --group-dirs first --date relative --blocks permission,user,size,date,name"
+			alias lsl="lsd -Fl --group-dirs first --date relative --blocks permission,user,size,date,name"
+			alias lsa="lsd -FA --group-dirs first --date relative --blocks permission,user,size,date,name"
+			alias ls="lsd -F --group-dirs first --date relative"
+			;;
+	esac
+fi
+alias library="vim ~/TannerBabcock/jams/index.php; pushd ~/TannerBabcock > /dev/null; git add jams/index.php > /dev/null; popd > /dev/null"
 alias ..="cd .."
 alias a="bat --wrap character -n "
 alias c="cd "
@@ -249,38 +299,6 @@ alias xk="xbindkeys -k"
 alias xp="xprop"
 alias df="df -h -T"
 
-# What this next bit is: Use traditional ls aliases
-# if logged in via ssh. if logged in locally, then determine if using
-# a tty console or something else. use traditional ls aliases for
-# tty always, otherwise use lsd (the rust project) with fancy icons
-if [[ -n $SSH_CONNECTION ]]; then
-	alias lsl="ls -Fl --group-directories-first --color=auto"
-	alias lsa="ls -FA --group-directories-first --color=auto"
-	alias lsla="ls -FlA --group-directories-first --color=auto"
-	alias ls="ls -F --group-directories-first --color=auto"
-else
-	case "$(tty)" in
-		*tty*)
-			alias lsl="ls -Fl --group-directories-first --color=auto"
-			alias lsa="ls -FA --group-directories-first --color=auto"
-			alias lsla="ls -FlA --group-directories-first --color=auto"
-			alias ls="ls -F --group-directories-first --color=auto"
-			;;
-		*pts*)
-			alias lst="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias lt="lsd -F --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias lsta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias lta="lsd -FA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias lstl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias ltl="lsd -Fl --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias lstla="lsd -FlA --tree --group-dirs first --date relative --blocks permission,user,size,date,name --depth 4"
-			alias lsla="lsd -FlA --group-dirs first --date relative --blocks permission,user,size,date,name"
-			alias lsl="lsd -Fl --group-dirs first --date relative --blocks permission,user,size,date,name"
-			alias lsa="lsd -FA --group-dirs first --date relative --blocks permission,user,size,date,name"
-			alias ls="lsd -F --group-dirs first --date relative"
-			;;
-	esac
-fi
 alias b="neofetch --package_managers on --distro_shorthand tiny --uptime_shorthand tiny --gap -1"
 alias l="lsd -F --group-dirs first --date relative"
 alias s="ssh tababcock@tannerbabcock.com -p 2222"

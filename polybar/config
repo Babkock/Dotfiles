@@ -50,12 +50,75 @@ module-margin-right = 0
 font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
 
 modules-left = bspwm
-modules-right = mpd hdd memorybsp cpubsp battery datebsp
+modules-right = mpd hdd memorybsp cpubsp alsa datebsp
 
 tray-position = right
 tray-padding = 0
 
 wm-restack = bspwm
+
+[bar/hlbar]
+bottom = false
+width = 100%
+height = 24
+radius = 0
+fixed-center = false
+
+background = #1415100f
+foreground = #8fe9dbbd
+
+line-size = 3
+line-color = #f00
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
+
+modules-left = datehl memoryhl cpuhl alsa mpdhl
+modules-right = hddhl workspaces
+tray-position = left
+tray-padding = 0
+
+[module/workspaces]
+type = internal/xworkspaces
+enable-click = true
+enable-scroll = true
+pin-workspaces = false
+
+icon-0 = default;
+icon-1 = 1;
+icon-2 = 2;
+icon-4 = 4;
+icon-5 = 5;
+icon-3 = 3;
+
+format = <label-state>
+
+label-active = %icon%
+label-active-background = #8fcc915b
+label-active-foreground = #bfdea46d
+label-active-underline = #8fdea46d
+label-active-padding = 1
+
+label-normal = %icon%
+label-normal-padding = 1
+;label-empty-background = #9f978e58
+label-empty-foreground = #afa79e69
+label-empty-underline = #afa79e69
+
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %icon%
+;label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
 
 [module/bspwm]
 type = internal/bspwm
@@ -66,7 +129,6 @@ ws-icon-2 = III;
 ws-icon-4 = V;
 ws-icon-5 = VI;
 ws-icon-3 = IV;
-
 
 label-focused = %icon%
 
@@ -110,16 +172,93 @@ icon-next = 
 label-song-maxlen = 68
 label-song-ellipsis = true
 
+[module/mpdhl]
+type = internal/mpd
+format-online = <icon-prev> <toggle> <icon-next> <label-song>
+padding = 1
+
+host = 127.0.0.2
+port = 6600
+
+label-active-font = 2
+
+icon-play = 
+icon-pause = 
+icon-stop = +
+icon-prev = 
+icon-next = 
+
+label-song-maxlen = 68
+label-song-ellipsis = true
+
+[module/alsa]
+type = internal/alsa
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+master-mixer = Master
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+
+headphone-id = 2
+mapped = true
+interval = 2
+
+format-volume = <ramp-volume> <label-volume>
+format-headphones = <ramp-headphones> <label-headphones>
+
+ramp-volume-0 = " 奄"
+ramp-volume-1 = " 奔"
+ramp-volume-2 = " 墳"
+ramp-headphones-0 = " "
+ramp-headphones-1 = " "
+spacing = 2
+
+label-volume = "%percentage%% "
+label-headphones = "%percentage%% "
+
+ramp-volume-foreground = #bd939187
+label-volume-foreground = #cd838177
+ramp-headphones-foreground = #cd838177
+;format-volume-background = #97838177
+format-volume-underline = #bd939187
+
+[module/hddhl]
+type = internal/fs
+
+mount-0 = /
+interval = 2
+fixed-values = true
+
+spacing = 2
+label-mounted = " %free% "
+label-mounted-foreground = #cfb38668
+;label-mounted-background = #a7a17455
+label-mounted-underline = #cfb38668
+
 [module/hdd]
 type = internal/fs
 
 mount-0 = /
-interval = 10
+interval = 2
 fixed-values = true
 
 spacing = 2
-label-mounted = " %free%"
+label-mounted = " %free% "
 label-mounted-foreground = #efb64dce
+;label-mounted-background = #47b64dcf
+
+[module/cpuhl]
+type = internal/cpu
+interval = 1
+format-prefix = " "
+format-foreground = #edcca15c
+;format-background = #8cbc814b
+format-prefix-foreground = #dbcca15c
+format-underline = #efcca15c
+format-padding = 1
+label = %percentage:2%%
 
 [module/cpubsp]
 type = internal/cpu
@@ -141,6 +280,32 @@ format-prefix-foreground = #ef48bc40
 format-underline = #ef48bc40
 label = %percentage_used%%
 
+[module/memoryhl]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-padding = 1
+format-foreground = #efa17843
+;format-background = #cf8d6431
+format-prefix-foreground = #efa17843
+format-underline = #efa17843
+label = %percentage_used%%
+
+[module/datehl]
+type = internal/date
+interval = 1
+
+date = "  %a %b %d"
+
+time = " %I:%M:%S "
+
+format-foreground = #dfb38668
+;format-background = #87a17455
+format-prefix-foreground = #dfb38668
+format-underline = #efb38668
+
+label = %date% %time%
+
 [module/datebsp]
 type = internal/date
 interval = 1
@@ -157,6 +322,47 @@ format-underline = #ef71719c
 
 label = %date% %time%
 
+[module/batteryhl]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 80
+
+format-foreground = #edd57e1c
+format-charging-background = #87a95d01
+format-charging = <animation-charging> <label-charging> 
+format-charging-underline = #cdc56e0c
+
+format-charging-padding = 1
+
+format-discharging = <animation-discharging> <label-discharging> 
+format-discharging-underline = ${self.format-charging-underline}
+
+format-discharging-padding = 1
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+format-full-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = #cdd57e1d
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -164,6 +370,7 @@ adapter = AC0
 full-at = 98
 
 format-foreground = #edd57e1c
+format-charging-background = #eda95d01
 format-charging = <animation-charging> <label-charging> 
 format-charging-underline = #cdc56e0c
 
@@ -232,4 +439,6 @@ margin-bottom = 0
 [settings]
 screenchange-reload = true
 pseudo-transparency = false
+
+ 
 

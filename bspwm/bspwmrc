@@ -71,6 +71,6 @@ xmodmap -e 'keycode 85=Right'
 killall polybar 2> /dev/null
 polybar -r -log=error bspbar &
 killall compton 2> /dev/null
-compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
+compton -b --blur-background -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
 xrandr --output eDP1 --brightness 0.6
 

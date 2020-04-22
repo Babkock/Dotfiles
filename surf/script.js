@@ -824,6 +824,21 @@ if (location.hostname.match('wikipedia')) {
     color: white !important;
   }
 
+.wikiEditor-ui-toolbar { background:none !important; }
+
+.mw-editform #wpTextbox1 {
+    background:#121212 !important;
+    color:white !important;
+}
+
+.vectorTabs, .vectorTabs a, #mw-head .vectorMenu h3 {
+    background-image:none !important;
+}
+
+.mw-parser-output .mod-gallery .whitebg img, .mw-parser-output .mod-gallery .gallerybox div {
+    background:none !important;
+}
+
 div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc { display:none !important; }
 
   h1
@@ -8540,6 +8555,248 @@ span.option { font-size:9pt !important; }
 .organic-listing { display:none !important; }
 .karma-breakdown { display:none !important; }
 .policy-page { padding-left:0px !important; width:80% !important; }
+`;
+	head.appendChild(style);
+}
+
+if (location.hostname.match("empornium")) {
+	var head = document.getElementsByTagName('head')[0];
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	style.innerHTML = `
+#header_top {
+    margin-top:0 !important;
+    height:140px !important;
+    border-bottom:0 !important;
+}
+
+#header_top > #logo, #autoresults {
+    display:none !important;
+}
+
+#header_top:hover > #logo {
+    display:none !important;
+}
+
+.bbcode[style="background-color:white;"] { background-color:#101010 !important; }
+.bbcode[style="background-color:grey;margin: 0px auto 0px 0px;"] { background-color:#1b1b1b !important; }
+span[style="color:#222;"], span[style="color:#222"] { color:#d0d0d0 !important; }
+
+button.searchbutton, li#navmenu_sandbox, li#navmenu_slots, li#navmenu_myrequests { display:none !important; }
+
+#userinfo_username li ul li a:hover, #userinfo_tools li ul li a:hover {
+    background:none !important;
+    transition:none !important;
+    -webkit-transition:none !important;
+    -moz-transition:none !important;
+    animation:none !important;
+    -webkit-animation:none !important;
+    -moz-animation:none !important;
+}
+
+tr.rowa:hover, .rowb:hover, .rowa:hover a, .rowb:hover a, .rowb:hover td, .rowa:hover td {
+    color:#948D60;
+    transition:none !important;
+    -webkit-transition:none !important;
+    -moz-transition:none !important;
+}
+
+.rowa, .rowb {
+    transition:none !important;
+    -webkit-transition:none !important;
+    -moz-transition:none !important;
+}
+
+.rowa:hover, .rowb:hover {
+    background:rgba(40, 40, 40, 0.7) !important;
+}
+
+#searchbars input.searchbox {
+    width:99% !important;
+}
+
+div.searchcontainer {
+    width:13% !important;
+}
+
+#searchbars ul li { margin:1px 10px 3px 10px !important; }
+
+table.bb_holder td.colhead { background-color:#121212 !important; }
+
+a.bb_button {
+    background:#222 !important;
+    color:#ccc !important;
+    border:1px solid black !important;
+}
+
+#quickpost {
+    background:#202020 !important;
+    color:white !important;
+    border:1px solid black !important;
+    font-size:1.13em !important;
+}
+
+.overflow_button {
+    padding:4px !important;
+    margin:0 !important;
+    border:0 !important;
+    background-color:#202020 !important;
+}
+
+span.arrow[style="float:left"], span.arrow[style="float:right"] { display:none !important; }
+`;
+	head.appendChild(style);
+}
+
+if (location.hostname.match("8kun")) {
+	var head = document.getElementsByTagName('head')[0];
+	var style = document.createElement('style');
+	style.type = 'text/css';
+	style.innerHTML = `
+body, #options_div {background:rgb(22,22,22)!important; color:rgb(150,150,150)!important;}
+  div.post.reply, .report-content div.thread, .report-item .report {background:rgb(15,15,15); border-color:rgb(20,20,20)!important;}
+  hr, .theme-catalog div.thread, .description.box, #search-form, .board-list-head tr th, tbody.board-list-omitted td {border-color:rgb(50,50,50)!important;}
+  p.intro span.subject, div.pages a {color:rgb(0,76,153)}
+  input[type="text"], input[type="password"], textarea {border:rgb(20,20,20);}
+  form table tr th, .pages, tr#upload, .description.box, #search-form, .board-list-head tr th, #alert_div {background:rgb(30,30,30)!important;}
+  .pages {border-right:1px solid #141414 !important; border-bottom:1px solid #141414 !important;}
+  .boardlist, .theme-catalog div.thread:hover, div.post.reply.highlighted, tbody.board-list-omitted td, .board-cell:hover, table.board-list-table tr:nth-of-type(2n) .board-tags .board-cell {background:rgb(35,35,35)!important;}
+  div.boardlist a, .description.box, #search-form, tbody.board-list-omitted td, .board-list-head tr th {color:rgb(140,140,140)}
+  div.boardlist a:hover, div.post.reply div.body a {color:rgb(200,0,0)}
+  div.boardlist {border-bottom: 1px solid #141414 !important;}
+  div.banner {background-color: rgb(150,0,0)!important;}
+  div.post.reply div.body a:hover {color:rgb(220,10,0)}
+  .post-image, .board_image {opacity: 0.8;}
+  a, .body-line a, div.boardlist a:hover, div.post.reply div.body a, div.pages a { color:rgb(110, 110, 149); }
+a:hover, .body-line a:hover, div.post.reply div.body a:hover, main section a:hover, div.pages a:hover { color:rgb(95, 95, 130); }
+  header, div.content_menu, a.button{background-color:rgb(30,30,30)!important}
+  div.ban{background:rgb(30,30,30);border-color:rgb(20,20,20)}
+  table tbody tr:nth-of-type(2n) {background-color:rgb(22,22,22);}
+
+div.boardlist {
+    background:#141414 !important;
+    text-align:left !important;
+}
+
+p.fileinfo .unimportant * {
+    color:#505050 !important;
+    font-size:13px !important;
+    font-style:italic !important;
+}
+
+.post.reply {
+    background:rgb(35, 35, 35) !important;
+    border-radius:4px 4px 4px 4px !important;
+    border:0 !important;
+    padding-right:50px !important;
+}
+.post.reply.highlighted {
+    color:#cdcdcd !important;
+}
+
+footer p.unimportant, #gallery-view, #expand-all-images { display:none !important; }
+
+a.hash_unix, table.post-table-options, td.show-options-cell, td.required-field-cell { display:none !important; }
+
+.intro a.thread_subject_link {
+    color:#ededed !important;
+}
+
+.watchThread, .showallThread { display:none !important; }
+
+#new-bottom-ads { display:none !important; }
+
+div.post.reply div.body a { text-decoration:none !important; }
+
+div.banner { background:none !important; }
+div.banner a:hover { text-decoration:underline !important; }
+.unimportant { font-size:inherit !important; }
+.unimportant a { text-decoration:none !important; }
+
+span.name, a.email span.name, a.email { color:rgb(124, 45, 45) !important; text-decoration:none !important; }
+
+.threadtitle, span.subject { color:#D5D5D5 !important; }
+
+.mix .thread { font-size:1.05em !important; height:390px !important; }
+
+a.post_no:hover, a.post_no:active, a.post_no:focus { color:#fdfdfd !important; }
+
+#boardlist section.description:nth-child(3) { display:none !important; }
+
+input[name="name"], input[name="email"] { padding:4px !important; font-size:14px !important; }
+input[name="subject"], select#email_selectbox { width:75% !important; padding:4px !important; font-size:14px !important; }
+tr td input[type="submit"] { width:20% !important; padding:4px !important; }
+input[value="New Reply"] { width:19% !important; }
+input[value="New Thread"] { width:22% !important; }
+
+header div.subtitle, header h1 {
+    color:#c2c2c2 !important;
+}
+
+input[type="checkbox"] { appearance:checkbox !important; -moz-appearance:checkbox !important; }
+
+header, div.content_menu, a.button { background:none !important; }
+
+tr td textarea#body {
+    width:530px !important;
+    height:140px !important;
+    padding:4px !important;
+}
+
+tr#upload + tr { display:none !important; }
+
+input[name="email"], input[name="name"] { width:100% !important; }
+
+div.post.reply { display:inline-block; width:100% !important; }
+
+section .box-title { background:none !important; color:#afafaf !important; }
+
+ul.box-content li[style="background-color:#EEF2FF; padding:2px;"], ul.box-content li[style="background-color:#EEF2FF;padding:2px;"] { background:#101010 !important; color:#b2b2b2 !important; }
+
+  #ft li,
+  #ft ul,
+  #options input:not([type='checkbox']):not([type='radio']),
+  #updater input:not([type='checkbox']):not([type='radio']),
+  .box-outer,
+  .boxbar,
+  .deletebuttons input[value=Delete],
+  .recaptcha_image_cell > center > #recaptcha_image,
+  [name='recaptcha_response_field'],
+  .top-box,
+  h2,
+  input:not([type='checkbox']):not([type='radio']),
+  input:not([type='radio']),
+  input[type='file'] > input[type='button'],
+  input[type='submit'],
+  select,
+  #settings select,
+  textarea,
+  .button-group button
+   {
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     background-color:rgb(30, 30, 30) !important;
+     color:rgb(150, 150, 150) !important;
+     outline:none !important;
+     border-width:0 !important;
+  }
+  .boxcontent input,
+  .boxcontent input:not([type='checkbox']):not([type='radio']),
+  .boxcontent input:not([type='radio']),
+  .boxcontent textarea,
+  .boxcontent button,
+  #filter-list select {
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     background-color:rgb(30, 30, 30) !important;
+     color:rgb(150, 150, 150) !important;
+     outline:none !important;
+     border-width:0 !important;
+  }
+
+.unimportant a {
+    font-size:13px !important;
+}
 `;
 	head.appendChild(style);
 }

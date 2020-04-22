@@ -5,11 +5,10 @@
 #  _>  </ / / / / / /_/ /  / /__  
 # /_/|_/_/_/ /_/_/\__/_/   \___/
 #
-feh --bg-scale /home/babkock/.config/bspwm/color_wall.jpg
-xrdb -merge /home/babkock/.Xresources
-killall tinyserve
+wal -i "/home/babkock/.config/herbstluftwm/wallpaper.jpg"
+pkill -x "tinyserve"
 tinyserve &
-killall transmission-daemon
+pkill -x "transmission-daemon"
 transmission-daemon
 transmission-remote --download-dir "/home/babkock/Downloads"
 transmission-remote --incomplete-dir "/home/babkock/Downloads"
@@ -21,8 +20,8 @@ gsettings set org.gnome.gedit.preferences.editor background-pattern "grid"
 gsettings set org.gnome.gedit.preferences.editor scheme "oblivion"
 gsettings set org.gnome.gedit.preferences.editor display-overview-map true
 gsettings set org.gnome.gedit.preferences.editor tabs-size 4
-bum --server 127.0.0.2 --size "300" &
-bspwm
-killall tinyserve
-killall bum
+#bum --server 127.0.0.2 --size "300" &
+herbstluftwm --locked
+pkill -x "tinyserve"
+pkill -x "bum"
 

@@ -24,6 +24,17 @@
     color: white !important;
   }
 
+.wikiEditor-ui-toolbar { background:none !important; }
+
+.mw-editform #wpTextbox1 {
+    background:#121212 !important;
+    color:white !important;
+}
+
+.mw-parser-output .mod-gallery .whitebg img, .mw-parser-output .mod-gallery .gallerybox div {
+    background:none !important;
+}
+
 div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc { display:none !important; }
 
   h1
@@ -531,6 +542,10 @@ ul {
   {
     display: none;
   }
+
+.vectorTabs, .vectorTabs a, #mw-head .vectorMenu h3 {
+    background-image:none !important;
+}
 
   #mw-page-base,
     .vectorTabs

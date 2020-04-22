@@ -5,7 +5,7 @@
 !   /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
 !  /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/
 !
-st.alpha: 165
+st.alpha: 196
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
@@ -32,40 +32,51 @@ URxvt.letterSpace: 1
 *.blinktimeout: 5000
 
 ! special
-*.foreground:   #b4b4b4
-*.background:   #12020b
-*.cursorColor:  #b4b4b4
+*.foreground:   #e9dbbd
+*.background:   #000000
+*.cursorColor:  #e9dbbd
 
 ! black
-*.color0:       #000000
-*.color8:       #121212
+*.color0:       #15100f
+*.color8:       #373e18
 
 ! red
-*.color1:       #c94f87
-*.color9:       #d2538c
+*.color1:       #c78c5f
+*.color9:       #d89e70
 
 ! green
-*.color2:       #38ac30
-*.color10:      #32bd1f
+*.color2:       #9492a6
+*.color10:      #b3b1a7
 
 ! yellow
-*.color3:       #d57e1d
-*.color11:      #e58d2b
+*.color3:       #a55c2b
+*.color11:      #b6524d
 
 ! blue
-*.color4:       #46b9cb
-*.color12:      #507db8
+*.color4:       #9d7441
+*.color12:      #b18853
 
 ! magenta
-*.color5:       #a66788
-*.color13:      #a63dbe
+*.color5:       #c39678
+*.color13:      #d3a688
 
 ! cyan
-*.color6:       #31cba6
-*.color14:      #29e0b3
+*.color6:       #bc814b
+*.color14:      #cca15c
 
 ! white
-*.color7:       #c0c0c0
-*.color15:      #e2e2e2
+*.color7:       #dcbb9d
+*.color15:      #e9cbad
 
+! Black color that will not be affected by bold highlighting.
+*.color66: #16100f
+
+! Xclock colors.
+XClock*foreground: #d9cbad
+XClock*background: #11100f
+XClock*majorColor:  rgba:d9/cb/ad/ff
+XClock*minorColor:  rgba:d9/cb/ad/ff
+XClock*hourColor:   rgba:d9/cb/ad/ff
+XClock*minuteColor: rgba:d9/cb/ad/ff
+XClock*secondColor: rgba:d9/cb/ad/ff
 

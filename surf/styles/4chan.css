@@ -1,6 +1,14 @@
 /* hides Captcha table row */
 tr#captchaFormPart { display:none !important; }
 
+div.adg-rects.desktop {
+	display:none !important;
+}
+
+body div[id^="container-"] {
+	display:none !important;
+}
+
 /* body background and text color */
   html, body
   {

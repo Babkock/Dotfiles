@@ -31,7 +31,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	rm ~/tmp/tabbed-surf.xid; tabbed-surf http://localhost:8000
+	tabbed-surf http://localhost:8000
 
 super + shift + period
 	thunderbird

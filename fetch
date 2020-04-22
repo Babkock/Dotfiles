@@ -13,16 +13,19 @@
 #
 # --------------------
 # If you want to use this script, you only have to worry about
-# the contents of the next two arrays
+# the contents of the next two parallel arrays
 #
 # Each entry in here is a config file on the hard drive
-system_files=( "$HOME/.bash_aliases" "$HOME/.bashrc" "$HOME/.config/bspwm/bspwmrc" "$HOME/.config/herbstluftwm/autostart" "$HOME/.ncmpcpp/config" "$HOME/.ncmpcpp/bindings" "$HOME/.config/polybar/config" "$HOME/.config/sxhkd/sxhkdrc" "/usr/share/man/man1/halp.1" "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userChrome.css" "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userContent.css " "$HOME/.mozilla/firefox/m7etmxn4.default/user.js" "$HOME/.vim/bundle/vim-devicons/plugin/webdevicons.vim", "$HOME/.config/ranger/plugins/devicons.py" "$HOME/.config/neofetch/config", "$HOME/.gitconfig" "/etc/mpd.conf" "$HOME/.config/mpv/mpv.conf" "$HOME/.nanorc" "$HOME/.config/ranger/rc.conf" "$HOME/.surf/styles/4chan.css" "$HOME/.surf/styles/wikipedia.css" "$HOME/.surf/styles/reddit.css" "$HOME/.surf/styles/github.css" "$HOME/.surf/styles/default.css" "$HOME/.surf/bookmarks" "$HOME/.surf/script.js" "$HOME/.vimrc" "/usr/share/vim/vim81/syntax/c.vim" "$HOME/.xbindkeysrc" "$HOME/.xinitrc" "$HOME/.Xresources" "$HOME/.zshrc" "$HOME/.oh-my-zsh/themes/wedisagree.zsh-theme" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh" "$HOME/.tmux.conf" "$HOME/.vim/bundle/tmuxline.vim/autoload/tmuxline/presets/powerline.vim" "/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf" "$HOME/.config/jgmenu/jgmenurc" "$HOME/.config/jgmenu/root.csv" )
+system_files=( "$HOME/.bash_aliases" "$HOME/.bashrc" "$HOME/.config/bspwm/bspwmrc" "$HOME/.config/herbstluftwm/autostart" "$HOME/.ncmpcpp/config" "$HOME/.ncmpcpp/bindings" "$HOME/.config/polybar/config" "$HOME/.config/sxhkd/sxhkdrc" "/usr/share/man/man1/halp.1" "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userChrome.css" "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userContent.css " "$HOME/.mozilla/firefox/m7etmxn4.default/user.js" "$HOME/.vim/bundle/vim-devicons/plugin/webdevicons.vim", "$HOME/.config/ranger/plugins/devicons.py" "$HOME/.config/neofetch/config", "$HOME/.gitconfig" "/etc/mpd.conf" "$HOME/.config/mpv/mpv.conf" "$HOME/.nanorc" "$HOME/.config/ranger/rc.conf" "$HOME/.surf/styles/4chan.css" "$HOME/.surf/styles/wikipedia.css" "$HOME/.surf/styles/reddit.css" "$HOME/.surf/styles/github.css" "$HOME/.surf/styles/8chan.css" "$HOME/.surf/styles/default.css" "$HOME/.surf/bookmarks" "$HOME/.surf/script.js" "$HOME/.vimrc" "/usr/share/vim/vim81/syntax/c.vim" "$HOME/.xbindkeysrc" "$HOME/.xinitrc" "$HOME/.Xresources" "$HOME/.zshrc" "$HOME/.oh-my-zsh/themes/wedisagree.zsh-theme" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh" "$HOME/.tmux.conf" "$HOME/.vim/bundle/tmuxline.vim/autoload/tmuxline/presets/powerline.vim" "/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf" "$HOME/.config/jgmenu/jgmenurc" "$HOME/.config/jgmenu/root.csv" )
 #
 # --------------------
 #
 # This parallel array holds the corresponding local files in the repository
-repo_files=( "bash_aliases" "bashrc" "bspwm/bspwmrc" "herbstluftwm/autostart" "ncmpcpp/config" "ncmpcpp/bindings" "polybar/config" "sxhkd/sxhkdrc" "halp.1" "chrome/userChrome.css" "chrome/userContent.css" "user.js" "vim/webdevicons.vim" "ranger/devicons.py" "neofetch/config.conf" "gitconfig" "mpd.conf" "mpv.conf" "nanorc" "ranger/rc.conf" "surf/styles/4chan.css" "surf/styles/wikipedia.css" "surf/styles/reddit.css" "surf/styles/github.css" "surf/styles/default.css" "surf/bookmarks.txt" "surf/script.js" "vimrc" "vim/c.vim" "xbindkeysrc" "xinitrc" "Xresources" "zshrc" "babkock.zsh-theme" "main-highlighter.zsh" "tmux.conf" "vim/tmuxline/powerline.vim" "Anonymice Nerd Font Complete.ttf" "jgmenu/jgmenurc" "jgmenu/root.csv" )
-
+repo_files=( "bash_aliases" "bashrc" "bspwm/bspwmrc" "herbstluftwm/autostart" "ncmpcpp/config" "ncmpcpp/bindings" "polybar/config" "sxhkd/sxhkdrc" "halp.1" "chrome/userChrome.css" "chrome/userContent.css" "user.js" "vim/webdevicons.vim" "ranger/devicons.py" "neofetch/config.conf" "gitconfig" "mpd.conf" "mpv.conf" "nanorc" "ranger/rc.conf" "surf/styles/4chan.css" "surf/styles/wikipedia.css" "surf/styles/reddit.css" "surf/styles/github.css" "surf/styles/8chan.css" "surf/styles/default.css" "surf/bookmarks.txt" "surf/script.js" "vimrc" "vim/c.vim" "xbindkeysrc" "xinitrc" "Xresources" "zshrc" "babkock.zsh-theme" "main-highlighter.zsh" "tmux.conf" "vim/tmuxline/powerline.vim" "Anonymice Nerd Font Complete.ttf" "jgmenu/jgmenurc" "jgmenu/root.csv" )
+#
+# For the love of Terry Davis, make SURE there are the same number of
+# elements in both arrays, and that they line up exactly
+#
 # Don't worry about anything after this
 # --------------------
 
@@ -47,7 +50,8 @@ compare() {
 }
 
 printf "\e[93;1mThis script will overwrite the contents of this repository with\n"
-printf "\e[93;1mwhatever is in the standard config locations for this user\n\n"
+printf "\e[93;1mwhatever is in the standard config locations for this user.\n\n"
+printf "\e[94;1mIt will also add any changed files to the repo's staging area.\n\n"
 printf "\e[91;1mContinue? (Y/N) "
 read contin
 if [[ $contin == "y" || $contin == "Y" ]]; then
