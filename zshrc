@@ -4,7 +4,7 @@
 #  / /_(__  ) / / / /  / /__  
 # /___/____/_/ /_/_/   \___/  
 #
-export PATH=$PATH:/usr/local/i386elfgcc/bin
+export PATH=$PATH:/usr/local/i386elfgcc/bin:$HOME/bin
 export ZSH="/home/babkock/.oh-my-zsh"
 ZSH_THEME="wedisagree"
 
@@ -260,7 +260,10 @@ else
 			;;
 	esac
 fi
-alias library="vim ~/TannerBabcock/jams/index.php; pushd ~/TannerBabcock > /dev/null; git add jams/index.php > /dev/null; popd > /dev/null"
+alias xi="sudo xbps-install -S"
+alias xu="sudo xbps-install -Su"
+alias xq="sudo xbps-query"
+alias xr="sudo xbps-remove"
 alias ..="cd .."
 alias a="bat --wrap character -n "
 alias c="cd "

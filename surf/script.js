@@ -839,7 +839,7 @@ if (location.hostname.match('wikipedia')) {
     background:none !important;
 }
 
-div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc { display:none !important; }
+div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc, .reflist { display:none !important; }
 
   h1
   {
@@ -8694,17 +8694,11 @@ p.fileinfo .unimportant * {
     color:#cdcdcd !important;
 }
 
-footer p.unimportant, #gallery-view, #expand-all-images { display:none !important; }
-
-a.hash_unix, table.post-table-options, td.show-options-cell, td.required-field-cell { display:none !important; }
+.watchThread, .showallThread, a.post-btn, a.last_50_posts_link, #new-bottom-ads, a.hash_unix, table.post-table-options, td.show-options-cell, td.required-field-cell, footer p.unimportant, #gallery-view, #expand-all-images { display:none !important; }
 
 .intro a.thread_subject_link {
     color:#ededed !important;
 }
-
-.watchThread, .showallThread { display:none !important; }
-
-#new-bottom-ads { display:none !important; }
 
 div.post.reply div.body a { text-decoration:none !important; }
 

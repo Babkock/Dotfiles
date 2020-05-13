@@ -8,7 +8,7 @@
 
 
 [colors]
-background = #00101510
+background = #1314138f
 background-alt = #444
 background-bsp = #00000000
 
@@ -63,9 +63,10 @@ width = 100%
 height = 24
 radius = 0
 fixed-center = false
+override-redirect = true
 
-background = #1415100f
-foreground = #8fe9dbbd
+background = #8f000000
+foreground = #c5c3c49f
 
 line-size = 3
 line-color = #f00
@@ -80,10 +81,23 @@ module-margin-right = 0
 
 font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
 
-modules-left = datehl memoryhl cpuhl alsa mpdhl
+modules-left = datehl memoryhl cpuhl alsa network mpdhl
 modules-right = hddhl workspaces
 tray-position = left
 tray-padding = 0
+
+[module/network]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+udspeed-minwidth = 5
+accumulate-stats = false
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %downspeed:5% %upspeed:5%
+label-connected-foreground = #d0de6855
+
+ramp-signal-0 = 
 
 [module/workspaces]
 type = internal/xworkspaces
@@ -101,16 +115,15 @@ icon-3 = 3;
 format = <label-state>
 
 label-active = %icon%
-label-active-background = #8fcc915b
-label-active-foreground = #bfdea46d
-label-active-underline = #8fdea46d
+label-active-background = #72ae4825
+label-active-foreground = #e5e47562
+label-active-underline = #c5e47663
 label-active-padding = 1
 
 label-normal = %icon%
 label-normal-padding = 1
-;label-empty-background = #9f978e58
-label-empty-foreground = #afa79e69
-label-empty-underline = #afa79e69
+label-empty-foreground = #b06d93bb
+label-empty-underline = #b46d93bb
 
 label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
@@ -188,7 +201,7 @@ icon-stop = +
 icon-prev = 
 icon-next = 
 
-label-song-maxlen = 68
+label-song-maxlen = 56
 label-song-ellipsis = true
 
 [module/alsa]
@@ -218,11 +231,11 @@ spacing = 2
 label-volume = "%percentage%% "
 label-headphones = "%percentage%% "
 
-ramp-volume-foreground = #bd939187
-label-volume-foreground = #cd838177
-ramp-headphones-foreground = #cd838177
+ramp-volume-foreground = #959a6661
+label-volume-foreground = #959a6661
+ramp-headphones-foreground = #919a6661
 ;format-volume-background = #97838177
-format-volume-underline = #bd939187
+format-volume-underline = #969a6661
 
 [module/hddhl]
 type = internal/fs
@@ -233,9 +246,9 @@ fixed-values = true
 
 spacing = 2
 label-mounted = " %free% "
-label-mounted-foreground = #cfb38668
+label-mounted-foreground = #9aa0a0b0
 ;label-mounted-background = #a7a17455
-label-mounted-underline = #cfb38668
+label-mounted-underline = #9aa0a0b0
 
 [module/hdd]
 type = internal/fs
@@ -253,10 +266,10 @@ label-mounted-foreground = #efb64dce
 type = internal/cpu
 interval = 1
 format-prefix = " "
-format-foreground = #edcca15c
-;format-background = #8cbc814b
-format-prefix-foreground = #dbcca15c
-format-underline = #efcca15c
+format-foreground = #9c6892d9
+;format-background = #acbc814b
+format-prefix-foreground = #9c6892d9
+format-underline = #926892d9
 format-padding = 1
 label = %percentage:2%%
 
@@ -285,10 +298,10 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-padding = 1
-format-foreground = #efa17843
-;format-background = #cf8d6431
-format-prefix-foreground = #efa17843
-format-underline = #efa17843
+format-foreground = #955d83ab
+format-background = #77101010
+format-prefix-foreground = #855d82a6
+format-underline = #855d82a6
 label = %percentage_used%%
 
 [module/datehl]
@@ -299,10 +312,10 @@ date = "  %a %b %d"
 
 time = " %I:%M:%S "
 
-format-foreground = #dfb38668
-;format-background = #87a17455
-format-prefix-foreground = #dfb38668
-format-underline = #efb38668
+format-foreground = #c0de6855
+format-background = #80651004
+format-prefix-foreground = #c5e47663
+format-underline = #d5e57764
 
 label = %date% %time%
 
@@ -403,35 +416,6 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = "  "
-label-open-foreground = #989a98
-label-close = "  "
-label-close-foreground = #989a98
-label-separator = " "
-label-separator-foreground = #787a78
-
-menu-0-0 = ⏼
-menu-0-0-exec = menu-open-1
-menu-0-1 = ⏾
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = 
-menu-1-0-exec = menu-open-0
-menu-1-1 = ⏼
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = ⏾
-menu-2-0-exec = sudo shutdown -h now
-menu-2-1 = 
-menu-2-1-exec = menu-open-0
 
 [global/wm]
 margin-bottom = 0

@@ -12,7 +12,7 @@ xmodmap -e 'keycode 80=Up'
 xmodmap -e 'keycode 88=Down'
 xmodmap -e 'keycode 83=Left'
 xmodmap -e 'keycode 85=Right'
-pkill --exact "xbindkeys"
+pkill --x xbindkeys
 xbindkeys &
 
 # remove all existing keybindings

@@ -35,7 +35,7 @@
     background:none !important;
 }
 
-div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc { display:none !important; }
+div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc, .reflist { display:none !important; }
 
   h1
   {
