@@ -118,10 +118,10 @@ label-active = %icon%
 label-active-background = #72ae4825
 label-active-foreground = #e5e47562
 label-active-underline = #c5e47663
-label-active-padding = 1
+label-active-padding = 2
 
 label-normal = %icon%
-label-normal-padding = 1
+label-normal-padding = 2
 label-empty-foreground = #b06d93bb
 label-empty-underline = #b46d93bb
 
@@ -131,7 +131,7 @@ label-urgent-padding = 1
 
 label-empty = %icon%
 ;label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
+label-empty-padding = 2
 
 [module/bspwm]
 type = internal/bspwm

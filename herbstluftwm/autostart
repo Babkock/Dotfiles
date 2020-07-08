@@ -1,5 +1,10 @@
 #!/bin/bash
-
+#     __              __         __  __      ______
+#    / /_  ___  _____/ /_  _____/ /_/ /_  __/ __/ /__      ______ ___ 
+#   / __ \/ _ \/ ___/ __ \/ ___/ __/ / / / / /_/ __/ | /| / / __ `__ \
+#  / / / /  __/ /  / /_/ (__  ) /_/ / /_/ / __/ /_ | |/ |/ / / / / / /
+# /_/ /_/\___/_/  /_.___/____/\__/_/\__,_/_/  \__/ |__/|__/_/ /_/ /_/ 
+#
 hc() {
 	herbstclient "$@"
 }
@@ -12,8 +17,10 @@ xmodmap -e 'keycode 80=Up'
 xmodmap -e 'keycode 88=Down'
 xmodmap -e 'keycode 83=Left'
 xmodmap -e 'keycode 85=Right'
-pkill --x xbindkeys
+xbacklight -set 50
+pkill -x xbindkeys
 xbindkeys &
+xrdb -merge ~/.Xresources
 
 # remove all existing keybindings
 hc keyunbind --all
@@ -29,14 +36,14 @@ hc keybind $Mod-Shift-Return spawn tabbed -n "tabbed-st" -c -r 2 st -w '' -e zsh
 hc keybind $Mod-Shift-comma spawn bum --server 127.0.0.2 --size "300"
 hc keybind $Mod-period spawn tabbed-surf http://localhost:8000
 hc keybind $Mod-Shift-period spawn firefox
-hc keybind $Mod-minus spawn st -e transmission-remote-cli
-hc keybind $Mod-comma spawn st -e ncmpcpp
-hc keybind $Mod-slash spawn st -e ranger ~
+hc keybind $Mod-minus spawn st -e zsh -c tremc
+hc keybind $Mod-comma spawn st -e zsh -c ncmpcpp
+hc keybind $Mod-slash spawn st -e zsh -c ranger ~
 hc keybind $Mod-Shift-slash spawn st -n "Help" -e man halp
 #hc keybind $Mod-backslash spawn thunderbird
 hc keybind $Mod-e spawn jgmenu --icon-size=0 --csv-file=$HOME/.config/jgmenu/root.csv
-hc keybind $Mod-q spawn pkill --exact "bum"
-hc keybind $Mod-Shift-e spawn pkill --exact "st"
+hc keybind $Mod-q spawn pkill -x bum
+hc keybind $Mod-Shift-e spawn pkill -x st
 
 hc keybind $Mod-space spawn dmenu_run -i -fn 'Anonymous Pro-13' -p '$'
 
@@ -121,22 +128,22 @@ hc set frame_border_width 1
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
-hc set frame_gap 2
+hc set frame_gap 3
 hc set focus_follows_mouse 1
 hc set raise_on_focus 1
 hc set raise_on_click 0
 
-hc attr theme.active.color '#a86e40'
+hc attr theme.active.color '#6d93bb'
 hc attr theme.normal.color '#101010'
 hc attr theme.urgent.color orange
 hc attr theme.inner_width 0
 hc attr theme.inner_color '#790808'
 hc attr theme.border_width 2
 hc attr theme.floating.border_width 1
-hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#620909'
-hc attr theme.active.outer_color '#620909'
+hc attr theme.active.inner_color '#6293bb'
+hc attr theme.active.outer_color '#6d93bb'
 hc attr theme.background_color '#141414'
 
 hc set window_gap 3
@@ -159,13 +166,14 @@ hc rule class='gl' focus=on manage=on switchtag=on floating=on tag=2
 
 hc set tree_style '╾│ ├└╼─┐'
 
-pkill --exact "polybar"
+pkill -x polybar
 polybar -r --log=error hlbar &
 
-pkill --exact "compton"
+pkill -x compton
 compton -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox"' &
 
 xrandr --output eDP1 --brightness 0.6
+redshift -O 4500K
 
 hc pad 0 25 0 0 0
 

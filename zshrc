@@ -49,6 +49,16 @@ xbcompile() {
 	fi
 }
 
+gedit() {
+	if [ -z "$1" ]; then
+		/bin/gedit 2> /dev/null
+		true
+	else
+		/bin/gedit "$1" 2> /dev/null
+		true
+	fi
+}
+
 # quick transmission torrent starter. one can run "t avengers.torrent" to start
 # up that torrent, and delete the file.
 # you can also do something like this
@@ -60,18 +70,18 @@ xbcompile() {
 t() {
 	if [ -z "$1" ]; then
 		transmission-remote -ep -x -Y -O --utp > /dev/null 
-		transmission-remote-cli
-		printf "\e[91;1mUsage: %s [torrent file] [speed]\n" "$0" > /dev/stderr
+		tremc
+		#printf "\e[91;1mUsage: %s [torrent file] [speed]\n" "$0" > /dev/stderr
 		false
 	elif [ -z "$2" ]; then
 		transmission-remote -ep -x -Y -O --utp > /dev/null
-		transmission-remote-cli "$1" > /dev/null
+		tremc "$1" > /dev/null
 		rm -f "$1" > /dev/null
 		printf "\e[92;1mTorrent %s started\n\e[30;m" "$1" > /dev/stdout
 		true
 	else
 		transmission-remote -ep -x -Y -O --utp > /dev/null
-		transmission-remote-cli "$1" > /dev/null
+		tremc "$1" > /dev/null
 		rm -f "$1" > /dev/null
 		transmission-remote -as > /dev/null
 		transmission-remote -asd "$2" > /dev/null
@@ -309,7 +319,7 @@ alias sc="scrot"
 alias spi="ssh pi@192.168.0.18 -i ~/.ssh/laptop2pi_new"
 alias jcommit="git commit -m '$(date)'; git push"
 alias r="ranger"
-alias tc="transmission-remote-cli"
+alias tc="transmission-create"
 alias tr="transmission-remote"
 alias ts="transset"
 alias z="tmux"

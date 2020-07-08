@@ -4,12 +4,12 @@ Surf,tabbed-surf http://localhost:8000,web-browser
 Firefox,firefox,firefox
 mpv Media Player,mpv,mpv
 Terminal,tabbed -n tabbed-st -c -r 2 st -w a -e zsh,utilities-terminal
-Transmission,st -e transmission-remote-cli,transmission
+Transmission,st -e tremc,transmission
 Ncmpcpp,st -e ncmpcpp,audio-x-generic
 Text Editor,gedit,accessories-text-editor
 Thunderbird,thunderbird,thunderbird
 Ranger,st -e ranger,folder-documents
-#Nicotine,nicotine,nicotine-plus
+Pavucontrol,pavucontrol,audio-x-generic
 Audacity,audacity,audacity
 GIMP,gimp,gimp
 Retro Terminal,cool-retro-term,cool-retro-term

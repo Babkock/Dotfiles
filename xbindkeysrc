@@ -19,18 +19,18 @@
     XF86AudioMute
     m:0x0 + c:121
 
-"redshift -x; xrandr --output eDP1 --brightness 0.7; redshift -O 5000K"
+"redshift -x; xrandr --output eDP1 --brightness 0.6; xbacklight -set 50; redshift -O 5000K"
 	XF86MonBrightnessUp
 	m:0x0 + c:233
 
-"redshift -x; xrandr --output eDP1 --brightness 0.7; redshift -O 3500K"
+"redshift -x; xrandr --output eDP1 --brightness 0.6; xbacklight -set 60; redshift -O 3500K"
 	XF86MonBrightnessDown
 	m:0x0 + c:232
 
-"redshift -x; xrandr --output eDP1 --brightness 0.6"
+"redshift -x; xrandr --output eDP1 --brightness 0.6; xbacklight -set 60"
 	XF86ScreenSaver
 	m:0x0 + c:160
 
-"redshift -x; xrandr --output eDP1 --brightness 1.0"
+"redshift -x; xrandr --output eDP1 --brightness 1.0; xbacklight -set 80"
 	XF86WWW
 	m:0x0 + c:158

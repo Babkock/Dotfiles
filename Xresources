@@ -5,7 +5,7 @@
 !   /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
 !  /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/
 !
-st.alpha: 188
+st.alpha: 184
 
 URxvt*scrollBar: false
 URxvt*scrollWithBuffer: true
@@ -33,7 +33,7 @@ URxvt.letterSpace: 1
 
 ! special
 *.foreground:   #c5c3c4
-*.background:   #101210
+*.background:   #1e040b
 *.cursorColor:  #c5c3c4
 
 ! black

@@ -2061,6 +2061,12 @@ tr.js-navigation-item {
     background-color:#151515;
 }
 
+.notifications-list-item.notification-unread { background-color:#221010 !important; }
+
+.notifications-list-item:hover { background-color:#102310 !important; }
+
+.notifications-list-item .Label { background:none !important; color:#cfcfcf !important; }
+
   .context-button:after
   {
     border-color: #a0b4c8 transparent transparent!important;
