@@ -57,6 +57,10 @@ gedit() {
 		/bin/gedit "$1" 2> /dev/null
 		true
 	fi
+	pkill -x "xdg-desktop-portal-gtk"
+	pkill -x "xdg-permission-store"
+	pkill -x "xdg-document-portal"
+	pkill -x "xdg-desktop-portal"
 }
 
 # quick transmission torrent starter. one can run "t avengers.torrent" to start
@@ -70,18 +74,18 @@ gedit() {
 t() {
 	if [ -z "$1" ]; then
 		transmission-remote -ep -x -Y -O --utp > /dev/null 
-		tremc
+		tremc 2> /dev/null
 		#printf "\e[91;1mUsage: %s [torrent file] [speed]\n" "$0" > /dev/stderr
 		false
 	elif [ -z "$2" ]; then
 		transmission-remote -ep -x -Y -O --utp > /dev/null
-		tremc "$1" > /dev/null
+		tremc "$1" 2> /dev/null
 		rm -f "$1" > /dev/null
 		printf "\e[92;1mTorrent %s started\n\e[30;m" "$1" > /dev/stdout
 		true
 	else
 		transmission-remote -ep -x -Y -O --utp > /dev/null
-		tremc "$1" > /dev/null
+		tremc "$1" 2> /dev/null
 		rm -f "$1" > /dev/null
 		transmission-remote -as > /dev/null
 		transmission-remote -asd "$2" > /dev/null
