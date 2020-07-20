@@ -12,6 +12,12 @@ quickly. It revolves around two parallel arrays of file paths.
 I have congregated several programs' worth of keybindings and shell aliases
 into a nicely-formatted [man page](https://github.com/Babkock/Dotfiles/tree/master/halp.1) for quick reference.
 
+# Important Stuff
+
+I have included the fontconfig user configuration, which is responsible for making my fonts look nice and not spazzed out on the eyes. This file is `fonts.conf`. I have included my preferred Anonymous Pro font, that includes all of the glyphs and icons.
+
+I have also included configuration for the program `privoxy`, which helps me block domains and trackers I don't care for.
+
 ## Programs included
 
 * [Bash](https://www.gnu.org/software/bash)
