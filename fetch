@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 # Dotfiles Fetcher
 # by Tanner Babcock 2020
 #
@@ -7,9 +6,9 @@
 #
 # What this script does:
 # - Compares each config file on the system with its respective copy in the repository
-# - If the file is not in the repository, add it
+# - If the file is not in the repository, adds it
 # - If the files are different, copies the system file into the repository, replacing the older version
-# - If the files are the same, do nothing
+# - If the files are the same, that means it's up to date, do nothing
 #
 # It also:
 # - Compresses the entire ~/.vim directory and adds it to the staging area
@@ -71,10 +70,10 @@ if [[ $contin == "y" || $contin == "Y" ]]; then
 	printf "\e[92;1mCompressing ~/.vim...\n"
 	rm vim.tar.gz 2> /dev/null
 	git rm vim.tar.gz 2> /dev/null
-	pushd "$HOME"                # jump to ~
+	pushd "$HOME" > /dev/null    # jump to ~
 	tar czf vim884.tar.gz .vim   # tar the ~/.vim directory
 	mv vim884.tar.gz "$OLDPWD"   # move the vim archive to this repository
-	popd
+	popd > /dev/null
 	mv vim884.tar.gz vim.tar.gz
 	git add vim.tar.gz
 	printf "\e[93;1mFinished fetching\n"
