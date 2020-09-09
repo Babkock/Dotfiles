@@ -11,7 +11,7 @@ fi
 x=${geometry[0]}
 y=${geometry[1]}
 panel_width=${geometry[2]}
-panel_height=22
+panel_height=32
 font="-xos4-terminus-bold-*-*-*-20-*-*-*-*-*-*-*"
 bgcolor=$(hc get frame_border_normal_color)
 selbg=$(hc get window_border_active_color)
@@ -177,8 +177,8 @@ fi
     # After the data is gathered and processed, the output of the previous block
     # gets piped to dzen2.
 
-} 2> /dev/null | dzen2 -dock -w $panel_width -x 0 -y 746 -fn "Anonymous Pro:size=16:antialias=true" -h $panel_height \
+} 2> /dev/null | dzen2 -dock -w $panel_width -x 0 -y 1080 -fn "Anonymous Pro:size=16:antialias=true" -h $panel_height \
     -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' \
     -ta l -bg "$bgcolor" -fg '#efefef'
 
-hc pad $monitor 0 0 22 0
+#hc pad $monitor 0 0 22 0

@@ -21,11 +21,13 @@ hc keybind $Mod-Shift-c close
 hc keybind $Mod-Return spawn st
 
 hc keybind $Mod-period spawn chromium-browser
-hc keybind $Mod-comma spawn st -e transmission-remote-cli
-hc keybind $Mod-slash spawn st -e ranger ~
+hc keybind $Mod-comma spawn st -e zsh -c transmission-remote-cli
+hc keybind $Mod-slash spawn st -e zsh -c ranger ~
 hc keybind $Mod-backslash spawn gedit
 
 hc keybind $Mod-space spawn myjgmenu
+
+hc pad 0 0 0 30 0
 
 # basic movement
 # focusing clients
@@ -131,6 +133,9 @@ hc set frame_bg_transparent 1
 hc set frame_transparent_width 0
 hc set frame_gap 0
 
+hc set frame_active_opacity 90
+hc set frame_normal_opacity 60
+
 hc attr theme.active.color '#ff0099'
 hc attr theme.normal.color '#202020'
 hc attr theme.urgent.color orange
@@ -185,7 +190,8 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
-# hc detect_monitors
+#hc set_monitors 1920x1080+0+0
+hc detect_monitors
 
 # find the panel
 panel=~/.config/herbstluftwm/panel.sh

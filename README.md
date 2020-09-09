@@ -5,13 +5,10 @@ My personal configuration files for various GNU/Linux programs. These were teste
 ## Programs included
 
 * [Bspwm](https://github.com/baskerville/bspwm)
-* [i3](https://github.com/Airblader/i3)
+* [Herbstluftwm](https://github.com/herbstluftwm/herbstluftwm)
 * Mozilla Firefox
 * Mozilla Thunderbird
 * [Nano](https://www.nano-editor.org)
-* [Ncmpcpp music player](https://github.com/arybczak/ncmpcpp)
-* [Polybar](https://github.com/jaagr/polybar)
 * [Ranger](https://github.com/ranger/ranger)
-* [VIM](https://www.vim.org)
-* Herbstluftwm
+* [Vim](https://www.vim.org)
 
