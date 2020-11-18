@@ -127,6 +127,51 @@ tr.js-navigation-item {
     outline-color: #93bcd1!important;
   }
 
+.notifications-list-item.notification-archived, .notifications-list-item.notification-read {
+  background-color:#191919 !important;
+}
+.notifications-list-item:hover {
+  background-color: #182718 !important;
+  box-shadow: 2px 2px green !important;
+  border-left: 6px solid green !important;
+}
+
+.notifications-list-item.notification-unread {
+  background-color: #304251 !important;
+}
+
+.subnav-link.selected {
+  color:#cfcfcf !important;
+}
+
+.dropdown-item:hover {
+  background-color:#1c2f1c !important;
+  border-left:2px solid #4c5f4c !important;
+}
+
+.color-bg-canvas-inset {
+  background-color:#1f1f1f !important;
+}
+
+.f6.text-bold.link-gray-dark.d-flex.no-underline.wb-break-all.d-inline-block {
+  font-size:1.19em !important;
+}
+
+div[style="background-color: #fcfdfd;"] {
+  background-color:#1f1f1f !important;
+}
+
+.btn.btn-sm.btn-with-count.tooltipped.tooltipped-n.bg-white.js-toggler-target {
+  padding:3px !important;
+  padding-left:9px !important;
+  padding-right:8px !important;
+}
+
+.js-selected-navigation-item.Header-link.mt-md-n3.mb-md-n3.py-2.py-md-3.mr-0.mr-md-3.border-top.border-md-top-0.border-white-fade-15:hover {
+  text-decoration: underline !important;
+  color: #91cf91 !important;
+}
+
   input.focus[type="text"],#adv_code_search .focus.search-page-label,input[type="text"]:focus:not(.js-color-editor-input):not(.tree-finder-input):not(.js-site-search-focus):not(.tag-input-inner),.focused .drag-and-drop,#adv_code_search .search-page-label:focus,input.focus[type="password"],input[type="password"]:focus,input.focus[type="email"],input[type="email"]:focus,input.focus[type="number"],input[type="number"]:focus,input.focus[type="tel"],input[type="tel"]:focus,input.focus[type="url"],input[type="url"]:focus,textarea.focus,textarea:focus,#q:focus ~ button,input.color-editor-input:focus,#ghd-settings select:focus,#ghd-settings input:focus,.intgrs-lstng-item:hover,.ajax-pagination-btn:focus,.select-menu-item:focus,.form-control.focus,.form-select.focus,.form-select:focus,input[type="checkbox"]:focus,.upload-enabled.focused
   {
     border-color: #93bcd1!important;
@@ -845,7 +890,7 @@ tr.js-navigation-item {
     border-color: #484848!important;
   }
 
-  .calendar-graph rect[fill="#447591"],.calendar-graph rect[fill="#6495AF"],.calendar-graph rect[fill="#93BBD1"],.calendar-graph rect[fill="#C3DDEB"],.heat,.contrib-legend li
+  .calendar-graph rect[fill="var(--color-calendar-graph-day-L1-bg)"],.calendar-graph rect[fill="var(--color-calendar-graph-day-L2-bg)"],.calendar-graph rect[fill="#93BBD1"],.calendar-graph rect[fill="#C3DDEB"],.heat,.contrib-legend li
   {
     background-color: #93bcd1!important;
     fill: #93bcd1!important;
@@ -861,7 +906,7 @@ tr.js-navigation-item {
     stroke: #C4DDEB!important;
   }
 
-  .calendar-graph rect[fill="#ebedf0"],.contrib-legend li[style*="#eee"]
+  .calendar-graph rect[fill="var(--color-calendar-graph-day-bg)"],.contrib-legend li[style*="#eee"]
   {
     background-color: #282828!important;
     fill: #282828!important;
@@ -887,7 +932,7 @@ tr.js-navigation-item {
     opacity: 1!important;
   }
 
-  .calendar-graph rect[fill="#FFEE4A"],.calendar-graph rect[fill="#FFC501"],.calendar-graph rect[fill="#FE9600"],.contrib-legend li[style*="#FFEE4A"],.contrib-legend li[style*="#FFC501"],.contrib-legend li[style*="#FE9600"]
+  .calendar-graph rect[fill="var(--color-calendar-graph-day-L4-bg)"],.calendar-graph rect[fill="var(--color-calendar-graph-day-L5-bg)"],.calendar-graph rect[fill="var(--color-calendar-graph-day-L6-bg)"],.contrib-legend li[style*="#FFEE4A"],.contrib-legend li[style*="#FFC501"],.contrib-legend li[style*="#FE9600"]
   {
     background-color: #fe9600!important;
     fill: #fe9600!important;
@@ -1351,6 +1396,28 @@ tr.js-navigation-item {
     background-color: #93bcd1!important;
     border-color: #93bcd1!important;
   }
+
+span.color-bg-primary.pl-2.pr-3 {
+  background:none !important;
+}
+
+.color-text-primary {
+  color:rgba(240,240,80,0.7) !important
+}
+
+.user-status-circle-badge-container {
+  display:none !important;
+}
+
+.TimelineItem::before {
+  background-color:#101010 !important;
+}
+
+.TimelineItem-badge {
+  background-color:#202020 !important;
+  color:#dfdfdf !important;
+  border:2px solid #101010 !important;
+}
 
   #forkqueue .legend .unclean,.unclean td,.chzn-results .no-results,.majorproblem .pageheader_wrap,.error_box,.btn-close-issue,.closed-issues,.state-indicator.closed,.state-closed,.discussion-item-closed .discussion-item-icon,.discussion-item-review.is-rejected.is-writer .discussion-item-icon,.topic-tag-action .remove-topic-button:hover
   {
@@ -5351,35 +5418,35 @@ tr.js-navigation-item {
     border-color: #304251;
   }
 
-  rect[fill="#ebedf0"]
+  rect[fill="var(--color-calendar-graph-day-bg)"]
   {
     fill: rgba(50,50,50,.5);
   }
 
-  rect[fill="#eee"],ul.legend li:nth-child(1)
+  rect[fill="var(--color-calendar-graph-day-bg)"],ul.legend li:nth-child(1)
   {
     background-color: rgba(50,50,50,.5)!important;
   }
 
-  rect[fill="#c6e48b"],ul.legend li:nth-child(2)
+  rect[fill="var(--color-calendar-graph-day-L1-bg)"], rect[fill="var(--color-calendar-graph-day-L2-bg)"],  ul.legend li:nth-child(2)
   {
     background-color: #036d63!important;
     fill: #036d63!important;
   }
 
-  rect[fill="#7bc96f"],ul.legend li:nth-child(3)
+  rect[fill="var(--color-calendar-graph-day-L3-bg)"],ul.legend li:nth-child(3)
   {
     background-color: #018477!important;
     fill: #018477!important;
   }
 
-  rect[fill="#239a3b"],ul.legend li:nth-child(4)
+  rect[fill="var(--color-calendar-graph-day-L4-bg)"],ul.legend li:nth-child(4)
   {
     background-color: #02bcaa!important;
     fill: #02bcaa!important;
   }
 
-  rect[fill="#196127"],ul.legend li:nth-child(5)
+  rect[fill="var(--color-calendar-graph-day-L5-bg)"],ul.legend li:nth-child(5)
   {
     background-color: #C4DDEB!important;
     fill: #C4DDEB!important;
@@ -6207,3 +6274,13 @@ tr.js-navigation-item {
   {
     filter: invert(100);
   }
+
+.tabnav-tab.selected, .tabnav-tab[aria-current]:not([aria-current="false"]), .tabnav-tab[aria-selected="true"] {
+  background:none !important;
+}
+
+.btn.btn-sm.tooltipped.tooltipped-n.bg-white.js-toggler-target.unstarred {
+  padding: 3px !important;
+  padding-left: 9px !important;
+  padding-right: 9px !important;
+}

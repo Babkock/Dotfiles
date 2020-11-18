@@ -43,11 +43,11 @@ body {
 .sitetable .link { border:none !important; }
 
 body a, body a:hover { color:#6a6a6a !important; }
-.domain { font-size:13px !important; }
+.domain { font-size:13px !important; display:none !important; }
 
-.link .title { color:#333 !important; font-size:20px !important; }
-.thing.link { border:1px solid #ddd !important; background-color:#f7f7f7 !important; color:#121412; }
-.thing.link:hover { border:1px solid #ddd !important; background-color:#f7f7f7 !important; color:#121412; }
+.link .title { color:#333 !important; font-size:23px !important; margin-bottom:5px !important; }
+.thing.link { border:1px solid #ddd !important; background-color:#f2f2f2 !important; color:#121412; margin-top: 12px !important; margin-bottom: 14px !important; padding: 6px; }
+.thing.link:hover { border:1px solid #ddd !important; background-color:#f7f7f7 !important; color:#101010; margin-top:12px !important; margin-bottom:14px !important; padding: 6px; }
 
 .tagline, .flat-list.buttons { font-family:"Arial" !important; font-size:9pt !important; }
 .linkflairlabel { display:none !important; }
@@ -57,6 +57,18 @@ body a, body a:hover { color:#6a6a6a !important; }
 
 div#siteTable {
    background-color:#eff9ef;
+}
+
+.flat-list.buttons li.share, .flat-list.buttons li.give-gold-button, .flat-list.buttons li.crosspost-button, .flat-list.buttons li.report-button, .awarding-link, .awarding-show-more-link, .premium-banner-outer, .embed-comment, .comment-save-button {
+  display:none !important;
+}
+
+.comment .child .comment .child .comment .child * {
+  display:none !important;
+}
+
+.video-player * {
+  filter:invert(100%) !important;
 }
 
 a.thumbnail { display:none !important; }
@@ -77,13 +89,15 @@ a.thumbnail { display:none !important; }
 }
 
 /* subreddits bar */
-#sr-header-area a { font-size:9.5px !important; color:#000 !important; }
+#sr-header-area a { font-size:11px !important; color:#000 !important; }
 
 /* "what's hot", "new", "controversial" tabs, etc */
 .tabmenu li a {
    background-color:#999 !important;
    color:#fff !important;
    border-color:black !important;
+   font-size: 1.2em !important;
+   padding: 5px !important;
 }
 
 /* user bar */
@@ -172,6 +186,10 @@ a.login-required { background:none !important; }
 /* wikis (FAQ pages) */
 .wiki { text-align:left !important; }
 .wikipage { font-size:14px !important; }
+
+.link .score {
+  font-size:1.3em;
+}
 
 /* This undoes subreddit style tweaks that interfere with this skin */
 #sr-header-area { background-color:#F0F0F0 !important; border-bottom:1px solid gray !important; }

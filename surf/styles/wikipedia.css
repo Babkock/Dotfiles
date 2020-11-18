@@ -9,20 +9,26 @@
   a,
     .tocnumber
   {
-    color: #ddc02f !important;
+    color: tan !important;
     text-decoration: none;
+    transition:color, text-decoration, opacity, 0.3s ease 0s;
   }
 
   a:hover, a.wbc-editpage:hover
   {
-    color: #bba91a !important;
+    color: beige !important;
     text-decoration: underline;
+    opacity:0.8;
   }
 
   .b, div, th
   {
     color: white !important;
   }
+
+.vector-menu-dropdown {
+  display:none !important;
+}
 
 .wikiEditor-ui-toolbar { background:none !important; }
 
@@ -33,6 +39,22 @@
 
 .mw-parser-output .mod-gallery .whitebg img, .mw-parser-output .mod-gallery .gallerybox div {
     background:none !important;
+}
+
+.mw-echo-ui-notificationItemWidget {
+  background-color:#121212 !important;
+}
+
+.mw-echo-ui-notificationItemWidget-unread {
+  background-color:#181818 !important;
+}
+
+.mw-echo-ui-menuItemWidget > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  color:white !important;
+}
+
+.mw-echo-ui-crossWikiNotificationItemWidget-group, .mw-echo-ui-bundleNotificationItemWidget-group {
+  background-color:#121212 !important;
 }
 
 div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc, .reflist { display:none !important; }
@@ -966,7 +988,7 @@ h2#mp-other {
     .nowraplinks
   {
     margin: 10px 0px !important;
-    border: 0px !important;
+    border: 1px solid #424242 !important;
     background: transparent !important;
   }
 
@@ -978,7 +1000,7 @@ h2#mp-other {
     padding: 9px 6px !important;
     font-size: 14px !important;
     font-weight: 300 !important;
-    border: 1px solid #222 !important;
+    border: 1px solid #424242 !important;
   }
 
   .vertical-navbox th
