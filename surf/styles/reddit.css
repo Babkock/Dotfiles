@@ -6,12 +6,13 @@ body {
    overflow-x:hidden !important;
 }
 
-.author-tooltip, #ad_1, #ad_2, .ad-container {
+.author-tooltip, #ad_1, #ad_2, .ad-container, #sr-header-area .redesign-beta-optin, .premium-banner, .linkinfo, .sidecontentbox, .account-activity-box {
    display:none !important;
 }
 
-.media-preview-content a img {
+.media-preview-content a img, .media-embed, video.preview, .gallery-tile {
    -webkit-filter:invert(100%) !important;
+   filter:invert(100%) !important;
 }
 
 div#header, div.side, div.footer-parent, div.content {
@@ -49,7 +50,7 @@ body a, body a:hover { color:#6a6a6a !important; }
 .thing.link { border:1px solid #ddd !important; background-color:#f2f2f2 !important; color:#121412; margin-top: 12px !important; margin-bottom: 14px !important; padding: 6px; }
 .thing.link:hover { border:1px solid #ddd !important; background-color:#f7f7f7 !important; color:#101010; margin-top:12px !important; margin-bottom:14px !important; padding: 6px; }
 
-.tagline, .flat-list.buttons { font-family:"Arial" !important; font-size:9pt !important; }
+.tagline, .flat-list.buttons { font-family:"Arial" !important; font-size:11pt !important; }
 .linkflairlabel { display:none !important; }
 
 .side { background-color:#222 !important; }
@@ -228,10 +229,11 @@ a.login-required { background:none !important; }
 .comment .comment .comment .comment .comment .comment .comment
 { background:none !important; }
 
-/* AdviceAnimals and F7U12 are run by 10-year-olds who know CSS */
-.titlebox .redditname a { background:none !important; }
-.titlebox .redditname a, .titlebox .redditname a:hover { height:25px !important; }
-.titlebox .redditname a:hover { text-decoration:underline !important; }
+.comment a.title {
+  font-size: 1.5em !important;
+  margin-bottom: 5px !important;
+  margin-left: 20px !important;
+}
 
 /* Different subreddits use different HTML elements for "alerts",
  and then use CSS to put those alerts at the top of the page, and
@@ -287,7 +289,6 @@ a.author { font-weight:bold !important; }
 span.flair { background:none !important; border:0 !important; font-size:9pt !important; }
 
 .comment p.parent { font-size:9pt !important; padding-bottom:3px !important; }
-.comment a.title { font-size:11pt !important; }
 
 /* wiki */
 .md.wiki a:hover { text-decoration:underline !important; }

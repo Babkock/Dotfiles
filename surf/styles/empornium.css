@@ -1,0 +1,104 @@
+#header_top {
+	margin-top:0 !important;
+	height:140px !important;
+}
+
+#header_top:hover > #logo {
+	display:inline !important;
+	top:75% !important;
+}
+
+#logo {
+	display:inline !important;
+	top:75% !important;
+}
+
+.userinfo_stats tbody tr td {
+	font-size:1.12em !important;
+}
+
+.rowa:hover, .rowb:hover, table.bb_holder td.colhead {
+	background-color:#202020 !important;
+}
+
+tr.rowa:hover, .rowb:hover, .rowa:hover a, .rowb:hover a, .rowb:hover td, .rowa:hover td {
+	color:#dfdfdf !important;
+	transition:background, color 1s 0s;
+}
+
+.torrent_table tbody tr.torrent:hover td .tags a {
+	color:#bfbfbf !important;
+}
+
+.arrow, .searchbutton, #searchbar_help, #searchbar_users, #nav_irc, #nav_top10, #navmenu_friends, #navmenu_notifications, #navmenu_subscriptions, #navmenu_slots, #navmenu_sandbox, #footer p:nth-child(2) {
+	display:none !important;
+}
+
+.latest_threads, .latest_threads span, .pad {
+   font-size:1.12em !important; 
+}
+
+#userinfo_username li ul li a:hover, #userinfo_tools li ul li a:hover {
+	background:#090909 !important;
+}
+
+#quickpost {
+    appearance: none;
+    -moz-appearance: none;
+    background: #101010 !important;
+    font-family: "Arial" !important;
+    color: #cfcfcf !important;
+    border: 1px solid black;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 110px !important;
+    max-height: 110px !important;
+}
+
+a.bb_button {
+	background:#202020 !important;
+	color:white !important;
+	border:1px solid gray !important;
+}
+
+a.bb_button:hover {
+	background:#504040 !important;
+	border:1px solid white !important;
+}
+
+#searchbars input.searchbox {
+	width:100%;
+	font-size:0.95em !important;	
+}
+
+#searchbars .searchcontainer {
+	background:#101010 !important;
+	width:20% !important;
+	padding:5px !important;
+}
+
+.filter_torrents .inputtext {
+  width: 400px;
+  background: #202020 !important;
+  border: 1px solid #505050 !important;
+  appearance: none !important;
+  -moz-appearance: none !important;
+  padding: 6px !important;
+  color: #dfdfdf !important;
+}
+
+.filter_torrents .smallish, .filter_torrents .smallest {
+  background:#202020 !important;
+  border:1px solid #505050 !important;
+  appearance:none !important;
+  -moz-appearance:none !important;
+  padding:6px !important;
+  color:#dfdfdf !important;
+}
+
+select {
+  background: #202020 !important;
+  border: 1px solid #404040 !important;
+  color: #dfdfdf !important;
+  padding: 6px !important;
+}

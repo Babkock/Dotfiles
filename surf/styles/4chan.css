@@ -23,13 +23,13 @@ body div[id^="container-"] {
   }
 
 /* primary link color */
-  body a, .quoteLink, .quotelink, .replylink, .useremail, span.nameBlock .useremail, .burichan_new .backlink a, .yotsuba_b_new .backlink a
+  body a, .quoteLink, .quotelink, .replylink, .useremail, span.nameBlock .useremail, .burichan_new .backlink a, .yotsuba_b_new .backlink a, #arc-list .quotelink
   {
     color: rgb(110, 110, 149) !important;
     text-decoration: none !important;
   }
 
-  body a:hover, a.replylink:hover, a.replylink:not(:hover), div#absbot a:not(:hover), .useremail:hover, span.nameBlock .useremail:hover, .burichan_new .backlink a:hover, .yotsuba_b_new .backlink a:hover
+  body a:hover, a.replylink:hover, a.replylink:not(:hover), div#absbot a:not(:hover), .useremail:hover, span.nameBlock .useremail:hover, .burichan_new .backlink a:hover, .yotsuba_b_new .backlink a:hover, #arc-list .quotelink:hover
   {
     color: rgb(95, 95, 130) !important;
     text-decoration: none !important;
@@ -290,6 +290,7 @@ textarea,
   input[type="submit"]
   {
     width: 19% !important;
+    padding-bottom:4px !important;
   }
 
   ul.rules
@@ -788,4 +789,45 @@ img[alt="4chan"] { margin-top:15px !important; border:1px solid rgb(195, 195, 19
 
 .reply:target span.postertrip, .reply.highlight span.postertrip { color:rgb(65, 120, 89) !important; font-weight:bold !important; }
 
-.ad-plea { display:none !important; }
+.ad-plea, .extButton:not(#qrClose), div#absbot { display:none !important; }
+
+table.flashListing thead tr td, table.flashListing tbody tr td {
+  font-size:1.09em !important;
+  padding:5px !important;
+}
+
+#postFile {
+  margin-top:3px !important;
+  width: 520px !important;
+  padding: 5px !important;
+}
+
+input, textarea {
+    padding: 5px !important;
+    font-size: 1.03em !important;
+}
+
+#search-box {
+    width:30% !important;    
+}
+
+select {
+  padding: 5px !important;
+  font-size: 1.04em !important;    
+}
+
+#customMenu, #customMenu .reply {
+  background-color:#202020 !important;
+}
+
+#customMenu .reply {
+  padding:5px !important;
+}
+
+.text_only #threads .txt-sub {
+  font-size:1.09em !important;
+}
+
+.text_only #threads td {
+  font-size:1.09em !important;
+}
