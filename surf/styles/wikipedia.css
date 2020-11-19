@@ -6,6 +6,14 @@
     background-color: #222 !important;
   }
 
+a:focus {
+  outline:0 !important;
+}
+
+#typeahead-suggestions * { background-color:#202020 !important; }
+.other-project-tagline { color:#c0c0c0 !important; }
+#cnotice-main { display:none !important; }
+
   a,
     .tocnumber
   {
