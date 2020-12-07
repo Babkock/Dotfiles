@@ -49,6 +49,20 @@ tr.js-navigation-item {
     box-shadow: 2px 0 0 #a0b4c8 inset!important;
   }
 
+.SelectMenu-item, .SelectMenu-list, .SelectMenu-modal, .SelectMenu-footer {
+  background:#181818;
+  background-color:#181818;
+}
+.SelectMenu-tab[aria-selected="true"] {
+  background-color:#202020;
+}
+.SelectMenu-tab {
+  background-color:#202020;
+}
+.Link--secondary:hover, .link-gray:hover {
+  color:#9fcf91 !important;
+}
+
   .notification-indicator .mail-status
   {
     background: #de50dc!important;
@@ -145,7 +159,7 @@ tr.js-navigation-item {
 }
 
 .dropdown-item:hover {
-  background-color:#1c2f1c !important;
+  background-color:#2c3f2c !important;
   border-left:2px solid #4c5f4c !important;
 }
 
@@ -6283,4 +6297,20 @@ span.color-bg-primary.pl-2.pr-3 {
   padding: 3px !important;
   padding-left: 9px !important;
   padding-right: 9px !important;
+}
+
+.btn, input.btn, header.nav-bar, .bubble .bubble-title, kbd, a.feed, .list-browser-filterbar, .gobutton, .comment-header, .pagehead ul.tabs li a, .login_form input[type="submit"], .top-bar, ul#bootcamp li a h4, #gists .context-menu-container, body#com #header, .white-nav .selected span, .filter-tab, #header-wrapper, #header-wrapper .nav, .pagination span, .cheatsheet h2, .section a.section-head, .octotree_view_header, .list-heading, .dashboard-tabs li a, a.function-button, .add-pill-form, .gist .gist-file .gist-meta, .octotree_toggle, ul.comparison-list > li.title, button.button, a.button, span.button, button.minibutton, a.minibutton, span.minibutton, .clone-url-button > .clone-url-link {
+  background:#1a2632 !important;
+}
+.color-bg-canvas {
+  background:none !important;
+}
+.SelectMenu-item:hover, body:not(.intent-mouse) .SelectMenu-item:focus {
+  background:#2c3f2c;
+}
+.color-text-secondary {
+  color:#cfcfcf !important;
+}
+.UnderlineNav-item:focus, .UnderlineNav-item:hover {
+  background:#1a2632 !important;
 }

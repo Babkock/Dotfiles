@@ -30,8 +30,20 @@ tr.rowa:hover, .rowb:hover, .rowa:hover a, .rowb:hover a, .rowb:hover td, .rowa:
 	color:#bfbfbf !important;
 }
 
-.arrow, .searchbutton, #searchbar_help, #searchbar_users, #nav_irc, #nav_top10, #navmenu_friends, #navmenu_notifications, #navmenu_subscriptions, #navmenu_slots, #navmenu_sandbox, #footer p:nth-child(2) {
+.tag_add {
+  border-top:0 !important;
+}
+
+#header_top {
+  border-bottom:0 !important;
+}
+
+.tag_header, .arrow, .searchbutton, #searchbar_help, #searchbar_users, #nav_irc, #nav_top10, #navmenu_friends, #navmenu_notifications, #navmenu_subscriptions, #navmenu_slots, #navmenu_sandbox, #footer p:nth-child(2), .bb_holder tbody tr:nth-child(3), img[src="/static//common/symbols/rss.png"], td.bbcode[style="background-color:grey;"] {
 	display:none !important;
+}
+
+table.bb_holder tbody tr td.colhead {
+  height:40px !important;
 }
 
 .latest_threads, .latest_threads span, .pad {

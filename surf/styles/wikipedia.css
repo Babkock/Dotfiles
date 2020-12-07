@@ -755,7 +755,11 @@ h2#mp-other {
   .suggestions-results:hover,
     .suggestions-special:hover
   {
-    background-color: #99742c !important;
+    background-color:#101010 !important;
+  }
+
+  .suggestions-result:hover {
+    background-color:#997011;
   }
 
   .suggestions-results span,
@@ -1254,3 +1258,26 @@ h2#mp-other {
 
 table, td, th { background-color:#222 !important; }
 
+.oo-ui-menuSelectWidget {
+  background-color:#202020 !important;
+  border:1px solid #303030 !important;
+}
+
+.oo-ui-menuSelectWidget :hover {
+  background-color:#262626 !important;
+}
+
+.mw-advancedSearch-container {
+  display:none !important;
+}
+
+.oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input:focus, #searchInput:focus, #simpleSearch:hover #searchInput:focus {
+  box-shadow:none !important;
+}
+
+#ooui-php-1 {
+  background: #111 !important;
+  border: 1px solid #111 !important;
+  color: white !important;
+  font-size: 1.18em !important;
+}
