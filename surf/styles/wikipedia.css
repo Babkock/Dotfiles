@@ -1281,3 +1281,53 @@ table, td, th { background-color:#222 !important; }
   color: white !important;
   font-size: 1.18em !important;
 }
+
+.mw-prefs-buttons, .oo-ui-tabSelectWidget-framed {
+  background-color:#202020 !important;
+}
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+  background-color:#303030 !important;
+}
+.oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
+  background-color:#404040 !important;
+  color:#909090 !important;
+}
+.client-js #preferences {
+  background-color:#202020 !important;
+}
+
+.oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
+  background-color:#181818 !important;
+  color:#505050 !important;
+  border-color:#303030 !important;
+}
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle, .oo-ui-textInputWidget .oo-ui-inputWidget-input, .mw-email-not-authenticated .oo-ui-labelWidget {
+  background-color:#101010 !important;
+  color:#dfdfdf !important;
+  border:1px solid #404040 !important;
+}
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover, .oo-ui-textInputWidget .oo-ui-inputWidget-input:hover {
+  background-color:#202020 !important;
+  color:#efefef !important;
+  border:1px solid #505050;
+}
+
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
+  background-color:#331010 !important;
+}
+
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle {
+  background-color:#333300 !important;
+}
+
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled, .mw-rcfilters-ui-filterTagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
+  background-color:#202020 !important;
+}
+
+.oo-ui-tagItemWidget.oo-ui-widget-enabled:not(.oo-ui-tagItemWidget-fixed), .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined {
+  background-color:#101010 !important;
+}
+
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input {
+  color:white !important;
+}
