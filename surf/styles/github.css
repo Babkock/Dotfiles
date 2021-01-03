@@ -28,6 +28,10 @@ tr.js-navigation-item {
     background-color:#151515;
 }
 
+.px-3 {
+    padding-top:8px !important;
+}
+
   .context-button:after
   {
     border-color: #a0b4c8 transparent transparent!important;
