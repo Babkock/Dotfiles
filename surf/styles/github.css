@@ -6316,3 +6316,7 @@ span.color-bg-primary.pl-2.pr-3 {
   border-bottom:1px solid #909090;
   border-radius:24px 24px 0px 0px;
 }
+
+.px-3 {
+  padding-top:8px !important;
+}

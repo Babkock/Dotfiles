@@ -114,3 +114,7 @@ select {
   color: #dfdfdf !important;
   padding: 6px !important;
 }
+
+#stats_block {
+    width:700px;
+}

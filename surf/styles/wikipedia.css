@@ -38,6 +38,10 @@ a:focus {
   display:none !important;
 }
 
+b a {
+  font-weight:bold;
+}
+
 .wikiEditor-ui-toolbar { background:none !important; }
 
 .mw-editform #wpTextbox1 {
@@ -1330,4 +1334,23 @@ table, td, th { background-color:#222 !important; }
 
 .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input {
   color:white !important;
+}
+
+.mw-echo-ui-notificationsInboxWidget-toolbarWrapper, .mw-echo-ui-pageNotificationsOptionWidget.oo-ui-optionWidget-selected, .oo-ui-optionWidget-highlighted, .mw-echo-ui-pageNotificationsOptionWidget-label-count, .mw-rcfilters-ui-filterMenuHeaderWidget-header, .mw-rcfilters-ui-filterMenuSectionOptionWidget {
+  background:none !important;
+}
+.oo-ui-optionWidget-highlighted {
+  background-color:#202020 !important;
+}
+.mw-echo-ui-pageNotificationsOptionWidget-label-count {
+  color:white !important;
+}
+.mw-echo-ui-crossWikiUnreadFilterWidget, .mw-changeslist-legend,  {
+  border:0 !important;
+}
+.mw-plusminus-pos {
+  color:#cfc !important;
+}
+.mv-plusminus-neg {
+  color:#fbb !important;
 }
