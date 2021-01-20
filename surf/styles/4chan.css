@@ -22,6 +22,10 @@ body div[id^="container-"] {
     margin: 2px !important;
   }
 
+  body form[name="post"] {
+	display:none !important;
+  }
+
 /* primary link color */
   body a, .quoteLink, .quotelink, .replylink, .useremail, span.nameBlock .useremail, .burichan_new .backlink a, .yotsuba_b_new .backlink a, #arc-list .quotelink
   {

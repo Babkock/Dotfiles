@@ -9,46 +9,47 @@
 xsetroot -cursor_name left_ptr
 xrdb -merge .Xresources
 
+feh --bg-scale ~/.config/bspwm/wallpaper.jpg
+
 SXHKD_FIFO=/tmp/sxhkd.fifo
 export SXHKD_FIFO
 
 [ -e "$SXHKD_FIFO" ] && rm "$SXHKD_FIFO"
 mkfifo "$SXHKD_FIFO"
-killall sxhkd 2> /dev/null
+pkill -x sxhkd 2> /dev/null
 sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
 bspc monitor eDP1 -d I II III IV V VI
-bspc monitor HDMI1 -d I II III IV V VI
 
-bspc config focused_border_color    \#949894
-bspc config active_border_color	    \#202020
-bspc config normal_border_color	    \#020402
-bspc config focus_follows_pointer   true
-bspc config border_width            1
-bspc config window_gap              4
-bspc config focus_follows_pointer   true
-bspc config initial_polarity        first_child
-bspc config center_pseudo_tiled     true
-bspc config single_monocle          true
+bspc config focused_border_color    	\#cac68a
+bspc config active_border_color	    	\#202020
+bspc config normal_border_color	    	\#cc5b1b
+bspc config focus_follows_pointer   	true
+bspc config border_width            	1
+bspc config window_gap              	5
+bspc config initial_polarity        	first_child
+bspc config center_pseudo_tiled     	true
+bspc config single_monocle          	true
+bspc config remove_unplugged_monitors	true
 
 bspc config split_ratio             0.5
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
 
+bspc rule -a "Sublime_text" desktop='^4' state=tiled
 bspc rule -a Gimp desktop='^5' state=floating
 bspc rule -a feh state=floating follow=on focus=on
 bspc rule -a "Sxiv" state=floating desktop='^3' follow=on focus=on
 bspc rule -a Firefox desktop='^2' state=tiled
-bspc rule -a 'Mozilla Firefox' desktop='^2' state=tiled
-bspc rule -a vlc desktop='^3' state=floating focus=on follow=on
+bspc rule -a Firefox-esr desktop='^2' state=tiled
+bspc rule -a Navigator desktop='^2' state=tiled
 bspc rule -a surf desktop='^2' state=tiled
 bspc rule -a "tabbed-surf" desktop='^2' state=tiled
 bspc rule -a surf2 desktop='^2' state=tiled
 bspc rule -a Surf desktop='^2' state=tiled
-bspc rule -a 'Sublime Text 3' desktop='^4' state=tiled
-bspc rule -a 'Sublime' desktop='^4' state=tiled
-bspc rule -a Thunderbird desktop='^6' state=tiled
-bspc rule -a mpv desktop='^3' state=floating focus=on follow=on
+bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
+bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
+bspc rule -a mpv desktop='^3' state=tiled focus=on follow=on
 bspc rule -a *:Dialog state=floating
 bspc rule -a Firefox:Dialog desktop='^2' state=floating
 bspc rule -a Firefox:Places desktop='^2' state=floating
@@ -58,19 +59,30 @@ bspc rule -a Firefox-esr:Dialog desktop='^2' state=floating
 bspc rule -a Firefox-esr:Places desktop='^2' state=floating
 bspc rule -a Firefox-esr:Browser desktop='^2' state=tiled
 bspc rule -a Firefox-esr:Toplevel desktop='^2' state=tiled
-bspc rule -a Screenkey manage=off
 
-killall xbindkeys 2> /dev/null
+
+pkill -x xbindkeys 2> /dev/null
 xbindkeys
-xinput --set-prop 18 'Synaptics Tap Action' 1, 1, 1, 1, 1, 1, 1
-xinput --set-prop 18 'Synaptics Tap Time' 120
-xmodmap -e 'keycode 80=Up'
-xmodmap -e 'keycode 88=Down'
-xmodmap -e 'keycode 83=Left'
-xmodmap -e 'keycode 85=Right'
-killall polybar 2> /dev/null
+xinput set-prop 11 "libinput Accel Speed" 0.5
+xinput set-prop 11 "libinput Natural Scrolling Enabled" 1
+xinput set-prop 12 "libinput Accel Speed" 0.5
+xinput set-prop 12 "libinput Natural Scrolling Enabled" 1
+xinput set-prop 14 "libinput Accel Speed" 0.5
+xinput set-prop 14 "libinput Natural Scrolling Enabled" 1
+
+xinput set-prop 11 "libinput Tapping Enabled" 1
+xinput set-prop 11 "libinput Accel Speed" 0.5
+xinput set-prop 15 "libinput Tapping Enabled" 1
+xinput set-prop 15 "libinput Accel Speed" 0.5
+xinput set-prop 20 "libinput Tapping Enabled" 1
+xinput set-prop 20 "libinput Accel Speed" 0.5
+
+pkill -x polybar 2> /dev/null
 polybar -r -log=error bspbar &
-killall compton 2> /dev/null
-compton -b --blur-background -c --shadow-exclude 'class_g = "Polybar" || class_g = "Firefox" || class_g = "surf" || class_g = "Thunderbird"' &
-xrandr --output eDP1 --brightness 0.6
+
+transmission-remote -x -Y --no-dht
+xrandr --output eDP1 --brightness 0.7
+
+pkill -x compton 2> /dev/null
+compton --backend glx --glx-no-stencil --glx-swap-method undefined --sw-opti &
 

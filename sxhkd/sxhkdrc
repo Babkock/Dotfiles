@@ -1,76 +1,46 @@
 #
-#               __    __       __         
-#    ______  __/ /_  / /______/ /_________
-#   / ___/ |/_/ __ \/ //_/ __  / ___/ ___/
-#  (__  )>  </ / / / ,< / /_/ / /  / /__  
-# /____/_/|_/_/ /_/_/|_|\__,_/_/   \___/  
+# wm independent hotkeys
 #
-super + minus
-	st -e transmission-remote-cli
-
-super + equal
-	st -e tmux
 
 # terminal emulator
 super + Return
-	st -e zsh
-
-super + w
-	transset 0.6
-
-# tabbed terminal
-super + shift + Return
-	tabbed -n "tabbed-st" -c -r 2 st -w '' -e zsh
+	st
 
 # program launcher
 super + @space
-	dmenu_run -i -fn 'Anonymous Pro-13' -p '$'
+	dmenu_run
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	tabbed-surf http://localhost:8000
+	firefox
 
 super + shift + period
-	thunderbird
+	steam
 
 super + comma
-	bspc desktop --focus ^3; st -e ncmpcpp
-
-super + shift + comma
-	killall bum; bspc desktop --focus ^3; bum --server 127.0.0.2 --size "300"
-
-super + semicolon
-	bspc desktop --focus ^5; urxvt -bg rgba:0000/0202/0202/8d8d -depth 32 -e ranger
+	st -e ncmpcpp
 
 super + slash
-	bspc desktop --focus ^5; st -e ranger
+	st -e transmission-remote-cli
 
-super + shift + slash
-	st -n "Help" -e man halp
-
-super + backslash
-	bspc desktop --focus ^3; filezilla
-
-super + n
-	pavucontrol
-
-super + e
-	cat ~/.config/jgmenu/root.csv | jgmenu --simple --icon-size=0
+super + semicolon
+	subl
 
 #
 # bspwm hotkeys
 #
 
 # quit/restart bspwm
-super + shift + {e,r}
+super + shift + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + shift + c
-	bspc node -{c,k}
+super + {_,shift + }c
+#	bspc node -{c,k}
+	bspc node -c
 
 # alternate between the tiled and monocle layout
 super + m
@@ -80,9 +50,9 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node
+# swap the current node and the biggest window
 super + g
-	bspc node -s biggest
+	bspc node -s biggest.window
 
 #
 # state/flags
@@ -105,12 +75,12 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous node in the current desktop
-super + {_,shift + }q
-	bspc node -f {next,prev}.local
+# focus the next/previous window in the current desktop
+#super + {_,shift + }c
+#	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -165,4 +135,3 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-

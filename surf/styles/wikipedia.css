@@ -10,9 +10,51 @@ a:focus {
   outline:0 !important;
 }
 
+#editpage-specialchars a {
+   background:none !important;
+   border:none !important;
+   margin-left:1px !important;
+   margin-right:1px !important;
+}
+
 #typeahead-suggestions * { background-color:#202020 !important; }
 .other-project-tagline { color:#c0c0c0 !important; }
 #cnotice-main { display:none !important; }
+
+.wikiEditor-ui-toolbar .booklet > .index > .current {
+   background-color:#404040 !important;
+}
+
+.wikiEditor-ui-toolbar .booklet > .index > :hover {
+   background-color:#404040 !important;
+   color:tan !important;
+}
+
+.wikiEditor-ui-toolbar .page-table td {
+   color:#cfcfcf !important;
+}
+
+.wikiEditor-ui-toolbar .group .tool-select .menu .options .option:hover {
+   background-color:#404040 !important;
+}
+
+.wikiEditor-ui-toolbar .group .tool-select .options .option {
+   background-color:#202020 !important;
+}
+
+.wikiEditor-ui-toolbar .page-characters div span {
+   background:none !important;
+   color:#cfcfcf !important;
+}
+
+.wikiEditor-ui-toolbar .page-characters div span:hover {
+   background-color:#101010 !important;
+   color:tan !important;
+}
+
+.navbox, .nowraplinks {
+   border:none !important;
+}
 
   a,
     .tocnumber
@@ -67,6 +109,11 @@ b a {
 
 .mw-echo-ui-crossWikiNotificationItemWidget-group, .mw-echo-ui-bundleNotificationItemWidget-group {
   background-color:#121212 !important;
+}
+
+.vector-menu-tabs, .vector-menu-tabs a, #mw-head .vector-menu-dropdown h3 {
+  background-image:none !imporant;
+  background:none !important;
 }
 
 div.magnify, td.mbox-text, div.rt-tooltip, button.mw-interlanguage-selector, div#toc, .reflist { display:none !important; }
