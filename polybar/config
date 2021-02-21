@@ -1,167 +1,155 @@
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;    ____        __      __
+;   / __ \____  / /_  __/ /_  ____ ______
+;  / /_/ / __ \/ / / / / __ \/ __ `/ ___/
+; / ____/ /_/ / / /_/ / /_/ / /_/ / /
+;/_/    \____/_/\__, /_.___/\__,_/_/
+;              /____/
 
-
-[colors]
-background = #1314138f
-background-alt = #444
-background-bsp = #00000000
-
-foreground = #ddc94f87
-foreground-alt = #ddc94f87
-foreground-bsp = #edc94f87
-
-primary = #5b9099
-secondary = #e60053
-alert = #bd2c40
-pseudo-transparency = false
-
-[bar/bspbar]
-bottom = false
+[bar/laptop]
+bottom = true
 width = 100%
-height = 23
+height = 33
 radius = 0
 fixed-center = false
 enable-ipc = true
 
-monitor = HDMI1
-monitor-fallback = eDP1
+monitor = eDP-1
 
-background-1 = #22000000
-background-0 = #22000000
-foreground = #ef000000
-
+background = #88040812
 line-size = 3
 line-color = #f00
-
 border-size = 0
-
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
-
-font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
+font-0 = Anonymous Pro:size=16:antialias=true:file=/usr/share/fonts/truetype/anonymous-pro/Anonymice Nerd Font Complete.ttf
 
 modules-left = bspwm
-modules-right = mpd hdd memorybsp cpubsp alsa datebsp
+modules-right = mpd pulse memory cpu battery date
 
 tray-position = right
-tray-padding = 0
+tray-padding = 2
+tray-maxsize = 33
+tray-background = #a5904b3c
 
 wm-restack = bspwm
 
-[bar/hlbar]
-bottom = false
+scroll-up = #bspwm.next
+scroll-down = #bspwm.prev
+
+[bar/monitor]
+bottom = true
 width = 100%
-height = 24
+height = 30
 radius = 0
 fixed-center = false
-override-redirect = true
+enable-ipc = true
 
-background = #8f000000
-foreground = #c5c3c49f
+monitor = HDMI-2
+monitor-fallback = eDP-1
 
-line-size = 3
+background = #22000000
+foreground = #ccd0d0d0
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 40
+tray-background = #b6904b3c
+
+scroll-up = #bspwm.next
+scroll-down = #bspwm.prev
+
+line-size = 2
 line-color = #f00
 border-size = 0
-border-color = #00000000
-
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
+font-0 = Anonymous Pro:size=15:antialias=true:file=/usr/share/fonts/truetype/anonymous-pro/Anonymice Nerd Font Complete.ttf
 
-font-0 = Anonymous Pro:size=11:file=/usr/share/fonts/NerdFonts/ttf/Anonymice Nerd Font Complete.ttf
+modules-left = bspwm
+modules-right = title hdd network battery date
 
-modules-left = datehl memoryhl cpuhl alsa network mpdhl
-modules-right = hddhl workspaces
-tray-position = left
-tray-padding = 0
+wm-restack = bspwm
+
+[module/hdd]
+type = internal/fs
+
+mount-0 = /
+interval = 1
+fixed-values = true
+spacing = 2
+
+format-mounted = <label-mounted>
+label-mounted = "  %free% "
+format-mounted-foreground = #dfefefef
+format-mounted-background = #a6ac301e
+format-mounted-underline = #efbc402e
+
+[module/title]
+type = internal/xwindow
+format = <label>
+format-foreground = #dfefefef
+format-padding = 3
+
+label = %title%
+label-maxlen = 72
+
+label-empty = bspwm
+label-empty-foreground = #cfdfdfdf
 
 [module/network]
 type = internal/network
-interface = wlp2s0
+interface = wlp0s20f3
 interval = 1.0
-udspeed-minwidth = 5
-accumulate-stats = false
 
+
+format = <ramp-signal> <label-connected>
 format-connected = <ramp-signal> <label-connected>
-label-connected = %downspeed:5% %upspeed:5%
-label-connected-foreground = #d0de6855
+format-disconnected = "not connected"
+format-disconnected-foreground = #dfcfcfcf
 
-ramp-signal-0 = 
+label-connected = " %downspeed:5%  %upspeed:5%  "
+label-connected-foreground = #dfefefef
+format-connected-foreground = #dfefefef
+format-connected-background = #a66ea549
+format-connected-underline = #df9cd579
 
-[module/workspaces]
-type = internal/xworkspaces
-enable-click = true
-enable-scroll = true
-pin-workspaces = false
-
-icon-0 = default;
-icon-1 = 1;
-icon-2 = 2;
-icon-4 = 4;
-icon-5 = 5;
-icon-3 = 3;
-
-format = <label-state>
-
-label-active = %icon%
-label-active-background = #72ae4825
-label-active-foreground = #e5e47562
-label-active-underline = #c5e47663
-label-active-padding = 2
-
-label-normal = %icon%
-label-normal-padding = 2
-label-empty-foreground = #b06d93bb
-label-empty-underline = #b46d93bb
-
-label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-
-label-empty = %icon%
-;label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+ramp-signal-0 = "  "
 
 [module/bspwm]
 type = internal/bspwm
 
-ws-icon-0 = I;
-ws-icon-1 = II;
-ws-icon-2 = III;
-ws-icon-4 = V;
-ws-icon-5 = VI;
-ws-icon-3 = IV;
+ws-icon-0 = "I; "
+ws-icon-1 = "II; "
+ws-icon-2 = "III; "
+ws-icon-4 = "V; "
+ws-icon-5 = "VI; "
+ws-icon-3 = "IV; "
+ws-icon-6 = "VII; "
+ws-icon-7 = "VIII; "
 
 label-focused = %icon%
 
-label-focused-background = #cfa2235c
-label-focused-foreground = #ffc94f87
-label-focused-underline = #cfc6437c
+label-focused-background = #a6ac301e
+label-focused-foreground = #efdfdfdf
+label-focused-underline = #dfdc604e
 label-focused-padding = 1
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = #cf107d07
-label-occupied-foreground = #df22ad0d
-label-occupied-underline = #df27b414
+label-occupied-background = #a66ca549
+label-occupied-foreground = #efdfdfdf
+label-occupied-underline = #df9cd579
 
 label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 label-empty = %icon%
-label-empty-foreground = ${colors.foreground-alt}
+label-empty-foreground = #ff6f8bda
+label-empty-background = #a63f5baa
+label-empty-underline = #df5f7bca
 label-empty-padding = 1
 
 scroll-up = bspwm-desknext
@@ -180,146 +168,105 @@ icon-play = 
 icon-pause = 
 icon-stop = +
 icon-prev = 
-icon-next = 
+icon-next = " "
 
 label-song-maxlen = 68
 label-song-ellipsis = true
 
-[module/mpdhl]
-type = internal/mpd
-format-online = <icon-prev> <toggle> <icon-next> <label-song>
-padding = 1
+[module/pulse]
+type = internal/pulseaudio
 
-host = 127.0.0.2
-port = 6600
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
-label-active-font = 2
-
-icon-play = 
-icon-pause = 
-icon-stop = +
-icon-prev = 
-icon-next = 
-
-label-song-maxlen = 56
-label-song-ellipsis = true
-
-[module/alsa]
-type = internal/alsa
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-
-master-mixer = Master
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-
-headphone-id = 2
-mapped = true
 interval = 2
 
 format-volume = <ramp-volume> <label-volume>
-format-headphones = <ramp-headphones> <label-headphones>
+format-muted = "<label-muted> "
+
+label-muted = " 奄 %percentage%%"
+label-muted-foreground = #edefefef
 
 ramp-volume-0 = " 奄"
+ramp-volume-0-foreground = #edff0000
 ramp-volume-1 = " 奔"
 ramp-volume-2 = " 墳"
-ramp-headphones-0 = " "
-ramp-headphones-1 = " "
 spacing = 2
 
 label-volume = "%percentage%% "
-label-headphones = "%percentage%% "
 
-ramp-volume-foreground = #959a6661
-label-volume-foreground = #959a6661
-ramp-headphones-foreground = #919a6661
-;format-volume-background = #97838177
-format-volume-underline = #969a6661
+format-volume-foreground = #edefefef
+format-volume-background = #c69b962c
+format-volume-underline = #edddd66c
 
-[module/hddhl]
-type = internal/fs
+click-right = pavucontrol
 
-mount-0 = /
-interval = 2
-fixed-values = true
-
-spacing = 2
-label-mounted = " %free% "
-label-mounted-foreground = #9aa0a0b0
-;label-mounted-background = #a7a17455
-label-mounted-underline = #9aa0a0b0
-
-[module/hdd]
-type = internal/fs
-
-mount-0 = /
-interval = 2
-fixed-values = true
-
-spacing = 2
-label-mounted = " %free% "
-label-mounted-foreground = #efb64dce
-;label-mounted-background = #47b64dcf
-
-[module/cpuhl]
-type = internal/cpu
-interval = 1
-format-prefix = " "
-format-foreground = #9c6892d9
-;format-background = #acbc814b
-format-prefix-foreground = #9c6892d9
-format-underline = #926892d9
-format-padding = 1
-label = %percentage:2%%
-
-[module/cpubsp]
+[module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-foreground = #ede2639c
-format-prefix-foreground = #dbd2538c
+format-background = #a6ac301e
+format-foreground = #eddfdfdf
+format-prefix-foreground = #dbdfdfdf
 format-underline = #efd2538c
 format-padding = 1
 label = %percentage:2%%
 
-[module/memorybsp]
+[module/memory]
 type = internal/memory
-interval = 2
+interval = 1
 format-prefix = " "
 format-padding = 1
-format-foreground = #ef58cc50
-format-prefix-foreground = #ef48bc40
+format-foreground = #efdfdfdf
+format-prefix-foreground = #efdfdfdf
+format-background = #b66ca549
 format-underline = #ef48bc40
 label = %percentage_used%%
 
-[module/memoryhl]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-padding = 1
-format-foreground = #955d83ab
-format-background = #77101010
-format-prefix-foreground = #855d82a6
-format-underline = #855d82a6
-label = %percentage_used%%
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
 
-[module/datehl]
-type = internal/date
-interval = 1
+format-foreground = #edd57e1c
+format-charging-foreground = #df6f8bda
+format-charging-background = #b64f6bba
+format-charging = <animation-charging> <label-charging> 
+format-charging-underline = #df4f6bba
+format-charging-padding = 1
 
-date = "  %a %b %d"
+format-discharging-background = #a64f6bba
+format-discharging-foreground = #ffdfdfdf
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = #ef6f8eda
 
-time = " %I:%M:%S "
+format-discharging-padding = 1
 
-format-foreground = #c0de6855
-format-background = #80651004
-format-prefix-foreground = #c5e47663
-format-underline = #d5e57764
+format-full-prefix = " "
+format-full-prefix-foreground = #ffdfdfdf
+format-full-background = #a64f6bba
+format-full-underline = #df5f7bca
 
-label = %date% %time%
+format-full-padding = 1
 
-[module/datebsp]
+ramp-capacity-4 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-0 = "  "
+ramp-capacity-1-foreground = #ddbbbb00
+ramp-capacity-0-foreground = #edff0000
+ramp-capacity-foreground = #efdfdfdf
+
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
+animation-charging-3 = "  "
+animation-charging-4 = "  "
+animation-charging-foreground = #efdfdfdf
+animation-charging-framerate = 750
+
+[module/date]
 type = internal/date
 interval = 1
 
@@ -329,100 +276,16 @@ date = " %a %b %d"
 
 time = " %I:%M:%S"
 
-format-foreground = #df507db8
-format-prefix-foreground = #df32bd1f
-format-underline = #ef71719c
+format-background = #b6904b3c
+format-foreground = #efdfdfdf
+format-prefix-foreground = #dfc07b6c
+format-underline = #efc07b6c
 
 label = %date% %time%
 
-[module/batteryhl]
-type = internal/battery
-battery = BAT0
-adapter = AC0
-full-at = 80
+;       
+;⏻ ⭘ ⏽ ⏾ ⏼ 
 
-format-foreground = #edd57e1c
-format-charging-background = #87a95d01
-format-charging = <animation-charging> <label-charging> 
-format-charging-underline = #cdc56e0c
 
-format-charging-padding = 1
 
-format-discharging = <animation-discharging> <label-discharging> 
-format-discharging-underline = ${self.format-charging-underline}
-
-format-discharging-padding = 1
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-format-full-padding = 1
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = #cdd57e1d
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
-
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC0
-full-at = 98
-
-format-foreground = #edd57e1c
-format-charging-background = #eda95d01
-format-charging = <animation-charging> <label-charging> 
-format-charging-underline = #cdc56e0c
-
-format-charging-padding = 1
-
-format-discharging = <animation-discharging> <label-discharging> 
-format-discharging-underline = ${self.format-charging-underline}
-
-format-discharging-padding = 1
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-format-full-padding = 1
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = #cdd57e1d
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
-
-[global/wm]
-margin-bottom = 0
-
-[settings]
-screenchange-reload = true
-pseudo-transparency = false
-
- 
 

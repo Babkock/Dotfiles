@@ -24,13 +24,19 @@ call vundle#rc()
 
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'scrooloose/nerdtree.git'
-Plugin 'Lokaltog/vim-powerline.git'
-Plugin 'powerline/powerline.git'
+" Plugin 'Lokaltog/vim-powerline.git'
+" Plugin 'powerline/powerline.git'
+Plugin 'vim-airline/vim-airline.git'
+Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'jiangmiao/auto-pairs.git'
 Plugin 'rust-lang/rust.vim.git'
 Plugin 'edkolev/tmuxline.vim.git'
 Plugin 'ryanoasis/vim-devicons.git'
 filetype plugin indent on
+
+let g:airline_theme = 'kalisi'
+let g:airline_section_z = ''
+let g:airline_extensions = ['branch', 'fugitiveline', 'keymap', 'netrw', 'quickfix', 'term', 'tmuxline', 'wordcount']
 
 map <F1> :set background=dark<CR>
 map <F2> :color peachpuff<CR>

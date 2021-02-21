@@ -1,5 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=/sbin:$HOME/bin:/usr/local/bin:$PATH
+#              __
+#  ____  _____/ /_  __________
+# /_  / / ___/ __ \/ ___/ ___/
+#  / /_(__  ) / / / /  / /
+# /___/____/_/ /_/_/   \___/
+
+
+
+export PATH=/sbin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/babkock/.oh-my-zsh"
@@ -78,7 +85,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast colored-man-pages zsh-autosuggestions ssh-agent)
+plugins=(gitfast colored-man-pages zsh-autosuggestions zsh-syntax-highlighting ssh-agent)
 
 zstyle :omz:plugins:ssh-agent identities github_rsa laptop2pi
 
@@ -148,7 +155,6 @@ alias gpull="git pull origin master"
 alias v="vim"
 alias r="ranger"
 alias n="ncmpcpp"
-alias t="transmission-remote-cli"
+alias t="tremc"
 alias tr="transmission-remote"
-
 
