@@ -1401,3 +1401,22 @@ table, td, th { background-color:#222 !important; }
 .mv-plusminus-neg {
   color:#fbb !important;
 }
+
+div.sidebar-list-title {
+    background:none !important;
+    padding:5px !important;
+}
+
+.navbox, .nowraplinks, .oo-ui-panelLayout-framed {
+    border:0 !important;
+}
+
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle {
+    background-color:#202020 !important;
+    text-shadow:none !important;
+    border-color:#232323 !important;
+}
+
+.mbox-imageright, img[alt="Edit this at Wikidata"] {
+    display:none !important;
+}

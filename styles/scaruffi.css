@@ -1,0 +1,255 @@
+body {
+	background:#101010 !important;
+	color:#dfdfdf !important;
+}
+
+a, a:link, a:visited, a:active, a font {
+	color:#df89b7 !important;
+	text-decoration:none !important;
+}
+
+a:hover, a:hover font {
+	color:#ffa9d7 !important;
+	text-decoration:underline !important;
+}
+
+p {
+	font-size:1.05em !important;
+}
+
+h4 {
+	font-size:1.18em !important;
+}
+
+ul li {
+	list-style-type:none !important;
+	margin-top:3px !important;
+	margin-bottom:4px !important;
+}
+
+ol li {
+	margin-top:4px;
+	margin-bottom:5px;
+}
+
+table {
+	background:#232323 !important;
+	border:0 !important;
+	width:85% !important;
+	margin-top:5px !important;
+	margin-bottom:5px !important;
+}
+
+/* home page */
+table[width="860"] {
+	width:90% !important;
+}
+
+table tbody tr td table {
+	width:100% !important;
+}
+
+font[color="green"] {
+	color:#bbef89 !important;
+}
+
+/* best of rock music */
+table[width="700"] {
+	width:90% !important;
+	background:#101010 !important;
+}
+
+/* best of jazz music */
+table[width="720"] {
+	width:90% !important;
+}
+
+/* advertise */
+table[width="500"] {
+	width:90% !important;
+	padding:5px !important;
+	line-height:1.5 !important;
+}
+
+td[bgcolor="ffcc66"] {
+    background: #181010 !important;
+    padding: 12px !important;
+}
+
+td[bgcolor="c0c0c0"] {
+    background: #10101c !important;
+    padding: 7px !important;
+}
+
+td[bgcolor="eebb88"], td[bgcolor="e6d9ff"] {
+	padding-left: 9px !important;
+	width: 51% !important;
+}
+
+/* ad spaces */
+td[bgcolor="ffaccc"], td[bgcolor="abcdef"], td[bgcolor="eedfff"], td[bgcolor="ffddaa"],
+td[bgcolor="#ffaa43"], td[bgcolor="#ffddaa"], td[bgcolor="#00ffaa"], td[bgcolor="#ffaa43"],
+td[bgcolor="#efd0ff"], td[bgcolor="ededed"], td[bgcolor="cccccc"], td[bgcolor="dedede"],
+td[bgcolor="#00ff00"], td[bgcolor="0fdcee"], td[bgcolor="#c0c0c0"], td[bgcolor="00ff00"],
+td[bgcolor="ffccff"], td[bgcolor="adcdef"], td[bgcolor="#addf00"], td[bgcolor="#addfff"],
+td[bgcolor="#cccccc"], td[bgcolor="4fddcc"], td[bgcolor="#ffdd00"], td[bgcolor="#f49b3a"], 
+td[bgcolor="#cafa0f"], td[bgcolor="#f0ffee"], td[bgcolor="eecccc"], td[bgcolor="#00ffff"],
+td[bgcolor="#f0ffaa"], td[bgcolor="fbc0e0"] {
+	background:#181010 !important;
+}
+
+td[bgcolor="ffc0c0"], td[bgcolor="eebb88"], td[bgcolor="fcc0ff"], td[bgcolor="e6d9ff"], td[bgcolor="f0b0c0"],
+td[bgcolor="gedfac"], td[bgcolor="#008080"], td[bgcolor="ffccdd"], td[bgcolor="bcffff"], td[bgcolor="#c0c0c0"] {
+	background:#12121a !important;
+}
+
+td[bgcolor="e6dfaa"], td[bgcolor="#ffaaaa"], td[bgcolor="#ffaa00"], td[bgcolor="fdaff0"], td[bgcolor="ffd000"],
+td[bgcolor="ffaaff"], td[bgcolor="aaff00"], td[bgcolor="ffbbff"], td[bgcolor="#dcdcdc"], td[bgcolor="#fedcba"],
+td[bgcolor="ffcccc"], td[bgcolor="ffddee"], td[bgcolor="00ccaa"], td[bgcolor="cccc66"], td[bgcolor="fedbca"],
+td[bgcolor="adfdfd"], td[bgcolor="fdddaa"], td[bgcolor="fdaaaa"], td[bgcolor="#333399"], td[bgcolor="00aa00"],
+td[bgcolor="ffffff"], td[bgcolor="00a0aa"], td[bgcolor="dfffaa"], td[bgcolor="000cee"], td[bgcolor="0faf00"],
+td[bgcolor="fedcba"], td[bgcolor="f0c0c0"], td[bgcolor="ffcccf"] {
+	background:#202020 !important;
+}
+
+table tbody tr td[valign="top"] table[width="100%"] {
+	width:100% !important;
+}
+
+td[width="390"], td[width="50%"], td[width="220"], td[bgcolor="e6d9ff"] {
+	line-height:1.6 !important;
+}
+
+font[color="#000000"], font[color="#3333ff"], font[color="000080"], font[color="000000"], font[color="#00477d"],
+font[color="f00000"], font[color="#0f0000"], font[color="008080"], font[color="#008080"], font[color="#f00fff"],
+font[color="ffddaa"], font[color="#f4ff40"], font[color="#FF0000"], font[color="#0004ff"] {
+	color:#dfdfdf !important;
+}
+
+table[width="660"][bgcolor="e6dfaa"] {
+	background:#202020 !important;
+}
+
+td[bgcolor="fad429"] {
+	background:#1f1212 !important;
+	padding-left:9px !important;
+}
+
+td[bgcolor="#999999"], input[type="SUBMIT"], input[type="submit"], input[type="text"], input[type="radio"] {
+	display:none !important;
+}
+
+table[bgcolor="e6dfaa"] {
+    width: 100% !important;
+    background: #221717 !important;
+}
+
+/* ratings area */
+td[bgcolor="ffddaa"] {
+    background: #221414 !important;
+    padding-left:10px !important;
+}
+
+table thead tr th, table tbody tr td {
+	border:0 !important;
+	padding:3px !important;
+	color:#efefef !important;
+}
+
+td[bgcolor="#FFFFFF"] {
+	background:none !important;
+}
+
+hr {
+	opacity:0 !important;
+}
+
+th {
+	border:0 !important;
+}
+
+td li {
+	line-height:1.6 !important;
+}
+
+/* history markup */
+font[color="a83300"], font[color="fb0000"], font[color="#ff8000"], font[color="00ccee"],
+font[color="#f00000"], font[color="#008f00"], font[color="#ffff80"] {
+	color:#dfdfdf !important;
+}
+
+font[color="006600"], font[color="334499"] {
+	color:#fefefe !important;
+}
+
+font[size="6"], font[size="3"] {
+	font-size:1.1em !important;
+}
+
+font[size="1"][face="helvetica,arial,sans-serif"] {
+	font-size:1.09em !important;
+}
+
+/* wow scaruffi used CSS???? */
+td.year {
+	background:#201818 !important;
+}
+td.datacel {
+	background:#1f1212 !important;
+	font-size:1.1em !important;
+}
+.t2, .t1 {
+	color:#dfdfdf !important;
+	width:80% !important;
+}
+.t1 {
+	background:none !important;
+	border:0 !important;
+}
+p.t2 a:hover {
+	background:none !important;
+}
+.legend {
+	background:none !important;
+}
+p.lijntje {
+	display:none !important;
+}
+.musicindustry {
+	color:#5bcd8e !important;
+}
+.avantgarde {
+	color:#548aff !important;
+}
+.media {
+	color:magenta !important;
+}
+.necrology {
+	color:#dfdf00 !important;
+}
+
+/* new yearly reviews */
+td[bgcolor="e6dfdd"], td[bgcolor="ffbb99"], td[bgcolor="ffff99"] {
+	background:none !important;
+	text-align:center !important;
+}
+
+td[bgcolor="000aaa"] {
+	background:#1f1212 !important;
+	text-align:right !important;
+}
+td[bgcolor="ffaa00"] {
+	background:#1f1212 !important;
+	font-style:italic !important;
+}
+td[bgcolor="00ffff"], td[bgcolor="ffffa0"], td[bgcolor="f00000"] {
+	background:#1f1212 !important;
+}
+
+td[bgcolor="fccccc"], td[bgcolor="faffaa"], td[bgcolor="f0f0f0"], td[bgcolor="dcdcdc"] {
+	background:#202020 !important;
+}
+
+table[width="620"] tbody tr td {
+	background:#202020 !important;
+}

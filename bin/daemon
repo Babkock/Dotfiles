@@ -1,0 +1,18 @@
+#!/bin/bash
+sudo systemctl stop mpd.service
+sudo systemctl disable mpd.service
+sudo systemctl stop mpd.socket
+sudo systemctl disable mpd.socket
+pkill -x mpd
+pkill -x mopidy
+mopidy 2> /dev/null &
+while true; do
+	yes $'\n' | nc -lu 127.0.0.1 -p 5555 > /tmp/mpd.fifo
+done &
+
+sudo systemctl stop transmission-daemon.service
+sudo systemctl disable transmission-daemon.service
+
+pkill -x transmission-daemon
+transmission-daemon
+

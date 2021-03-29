@@ -1,7 +1,9 @@
 #!/bin/bash
-gtf 1366 768 60 -x
-xrandr --newmode "1366x768_60.00"  172.80 1366 2040 2248 2576  768 1081 1084 1118 -HSync +Vsync
-xrandr --addmode HDMI1 1366x768_60.00
-xrandr --output HDMI1 --mode 1366x768
-pavucontrol
-exit
+xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-2 --right-of eDP-1 --mode 1920x1080
+polybar -r monitor &
+pkill -x compton
+xrandr --output HDMI-2 --brightness 0.7
+feh --bg-scale ~/.config/bspwm/wallpaper.png
+bspc monitor eDP-1 -d I II III IV V
+bspc monitor HDMI-2 -d VI VII VIII
+
