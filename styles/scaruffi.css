@@ -1,6 +1,10 @@
-body {
+html, body {
 	background:#101010 !important;
 	color:#dfdfdf !important;
+}
+
+body {
+	width:97% !important;
 }
 
 a, a:link, a:visited, a:active, a font {
@@ -64,6 +68,30 @@ table[width="720"] {
 	width:90% !important;
 }
 
+/* science stuff */
+#header {
+	border-bottom:0 !important;
+}
+
+#main-left-side {
+	width:49% !important;
+}
+
+#main-right-side, #books {
+	width:48% !important;
+	background-color:#202020 !important;
+}
+
+#bio {
+	color:#cdcdcd !important;
+}
+
+#main-left-side li {
+	background:#202020 !important;
+	border-top:0 !important;
+	border-bottom:0 !important;
+}
+
 /* advertise */
 table[width="500"] {
 	width:90% !important;
@@ -108,7 +136,8 @@ td[bgcolor="ffaaff"], td[bgcolor="aaff00"], td[bgcolor="ffbbff"], td[bgcolor="#d
 td[bgcolor="ffcccc"], td[bgcolor="ffddee"], td[bgcolor="00ccaa"], td[bgcolor="cccc66"], td[bgcolor="fedbca"],
 td[bgcolor="adfdfd"], td[bgcolor="fdddaa"], td[bgcolor="fdaaaa"], td[bgcolor="#333399"], td[bgcolor="00aa00"],
 td[bgcolor="ffffff"], td[bgcolor="00a0aa"], td[bgcolor="dfffaa"], td[bgcolor="000cee"], td[bgcolor="0faf00"],
-td[bgcolor="fedcba"], td[bgcolor="f0c0c0"], td[bgcolor="ffcccf"] {
+td[bgcolor="fedcba"], td[bgcolor="f0c0c0"], td[bgcolor="ffcccf"], td[bgcolor="000aff"], td[bgcolor="fa8a00"],
+td[bgcolor="ffffaa"] {
 	background:#202020 !important;
 }
 
@@ -122,7 +151,8 @@ td[width="390"], td[width="50%"], td[width="220"], td[bgcolor="e6d9ff"] {
 
 font[color="#000000"], font[color="#3333ff"], font[color="000080"], font[color="000000"], font[color="#00477d"],
 font[color="f00000"], font[color="#0f0000"], font[color="008080"], font[color="#008080"], font[color="#f00fff"],
-font[color="ffddaa"], font[color="#f4ff40"], font[color="#FF0000"], font[color="#0004ff"] {
+font[color="ffddaa"], font[color="#f4ff40"], font[color="#FF0000"], font[color="#0004ff"], font[color="blue"] *,
+p span {
 	color:#dfdfdf !important;
 }
 

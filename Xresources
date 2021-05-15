@@ -1,42 +1,72 @@
-*foreground:	#ddbe9a
-*background:	#080412
-*.foreground:	#ddbe9a
-*.background:	#080412
+!    _  __                                               
+!   | |/ /________  _________  __  _______________  _____
+!   |   // ___/ _ \/ ___/ __ \/ / / / ___/ ___/ _ \/ ___/
+!  /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
+! /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/ 
+!
+*foreground:        #94afd0
+*background:        #0f0f0f
+*.foreground:       #94afd0
+*.background:       #0f0f0f
+emacs*foreground:   #94afd0
+emacs*background:   #0f0f0f
+URxvt*foreground:   #94afd0
+XTerm*foreground:   #94afd0
+UXTerm*foreground:  #94afd0
+URxvt*background:   [100]#0f0f0f
+XTerm*background:   #0f0f0f
+UXTerm*background:  #0f0f0f
+URxvt*cursorColor:  #94afd0
+XTerm*cursorColor:  #94afd0
+UXTerm*cursorColor: #94afd0
+URxvt*borderColor:  [100]#0f0f0f
 
-*.color0:	#181422
-*color0:	#181422
-*.color1:	#bd8052
-*color1:	#bd8052
-*.color2:	#4f6bba
-*color2:	#4f6bba
-*.color3:	#c07b6c
-*color3:	#c07b6c
-*.color4:   #dc604e
-*color4:	#dc604e
-*.color5:	#7cb559
-*color5:	#7cb559
-*.color6:	#bbb64c
-*color6:	#bbb64c
-*.color7:	#ddbe9a
-*color7:	#ddbe9a
-*.color8:	#baa56b
-*color8:	#baa56b
+! Colors 0-15.
+*.color0: #0f0f0f
+*color0:  #0f0f0f
+*.color1: #80729e
+*color1:  #80729e
+*.color2: #ae3532
+*color2:  #ae3532
+*.color3: #b84a45
+*color3:  #b84a45
+*.color4: #5ca721
+*color4:  #5ca721
+*.color5: #409f4d
+*color5:  #409f4d
+*.color6: #236da7
+*color6:  #236da7
+*.color7: #94afd0
+*color7:  #94afd0
+*.color8: #677a91
+*color8:  #677a91
+*.color9: #a192bf
+*color9:  #a192bf
+*.color10: #cf5652
+*color10:  #cf5652
+*.color11: #d96a65
+*color11:  #d96a65
+*.color12: #7dc842
+*color12:  #7dc842
+*.color13: #60ca6d
+*color13:  #60ca6d
+*.color14: #438dc7
+*color14:  #438dc7
+*.color15: #b4cff0
+*color15:  #b4cff0
 
-*.color9:	#cd9062
-*color9:	#cd9062
-*.color10:	#5f7bca
-*color10:	#5f7bca
-*.color11:	#d08b7c
-*color11:	#d08b7c
-*.color12:	#ec705e
-*color12:	#ec705e
-*.color13:	#8cc569
-*color13:	#8cc569
-*.color14:	#cbc65c
-*color14:	#cbc65c
-*.color15:	#edceaa
-*color15:	#edceaa
+*.color66: #0f0f0f
+*color66:  #0f0f0f
 
-*.color66:	#181422
-*color66:	#181422
+XClock*foreground: #94afd0
+XClock*background: #0f0f0f
+XClock*majorColor:  rgba:94/af/d0/ff
+XClock*minorColor:  rgba:94/af/d0/ff
+XClock*hourColor:   rgba:94/af/d0/ff
+XClock*minuteColor: rgba:94/af/d0/ff
+XClock*secondColor: rgba:94/af/d0/ff
+
+URxvt*depth: 32
+
+st.alpha: 130
 

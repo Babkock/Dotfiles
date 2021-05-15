@@ -15,7 +15,7 @@ enable-ipc = true
 
 monitor = eDP-1
 
-background = #88040812
+background = #11000000
 line-size = 3
 line-color = #f00
 border-size = 0
@@ -30,7 +30,6 @@ modules-right = mpd pulse memory cpu battery date
 tray-position = right
 tray-padding = 2
 tray-maxsize = 33
-tray-background = #a5904b3c
 
 wm-restack = bspwm
 
@@ -54,7 +53,6 @@ foreground = #ccd0d0d0
 tray-position = right
 tray-padding = 2
 tray-maxsize = 40
-tray-background = #b6904b3c
 
 scroll-up = #bspwm.next
 scroll-down = #bspwm.prev
@@ -83,8 +81,7 @@ spacing = 2
 format-mounted = <label-mounted>
 label-mounted = "  %free% "
 format-mounted-foreground = #dfefefef
-format-mounted-background = #a6ac301e
-format-mounted-underline = #efbc402e
+format-mounted-underline = #efb4cff0
 
 [module/title]
 type = internal/xwindow
@@ -93,7 +90,7 @@ format-foreground = #dfefefef
 format-padding = 3
 
 label = %title%
-label-maxlen = 72
+label-maxlen = 75
 
 label-empty = bspwm
 label-empty-foreground = #cfdfdfdf
@@ -103,7 +100,6 @@ type = internal/network
 interface = wlp0s20f3
 interval = 1.0
 
-
 format = <ramp-signal> <label-connected>
 format-connected = <ramp-signal> <label-connected>
 format-disconnected = "not connected"
@@ -112,8 +108,7 @@ format-disconnected-foreground = #dfcfcfcf
 label-connected = " %downspeed:5%  %upspeed:5%  "
 label-connected-foreground = #dfefefef
 format-connected-foreground = #dfefefef
-format-connected-background = #a66ea549
-format-connected-underline = #df9cd579
+format-connected-underline = #ed7dc842
 
 ramp-signal-0 = "  "
 
@@ -131,25 +126,23 @@ ws-icon-7 = "VIII; "
 
 label-focused = %icon%
 
-label-focused-background = #a6ac301e
+label-focused-background = #a6ac617f
 label-focused-foreground = #efdfdfdf
-label-focused-underline = #dfdc604e
+label-focused-underline = #efcc819f
 label-focused-padding = 1
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = #a66ca549
-label-occupied-foreground = #efdfdfdf
-label-occupied-underline = #df9cd579
+label-occupied-background = #a64b507e
+label-occupied-foreground = #ef6b709f
+label-occupied-underline = #df6b709f
 
 label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 label-empty = %icon%
-label-empty-foreground = #ff6f8bda
-label-empty-background = #a63f5baa
-label-empty-underline = #df5f7bca
+label-empty-foreground = #ccafafaf
 label-empty-padding = 1
 
 scroll-up = bspwm-desknext
@@ -159,7 +152,7 @@ scroll-down = bspwm-deskprev
 type = internal/mpd
 format-online = <label-song> <icon-prev> <toggle> <icon-next>
 
-host = 127.0.0.2
+host = 127.0.0.3
 port = 6600
 
 label-active-font = 2
@@ -170,7 +163,7 @@ icon-stop = +
 icon-prev = 
 icon-next = " "
 
-label-song-maxlen = 68
+label-song-maxlen = 74
 label-song-ellipsis = true
 
 [module/pulse]
@@ -195,8 +188,7 @@ spacing = 2
 label-volume = "%percentage%% "
 
 format-volume-foreground = #edefefef
-format-volume-background = #c69b962c
-format-volume-underline = #edddd66c
+format-volume-underline = #ed7dc842
 
 click-right = pavucontrol
 
@@ -204,10 +196,9 @@ click-right = pavucontrol
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-background = #a6ac301e
-format-foreground = #eddfdfdf
+format-foreground = #dfefefef
+format-underline = #efeb889d
 format-prefix-foreground = #dbdfdfdf
-format-underline = #efd2538c
 format-padding = 1
 label = %percentage:2%%
 
@@ -216,10 +207,9 @@ type = internal/memory
 interval = 1
 format-prefix = " "
 format-padding = 1
-format-foreground = #efdfdfdf
+format-foreground = #efffffff
+format-underline = #efa698cb
 format-prefix-foreground = #efdfdfdf
-format-background = #b66ca549
-format-underline = #ef48bc40
 label = %percentage_used%%
 
 [module/battery]
@@ -230,22 +220,22 @@ full-at = 98
 
 format-foreground = #edd57e1c
 format-charging-foreground = #df6f8bda
-format-charging-background = #b64f6bba
+
 format-charging = <animation-charging> <label-charging> 
-format-charging-underline = #df4f6bba
+format-charging-underline = #dfcf5652
 format-charging-padding = 1
 
-format-discharging-background = #a64f6bba
-format-discharging-foreground = #ffdfdfdf
+
+format-discharging-foreground = #ffefefef
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = #ef6f8eda
+format-discharging-underline = #efcf5652
 
 format-discharging-padding = 1
 
 format-full-prefix = " "
 format-full-prefix-foreground = #ffdfdfdf
-format-full-background = #a64f6bba
-format-full-underline = #df5f7bca
+format-full-foreground = #ffefefef
+format-full-underline = #dfcf5652
 
 format-full-padding = 1
 
@@ -276,10 +266,9 @@ date = " %a %b %d"
 
 time = " %I:%M:%S"
 
-format-background = #b6904b3c
 format-foreground = #efdfdfdf
-format-prefix-foreground = #dfc07b6c
-format-underline = #efc07b6c
+format-prefix-foreground = #dfdfdfdf
+format-underline = #ef438dc7
 
 label = %date% %time%
 

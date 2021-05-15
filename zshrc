@@ -4,8 +4,6 @@
 #  / /_(__  ) / / / /  / /
 # /___/____/_/ /_/_/   \___/
 
-
-
 export PATH=/sbin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -27,6 +25,8 @@ export LSCOLORS
 export ZLS_COLORS
 export ZLSCOLORS
 
+bindkey '^[[Z' reverse-menu-complete
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -41,7 +41,7 @@ export ZLSCOLORS
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
@@ -62,7 +62,7 @@ DISABLE_UPDATE_PROMPT="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -87,7 +87,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast colored-man-pages zsh-autosuggestions zsh-syntax-highlighting ssh-agent)
 
-zstyle :omz:plugins:ssh-agent identities github_rsa laptop2pi
+zstyle :omz:plugins:ssh-agent identities github_rsa laptop2pi laptop2site
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,10 +101,12 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
 	alias ls="ls --group-directories-first -F"
+	alias l="ls --group-directories-first -F"
 	alias lsla="ls -l -A"
 	alias lsl="ls -l"
 else
 	alias ls="lsd --group-dirs first -h -F"
+	alias l="lsd --group-dirs first -h -F"
 	alias lsla="lsd --group-dirs first -h -F -l -A --blocks permission,user,size,date,name"
 	alias lsl="lsd --group-dirs first -h -F -l --blocks permission,user,size,date,name"
 	alias lst="lsd --group-dirs first -h -F --tree"
@@ -123,8 +125,8 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias spi="ssh pi@192.168.0.24 -i ~/.ssh/laptop2pi"
-alias s="ssh tababcock@162.210.97.218 -p 2222 -i ~/.ssh/laptop2site"
+alias spi="ssh pi@192.168.0.24"
+alias s="ssh tababcock@162.210.97.218 -p 2222"
 function picp() {
 	if [ -z "$1" ]; then
 		printf "picp needs an argument\n"
@@ -142,6 +144,29 @@ function pf() {
 		ps -aux | grep "$1"
 	fi
 }
+function t() {
+	if [ -z "$1" ]; then
+		tremc
+		true
+	elif [ -z "$2" ]; then
+		printf "Starting %s...\n" "$1"
+		transmission-remote-cli "$1" > /dev/null
+		rm "$1" 2> /dev/null
+		tremc
+		true
+	elif [ -z "$3" ]; then
+		printf "Starting %s with speed %s kbps...\n" "$1" "$2"
+		transmission-remote-cli "$1" > /dev/null
+		transmission-remote -asd "$2"
+		rm "$1" 2> /dev/null
+		tremc
+		true
+	else
+		printf "Too many arguments\n" > /dev/stderr
+		false
+	fi
+}
+alias x="sudo zsh"
 alias ncrypt="gpg --encrypt --armor -r Tanner"
 alias dcrypt="gpg --decrypt"
 alias df="df -h"
@@ -155,6 +180,5 @@ alias gpull="git pull origin master"
 alias v="vim"
 alias r="ranger"
 alias n="ncmpcpp"
-alias t="tremc"
 alias tr="transmission-remote"
 

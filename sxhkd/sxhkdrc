@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	dmenu_run
+	dmenu_run_history
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -24,18 +24,21 @@ super + comma
 	st -e ncmpcpp
 
 super + slash
-	st -e transmission-remote-cli
+	st -e tremc
+
+super + shift + slash
+	/home/babkock/bin/hdmi
 
 super + semicolon
 	subl
 
-#
-# bspwm hotkeys
-#
+# quit
+super + shift + q
+	bspc quit
 
-# quit/restart bspwm
-super + shift + {q,r}
-	bspc {quit,wm -r}
+# restart
+super + shift + r
+	/home/babkock/.config/bspwm/bspwmrc 1
 
 # close and kill
 super + {_,shift + }c

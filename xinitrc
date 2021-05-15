@@ -5,28 +5,32 @@
 #  _>  </ / / / / / /_/ /  / /__  
 # /_/|_/_/_/ /_/_/\__/_/   \___/
 #
-feh --bg-scale /home/babkock/.config/herbstluftwm/wallpaper.jpg &
-pkill -x tinyserve
+feh --bg-scale ~/.config/bspwm/wallpaper.png
+pkill -x tinyserve 2> /dev/null
 tinyserve &
-pkill -x transmission-daemon
-transmission-daemon &
-transmission-remote --download-dir /home/babkock/Downloads
-transmission-remote --incomplete-dir /home/babkock/Downloads
-transmission-remote --no-lpd --no-dht --pex --utp --ssl
-gsettings set org.gnome.gedit.preferences.editor highlight-current-line true
-gsettings set org.gnome.gedit.preferences.editor use-default-font false
-gsettings set org.gnome.gedit.preferences.editor editor-font "Anonymous Pro Regular 13"
-gsettings set org.gnome.gedit.preferences.editor background-pattern "grid"
-gsettings set org.gnome.gedit.preferences.editor scheme "oblivion"
-gsettings set org.gnome.gedit.preferences.editor display-overview-map true
-gsettings set org.gnome.gedit.preferences.editor tabs-size 4
-privoxy /etc/privoxy
-xbacklight -set 50 -fade 2000 &
-xbindkeys &
-herbstluftwm --locked
 
-# this is executed when the session is over
-pkill -x st
-pkill -x tinyserve
-pkill -x transmission-daemon
-pkill -x xbindkeys
+pkill -x xbindkeys 2> /dev/null
+xbindkeys &
+
+xinput set-prop 11 "libinput Accel Speed" 0.5
+xinput set-prop 11 "libinput Natural Scrolling Enabled" 1
+xinput set-prop 12 "libinput Accel Speed" 0.5
+xinput set-prop 12 "libinput Natural Scrolling Enabled" 1
+xinput set-prop 14 "libinput Accel Speed" 0.5
+xinput set-prop 14 "libinput Natural Scrolling Enabled" 1
+
+xinput set-prop 11 "libinput Tapping Enabled" 1
+xinput set-prop 11 "libinput Accel Speed" 0.5
+xinput set-prop 15 "libinput Tapping Enabled" 1
+xinput set-prop 15 "libinput Accel Speed" 0.5
+xinput set-prop 20 "libinput Tapping Enabled" 1
+xinput set-prop 20 "libinput Accel Speed" 0.5
+
+xrandr --output eDP-1 --brightness 0.7
+xrandr --output HDMI-1 --brightness 0.7
+xrandr --output HDMI-2 --brightness 0.7
+
+bspwm
+pkill -x xbindkeys 2> /dev/null
+pkill -x tinyserve 2> /dev/null
+
