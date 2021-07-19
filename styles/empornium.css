@@ -1,45 +1,49 @@
 #header_top {
-	margin-top:0 !important;
-	height:140px !important;
+  margin-top:0 !important;
+  height:140px !important;
 }
 
 #header_top:hover > #logo {
-	display:inline !important;
-	top:75% !important;
+  display:inline !important;
+  top:75% !important;
 }
 
 #logo {
-	display:inline !important;
-	top:75% !important;
+  display:inline !important;
+  top:75% !important;
 }
 
 .userinfo_stats tbody tr td {
-	font-size:1.12em !important;
+  font-size:1.12em !important;
 }
 
 .rowa:hover, .rowb:hover, table.bb_holder td.colhead {
-	background-color:#202020 !important;
+  background-color:#202020 !important;
 }
 
 tr.rowa:hover, .rowb:hover, .rowa:hover a, .rowb:hover a, .rowb:hover td, .rowa:hover td {
-	color:#dfdfdf !important;
-	transition:background, color 1s 0s;
+  color:#dfdfdf !important;
+  transition:background, color 1s 0s;
 }
 
 .torrent_table tbody tr.torrent:hover td .tags a {
-	color:#bfbfbf !important;
+  color:#bfbfbf !important;
 }
 
-.tag_add {
-  border-top:0 !important;
+.tag_add, #user_dropdown ul {
+  display:none !important;
 }
 
 #header_top {
   border-bottom:0 !important;
 }
 
+table.forum_unread {
+    border-right:0 !important;
+}
+
 .tag_header, .arrow, .searchbutton, #searchbar_help, #searchbar_users, #nav_irc, #nav_top10, #navmenu_friends, #navmenu_notifications, #navmenu_subscriptions, #navmenu_slots, #navmenu_sandbox, #footer p:nth-child(2), .bb_holder tbody tr:nth-child(3), img[src="/static//common/symbols/rss.png"], td.bbcode[style="background-color:grey;"] {
-	display:none !important;
+  display:none !important;
 }
 
 table.bb_holder tbody tr td.colhead {
@@ -51,7 +55,7 @@ table.bb_holder tbody tr td.colhead {
 }
 
 #userinfo_username li ul li a:hover, #userinfo_tools li ul li a:hover {
-	background:#090909 !important;
+  background:#090909 !important;
 }
 
 #quickpost {
@@ -68,25 +72,25 @@ table.bb_holder tbody tr td.colhead {
 }
 
 a.bb_button {
-	background:#202020 !important;
-	color:white !important;
-	border:1px solid gray !important;
+  background:#202020 !important;
+  color:white !important;
+  border:1px solid gray !important;
 }
 
 a.bb_button:hover {
-	background:#504040 !important;
-	border:1px solid white !important;
+  background:#504040 !important;
+  border:1px solid white !important;
 }
 
 #searchbars input.searchbox {
-	width:100%;
-	font-size:0.95em !important;	
+  width:100%;
+  font-size:0.95em !important;  
 }
 
 #searchbars .searchcontainer {
-	background:#101010 !important;
-	width:20% !important;
-	padding:5px !important;
+  background:#101010 !important;
+  width:20% !important;
+  padding:5px !important;
 }
 
 .filter_torrents .inputtext {
@@ -108,6 +112,15 @@ a.bb_button:hover {
   color:#dfdfdf !important;
 }
 
+td[colspan="1"] input[type="text"], .long {
+    appearance:none !important;
+    -moz-appearance:none !important;
+    background: #202020 !important;
+    border: 1px solid #404040 !important;
+    color: #efefef !important;
+    padding:6px !important;
+}
+
 select {
   background: #202020 !important;
   border: 1px solid #404040 !important;
@@ -116,5 +129,40 @@ select {
 }
 
 #stats_block {
-    width:700px;
+    width:730px !important;
+}
+
+.torrent_table .tags a {
+    color:#cdcdcd !important;
+}
+
+.torrent td {
+    font-size:1.19em !important;
+    padding-top:10px !important;
+}
+
+#torrent_tags_list li {
+    margin:1px -10px 3px 15px !important;
+    font-size:1.13em !important;
+}
+
+#torrent_tags_list li a {
+    color:#dfdfdf !important;
+}
+
+.forum_index tbody tr td {
+    font-size:1.16em !important;
+    color:#dfdfdf !important;
+}
+
+h4 {
+    font-size:11pt !important;
+}
+
+div.post_content, div.preview_content, .smallhead td {
+    font-size:1.25em !important;
+}
+
+div[style="background-color:grey;margin: 0px auto 0px 0px;"], div[style="background-color:white;"] {
+    background:none !important;
 }

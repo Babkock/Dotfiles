@@ -5,7 +5,7 @@
 #  _>  </ / / / / / /_/ /  / /__  
 # /_/|_/_/_/ /_/_/\__/_/   \___/
 #
-feh --bg-scale ~/.config/bspwm/wallpaper.png
+feh --bg-scale ~/.config/bspwm/wallpaper.jpg
 pkill -x tinyserve 2> /dev/null
 tinyserve &
 

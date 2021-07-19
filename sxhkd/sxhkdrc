@@ -24,13 +24,13 @@ super + comma
 	st -e ncmpcpp
 
 super + slash
-	st -e tremc
-
-super + shift + slash
-	/home/babkock/bin/hdmi
+	urxvt -e ranger
 
 super + semicolon
 	subl
+
+super + shift + semicolon
+	pavucontrol
 
 # quit
 super + shift + q

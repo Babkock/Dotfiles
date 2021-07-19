@@ -1,0 +1,73 @@
+body {
+    font-family:"Arial" !important;
+    font-size:14px !important;
+}
+
+#wrapper {
+    max-width:1224px !important;
+}
+
+#searchbar_log, body#torrents a[onclick^="RequestSeedingHelp"] {
+    display:none !important;
+}
+
+.main-menu__list li:first-child a {
+    border-top-left-radius:22px !important;
+}
+.main-menu__item:first-of-type {
+    border-top-left-radius:22px !important;
+}
+
+#jump_to_container a:first-of-type, #jump_to_container a:nth-of-type(2), #jump_to_container a:nth-of-type(3), #jump_to_container a:nth-of-type(4), #jump_to_container a:nth-of-type(5), .film-club-discuss-/.;link a::before, .js-latest-posts-tbody tr:last-of-type a, .last5-movies__show-all-link, .release-name-movie-list__movie__action, .screenshot-comparison__old-school-toggler-container a, .search-form__advanced-basic-toggler a, .subscribed_collages_table td span[style*="right"] a:first-of-type, .subscribed_collages_table td span[style*="right"] a:nth-of-type(2), .subscribed_collages_table td span[style*="right"] a:nth-of-type(3), .subscribed_collages_table td span[style*="right"] a:nth-of-type(4), .torrent_info_first_block + .linkbox a:first-of-type, .torrent_info_first_block + .linkbox a:nth-of-type(2), .torrent_info_first_block + .linkbox a:nth-of-type(3), .torrent_info_first_block + .linkbox a:nth-of-type(4), [class$="__bookmark"] a, [class$="__new"]::before, [class$="__rate"] a, [class$="__trailer"] a, [id^="submanager"] a:first-child::before, [id^="submanager"] a:nth-child(2)::before, a[onclick*="#taglist"], a[onclick^="ToggleTagSelector"], body#inbox #searchbox span[style^="float"] a, body#torrents a[onclick^="RequestSeedingHelp"]::before {
+    border-radius:0px !important;
+    font-size:14px !important;
+}
+
+#jump_to_container a:first-of-type, #jump_to_container a:nth-of-type(2), #jump_to_container a:nth-of-type(3), #jump_to_container a:nth-of-type(4), #jump_to_container a:nth-of-type(5), .film-club-discuss-link a::before, .js-latest-posts-tbody tr:last-of-type a, .last5-movies__show-all-link, .release-name-movie-list__movie__action, .screenshot-comparison__old-school-toggler-container a, .search-form__advanced-basic-toggler a, .subscribed_collages_table td span[style*="right"] a:first-of-type, .subscribed_collages_table td span[style*="right"] a:nth-of-type(2), .subscribed_collages_table td span[style*="right"] a:nth-of-type(3), .subscribed_collages_table td span[style*="right"] a:nth-of-type(4), .torrent_info_first_block + .linkbox a:first-of-type, .torrent_info_first_block + .linkbox a:nth-of-type(2), .torrent_info_first_block + .linkbox a:nth-of-type(3), .torrent_info_first_block + .linkbox a:nth-of-type(4), [class$="__bookmark"] a, [class$="__new"]::before, [class$="__rate"] a, [class$="__trailer"] a, [id^="submanager"] a:first-child::before, [id^="submanager"] a:nth-child(2)::before, a[onclick*="#taglist"], a[onclick^="ToggleTagSelector"], body#inbox #searchbox span[style^="float"] a, body#torrents a[onclick^="RequestSeedingHelp"]::before {
+    font-size:14px !important;
+    padding:4px !important;
+    border-radius:0px !important;
+}
+
+#userinfo_minor::before {
+    font-size:21px !important;
+    border-top-right-radius:22px !important;
+}
+
+#content > small, #dnu_header, #getmorenews, #top10 #content > h2, .forum-post__heading, .heading--small-bottom-margin, .huge-movie-list__movie__title-row, .page__title, .panel__heading, .sidebar > h3, .sidebar > p, .simplemodal-data h2, .subscribed_collages_table td, .table--panel-like > thead > tr > td, .table--panel-like > thead > tr > th, .thin > small, .toggleable-search-form__toggler-container, body#artist [id^="role_"] > h2, body#bprate #content > h2, body#torrents .thin > .page__title + h2.text--center {
+    font-size:14px !important;
+    text-transform:none !important;
+}
+
+.last5-movies__show-all-link, .js-latest-posts-tbody tr:last-of-type a, .search-form__advanced-basic-toggler a, a[onclick*="#taglist"], a[onclick^="ToggleTagSelector"], .release-name-movie-list__movie__release-category + td, [class$="__title-row"], body#collages .thin > .table td:nth-child(2) > a, .film-club-discuss-link a::before {
+    font-size:14px !important;
+    padding:3px !important;
+}
+
+.film-club-discuss-link a::before {
+    padding:3px !important;
+}
+
+.tags a {
+    font-size:12px !important;
+    color:#9d9d9d !important;
+}
+
+.group_torrent_header td {
+    font-size:12px !important;
+}
+
+.torrent-info-link, .torrent_info_first_block + .linkbox a:first-of-type, .torrent_info_first_block + .linkbox a:nth-of-type(2), [id^="submanager"] a:first-child::before, [id^="submanager"] a:nth-child(2)::before {
+    font-size:14px !important;
+}
+
+h2.page__title {
+    font-size:16px !important;
+}
+
+
+body#forums .pagination--bottom + .linkbox a, input[type="button"], input[type="submit"] {
+    padding:6px 9px !important;
+    border-radius:20px !important;
+    font-size:13px !important;
+}

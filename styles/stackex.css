@@ -8,7 +8,7 @@ body {
    * ** Please open an issue to report sites where the style breaks **
    * https://github.com/StylishThemes/StackOverflow-Dark/issues
    * Note: fix borders by removing single glob color; some have been fixed.
-	 *       if you notice any broken broders please open a new issue with page link.
+   *       if you notice any broken broders please open a new issue with page link.
    */
   * {
     /* dont assign any colors here */
@@ -4864,6 +4864,7 @@ a.post-tag.user-tag:hover, .s-tag.bg-blue-700:hover {
     background:#191919 !important;
 }
 
+
 .post-tag.js-gps-track, .s-prose .post-tag, .post-tag {
     background: #040404 !important;
     color: #c7c7c7 !important;
@@ -4875,8 +4876,17 @@ a.post-tag.user-tag:hover, .s-tag.bg-blue-700:hover {
     background-color:#121212 !important;
 }
 
+.s-code-block, .comment-text code {
+    background-color:#121212 !important;
+}
+
 pre code {
     color:#dfdfdf !important;
+}
+
+.s-prose :not(.s-code-block) > code {
+    color:#dfdfdf !important;
+    background-color:#121212 !important;
 }
 
 .answer:hover {

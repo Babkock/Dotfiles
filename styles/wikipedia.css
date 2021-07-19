@@ -1402,6 +1402,11 @@ table, td, th { background-color:#222 !important; }
   color:#fbb !important;
 }
 
+code {
+  color:#dfdfdf !important;
+  border:1px solid #999 !important;
+}
+
 div.sidebar-list-title {
     background:none !important;
     padding:5px !important;

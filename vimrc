@@ -7,6 +7,9 @@
 set rtp+=~/.vim/bundle/vundle/
 syntax on
 color peachpuff
+set cursorline
+hi CursorLine term=bold cterm=bold ctermbg=235
+
 set tabstop=4
 set softtabstop=4
 set number
@@ -24,8 +27,6 @@ call vundle#rc()
 
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'scrooloose/nerdtree.git'
-" Plugin 'Lokaltog/vim-powerline.git'
-" Plugin 'powerline/powerline.git'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'jiangmiao/auto-pairs.git'
@@ -36,14 +37,14 @@ filetype plugin indent on
 
 let g:airline_theme = 'kalisi'
 let g:airline_section_z = ''
-let g:airline_extensions = ['branch', 'fugitiveline', 'keymap', 'netrw', 'quickfix', 'term', 'tmuxline', 'wordcount']
+let g:airline_extensions = ['branch', 'fugitiveline', 'keymap', 'netrw', 'quickfix', 'term', 'tmuxline']
 
-map <F1> :set background=dark<CR>
-map <F2> :color peachpuff<CR>
-map <F3> :color slate<CR>
-map <F4> :NERDTreeToggle<CR>
+map <F1> :set background=dark<CR>:hi CursorLine term=bold cterm=bold ctermbg=235<CR>
+map <F2> :color peachpuff<CR>:hi CursorLine term=bold cterm=bold ctermbg=235<CR>
+map <F3> :color slate<CR>:hi CursorLine term=bold cterm=bold ctermbg=235<CR>
+map <F4> :NERDTreeToggle<CR>:hi CursorLine term=bold cterm=bold ctermbg=235<CR>
 map <F5> :echo 'Time: ' . strftime('%c')<CR>
-map <F6> :Tmuxline vim_powerline<CR>
+map <F6> :Tmuxline vim_powerline<CR>:set nocursorline<CR>
 
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_colorscheme = 'solarized256'

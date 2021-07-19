@@ -4,69 +4,57 @@
 !  /   |/ /  /  __(__  ) /_/ / /_/ / /  / /__/  __(__  ) 
 ! /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/ 
 !
-*foreground:        #94afd0
-*background:        #0f0f0f
-*.foreground:       #94afd0
-*.background:       #0f0f0f
-emacs*foreground:   #94afd0
-emacs*background:   #0f0f0f
-URxvt*foreground:   #94afd0
-XTerm*foreground:   #94afd0
-UXTerm*foreground:  #94afd0
-URxvt*background:   [100]#0f0f0f
-XTerm*background:   #0f0f0f
-UXTerm*background:  #0f0f0f
-URxvt*cursorColor:  #94afd0
-XTerm*cursorColor:  #94afd0
-UXTerm*cursorColor: #94afd0
-URxvt*borderColor:  [100]#0f0f0f
-
-! Colors 0-15.
-*.color0: #0f0f0f
-*color0:  #0f0f0f
-*.color1: #80729e
-*color1:  #80729e
-*.color2: #ae3532
-*color2:  #ae3532
-*.color3: #b84a45
-*color3:  #b84a45
-*.color4: #5ca721
-*color4:  #5ca721
-*.color5: #409f4d
-*color5:  #409f4d
-*.color6: #236da7
-*color6:  #236da7
-*.color7: #94afd0
-*color7:  #94afd0
-*.color8: #677a91
-*color8:  #677a91
-*.color9: #a192bf
-*color9:  #a192bf
-*.color10: #cf5652
-*color10:  #cf5652
-*.color11: #d96a65
-*color11:  #d96a65
-*.color12: #7dc842
-*color12:  #7dc842
-*.color13: #60ca6d
-*color13:  #60ca6d
-*.color14: #438dc7
-*color14:  #438dc7
-*.color15: #b4cff0
-*color15:  #b4cff0
-
-*.color66: #0f0f0f
-*color66:  #0f0f0f
-
-XClock*foreground: #94afd0
-XClock*background: #0f0f0f
-XClock*majorColor:  rgba:94/af/d0/ff
-XClock*minorColor:  rgba:94/af/d0/ff
-XClock*hourColor:   rgba:94/af/d0/ff
-XClock*minuteColor: rgba:94/af/d0/ff
-XClock*secondColor: rgba:94/af/d0/ff
-
+URxvt*scrollBar: false
+URxvt*font: xft:IBMPlex:antialias=true:hinting=true:minspace=false:size=15:file=/usr/share/fonts/truetype/ibm-plex/Blex Mono Nerd Font Complete Mono.ttf
+URxvt*termName: rxvt-unicode
 URxvt*depth: 32
+URxvt*fading: 10
+URxvt*letterSpace: 0
+URxvt*internalBorder: 6
+URxvt*background: [60]#0f0f0f
 
-st.alpha: 130
+dmenu.background: #000000
+dmenu.foreground: #dfdfdf
 
+dmenu.midbackground: #bf5141
+dmenu.midforeground: #ef8171
+
+dmenu.selbackground: #dfdfdf
+dmenu.selforeground: #000000
+
+! special
+*.foreground:   #ffffff
+*.background:   #000000
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #000000
+*.color8:       #666666
+
+! red
+*.color1:       #d36265
+*.color9:       #ef8171
+
+! green
+*.color2:       #aece91
+*.color10:      #cfefb3
+
+! yellow
+*.color3:       #e7e18c
+*.color11:      #fff796
+
+! blue
+*.color4:       #72b7ef
+*.color12:      #84c8ff
+
+! magenta
+*.color5:       #963c59
+*.color13:      #b85e7b
+
+! cyan
+*.color6:       #7e9195
+*.color14:      #b3cacf
+
+! white
+*.color7:       #bebebe
+*.color15:      #ffffff

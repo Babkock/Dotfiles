@@ -22,9 +22,9 @@ sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
 
 bspc monitor eDP-1 -d I II III IV V VI
 
-bspc config focused_border_color    	\#ac617f
+bspc config focused_border_color    	\#dfdfdf
 bspc config active_border_color	    	\#202020
-bspc config normal_border_color	    	\#2b305e
+bspc config normal_border_color	    	\#101010
 bspc config focus_follows_pointer   	true
 bspc config border_width            	1
 bspc config window_gap              	5

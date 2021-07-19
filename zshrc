@@ -4,7 +4,7 @@
 #  / /_(__  ) / / / /  / /
 # /___/____/_/ /_/_/   \___/
 
-export PATH=/sbin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=/sbin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/babkock/.oh-my-zsh"
@@ -181,4 +181,6 @@ alias v="vim"
 alias r="ranger"
 alias n="ncmpcpp"
 alias tr="transmission-remote"
+alias k="make"
+alias kc="make clean"
 

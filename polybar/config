@@ -15,14 +15,15 @@ enable-ipc = true
 
 monitor = eDP-1
 
-background = #11000000
+background = #55000000
+foreground = #ccededed
 line-size = 3
 line-color = #f00
 border-size = 0
 padding-left = 0
 padding-right = 0
 
-font-0 = Anonymous Pro:size=16:antialias=true:file=/usr/share/fonts/truetype/anonymous-pro/Anonymice Nerd Font Complete.ttf
+font-0 = IBMPlex:size=15:antialias=true:file=/usr/share/fonts/truetype/ibm-plex/Blex Mono Nerd Font Complete.ttf
 
 modules-left = bspwm
 modules-right = mpd pulse memory cpu battery date
@@ -47,8 +48,8 @@ enable-ipc = true
 monitor = HDMI-2
 monitor-fallback = eDP-1
 
-background = #22000000
-foreground = #ccd0d0d0
+background = #55000000
+foreground = #ccededed
 
 tray-position = right
 tray-padding = 2
@@ -63,7 +64,7 @@ border-size = 0
 padding-left = 0
 padding-right = 0
 
-font-0 = Anonymous Pro:size=15:antialias=true:file=/usr/share/fonts/truetype/anonymous-pro/Anonymice Nerd Font Complete.ttf
+font-0 = IBMPlex:size=14:antialias=true:file=/usr/share/fonts/truetype/ibm-plex/Blex Mono Nerd Font Complete.ttf
 
 modules-left = bspwm
 modules-right = title hdd network battery date
@@ -80,20 +81,20 @@ spacing = 2
 
 format-mounted = <label-mounted>
 label-mounted = "  %free% "
-format-mounted-foreground = #dfefefef
-format-mounted-underline = #efb4cff0
+format-mounted-foreground = #dfb3cacf
+format-mounted-underline = #efc3dadf
 
 [module/title]
 type = internal/xwindow
 format = <label>
-format-foreground = #dfefefef
+format-foreground = #effff796
 format-padding = 3
 
 label = %title%
 label-maxlen = 75
 
 label-empty = bspwm
-label-empty-foreground = #cfdfdfdf
+label-empty-foreground = #cfefefef
 
 [module/network]
 type = internal/network
@@ -106,9 +107,9 @@ format-disconnected = "not connected"
 format-disconnected-foreground = #dfcfcfcf
 
 label-connected = " %downspeed:5%  %upspeed:5%  "
-label-connected-foreground = #dfefefef
-format-connected-foreground = #dfefefef
-format-connected-underline = #ed7dc842
+label-connected-foreground = #dfcfefb3
+format-connected-foreground = #dfcfefb3
+format-connected-underline = #edcfefb3
 
 ramp-signal-0 = "  "
 
@@ -117,7 +118,7 @@ type = internal/bspwm
 
 ws-icon-0 = "I; "
 ws-icon-1 = "II; "
-ws-icon-2 = "III; "
+ws-icon-2 = "III; "
 ws-icon-4 = "V; "
 ws-icon-5 = "VI; "
 ws-icon-3 = "IV; "
@@ -126,23 +127,23 @@ ws-icon-7 = "VIII; "
 
 label-focused = %icon%
 
-label-focused-background = #a6ac617f
-label-focused-foreground = #efdfdfdf
-label-focused-underline = #efcc819f
+label-focused-background = #eddfdfdf
+label-focused-foreground = #ef000000
+label-focused-underline = #efffffff
 label-focused-padding = 1
 
 label-occupied = %icon%
 label-occupied-padding = 1
-label-occupied-background = #a64b507e
-label-occupied-foreground = #ef6b709f
-label-occupied-underline = #df6b709f
+label-occupied-foreground = #ef202020
+label-occupied-background = #af979797
+label-occupied-underline = #efb7b7b7
 
 label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
+label-urgent-background = #ffff0000
 label-urgent-padding = 1
 
 label-empty = %icon%
-label-empty-foreground = #ccafafaf
+label-empty-foreground = #ddbfbfbf
 label-empty-padding = 1
 
 scroll-up = bspwm-desknext
@@ -151,8 +152,9 @@ scroll-down = bspwm-deskprev
 [module/mpd]
 type = internal/mpd
 format-online = <label-song> <icon-prev> <toggle> <icon-next>
+format-online-foreground = #effff796
 
-host = 127.0.0.3
+host = 127.0.0.2
 port = 6600
 
 label-active-font = 2
@@ -163,7 +165,7 @@ icon-stop = +
 icon-prev = 
 icon-next = " "
 
-label-song-maxlen = 74
+label-song-maxlen = 71
 label-song-ellipsis = true
 
 [module/pulse]
@@ -180,15 +182,15 @@ label-muted = " 奄 %percentage%%"
 label-muted-foreground = #edefefef
 
 ramp-volume-0 = " 奄"
-ramp-volume-0-foreground = #edff0000
+ramp-volume-0-foreground = #edef8171
 ramp-volume-1 = " 奔"
 ramp-volume-2 = " 墳"
 spacing = 2
 
 label-volume = "%percentage%% "
 
-format-volume-foreground = #edefefef
-format-volume-underline = #ed7dc842
+format-volume-foreground = #edb3cacf
+format-volume-underline = #edc3dadf
 
 click-right = pavucontrol
 
@@ -196,9 +198,9 @@ click-right = pavucontrol
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-foreground = #dfefefef
-format-underline = #efeb889d
-format-prefix-foreground = #dbdfdfdf
+format-foreground = #efef8171
+format-underline = #efef8171
+format-prefix-foreground = #efef8171
 format-padding = 1
 label = %percentage:2%%
 
@@ -207,9 +209,9 @@ type = internal/memory
 interval = 1
 format-prefix = " "
 format-padding = 1
-format-foreground = #efffffff
-format-underline = #efa698cb
-format-prefix-foreground = #efdfdfdf
+format-foreground = #efcfefb3
+format-underline = #efcfefb3
+format-prefix-foreground = #efcfefb3
 label = %percentage_used%%
 
 [module/battery]
@@ -218,24 +220,24 @@ battery = BAT0
 adapter = AC0
 full-at = 98
 
-format-foreground = #edd57e1c
-format-charging-foreground = #df6f8bda
+format-foreground = #efb85e7b
+format-charging-foreground = #efd87e9b
 
 format-charging = <animation-charging> <label-charging> 
-format-charging-underline = #dfcf5652
+format-charging-underline = #efc86e8b
 format-charging-padding = 1
 
-
-format-discharging-foreground = #ffefefef
+format-discharging-foreground = #efb85e7b
+format-discharging-prefix-foreground = #efd87e9b
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = #efcf5652
+format-discharging-underline = #efc86e8b
 
 format-discharging-padding = 1
 
 format-full-prefix = " "
-format-full-prefix-foreground = #ffdfdfdf
-format-full-foreground = #ffefefef
-format-full-underline = #dfcf5652
+format-full-prefix-foreground = #efd87e9b
+format-full-foreground = #efd87e9b
+format-full-underline = #efd87e9b
 
 format-full-padding = 1
 
@@ -244,17 +246,17 @@ ramp-capacity-3 = "  "
 ramp-capacity-2 = "  "
 ramp-capacity-1 = "  "
 ramp-capacity-0 = "  "
-ramp-capacity-1-foreground = #ddbbbb00
+ramp-capacity-1-foreground = #ddfff796
 ramp-capacity-0-foreground = #edff0000
-ramp-capacity-foreground = #efdfdfdf
+ramp-capacity-foreground = #efc86e8b
 
 animation-charging-0 = "  "
 animation-charging-1 = "  "
 animation-charging-2 = "  "
 animation-charging-3 = "  "
 animation-charging-4 = "  "
-animation-charging-foreground = #efdfdfdf
-animation-charging-framerate = 750
+animation-charging-foreground = #efd87e9b
+animation-charging-framerate = 550
 
 [module/date]
 type = internal/date
@@ -266,15 +268,9 @@ date = " %a %b %d"
 
 time = " %I:%M:%S"
 
-format-foreground = #efdfdfdf
-format-prefix-foreground = #dfdfdfdf
-format-underline = #ef438dc7
+format-foreground = #ef84c8ff
+format-prefix-foreground = #ef84c8ff
+format-underline = #ef84c8ff
 
 label = %date% %time%
-
-;       
-;⏻ ⭘ ⏽ ⏾ ⏼ 
-
-
-
 

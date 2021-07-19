@@ -10,9 +10,9 @@ ncmpcpp_directory = ~/.ncmpcpp
 #lyrics_directory = ~/.lyrics
 
 mpd_host = 127.0.0.2
-
+#mpd_host = 127.0.0.3
+#mpd_port = 6600
 mpd_port = 6600
-
 #mpd_connection_timeout = 5
 
 mpd_music_dir = ~/Music
@@ -42,20 +42,19 @@ visualizer_data_source = /tmp/mpd.fifo
 ##
 visualizer_in_stereo = yes
 
-#visualizer_sync_interval = 30
+visualizer_sync_interval = 16
 
 ## Available values: spectrum, wave, wave_filled, ellipse.
-#visualizer_type = spectrum
+visualizer_type = wave
 
-visualizer_look = ●▮
+visualizer_look = ?$
 
-#visualizer_color = magenta, red, green, cyan, yellow, blue, white
-visualizer_color = 4, 44, 143, 88, 210, 50, 91, 12, 146, 192, 214, 205, 68, 140, 44, 125
+visualizer_color = magenta, red, green, cyan, yellow, blue, white
+#visualizer_color = 4, 44, 143, 88, 210, 50, 91, 12, 146, 192, 214, 205, 68, 140, 44, 125
 
 #system_encoding = ""
 
-playlist_disable_highlight_delay = 2
-
+playlist_disable_highlight_delay = 3
 
 message_delay_time = 2
 ## %l - length
@@ -186,7 +185,7 @@ song_window_title_format = {%a - }{%t}|{%f}
 ##
 song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (30)[red]{t|f:Title} (27)[green]{a} (23)[magenta]{b} (4)[yellow]{yE}
 
-#execute_on_song_change = notify-send "$(mpc | head -1)"
+#execute_on_song_change = ""
 
 ## The environment variable MPD_PLAYER_STATE is set to the current
 ## state (either unknown, play, pause, or stop).
@@ -198,7 +197,7 @@ song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (30)[red]{t|f:Title} (27
 
 #playlist_shorten_total_times = no
 
-playlist_separate_albums = yes
+#playlist_separate_albums = yes
 
 playlist_display_mode = columns
 
@@ -222,7 +221,7 @@ volume_change_step = 3
 
 #centered_cursor = no
 
-progressbar_look = =>_
+progressbar_look = 
 
 #default_place_to_search_in = database
 
@@ -262,7 +261,7 @@ generate_win32_compatible_filenames = no
 
 allow_for_physical_item_deletion = yes
 
-lastfm_preferred_language = en
+#lastfm_preferred_language = en
 
 #space_add_mode = add_remove
 
@@ -387,4 +386,5 @@ alternative_ui_separator_color = black
 #window_border_color = green
 
 #active_window_border = red
+
 

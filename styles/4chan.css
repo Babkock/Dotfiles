@@ -2,11 +2,11 @@
 tr#captchaFormPart { display:none !important; }
 
 div.adg-rects.desktop {
-	display:none !important;
+  display:none !important;
 }
 
 body div[id^="container-"] {
-	display:none !important;
+  display:none !important;
 }
 
 /* body background and text color */
@@ -23,7 +23,7 @@ body div[id^="container-"] {
   }
 
   body form[name="post"] {
-	display:none !important;
+  display:none !important;
   }
 
 /* primary link color */
