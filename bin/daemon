@@ -5,14 +5,12 @@ sudo systemctl stop mpd.socket
 sudo systemctl disable mpd.socket
 pkill -x mpd
 pkill -x mopidy
-mopidy 2> /dev/null &
-while true; do
-	yes $'\n' | nc -lu 127.0.0.1 -p 5555 > /tmp/mpd.fifo
-done &
+mpd
 
 sudo systemctl stop transmission-daemon.service
 sudo systemctl disable transmission-daemon.service
 
 pkill -x transmission-daemon
 transmission-daemon
+eww daemon
 

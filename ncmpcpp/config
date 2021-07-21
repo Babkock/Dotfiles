@@ -185,7 +185,7 @@ song_window_title_format = {%a - }{%t}|{%f}
 ##
 song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (30)[red]{t|f:Title} (27)[green]{a} (23)[magenta]{b} (4)[yellow]{yE}
 
-#execute_on_song_change = ""
+execute_on_song_change = "sh /home/babkock/bin/mpdnotify"
 
 ## The environment variable MPD_PLAYER_STATE is set to the current
 ## state (either unknown, play, pause, or stop).

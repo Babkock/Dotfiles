@@ -9,9 +9,6 @@
 xsetroot -cursor_name left_ptr
 xrdb -merge .Xresources
 
-pkill -x tinyserve
-tinyserve &
-
 SXHKD_FIFO=/tmp/sxhkd.fifo
 export SXHKD_FIFO
 
@@ -43,14 +40,13 @@ bspc rule -a feh state=floating follow=on focus=on
 bspc rule -a "Sxiv" state=floating desktop='^3' follow=on focus=on
 bspc rule -a Firefox desktop='^2' state=tiled
 bspc rule -a Firefox-esr desktop='^2' state=tiled
-bspc rule -a Navigator desktop='^2' state=tiled
 bspc rule -a surf desktop='^2' state=tiled
 bspc rule -a "tabbed-surf" desktop='^2' state=tiled
 bspc rule -a surf2 desktop='^2' state=tiled
 bspc rule -a Surf desktop='^2' state=tiled
 bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
 bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
-bspc rule -a mpv desktop='^3' state=tiled focus=on follow=on
+bspc rule -a mpv desktop='^3' state=floating focus=on follow=on
 bspc rule -a *:Dialog state=floating
 bspc rule -a Firefox:Dialog desktop='^2' state=floating
 bspc rule -a Firefox:Places desktop='^2' state=floating
@@ -62,7 +58,7 @@ bspc rule -a Firefox-esr:Browser desktop='^2' state=tiled
 bspc rule -a Firefox-esr:Toplevel desktop='^2' state=tiled
 
 pkill -x polybar 2> /dev/null
-polybar -r -log=error laptop &
+polybar -r --log=error laptop &
 
 transmission-remote -x -Y --no-dht
 transmission-remote --download-dir /home/babkock/Downloads
@@ -70,4 +66,7 @@ transmission-remote --incomplete-dir /home/babkock/Downloads
 
 pkill -x compton 2> /dev/null
 compton --backend glx --glx-no-stencil --glx-swap-method undefined --sw-opti &
+
+pkill -x dunst 2> /dev/null
+dunst --silent &
 

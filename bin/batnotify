@@ -1,0 +1,13 @@
+#!/bin/sh
+export DISPLAY=:0
+
+battery_level=$(acpi -b | grep -P -o '[0-9]+(?=%)')
+batinfo=$(acpi -b | grep 'Discharging')
+
+if [ -n "$batinfo" ]; then
+	if [ $battery_level -le 25 ]; then
+		notify-send -u critical "Battery Low" "Battery level is $battery_level"
+	fi
+fi
+true
+

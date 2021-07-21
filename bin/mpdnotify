@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DISPLAY=1
+pkill -x kunst
+kunst --silent 2> /dev/null &
+export PUD=$!
+sleep 2
+kill $PUD
+TITLE=$(mpc current --host 127.0.0.2 -f %title%)
+ARTIST=$(mpc current --host 127.0.0.2 -f %artist%)
+ALBUM=$(mpc current --host 127.0.0.2 -f %album%)
+notify-send -i "/tmp/kunst.jpg" "$TITLE" "$ARTIST\n<i>$ALBUM</i>"
+true
+
