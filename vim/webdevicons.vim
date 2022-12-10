@@ -4,6 +4,7 @@
 " License: see LICENSE
 
 let s:version = '0.11.0'
+
 let s:plugin_home = expand('<sfile>:p:h:h')
 
 " set scriptencoding after 'encoding' and when using multibyte chars
@@ -56,37 +57,76 @@ call s:set('g:webdevicons_enable_flagship_statusline_fileformat_symbols', 1)
 call s:set('g:webdevicons_enable_startify', 1)
 call s:set('g:webdevicons_conceal_nerdtree_brackets', 1)
 call s:set('g:DevIconsAppendArtifactFix', has('gui_running') ? 1 : 0)
-call s:set('g:DevIconsArtifactFixChar', " ")
+call s:set('g:DevIconsArtifactFixChar', ' ')
 
 " config options {{{1
 "========================================================================
 
 call s:set('g:WebDevIconsUnicodeDecorateFileNodes', 1)
-call s:set('g:WebDevIconsUnicodeDecorateFolderNodes', 0)
+call s:set('g:WebDevIconsUnicodeDecorateFolderNodes', 1)
 call s:set('g:DevIconsEnableFoldersOpenClose', 0)
 call s:set('g:DevIconsEnableFolderPatternMatching', 1)
 call s:set('g:DevIconsEnableFolderExtensionPatternMatching', 0)
+call s:set('g:DevIconsEnableDistro', 1)
 call s:set('g:WebDevIconsUnicodeDecorateFolderNodesExactMatches', 1)
 call s:set('g:WebDevIconsUnicodeGlyphDoubleWidth', 1)
 call s:set('g:WebDevIconsNerdTreeBeforeGlyphPadding', ' ')
 call s:set('g:WebDevIconsNerdTreeAfterGlyphPadding', ' ')
 call s:set('g:WebDevIconsNerdTreeGitPluginForceVAlign', 1)
-call s:set('g:NERDTreeUpdateOnCursorHold', 1)
+call s:set('g:NERDTreeUpdateOnCursorHold', 1) " Obsolete: For backward compatibility
+call s:set('g:NERDTreeGitStatusUpdateOnCursorHold', 1)
+call s:set('g:WebDevIconsTabAirLineBeforeGlyphPadding', ' ')
+call s:set('g:WebDevIconsTabAirLineAfterGlyphPadding', '')
 
 " config defaults {{{1
 "========================================================================
 
 call s:set('g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol', '')
 call s:set('g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol', '')
-call s:set('g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol', g:DevIconsEnableFoldersOpenClose ? '' : '')
+call s:set('g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol', g:DevIconsEnableFoldersOpenClose ? '' : '')
 call s:set('g:WebDevIconsUnicodeDecorateFolderNodesSymlinkSymbol',  '')
-call s:set('g:DevIconsDefaultFolderOpenSymbol', '')
+call s:set('g:DevIconsDefaultFolderOpenSymbol', '')
 
 " functions {{{1
 "========================================================================
 
 " local functions {{{2
 "========================================================================
+
+" scope: local
+function s:getDistro()
+  if exists('s:distro')
+    return s:distro
+  endif
+
+  if has('bsd')
+    let s:distro = ''
+    return s:distro
+  endif
+
+  if g:DevIconsEnableDistro && executable('lsb_release')
+    let s:lsb = system('lsb_release -i')
+    if s:lsb =~# 'Arch'
+      let s:distro = ''
+    elseif s:lsb =~# 'Gentoo'
+      let s:distro = ''
+    elseif s:lsb =~# 'Ubuntu'
+      let s:distro = ''
+    elseif s:lsb =~# 'Cent'
+      let s:distro = ''
+    elseif s:lsb =~# 'Debian'
+      let s:distro = ''
+    elseif s:lsb =~# 'Dock'
+      let s:distro = ''
+    else
+      let s:distro = ''
+    endif
+    return s:distro
+  endif
+
+  let s:distro = ''
+  return s:distro
+endfunction
 
 " scope: local
 function s:isDarwin()
@@ -127,54 +167,63 @@ endfunction
 function! s:setDictionaries()
 
   let s:file_node_extensions = {
-        \ '7z'       : '',
-        \ 'a'        : '',
-        \ 'asm'      : '',
-        \ 'deb'      : '',
         \ 'styl'     : '',
         \ 'sass'     : '',
         \ 'scss'     : '',
         \ 'htm'      : '',
         \ 'html'     : '',
-        \ 'xml'      : '',
-        \ 'xhtml'     : '',
+        \ 'xml'      : '',
+        \ 'xhtml'    : '',
         \ 'slim'     : '',
-        \ 'efi'      : '',
-        \ 'ejs'      : '',
-        \ 'elf'      : '',
-        \ 'css'      : '',
-        \ 'less'     : '',
+        \ 'haml'     : '',
+        \ 'ejs'      : '',
+        \ 'asm'      : '',
+        \ 'asp'      : '',
+        \ 's'        : '',
+        \ 'css'      : '',
+        \ 'less'     : '',
         \ 'md'       : '',
+        \ 'mdx'      : '',
         \ 'markdown' : '',
-        \ 'rst'       : '',
         \ 'rmd'      : '',
         \ 'json'     : '',
+        \ 'webmanifest' : '',
         \ 'js'       : '',
+        \ 'mjs'      : '',
+        \ 'el'       : '',
+        \ 'elc'      : '',
+        \ 'lisp'     : '',
+        \ 'org'      : '',
         \ 'jsx'      : '',
-        \ 'rb'       : '',
-        \ 'phar'     : '',
+        \ 'rb'       : '',
+        \ 'gemspec'  : '',
+        \ 'rake'     : '',
         \ 'php'      : '',
+        \ 'phar'      : '',
         \ 'py'       : '',
         \ 'pyc'      : '',
         \ 'pyo'      : '',
         \ 'pyd'      : '',
+        \ 'coffee'   : '',
         \ 'mustache' : '',
         \ 'hbs'      : '',
         \ 'conf'     : '',
-        \ 'img'      : '',
         \ 'ini'      : '',
-        \ 'ipynb'    : '',
-        \ 'iso'      : '',
-        \ 'yml'      : '',
-        \ 'yaml'     : '',
-        \ 'bat'      : '',
+        \ 'yml'      : '',
+        \ 'yaml'     : '',
+        \ 'toml'     : '',
+        \ 'bat'      : '',
+        \ 'mk'       : '',
+        \ 'log'      : '',
         \ 'jpg'      : '',
         \ 'jpeg'     : '',
         \ 'bmp'      : '',
-        \ 'bz2'      : '',
         \ 'png'      : '',
+        \ 'webp'     : '',
         \ 'gif'      : '',
         \ 'ico'      : '',
+        \ 'svg'      : '',
+        \ 'xcf'      : '',
         \ 'twig'     : '',
         \ 'cpp'      : '',
         \ 'c++'      : '',
@@ -182,22 +231,18 @@ function! s:setDictionaries()
         \ 'cc'       : '',
         \ 'cp'       : '',
         \ 'c'        : '',
+        \ 'cs'       : '',
         \ 'h'        : '',
+        \ 'hh'       : '',
         \ 'hpp'      : '',
         \ 'hxx'      : '',
         \ 'hs'       : '',
         \ 'lhs'      : '',
-        \ 'log'      : '',
+        \ 'nix'      : '',
         \ 'lua'      : '',
         \ 'java'     : '',
+        \ 'jar'      : '',
         \ 'class'    : '',
-        \ 'csv'     : '',
-        \ 'mkv'      : '',
-        \ 'm4a'      : '',
-        \ 'm4v'      : '',
-        \ 'avi'      : '',
-        \ 'mov'      : '',
-        \ 'mp3'      : '',
         \ 'sh'       : '',
         \ 'fish'     : '',
         \ 'bash'     : '',
@@ -209,15 +254,27 @@ function! s:setDictionaries()
         \ 'ml'       : 'λ',
         \ 'mli'      : 'λ',
         \ 'diff'     : '',
+        \ 'iso'      : '',
+        \ 'img'      : '',
         \ 'db'       : '',
+        \ 'sql'      : '',
         \ 'dump'     : '',
+        \ 'mp3'      : '',
+        \ 'm4a'      : '',
+        \ 'wav'      : '',
+        \ 'flac'      : '',
+        \ 'ogg'      : '',
+        \ 'mp4'      : '',
+        \ 'mkv'      : '',
+        \ 'mov'      : '',
+        \ 'avi'      : '',
+        \ 'webm'     : '',
+        \ 'wmv'      : '',
         \ 'clj'      : '',
         \ 'cljc'     : '',
         \ 'cljs'     : '',
-        \ 'ebook'    : '',
         \ 'edn'      : '',
         \ 'scala'    : '',
-        \ 'sql'       : '',
         \ 'go'       : '',
         \ 'dart'     : '',
         \ 'xul'      : '',
@@ -240,55 +297,31 @@ function! s:setDictionaries()
         \ 'ex'       : '',
         \ 'exs'      : '',
         \ 'eex'      : '',
+        \ 'leex'     : '',
+        \ 'heex'     : '',
         \ 'vim'      : '',
         \ 'ai'       : '',
         \ 'psd'      : '',
         \ 'psb'      : '',
+        \ 'pub'      : '',
+        \ 'key'      : '',
         \ 'ts'       : '',
         \ 'tsx'      : '',
         \ 'jl'       : '',
         \ 'pp'       : '',
         \ 'vue'      : '﵂',
+        \ 'elm'      : '',
         \ 'swift'    : '',
         \ 'xcplayground' : '',
-        \ 'htaccess' : '',
-        \ 'htpasswd' : '',
+        \ 'tex'      : 'ﭨ',
         \ 'o'        : '',
-        \ 'ogg'      : '',
-        \ 'pdf'      : '',
-        \ 'rtf'      : '',
-        \ 'ppt'      : '',
-        \ 'pptx'     : '',
-        \ 'doc'      : '',
-        \ 'docx'      : '',
-        \ 'xls'      : '',
-        \ 'xlsx'      : '',
-        \ 'cmake'    : '',
-        \ 'coffee'   : '',
-        \ 's'      : '',
+        \ 'a'        : '',
         \ 'so'       : '',
-        \ 'xbps'     : '',
-        \ 'gz'       : '',
-        \ 'gzip'       : '',
-        \ 'tar'       : '',
-        \ 'tgz'       : '',
-        \ 'txt'       : '',
-        \ 'pub'      : '',
-        \ 'key'      : '',
-        \ 'rubydoc'   : '',
-        \ 'ru'        : '',
-        \ 'rspec'     : '',
-        \ 'bin'      : '',
-        \ 'rom'      : '',
-        \ 'rpm'      : '',
-        \ 'wav'      : '',
-        \ 'font'      : '',
-        \ 'eot'        : '',
-        \ 'woff'      : '',
-        \ 'woff2'     : '',
-        \ 'otf'       : '',
-        \ 'ttf'       : '',
-        \ 'torrent'   : '蘒',
+        \ 'r'        : 'ﳒ',
+        \ 'rdata'    : 'ﳒ',
+        \ 'rproj'    : '鉶',
+        \ 'sol'      : 'ﲹ',
+        \ 'pem'      : ''
         \}
 
   let s:file_node_exact_matches = {
@@ -300,58 +333,57 @@ function! s:setDictionaries()
         \ 'gulpfile.coffee'                  : '',
         \ 'gulpfile.js'                      : '',
         \ 'gulpfile.ls'                      : '',
-        \ 'config.mk'                        : '',
-        \ 'config.ac'                        : '',
-        \ 'composer.json'                    : '',
-        \ 'composer.lock'                    : '',
-        \ 'configure'                        : '',
+        \ 'mix.lock'                         : '',
         \ 'dropbox'                          : '',
-        \ '.ds_store'                        : '',
-        \ '.DS_Store'                     : '',
+        \ '.ds_store'                        : '',
         \ '.gitconfig'                       : '',
         \ '.gitignore'                       : '',
+        \ '.gitattributes'                   : '',
+        \ '.git'                             : '',
+        \ '.github'                          : '',
+        \ '.gitlab-ci.yml'                   : '',
         \ '.bashrc'                          : '',
+        \ '.bash_profile'                    : '',
+        \ 'config.mk'                        : '',
+        \ 'config.ac'                        : '',
         \ '.zshrc'                           : '',
-        \ 'Makefile'                       : '',
-        \ '.xinitrc'                        : '',
-        \ 'bspwmrc'                     : '',
-        \ 'sxhkdrc'                       : '',
-        \ '.viminfo'                       : '',
-        \ '.Xresources'                          : '',
-        \ '.Xauthority'                           : '',
-        \ '.gitattributes'                       : '',
-        \ 'Makefile.in'                       : '',
-        \ 'Rakefile'                          : '',
-        \ 'config.m4'                           : '',
-        \ '.vimrc'                           : '',
-        \ '.fehbg'                      : '',
-        \ '.bash_history'                : '',
         \ '.zsh_history'                           : '',
-        \ '.bash_aliases'                : '',
-        \ '.bash_profile'                           : '',
+        \ '.bash_history'                           : '',
+        \ '.zshenv'                          : '',
+        \ '.zprofile'                        : '',
+        \ '.vimrc'                           : '',
         \ '.gvimrc'                          : '',
         \ '_vimrc'                           : '',
         \ '_gvimrc'                          : '',
         \ '.bashprofile'                     : '',
         \ 'favicon.ico'                      : '',
+        \ 'composer.json'                    : '',
+        \ 'composer.lock'                    : '',
+        \ 'config.el'                        : '',
+        \ 'packages.el'                      : '',
+        \ 'custom.el'                        : '',
+        \ 'init.el'                          : '',
+        \ 'Cargo.toml'                       : '',
+        \ 'Cargo.lock'                       : '',
         \ 'license'                          : '',
-        \ 'LICENSE'                          : '',
-        \ 'LICENSE.md'                          : '',
-        \ 'LICENSE.txt'                          : '',
-        \ 'README.txt'                        : '',
-        \ 'README.rst'                      : '',
-        \ 'README.md'                     : '',
-        \ 'README.markdown'         : '',
-        \ 'README'                           : '',
+        \ 'package.json'                     : '',
+        \ 'package-lock.json'                : '',
         \ 'node_modules'                     : '',
-        \ 'react.jsx'                        : '',
+        \ 'webpack.config.js'                : 'ﰩ',
+        \ 'react.jsx'                        : '',
         \ 'procfile'                         : '',
         \ 'dockerfile'                       : '',
         \ 'docker-compose.yml'               : '',
-        \ 'package.json'                    : '',
-        \ 'main.js'                            : '',
-        \ 'webpack.config.js'            : '',
-        \ 'Cargo.toml'                   : '',
+        \ 'rakefile'                         : '',
+        \ 'config.ru'                        : '',
+        \ 'gemfile'                          : '',
+        \ 'makefile'                         : '',
+        \ 'Makefile'                         : '',
+        \ 'cmakelists.txt'                   : '',
+        \ 'robots.txt'                       : 'ﮧ',
+        \ '.Xresources'                      : '',
+        \ '.Xauthority'                      : '',
+        \ '.xinitrc'                         : '',
         \}
 
   let s:file_node_pattern_matches = {
@@ -407,8 +439,12 @@ function! s:setSyntax()
   if g:webdevicons_enable_nerdtree == 1 && g:webdevicons_conceal_nerdtree_brackets == 1
     augroup webdevicons_conceal_nerdtree_brackets
       au!
-      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
-      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=NERDTreeFlags
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=NERDTreeFlags
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=NERDTreeLinkFile
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=NERDTreeLinkDir
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=NERDTreeLinkFile
+      autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=NERDTreeLinkDir
       autocmd FileType nerdtree setlocal conceallevel=3
       autocmd FileType nerdtree setlocal concealcursor=nvic
     augroup END
@@ -428,7 +464,7 @@ endfunction
 " scope: local
 " stole solution/idea from nerdtree-git-plugin :)
 function! s:CursorHoldUpdate()
-  if g:NERDTreeUpdateOnCursorHold != 1
+  if g:NERDTreeUpdateOnCursorHold != 1 || g:NERDTreeGitStatusUpdateOnCursorHold != 1
     return
   endif
 
@@ -464,7 +500,7 @@ endfunction
 
 " scope: local
 function! s:softRefreshNerdTree()
-  if g:webdevicons_enable_nerdtree == 1 && g:NERDTree.IsOpen()
+  if g:webdevicons_enable_nerdtree == 1 && exists('g:NERDTree') && g:NERDTree.IsOpen()
     NERDTreeToggle
     NERDTreeToggle
   endif
@@ -521,9 +557,9 @@ endfunction
 
 " a:1 (bufferName), a:2 (isDirectory)
 " scope: public
-function! WebDevIconsGetFileTypeSymbol(...)
+function! WebDevIconsGetFileTypeSymbol(...) abort
   if a:0 == 0
-    let fileNodeExtension = expand('%:e')
+    let fileNodeExtension = !empty(expand('%:e')) ? expand('%:e') : &filetype
     let fileNode = expand('%:t')
     let isDirectory = 0
   else
@@ -594,11 +630,7 @@ function! WebDevIconsGetFileFormatSymbol(...)
   if &fileformat ==? 'dos'
     let fileformat = ''
   elseif &fileformat ==? 'unix'
-    if s:isDarwin()
-      let fileformat = ''
-    else
-      let fileformat = ''
-    endif
+    let fileformat = s:isDarwin() ? '' : s:getDistro()
   elseif &fileformat ==? 'mac'
     let fileformat = ''
   endif
@@ -616,7 +648,7 @@ function! AirlineWebDevIcons(...)
   let w:airline_section_x = get(w:, 'airline_section_x',
         \ get(g:, 'airline_section_x', ''))
   let w:airline_section_x .= ' %{WebDevIconsGetFileTypeSymbol()} '
-  let hasFileFormatEncodingPart = airline#parts#ffenc() != ''
+  let hasFileFormatEncodingPart = airline#parts#ffenc() !=? ''
   if g:webdevicons_enable_airline_statusline_fileformat_symbols && hasFileFormatEncodingPart
     let w:airline_section_y = ' %{&fenc . " " . WebDevIconsGetFileFormatSymbol()} '
   endif
@@ -628,11 +660,7 @@ endif
 
 if g:webdevicons_enable == 1 && g:webdevicons_enable_airline_tabline
   " Store original formatter.
-  if exists('g:airline#extensions#tabline#formatter')
-    let g:_webdevicons_airline_orig_formatter = g:airline#extensions#tabline#formatter
-  else
-    let g:_webdevicons_airline_orig_formatter = 'default'
-  endif
+  let g:_webdevicons_airline_orig_formatter = get(g:, 'airline#extensions#tabline#formatter', 'default')
   let g:airline#extensions#tabline#formatter = 'webdevicons'
 endif
 
@@ -648,13 +676,9 @@ function! NERDTreeWebDevIconsRefreshListener(event)
   let hasGitNerdTreePlugin = (exists('g:loaded_nerdtree_git_status') == 1)
   let artifactFix = s:DevIconsGetArtifactFix()
 
-  if hasGitFlags && g:WebDevIconsUnicodeGlyphDoubleWidth == 1
-    let prePadding .= ' '
-  endif
-
   " align vertically at the same level: non git-flag nodes with git-flag nodes
   if g:WebDevIconsNerdTreeGitPluginForceVAlign && !hasGitFlags && hasGitNerdTreePlugin
-    let prePadding .= '  '
+    let prePadding .= ' '
   endif
 
   if !path.isDirectory
@@ -711,7 +735,7 @@ function! NERDTreeWebDevIconsRefreshListener(event)
     endif
 
   else
-    let flag = ''
+    let flag = prePadding . ' ' . artifactFix . postPadding
   endif
 
   call path.flagSet.clearFlags('webdevicons')
@@ -734,5 +758,3 @@ unlet s:save_cpo
 
 " modeline syntax:
 " vim: fdm=marker tabstop=2 softtabstop=2 shiftwidth=2 expandtab:
-
-

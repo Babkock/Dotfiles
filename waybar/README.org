@@ -1,0 +1,893 @@
+#+TITLE: Waybar
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+LANGUAGE: en
+#+STARTUP: showeverything
+#+OPTIONS: toc:nil num:nil
+#+DESCRIPTION: Waybar configuration on Tanner Babcock GitHub Pages. Contains working status bars for Sway, River, and LabWC.
+#+KEYWORDS: tanner babcock, emacs, waybar, wayland, compositor, sway, river, labwc, org mode, linux, gnu linux, experimental, noise
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD_EXTRA: <meta property="og:image" content="/images/ogimage.png" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:width" content="660" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:height" content="461" />
+#+HTML_HEAD_EXTRA: <meta property="og:title" content="Waybar" />
+#+HTML_HEAD_EXTRA: <meta property="og:description" content="Waybar configuration on Tanner Babcock GitHub Pages. Contains working status bars for Sway, River, and LabWC." />
+#+HTML_HEAD_EXTRA: <meta property="og:locale" content="en_US" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
+#+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+
+Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literate configuration. Please, if you appreciate my work, consider [[https://tannerbabcock.com/donate][making a donation]].
+
+#+BEGIN_EXPORT html
+<header>
+    <center>
+        <ul>
+            <li><a href="https://babkock.github.io">Home</a></li>
+            <li><a href="https://tannerbabcock.com/home">Website</a></li>
+            <li><a href="https://github.com/Babkock" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/waybar.html" target="_blank">Source Code</a></li>
+            <li><a href="https://gitlab.com/Babkock/" target="_blank">GitLab</a></li>
+            <li><a href="https://www.youtube.com/channel/UCdXmrPRUtsl-6pq83x3FrTQ" target="_blank">YouTube</a></li>
+        </ul>
+    </center>
+</header>
+#+END_EXPORT
+
+# #+TOC: headlines 2
+
+* Table of Contents :toc:
+- [[#sway-laptop-bar][Sway Laptop Bar]]
+  - [[#appearance][Appearance]]
+  - [[#mpd][MPD]]
+  - [[#clock][Clock]]
+  - [[#cpu][CPU]]
+  - [[#memory][Memory]]
+  - [[#battery][Battery]]
+  - [[#backlight][Backlight]]
+  - [[#pulseaudio][Pulseaudio]]
+- [[#sway-monitor-bar][Sway Monitor Bar]]
+  - [[#appearance-1][Appearance]]
+  - [[#window][Window]]
+  - [[#battery-1][Battery]]
+  - [[#network][Network]]
+  - [[#backlight-1][Backlight]]
+  - [[#disk][Disk]]
+  - [[#clock-1][Clock]]
+- [[#river-laptop-bar][River Laptop Bar]]
+  - [[#appearance-2][Appearance]]
+  - [[#mpd-1][MPD]]
+  - [[#clock-2][Clock]]
+  - [[#cpu-1][CPU]]
+  - [[#memory-1][Memory]]
+  - [[#battery-2][Battery]]
+  - [[#backlight-2][Backlight]]
+  - [[#pulseaudio-1][Pulseaudio]]
+- [[#river-monitor-bar][River Monitor Bar]]
+  - [[#appearance-3][Appearance]]
+  - [[#window-1][Window]]
+  - [[#battery-3][Battery]]
+  - [[#network-1][Network]]
+  - [[#backlight-3][Backlight]]
+  - [[#disk-1][Disk]]
+  - [[#clock-3][Clock]]
+- [[#labwc-laptop-bar][LabWC Laptop Bar]]
+  - [[#appearance-4][Appearance]]
+  - [[#mpd-2][MPD]]
+  - [[#clock-4][Clock]]
+  - [[#cpu-2][CPU]]
+  - [[#battery-4][Battery]]
+  - [[#memory-2][Memory]]
+  - [[#backlight-4][Backlight]]
+  - [[#pulseaudio-2][Pulseaudio]]
+- [[#labwc-monitor-bar][LabWC Monitor Bar]]
+  - [[#appearance-5][Appearance]]
+  - [[#mpd-3][MPD]]
+  - [[#disk-2][Disk]]
+  - [[#battery-5][Battery]]
+  - [[#network-2][Network]]
+  - [[#backlight-5][Backlight]]
+  - [[#clock-5][Clock]]
+
+* Sway Laptop Bar
+
+This Org documents contains my Waybar configurations for three different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][River]], and [[https://github.com/labwc/labwc][LabWC]]. It has a total of six separate status bars, one for each of my two outputs, on each of the three compositors.
+If you've ever seen me use a Wayland compositor in a video, I was using a Waybar from this document.
+
+This Org document outputs to three separate files: =config.json=, =rconfig.json= for River, and =lconfig.json= for LabWC. In turn, these bars use the stylesheets =style.css=, =river.css=, and =labwc.css= respectively.
+
+** Appearance
+
+#+begin_src json :tangle config.json
+[{
+    "position": "bottom",
+    "height": 38,
+    "spacing": 0,
+    "output": "eDP-1",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "sway/workspaces": {
+         "disable-scroll": false,
+         "disable-scroll-wraparound": true,
+         "enable-bar-scroll": true,
+         "all-outputs": false,
+         "format": "{icon}",
+         "format-icons": {
+             "1": "",
+             "2": "爵",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "7": "",
+             "8": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    #+end_src
+
+** MPD
+
+    #+begin_src json :tangle config.json
+    "mpd": {
+        "server": "127.0.0.2",
+        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+        "format-disconnected": " ",
+        "format-stopped": "{consumeIcon}{singleIcon} ",
+        "title-len": 34,
+        "unknown-tag": "N/A",
+        "interval": 1,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "playing": " ",
+            "paused": " "
+        },
+        "tooltip-format": "{artist} - {album} ({date})",
+    },
+    #+end_src
+
+** Clock
+
+#+begin_src json :tangle config.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    },
+#+end_src
+
+** CPU
+
+#+begin_src json :tangle config.json
+    "cpu": {
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    },
+#+end_src
+
+** Memory
+
+#+begin_src json :tangle config.json
+    "memory": {
+        "format": " {}%",
+        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle config.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}", 
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false,
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle config.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
+    },
+#+end_src
+
+** Pulseaudio
+
+#+begin_src json :tangle config.json
+    "pulseaudio": {
+        "format": "{icon} <span style=\"italic\">{volume}%</span>",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "tooltip": false,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+    }
+#+end_src
+
+* Sway Monitor Bar
+
+This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2=), to the right of the bar detailed above.
+
+** Appearance
+
+#+begin_src json :tangle config.json
+}, {
+    "position": "bottom",
+    "height": 39,
+    "spacing": 0,
+    "output": "HDMI-A-2",
+    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+         "format-icons": {
+             "1": "",
+             "2": "爵",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "7": "",
+             "8": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+    },
+#+end_src
+
+** Window
+
+#+begin_src json :tangle config.json
+    "sway/window": {
+        "max-length": 71,
+        "format": " <span style=\"italic\">{}</span>"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle config.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "tooltip-format": "{time}", 
+        "format-icons": ["", "", "", "", ""]
+    },
+#+end_src
+
+** Network
+
+#+begin_src json :tangle config.json
+    "network": {
+        "interface": "wlp0s20f3",
+        "interval": 1,
+        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-alt": " {ipaddr}",
+        "format-disconnected": "",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle config.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
+    },
+#+end_src
+
+** Disk
+
+#+begin_src json :tangle config.json
+    "disk": {
+        "path": "/",
+        "interval": 2,
+        "format": " <span style=\"italic\">{free}</span>",
+        "format-alt": " {used}",
+        "tooltip-format": "{percentageUsed}% of {total}"
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle config.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
+}]
+#+end_src
+
+* River Laptop Bar
+
+This is the first and primary bar for the River compositor. It appears on my laptop's screen (=eDP-1=). Notice how the =modules-left= are different for each of the three output files.
+
+** Appearance
+
+#+begin_src json :tangle rconfig.json
+[{
+    "position": "bottom",
+    "height": 38,
+    "spacing": 0,
+    "output": "eDP-1",
+    "modules-left": ["river/tags"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "river/tags": {
+        "num-tags": 6,
+        "tag-labels": ["", "爵", "", "", "", ""]
+    },
+#+end_src
+
+** MPD
+
+#+begin_src json :tangle rconfig.json
+    "mpd": {
+        "server": "127.0.0.2",
+        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+        "format-disconnected": " ",
+        "format-stopped": "{consumeIcon}{singleIcon} ",
+        "title-len": 34,
+        "unknown-tag": "N/A",
+        "interval": 1,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "playing": " ",
+            "paused": " "
+        },
+        "tooltip-format": "{artist} - {album} ({date})",
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle rconfig.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    },
+#+end_src
+
+** CPU
+
+#+begin_src json :tangle rconfig.json
+    "cpu": {
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    },
+#+end_src
+
+** Memory
+
+#+begin_src json :tangle rconfig.json
+    "memory": {
+        "format": " {}%",
+        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle rconfig.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}", 
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{time}"
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle rconfig.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+    },
+#+end_src
+
+** Pulseaudio
+
+#+begin_src json :tangle rconfig.json
+    "pulseaudio": {
+        "format": "{icon} <span style=\"italic\">{volume}%</span>",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "tooltip": false,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+    }
+#+end_src
+
+* River Monitor Bar
+
+This is the second status bar that River uses. It appears on my monitor (=HDMI-A-2=).
+
+** Appearance
+
+#+begin_src json :tangle rconfig.json
+}, {
+    "position": "bottom",
+    "height": 40,
+    "spacing": 0,
+    "output": "HDMI-A-2",
+    "modules-left": ["river/tags", "river/window"],
+    "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
+    "river/tags": {
+        "num-tags": 4,
+        "tag-labels": ["", "爵", "", ""]
+    },
+#+end_src
+
+** Window
+
+#+begin_src json :tangle rconfig.json
+    "river/window": {
+        "max-length": 67,
+        "format": " <span style=\"italic\">{}</span>"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle rconfig.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "tooltip-format": "{time}", 
+        "format-icons": ["", "", "", "", ""]
+    },
+#+end_src
+
+** Network
+
+#+begin_src json :tangle rconfig.json
+    "network": {
+        "interface": "wlp0s20f3",
+        "interval": 1,
+        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-alt": " {ipaddr}",
+        "format-disconnected": "",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle rconfig.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+    },
+#+end_src
+
+** Disk
+
+#+begin_src json :tangle rconfig.json
+    "disk": {
+        "path": "/",
+        "interval": 2,
+        "format": " <span style=\"italic\">{free}</span>",
+        "format-alt": " {used}",
+        "tooltip-format": "{percentageUsed}% of {total}"
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle rconfig.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
+}]
+#+end_src
+
+* LabWC Laptop Bar
+
+This is the first and primary status bar that LabWC uses, for my laptop's screen (=eDP-1=). Notice how LabWC does not use *workspaces* or *tags* like Sway and River, but it instead has a Taskbar module. The Taskbar elements are buttons, and they are styled like the workspace buttons.
+
+** Appearance
+
+#+begin_src json :tangle lconfig.json
+[{
+    "position": "bottom",
+    "height": 39,
+    "spacing": 0,
+    "output": "eDP-1",
+    "modules-left": ["wlr/taskbar"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "wlr/taskbar": {
+        "format": "{short_state}{icon}",
+        "on-click": "minimize-raise",
+        "on-click-right": "close",
+        "on-click-middle": "maximize",
+        "tooltip-format": "{app_id} {title}",
+        "icon-size": 29,
+    },
+#+end_src
+
+** MPD
+
+#+begin_src json :tangle lconfig.json
+    "mpd": {
+        "server": "127.0.0.2",
+        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+        "format-disconnected": " ",
+        "format-stopped": "{consumeIcon}{singleIcon} ",
+        "title-len": 40,
+        "unknown-tag": "N/A",
+        "interval": 1,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "playing": " ",
+            "paused": " "
+        },
+        "tooltip-format": "{artist} - {album} ({date})",
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle lconfig.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    },
+#+end_src
+
+** CPU
+
+#+begin_src json :tangle lconfig.json
+    "cpu": {
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle lconfig.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false,
+    },
+#+end_src
+
+** Memory
+
+#+begin_src json :tangle lconfig.json
+    "memory": {
+        "format": " {}%",
+        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle lconfig.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
+    },
+#+end_src
+
+** Pulseaudio
+
+#+begin_src json :tangle lconfig.json
+    "pulseaudio": {
+        "format": "{icon} <span style=\"italic\">{volume}%</span>",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "tooltip": false,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+    }
+#+end_src
+
+* LabWC Monitor Bar
+
+And finally, the sixth status bar, this is the second status bar that LabWC uses when my monitor (=HDMI-A-2=) is connected.
+
+** Appearance
+
+#+begin_src json :tangle lconfig.json
+}, {
+    "position": "bottom",
+    "height": 41,
+    "spacing": 0,
+    "output": "HDMI-A-2",
+    "modules-left": ["wlr/taskbar"],
+    "modules-right": ["mpd", "disk", "network", "battery", "backlight", "custom/clock"],
+    "wlr/taskbar": {
+        "format": "{short_state}{icon}",
+        "icon-size": 30,
+        "tooltip-format": "{app_id} {title}",
+        "on-click": "minimize-raise",
+        "on-click-right": "close",
+        "on-click-middle": "maximize",
+    },
+#+end_src
+
+** MPD
+
+#+begin_src json :tangle lconfig.json
+    "mpd": {
+        "server": "127.0.0.2",
+        "format": "{consumeIcon}{singleIcon}{title}  {stateIcon}",
+        "format-disconnected": " ",
+        "format-stopped": "{consumeIcon}{singleIcon} ",
+        "title-len": 32,
+        "unknown-tag": "N/A",
+        "interval": 1,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "playing": " ",
+            "paused": " "
+        },
+        "tooltip-format": "{artist} - {album} ({date})",
+    },
+#+end_src
+
+** Disk
+
+#+begin_src json :tangle lconfig.json
+    "disk": {
+        "path": "/",
+        "interval": 2,
+        "format": " <span style=\"italic\">{free}</span>",
+        "format-alt": " {used}",
+        "tooltip-format": "{percentageUsed}% of {total}"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle lconfig.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "tooltip-format": "{time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+#+end_src
+
+** Network
+
+#+begin_src json :tangle lconfig.json
+    "network": {
+        "interface": "wlp0s20f3",
+        "interval": 1,
+        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-alt": " {ipaddr}",
+        "format-disconnected": "",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle lconfig.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle lconfig.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
+}]
+#+end_src
+
+#+BEGIN_EXPORT html
+<footer>
+    <center>
+        <p>Copyright &copy; 2022 Tanner Babcock.</p>
+        <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
+        <p class="nav">
+            <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;
+            <a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/waybar.html" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
+            <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
+            <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp;
+            <a href="https://www.twitch.tv/babkock">Twitch</a> &nbsp;&bull;&nbsp;
+            <a href="https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD" target="_blank"><i>Donate!</i></a>
+        </p>
+    </center>
+</footer>
+#+END_EXPORT

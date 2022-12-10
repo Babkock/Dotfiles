@@ -1,0 +1,506 @@
+#+TITLE: Waybar Style
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+DESCRIPTION: The CSS configuration for Waybar. This literate configuration outputs three CSS files, one for each of the Waybars.
+#+KEYWORDS: tanner babcock, tanner, babcock, emacs, linux, gnu linux, waybar, wayland, compositor, sway, river, labwc, sway wm, experimental, noise, technology, open source
+#+LANGUAGE: en
+#+STARTUP: showeverything
+#+OPTIONS: toc:nil num:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD_EXTRA: <meta property="og:image" content="/images/ogimage.png" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:width" content="660" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:height" content="461" />
+#+HTML_HEAD_EXTRA: <meta property="og:title" content="Waybar Style" />
+#+HTML_HEAD_EXTRA: <meta property="og:description" content="The CSS configuration for Waybar. This literate configuration outputs three CSS files, one for each of the Waybars." />
+#+HTML_HEAD_EXTRA: <meta property="og:locale" content="en_US" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
+#+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+
+These are the cosmetic CSS files for my [[https://babkock.github.io/configs/waybar.html][Waybar configuration]]. Please, if you appreciate my work, consider [[https://tannerbabcock.com/donate][making a donation]].
+
+#+BEGIN_EXPORT html
+<header>
+    <center>
+        <ul>
+            <li><a href="https://babkock.github.io">Home</a></li>
+            <li><a href="https://tannerbabcock.com/home">Website</a></li>
+            <li><a href="https://github.com/Babkock" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/waystyle.html" target="_blank">Source Code</a></li>
+            <li><a href="https://gitlab.com/Babkock/" target="_blank">GitLab</a></li>
+            <li><a href="https://www.youtube.com/channel/UCdXmrPRUtsl-6pq83x3FrTQ" target="_blank">YouTube</a></li>
+        </ul>
+    </center>
+</header>
+#+END_EXPORT
+
+# #+TOC: headings 2
+
+* Table of Contents :toc:
+- [[#sway-waybar-style][Sway Waybar Style]]
+  - [[#all][All]]
+  - [[#window][Window]]
+  - [[#mpd][MPD]]
+  - [[#cpu][CPU]]
+  - [[#pulseaudiodisk][Pulseaudio/Disk]]
+  - [[#memorybacklight][Memory/Backlight]]
+  - [[#workspaces][Workspaces]]
+  - [[#battery][Battery]]
+  - [[#clocknetwork][Clock/Network]]
+- [[#river-waybar-style][River Waybar Style]]
+  - [[#all-1][All]]
+  - [[#title][Title]]
+  - [[#mpd-1][MPD]]
+  - [[#cpu-1][CPU]]
+  - [[#pulseaudiodisk-1][Pulseaudio/Disk]]
+  - [[#memorybacklight-1][Memory/Backlight]]
+  - [[#workspaces-1][Workspaces]]
+  - [[#battery-1][Battery]]
+  - [[#clocknetwork-1][Clock/Network]]
+- [[#labwc-waybar-style][LabWC Waybar Style]]
+  - [[#all-2][All]]
+  - [[#cpu-2][CPU]]
+  - [[#pulseaudiodisk-2][Pulseaudio/Disk]]
+  - [[#memorybacklight-2][Memory/Backlight]]
+  - [[#battery-2][Battery]]
+  - [[#taskbar][Taskbar]]
+  - [[#clocknetwork-2][Clock/Network]]
+  - [[#mpd-2][MPD]]
+
+* Sway Waybar Style
+
+This is the Sway Waybar style. Load this document into Emacs, and turn on Rainbow mode for extra fun! Now these Org documents serve yet another purpose. The colors for each of the three CSS files match the rices for *Sway*, *River*, and *LabWC*.
+
+** All
+
+Notice the space before the asterisk.
+
+#+begin_src css :tangle style.css
+ * {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#efefef;
+}
+#+end_src
+
+** Window
+
+#+begin_src css :tangle style.css
+#window {
+    color:#010101;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6)
+}
+#+end_src
+
+** MPD
+
+#+begin_src css :tangle style.css
+#mpd {
+    color:#010101;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+** CPU
+
+#+begin_src css :tangle style.css
+#cpu {
+    color:#fc3c35;
+    background:linear-gradient(180deg, rgba(208, 56, 68, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:12px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+** Pulseaudio/Disk
+
+#+begin_src css :tangle style.css
+#pulseaudio, #disk {
+    color:#dedc91;
+    background:linear-gradient(180deg, rgba(222, 220, 145, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+** Memory/Backlight
+
+#+begin_src css :tangle style.css
+#memory, #backlight {
+    color:#40a789;
+    background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+** Workspaces
+
+#+begin_src css :tangle style.css
+#workspaces button, #tags button {
+    background:linear-gradient(180deg, rgba(120, 120, 120, 0.7), rgba(0, 0, 0, 0.5));
+    padding-left:17px;
+    padding-right:17px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#dfdfdf;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#workspaces button * {
+    background:none;
+}
+
+#workspaces button:hover, #tags button:hover {
+    background:linear-gradient(180deg, rgba(171, 43, 27, 0.7), rgba(0, 0, 0, 0.5));
+    box-shadow:inherit;
+    text-shadow:inherit;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#b93b2b;
+    text-shadow:3px 3px rgba(171, 43, 27, 0.6);
+}
+
+#workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
+    background:linear-gradient(180deg, rgba(97, 185, 167, 0.7), rgba(0, 0, 0, 0.5));
+    color:#81d8c6;
+}
+
+#workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
+    text-shadow:3px 3px rgba(107, 195, 177, 0.6);
+}
+
+#tags button.occupied {
+    background:linear-gradient(180deg, rgba(239, 175, 96, 0.7), rgba(0, 0, 0, 0.5));
+    color:#fff293;
+}
+#+end_src
+
+** Battery
+
+#+begin_src css :tangle style.css
+#battery {
+    color:#61b8a6;
+    background:linear-gradient(180deg, rgba(107, 194, 176, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:12px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+** Clock/Network
+
+#+begin_src css :tangle style.css
+#custom-clock, #network {
+    color:#c26cd5;
+    background:linear-gradient(180deg, rgba(176, 105, 152, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+* River Waybar Style
+
+** All
+
+#+begin_src css :tangle river.css
+ * {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#edc9b9;
+}
+#+end_src
+
+** Title
+
+#+begin_src css :tangle river.css
+#title, #window {
+    color:#edc9b9;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** MPD
+
+#+begin_src css :tangle river.css
+#mpd {
+    color:#edc9b9;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** CPU
+
+#+begin_src css :tangle river.css
+#cpu {
+    color:#dd6359;
+    background:linear-gradient(180deg, rgba(205, 83, 73, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Pulseaudio/Disk
+
+#+begin_src css :tangle river.css
+#pulseaudio, #disk {
+    color:#eec484;
+    background:linear-gradient(180deg, rgba(221, 180, 116, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Memory/Backlight
+
+#+begin_src css :tangle river.css
+#memory, #backlight {
+    color:#63b268;
+    background:linear-gradient(180deg, rgba(83, 159, 88, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Workspaces
+
+#+begin_src css :tangle river.css
+#workspaces button, #tags button {
+    background:linear-gradient(180deg, rgba(75, 138, 192, 0.7), rgba(0, 0, 0, 0.3));
+    padding-left:16px;
+    padding-right:16px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#fc3c35;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#workspaces button:hover, #tags button:hover {
+    background:linear-gradient(180deg, rgba(221, 180, 116, 0.7), rgba(0, 0, 0, 0.3));
+    box-shadow:inherit;
+    text-shadow:inherit;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#bcbcbc;
+    text-shadow:3px 3px rgba(221, 180, 116, 0.5);
+}
+
+#workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
+    background:linear-gradient(180deg, rgba(205, 83, 73, 0.7), rgba(0, 0, 0, 0.3));
+    color:#dd6359;
+}
+
+#workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
+    text-shadow:3px 3px rgba(205, 83, 73, 0.7);
+}
+
+#tags button.occupied {
+    background:linear-gradient(180deg, rgba(221, 180, 116, 0.6), rgba(0, 0, 0, 0.3));
+    color:#eec484;
+}
+#+end_src
+
+** Battery
+
+#+begin_src css :tangle river.css
+#battery {
+    color:#5b9ad1;
+    background:linear-gradient(180deg, rgba(75, 138, 192, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Clock/Network
+
+#+begin_src css :tangle river.css
+#custom-clock, #network {
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:13px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+* LabWC Waybar Style
+
+** All
+
+#+begin_src css :tangle labwc.css
+ * {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#edc9b9;
+}
+#+end_src
+
+** CPU
+
+#+begin_src css :tangle labwc.css
+#cpu {
+    color:#dd6359;
+    background:linear-gradient(180deg, rgba(205, 83, 73, 0.9), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Pulseaudio/Disk
+
+#+begin_src css :tangle labwc.css
+#pulseaudio, #disk {
+    color:#efef20;
+    background:linear-gradient(180deg, rgba(223, 221, 16, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Memory/Backlight
+
+#+begin_src css :tangle labwc.css
+#memory, #backlight {
+    color:#00dd30;
+    background:linear-gradient(180deg, rgba(0, 204, 32, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Battery
+
+#+begin_src css :tangle labwc.css
+#battery {
+    color:#39a5eb;
+    background:linear-gradient(180deg, rgba(41, 149, 219, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Taskbar
+
+#+begin_src css :tangle labwc.css
+#taskbar button {
+    background:linear-gradient(180deg, rgba(183, 97, 120, 0.9), rgba(0, 0, 0, 0.5));
+    padding-left:10px;
+    padding-right:9px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#c77188;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#taskbar button:hover {
+    padding-left:10px;
+    padding-right:9px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.9), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(0, 0, 20, 0.7);
+}
+#taskbar button.maximized {
+    color:#00dd30;
+    background:linear-gradient(180deg, rgba(0, 204, 32, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.minimized {
+    color:#efef20;
+    background:linear-gradient(180deg, rgba(223, 221, 16, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.active {
+    color:#c98e86;
+    background:linear-gradient(180deg, rgba(189, 127, 116, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.maximized:hover {
+    color:#c77188;
+    background:linear-gradient(180deg, rgba(184, 97, 120, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.active:hover, #taskbar button.minimized:hover {
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.9), rgba(0, 0, 0, 0.5));
+}
+#+end_src
+
+** Clock/Network
+
+#+begin_src css :tangle labwc.css
+#custom-clock, #clock, #network {
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:9px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** MPD
+
+#+begin_src css :tangle labwc.css
+#mpd {
+    color:#000000;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+#+BEGIN_EXPORT html
+<footer>
+    <center>
+        <p>Copyright &copy; 2022 Tanner Babcock.</p>
+        <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
+        <p class="nav">
+            <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;
+            <a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/waystyle.html" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
+            <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
+            <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp;
+            <a href="https://www.twitch.tv/babkock">Twitch</a> &nbsp;&bull;&nbsp;
+            <a href="https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD" target="_blank"><i>Donate!</i></a>
+        </p>
+    </center>
+</footer>
+#+END_EXPORT

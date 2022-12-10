@@ -5,32 +5,35 @@
 #  _>  </ / / / / / /_/ /  / /__  
 # /_/|_/_/_/ /_/_/\__/_/   \___/
 #
-feh --bg-scale ~/.config/bspwm/wallpaper.jpg
+xwallpaper --output eDP1 --stretch ~/.config/river/ibm.jpg 2> /dev/null
 pkill -x tinyserve 2> /dev/null
 tinyserve &
 
-pkill -x xbindkeys 2> /dev/null
-xbindkeys &
-
-xinput set-prop 11 "libinput Accel Speed" 0.5
+xinput set-prop 11 "Synaptics Tap Action" 1 1 1 1 1
+xinput set-prop 18 "Synaptics Tap Action" 1 1 1 1 1
+xinput set-prop 18 "Synaptics Move Speed" 1.5 1.6 1.6 1.5
+xinput set-prop 11 "Synaptics Move Speed" 1.5 1.6 1.6 1.5
+xinput set-prop 12 "Synaptics Tap Action" 1 1 1 1 1
+xinput set-prop 12 "Synaptics Move Speed" 1.5 1.6 1.6 1.5
+xinput set-prop 10 "libinput Accel Speed" 0.5
+xinput set-prop 13 "libinput Accel Speed" 0.5
+xinput set-prop 10 "libinput Accel Speed Default" 0.5
+xinput set-prop 10 "libinput Scrolling Pixel Distance" 35
+xinput set-prop 13 "libinput Scrolling Pixel Distance" 35
+xinput set-prop 10 "libinput Scrolling Pixel Distance Default" 35
+xinput set-prop 10 "libinput Natural Scrolling Enabled" 1
 xinput set-prop 11 "libinput Natural Scrolling Enabled" 1
-xinput set-prop 12 "libinput Accel Speed" 0.5
-xinput set-prop 12 "libinput Natural Scrolling Enabled" 1
-xinput set-prop 14 "libinput Accel Speed" 0.5
-xinput set-prop 14 "libinput Natural Scrolling Enabled" 1
+xset r rate 400 100
 
-xinput set-prop 11 "libinput Tapping Enabled" 1
-xinput set-prop 11 "libinput Accel Speed" 0.5
-xinput set-prop 15 "libinput Tapping Enabled" 1
-xinput set-prop 15 "libinput Accel Speed" 0.5
-xinput set-prop 20 "libinput Tapping Enabled" 1
-xinput set-prop 20 "libinput Accel Speed" 0.5
+xrandr --output eDP1 --brightness 0.7
+xrandr --output HDMI1 --brightness 0.7
+xrandr --output HDMI2 --brightness 0.7
 
-xrandr --output eDP-1 --brightness 0.7
-xrandr --output HDMI-1 --brightness 0.7
-xrandr --output HDMI-2 --brightness 0.7
-
+xrdb -merge ~/.Xresources
+pulseaudio --start &
 bspwm
-pkill -x xbindkeys 2> /dev/null
+pkill -x emacs
+
+pkill -x mpc 2> /dev/null
 pkill -x tinyserve 2> /dev/null
 

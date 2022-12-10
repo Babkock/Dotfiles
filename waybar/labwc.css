@@ -1,0 +1,100 @@
+ * {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#edc9b9;
+}
+
+#cpu {
+    color:#dd6359;
+    background:linear-gradient(180deg, rgba(205, 83, 73, 0.9), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#pulseaudio, #disk {
+    color:#efef20;
+    background:linear-gradient(180deg, rgba(223, 221, 16, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#memory, #backlight {
+    color:#00dd30;
+    background:linear-gradient(180deg, rgba(0, 204, 32, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#battery {
+    color:#39a5eb;
+    background:linear-gradient(180deg, rgba(41, 149, 219, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#taskbar button {
+    background:linear-gradient(180deg, rgba(183, 97, 120, 0.9), rgba(0, 0, 0, 0.5));
+    padding-left:10px;
+    padding-right:9px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#c77188;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#taskbar button:hover {
+    padding-left:10px;
+    padding-right:9px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.9), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(0, 0, 20, 0.7);
+}
+#taskbar button.maximized {
+    color:#00dd30;
+    background:linear-gradient(180deg, rgba(0, 204, 32, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.minimized {
+    color:#efef20;
+    background:linear-gradient(180deg, rgba(223, 221, 16, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.active {
+    color:#c98e86;
+    background:linear-gradient(180deg, rgba(189, 127, 116, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.maximized:hover {
+    color:#c77188;
+    background:linear-gradient(180deg, rgba(184, 97, 120, 0.9), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.active:hover, #taskbar button.minimized:hover {
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.9), rgba(0, 0, 0, 0.5));
+}
+
+#custom-clock, #clock, #network {
+    color:#58a4a1;
+    background:linear-gradient(180deg, rgba(72, 147, 144, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:9px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#mpd {
+    color:#000000;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}

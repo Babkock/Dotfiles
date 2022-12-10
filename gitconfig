@@ -1,5 +1,31 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
+	email = babkock@protonmail.com
+#	email = tababcock@dmacc.edu
 	name = Tanner Babcock
-	email = babkock@gmail.com
+	signingkey = FD27626F
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+[add.interactive]
+	useBuiltin = false
+
+[delta]
+	navigate = true
+	light = false
+	line-numbers = true
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+[gpg]
+	program = /sbin/gpg
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true

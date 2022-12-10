@@ -1,3 +1,9 @@
+#               __    __       __         
+#    ______  __/ /_  / /______/ /_________
+#   / ___/ |/_/ __ \/ //_/ __  / ___/ ___/
+#  (__  )>  </ / / / ,< / /_/ / /  / /__  
+# /____/_/|_/_/ /_/_/|_|\__,_/_/   \___/
+#
 #
 # wm independent hotkeys
 #
@@ -6,31 +12,49 @@
 super + Return
 	st
 
+super + shift + Return
+	bigst
+
 # program launcher
 super + @space
-	dmenu_run_history
+	dmenu_run_history -w 780 -l 7 -y 200
+
+super + shift + @space
+	mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	firefox
+	qutebrowser --qt-arg stylesheet ~/.local/share/qutebrowser/fix-tooltips.qss "file:///home/babkock/.config/qutebrowser/index.html"
 
 super + shift + period
-	steam
+	bspc desktop -f "^5"; obs
 
 super + comma
-	st -e ncmpcpp
+	bspc desktop -f "^3"; st -e ncmpcpp
+
+super + shift + comma
+	emacsclient -c -a "emacs"
 
 super + slash
-	urxvt -e ranger
+	pavucontrol
+
+super + shift + slash
+	nicotine -d
 
 super + semicolon
-	subl
+	bspc desktop -f "^7" || bspc desktop -f "^4"; /usr/lib/sublime_text/sublime_text
 
 super + shift + semicolon
-	pavucontrol
+	st -e ranger
+
+super + minus
+	virt-manager
+
+super + shift + minus
+	bspc desktop -f "^5"; obs
 
 # quit
 super + shift + q
@@ -138,3 +162,6 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# vim: ft=conf
+

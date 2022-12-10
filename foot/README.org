@@ -1,0 +1,115 @@
+#+TITLE: Foot
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+STARTUP: showeverything
+#+OPTIONS: toc:nil num:nil
+#+DESCRIPTION: Foot terminal config on Tanner Babcock GitHub Pages. Features colors, fonts, and preferences.
+#+KEYWORDS: tanner babcock, tanner, babcock, emacs, github, foot, doom emacs, org mode, linux, gnu linux, void linux, art, experimental, noise
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD_EXTRA: <meta property="og:image" content="/images/ogimage.png" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:width" content="660" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:height" content="461" />
+#+HTML_HEAD_EXTRA: <meta property="og:title" content="Foot" />
+#+HTML_HEAD_EXTRA: <meta property="og:description" content="Foot terminal config on Tanner Babcock GitHub Pages. Features colors, fonts, and preferences." />
+#+HTML_HEAD_EXTRA: <meta property="og:locale" content="en_US" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
+#+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+#+PROPERTY: header-args:ini :tangle
+#+LANGUAGE: en
+
+This is the configuration for the [[https://codeberg.org/dnkl/foot][Foot]] terminal. This literate configuration is available on my [[https://babkock.github.io/configs/foot.html][GitHub Pages]]. Please, if you appreciate my work, please consider [[https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD][making a donation]].
+
+#+BEGIN_EXPORT html
+<header>
+    <center>
+        <ul>
+            <li><a href="https://babkock.github.io">Home</a></li>
+            <li><a href="https://tannerbabcock.com/home" target="_blank">Website</a></li>
+            <li><a href="https://github.com/Babkock" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/Babkock/Babkock.github.io" target="_blank">Source Code</a></li>
+            <li><a href="https://gitlab.com/Babkock/" target="_blank">GitLab</a></li>
+            <li><a href="https://www.youtube.com/user/Babk0ck" target="_blank">YouTube</a></li>
+        </ul>
+    </center>
+</header>
+#+END_EXPORT
+
+# #+TOC: headlines 2
+
+* Table of Contents :toc:
+- [[#font][Font]]
+- [[#preferences][Preferences]]
+- [[#appearance][Appearance]]
+- [[#colors][Colors]]
+
+* Font
+
+#+begin_src conf :tangle foot.ini
+font = SpaceMono Nerd Font:pixelsize=19:antialias=true
+font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
+font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
+font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
+#+end_src
+
+* Preferences
+
+#+begin_src conf :tangle foot.ini
+dpi-aware=yes
+pad=9x9 center
+vertical-letter-offset=-4px
+line-height=25px
+letter-spacing=-1px
+bold-text-in-bright=palette-based
+resize-delay-ms=90
+#+end_src
+
+* Appearance
+
+#+begin_src conf :tangle foot.ini
+[cursor]
+style=beam
+blink=yes
+
+[colors]
+background=171002
+foreground=edc9b9
+alpha=0.6
+#+end_src
+
+* Colors
+
+This is where you edit the actual color scheme.
+
+#+begin_src conf :tangle foot.ini
+regular0=000000
+bright0=121212
+regular1=cd5349
+bright1=dd6359
+regular2=539f58
+bright2=63b268
+regular3=ddb474
+bright3=eec484
+regular4=4b8ac0
+bright4=5b9ad1
+regular5=d98771
+bright5=e99781
+regular6=489390
+bright6=58a4a1
+regular7=edc9b9
+bright7=fdd9c9
+#+end_src
+
+#+BEGIN_EXPORT html
+<footer>
+    <center>
+    <p>Copyright &copy; 2022 Tanner Babcock.</p>
+    <p><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;
+    <a href="https://github.com/Babkock/Babkock.github.io" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
+    <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
+    <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp;
+    <a href="https://www.twitch.tv/babkock">Twitch</a> &nbsp;&bull;&nbsp;
+    <a href="https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD"><i>Donate!</i></a></p>
+    </center>
+</footer>
+#+END_EXPORT

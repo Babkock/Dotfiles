@@ -1,0 +1,5 @@
+#!/bin/sh
+wlr-randr --output HDMI-A-2 --mode 1920x1080
+pkill -x swayidle
+pkill -x swaylock
+

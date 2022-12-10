@@ -132,6 +132,10 @@ select {
     width:730px !important;
 }
 
+span[style="color:#000000"] {
+    color:#dfdfdf !important;
+}
+
 .torrent_table .tags a {
     color:#cdcdcd !important;
 }
@@ -164,5 +168,9 @@ div.post_content, div.preview_content, .smallhead td {
 }
 
 div[style="background-color:grey;margin: 0px auto 0px 0px;"], div[style="background-color:white;"] {
+    background:none !important;
+}
+
+#dnulist tr:nth-child(2n+1), #whitelist tr:nth-child(2n+1), tr.colhead_dark td, div[style="background-color:#B0C4DE;"] {
     background:none !important;
 }

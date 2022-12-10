@@ -1,0 +1,289 @@
+#!/bin/sh
+#         _                       
+#        (_)
+#  _ __   _  __   __   ___   _ __ 
+# | '__| | | \ \ / /  / _ \ | '__|
+# | |    | |  \ V /  |  __/ | |
+# |_|    |_|   \_/    \___| |_|
+
+# River launches numerous programs that have no config files, they are
+# configured in the command line options. These variables will make editing
+# the environment's colors, wallpapers, and fonts, easier. All colors are RRGGBBAA.
+# Comments by colors are just suggestions, but colors should remain consistent.
+# If two colors appear similar, they should remain similar after updating
+# rice.
+
+# -------------------------------------------
+# Basic Options: Wallpapers and Inputs
+# -------------------------------------------
+# Get inputs by running: riverctl list-inputs
+
+WALL_LEFT="$HOME/.config/river/ibm.jpg"
+WALL_RIGHT="$HOME/.config/river/farmhouse.jpg"
+TOUCHPAD="2:7:SynPS/2_Synaptics_TouchPad"
+MOUSE1="6127:24766:GamingMouseI_Gaming_Mouse"
+MOUSE2="6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control"
+
+# -------------------------------------------
+# Swaylock and Swayidle Colors, Wallpapers, and Preferences
+# -------------------------------------------
+# Timeout values are measured in seconds
+
+# should match $WALL_LEFT and $WALL_RIGHT
+IDLE_LEFT="eDP-1:$HOME/.config/river/ibmlock.jpg"
+IDLE_RIGHT="HDMI-A-2:$HOME/.config/river/farmhouselock.jpg"
+
+LOCK_TIMEOUT=600
+SCREEN_TIMEOUT=1200
+LOCK_FONT="SpaceMono Nerd Font"
+IDLE_RADIUS=90
+IDLE_RING="00000077"
+IDLE_TEXT="dfdfdf99"
+IDLE_INSIDE="00000077"
+
+# green
+IDLE_INSIDEVER="00000099"
+IDLE_RINGVER="539f5877"
+IDLE_TEXTVER="63b26899"
+# red
+IDLE_RINGWRONG="cd534977"
+IDLE_TEXTWRONG="dd635999"
+IDLE_INSIDEWRONG="00000099"
+# yellow
+IDLE_RINGCLEAR="ddb47477"
+IDLE_LINECLEAR="eec48477"
+IDLE_INSIDECLEAR="00000088"
+IDLE_TEXTCLEAR="eec48499"
+# any color
+IDLE_KEY="e9978188"
+# red
+IDLE_BS="dd635988"
+
+# -------------------------------------------
+# Fuzzel Colors and Font
+# -------------------------------------------
+
+FUZZEL_FONT="SpaceMono Nerd Font:pixelsize=26:antialias=true"
+# red
+FUZZEL_BG="bd43395f"
+FUZZEL_FG="dd6359ff"
+# blue
+FUZZEL_SELBG="4b8ac06f"
+FUZZEL_SELFG="5b9ad1fe"
+# yellow
+FUZZEL_MATCH="ddb474fe"
+FUZZEL_SELMATCH="eec484ff"
+FUZZEL_BORDER="000000cc"
+
+# -------------------------------------------
+# Colors for River
+# -------------------------------------------
+# These colors must be preceded with '0x'
+
+RIVER_BG="0x002b36"
+RIVER_FOCUSED="0xdd6359aa"
+RIVER_UNFOCUSED="0x5b9ad188"
+# keyboard repeat rate
+RIVER_REPEAT1=60
+RIVER_REPEAT2=300
+
+# -------------------------------------------
+# Key Bindings for River
+# -------------------------------------------
+
+B_PERIOD="riverctl set-focused-tags 2; qutebrowser --qt-arg stylesheet \"$HOME/.local/share/qutebrowser/fix-tooltips.qss\""
+B_SHIFT_PERIOD="riverctl set-focused-tags 2; firefox-wayland"
+B_COMMA="riverctl set-focused-tags 4; footclient ncmpcpp"
+B_SHIFT_COMMA="riverctl set-focused-tags 8; emacsclient -c -a \"emacs\""
+B_SPACE="dmenu_path | fuzzel -b $FUZZEL_BG -t $FUZZEL_FG -s $FUZZEL_SELBG -S $FUZZEL_SELFG -m $FUZZEL_MATCH -M $FUZZEL_SELMATCH -f \"$FUZZEL_FONT\" -P 6 -x 6 -r 0 -B 2 -C $FUZZEL_BORDER -d | sh"
+B_SEMICOLON="riverctl set-focused-tags 16; nicotine"
+B_COLON="riverctl set-focused-tags 16; filezilla"
+B_SLASH="pavucontrol"
+B_QUESTION="riverctl set-focused-tags 32; swaynag -o eDP-1 --background $FUZZEL_BG --text $FUZZEL_FG --button-text $FUZZEL_MATCH --border 000000cc --button-background $FUZZEL_SELBG --button-margin-right 12 --button-border-size 3 --border-bottom-size 4 --border-bottom $FUZZEL_FG -y overlay -f \"SpaceMono Nerd Font\" -e top -m \"Make sure Pipewire and XDG-Desktop-Portal-Wlr are running!\" -Z \"Start OBS\" \"obs\""
+
+# -------------------------------------------
+# Waybar
+# -------------------------------------------
+
+WAY_STYLE="$HOME/.config/waybar/river.css"
+WAY_CONFIG="$HOME/.config/waybar/rconfig.json"
+
+# -------------------------------------------
+# Set Wallpaper and Lock Screen
+# -------------------------------------------
+
+swaybg -o eDP-1 -i "$WALL_LEFT" -o HDMI-A-2 -i "$WALL_RIGHT" &
+swayidle -w timeout $LOCK_TIMEOUT "swaylock -F -f --font \"$LOCK_FONT\" --font-size 21 --ring-color $IDLE_RING --text-color $IDLE_TEXT --inside-color $IDLE_INSIDE --inside-ver-color $IDLE_INSIDEVER --ring-ver-color $IDLE_RINGVER --text-ver-color $IDLE_TEXTVER --ring-wrong-color $IDLE_RINGWRONG --text-wrong-color $IDLE_TEXTWRONG --inside-wrong-color $IDLE_INSIDEWRONG --ring-clear-color $IDLE_RINGCLEAR --line-clear-color $IDLE_LINECLEAR --inside-clear-color $IDLE_INSIDECLEAR --text-clear-color $IDLE_TEXTCLEAR --key-hl-color $IDLE_KEY --bs-hl-color $IDLE_BS --indicator-radius $IDLE_RADIUS -L -r -i $IDLE_LEFT -s stretch -i $IDLE_RIGHT -s stretch" timeout $SCREEN_TIMEOUT "light -S 0" resume "light -S 20" before-sleep "swaylock -F -f --font \"$LOCK_FONT\" --font-size 21 --ring-color $IDLE_RING --text-color $IDLE_TEXT --inside-color $IDLE_INSIDE --inside-ver-color $IDLE_INSIDEVER --ring-ver-color $IDLE_RINGVER --text-ver-color $IDLE_TEXTVER --ring-wrong-color $IDLE_RINGWRONG --text-wrong-color $IDLE_TEXTWRONG --inside-wrong-color $IDLE_INSIDEWRONG --ring-clear-color $IDLE_RINGCLEAR --line-clear-color $IDLE_LINECLEAR --inside-clear-color $IDLE_INSIDECLEAR --text-clear-color $IDLE_TEXTCLEAR --key-hl-color $IDLE_KEY --bs-hl-color $IDLE_BS --indicator-radius $IDLE_RADIUS -L -r -i $IDLE_LEFT -s stretch -i $IDLE_RIGHT -s stretch" &
+
+# -------------------------------------------
+# Start Daemons
+# -------------------------------------------
+
+exec dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_SESSION_TYPE QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME QT_WAYLAND_DISABLE_WINDOWDECORATION GTK_THEME MOZ_ENABLE_WAYLAND XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP=sway &
+
+pkill -x xdg-desktop-por
+exec /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l INFO &
+
+riverctl xcursor-theme "Adwaita" 30
+
+#pkill -x pulseaudio
+#exec pulseaudio --daemon &
+exec waybar -s "$WAY_STYLE" -c "$WAY_CONFIG" &
+exec dunst --silent &
+pkill -x emacs
+exec emacs --daemon &
+exec foot --server &
+pkill -x tinyserve
+exec tinyserve &
+rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob &
+
+# -------------------------------------------
+# Configure Inputs
+# -------------------------------------------
+
+riverctl input "$TOUCHPAD" accel-profile adaptive
+riverctl input "$TOUCHPAD" pointer-accel 0.97
+riverctl input "$TOUCHPAD" natural-scroll enabled
+riverctl input "$TOUCHPAD" tap enabled
+riverctl input "$TOUCHPAD" tap-button-map left-right-middle
+riverctl input "$TOUCHPAD" disable-while-typing enabled
+riverctl input "$TOUCHPAD" scroll-method two-finger
+riverctl input "$TOUCHPAD" scroll-factor 1.7
+
+riverctl input "$MOUSE1" pointer-accel 0.63
+riverctl input "$MOUSE1" accel-profile adaptive
+riverctl input "$MOUSE2" pointer-accel 0.63
+riverctl input "$MOUSE2" accel-profile adaptive
+riverctl input "$MOUSE1" scroll-factor 1.4
+riverctl input "$MOUSE2" scroll-factor 1.4
+
+# guide to setting focused tags
+#
+# riverctl set-focused-tags 1 =
+# [ x ][   ][  ][  ][  ][  ]
+# riverctl set-focused-tags 2 =
+# [   ][ x ][  ][  ][  ][  ]
+# riverctl set-focused-tags 3 =
+# [ x ][ x ][  ][  ][  ][  ]
+# riverctl set-focused-tags 4 =
+# [  ][  ][ x ][  ][  ][  ]
+# riverctl set-focused-tags 5 =
+# [ x ][  ][ x ][  ][  ][  ]
+# riverctl set-focused-tags 6 =
+# [  ][ x ][ x ][  ][  ][  ]
+# riverctl set-focused-tags 7 =
+# [ x ][ x ][ x ][  ][  ][  ]
+# riverctl set-focused-tags 8 =
+# [  ][  ][  ][ x ][  ][  ]
+# riverctl set-focused-tags 9 =
+# [ x ][  ][  ][ x ][  ][  ]
+# riverctl set-focused-tags 10 =
+# [  ][ x ][  ][ x ][  ][  ]
+# riverctl set-focused-tags 11 =
+# [ x ][ x ][  ][ x ][  ][  ]
+# riverctl set-focused-tags 12 =
+# [  ][  ][ x ][ x ][  ][  ]
+# riverctl set-focused-tags 13 =
+# [ x ][  ][ x ][ x ][  ][  ]
+# riverctl set-focused-tags 14 =
+# [  ][ x ][ x ][ x ][  ][  ]
+# riverctl set-focused-tags 15 =
+# [ x ][ x ][ x ][ x ][  ][  ]
+# riverctl set-focused-tags 16 =
+# [  ][  ][  ][  ][ x ][  ]
+# riverctl set-focused-tags 32 =
+# [  ][  ][  ][  ][  ][ x ]
+
+# ------------------------------------------
+# Map Keys
+# ------------------------------------------
+
+riverctl map normal Mod4 Return spawn footclient
+
+riverctl map normal Mod4+Shift C close
+riverctl map normal Mod4+Shift Q exit
+
+riverctl map normal Mod4 Period spawn "$B_PERIOD"
+riverctl map normal Mod4+Shift Period spawn "$B_SHIFT_PERIOD"
+riverctl map normal Mod4 Comma spawn "$B_COMMA"
+riverctl map normal Mod4+Shift Comma spawn "$B_SHIFT_COMMA"
+riverctl map normal Mod4 Slash spawn "$B_SLASH"
+riverctl map normal Mod4+Shift Slash spawn "$B_QUESTION"
+riverctl map normal Mod4 Space spawn "$B_SPACE"
+riverctl map normal Mod4 Semicolon spawn "$B_SEMICOLON"
+riverctl map normal Mod4+Shift Semicolon spawn "$B_COLON"
+
+riverctl map normal Mod4 J focus-view next
+riverctl map normal Mod4 K focus-view previous
+
+riverctl map normal Mod4+Shift J swap next
+riverctl map normal Mod4+Shift K swap previous
+
+riverctl map normal Mod4 P focus-output next
+riverctl map normal Mod4 O focus-output previous
+
+riverctl map normal Mod4+Shift P send-to-output next
+riverctl map normal Mod4+Shift O send-to-output previous
+
+riverctl attach-mode top
+riverctl set-cursor-warp on-output-change
+riverctl focus-follows-cursor normal
+
+riverctl map normal Mod4+Shift Return zoom
+
+riverctl map normal Mod4 H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal Mod4 L send-layout-cmd rivertile "main-ratio +0.05"
+
+riverctl map normal Mod4+Shift H send-layout-cmd rivertile "main-count +1"
+riverctl map normal Mod4+Shift L send-layout-cmd rivertile "main-count -1"
+
+riverctl map-pointer normal Mod4 BTN_LEFT move-view
+riverctl map-pointer normal Mod4 BTN_RIGHT resize-view
+
+for i in $(seq 1 7)
+do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Mod4 $i set-focused-tags $tags
+    riverctl map normal Mod4+Shift $i set-view-tags $tags
+done
+
+# Super+0 to focus all tags
+# Super+Shift+0 to tag focused view with all tags
+all_tags=$(((1 << 7) - 1))
+riverctl map normal Mod4 0 set-focused-tags $all_tags
+riverctl map normal Mod4+Shift 0 set-view-tags $all_tags
+
+riverctl map normal Mod4 8 set-focused-tags 3
+riverctl map normal Mod4 9 set-focused-tags 6
+
+scratch_tag=$((1 << 6 ))
+
+riverctl map normal Mod4 M toggle-focused-tags ${scratch_tag}
+riverctl map normal Mod4+Shift M set-view-tags ${scratch_tag}
+all_but_scratch_tag=$(( ((1 << 7) - 1) ^ $scratch_tag ))
+riverctl spawn-tagmask ${all_but_scratch_tag}
+
+riverctl map normal Mod4 S toggle-float
+
+riverctl map normal Mod4 F toggle-fullscreen
+
+riverctl map normal Mod4 Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal Mod4 Right send-layout-cmd rivertile "main-location right"
+riverctl map normal Mod4 Down  send-layout-cmd rivertile "main-location bottom"
+riverctl map normal Mod4 Left  send-layout-cmd rivertile "main-location left"
+
+riverctl background-color "$RIVER_BG"
+riverctl border-color-focused "$RIVER_FOCUSED"
+riverctl border-color-unfocused "$RIVER_UNFOCUSED"
+
+riverctl set-repeat $RIVER_REPEAT1 $RIVER_REPEAT2
+
+# Make certain views start floating
+riverctl float-filter-add app-id float
+riverctl csd-filter-add app-id "Firefox"
+
+pkill -x pipewire
+
+riverctl default-layout rivertile
+rivertile -view-padding 6 -outer-padding 2 -main-ratio 0.5 -main-location right
+

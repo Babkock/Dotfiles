@@ -1,0 +1,50 @@
+# Example autostart file
+
+# Set background color.
+swaybg -o eDP-1 -i "$HOME/.config/labwc/univac.jpg" -o HDMI-A-2 -i "$HOME/.config/labwc/blurry.jpg" >/dev/null 2>&1 &
+
+exec dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_SESSION_TYPE QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME QT_WAYLAND_DISABLE_WINDOWDECORATION GTK_THEME MOZ_ENABLE_WAYLAND XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP=sway &
+
+# Configure output directives such as mode, position, scale and transform.
+# Use wlr-randr to get your output names
+# Example ~/.config/kanshi/config below:
+kanshi >/dev/null 2>&1 &
+
+# Launch a panel such as yambar or waybar.
+#sfwbar >/dev/null 2>&1 &
+#waybar >/dev/null 2>&1 &
+waybar -c "$HOME/.config/waybar/lconfig.json" -s "$HOME/.config/waybar/labwc.css" >/dev/null 2>&1 &
+
+# Enable notifications. Typically GNOME/KDE application notifications go
+# through the org.freedesktop.Notifications D-Bus API and require a client such
+# as mako to function correctly. Thunderbird is an example of this.
+dunst --silent >/dev/null 2>&1 &
+
+# Lock screen after 5 minutes; turn off display after another 5 minutes.
+#
+# Note that in the context of idle system power management, it is *NOT* a good
+# idea to turn off displays by 'disabling outputs' for example by
+# `wlr-randr --output <whatever> --off` because this re-arranges views
+# (since a837fef). Instead use a wlr-output-power-management client such as
+# https://git.sr.ht/~leon_plickat/wlopm
+swayidle -w \
+	timeout 600 'swaylock -F -f --font "SpaceMono Nerd Font" --font-size 21 --ring-color 00000077 --text-color dfdfdf99 --inside-color 00000077 --inside-ver-color 00bb1088 --ring-ver-color 00cc20ef --text-ver-color 00cc20f9 --ring-wrong-color c77188ef --text-wrong-color d78198ef --inside-wrong-color aa000020 --ring-clear-color dfdf10ef --line-clear-color efef2088 --inside-clear-color 00000077 --text-clear-color efef20f9 --key-hl-color c98e86ef --bs-hl-color d78198ef --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/labwc/univaclock.jpg -s stretch -i HDMI-A-2:/home/babkock/.config/labwc/blurrylock.jpg -s stretch' \
+	timeout 1200 'light -S 0' \
+	resume 'light -S 20' \
+	before-sleep 'swaylock -F -f --font "SpaceMono Nerd Font" --font-size 21 --ring-color 00000077 --text-color dfdfdf99 --inside-color 00000077 --inside-ver-color 00bb1088 --ring-ver-color 00cc20ef --text-ver-color 00cc20f9 --ring-wrong-color c77188ef --text-wrong-color d78198ef --inside-wrong-color aa000020 --ring-clear-color dfdf10ef --line-clear-color efef2088 --inside-clear-color 00000077 --text-clear-color efef20f9 --key-hl-color c98e86ef --bs-hl-color d78198ef --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/labwc/univaclock.jpg -s stretch -i HDMI-A-2:/home/babkock/.config/labwc/blurrylock.jpg -s stretch' >/dev/null 2>&1 &
+
+pkill -x xdg-desktop-por
+exec /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l INFO &
+pkill -x foot
+foot --server -c "$HOME/.config/foot/labwc.ini" &
+
+pkill -x pulseaudio
+pulseaudio --daemon &
+pkill -x emacs
+exec emacs --daemon &
+pkill -x tinyserve
+exec tinyserve &
+rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/labwc.ini" &
+
+exit
+

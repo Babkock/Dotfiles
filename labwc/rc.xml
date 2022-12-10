@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<!--
+  This is a very simple config file with many options missing. For a complete
+  set of options with comments, see docs/rc.xml.all
+-->
+
+<labwc_config>
+	<core>
+		<gap>4</gap>
+		<decoration>server</decoration>
+	</core>
+	<focus>
+		<followMouse>yes</followMouse>
+	</focus>
+	<theme>
+	    <name>labwc</name>
+	    <cornerRadius>0</cornerRadius>
+	    <font><name>SpaceMono Nerd Font</name><size>15</size></font>
+	</theme>
+	<keyboard>
+		<repeatRate>60</repeatRate>
+		<repeatDelay>300</repeatDelay>
+		<keybind key="W-Return">
+			<action name="Execute"><command>footclient</command></action>
+		</keybind>
+		<keybind key="W-Tab">
+			<action name="Close"></action>
+		</keybind>
+		<keybind key="W-Period">
+			<action name="Execute"><command>qutebrowser --qt-arg stylesheet "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss"</command></action>
+		</keybind>
+		<keybind key="A-Period">
+			<action name="Execute"><command>firefox-wayland</command></action>
+		</keybind>
+		<keybind key="W-Comma">
+			<action name="Execute"><command>footclient ncmpcpp</command></action>
+		</keybind>
+		<keybind key="A-Comma">
+			<action name="Execute"><command>emacsclient -c -a 'emacs'</command></action>
+		</keybind>
+		<keybind key="W-Space">
+			<action name="Execute"><command>/home/babkock/bin/labmenu</command></action>
+		</keybind>
+		<keybind key="W-Slash">
+			<action name="Execute"><command>pavucontrol</command></action>
+		</keybind>
+		<keybind key="A-Slash">
+			<action name="Execute"><command>obs</command></action>
+		</keybind>
+		<keybind key="W-Semicolon">
+			<action name="Execute"><command>nicotine</command></action>
+		</keybind>
+		<keybind key="W-H">
+			<action name="SnapToEdge"><direction>left</direction></action>
+		</keybind>
+		<keybind key="W-L">
+			<action name="SnapToEdge"><direction>right</direction></action>
+		</keybind>
+		<keybind key="W-J">
+			<action name="PreviousWindow"></action>
+		</keybind>
+		<keybind key="W-K">
+			<action name="NextWindow"></action>
+		</keybind>
+		<keybind key="W-U">
+			<action name="SnapToEdge"><direction>up</direction></action>
+		</keybind>
+		<keybind key="W-I">
+			<action name="SnapToEdge"><direction>down</direction></action>
+		</keybind>
+		<keybind key="W-M">
+			<action name="ToggleMaximize"></action>
+		</keybind>
+		<keybind key="W-N">
+			<action name="Iconify"></action>
+		</keybind>
+		<keybind key="W-B">
+			<action name="ToggleFullscreen"></action>
+		</keybind>
+		<keybind key="W-V">
+			<action name="ToggleDecorations"></action>
+		</keybind>
+		<keybind key="W-Escape">
+			<action name="Exit"></action>
+		</keybind>
+	</keyboard>
+	<libinput>
+		<device category="SynPS/2 Synaptics TouchPad">
+			<accelProfile>adaptive</accelProfile>
+			<naturalScroll>yes</naturalScroll>
+			<pointerSpeed>0.97</pointerSpeed>
+			<tap>yes</tap>
+			<scrollFactor>1.7</scrollFactor>
+			<disableWhileTyping>yes</disableWhileTyping>
+		</device>
+		<device category="GamingMouseI Gaming Mouse">
+			<accelProfile>adaptive</accelProfile>
+			<naturalScroll>yes</naturalScroll>
+			<pointerSpeed>0.62</pointerSpeed>
+			<scrollFactor>1.4</scrollFactor>
+			<disableWhileTyping>no</disableWhileTyping>
+		</device>
+	</libinput>
+</labwc_config>
+

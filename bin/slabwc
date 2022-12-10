@@ -1,0 +1,19 @@
+#!/bin/sh
+export GTK_THEME="Sunset-Dark"
+export XCURSOR_THEME="Adwaita"
+export XCURSOR_SIZE=30
+export MOZ_ENABLE_WAYLAND=1
+export XDG_CURRENT_DESKTOP="sway"
+export XDG_CURRENT_SESSION="sway"
+export XDG_RUNTIME_DIR="$HOME/.run"
+export QT_QPA_PLATFORM="wayland"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+echo "Bringing Pipewire down..."
+sudo sv down pipewire
+pkill -x pipewire
+echo "Starting LabWC..."
+dbus-launch --exit-with-session labwc
+pkill -x emacs
+pkill -x tinyserve
+pkill -x pipewire

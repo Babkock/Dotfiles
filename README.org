@@ -1,0 +1,86 @@
+#+TITLE: Dotfiles
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+PROPERTY: header-args
+#+LANGUAGE: en
+
+* Disclaimer
+
+This repository was synchronized with the GitLab version on December 10, 2022. It is now read-only and has [[https://gitlab.com/Babkock/Dotfiles][officially moved to GitLab.]]
+
+Welcome to my Dotfiles. This repository contains my personal configuration files for various
+GNU/Linux programs. You can view the configurations that are literate/self-documenting [[https://babkock.github.io/][on my GitHub Pages]] - and these can be
+tangled via Emacs Org mode. This repository is old, from 2019, when I knew less about Linux,
+so cloning may take a while as it is large and has many pictures. Try cloning with =git --depth 1 git@github.com:Babkock/Dotfiles.git=
+
+** fetch
+
+This collection includes my [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/fetch.org][Dotfiles fetcher script]] which retrieves the most current
+configuration files from their specific spots on the system, overwrites their copies in
+this repo, and adds them to the Git staging area. I rely on this script for almost all of my commits.
+
+* Programs Included
+
+The most commonly updated files in this collection are: my Emacs configuration; my Qutebrowser configuration, rice, and start page; my general
+rice/color scheme defined in [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/Xresources][Xresources]], [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/bspwm/README.org][Bspwmrc]], and Polybar; and my [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/zshrc][Zshrc]]. I do not use a display manager, so I use [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/xinitrc][xinitrc]].
+
+This repository has configuration files for three different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], and [[https://github.com/labwc/labwc][LabWC]]. Each of these compositors are a
+self-contained environment, they each have their own Waybar, Foot, Swaylock, and Wob configurations, and their own color schemes.
+They are launched with scripts in the [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/bin][bin]] directory, and their autostart files load their respective configurations.
+
+** Other Orgs
+
+- [[https://github.com/Babkock/Dotfiles/tree/master/bspwm][Bspwm]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/doom.d/][Doom Emacs config.org]]
+- [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/init.org][Doom Emacs init.org]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/foot][Foot]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]
+- [[https://gitlhub.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/waybar/][Waybar Config]]
+- [[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][Waybar Style]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zsh]]
+
+** List
+
+- [[https://github.com/baskerville/bspwm][Bspwm]]
+- [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+- [[https://dunst-project.org][Dunst]]
+- [[https://github.com/labwc/labwc][LabWC]]
+- Mozilla Firefox
+- [[https://github.com/mpv-player/mpv][mpv]]
+- [[https://github.com/arybczak/ncmpcpp][ncmpcpp]]
+- [[https://github.com/polybar/polybar][Polybar]]
+- [[https://github.com/qutebrowser/qutebrowser][Qutebrowser]]
+- [[https://github.com/ranger/ranger][Ranger]]
+- [[https://github.com/riverwm/river][River]]
+- [[https://github.com/conformal/spectrwm][Spectrwm]]
+- [[https://github.com/baskerville/sxhkd][sxhkd]]
+- [[https://github.com/swaywm/sway][Sway]]
+- [[https://gitlab.com/tbcargo/Tinyserve][Tinyserve]]
+- [[https://www.vim.org][Vim]]
+- [[https://github.com/Alexays/Waybar][Waybar]]
+- [[http://zsh.sourceforge.net][Zsh]]
+
+* Screenshots
+
+Various desktop screenshots I've collected over the years. My rice game is so much
+better now!
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/bspCol-Dirty.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/bspNew-Dirty.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/i3-Clean.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/spectrwm.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/2022rice.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/dwmrice.png]]
+
+** See also
+
+- My fork of [[https://gitlab.com/tbsuckless/st][st]]
+- My fork of [[https://gitlab.com/tbsuckless/dmenu][dmenu]]
+- My fork of [[https://gitlab.com/tbsuckless/dwm][dwm]]
+

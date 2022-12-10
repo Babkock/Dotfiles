@@ -1,0 +1,13 @@
+* {
+	font-family:"SpaceMono Nerd Font";
+	font-size:18px;
+	text-transform:lowercase;
+	opacity:0.85;
+}
+
+*:active, *:selected {
+	background-color:#fc3c35;
+	color:white;
+}
+
+

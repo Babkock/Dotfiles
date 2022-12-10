@@ -1,0 +1,695 @@
+#+TITLE: Zsh
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+STARTUP: showeverything
+#+OPTIONS: toc:nil num:nil
+#+DESCRIPTION: Zsh config on Tanner Babcock GitHub Pages. Contains custom functions, shell aliases, and conditional customizations.
+#+KEYWORDS: tanner babcock, emacs, zsh, github, doom emacs, zshrc, org mode, linux, gnu linux, experimental, avant garde, noise
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD_EXTRA: <meta property="og:image" content="/images/ogimage.png" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:width" content="660" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:height" content="461" />
+#+HTML_HEAD_EXTRA: <meta property="og:title" content="Zsh" />
+#+HTML_HEAD_EXTRA: <meta property="og:description" content="Zsh config on Tanner Babcock GitHub Pages. Contains custom functions, shell aliases, and conditional customizations." />
+#+HTML_HEAD_EXTRA: <meta property="og:locale" content="en_US" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
+#+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+#+HTML_HEAD_EXTRA: <meta name="google-site-verification" content="2WoaNPwHxji9bjk8HmxLdspgd5cx93KCRp-Bo1gjV0o" />
+#+PROPERTY: header-args:sh :tangle
+#+LANGUAGE: en
+
+Welcome to my Zshrc. This configuration relies on [[https://ohmyz.sh/][Oh-My-Zsh]]. This literate configuration is available online on my [[https://babkock.github.io/configs/zsh.html][GitHub Pages]]. If you appreciate my work, please consider [[https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD][making a donation]].
+
+#+BEGIN_EXPORT html
+<header>
+    <center>
+        <ul>
+            <li><a href="https://babkock.github.io">Home</a></li>
+            <li><a href="https://tannerbabcock.com/home">Website</a></li>
+            <li><a href="https://github.com/Babkock" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/zsh.html" target="_blank">Source Code</a></li>
+            <li><a href="https://gitlab.com/Babkock/" target="_blank">GitLab</a></li>
+            <li><a href="https://www.youtube.com/channel/UCdXmrPRUtsl-6pq83x3FrTQ" target="_blank">YouTube</a></li>
+        </ul>
+    </center>
+</header>
+#+END_EXPORT
+
+# #+TOC: headlines 2
+
+* Table of Contents :toc:
+- [[#theme][Theme]]
+- [[#preferences][Preferences]]
+- [[#conditional-aliases][Conditional Aliases]]
+  - [[#ssh][SSH]]
+  - [[#terminal][Terminal]]
+- [[#functions][Functions]]
+  - [[#picp][picp]]
+  - [[#pf][pf]]
+  - [[#t][t]]
+  - [[#y][y]]
+  - [[#scr][scr]]
+  - [[#xs][xs]]
+  - [[#j][j]]
+  - [[#pipewire][Pipewire]]
+  - [[#xdg-desktop-portal][XDG-Desktop-Portal]]
+  - [[#backup-website][Backup Website]]
+  - [[#timer][Timer]]
+- [[#aliases][Aliases]]
+
+* Theme
+
+This first block of code sets the =$PATH= environment variable, and sources my =$LS_COLORS= script from [[https://github.com/trapd00r/LS_COLORS][this project]]. I have a cross-compiler installed, and
+that's what those other variables are for.
+
+#+begin_src sh :tangle .zshrc
+#              __
+#  ____  _____/ /_  __________
+# /_  / / ___/ __ \/ ___/ ___/
+#  / /_(__  ) / / / /  / /__
+# /___/____/_/ /_/_/   \___/
+
+export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/babkock/.oh-my-zsh"
+
+export PREFIX="/usr/local/i386elfgcc"
+export TARGET=i386-elf
+
+source /home/babkock/.local/share/lscolors.sh
+
+LSCOLORS=$LS_COLORS
+ZLS_COLORS=$LS_COLORS
+ZLSCOLORS=$LS_COLORS
+export LSCOLORS
+export ZLS_COLORS
+export ZLSCOLORS
+#+end_src
+
+Determine if the shell is being started in a terminal, either *st* or *urxvt*. If the shell is being started in a real tty, or over ssh, load the separate
+zsh-theme "[[https://gitlab.com/Babkock/Dotfiles/-/blob/master/babkock.zsh-theme][babkock]]" instead of "[[https://gitlab.com/Babkock/Dotfiles/-/blob/master/babkockicon.zsh-theme][babkockicon]]", so we don't see ugly squares in place of the icons.
+
+#+begin_src sh :tangle .zshrc
+if [ -v TERM ]; then
+    if [[ ${TERM} = "st-256color" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "rxvt-unicode" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "xterm-256color" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "foot" ]]; then
+        #ZSH_THEME="philips"
+        #ZSH_THEME="dieter"
+        #ZSH_THEME="clean"
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "alacritty" ]]; then
+        ZSH_THEME="babkockicon"
+    else
+        ZSH_THEME="babkock"
+    fi
+fi
+#+end_src
+
+* Preferences
+
+Set some preferences. The first line here is responsible for making sure the Shift + TAB combination moves the selection backwards,
+like regular TAB moves forward.
+
+#+begin_src sh :tangle .zshrc
+
+export LANG=en_US.UTF-8
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# HIST_STAMPS="mm/dd/yyyy"
+#+end_src
+
+Load the shell plugins. Make sure to never load too many, it's already bloated
+as it is.
+
+#+begin_src sh :tangle .zshrc
+if [[ -n $SSH_CONNECTION ]]; then
+    plugins=(gitfast colored-man-pages ssh-agent)
+else
+    plugins=(gitfast colored-man-pages ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
+fi
+
+zstyle :omz:plugins:ssh-agent identities gitlab_rsa github_rsa alpine_rsa tbcom_ssh
+
+bindkey '^[[Z' reverse-menu-complete
+
+source $ZSH/oh-my-zsh.sh
+#+end_src
+
+* Conditional Aliases
+
+Determine if the shell is being loaded locally, or over SSH, and set aliases accordingly. The reason I do this is so I don't strain the SSH connection
+with too many colors or icons. The shell should behave and feel differently.
+
+** SSH
+
+#+begin_src sh :tangle .zshrc
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+    alias d="fd"
+    alias c="/usr/bin/cat"
+    alias cat="/usr/bin/cat"
+    alias grep="/usr/bin/grep --color=auto"
+    alias g="/usr/bin/grep --color=auto"
+    alias gh="/usr/bin/grep --color=auto --context=4"
+else
+    alias c="bat"
+    alias cat="bat"
+    alias d="fd"
+    alias grep="rg"
+    alias g="rg"
+    alias gh="rg --context=4"
+    alias reboot="loginctl reboot"
+    alias xx="loginctl reboot"
+fi
+#+end_src
+
+** Terminal
+
+Here is where I check if the Zsh shell is being loaded in a graphical terminal, or an actual tty. If I change my terminal away from
+*st*, then I will have to modify this part. Nerd Font icons do not render in the tty, so we should use the standard versions of fancy programs in
+that context.
+
+All of these =ls= commands have flags to show directories first, show human-readable file sizes, and show file symbols. All of the =exa= commands show icons and group directories first, also.
+
+| Command | In Terminal                                        | In TTY                            |
+|---------+----------------------------------------------------+-----------------------------------|
+| =ls=      | Regular LSD listing                                | Regular LS listing                |
+| =l=       | Regular LSD listing                                | Regular LS listing                |
+| =la=      | Long listing with total directory sizes, all files | LS long listing, all files        |
+| =ll=      | LSD Long listing with total sizes, all files       | LS long listing, all files        |
+| =lc=      | LSD Long listing with total sizes                  | N/A                               |
+| =lct=     | LSD Long listing with total sizes and tree         | N/A                               |
+| =lctl=    | LSD Long listing with total sizes and tree         | N/A                               |
+| =lsl=     | Long listing, all files                            | LS long listing, all files        |
+| =lsa=     | Long listing, all files                            | LS long listing, all files        |
+| =lsla=    | Long listing with total sizes, all files           | LS long listing, all files        |
+| =lst=     | LSD listing with tree                              | N/A                               |
+| =lstl=    | LSD long listing with tree                         | N/A                               |
+| =ltl=     | LSD long listing with total sizes and tree         | N/A                               |
+| =a=       | Regular Exa listing                                | Same, without icons               |
+| =al=      | Exa long listing, all files                        | Same, without icons               |
+| =aa=      | Exa long listing, all files                        | Same, without icons               |
+| =at=      | Exa listing with tree                              | Same                              |
+| =atl=     | Exa long listing with tree                         | Same                              |
+| =alt=     | Exa long listing with tree                         | Same                              |
+| =ac=      | Exa listing sorted by time modified                | Same                              |
+| =acl=     | Exa long listing sorted by time                    | Same                              |
+| =aca=     | Exa long listing sorted by time                    | Same                              |
+| =act=     | Exa listing with tree, sorted by time              | Same                              |
+| =atc=     | Exa listing with tree, sorted by time              | Same                              |
+| =aclt=    | Exa long listing with tree, by time                | Same                              |
+| =atlc=    | Exa long listing with tree, by time                | Same                              |
+| =e=       | Opens new Emacs window                             | Opens Emacs in Console            |
+| =ez=      | Edit zsh.org in new Emacs window                   | Edit zsh.org in Console           |
+| =eb=      | Edit bspwm.org in new Emacs window                 | Edit bspwm.org in Console         |
+| =ep=      | Edit Polybar config in new Emacs window            | Edit Polybar in Console           |
+| =eq=      | Edit Qutebrowser config in new Emacs window        | Edit Qutebrowser in Console       |
+| =ec=      | Edit init.org in new Emacs window                  | Edit init.org in Console          |
+| =ed=      | Edit config.org in new Emacs window                | Edit config.org in Console        |
+| =ew=      | Edit Waybar config in new Emacs window             | Edit Waybar in Console            |
+| =es=      | Edit Waybar style.org in new Emacs window          | Edit style.org in Console         |
+| =ef=      | Edit foot.org in new Emacs window                  | Edit foot.org in Console          |
+| =egp=     | Run Magit Push on repository inside Emacs          | Run Magit Push in Console         |
+| =egs=     | Run Magit Status on repository inside Emacs        | Run Magit Status in Console       |
+| =ei=      | Run Magit Log on repository inside Emacs           | Run Magit Log in Console          |
+| =egl=     | Run Magit Log on repository inside Emacs           | Run Magit Log in Console          |
+| =ee=      | Open current directory in Dired in Emacs           | Open current directory in Console |
+| =er=      | Open current directory in Ranger in Emacs          | N/A                               |
+| =j=       | Open NNN file browser                              | N/A                               |
+| =me=      | Open webcam image in MPV in Wayland                | N/A                               |
+| =mx=      | Open webcam image in MPV in X.org                  | N/A                               |
+
+#+begin_src sh :tangle .zshrc
+if [ -v TERM ]; then
+    if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" ]]; then
+        alias ls="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
+        alias l="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
+        alias lsla="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
+        alias la="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
+        alias ll="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
+        alias lsl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A"
+        alias lsa="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A"
+        alias lst="lsd --config-file=\"$HOME/.config/lsd/config.yml\" --tree"
+        alias lstl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --tree"
+        alias ltl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t --tree"
+        alias lc="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size"
+        alias lct="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size --tree"
+        alias lctl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size --tree -t"
+        alias a="exa --icons --group-directories-first -F"
+        alias al="exa --icons --group-directories-first --git --color-scale -F -h -l -a"
+        alias aa="exa --icons --group-directories-first --git --color-scale -F -h -l -a"
+        alias at="exa --icons --group-directories-first -F --tree -L 3"
+        alias atl="exa --icons --group-directories-first --git --color-scale -F --tree -L 3 -h -l -a"
+        alias alt="exa --icons --group-directories-first --git --color-scale -F --tree -L 3 -h -l -a"
+        alias ac="exa --icons --group-directories-first -F -s time -r"
+        alias acl="exa --icons --group-directories-first --git --color-scale -F -h -l -a -s time -r"
+        alias aca="exa --icons --group-directories-first --git --color-scale -F -h -l -a -s time -r"
+        alias act="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
+        alias atc="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
+        alias aclt="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
+        alias atlc="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
+        alias e="emacsclient -c -a 'emacs' -q"
+        alias ee="emacsclient -c -a 'emacs' -q ."
+        alias ez="emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
+        alias eb="emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
+        alias eq="emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
+        alias ed="emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
+        alias ew="emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
+        alias es="emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
+        alias ef="emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
+        alias egp="emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
+        alias egs="emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
+        alias ei="emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias egl="emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias er="emacsclient -c -a 'emacs' -q --eval \"(ranger)\" > /dev/null"
+        alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc"
+        alias me="mpv av://v4l2:/dev/video0 --vo=wlshm --untimed --profile=low-latency --no-osc"
+        alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
+    elif [[ ${TERM} = "screen-256color" ]]; then
+        alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
+    else
+        alias ls="ls --group-directories-first -F --color=auto"
+        alias lsla="ls -l -A -h --group-directories-first -F --color=auto"
+        alias l="ls --group-directories-first -F --color=auto"
+        alias lsl="ls -l -A -h --group-directories-first -F --color=auto"
+        alias la="ls -l -A -h --group-directories-first -F --color=auto"
+        alias ll="ls -l -A -h --group-directories-first -F --color=auto"
+        alias a="exa --group-directories-first -F"
+        alias al="exa --group-directories-first --git -F -h -l -a"
+        alias aa="exa --group-directories-first --git -F -h -l -a"
+        alias at="exa --group-directories-first -F --tree -L 3"
+        alias atl="exa --group-directories-first --git -F --tree -L 3 -h -l -a"
+        alias alt="exa --group-directories-first --git -F --tree -L 3 -h -l -a"
+        alias ac="exa --group-directories-first -F -s time -r"
+        alias acl="exa --group-directories-first --git -F -h -l -a -s time -r"
+        alias aca="exa --group-directories-first --git -F -h -l -a -s time -r"
+        alias act="exa --group-directories-first -F --tree -L 3 -s time -r"
+        alias atc="exa --group-directories-first -F --tree -L 3 -s time -r"
+        alias aclt="exa --group-directories-first --git -F -h -l -a --tree -L 3 -s time -r"
+        alias atlc="exa --group-directories-first --git -F -h -l -a --tree -L 3 -s time -r"
+        alias e="emacsclient -c -a 'emacs' -nw"
+        alias ee="emacsclient -c -a 'emacs' -nw ."
+        alias ez="emacsclient -c -a 'emacs' -nw \"$HOME/.zsh.org\""
+        alias eb="emacsclient -c -a 'emacs' -nw \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="emacsclient -c -a 'emacs' -nw \"$HOME/.config/polybar/config.org\""
+        alias eq="emacsclient -c -a 'emacs' -nw \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="emacsclient -c -a 'emacs' -nw \"$HOME/.doom.d/init.org\""
+        alias ed="emacsclient -c -a 'emacs' -nw \"$HOME/.doom.d/config.org\""
+        alias ew="emacsclient -c -a 'emacs' -nw \"$HOME/.config/waybar/config.org\""
+        alias es="emacsclient -c -a 'emacs' -nw \"$HOME/.config/waybar/style.org\""
+        alias ef="emacsclient -c -a 'emacs' -nw \"$HOME/.config/foot/foot.org\""
+        alias egp="emacsclient -c -a 'emacs' -nw --eval \"(magit-push)\""
+        alias egs="emacsclient -c -a 'emacs' -nw --eval \"(magit-status)\""
+        alias ei="emacsclient -c -a 'emacs' -nw --eval \"(magit-log-all)\""
+        alias egl="emacsclient -c -a 'emacs' -nw --eval \"(magit-log-all)\""
+    fi
+fi
+#+end_src
+
+* Functions
+
+** picp
+
+I used to use this function to send files to my Raspberry Pi.
+
+#+begin_src sh :tangle .zshrc
+function picp() {
+    if [ -z "$1" ]; then
+        printf "picp needs an argument\n"
+        false
+    else
+        scp -i ~/.ssh/laptop2pi "$1" pi@192.168.0.24:~
+        true
+    fi
+}
+#+end_src
+
+** pf
+
+This function searches the list of running processes provided with =ps= and returns a match.
+
+#+begin_src sh :tangle .zshrc
+function pf() {
+    if [ -z "$1" ]; then
+        printf "pf needs a process name to search for\n"
+        false
+    else
+        ps -aux | rg "$1"
+    fi
+}
+#+end_src
+
+** t
+
+This function, when given no arguments, simply starts the =tremc= Transmission client. If it is given a single argument, it is assumed it is a torrent file: it gives it to Transmission, then deletes it, and starts =tremc=.
+If it is given a second argument, it interprets that as the preferred download speed in kB/s.
+
+#+begin_src sh :tangle .zshrc
+function t() {
+    if [ -z "$1" ]; then
+        tremc
+        true
+     elif [ -z "$2" ]; then
+        printf "Starting %s...\n" "$1"
+        tremc "$1" > /dev/null
+        rm "$1" 2> /dev/null
+        tremc
+        true
+    elif [ -z "$3" ]; then
+        printf "Starting %s with speed %s kbps...\n" "$1" "$2"
+        tremc "$1" > /dev/null
+        transmission-remote -asd "$2"
+        rm "$1" 2> /dev/null
+        tremc
+        true
+    else
+        printf "Too many arguments\n" > /dev/stderr
+        false
+    fi
+}
+#+end_src
+
+** y
+
+Open a file with *mupdf*.
+
+#+begin_src sh :tangle .zshrc
+function y() {
+    if [ -z "$1" ]; then
+        printf "Please specify file to read\n"
+        false
+    else
+        mupdf -I "$1"
+    fi
+}
+#+end_src
+
+** scr
+
+Take a screenshot with the given name.
+
+#+begin_src sh :tangle .zshrc
+function scr() {
+    if [ -z "$1" ]; then
+        printf "Please specify output filename\n" > /dev/stderr
+        false
+    else
+        scrot -z -p -q 90 "$1"
+        notify-send "Screenshot saved" "$1"
+    fi
+}
+#+end_src
+
+** xs
+
+Compile a project with =xbps-src= from within the build directory. This is useful, and easier than typing "make", or changing directory to run the
+build script. It requires the package name (therefore, part of the current directory's name) as an argument.
+
+#+begin_src sh :tangle .zshrc
+function xs() {
+    cd ../../..
+    ./xbps-src build -C -f "$1"
+    cd $OLDPWD
+}
+#+end_src
+
+** j
+
+A wrapper function for [[https://github.com/jarun/nnn][nnn]] that changes CD when it exits.
+
+#+begin_src sh :tangle .zshrc
+
+j()
+{
+    # Block nesting of nnn in subshells
+    if [[ "${NNNLVL:-0}" -ge 1 ]]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    # The backslash allows one to alias n to nnn if desired without making an
+    # infinitely recursive alias
+    \nnn -d -i -l 2 -GUHRQD "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+#+end_src
+
+** Pipewire
+
+Carefully launches PipeWire and =pipewire-pulse=. So, if you'd want to use some OBS, be sure to run =pipes=, and then =portal=, in that order, and make sure PipeWire and XDPW are both running. These steps cannot be automated any further than this. After that you can type "=obs=" somewhere to start it.
+
+#+begin_src sh :tangle .zshrc
+function pipes() {
+    sudo modprobe v4l2loopback
+    sudo modprobe v4l2-async
+    sudo modprobe v4l2-mem2mem
+    sudo modprobe v4l2-dv-timings
+    sudo modprobe v4l2-fwnode
+    sudo sv down pipewire
+    sudo pkill -x pipewire
+    pipewire &
+}
+#+end_src
+
+And notice the ampersands. Even if you Control+C your way out of =pipes= and =portal=, there will still be leftover processes that must be discarded with =fg= or =pkill=.
+
+** XDG-Desktop-Portal
+
+Launches the global XDG-Desktop-Portal, with XDPW right after it. These two commands must be run together, in a shell, and not in a startup or configuration file.
+
+#+begin_src sh :tangle .zshrc
+function portal() {
+    /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l DEBUG &
+}
+#+end_src
+
+** Backup Website
+
+This shell function backs up my website. It takes one argument, the output directory to store the backup in.
+
+#+begin_src sh :tangle .zshrc
+function backup() {
+    if [ -z "$1" ]; then
+        printf "Please specify directory to store backup in\n" > /dev/stderr
+        false
+    else
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
+        true
+    fi
+}
+#+end_src
+
+** Timer
+
+These two functions are special functions, they are executed before and after each command. I use these to keep a timer of each command,
+so my shell tells you how long your command took.
+
+#+begin_src sh :tangle .zshrc
+function preexec() {
+    timer=${timer:-$SECONDS}
+}
+
+function precmd() {
+    if [ $timer ]; then
+        timer_show=$(($SECONDS - $timer))
+        timer_show=$(printf '%d\n' $timer_show)
+        PROMPT='%{$fg[cyan]%}${timer_show}s %{$fg[white]%}[%c]$ %{$reset_color%}'
+        unset timer
+    fi
+}
+#+end_src
+
+* Aliases
+
+This is my collection of aliases. Each letter of the alphabet should have its own command, to make the overall way of life easier.
+This was apparent before, but I use a number of tools written in Rust that serve as faster and better-looking versions of standard
+commands, like [[https://github.com/muesli/duf][duf]] for =df=, [[https://github.com/Peltoche/lsd][lsd]] for =ls=, and [[https://github.com/BurntSushi/ripgrep][ripgrep]] for =grep=. These commands look different, but behave exactly the same as
+the GNU coreutils they're modeled after. These projects are worth checking out.
+
+| Command | Arguments                | What It Does                                        |
+|---------+--------------------------+-----------------------------------------------------|
+| =b=       | Directory                | Run broot on given or current directory             |
+| =bb=      | N/A                      | Run neofetch with fancy bars                        |
+| =c=       | N/A                      | Run btm task manager                                |
+| =ca=      | File name                | Run Bat on given files                              |
+| =cd=      | Directory                | Run Zoxide on given directory                       |
+| =co=      | N/A                      | Run Conky                                           |
+| =d=       | N/A                      | Run fd Find                                         |
+| =dcr=     | File name                | Decrypt given file with GNUPG                       |
+| =df=      | N/A                      | Run duf                                             |
+| =e=       | File name or directory   | Open given file or directory in Emacs               |
+| =f=       | N/A                      | A file picker with preview pane                     |
+| =g=       | Pattern, file name       | Run Ripgrep with given pattern on file              |
+| =ga=      | File name                | Add given file to staging area                      |
+| =gb=      | N/A                      | Run onefetch with fancy colors                      |
+| =gc=      | Branch                   | Check out branch on Git repository                  |
+| =gd=      | File name                | Run Git diff on given file                          |
+| =gf=      | File name                | Check out given file from HEAD, reverting changes   |
+| =ggo=     | N/A                      | Returns URL for repo's origin                       |
+| =gh=      | Pattern, file name       | Run Ripgrep with context with given pattern on file |
+| =gl=      | N/A                      | Run Git log                                         |
+| =gm=      | File name, file name     | Move or rename file and add to staging area         |
+| =gp=      | Options                  | GNUPG                                               |
+| =gpull=   | N/A                      | Git Pull Origin master                              |
+| =gpulm=   | N/A                      | Git Pull Origin main                                |
+| =gpush=   | N/A                      | Git Push Origin master                              |
+| =gpusm=   | N/A                      | Git Push Origin main                                |
+| =gr=      | File name                | Delete file from staging area                       |
+| =grc=     | File name                | Delete file from staging area                       |
+| =gs=      | N/A                      | Run Git show                                        |
+| =gso=     | URL                      | Set URL for repo's origin                           |
+| =h=       | N/A                      | Run Htop                                            |
+| =i=       | N/A                      | Run Tig Git client                                  |
+| =k=       | N/A                      | Make                                                |
+| =kc=      | N/A                      | Make clean                                          |
+| =m=       | File name                | Open given file in MPV                              |
+| =mn=      | Man page                 | Man                                                 |
+| =n=       | N/A                      | Run Ncmpcpp                                         |
+| =ncr=     | File name                | Encrypt given file with GNUPG                       |
+| =ne=      | N/A                      | Run Ncmpcpp with artwork                            |
+| =o=       | Process name             | Kill the given process                              |
+| =p=       | N/A                      | Run Gotop                                           |
+| =q=       | File name                | Open given file in Feh                              |
+| =qw=      | N/A                      | Open current directory in SXIV                      |
+| =r=       | Directory                | Run Ranger on given or current directory            |
+| =s=       | N/A                      | Log in to my website via SSH                        |
+| =ta=      | File name                | Extract given Tar archive                           |
+| =td=      | Output file, files       | Compress files into given output Tar archive        |
+| =tr=      | Options                  | Transmission-remote                                 |
+| =u=       | PID                      | Kill                                                |
+| =v=       | File name                | Open given file in Vim                              |
+| =vm=      | N/A                      | Run Virt-Manager                                    |
+| =wh=      | Command, alias, function | Which                                               |
+| =x=       | N/A                      | Start Zsh as Root                                   |
+| =xx=      | N/A                      | Reboot system immediately                           |
+| =y=       | File name                | Open given file in MuPDF                            |
+| =z=       | Directory                | Run Zoxide on given directory                       |
+
+#+begin_src sh :tangle .zshrc
+alias b="br -dpghs"
+alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
+alias c="btm"
+alias ca="bat"
+alias cd="z"
+alias co="conky"
+alias df="duf"
+alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
+alias i="tig"
+alias h="htop"
+alias ey="pkill -x emacs; sleep 1; emacs --daemon"
+alias ncr="gpg --encrypt --armor -r Tanner"
+alias dcr="gpg --decrypt"
+alias g="rg"
+alias gh="rg --context=4"
+alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 10 1 4"
+alias gp="gpg"
+alias gs="git status"
+alias ga="git add"
+alias gf="git checkout HEAD --"
+alias gcm="git commit -m"
+alias gc="git checkout"
+alias gd="git diff"
+alias gl="git log"
+alias gw="git show"
+alias gr="git rm"
+alias grc="git rm --cached"
+alias gm="git mv"
+alias ggo="git remote get-url origin"
+alias gso="git remote set-url origin"
+alias gpush="git push origin master"
+alias gpull="git pull origin master"
+alias gpusm="git push origin main"
+alias gpulm="git pull origin main"
+alias v="vim"
+alias vm="virt-manager"
+alias r="ranger"
+alias m="mpv"
+alias mn="man"
+alias tl="tldr"
+alias n="ncmpcpp"
+alias ne="$HOME/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug"
+alias o="pkill -x"
+alias u="kill"
+alias p="gotop"
+alias q="feh"
+alias qw="sxiv ."
+alias s="ssh redacted@redacted -p 2222"
+alias ta="tar xvf"
+alias td="tar czf"
+alias tr="transmission-remote"
+alias k="make"
+alias kc="make clean"
+alias wh="which"
+alias x="sudo zsh"
+#+end_src
+
+These next lines accomplish a few things. They let me use directory-changers like *nnn* and *Zoxide,* and configure the programs *bat*, *fzf*, and *wob*.
+
+#+begin_src sh :tangle .zshrc
+source /home/babkock/.config/broot/launcher/bash/br
+
+export GPG_TTY=$(tty)
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+export EDITOR=vim
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUG="p:-preview-tui;v:imgview;g:!tig*;v:!vim"
+export NNN_COLORS="2365"
+export BAT_STYLE="header,header-filesize,header-filename,changes"
+export FZF_DEFAULT_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:italic,gutter:-1,hl:blue,hl+:bright-blue,query:bright-yellow,prompt:bright-yellow,pointer:black:dim,info:magenta,preview-bg:black,border:black:dim"
+export _ZO_ECHO=1
+export _ZO_FZF_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:italic,gutter:-1,hl:blue,hl+:bright-blue,query:bright-yellow,prompt:bright-yellow,pointer:black:dim,info:magenta,preview-bg:black,border:black:dim"
+export _ZO_RESOLVE_SYMLINKS=1
+eval "$(zoxide init zsh)"
+export WOBSOCK="$HOME/.wob.sock"
+#+end_src
+
+#+BEGIN_EXPORT html
+<footer>
+    <center>
+    <p>Copyright &copy; 2022 Tanner Babcock.</p>
+    <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
+    <p class="nav"><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/zsh.html" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
+    <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
+    <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp; <a href="https://www.twitch.tv/babkock">Twitch</a> &nbsp;&bull;&nbsp;
+    <a href="https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD" target="_blank"><i>Donate!</i></a></p>
+    </center>
+</footer>
+#+END_EXPORT

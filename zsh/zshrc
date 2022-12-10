@@ -1,0 +1,384 @@
+#              __
+#  ____  _____/ /_  __________
+# /_  / / ___/ __ \/ ___/ ___/
+#  / /_(__  ) / / / /  / /__
+# /___/____/_/ /_/_/   \___/
+
+export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/babkock/.oh-my-zsh"
+
+export PREFIX="/usr/local/i386elfgcc"
+export TARGET=i386-elf
+
+source /home/babkock/.local/share/lscolors.sh
+
+LSCOLORS=$LS_COLORS
+ZLS_COLORS=$LS_COLORS
+ZLSCOLORS=$LS_COLORS
+export LSCOLORS
+export ZLS_COLORS
+export ZLSCOLORS
+
+if [ -v TERM ]; then
+    if [[ ${TERM} = "st-256color" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "rxvt-unicode" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "xterm-256color" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "foot" ]]; then
+        #ZSH_THEME="philips"
+        #ZSH_THEME="dieter"
+        #ZSH_THEME="clean"
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "alacritty" ]]; then
+        ZSH_THEME="babkockicon"
+    else
+        ZSH_THEME="babkock"
+    fi
+fi
+
+export LANG=en_US.UTF-8
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# HIST_STAMPS="mm/dd/yyyy"
+
+if [[ -n $SSH_CONNECTION ]]; then
+    plugins=(gitfast colored-man-pages ssh-agent)
+else
+    plugins=(gitfast colored-man-pages ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
+fi
+
+zstyle :omz:plugins:ssh-agent identities gitlab_rsa github_rsa alpine_rsa tbcom_ssh
+
+bindkey '^[[Z' reverse-menu-complete
+
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+    alias d="fd"
+    alias c="/usr/bin/cat"
+    alias cat="/usr/bin/cat"
+    alias grep="/usr/bin/grep --color=auto"
+    alias g="/usr/bin/grep --color=auto"
+    alias gh="/usr/bin/grep --color=auto --context=4"
+else
+    alias c="bat"
+    alias cat="bat"
+    alias d="fd"
+    alias grep="rg"
+    alias g="rg"
+    alias gh="rg --context=4"
+    alias reboot="loginctl reboot"
+    alias xx="loginctl reboot"
+fi
+
+if [ -v TERM ]; then
+    if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" ]]; then
+        alias ls="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
+        alias l="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
+        alias lsla="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
+        alias la="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
+        alias ll="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
+        alias lsl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A"
+        alias lsa="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A"
+        alias lst="lsd --config-file=\"$HOME/.config/lsd/config.yml\" --tree"
+        alias lstl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --tree"
+        alias ltl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t --tree"
+        alias lc="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size"
+        alias lct="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size --tree"
+        alias lctl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size --tree -t"
+        alias a="exa --icons --group-directories-first -F"
+        alias al="exa --icons --group-directories-first --git --color-scale -F -h -l -a"
+        alias aa="exa --icons --group-directories-first --git --color-scale -F -h -l -a"
+        alias at="exa --icons --group-directories-first -F --tree -L 3"
+        alias atl="exa --icons --group-directories-first --git --color-scale -F --tree -L 3 -h -l -a"
+        alias alt="exa --icons --group-directories-first --git --color-scale -F --tree -L 3 -h -l -a"
+        alias ac="exa --icons --group-directories-first -F -s time -r"
+        alias acl="exa --icons --group-directories-first --git --color-scale -F -h -l -a -s time -r"
+        alias aca="exa --icons --group-directories-first --git --color-scale -F -h -l -a -s time -r"
+        alias act="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
+        alias atc="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
+        alias aclt="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
+        alias atlc="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
+        alias e="emacsclient -c -a 'emacs' -q"
+        alias ee="emacsclient -c -a 'emacs' -q ."
+        alias ez="emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
+        alias eb="emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
+        alias eq="emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
+        alias ed="emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
+        alias ew="emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
+        alias es="emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
+        alias ef="emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
+        alias egp="emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
+        alias egs="emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
+        alias ei="emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias egl="emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias er="emacsclient -c -a 'emacs' -q --eval \"(ranger)\" > /dev/null"
+        alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc"
+        alias me="mpv av://v4l2:/dev/video0 --vo=wlshm --untimed --profile=low-latency --no-osc"
+        alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
+    elif [[ ${TERM} = "screen-256color" ]]; then
+        alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
+    else
+        alias ls="ls --group-directories-first -F --color=auto"
+        alias lsla="ls -l -A -h --group-directories-first -F --color=auto"
+        alias l="ls --group-directories-first -F --color=auto"
+        alias lsl="ls -l -A -h --group-directories-first -F --color=auto"
+        alias la="ls -l -A -h --group-directories-first -F --color=auto"
+        alias ll="ls -l -A -h --group-directories-first -F --color=auto"
+        alias a="exa --group-directories-first -F"
+        alias al="exa --group-directories-first --git -F -h -l -a"
+        alias aa="exa --group-directories-first --git -F -h -l -a"
+        alias at="exa --group-directories-first -F --tree -L 3"
+        alias atl="exa --group-directories-first --git -F --tree -L 3 -h -l -a"
+        alias alt="exa --group-directories-first --git -F --tree -L 3 -h -l -a"
+        alias ac="exa --group-directories-first -F -s time -r"
+        alias acl="exa --group-directories-first --git -F -h -l -a -s time -r"
+        alias aca="exa --group-directories-first --git -F -h -l -a -s time -r"
+        alias act="exa --group-directories-first -F --tree -L 3 -s time -r"
+        alias atc="exa --group-directories-first -F --tree -L 3 -s time -r"
+        alias aclt="exa --group-directories-first --git -F -h -l -a --tree -L 3 -s time -r"
+        alias atlc="exa --group-directories-first --git -F -h -l -a --tree -L 3 -s time -r"
+        alias e="emacsclient -c -a 'emacs' -nw"
+        alias ee="emacsclient -c -a 'emacs' -nw ."
+        alias ez="emacsclient -c -a 'emacs' -nw \"$HOME/.zsh.org\""
+        alias eb="emacsclient -c -a 'emacs' -nw \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="emacsclient -c -a 'emacs' -nw \"$HOME/.config/polybar/config.org\""
+        alias eq="emacsclient -c -a 'emacs' -nw \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="emacsclient -c -a 'emacs' -nw \"$HOME/.doom.d/init.org\""
+        alias ed="emacsclient -c -a 'emacs' -nw \"$HOME/.doom.d/config.org\""
+        alias ew="emacsclient -c -a 'emacs' -nw \"$HOME/.config/waybar/config.org\""
+        alias es="emacsclient -c -a 'emacs' -nw \"$HOME/.config/waybar/style.org\""
+        alias ef="emacsclient -c -a 'emacs' -nw \"$HOME/.config/foot/foot.org\""
+        alias egp="emacsclient -c -a 'emacs' -nw --eval \"(magit-push)\""
+        alias egs="emacsclient -c -a 'emacs' -nw --eval \"(magit-status)\""
+        alias ei="emacsclient -c -a 'emacs' -nw --eval \"(magit-log-all)\""
+        alias egl="emacsclient -c -a 'emacs' -nw --eval \"(magit-log-all)\""
+    fi
+fi
+
+function picp() {
+    if [ -z "$1" ]; then
+        printf "picp needs an argument\n"
+        false
+    else
+        scp -i ~/.ssh/laptop2pi "$1" pi@192.168.0.24:~
+        true
+    fi
+}
+
+function pf() {
+    if [ -z "$1" ]; then
+        printf "pf needs a process name to search for\n"
+        false
+    else
+        ps -aux | rg "$1"
+    fi
+}
+
+function t() {
+    if [ -z "$1" ]; then
+        tremc
+        true
+     elif [ -z "$2" ]; then
+        printf "Starting %s...\n" "$1"
+        tremc "$1" > /dev/null
+        rm "$1" 2> /dev/null
+        tremc
+        true
+    elif [ -z "$3" ]; then
+        printf "Starting %s with speed %s kbps...\n" "$1" "$2"
+        tremc "$1" > /dev/null
+        transmission-remote -asd "$2"
+        rm "$1" 2> /dev/null
+        tremc
+        true
+    else
+        printf "Too many arguments\n" > /dev/stderr
+        false
+    fi
+}
+
+function y() {
+    if [ -z "$1" ]; then
+        printf "Please specify file to read\n"
+        false
+    else
+        mupdf -I "$1"
+    fi
+}
+
+function scr() {
+    if [ -z "$1" ]; then
+        printf "Please specify output filename\n" > /dev/stderr
+        false
+    else
+        scrot -z -p -q 90 "$1"
+        notify-send "Screenshot saved" "$1"
+    fi
+}
+
+function xs() {
+    cd ../../..
+    ./xbps-src build -C -f "$1"
+    cd $OLDPWD
+}
+
+j()
+{
+    # Block nesting of nnn in subshells
+    if [[ "${NNNLVL:-0}" -ge 1 ]]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    # The backslash allows one to alias n to nnn if desired without making an
+    # infinitely recursive alias
+    \nnn -d -i -l 2 -GUHRQD "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+function pipes() {
+    sudo modprobe v4l2loopback
+    sudo modprobe v4l2-async
+    sudo modprobe v4l2-mem2mem
+    sudo modprobe v4l2-dv-timings
+    sudo modprobe v4l2-fwnode
+    sudo sv down pipewire
+    sudo pkill -x pipewire
+    pipewire &
+}
+
+function portal() {
+    /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l DEBUG &
+}
+
+function backup() {
+    if [ -z "$1" ]; then
+        printf "Please specify directory to store backup in\n" > /dev/stderr
+        false
+    else
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
+        true
+    fi
+}
+
+function preexec() {
+    timer=${timer:-$SECONDS}
+}
+
+function precmd() {
+    if [ $timer ]; then
+        timer_show=$(($SECONDS - $timer))
+        timer_show=$(printf '%d\n' $timer_show)
+        PROMPT='%{$fg[cyan]%}${timer_show}s %{$fg[white]%}[%c]$ %{$reset_color%}'
+        unset timer
+    fi
+}
+
+alias b="br -dpghs"
+alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
+alias c="btm"
+alias ca="bat"
+alias cd="z"
+alias co="conky"
+alias df="duf"
+alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
+alias i="tig"
+alias h="htop"
+alias ey="pkill -x emacs; sleep 1; emacs --daemon"
+alias ncr="gpg --encrypt --armor -r Tanner"
+alias dcr="gpg --decrypt"
+alias g="rg"
+alias gh="rg --context=4"
+alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 10 1 4"
+alias gp="gpg"
+alias gs="git status"
+alias ga="git add"
+alias gf="git checkout HEAD --"
+alias gcm="git commit -m"
+alias gc="git checkout"
+alias gd="git diff"
+alias gl="git log"
+alias gw="git show"
+alias gr="git rm"
+alias grc="git rm --cached"
+alias gm="git mv"
+alias ggo="git remote get-url origin"
+alias gso="git remote set-url origin"
+alias gpush="git push origin master"
+alias gpull="git pull origin master"
+alias gpusm="git push origin main"
+alias gpulm="git pull origin main"
+alias v="vim"
+alias vm="virt-manager"
+alias r="ranger"
+alias m="mpv"
+alias mn="man"
+alias tl="tldr"
+alias n="ncmpcpp"
+alias ne="$HOME/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug"
+alias o="pkill -x"
+alias u="kill"
+alias p="gotop"
+alias q="feh"
+alias qw="sxiv ."
+alias s="ssh redacted@redacted -p 2222"
+alias ta="tar xvf"
+alias td="tar czf"
+alias tr="transmission-remote"
+alias k="make"
+alias kc="make clean"
+alias wh="which"
+alias x="sudo zsh"
+
+source /home/babkock/.config/broot/launcher/bash/br
+
+export GPG_TTY=$(tty)
+#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+export EDITOR=vim
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUG="p:-preview-tui;v:imgview;g:!tig*;v:!vim"
+export NNN_COLORS="2365"
+export BAT_STYLE="header,header-filesize,header-filename,changes"
+export FZF_DEFAULT_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:italic,gutter:-1,hl:blue,hl+:bright-blue,query:bright-yellow,prompt:bright-yellow,pointer:black:dim,info:magenta,preview-bg:black,border:black:dim"
+export _ZO_ECHO=1
+export _ZO_FZF_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:italic,gutter:-1,hl:blue,hl+:bright-blue,query:bright-yellow,prompt:bright-yellow,pointer:black:dim,info:magenta,preview-bg:black,border:black:dim"
+export _ZO_RESOLVE_SYMLINKS=1
+eval "$(zoxide init zsh)"
+export WOBSOCK="$HOME/.wob.sock"

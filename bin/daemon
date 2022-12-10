@@ -1,16 +1,22 @@
 #!/bin/bash
+# Run this immediately after logging in
+# Manages transmission-daemon and mpd manually
+
 sudo systemctl stop mpd.service
 sudo systemctl disable mpd.service
 sudo systemctl stop mpd.socket
 sudo systemctl disable mpd.socket
-pkill -x mpd
-pkill -x mopidy
+pkill -x mpd 2> /dev/null
+pkill -x mopidy 2> /dev/null
 mpd
 
 sudo systemctl stop transmission-daemon.service
 sudo systemctl disable transmission-daemon.service
 
-pkill -x transmission-daemon
+pkill -x transmission-daemon 2> /dev/null
 transmission-daemon
-eww daemon
+transmission-remote --download-dir "/home/babkock/Downloads" > /dev/null
+transmission-remote --incomplete-dir "/home/babkock/Downloads" > /dev/null
+transmission-remote --torrent-done-script "/home/babkock/bin/trnotify" > /dev/null
+transmission-remote -x -Y --no-dht > /dev/null
 

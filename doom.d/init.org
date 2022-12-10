@@ -1,0 +1,350 @@
+#+TITLE: Doom Emacs
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+STARTUP: showeverything
+#+OPTIONS: toc:nil num:nil
+#+DESCRIPTION: Doom Emacs config on Tanner Babcock GitHub Pages. This is my Doom Emacs initialization file.
+#+KEYWORDS: tanner babcock, github, emacs, doom emacs, org mode, linux, gnu linux, art, music, experimental, noise
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+HTML_HEAD_EXTRA: <meta property="og:image" content="/images/ogimage.png" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:width" content="660" />
+#+HTML_HEAD_EXTRA: <meta property="og:image:height" content="461" />
+#+HTML_HEAD_EXTRA: <meta property="og:title" content="Doom Emacs" />
+#+HTML_HEAD_EXTRA: <meta property="og:description" content="Doom Emacs config on Tanner Babcock GitHub Pages. This is my Doom Emacs initialization file." />
+#+HTML_HEAD_EXTRA: <meta property="og:locale" content="en_US" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
+#+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+#+HTML_HEAD_EXTRA: <meta name="google-site-verification" content="2WoaNPwHxji9bjk8HmxLdspgd5cx93KCRp-Bo1gjV0o" />
+#+PROPERTY: header-args :tangle
+#+LANGUAGE: en
+
+This is the other, secondary Doom Emacs config file =init.org=, which tangles to =init.el=. [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/doom.d/config.org][This is the primary one, config.org.]] This literate configuration file is available on my [[https://babkock.github.io/configs/init.html][GitHub Pages]]. Please, if you appreciate my work, consider [[https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD][making a donation]].
+
+#+BEGIN_EXPORT html
+<header>
+    <center>
+        <ul>
+            <li><a href="https://babkock.github.io">Home</a></li>
+            <li><a href="https://tannerbabcock.com/home">Website</a></li>
+            <li><a href="https://github.com/Babkock" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/Babkock/Babkock.github.io" target="_blank">Source Code</a></li>
+            <li><a href="https://gitlab.com/Babkock/" target="_blank">GitLab</a></li>
+            <li><a href="https://www.youtube.com/channel/UCdXmrPRUtsl-6pq83x3FrTQ" target="_blank">YouTube</a></li>
+        </ul>
+    </center>
+</header>
+#+END_EXPORT
+
+# #+TOC: headlines 2
+
+* Table of Contents :toc:
+- [[#lexical-binding][Lexical Binding]]
+- [[#packages][Packages]]
+- [[#preferences][Preferences]]
+  - [[#frame-title][Frame Title]]
+  - [[#fallback-buffer-name][Fallback Buffer Name]]
+  - [[#doom-dashboard][Doom Dashboard]]
+  - [[#modeline][Modeline]]
+  - [[#emms][EMMS]]
+  - [[#mpdel][MPDel]]
+
+* Lexical Binding
+
+Gotta have this at the beginning of the config file.
+
+#+begin_src emacs-lisp :tangle yes
+;;; init.el -*- lexical-binding: t; -*-
+#+end_src
+
+* Packages
+
+This is my list of enabled and installed packages. I try to have a small and minimal Emacs environment, so I've disabled some common modules.
+
+#+begin_src emacs-lisp :tangle yes
+(doom! :input
+       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
+       ;;chinese
+       ;;japanese
+       ;;layout            ; auie,ctsrnm is the superior home row
+
+       :completion
+       ;;company           ; the ultimate code completion backend
+       ;;helm              ; the *other* search engine for love and life
+       ;;ido               ; the other *other* search engine...
+       ;;ivy               ; a search engine for love and life
+       (vertico +icons)           ; the search engine of the future
+
+       :ui
+       ;;deft              ; notational velocity for Emacs
+       doom                ; what makes DOOM look the way it does
+       doom-dashboard      ; a nifty splash screen for Emacs
+       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       (emoji +unicode)  ; 🙂
+       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+       ;;hydra
+       ;;indent-guides     ; highlighted indent columns
+       ligatures           ; ligatures and symbols to make your code pretty again
+       ;;minimap           ; show a map of the code on the side
+       modeline            ; snazzy, Atom-inspired modeline, plus API
+       ;;nav-flash         ; blink cursor line after big motions
+       ;;neotree           ; a project drawer, like NERDTree for vim
+       ophints            ; highlight the region an operation acts on
+       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       ;;tabs              ; a tab bar for Emacs
+       treemacs           ; a project drawer, like neotree but cooler
+       ;;unicode           ; extended unicode support for various languages
+       vc-gutter           ; vcs diff in the fringe
+       vi-tilde-fringe     ; fringe tildes to mark beyond EOB
+       ;;window-select     ; visually switch windows
+       ;;workspaces        ; tab emulation, persistence & separate workspaces
+       zen                 ; distraction-free coding or writing
+
+       :editor
+       (evil +everywhere); come to the dark side, we have cookies
+       ;;file-templates    ; auto-snippets for empty files
+       fold              ; (nigh) universal code folding
+       ;;(format +onsave)  ; automated prettiness
+       ;;god               ; run Emacs commands without modifier keys
+       ;;lispy             ; vim for lisp, for people who don't like vim
+       ;;multiple-cursors  ; editing in many places at once
+       ;;objed             ; text object editing for the innocent
+       ;;parinfer          ; turn lisp into python, sort of
+       ;;rotate-text       ; cycle region at point between text candidates
+       ;;snippets          ; my elves. They type so I don't have to
+       ;;word-wrap         ; soft wrapping with language-aware indent
+
+       :emacs
+       (dired +icons +ranger)    ; making dired pretty [functional]
+       ;;electric          ; smarter, keyword-based electric-indent
+       (ibuffer +icons)    ; interactive buffer management
+       undo              ; persistent, smarter undo for your inevitable mistakes
+       vc                ; version-control and Emacs, sitting in a tree
+
+       :term
+       ;;eshell            ; the elisp shell that works everywhere
+       ;;shell             ; simple shell REPL for Emacs
+       ;;term              ; basic terminal emulator for Emacs
+       vterm             ; the best terminal emulation in Emacs
+
+       :checkers
+       ;;syntax              ; tasing you for every semicolon you forget
+       ;;(spell +flyspell) ; tasing you for misspelling mispelling
+       ;;grammar           ; tasing grammar mistake every you make
+
+       :tools
+       ;;ansible
+       ;;biblio            ; Writes a PhD for you (citation needed)
+       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       ;;direnv
+       ;;docker
+       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       ;;ein               ; tame Jupyter notebooks with emacs
+       (eval +overlay)     ; run code, run (also, repls)
+       ;;gist              ; interacting with github gists
+       lookup              ; navigate your code and its documentation
+       ;;lsp               ; M-x vscode
+       magit               ; a git porcelain for Emacs
+       ;;make              ; run make tasks from Emacs
+       ;;pass                ; password manager for nerds
+       ;;pdf               ; pdf enhancements
+       ;;prodigy           ; FIXME managing external services & code builders
+       rgb               ; creating color strings
+       ;;taskrunner        ; taskrunner for all your projects
+       ;;terraform         ; infrastructure as code
+       ;;tmux              ; an API for interacting with tmux
+       ;;upload            ; map local to remote projects via ssh/ftp
+
+       :os
+       (:if IS-MAC macos)  ; improve compatibility with macOS
+       tty               ; improve the terminal Emacs experience
+
+       :lang
+       ;;agda              ; types of types of types of types...
+       ;;beancount         ; mind the GAAP
+       ;;(cc +lsp)         ; C > C++ == 1
+       ;;clojure           ; java with a lisp
+       ;;common-lisp       ; if you've seen one lisp, you've seen them all
+       ;;coq               ; proofs-as-programs
+       ;;crystal           ; ruby at the speed of c
+       ;;csharp            ; unity, .NET, and mono shenanigans
+       ;;data              ; config/data formats
+       ;;(dart +flutter)   ; paint ui and not much else
+       ;;dhall
+       ;;elixir            ; erlang done right
+       ;;elm               ; care for a cup of TEA?
+       emacs-lisp        ; drown in parentheses
+       ;;erlang            ; an elegant language for a more civilized age
+       ;;ess               ; emacs speaks statistics
+       ;;factor
+       ;;faust             ; dsp, but you get to keep your soul
+       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)
+       ;;fsharp            ; ML stands for Microsoft's Language
+       ;;fstar             ; (dependent) types and (monadic) effects and Z3
+       ;;gdscript          ; the language you waited for
+       ;;(go +lsp)         ; the hipster dialect
+       ;;(graphql +lsp)    ; Give queries a REST
+       ;;(haskell +lsp)    ; a language that's lazier than I am
+       ;;hy                ; readability of scheme w/ speed of python
+       ;;idris             ; a language you can depend on
+       json                ; At least it ain't XML
+       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
+       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;julia             ; a better, faster MATLAB
+       ;;kotlin            ; a better, slicker Java(Script)
+       latex (+cdlatex +fold)             ; writing papers in Emacs has never been so fun
+       ;;lean              ; for folks with too much to prove
+       ;;ledger            ; be audit you can be
+       ;;lua               ; one-based indices? one-based indices
+       markdown            ; writing docs for people to ignore
+       ;;nim               ; python + lisp at the speed of c
+       nix                 ; I hereby declare "nix geht mehr!"
+       ;;ocaml             ; an objective camel
+       (org +pretty +dragandrop +roam2)                 ; organize your plain life in plain text
+       php                 ; perl's insecure younger brother
+       ;;plantuml          ; diagrams for confusing people more
+       ;;purescript        ; javascript, but functional
+       ;;python            ; beautiful is better than ugly
+       qt                  ; the 'cutest' gui framework ever
+       ;;racket            ; a DSL for DSLs
+       ;;raku              ; the artist formerly known as perl6
+       ;;rest              ; Emacs as a REST client
+       ;;rst               ; ReST in peace
+       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;scala             ; java, but good
+       ;;(scheme +guile)   ; a fully conniving family of lisps
+       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       ;;sml
+       ;;solidity          ; do you need a blockchain? No.
+       ;;swift             ; who asked for emoji variables?
+       ;;terra             ; Earth and Moon in alignment for performance.
+       ;;web               ; the tubes
+       ;;yaml              ; JSON, but readable
+       ;;zig               ; C, but simpler
+
+       :email
+       ;;(mu4e +org +gmail)
+       ;;notmuch
+       ;;(wanderlust +gmail)
+
+       :app
+       ;;calendar
+       ;;emms
+       ;;everywhere        ; *leave* Emacs!? You must be joking
+       irc                 ; how neckbeards socialize
+       (rss +org)          ; emacs as an RSS reader
+       ;;twitter           ; twitter client https://twitter.com/vnought
+
+       :config
+       ;;literate
+       (default +bindings +smartparens))
+#+end_src
+
+* Preferences
+
+I don't know why, but these next snippets of code must be in this file, (=init.el=) and not =config.el=.
+
+** Frame Title
+
+Conditionally set the title of the frame (or X window) with project name and buffer name (file name).
+
+#+begin_src emacs-lisp :tangle yes
+(setq frame-title-format
+    '(""
+        (:eval
+            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+                (replace-regexp-in-string
+                    ".*/[0-9]*-?" "☰ "
+                    (subst-char-in-string ?_ ?  buffer-file-name))
+                "► %b"))
+        (:eval
+            (let ((project-name (projectile-project-name)))
+                (unless (string= "-" project-name)
+                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
+#+end_src
+
+** Fallback Buffer Name
+
+The default buffer name.
+
+#+begin_src emacs-lisp :tangle yes
+(setq doom-fallback-buffer-name "► Doom"
+    doom-dashboard-name "► Doom")
+
+(setq-default x-stretch-cursor t)
+#+end_src
+
+** Doom Dashboard
+
+Show a custom image on the splash screen, and hide cursor and mode line.
+
+#+begin_src emacs-lisp :tangle yes
+(let ((alternatives '("squaree.png"
+                      "bluee.png"
+                      "purplee.png"
+                      "emacs.png"
+                      "doomEmacsGruvbox.png"
+                      "doomEmacsRouge.png"
+                      "doomEmacsSolarized.png"
+                      "doomEmacsTokyoNight.png"
+                      "doomWithShadow.png"
+                      "doomEmacsDoomOne.png"
+                      "doomEmacsGray.png"
+                      "doomEmacsBright.png"
+                      "doomie.png"
+                      "pattern.png"
+                      "rings.png")))
+    (setq fancy-splash-image
+        (concat doom-private-dir "splash/"
+            (nth (random (length alternatives)) alternatives))))
+
+; (setq fancy-splash-image (concat doom-private-dir "splash.png"))
+
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'after-init-hook #'doom-modeline-mode)
+(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
+#+end_src
+
+** Modeline
+
+#+begin_src emacs-lisp :tangle yes
+(setq inhibit-compacting-font-caches t)
+(setq find-file-visit-truename t)
+
+(setq doom-modeline-buffer-file-name-style 'auto
+      doom-modeline-icon (display-graphic-p)
+      doom-modeline-major-mode-icon t
+      doom-modeline-major-mode-color-icon t
+      doom-modeline-persp-icon t
+      doom-modeline-unicode-fallback nil)
+
+(add-hook! 'org-mode-hook #'mixed-pitch-mode)
+(setq browse-url-browser-function 'eww-browse-url)
+#+end_src
+
+** EMMS
+
+#+begin_src emacs-lisp :tangle yes
+;(require 'emms-setup)
+;(emms-all)
+#+end_src
+
+** MPDel
+
+#+begin_src emacs-lisp :tangle yes
+(setq libmpdel-hostname "127.0.0.2")
+#+end_src
+
+#+BEGIN_EXPORT html
+<footer>
+    <center>
+    <p>Copyright &copy; 2022 Tanner Babcock.</p>
+    <p>This page is licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
+    <p class="nav"><a href="https://babkock.github.io">Home</a> &bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io">Source Code</a> &nbsp;&bull;&nbsp;
+    <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
+    <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp; <a href="https://www.twitch.tv/babkock">Twitch</a> &nbsp;&bull;&nbsp;
+    <a href="https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD" target="_blank"><i>Donate!</i></a></p>
+    </center>
+</footer>
+#+END_EXPORT

@@ -5,56 +5,103 @@
 ! /_/|_/_/   \___/____/\____/\__,_/_/   \___/\___/____/ 
 !
 URxvt*scrollBar: false
-URxvt*font: xft:IBMPlex:antialias=true:hinting=true:minspace=false:size=15:file=/usr/share/fonts/truetype/ibm-plex/Blex Mono Nerd Font Complete Mono.ttf
+
 URxvt*termName: rxvt-unicode
 URxvt*depth: 32
 URxvt*fading: 10
 URxvt*letterSpace: 0
 URxvt*internalBorder: 6
-URxvt*background: [60]#0f0f0f
+URxvt*background: [60]#000000
+URxvt*font: xft:Space Mono Nerd Font:size=18:antialias=true:hinting=true:file=/usr/share/fonts/NerdFonts/ttf/Space Mono Nerd Font Complete Mono.ttf
 
 dmenu.background: #000000
-dmenu.foreground: #dfdfdf
+dmenu.foreground: #5b9ad1
 
-dmenu.midbackground: #bf5141
-dmenu.midforeground: #ef8171
+dmenu.midbackground: #232323
+dmenu.midforeground: #eec484
 
-dmenu.selbackground: #dfdfdf
-dmenu.selforeground: #000000
+dmenu.selbackground: #331212
+dmenu.selforeground: #ee7369
+
+
+Sxiv.foreground: #cccccc
+Sxiv.background: #101010
 
 ! special
-*.foreground:   #ffffff
-*.background:   #000000
+*.foreground:   #ffefef
+*.background:   #020202
 *.cursorColor:  #ffffff
 
 ! black
 *.color0:       #000000
-*.color8:       #666666
+*.color8:       #121212
 
 ! red
-*.color1:       #d36265
-*.color9:       #ef8171
+*.color1:       #cd5349
+*.color9:       #dd6359
 
 ! green
-*.color2:       #aece91
-*.color10:      #cfefb3
+*.color2:       #539f58
+*.color10:      #63b268
 
 ! yellow
-*.color3:       #e7e18c
-*.color11:      #fff796
+*.color3:       #ddb474
+*.color11:      #eec484
 
 ! blue
-*.color4:       #72b7ef
-*.color12:      #84c8ff
+*.color4:       #4b8ac0
+*.color12:      #5b9ad1
 
 ! magenta
-*.color5:       #963c59
-*.color13:      #b85e7b
+*.color5:       #d98771
+*.color13:      #e99781
 
 ! cyan
-*.color6:       #7e9195
-*.color14:      #b3cacf
+*.color6:       #489390
+*.color14:      #58a4a1
 
 ! white
-*.color7:       #bebebe
-*.color15:      #ffffff
+*.color7:       #dddddd
+*.color15:      #cccccc
+
+! background
+polybar.color0:  #00000000
+! foreground
+polybar.color1:  #ccededed
+polybar.color2:  #30efaf60
+
+polybar.color3:  #edefaf60
+polybar.color4:  #edfea63c
+
+! label focused background
+polybar.color5:  #2fd03844
+! label focused foreground
+polybar.color6:  #dd635935
+
+! label occupied background
+polybar.color7:  #4b8ac08f
+! label occupied foreground
+polybar.color8:  #dd6359af
+
+polybar.color9:  #effff293
+polybar.color10: #edefaf60
+polybar.color11: #30fff293
+polybar.color12: #25b06998
+polybar.color13: #efc26cd5
+polybar.color14: #efc26cd5
+polybar.color15: #36537086
+polybar.color16: #ef869fb3
+polybar.color17: #36537086
+polybar.color18: #ef869fb3
+polybar.color19: #ef6d878d
+polybar.color20: #1076bacb
+polybar.color21: #df92d4af
+
+! battery yellow
+polybar.color22: #edfff293
+! battery red
+polybar.color23: #edfc3c3f
+
+polybar.color24: #edc79400
+polybar.color25: #ffefefef
+

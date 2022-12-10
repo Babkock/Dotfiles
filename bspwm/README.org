@@ -1,0 +1,108 @@
+#+TITLE: Bspwm
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+PROPERTY: header-args:sh :shebang "#!/bin/sh"
+#+LANGUAGE: en
+
+* Sxhkd
+
+1. Set cursor.
+
+2. Remove the old Sxhkd FIFO.
+
+3. Create a new FIFO in its place.
+
+4. Kill Sxhkd and restart it.
+
+#+begin_src sh :tangle bspwmrc
+#     __
+#    / /_  _________ _      ______ ___  __________
+#   / __ \/ ___/ __ \ | /| / / __ `__ \/ ___/ ___/
+#  / /_/ (__  ) /_/ / |/ |/ / / / / / / /  / /__
+# /_.___/____/ .___/|__/|__/_/ /_/ /_/_/   \___/
+#           /_/
+#
+xsetroot -cursor_name left_ptr
+
+SXHKD_FIFO=/tmp/sxhkd.fifo
+export SXHKD_FIFO
+
+[ -e "$SXHKD_FIFO" ] && rm "$SXHKD_FIFO"
+mkfifo "$SXHKD_FIFO"
+pkill -x sxhkd 2> /dev/null
+sxhkd -s "$SXHKD_FIFO" -c ~/.config/sxhkd/sxhkdrc &
+#+end_src
+
+* Preferences
+
+#+begin_src sh :tangle bspwmrc
+bspc config focused_border_color      \#dd6359
+bspc config active_border_color       \#63b268
+bspc config normal_border_color       \#4b8ac0
+bspc config focus_follows_pointer     true
+bspc config border_width              2
+bspc config window_gap                4
+bspc config initial_polarity          first_child
+bspc config center_pseudo_tiled       true
+bspc config single_monocle            true
+bspc config remove_unplugged_monitors true
+
+bspc config split_ratio             0.5
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+#+end_src
+
+* Rules
+
+There are other rules and daemons defined in my script [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/bin/hdmi][hdmi]], for expanding the display to another monitor.
+
+#+begin_src sh :tangle bspwmrc
+bspc monitor eDP1 -d I II III IV V VI
+bspc rule -a "mpv" desktop='^3' state=floating focus=on follow=on
+bspc rule -a "emacs" desktop='^4' state=tiled focus=on follow=on
+bspc rule -a "Emacs" desktop='^4' state=tiled focus=on follow=on
+bspc rule -a "qutebrowser" desktop='^2' state=tiled
+bspc rule -a Gimp desktop='^5' state=floating
+bspc rule -a feh state=floating follow=on focus=on
+bspc rule -a "Sxiv" state=floating follow=on focus=on
+bspc rule -a surf2 desktop='^2' state=tiled
+bspc rule -a Surf desktop='^2' state=tiled
+bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
+bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
+bspc rule -a "Nicotine" desktop='^5' state=tiled focus=on follow=on
+bspc rule -a "Filezilla" desktop='^5' state=tiled focus=on follow=on
+bspc rule -a *:Dialog state=floating
+#+end_src
+
+* Daemons
+
+1. Configure =transmission-daemon=.
+
+#+begin_src sh :tangle bspwmrc
+transmission-remote -x -Y --no-dht
+transmission-remote --download-dir "/home/babkock/Downloads"
+transmission-remote --incomplete-dir "/home/babkock/Downloads"
+transmission-remote --torrent-done-script "/usr/bin/trnotify"
+#+end_src
+
+2. Start [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/polybar/config.org][laptop's Polybar]].
+
+#+begin_src sh :tangle bspwmrc
+# These daemons must be started here and not in xinitrc
+
+pkill -x polybar 2> /dev/null
+polybar -r --log=error laptop &
+#+end_src
+
+3. Start =picom=, [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/dunstrc][dunst]], and [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/doom.d/config.org][Emacs daemon]].
+
+#+begin_src sh :tangle bspwmrc
+pkill -x picom 2> /dev/null
+picom -b -C -c -o 0.35 -m 0.8 -r 9 -l 3 -t 3 --inactive-dim 0.1 --blur-background-exclude "class_g='dmenu' || class_g='dunst'" 2> /dev/null
+
+pkill -x dunst 2> /dev/null
+dunst --silent &
+
+pkill -x emacs 2> /dev/null
+emacs --daemon > /dev/null
+#+end_src

@@ -1,3 +1,9 @@
+#        __                 __           
+#   ____/ /_  ______  _____/ /___________
+#  / __  / / / / __ \/ ___/ __/ ___/ ___/
+# / /_/ / /_/ / / / (__  ) /_/ /  / /__  
+# \__,_/\__,_/_/ /_/____/\__/_/   \___/  
+#
 [global]
     ### Display ###
 
@@ -29,7 +35,9 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "450x5-40+30"
+    #geometry = "900x40-40+40"
+	width = "440"
+	height = "260"
 
     # Turn on the progess bar
     progress_bar = true
@@ -42,18 +50,18 @@
     progress_bar_frame_width = 1
 
     # Set the minimum width for the progress bar
-    progress_bar_min_width = 150
+    progress_bar_min_width = 260
 
     # Set the maximum width for the progress bar
-    progress_bar_max_width = 300
+    progress_bar_max_width = 440
 
 
     # Show how many messages are currently hidden (because of geometry).
-    indicate_hidden = yes
+    indicate_hidden = no
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
-    shrink = yes
+    shrink = no
 
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
@@ -77,14 +85,14 @@
     horizontal_padding = 8
 
     # Padding between text and icon.
-    text_icon_padding = 2
+    text_icon_padding = 5
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#30000000"
+    frame_color = "#63b268"
 
     # Define a color for the separator.
     # possible values are:
@@ -102,11 +110,11 @@
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    idle_threshold = 120
+    idle_threshold = 0
 
     ### Text ###
 
-    font = IBMPlexMono 15
+    font = Space Mono Nerd Font 15
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -159,7 +167,7 @@
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
-    show_age_threshold = 60
+    show_age_threshold = -1
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
@@ -179,7 +187,7 @@
     hide_duplicate_count = false
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = yes
+    show_indicators = no
 
     ### Icons ###
 
@@ -192,7 +200,7 @@
     min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 180
+    max_icon_size = 210
 
     # Paths to default icons.
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
@@ -204,7 +212,7 @@
     sticky_history = yes
 
     # Maximum amount of notifications kept in history
-    history_length = 20
+    history_length = 10
 
     ### Misc/Advanced ###
 
@@ -226,7 +234,6 @@
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
-    startup_notification = false
 
     # Manage dunst's desire for talking
     # Can be one of the following values:
@@ -234,8 +241,7 @@
     #  warn: Only non-fatal warnings
     #  mesg: Important Messages
     #  info: all unimportant stuff
-    # debug: all less than unimportant stuff
-    verbosity = crit
+    # debug: all less than unimportant stuff 
 
     # Define the corner radius of the notification window
     # in pixel size. If the radius is 0, you have no rounded
@@ -331,16 +337,16 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
-    timeout = 10
+    background = "#000000"
+    foreground = "#dfdfdf"
+    timeout = 4
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
     background = "#000000"
-    foreground = "#ffffff"
-    timeout = 5
+    foreground = "#dfdfdf"
+    timeout = 5	
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
@@ -348,7 +354,7 @@
     background = "#900000"
     foreground = "#ffdfdf"
     frame_color = "#ff0000"
-    timeout = 0
+    timeout = 10
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
 
@@ -469,3 +475,4 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+                                      

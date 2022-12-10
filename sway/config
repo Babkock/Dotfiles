@@ -1,0 +1,262 @@
+#  ___  __      __   __ _   _   _ 
+# / __| \ \ /\ / /  / _` | | | | |
+# \__ \  \ V  V /  | (_| | | |_| |
+# |___/   \_/\_/    \__,_|  \__, |
+#                            __/ |
+#                           |___/ 
+#
+xwayland enable
+
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term footclient
+
+exec --no-startup-id dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP=sway
+exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
+
+output eDP-1 resolution 1920x1080 bg /home/babkock/.config/sway/wave.jpg fill
+output HDMI-A-2 resolution 1920x1080 bg /home/babkock/.config/sway/misty.jpg fill
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+	dwt enabled
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+	accel_profile "adaptive"
+	pointer_accel 0.95
+	scroll_factor 1.2
+}
+
+input "6127:24766:GamingMouseI_Gaming_Mouse" {
+	pointer_accel 0.5
+	accel_profile "adaptive"
+	scroll_factor 1.2
+}
+
+input "6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control" {
+	pointer_accel 0.5
+	accel_profile "adaptive"
+	scroll_factor 1.2
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 300
+input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 60
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_delay 300
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_rate 60
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_delay 300
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 60
+
+client.focused #c53034ef #c53034ef #efefefef #c53034ef
+client.focused_tab_title #a92b1bef #a92b1bef #efefefef
+client.focused_inactive #61b8a6dd #61b8a6dd #000000ef
+client.unfocused #000000dd #000000dd #434343dd
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class="^.*"] border pixel 2
+
+font pango:SpaceMono Nerd Font Medium 14
+
+smart_gaps on
+smart_borders on
+gaps inner 4
+gaps outer 4
+
+exec swayidle -w timeout 600 "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 19 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000099 --ring-ver-color 40a78977 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill" timeout 1100 "swaymsg \"output * dpms off\"" resume "swaymsg \"output * dpms on\"" before-sleep "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 19 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000077 --ring-ver-color 40a78877 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill"
+
+exec xrdb -merge "$HOME/.Xresources"
+exec pkill -x pulseaudio
+exec pulseaudio --start &
+exec pkill -x tinyserve
+exec tinyserve
+exec pkill -x dunst
+exec dunst --silent
+exec pkill -x emacs
+exec emacs --daemon
+exec foot --server --config "$HOME/.config/foot/sway.ini"
+exec waybar -c "$HOME/.config/waybar/config.json"
+exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
+
+exec /usr/libexec/xdg-desktop-portal -r &
+
+# rules for HDMI-A-2 only apply when it is connected
+
+workspace 1 output eDP-1
+workspace 2 output HDMI-A-2
+workspace 3 output eDP-1
+workspace 4 output HDMI-A-2
+workspace 5 output HDMI-A-2
+workspace 6 output HDMI-A-2
+workspace 7 output HDMI-A-2
+workspace 8 output eDP-1
+
+assign [app_id="Emacs"] 4
+assign [class="Emacs"] 4
+assign [class="emacs"] 4
+assign [app_id="Firefox"] 2
+assign [class="Firefox"] 2
+assign [app_id="com.obsproject.Studio"] 8
+assign [app_id="org.qutebrowser.qutebrowser"] 2
+assign [app_id="org.nicotine_plus.Nicotine"] 5
+assign [app_id="mpv"] 6
+assign [class="mpv"] 6
+assign [app_id="GIMP"] 5
+assign [class="GIMP"] 5
+assign [app_id="Gimp"] 5
+assign [class="Gimp"] 5
+for_window [app_id="Emacs"] focus
+for_window [class="Emacs"] focus
+for_window [app_id="mpv"] floating enable
+for_window [class="mpv"] floating enable
+for_window [app_id="GIMP"] floating enable
+for_window [class="GIMP"] floating enable
+for_window [app_id="Gimp"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="feh"] floating enable
+for_window [instance="feh"] floating enable
+for_window [class="Sxiv"] floating enable
+for_window [app_id="com.obsproject.Studio"] focus
+for_window [app_id="com.obsproject.Studio"] move workspace to output eDP-1
+for_window [app_id="Firefox"] focus
+for_window [class="Firefox"] focus
+for_window [app_id="Firefox"] move workspace to output HDMI-A-2
+for_window [class="Firefox"] move workspace to output HDMI-A-2
+for_window [class="Gimp"] focus
+for_window [class="GIMP"] move workspace to output HDMI-A-2
+for_window [class="Gimp"] move workspace to output HDMI-A-2
+for_window [app_id="mpv"] focus
+for_window [class="mpv"] focus
+for_window [app_id="mpv"] move workspace to output HDMI-A-2
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym $mod+Shift+c kill
+
+# Start your launcher
+bindsym $mod+space exec dmenu_path | fuzzel -b b93b2b5f -t b93b2bff -s 81d8c66f -S 91e8d6ef -m bbaa00ef -M ccbb00ef -f "SpaceMono Nerd Font:pixelsize=26:antialias=true" -x 6 -r 0 -B 2 -C 000000cc -d | sh
+
+bindsym $mod+Shift+space exec fuzzel -b b93b2b5f -t b93b2bff -s 81d8c66f -S 91e8d6ef -m 40a789ef -f "SpaceMono Nerd Font:pixelsize=26:antialias=true" -x 6 -r 0 -B 2 -C 000000cc -T foot
+
+bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$HOME/.local/share/qutebrowser/fix-tooltips.qss"
+
+bindsym $mod+Shift+period workspace number 2; exec firefox-wayland
+
+bindsym $mod+comma workspace number 3; exec $term ncmpcpp
+
+bindsym $mod+Shift+comma workspace number 4; exec emacsclient -c -a "emacs"
+
+bindsym $mod+slash exec pavucontrol
+
+bindsym $mod+Shift+slash exec swaynag -o eDP-1 --background b93b2b4f --text d95b4bff --button-text 81d8c6ef --border 000000cc --button-background 81d8c66f --button-margin-right 10 --button-border-size 3 --border-bottom-size 4 --border-bottom d95b4bff -y overlay -f "SpaceMono Nerd Font" -e top -m "Make sure Pipewire and XDG-Desktop-Portal-Wlr are running!" -Z "Start OBS" "obs"
+
+bindsym $mod+semicolon workspace number 5; exec nicotine
+
+bindsym $mod+Shift+semicolon workspace number 5; exec filezilla
+
+bindsym $mod+backslash workspace number 5; exec $term nnn -d -i -l 2 -HGURQD -P preview-tui
+
+bindsym $mod+Shift+backslash workspace number 5; exec pcmanfm
+
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+r reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+q exit
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+bindsym $mod+p move container to output right
+bindsym $mod+o move container to output left
+bindsym $mod+i move container to workspace back_and_forth
+bindsym $mod+Shift+p move workspace to output right
+bindsym $mod+Shift+o move workspace to output left
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+t floating toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10pr
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+include @sysconfdir@/sway/config.d/*
+

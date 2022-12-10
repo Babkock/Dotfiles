@@ -1,4 +1,5 @@
 #!/bin/bash
+# MPD album art notification for dunst, powered by kunst
 
 DISPLAY=1
 pkill -x kunst

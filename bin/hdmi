@@ -1,9 +1,56 @@
 #!/bin/bash
-xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-2 --right-of eDP-1 --mode 1920x1080
-polybar -r --log=error monitor &
-pkill -x compton
-xrandr --output HDMI-2 --brightness 0.7
-feh --bg-scale ~/.config/bspwm/wallpaper.jpg
-bspc monitor eDP-1 -d I II III IV V
-bspc monitor HDMI-2 -d VI VII VIII
+# Activate additional HDMI monitor, position it to the right of laptop
+echo "Activating monitor"
+if [ $(xrandr | grep " connected " | awk '{ print$1 }' | tail -1) == "HDMI2" ]; then
+	xrandr --output eDP1 --primary --mode 1920x1080 --brightness 0.7 --output HDMI2 --right-of eDP1 --mode 1920x1080 --brightness 0.9
+
+	# show second polybar
+	pkill -x polybar
+	polybar -r --log=error laptop &
+	polybar -r --log=error monitor &
+
+	# run xinput commands on newly connected keyboard and mouse
+	xinput set-prop 10 "libinput Accel Speed" 0.45
+	xinput set-prop 10 "libinput Accel Speed Default" 0.45
+	xinput set-prop 10 "libinput Scrolling Pixel Distance" 40
+	xinput set-prop 10 "libinput Scrolling Pixel Distance Default" 40
+	xinput set-prop 10 "libinput Natural Scrolling Enabled" 1
+	xinput set-prop 11 "libinput Natural Scrolling Enabled" 1
+
+	# set rules for applications
+	bspc rule -a "emacs" desktop='^7' state=tiled focus=on follow=on
+	bspc rule -a "Emacs" desktop='^7' state=tiled focus=on follow=on
+	bspc rule -a "qutebrowser" desktop='^6' state=tiled
+	bspc rule -a "mpv" desktop='^6' state=floating focus=on follow=on
+	bspc rule -a "filezilla" desktop='^8' state=floating focus=on follow=on
+
+	# set two wallpapers
+	xwallpaper --output eDP1 --stretch ~/.config/river/ibm.jpg --output HDMI2 --stretch ~/.config/river/farmhouse.jpg
+
+	# bspwm configuration
+	bspc monitor eDP1 -d I II III IV V
+	bspc monitor HDMI2 -d VI VII VIII IX
+	true
+else
+	# disable external monitor
+	xrandr --output HDMI2 --off
+	xrandr --output eDP1 --auto --primary --mode 1920x1080 --brightness 0.6
+	
+	xinput set-prop 11 "Synaptics Tap Action" 1 1 1 1 1
+	xinput set-prop 11 "Synaptics Move Speed" 1.3 1.4 1.4 1.3
+	xinput set-prop 12 "Synaptics Tap Action" 1 1 1 1 1
+	xinput set-prop 12 "Synaptics Move Speed" 1.3 1.4 1.4 1.3
+
+	pkill -x polybar
+	polybar -r --log=error laptop &
+
+	# revert rules
+	bspc rule -a "emacs" desktop='^4' state=tiled focus=on follow=on
+	bspc rule -a "Emacs" desktop='^4' state=tiled focus=on follow=on
+	bspc rule -a "qutebrowser" desktop='^2' state=tiled
+	bspc rule -a "mpv" desktop='^3' state=floating focus=on follow=on
+
+	bspc monitor eDP1 -d I II III IV V VI
+	false
+fi
 

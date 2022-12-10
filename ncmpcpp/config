@@ -13,7 +13,7 @@ mpd_host = 127.0.0.2
 #mpd_host = 127.0.0.3
 #mpd_port = 6600
 mpd_port = 6600
-#mpd_connection_timeout = 5
+mpd_connection_timeout = 3
 
 mpd_music_dir = ~/Music
 
@@ -42,15 +42,13 @@ visualizer_data_source = /tmp/mpd.fifo
 ##
 visualizer_in_stereo = yes
 
-visualizer_sync_interval = 16
-
 ## Available values: spectrum, wave, wave_filled, ellipse.
 visualizer_type = wave
 
 visualizer_look = ?$
 
-visualizer_color = magenta, red, green, cyan, yellow, blue, white
-#visualizer_color = 4, 44, 143, 88, 210, 50, 91, 12, 146, 192, 214, 205, 68, 140, 44, 125
+#visualizer_color = magenta, red, green, cyan, yellow, blue, white
+visualizer_color = 4, 44, 143, 88, 210, 50, 91, 12, 146, 192, 214, 205, 68, 140, 44, 125
 
 #system_encoding = ""
 
@@ -183,9 +181,9 @@ song_window_title_format = {%a - }{%t}|{%f}
 ##   display artist tag and then composer and performer if previous ones are not
 ##   available.
 ##
-song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (30)[red]{t|f:Title} (27)[green]{a} (23)[magenta]{b} (4)[yellow]{yE}
+song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (28)[red]{t|f:Title} (25)[green]{a} (22)[magenta]{b} (4)[yellow]{yE}
 
-execute_on_song_change = "sh /home/babkock/bin/mpdnotify"
+execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
 
 ## The environment variable MPD_PLAYER_STATE is set to the current
 ## state (either unknown, play, pause, or stop).
@@ -355,15 +353,15 @@ use_console_editor = yes
 #
 colors_enabled = yes
 
-#empty_tag_color = cyan
+empty_tag_color = magenta
 
-#header_window_color = default
+header_window_color = red
 
 volume_color = green
 
 state_line_color = black
 
-state_flags_color = black
+state_flags_color = default
 
 main_window_color = default
 
@@ -377,9 +375,9 @@ progressbar_elapsed_color = green
 
 statusbar_color = yellow
 
-#statusbar_time_color = default
+statusbar_time_color = yellow
 
-#player_state_color = black
+player_state_color = yellow
 
 alternative_ui_separator_color = black
 

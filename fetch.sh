@@ -1,0 +1,203 @@
+#!/bin/bash
+# Dotfiles fetcher script
+system_files=(
+  "$HOME/.config/bspwm/bspwmrc"
+  "$HOME/.config/bspwm/bspwm.org"
+  "$HOME/.config/.dwm/autostart.sh"
+  "$HOME/.config/.dwm/autostart_blocking.sh"
+  "$HOME/.ncmpcpp/config"
+  "$HOME/.ncmpcpp/bindings"
+  "$HOME/.config/polybar/config.ini"
+  "$HOME/.config/polybar/config.org"
+  "$HOME/.config/sxhkd/sxhkdrc"
+  "$HOME/.config/conky/conky.conf"
+  "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userChrome.css"
+  "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userContent.css"
+  "$HOME/.mozilla/firefox/m7etmxn4.default/user.js"
+  "$HOME/.vim/bundle/vim-devicons/plugin/webdevicons.vim"
+  "$HOME/.config/ranger/plugins/ranger_devicons/devicons.py"
+  "$HOME/.gitconfig"
+  "/etc/mpd.conf"
+  "$HOME/.config/mpv/mpv.conf"
+  "$HOME/.config/ranger/rc.conf"
+  "$HOME/.config/ranger/rifle.conf"
+  "$HOME/.config/ranger/scope.sh"
+  "$HOME/.vimrc"
+  "$HOME/.config/foot/foot.ini"
+  "$HOME/.config/foot/foot.org"
+  "$HOME/.config/foot/labwc.ini"
+  "$HOME/.config/foot/sway.ini"
+# "/usr/share/vim/vim82/syntax/c.vim"
+# "/usr/share/vim/vim82/syntax/php.vim"
+  "$HOME/.xinitrc"
+  "$HOME/.Xresources"
+  "$HOME/.zsh.org"
+  "$HOME/.zshrc"
+  "$HOME/.oh-my-zsh/themes/babkock.zsh-theme"
+  "$HOME/.oh-my-zsh/themes/babkockicon.zsh-theme"
+  "$HOME/.tmux.conf"
+  "$HOME/.doom.d/init.el"
+  "$HOME/.doom.d/init.org"
+  "$HOME/.doom.d/config.el"
+  "$HOME/.doom.d/config.org"
+  "$HOME/.doom.d/packages.el"
+  "$HOME/org/elfeed.org"
+  "$HOME/.config/qutebrowser/config.py"
+  "$HOME/.config/qutebrowser/config.org"
+  "$HOME/.config/qutebrowser/quickmarks"
+  "$HOME/.config/tinyserve/index.html"
+  "$HOME/.fonts.conf"
+  "$HOME/.config/gtk-2.0/gtkfilechooser.ini"
+  "$HOME/.config/gtk-2.0/gtkrc"
+  "$HOME/.config/gtk-3.0/settings.ini"
+  "$HOME/.config/dunst/dunstrc"
+  "/usr/bin/batnotify"
+  "$HOME/bin/hdmi"
+  "$HOME/bin/rhdmi"
+  "$HOME/bin/ssway"
+  "$HOME/bin/start"
+  "$HOME/bin/slabwc"
+  "$HOME/.config/sway/config"
+  "$HOME/.config/waybar/config.org"
+  "$HOME/.config/waybar/style.org"
+  "$HOME/.config/waybar/config.json"
+  "$HOME/.config/waybar/style.css"
+  "$HOME/.config/waybar/rconfig.json"
+  "$HOME/.config/waybar/river.css"
+  "$HOME/.config/waybar/lconfig.json"
+  "$HOME/.config/waybar/labwc.css"
+  "$HOME/.config/river/init"
+  "$HOME/.config/wob/wob.ini"
+  "$HOME/.config/wob/labwc.ini"
+  "$HOME/.config/wob/sway.ini"
+  "$HOME/.config/labwc/autostart"
+  "$HOME/.config/labwc/environment"
+  "$HOME/.config/labwc/rc.xml"
+  "$HOME/.config/labwc/menu.xml"
+  "$HOME/.themes/labwc/openbox-3/themerc"
+)
+
+repo_files=(
+  "bspwm/bspwmrc"
+  "bspwm/README.org"
+  "dwm/autostart.sh"
+  "dwm/autostart_blocking.sh"
+  "ncmpcpp/config"
+  "ncmpcpp/bindings"
+  "polybar/config.ini"
+  "polybar/README.org"
+  "sxhkd/sxhkdrc"
+  "conky.conf"
+  "chrome/userChrome.css"
+  "chrome/userContent.css"
+  "user.js"
+  "vim/webdevicons.vim"
+  "ranger/devicons.py"
+  "gitconfig"
+  "mpd.conf"
+  "mpv.conf"
+  "ranger/rc.conf"
+  "ranger/rifle.conf"
+  "ranger/scope.sh"
+  "vimrc"
+  "foot/foot.ini"
+  "foot/README.org"
+  "foot/labwc.ini"
+  "foot/sway.ini"
+# "vim/c.vim"
+# "vim/php.vim"
+  "xinitrc"
+  "Xresources"
+  "zsh/README.org"
+  "zsh/zshrc"
+  "babkock.zsh-theme"
+  "babkockicon.zsh-theme"
+  "tmux.conf"
+  "doom.d/init.el"
+  "doom.d/init.org"
+  "doom.d/config.el"
+  "doom.d/README.org"
+  "doom.d/packages.el"
+  "elfeed.org"
+  "qutebrowser/config.py"
+  "qutebrowser/README.org"
+  "qutebrowser/quickmarks"
+  "tinyserve/index.html"
+  "fonts.conf"
+  "gtkfilechooser.ini"
+  "gtkrc"
+  "settings.ini"
+  "dunstrc"
+  "bin/batnotify"
+  "bin/hdmi"
+  "bin/rhdmi"
+  "bin/ssway"
+  "bin/start"
+  "bin/slabwc"
+  "sway/config"
+  "waybar/README.org"
+  "waybar/style.org"
+  "waybar/config.json"
+  "waybar/style.css"
+  "waybar/rconfig.json"
+  "waybar/river.css"
+  "waybar/lconfig.json"
+  "waybar/labwc.css"
+  "river/init"
+  "wob/wob.ini"
+  "wob/labwc.ini"
+  "wob/sway.ini"
+  "labwc/autostart"
+  "labwc/environment"
+  "labwc/rc.xml"
+  "labwc/menu.xml"
+  "labwc/themerc"
+)
+
+compare() {
+    if [[ -f "$2" ]]; then
+        cmp "$1" "$2" > /dev/null
+        result=$?
+        if [[ $result == 1 ]]; then
+            cp "$1" "$2" > /dev/null
+            printf "\e[92;1mChanged -- \e[95m%s\n" "$2"
+            if [[ "$2" != "surf/bookmarks.txt" && "$2" != "qutebrowser/quickmarks" ]]; then
+                git add "$2"
+            fi
+        elif [[ $result == 0 ]]; then
+            printf "\e[33mUnchanged -- \e[93m%s\n" "$2"
+        fi
+    else
+        printf "\e[92;1mAdded -- \e[95m%s\n" "$2"
+        cp "$1" "$2" > /dev/null
+        git add "$2"
+    fi
+}
+
+printf "\e[93;1mThis script will overwrite the contents of this repository with\n"
+printf "\e[93;1mwhatever is in the standard config locations for this user.\n\n"
+printf "\e[94;1mIt will also add any changed files to the repo's staging area.\n\n"
+printf "\e[91;1mContinue? (Y/N) "
+read contin
+if [[ $contin == "y" || $contin == "Y" ]]; then
+    printf "\e[92;1mContinuing...\n"
+    for ((i=0;i<${#system_files[@]};++i)); do
+        sys="${system_files[i]}"
+        rep="${repo_files[i]}"
+        if [[ -f "$sys" ]]; then
+            compare "$sys" "$rep"
+        else
+            continue
+        fi
+    done
+    printf "\e[93;1mFinished fetching\n"
+    git add "$0"
+    unset compare
+    git checkout HEAD -- qutebrowser/quickmarks
+    vim elfeed.org
+    true
+else
+    printf "\e[91;mFetch cancelled\n"
+    unset compare
+    false
+fi
