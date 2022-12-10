@@ -74,8 +74,6 @@ better now!
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/spectrwm.png]]
 
-[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/2022rice.png]]
-
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/dwmrice.png]]
 
 ** See also
