@@ -4,14 +4,12 @@
 #+PROPERTY: header-args
 #+LANGUAGE: en
 
-* Disclaimer
-
-This repository was synchronized with the GitLab version on December 10, 2022. It is now read-only and has [[https://gitlab.com/Babkock/Dotfiles][officially moved to GitLab.]]
+test
 
 Welcome to my Dotfiles. This repository contains my personal configuration files for various
 GNU/Linux programs. You can view the configurations that are literate/self-documenting [[https://babkock.github.io/][on my GitHub Pages]] - and these can be
 tangled via Emacs Org mode. This repository is old, from 2019, when I knew less about Linux,
-so cloning may take a while as it is large and has many pictures. Try cloning with =git --depth 1 git@github.com:Babkock/Dotfiles.git=
+so cloning may take a while as it is large and has many pictures. Try cloning with =git --depth 1 git@gitlab.com:Babkock/Dotfiles.git=
 
 ** fetch
 
@@ -30,15 +28,15 @@ They are launched with scripts in the [[https://gitlab.com/Babkock/Dotfiles/-/tr
 
 ** Other Orgs
 
-- [[https://github.com/Babkock/Dotfiles/tree/master/bspwm][Bspwm]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/doom.d/][Doom Emacs config.org]]
-- [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/init.org][Doom Emacs init.org]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/foot][Foot]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]
-- [[https://gitlhub.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/waybar/][Waybar Config]]
-- [[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][Waybar Style]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zsh]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/bspwm][Bspwm]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/doom.d/README.org][Doom Emacs config.org]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/doom.d/init.org][Doom Emacs init.org]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/foot][Foot]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/qutebrowser][Qutebrowser]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/polybar][Polybar]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/waybar/README.org][Waybar Config]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/waybar/style.org][Waybar Style]]
+- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/zsh][Zsh]]
 
 ** List
 
@@ -73,6 +71,8 @@ better now!
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/i3-Clean.png]]
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/spectrwm.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/2022rice.png]]
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/dwmrice.png]]
 
