@@ -249,21 +249,8 @@ j()
         return
     fi
 
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-    # see. To cd on quit only on ^G, remove the "export" and make sure not to
-    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    # The backslash allows one to alias n to nnn if desired without making an
-    # infinitely recursive alias
     \nnn -d -i -l 2 -GUHRQD "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
@@ -310,6 +297,10 @@ function precmd() {
     fi
 }
 
+function twitch() {
+    /home/babkock/git/twitch-chat-cli/cli.js connect babkock
+}
+
 alias b="br -dpghs"
 alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
 alias c="btm"
@@ -329,9 +320,11 @@ alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 1
 alias gp="gpg"
 alias gs="git status"
 alias ga="git add"
+alias ge="git fetch --all"
 alias gf="git checkout HEAD --"
 alias gcm="git commit -m"
 alias gc="git checkout"
+alias gcb="git checkout -b"
 alias gd="git diff"
 alias gl="git log"
 alias gw="git show"
@@ -340,10 +333,14 @@ alias grc="git rm --cached"
 alias gm="git mv"
 alias ggo="git remote get-url origin"
 alias gso="git remote set-url origin"
+alias ggu="git remote get-url upstream"
+alias gsu="git remote set-url upstream"
 alias gpush="git push origin master"
 alias gpull="git pull origin master"
 alias gpusm="git push origin main"
 alias gpulm="git pull origin main"
+alias gpash="git push all master"
+alias gpasm="git push all main"
 alias v="vim"
 alias vm="virt-manager"
 alias r="ranger"
@@ -358,6 +355,8 @@ alias p="gotop"
 alias q="feh"
 alias qw="sxiv ."
 alias s="ssh redacted@redacted -p 2222"
+alias se="pkill -x emacs; emacs --daemon"
+alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias ta="tar xvf"
 alias td="tar czf"
 alias tr="transmission-remote"

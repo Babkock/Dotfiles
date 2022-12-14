@@ -1,10 +1,12 @@
 * Contents     :elfeed:
 ** entry-title: \(linux\|emacs\|technology\)     :linux:
-** Reddit feeds                                              :reddit:
+** Reddit                                                                        :reddit:
 *** [[https://old.reddit.com/.rss?feed=7d2d2656a9410f5dc706d7bca182f304cb23dff7&user=Babkock666][All Reddit]]
 *** [[https://old.reddit.com/r/linux/.rss][linux]]
 *** [[https://old.reddit.com/r/unixporn/.rss][unixporn]]
 *** [[https://old.reddit.com/r/archlinux/.rss][archlinux]]
+*** [[https://old.reddit.com/r/voidlinux/.rss][voidlinux]]
+*** [[https://old.reddit.com/r/linuxmasterrace/.rss][linuxmasterrace]]
 *** [[https://old.reddit.com/r/suckless/.rss][suckless]]
 *** [[https://old.reddit.com/r/wallpapers/.rss][wallpapers]]
 *** [[https://old.reddit.com/r/MechanicalKeyboards/.rss][MechanicalKeyboards]]
@@ -14,10 +16,16 @@
 *** [[https://old.reddit.com/r/truefilm/.rss][truefilm]]
 *** [[https://old.reddit.com/r/aspergers/.rss][aspergers]]
 *** [[https://old.reddit.com/r/depression/.rss][depression]]
-*** [[https://old.reddit.com/r/cringepics/.rss][cringepics]]
-*** [[https://old.reddit.com/r/MorbidReality/.rss][MorbidReality]]
 *** [[https://old.reddit.com/r/BlackPeopleTwitter/.rss][BlackPeopleTwitter]]
+*** [[https://old.reddit.com/r/LateStageCapitalism/.rss][LateStageCapitalism]]
+*** [[https://old.reddit.com/r/technology/.rss][technology]]
+*** [[https://old.reddit.com/r/todayilearned/.rss][todayilearned]]
+*** [[https://old.reddit.com/r/nottheonion/.rss][nottheonion]]
+*** [[https://old.reddit.com/r/AreTheStraightsOK/.rss][AreTheStraightsOK]]
+*** [[https://old.reddit.com/r/relationships/.rss][relationships]]
+*** [[https://old.reddit.com/r/worldnews/.rss][worldnews]]
 ** YouTube/Invidious                        :youtube:
+*** [[https://y.com.sb/feed/private?token=BckIESeTFn8sZxfdK1NbgSTuROKehkKvytPZ9Ac9qJo=][Invidious]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsVIQ2ipmCbua6s8ThFLo5A][Shrouded Hand]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA][Brodie Robertson]]
@@ -32,7 +40,7 @@
 *** [[https://odysee.com/$/rss/@Babkock:8][Tanner Babcock]]
 *** [[https://youtube.com/feeds/videos.xml?channel_id=UCdXmrPRUtsl-6pq83x3FrTQ][Tanner Babcock]]
 ** GitLab and GitHub                         :git:
-*** [[https://github.com/Babkock.atom][GitHub User]]
+
 ** News                                                        :news:
 *** [[https://rss.nytimes.com/services/xml/rss/nyt/US.xml][New York Times]]
 *** [[https://consequence.net/feed/][Consequence of Sound]]
@@ -41,6 +49,8 @@
 *** [[https://www.theonion.com/rss][The Onion]]
 *** [[https://thehardtimes.net/feed/][The Hard Times]]
 # remember to hide this next section when committing dotfiles
+** Torrents                                                 :torrents:
+
 ** Stack Overflow                                   :stack:
 *** [[https://stackoverflow.com/feeds/tag?tagnames=c&sort=newest][C]]
 *** [[https://stackoverflow.com/feeds/tag/c%2B%2B?sort=newest][C++]]
@@ -66,7 +76,6 @@
 *** [[https://abstracteddistractions.tumblr.com/rss][abstracteddistractions]]
 *** [[https://artspotting.tumblr.com/rss][artspotting]]
 *** [[https://visual-poetry.tumblr.com/rss][visual-poetry]]
-*** [[https://upsetgazette.tumblr.com/rss][upsetgazette]]
 *** [[https://autism-affirmations.tumblr.com/rss][autism-affirmations]]
 *** [[https://spacecamp1.tumblr.com/rss][spacecamp1]]
 *** [[https://purecinema.tumblr.com/rss][purecinema]]

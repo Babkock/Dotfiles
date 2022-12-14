@@ -8,9 +8,9 @@
 
        :completion
        ;;company           ; the ultimate code completion backend
-       ;;helm              ; the *other* search engine for love and life
+       (helm +icons +fuzzy)              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ;;ivy               ; a search engine for love and life
+       ;;(ivy +icons)                 ; a search engine for love and life
        (vertico +icons)           ; the search engine of the future
 
        :ui
@@ -23,7 +23,7 @@
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
-       ;;minimap           ; show a map of the code on the side
+       minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -45,7 +45,7 @@
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       ;;multiple-cursors  ; editing in many places at once
+       multiple-cursors    ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
@@ -136,14 +136,14 @@
        ;;lua               ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       nix                 ; I hereby declare "nix geht mehr!"
+       ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +pretty +dragandrop +roam2)                 ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        ;;python            ; beautiful is better than ugly
-       qt                  ; the 'cutest' gui framework ever
+       ;;qt                  ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
@@ -200,6 +200,7 @@
                       "bluee.png"
                       "purplee.png"
                       "emacs.png"
+                      "emacsapple.png"
                       "doomEmacsGruvbox.png"
                       "doomEmacsRouge.png"
                       "doomEmacsSolarized.png"
@@ -210,6 +211,9 @@
                       "doomEmacsBright.png"
                       "doomie.png"
                       "pattern.png"
+                      "ue-colorful.png"
+                      "ue-light.png"
+                      "ue-red.png"
                       "rings.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"
@@ -218,7 +222,10 @@
 ; (setq fancy-splash-image (concat doom-private-dir "splash.png"))
 
 (add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'after-init-hook #'doom-modeline-mode)
+(add-hook! 'after-init-hook #'fancy-battery-mode)
 (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
 
 (setq inhibit-compacting-font-caches t)
