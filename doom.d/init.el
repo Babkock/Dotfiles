@@ -193,6 +193,7 @@
 
 (setq doom-fallback-buffer-name "► Doom"
     doom-dashboard-name "► Doom")
+;(setq doom-fallback-buffer-name "*dashboard*")
 
 (setq-default x-stretch-cursor t)
 
@@ -210,18 +211,21 @@
                       "doomEmacsGray.png"
                       "doomEmacsBright.png"
                       "doomie.png"
+                      "iAmDoom.png"
+                      "gnu.png"
+                      "floatingGnu.png"
                       "pattern.png"
                       "ue-colorful.png"
                       "ue-light.png"
                       "ue-red.png"
+                      "mx-butterfly.png"
+                      "vaporwave.png"
                       "rings.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"
             (nth (random (length alternatives)) alternatives))))
 
-; (setq fancy-splash-image (concat doom-private-dir "splash.png"))
-
-(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'after-init-hook #'doom-modeline-mode)

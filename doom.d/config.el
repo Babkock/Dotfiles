@@ -7,8 +7,7 @@
       gc-cons-percentage 0.1
       make-backup-files nil
       auto-save-default nil
-      create-lockfiles nil
-      echo-keystrokes 0)
+      create-lockfiles nil)
 (set-language-environment "UTF-8")
 (set-locale-environment "en_US.UTF-8")
 (set-selection-coding-system 'utf-8-unix)
@@ -47,7 +46,8 @@
 (setq doom-theme 'doom-peacock)
 (setq which-key-idle-delay 0.3
       which-key-idle-secondary-delay 0.05
-      +doom-dashboard-banner-padding '(0 . 1))
+      +doom-dashboard--width 95
+      +doom-dashboard-banner-padding '(0 . 0))
 (add-hook! 'doom-switch-buffer-hook 'garbage-collect)
 
 (setq doom-font (font-spec :family "Space Mono Nerd Font" :size 18 :height 1.0)
@@ -77,6 +77,7 @@
       large-file-warning-threshold nil)
 (setq-default shell-file-name "/bin/zsh")
 
+(add-hook! 'helpful-mode-hook 'mixed-pitch-mode)
 (add-hook! 'writeroom-mode-enable-hook 'mixed-pitch-mode)
 (add-hook! 'writeroom-mode-disable-hook 'mixed-pitch-mode)
 
@@ -99,6 +100,7 @@
           doom-modeline-env-version t
           doom-modeline-persp-icon t
           doom-modeline-unicode-fallback nil
+          doom-modeline-buffer-state-icon nil
           doom-modeline-height 30
           doom-modeline-hud t
           doom-modeline-buffer-modification-icon nil)
@@ -108,6 +110,7 @@
               doom-modeline-buffer-file-name-style 'relative-to-project
               doom-modeline-env-version t
               doom-modeline-persp-icon t
+              doom-modeline-buffer-state-icon nil
               doom-modeline-unicode-fallback nil
               doom-modeline-hud t
               doom-modeline-height 30
@@ -127,7 +130,10 @@
           org-log-done 'time
           org-journal-dir "~/org/journal/"
           org-hide-emphasis-markers t
-          org-support-shift-select t)
+          org-support-shift-select t
+          org-src-preserve-indentation nil
+          org-src-tab-acts-natively t
+          org-edit-src-content-indentation 0)
     (custom-set-faces!
         '(org-document-title :height 1.3)
         '(org-level-1 :inherit outline-1 :weight extra-bold :height 1.35)
@@ -147,6 +153,9 @@
     (setq doom-themes-treemacs-theme "doom-colors")
     (setq doom-themes-treemacs-enable-variable-pitch t))
 
+(after! helm
+    (setq helm-show-completion-min-window-height 9))
+
 (after! doom-themes
     (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
@@ -164,11 +173,106 @@
         '(magit-hash :foreground "#0f3")
         '(magit-filename :foreground "#ff3")
         '(magit-branch-current :foreground "#e96"))
-    (add-hook! magit-status-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'magit-mode-hook 'garbage-collect)
     (add-hook! 'magit-log-mode-hook 'garbage-collect)
     (add-hook! 'magit-status-mode-hook 'garbage-collect)
     (add-hook! 'magit-popup-mode-hook 'garbage-collect))
+
+(after! diff-hl
+    (global-diff-hl-mode)
+    (diff-hl-margin-mode)
+    (diff-hl-flydiff-mode)
+    (diff-hl-dired-mode)
+    (diff-hl-show-hunk-mouse-mode))
+
+(add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+(add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+(defvar splash-phrase-source-folder
+    (expand-file-name "phrases/" doom-private-dir)
+    "A folder of text files with a fun phrase on each line.")
+
+(defvar splash-phrase-sources
+    (let* ((files (directory-files splash-phrase-source-folder nil "\\.txt\\'"))
+        (sets (delete-dups (mapcar
+            (lambda (file)
+            (replace-regexp-in-string "\\(?:-[0-9]+-\\w+\\)?\\.txt" "" file))
+            files))))
+            (mapcar (lambda (sset)
+            (cons sset
+                (delq nil (mapcar
+                    (lambda (file)
+                        (when (string-match-p (regexp-quote sset) file) file))
+                    files))))
+            sets))
+    "A list of cons giving the phrase set name, and a list of files which contain phrase components.")
+
+(defvar splash-phrase-set
+    (nth (random (length splash-phrase-sources)) (mapcar #'car splash-phrase-sources)))
+
+(defun splase-phrase-set-random-set ()
+    "Set a new random splash phrase set."
+    (interactive)
+    (setq splash-phrase-set
+        (nth (random (1- (length splash-phrase-sources)))
+            (cl-set-difference (mapcar #'car splash-phrase-sources) (list splash-phrase-set))))
+    (+doom-dashboard-reload t))
+
+(defvar splase-phrase--cache nil)
+
+(defun splash-phrase-get-from-file (file)
+    "Fetch a random line from FILE."
+    (let ((lines (or (cdr (assoc file splase-phrase--cache))
+        (cdar (push (cons file
+            (with-temp-buffer
+                (insert-file-contents (expand-file-name file splash-phrase-source-folder))
+                    (split-string (string-trim (buffer-string)) "\n")))
+                splase-phrase--cache)))))
+            (nth (random (length lines)) lines)))
+
+(defun splash-phrase (&optional set)
+    "Construct a splash phrase from SET. See `splash-phrase-sources'."
+    (mapconcat
+    #'splash-phrase-get-from-file
+    (cdr (assoc (or set splash-phrase-set) splash-phrase-sources)) " "))
+
+(defun doom-dashboard-phrase ()
+    "Get a splash phrase, flow it over multiple lines as needed, and make fontify it."
+    (mapconcat
+        (lambda (line)
+            (+doom-dashboard--center
+            +doom-dashboard--width
+            (with-temp-buffer
+                (insert-text-button line
+                 'action
+                 (lambda (_) (+doom-dashboard-reload t))
+                 'face 'doom-dashboard-menu-title
+                 'mouse-face 'doom-dashboard-menu-title
+                 'help-echo "Welcome to DOOM Emacs!"
+                 'follow-link t)
+        (buffer-string))))
+        (split-string
+            (with-temp-buffer
+                (insert (splash-phrase))
+                 (setq fill-column (min 70 (/ (* 2 (window-width)) 3)))
+                 (fill-region (point-min) (point-max))
+                 (buffer-string))
+        "\n")
+    "\n"))
+
+(defadvice! doom-dashboard-widget-loaded-with-phrase ()
+    :override #'doom-dashboard-widget-loaded
+    (insert
+        (propertize
+            (+doom-dashboard--center
+            +doom-dashboard--width
+            (doom-display-benchmark-h 'return))
+            'face 'doom-dashboard-footer-icon)
+        "\n"
+        (doom-dashboard-phrase)
+    "\n"))
 
 (global-set-key (kbd "C-S-<mouse-1>") '+multiple-cursors/evil-mc-toggle-cursor-here)
 (global-set-key (kbd "C-S-<mouse-3>") '+multiple-cursors/evil-mc-undo-cursor)
@@ -198,6 +302,49 @@
     (interactive)
     (dired "~/git/Dotfiles"))
 
+(setq-default +doom-dashboard-menu-sections
+    '(("Kill All Buffers"
+        :icon (all-the-icons-octicon "alert" :face 'all-the-icons-red :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.95)
+        :action doom/kill-all-buffers)
+      ("Open Recent File"
+        :icon (all-the-icons-faicon "clock-o" :face 'all-the-icons-blue :height 0.95)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
+        :action helm-recentf)
+      ("Open Project"
+        :icon (all-the-icons-octicon "repo" :face 'all-the-icons-red :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.95)
+        :action projectile-find-file)
+      ("Open TBcom"
+        :icon (all-the-icons-alltheicon "git" :face 'all-the-icons-pink :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.95)
+        :action open-tbcom)
+      ("Open Dotfiles"
+        :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-maroon :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
+        :action open-dotfiles)
+      ("Open Elfeed"
+        :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.95)
+        :action elfeed)
+      ("Open config.org"
+        :icon (all-the-icons-faicon "cogs" :face 'all-the-icons-green :height 0.94)
+        :when (file-directory-p doom-private-dir)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lgreen) :height 0.95)
+        :action open-config-org)
+      ("Doom Reload"
+        :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.95)
+        :action doom/reload)
+      ("Change Theme"
+        :icon (all-the-icons-faicon "paint-brush" :face 'all-the-icons-purple :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpurple) :height 0.95)
+        :action consult-theme)
+      ("Music Player"
+        :icon (all-the-icons-faicon "music" :face 'all-the-icons-cyan :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan) :height 0.95)
+        :action mpdel-playlist-open)))
+
 (add-hook! 'doom-dashboard-mode-hook 'garbage-collect)
 (add-hook! 'doom-load-theme-hook 'garbage-collect)
 (add-hook! 'doom-first-file-hook 'garbage-collect)
@@ -206,49 +353,6 @@
 (add-hook! 'doom-init-ui-hook 'garbage-collect)
 (add-hook! 'doom-after-init-modules-hook 'garbage-collect)
 (add-hook! 'eww-mode-hook 'garbage-collect)
-
-(setq-default +doom-dashboard-menu-sections
-    '(("Kill All Buffers"
-        :icon (all-the-icons-octicon "alert" :face 'all-the-icons-red)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred))
-        :action doom/kill-all-buffers)
-      ("Open Recent File"
-        :icon (all-the-icons-faicon "clock-o" :face 'all-the-icons-blue)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue))
-        :action consult-recent-file)
-      ("Open Project"
-        :icon (all-the-icons-octicon "repo" :face 'all-the-icons-red)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred))
-        :action projectile-find-file)
-      ("Open TBcom"
-        :icon (all-the-icons-alltheicon "git" :face 'all-the-icons-pink)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink))
-        :action open-tbcom)
-      ("Open Dotfiles"
-        :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-maroon)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon))
-        :action open-dotfiles)
-      ("Open Elfeed"
-        :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow))
-        :action elfeed)
-      ("Open config.org"
-        :icon (all-the-icons-faicon "cogs" :face 'all-the-icons-green)
-        :when (file-directory-p doom-private-dir)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lgreen))
-        :action open-config-org)
-      ("Doom Reload"
-        :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange))
-        :action doom/reload)
-      ("Change Theme"
-        :icon (all-the-icons-faicon "paint-brush" :face 'all-the-icons-purple)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpurple))
-        :action consult-theme)
-      ("Music Player"
-        :icon (all-the-icons-faicon "music" :face 'all-the-icons-cyan)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan))
-        :action mpdel-playlist-open)))
 
 (require 'elfeed-goodies)
 (after! elfeed
@@ -282,31 +386,31 @@
         '((t :foreground "#f90"))
         "Entry for Tech")
 
-    (push '(git git-entry) elfeed-search-face-alist)
-    (push '(reddit reddit-entry) elfeed-search-face-alist)
-    (push '(youtube youtube-entry) elfeed-search-face-alist)
-    (push '(torrents torrents-entry) elfeed-search-face-alist)
-    (push '(stack stack-entry) elfeed-search-face-alist)
-    (push '(news news-entry) elfeed-search-face-alist)
-    (push '(tumblr tumblr-entry) elfeed-search-face-alist)
-    (push '(tech tech-entry) elfeed-search-face-alist)
+(push '(git git-entry) elfeed-search-face-alist)
+(push '(reddit reddit-entry) elfeed-search-face-alist)
+(push '(youtube youtube-entry) elfeed-search-face-alist)
+(push '(torrents torrents-entry) elfeed-search-face-alist)
+(push '(stack stack-entry) elfeed-search-face-alist)
+(push '(news news-entry) elfeed-search-face-alist)
+(push '(tumblr tumblr-entry) elfeed-search-face-alist)
+(push '(tech tech-entry) elfeed-search-face-alist)
 
-    (custom-set-faces!
-        '(elfeed-search-feed-face :foreground "#2f3")
-        '(elfeed-search-tag-face :foreground "#ee0")
-        '(elfeed-search-title-face :inherit variable-pitch :slant italic)
-        '(elfeed-search-date-face :foreground "#0ef")
-        '(elfeed-search-last-update-face :foreground "#2f3"))
-    (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
-    (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-    (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
-    (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
-    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
-    (add-hook! 'elfeed-db-unload-hook 'garbage-collect))
+(custom-set-faces!
+    '(elfeed-search-feed-face :foreground "#2f3")
+    '(elfeed-search-tag-face :foreground "#ee0")
+    '(elfeed-search-title-face :inherit variable-pitch :slant italic)
+    '(elfeed-search-date-face :foreground "#0ef")
+    '(elfeed-search-last-update-face :foreground "#2f3"))
+(add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
+(add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+(add-hook! 'elfeed-search-mode-hook 'garbage-collect)
+(add-hook! 'elfeed-show-mode-hook #'elfeed-update)
+(add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
+(add-hook! 'elfeed-show-mode-hook 'garbage-collect)
+(add-hook! 'elfeed-update-init-hook 'garbage-collect)
+(add-hook! 'elfeed-db-unload-hook 'garbage-collect))
 
 (after! elfeed-goodies
     (elfeed-goodies/setup)
@@ -333,10 +437,10 @@
     '(mpdel-tablist-date-face :foreground "#ee0")
     '(header-line :height 1.1))
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
-(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode 1))
 (add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
-(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-(add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode 1))
+(add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
 (after! mpdel
     (setq libmpdel-hostname "127.0.0.2")
     (require 'mpdel)
@@ -353,11 +457,15 @@
 
 (setq +doom-dashboard-mode-map (make-sparse-keymap))
 (map! :map +doom-dashboard-mode-map
-    :desc "Find File" :ne "f" #'find-file
-    :desc "Recent Files" :ne "r" #'consult-recent-file
+    :desc "Forward" :ne "<down>" #'+doom-dashboard/forward-button
+    :desc "Backward" :ne "<up>" #'+doom-dashboard/backward-button
+    :desc "Find File" :ne "f" #'helm-find-files
+    :desc "Recent Files" :ne "r" #'helm-recentf
     :desc "Doom Reload" :ne "R" #'doom/reload
     :desc "Open Project" :ne "p" #'projectile-find-file
     :desc "Config Dir" :ne "C" #'doom/open-private-config
+    :desc "Open Dired" :ne "j" (cmd! (dired "."))
+    :desc "Open Dired in Home Directory" :ne "J" (cmd! (dired "~/"))
     :desc "Open config.org" :ne "c" #'open-config-org
     :desc "Open init.org" :ne "i" (cmd! (find-file (expand-file-name "init.org" doom-private-dir)))
     :desc "Open ZSH Config" :ne "z" (cmd! (find-file "~/.zsh.org"))
@@ -385,6 +493,7 @@
     :desc "Play Next Song" :ne "]" #'libmpdel-playback-next
     :desc "Play Previous Song" :ne "[" #'libmpdel-playback-previous
     :desc "Clear Current Playlist" :ne "O" #'mpdel-core-replace-current-playlist
+    :desc "Doom Help" :ne "?" #'doom/help
     :desc "Open Circe" :ne "." #'circe
     :desc "Agenda" :ne "a" #'org-agenda
     :desc "Open todo.org" :ne "V" (cmd! (find-file "~/org/todo.org"))
@@ -437,6 +546,9 @@
 ;; SPC r
 (map! :leader
     :desc "Rainbow Mode" "r" #'rainbow-mode)
+;; SPC c
+(map! :leader
+    :desc "Highlight Indent Scope Mode" "c" #'hl-indent-scope-mode)
 ;; SPC z
 (map! :leader
     :desc "Play song in MPDel" "z" #'mpdel-playlist-play)
@@ -498,9 +610,7 @@
 (map! :leader
     :desc "Switch Buffer" "," #'helm-buffers-list)
 
-(setq dired-guess-shell-alist-user
-      '(("\\.pdf\\'" "mupdf -I")
-        ("\\.\\(?:flac\\|mp3\\|m4a\\|ape\\|wav\\|ogg\\)\\'" "mpv --audio-device=auto --no-audio-display")
-        ("\\.\\(?:mp4\\|mkv\\|avi\\|mpg\\|wmv\\)\\'" "mpv --audio-device=auto")
-        ("\\.asc\\'" "gpg --decrypt")
-        ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|webp\\)\\'" "feh")))
+(setq dired-open-extensions '(("jpg" . "sxiv")
+                              ("png" . "sxiv")
+                              ("mkv" . "mpv")
+                              ("mp4" . "mpv")))
