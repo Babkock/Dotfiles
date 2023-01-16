@@ -41,32 +41,36 @@ This literate configuration is available online on my [[https://babkock.github.i
 [[https://babkock.github.io/images/emacs1.png]]
 
 * Table of Contents :toc:
-  - [[#lexical-binding][Lexical Binding]]
+- [[#opening][Opening]]
   - [[#basic-info][Basic Info]]
   - [[#preferences][Preferences]]
   - [[#appearance][Appearance]]
-  - [[#modeline][Modeline]]
-- [[#packages][Packages]]
-  - [[#org-mode][Org Mode]]
-  - [[#treemacs][Treemacs]]
-  - [[#helm][Helm]]
   - [[#doom-themes][Doom Themes]]
-  - [[#magit][Magit]]
-  - [[#doom-dashboard-phrases][Doom Dashboard Phrases]]
-  - [[#doom-dashboard][Doom Dashboard]]
   - [[#garbage-collection][Garbage Collection]]
-  - [[#elfeed][Elfeed]]
-  - [[#circe][Circe]]
-  - [[#mpdel][MPDel]]
-- [[#keybindings][Keybindings]]
-  - [[#dashboard][Dashboard]]
-  - [[#mpdel-1][MPDel]]
-  - [[#elfeed-1][Elfeed]]
-  - [[#general][General]]
+- [[#circe][Circe]]
 - [[#dired][Dired]]
   - [[#file-associations][File Associations]]
+- [[#doom-dashboard][Doom Dashboard]]
+  - [[#splash-phrases][Splash Phrases]]
+  - [[#functions][Functions]]
+  - [[#menu][Menu]]
+  - [[#keybindings][Keybindings]]
+- [[#elfeed][Elfeed]]
+  - [[#preferences-1][Preferences]]
+  - [[#keybindings-1][Keybindings]]
+- [[#helm][Helm]]
+- [[#keybindings-2][Keybindings]]
+  - [[#global-keybindings][Global Keybindings]]
+- [[#magit][Magit]]
+- [[#modeline][Modeline]]
+- [[#mpdel][MPDel]]
+  - [[#functions-1][Functions]]
+  - [[#preferences-2][Preferences]]
+  - [[#keybindings-3][Keybindings]]
+- [[#org][Org]]
+- [[#treemacs][Treemacs]]
 
-** Lexical Binding
+* Opening
 
 Gotta have this at the beginning of the config file.
 
@@ -189,137 +193,6 @@ These next two lines are where the alpha channel for the window is defined. The 
 (scroll-bar-mode -1)
 #+end_src
 
-** Modeline
-
-#+begin_src emacs-lisp :tangle yes
-(after! modeline
-    (setq doom-modeline-buffer-file-name-style 'relative-to-project
-          doom-modeline-icon (display-graphic-p)
-          doom-modeline-major-mode-icon t
-          doom-modeline-major-mode-color-icon t
-          doom-modeline-env-version t
-          doom-modeline-persp-icon t
-          doom-modeline-unicode-fallback nil
-          doom-modeline-buffer-state-icon nil
-          doom-modeline-height 30
-          doom-modeline-hud t
-          doom-modeline-buffer-modification-icon nil)
-    (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
-(setq-default doom-modeline-major-mode-icon t
-              doom-modeline-major-mode-color-icon t
-              doom-modeline-buffer-file-name-style 'relative-to-project
-              doom-modeline-env-version t
-              doom-modeline-persp-icon t
-              doom-modeline-buffer-state-icon nil
-              doom-modeline-unicode-fallback nil
-              doom-modeline-hud t
-              doom-modeline-height 30
-              doom-modeline-buffer-modification-icon nil)
-#+end_src
-
-* Packages
-
-Here is what my Doom splash screen (Dashboard) typically looks like.
-
-[[https://babkock.github.io/images/emacs2.png]]
-
-** Org Mode
-
-#+begin_src emacs-lisp :tangle yes
-(after! org
-    (add-hook! 'org-mode-hook 'garbage-collect)
-    (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
-    (setq org-directory "~/org/"
-          org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
-          org-agenda-block-separator 8411
-          org-default-notes-file (expand-file-name "notes.org" org-directory)
-          org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
-          org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
-          org-ellipsis "  "
-          org-catch-invisible-edits 'smart
-          org-log-done 'time
-          org-journal-dir "~/org/journal/"
-          org-hide-emphasis-markers t
-          org-support-shift-select t
-          org-src-preserve-indentation nil
-          org-src-tab-acts-natively t
-          org-edit-src-content-indentation 0)
-    (setq org-todo-keywords
-          '((sequence "TODO(t)" "NEXT(n)" "VIDEO(v)" "IDEA(i)" "DONE(d)" "EVENT(e)"))
-          org-todo-keyword-faces
-          '(("TODO" . 'all-the-icons-red)
-            ("NEXT" . 'all-the-icons-blue)
-            ("VIDEO" . 'all-the-icons-yellow)
-            ("IDEA" . 'all-the-icons-green)
-            ("DONE" . 'all-the-icons-orange)
-            ("EVENT" . 'all-the-icons-cyan)))
-    (setq org-agenda-custom-commands
-          '(("v" "Better Agenda View"
-            ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-            (tags "PRIORITY=\"B\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
-            (tags "PRIORITY=\"C\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
-            (agenda "")
-            (alltodo "")))))
-    (custom-set-faces!
-        '(org-agenda-calendar-event :inherit variable-pitch)
-        '(org-agenda-calendar-sexp :inherit variable-pitch)
-        '(org-agenda-filter-category :inherit variable-pitch)
-        '(org-agenda-filter-tags :inherit variable-pitch)
-        '(org-agenda-date :inherit variable-pitch :weight bold :height 1.09)
-        '(org-agenda-date-weekend :inherit variable-pitch :weight bold :height 1.06)
-        '(org-agenda-done :inherit variable-pitch :weight bold)
-        '(org-agenda-date-today :inherit variable-pitch :weight bold :slant italic :height 1.12)
-        '(org-agenda-date-weekend-today :inherit variable-pitch :weight bold :height 1.09)
-        '(org-agenda-dimmed-todo-face :inherit variable-pitch :weight bold)
-        '(org-agenda-current-time :inherit variable-pitch :weight bold)
-        '(org-agenda-clocking :inherit variable-pitch :weight bold))
-    (add-hook! 'org-agenda-mode-hook 'mixed-pitch-mode)
-    (add-hook! 'org-agenda-mode-hook (hide-mode-line-mode 1))
-    (custom-set-faces!
-        '(org-document-title :height 1.3)
-        '(org-level-1 :inherit outline-1 :weight extra-bold :height 1.35)
-        '(org-level-2 :inherit outline-2 :weight bold :height 1.15)
-        '(org-level-3 :inherit outline-3 :weight bold :height 1.12)
-        '(org-level-4 :inherit outline-4 :weight bold :height 1.09)
-        '(org-level-5 :inherit outline-5 :weight bold :height 1.06)
-        '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.03)
-        '(org-level-7 :inherit outline-7 :weight semi-bold)
-        '(org-level-8 :inherit outline-8 :weight semi-bold)))
-
-(after! org-fancy-priorities
-    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
-          org-priority-faces
-              '((?A :foreground "#ff0000" :weight bold)
-                (?B :foreground "#ffffff" :weight bold)
-                (?C :foreground "#0099ff" :weight bold))))
-
-(font-lock-add-keywords 'org-mode
-    '(("^ *\\([-]\\) "
-        (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-#+end_src
-
-** Treemacs
-
-#+begin_src emacs-lisp :tangle yes
-(after! treemacs
-    (setq doom-themes-treemacs-theme "doom-colors")
-    (setq doom-themes-treemacs-enable-variable-pitch t))
-#+end_src
-
-** Helm
-
-#+begin_src emacs-lisp :tangle yes
-(after! helm
-    (setq helm-show-completion-min-window-height 9))
-#+end_src
-
 ** Doom Themes
 
 Just a couple more things to make our lives easier.
@@ -336,35 +209,55 @@ Just a couple more things to make our lives easier.
     '(font-lock-keyword-face :slant italic))
 #+end_src
 
-** Magit
+** Garbage Collection
+
+Just do it all the time.
 
 #+begin_src emacs-lisp :tangle yes
-(after! magit
-    (custom-set-faces!
-        '(magit-log-author :foreground "#f46")
-        '(magit-log-date :foreground "#7fc")
-        '(magit-hash :foreground "#0f3")
-        '(magit-filename :foreground "#ff3")
-        '(magit-branch-current :foreground "#e96"))
-    (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'magit-mode-hook 'garbage-collect)
-    (add-hook! 'magit-log-mode-hook 'garbage-collect)
-    (add-hook! 'magit-status-mode-hook 'garbage-collect)
-    (add-hook! 'magit-popup-mode-hook 'garbage-collect))
-
-(after! diff-hl
-    (global-diff-hl-mode)
-    (diff-hl-margin-mode)
-    (diff-hl-flydiff-mode)
-    (diff-hl-dired-mode)
-    (diff-hl-show-hunk-mouse-mode))
-
-(add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
-(add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+(add-hook! 'doom-dashboard-mode-hook 'garbage-collect)
+(add-hook! 'doom-load-theme-hook 'garbage-collect)
+(add-hook! 'doom-first-file-hook 'garbage-collect)
+(add-hook! 'kill-emacs-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'beacon-mode)
+(add-hook! 'doom-init-ui-hook 'garbage-collect)
+(add-hook! 'doom-after-init-modules-hook 'garbage-collect)
+(add-hook! 'eww-mode-hook 'garbage-collect)
 #+end_src
 
-** Doom Dashboard Phrases
+* Circe
+
+This is a simple list of font faces for various Circe UI elements.
+
+#+begin_src emacs-lisp :tangle yes
+(after! circe
+    (custom-set-faces!
+        '(circe-prompt-face :foreground "#0ef")
+        '(circe-server-face :foreground "#ee0")
+        '(circe-my-message-face :weight bold :foreground "#f44")
+        '(circe-originator-face :foreground "b4f"))
+    (add-hook! 'circe-mode-hook 'garbage-collect))
+#+end_src
+
+* Dired
+
+** File Associations
+
+#+begin_src emacs-lisp :tangle yes
+(setq dired-open-extensions '(("jpg" . "sxiv")
+                              ("png" . "sxiv")
+                              ("mkv" . "mpv")
+                              ("mp4" . "mpv")))
+
+(require 'notifications)
+(notifications-notify
+    :title "Emacs Started"
+    :body "Emacs configuration loaded. Welcome!")
+#+end_src
+
+* Doom Dashboard
+
+** Splash Phrases
 
 I stole this entire next section from someone else.
 
@@ -454,7 +347,11 @@ I stole this entire next section from someone else.
     "\n"))
 #+end_src
 
-** Doom Dashboard
+** Functions
+
+Here is what my Doom splash screen (Dashboard) typically looks like.
+
+[[https://babkock.github.io/images/emacs2.png]]
 
 My customized dashboard. These first two lines are just for setting up my Multiple Cursors package. =Ctrl= + =Shift= + left click and right click can add and remove a cursor, respectively.
 
@@ -497,6 +394,8 @@ My customized dashboard. These first two lines are just for setting up my Multip
 
 The code above defines functions and variables for making my customized Dashboard menu work. If you, later on, wish to swap out these quick shortcuts for other files or project
 directories, make sure you change the variable names too, and change the contents of the Dashboard menu sections below.
+
+** Menu
 
 #+begin_src emacs-lisp :tangle yes
 (setq-default +doom-dashboard-menu-sections
@@ -549,181 +448,7 @@ directories, make sure you change the variable names too, and change the content
 
 Each menu item should share a similar color with its respective icon. Using a value for the height other than =0.94= or =0.95= will cause the menu to appear crooked.
 
-** Garbage Collection
-
-Just do it all the time.
-
-#+begin_src emacs-lisp :tangle yes
-(add-hook! 'doom-dashboard-mode-hook 'garbage-collect)
-(add-hook! 'doom-load-theme-hook 'garbage-collect)
-(add-hook! 'doom-first-file-hook 'garbage-collect)
-(add-hook! 'kill-emacs-hook 'garbage-collect)
-(add-hook! 'after-init-hook 'garbage-collect)
-(add-hook! 'after-init-hook 'beacon-mode)
-(add-hook! 'doom-init-ui-hook 'garbage-collect)
-(add-hook! 'doom-after-init-modules-hook 'garbage-collect)
-(add-hook! 'eww-mode-hook 'garbage-collect)
-#+end_src
-
-** Elfeed
-
-This first block of code defines font faces per Elfeed tags, font faces for UI elements, preferences, and hooks.
-
-#+begin_src emacs-lisp :tangle yes
-(require 'elfeed-goodies)
-(after! elfeed
-    (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
-    (setq elfeed-search-filter "@2-weeks-ago +unread"
-          elfeed-show-entry-switch #'pop-to-buffer
-          elfeed-curl-max-connections 27
-          elfeed-curl-timeout 12)
-    (defface git-entry
-        '((t :foreground "#f44"))
-        "Entry for Git")
-    (defface reddit-entry
-        '((t :foreground "#ff3"))
-        "Entry for Reddit")
-    (defface youtube-entry
-        '((t :foreground "#f46"))
-        "Entry for YouTube")
-    (defface torrents-entry
-        '((t :foreground "#bfafac"))
-        "Entry for torrents")
-    (defface stack-entry
-        '((t :foreground "#0f2"))
-        "Entry for Stack")
-    (defface news-entry
-        '((t :foreground "#b4f"))
-        "Entry for News")
-    (defface tumblr-entry
-        '((t :foreground "#28f"))
-        "Entry for Tumblr")
-    (defface tech-entry
-        '((t :foreground "#f90"))
-        "Entry for Tech")
-#+end_src
-
-Now we push all of these font faces to the =elfeed-search= faces list.
-
-#+begin_src emacs-lisp :tangle yes
-    (push '(git git-entry) elfeed-search-face-alist)
-    (push '(reddit reddit-entry) elfeed-search-face-alist)
-    (push '(youtube youtube-entry) elfeed-search-face-alist)
-    (push '(torrents torrents-entry) elfeed-search-face-alist)
-    (push '(stack stack-entry) elfeed-search-face-alist)
-    (push '(news news-entry) elfeed-search-face-alist)
-    (push '(tumblr tumblr-entry) elfeed-search-face-alist)
-    (push '(tech tech-entry) elfeed-search-face-alist)
-#+end_src
-
-Define additional font faces and hooks.
-
-#+begin_src emacs-lisp :tangle yes
-    (custom-set-faces!
-        '(elfeed-search-feed-face :foreground "#2f3")
-        '(elfeed-search-tag-face :foreground "#ee0")
-        '(elfeed-search-title-face :inherit variable-pitch :slant italic)
-        '(elfeed-search-date-face :foreground "#0ef")
-        '(elfeed-search-last-update-face :foreground "#2f3"))
-    (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
-    (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-    (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
-    (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
-    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
-    (add-hook! 'elfeed-db-unload-hook 'garbage-collect))
-#+end_src
-
-This second block of code sets preferences for the =elfeed-goodies= package.
-
-#+begin_src emacs-lisp :tangle yes
-(after! elfeed-goodies
-    (elfeed-goodies/setup)
-    (setq elfeed-goodies/entry-pane-size 0.5
-          elfeed-goodies/powerline-default-separator 'wave
-          elfeed-goodies/show-mode-padding 1
-          elfeed-goodies/feed-source-column-width 20))
-#+end_src
-
-** Circe
-
-This is a simple list of font faces for various Circe UI elements.
-
-#+begin_src emacs-lisp :tangle yes
-(after! circe
-    (custom-set-faces!
-        '(circe-prompt-face :foreground "#0ef")
-        '(circe-server-face :foreground "#ee0")
-        '(circe-my-message-face :weight bold :foreground "#f44")
-        '(circe-originator-face :foreground "b4f"))
-    (add-hook! 'circe-mode-hook 'garbage-collect))
-#+end_src
-
-** MPDel
-
-These two functions are useful for showing MPD notifications with album artwork and artist and album fields. I will add these functions to MPDel's hooks.
-
-#+begin_src emacs-lisp :tangle yes
-(defun mpdnotify ()
-    (interactive)
-    (shell-command "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh")
-    (notifications-notify
-        :title (shell-command-to-string "mpc --host 127.0.0.2 -f %title% | head -1")
-        :body (concat (shell-command-to-string "mpc --host 127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host 127.0.0.2 -f %album% | head -1") "</i>")
-        :image-path "/tmp/mpd_cover.jpg"
-))
-
-(defun mpdnotify-play ()
-    (interactive)
-    (mpdel-playlist-play)
-    (mpdnotify))
-#+end_src
-
-This is a list of faces for the MPDel interface. After this list is where I add the =mpdnotify= function to the hooks.
-
-#+begin_src emacs-lisp :tangle yes
-(custom-set-faces!
-    '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#0ef")
-    '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#f44")
-    '(mpdel-tablist-album-face :inherit variable-pitch :weight bold :slant italic :foreground "#b4f")
-    '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#0e0")
-    '(mpdel-playlist-current-song-face :inherit variable-pitch :weight bold :slant italic :foreground "#efefef" :background "#000")
-    '(mpdel-tablist-disc-face :foreground "#ef0")
-    '(mpdel-tablist-date-face :foreground "#ee0")
-    '(header-line :height 1.1))
-
-(add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
-(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1))
-(add-hook! 'mpdel-playlist-mode-hook 'mpdnotify)
-(add-hook! 'libmpdel-current-song-changed-hook 'mpdnotify)
-(add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
-(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1))
-(add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
-(after! mpdel
-    (setq libmpdel-hostname "127.0.0.2")
-    (require 'mpdel)
-    (mpdel-mode))
-#+end_src
-
-* Keybindings
-
-This first bit lets us navigate between windows easier.
-
-#+begin_src emacs-lisp :tangle yes
-(map!
-    :m "C-h" #'evil-window-left
-    :m "C-j" #'evil-window-down
-    :m "C-k" #'evil-window-up
-    :m "C-l" #'evil-window-right
-    :m "C-w" #'evil-window-vsplit
-    :m "C-o" #'evil-window-split
-)
-#+end_src
-
-** Dashboard
+** Keybindings
 
 This part installs the shortcuts for our Doom Dashboard. These keybindings only work in Dashboard mode. This block of code uses the quick-opener functions I defined above, by the
 Dashboard menu sections.
@@ -840,26 +565,92 @@ This part removes other elements of the Dashboard.
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 #+end_src
 
-** MPDel
+* Elfeed
+
+This first block of code defines font faces per Elfeed tags, font faces for UI elements, preferences, and hooks.
+
+** Preferences
 
 #+begin_src emacs-lisp :tangle yes
-(setq mpdel-playlist-mode-map (make-sparse-keymap))
-(map! :map mpdel-playlist-mode-map
-    :desc "Play/Pause" :ne "p" #'libmpdel-playback-play-pause
-    :desc "Play" :ne "RET" #'mpdnotify-play
-    :desc "Increase Volume" :ne "<right>" #'mpdel-core-volume-increase
-    :desc "Decrease Volume" :ne "<left>" #'mpdel-core-volume-decrease
-    :desc "Clear Playlist" :ne "c" #'mpdel-core-replace-current-playlist
-    :desc "Dired" :ne "e" #'mpdel-core-dired
-    :desc "Set Random" :ne "z" #'libmpdel-playback-set-random
-    :desc "Unset Random" :ne "Z" #'libmpdel-playback-unset-random
-    :desc "Set Single" :ne "y" #'libmpdel-playback-set-single-once
-    :desc "Unset Single" :ne "Y" #'libmpdel-playback-set-single-never
-    :desc "Next Song" :ne ">" #'libmpdel-playback-next
-    :desc "Previous Song" :ne "<" #'libmpdel-playback-previous)
+(require 'elfeed-goodies)
+(after! elfeed
+    (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
+    (setq elfeed-search-filter "@2-weeks-ago +unread"
+          elfeed-show-entry-switch #'pop-to-buffer
+          elfeed-curl-max-connections 27
+          elfeed-curl-timeout 12)
+    (defface git-entry
+        '((t :foreground "#f44"))
+        "Entry for Git")
+    (defface reddit-entry
+        '((t :foreground "#ff3"))
+        "Entry for Reddit")
+    (defface youtube-entry
+        '((t :foreground "#f46"))
+        "Entry for YouTube")
+    (defface torrents-entry
+        '((t :foreground "#bfafac"))
+        "Entry for torrents")
+    (defface stack-entry
+        '((t :foreground "#0f2"))
+        "Entry for Stack")
+    (defface news-entry
+        '((t :foreground "#b4f"))
+        "Entry for News")
+    (defface tumblr-entry
+        '((t :foreground "#28f"))
+        "Entry for Tumblr")
+    (defface tech-entry
+        '((t :foreground "#f90"))
+        "Entry for Tech")
 #+end_src
 
-** Elfeed
+Now we push all of these font faces to the =elfeed-search= faces list.
+
+#+begin_src emacs-lisp :tangle yes
+    (push '(git git-entry) elfeed-search-face-alist)
+    (push '(reddit reddit-entry) elfeed-search-face-alist)
+    (push '(youtube youtube-entry) elfeed-search-face-alist)
+    (push '(torrents torrents-entry) elfeed-search-face-alist)
+    (push '(stack stack-entry) elfeed-search-face-alist)
+    (push '(news news-entry) elfeed-search-face-alist)
+    (push '(tumblr tumblr-entry) elfeed-search-face-alist)
+    (push '(tech tech-entry) elfeed-search-face-alist)
+#+end_src
+
+Define additional font faces and hooks.
+
+#+begin_src emacs-lisp :tangle yes
+    (custom-set-faces!
+        '(elfeed-search-feed-face :foreground "#2f3")
+        '(elfeed-search-tag-face :foreground "#ee0")
+        '(elfeed-search-title-face :inherit variable-pitch :slant italic)
+        '(elfeed-search-date-face :foreground "#0ef")
+        '(elfeed-search-last-update-face :foreground "#2f3"))
+    (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
+    (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+    (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
+    (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
+    (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
+    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
+    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
+    (add-hook! 'elfeed-db-unload-hook 'garbage-collect))
+#+end_src
+
+This second block of code sets preferences for the =elfeed-goodies= package.
+
+#+begin_src emacs-lisp :tangle yes
+(after! elfeed-goodies
+    (elfeed-goodies/setup)
+    (setq elfeed-goodies/entry-pane-size 0.5
+          elfeed-goodies/powerline-default-separator 'wave
+          elfeed-goodies/show-mode-padding 1
+          elfeed-goodies/feed-source-column-width 20))
+#+end_src
+
+** Keybindings
 
 I have custom key bindings for Elfeed that will filter the feed list by tag names. Shift + J and Shift + K (or capital J and K) will update the entry pane with the next item in the =elfeed-search=.
 
@@ -904,7 +695,29 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
 #+end_src
 
-** General
+* Helm
+
+#+begin_src emacs-lisp :tangle yes
+(after! helm
+    (setq helm-show-completion-min-window-height 9))
+#+end_src
+
+* Keybindings
+
+This first bit lets us navigate between windows easier.
+
+#+begin_src emacs-lisp :tangle yes
+(map!
+    :m "C-h" #'evil-window-left
+    :m "C-j" #'evil-window-down
+    :m "C-k" #'evil-window-up
+    :m "C-l" #'evil-window-right
+    :m "C-w" #'evil-window-vsplit
+    :m "C-o" #'evil-window-split
+)
+#+end_src
+
+** Global Keybindings
 
 These are global keybindings, which are available in all modes. The Magit key bindings will not work if the file is not in a Git repository.
 
@@ -965,20 +778,219 @@ These are global keybindings, which are available in all modes. The Magit key bi
     :desc "Org Priority Down" "'" #'org-priority-down)
 #+end_src
 
-* Dired
-
-** File Associations
+* Magit
 
 #+begin_src emacs-lisp :tangle yes
-(setq dired-open-extensions '(("jpg" . "sxiv")
-                              ("png" . "sxiv")
-                              ("mkv" . "mpv")
-                              ("mp4" . "mpv")))
+(after! magit
+    (custom-set-faces!
+        '(magit-log-author :foreground "#f46")
+        '(magit-log-date :foreground "#7fc")
+        '(magit-hash :foreground "#0f3")
+        '(magit-filename :foreground "#ff3")
+        '(magit-branch-current :foreground "#e96"))
+    (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'magit-mode-hook 'garbage-collect)
+    (add-hook! 'magit-log-mode-hook 'garbage-collect)
+    (add-hook! 'magit-status-mode-hook 'garbage-collect)
+    (add-hook! 'magit-popup-mode-hook 'garbage-collect))
 
-(require 'notifications)
-(notifications-notify
-    :title "Emacs Started"
-    :body "Emacs configuration loaded. Welcome!")
+(after! diff-hl
+    (global-diff-hl-mode)
+    (diff-hl-margin-mode)
+    (diff-hl-flydiff-mode)
+    (diff-hl-dired-mode)
+    (diff-hl-show-hunk-mouse-mode))
+
+(add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+(add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+#+end_src
+
+* Modeline
+
+#+begin_src emacs-lisp :tangle yes
+(after! modeline
+    (setq doom-modeline-buffer-file-name-style 'relative-to-project
+          doom-modeline-icon (display-graphic-p)
+          doom-modeline-major-mode-icon t
+          doom-modeline-major-mode-color-icon t
+          doom-modeline-env-version t
+          doom-modeline-persp-icon t
+          doom-modeline-unicode-fallback nil
+          doom-modeline-buffer-state-icon nil
+          doom-modeline-height 30
+          doom-modeline-hud t
+          doom-modeline-buffer-modification-icon nil)
+    (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
+(setq-default doom-modeline-major-mode-icon t
+              doom-modeline-major-mode-color-icon t
+              doom-modeline-buffer-file-name-style 'relative-to-project
+              doom-modeline-env-version t
+              doom-modeline-persp-icon t
+              doom-modeline-buffer-state-icon nil
+              doom-modeline-unicode-fallback nil
+              doom-modeline-hud t
+              doom-modeline-height 30
+              doom-modeline-buffer-modification-icon nil)
+#+end_src
+
+* MPDel
+
+** Functions
+
+These two functions are useful for showing MPD notifications with album artwork and artist and album fields. I will add these functions to MPDel's hooks.
+
+#+begin_src emacs-lisp :tangle yes
+(defun mpdnotify ()
+    (interactive)
+    (shell-command "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh")
+    (notifications-notify
+        :title (shell-command-to-string "mpc --host 127.0.0.2 -f %title% | head -1")
+        :body (concat (shell-command-to-string "mpc --host 127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host 127.0.0.2 -f %album% | head -1") "</i>")
+        :image-path "/tmp/mpd_cover.jpg"
+))
+
+(defun mpdnotify-play ()
+    (interactive)
+    (mpdel-playlist-play)
+    (mpdnotify))
+#+end_src
+
+** Preferences
+
+This is a list of faces for the MPDel interface. After this list is where I add the =mpdnotify= function to the hooks.
+
+#+begin_src emacs-lisp :tangle yes
+(custom-set-faces!
+    '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#0ef")
+    '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#f44")
+    '(mpdel-tablist-album-face :inherit variable-pitch :weight bold :slant italic :foreground "#b4f")
+    '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#0e0")
+    '(mpdel-playlist-current-song-face :inherit variable-pitch :weight bold :slant italic :foreground "#efefef" :background "#000")
+    '(mpdel-tablist-disc-face :foreground "#ef0")
+    '(mpdel-tablist-date-face :foreground "#ee0")
+    '(header-line :height 1.1))
+
+(add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
+(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'mpdel-playlist-mode-hook 'mpdnotify)
+(add-hook! 'libmpdel-current-song-changed-hook 'mpdnotify)
+(add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
+(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
+(after! mpdel
+    (setq libmpdel-hostname "127.0.0.2")
+    (require 'mpdel)
+    (mpdel-mode))
+#+end_src
+
+** Keybindings
+
+#+begin_src emacs-lisp :tangle yes
+(setq mpdel-playlist-mode-map (make-sparse-keymap))
+(map! :map mpdel-playlist-mode-map
+    :desc "Play/Pause" :ne "p" #'libmpdel-playback-play-pause
+    :desc "Play" :ne "RET" #'mpdnotify-play
+    :desc "Increase Volume" :ne "<right>" #'mpdel-core-volume-increase
+    :desc "Decrease Volume" :ne "<left>" #'mpdel-core-volume-decrease
+    :desc "Clear Playlist" :ne "c" #'mpdel-core-replace-current-playlist
+    :desc "Dired" :ne "e" #'mpdel-core-dired
+    :desc "Set Random" :ne "z" #'libmpdel-playback-set-random
+    :desc "Unset Random" :ne "Z" #'libmpdel-playback-unset-random
+    :desc "Set Single" :ne "y" #'libmpdel-playback-set-single-once
+    :desc "Unset Single" :ne "Y" #'libmpdel-playback-set-single-never
+    :desc "Next Song" :ne ">" #'libmpdel-playback-next
+    :desc "Previous Song" :ne "<" #'libmpdel-playback-previous)
+#+end_src
+
+* Org
+
+#+begin_src emacs-lisp :tangle yes
+(after! org
+    (add-hook! 'org-mode-hook 'garbage-collect)
+    (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
+    (setq org-directory "~/org/"
+          org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
+          org-agenda-block-separator 8411
+          org-default-notes-file (expand-file-name "notes.org" org-directory)
+          org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
+          org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
+          org-ellipsis "  "
+          org-catch-invisible-edits 'smart
+          org-log-done 'time
+          org-journal-dir "~/org/journal/"
+          org-hide-emphasis-markers t
+          org-support-shift-select t
+          org-src-preserve-indentation nil
+          org-src-tab-acts-natively t
+          org-edit-src-content-indentation 0)
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "VIDEO(v)" "IDEA(i)" "DONE(d)" "EVENT(e)"))
+          org-todo-keyword-faces
+          '(("TODO" . 'all-the-icons-red)
+            ("NEXT" . 'all-the-icons-blue)
+            ("VIDEO" . 'all-the-icons-yellow)
+            ("IDEA" . 'all-the-icons-green)
+            ("DONE" . 'all-the-icons-orange)
+            ("EVENT" . 'all-the-icons-cyan)))
+    (setq org-agenda-custom-commands
+          '(("v" "Better Agenda View"
+            ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (tags "PRIORITY=\"B\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
+            (tags "PRIORITY=\"C\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
+            (agenda "")
+            (alltodo "")))))
+    (custom-set-faces!
+        '(org-agenda-calendar-event :inherit variable-pitch)
+        '(org-agenda-calendar-sexp :inherit variable-pitch)
+        '(org-agenda-filter-category :inherit variable-pitch)
+        '(org-agenda-filter-tags :inherit variable-pitch)
+        '(org-agenda-date :inherit variable-pitch :weight bold :height 1.09)
+        '(org-agenda-date-weekend :inherit variable-pitch :weight bold :height 1.06)
+        '(org-agenda-done :inherit variable-pitch :weight bold)
+        '(org-agenda-date-today :inherit variable-pitch :weight bold :slant italic :height 1.12)
+        '(org-agenda-date-weekend-today :inherit variable-pitch :weight bold :height 1.09)
+        '(org-agenda-dimmed-todo-face :inherit variable-pitch :weight bold)
+        '(org-agenda-current-time :inherit variable-pitch :weight bold)
+        '(org-agenda-clocking :inherit variable-pitch :weight bold))
+    (add-hook! 'org-agenda-mode-hook 'mixed-pitch-mode)
+    (add-hook! 'org-agenda-mode-hook (hide-mode-line-mode 1))
+    (custom-set-faces!
+        '(org-document-title :height 1.3)
+        '(org-level-1 :inherit outline-1 :weight extra-bold :height 1.35)
+        '(org-level-2 :inherit outline-2 :weight bold :height 1.15)
+        '(org-level-3 :inherit outline-3 :weight bold :height 1.12)
+        '(org-level-4 :inherit outline-4 :weight bold :height 1.09)
+        '(org-level-5 :inherit outline-5 :weight bold :height 1.06)
+        '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.03)
+        '(org-level-7 :inherit outline-7 :weight semi-bold)
+        '(org-level-8 :inherit outline-8 :weight semi-bold)))
+
+(after! org-fancy-priorities
+    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
+          org-priority-faces
+              '((?A :foreground "#ff0000" :weight bold)
+                (?B :foreground "#ffffff" :weight bold)
+                (?C :foreground "#0099ff" :weight bold))))
+
+(font-lock-add-keywords 'org-mode
+    '(("^ *\\([-]\\) "
+        (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+#+end_src
+
+* Treemacs
+
+#+begin_src emacs-lisp :tangle yes
+(after! treemacs
+    (setq doom-themes-treemacs-theme "doom-colors")
+    (setq doom-themes-treemacs-enable-variable-pitch t))
 #+end_src
 
 #+BEGIN_EXPORT html

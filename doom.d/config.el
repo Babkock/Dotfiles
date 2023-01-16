@@ -93,114 +93,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(after! modeline
-    (setq doom-modeline-buffer-file-name-style 'relative-to-project
-          doom-modeline-icon (display-graphic-p)
-          doom-modeline-major-mode-icon t
-          doom-modeline-major-mode-color-icon t
-          doom-modeline-env-version t
-          doom-modeline-persp-icon t
-          doom-modeline-unicode-fallback nil
-          doom-modeline-buffer-state-icon nil
-          doom-modeline-height 30
-          doom-modeline-hud t
-          doom-modeline-buffer-modification-icon nil)
-    (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
-(setq-default doom-modeline-major-mode-icon t
-              doom-modeline-major-mode-color-icon t
-              doom-modeline-buffer-file-name-style 'relative-to-project
-              doom-modeline-env-version t
-              doom-modeline-persp-icon t
-              doom-modeline-buffer-state-icon nil
-              doom-modeline-unicode-fallback nil
-              doom-modeline-hud t
-              doom-modeline-height 30
-              doom-modeline-buffer-modification-icon nil)
-
-(after! org
-    (add-hook! 'org-mode-hook 'garbage-collect)
-    (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
-    (setq org-directory "~/org/"
-          org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
-          org-agenda-block-separator 8411
-          org-default-notes-file (expand-file-name "notes.org" org-directory)
-          org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
-          org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
-          org-ellipsis "  "
-          org-catch-invisible-edits 'smart
-          org-log-done 'time
-          org-journal-dir "~/org/journal/"
-          org-hide-emphasis-markers t
-          org-support-shift-select t
-          org-src-preserve-indentation nil
-          org-src-tab-acts-natively t
-          org-edit-src-content-indentation 0)
-    (setq org-todo-keywords
-          '((sequence "TODO(t)" "NEXT(n)" "VIDEO(v)" "IDEA(i)" "DONE(d)" "EVENT(e)"))
-          org-todo-keyword-faces
-          '(("TODO" . 'all-the-icons-red)
-            ("NEXT" . 'all-the-icons-blue)
-            ("VIDEO" . 'all-the-icons-yellow)
-            ("IDEA" . 'all-the-icons-green)
-            ("DONE" . 'all-the-icons-orange)
-            ("EVENT" . 'all-the-icons-cyan)))
-    (setq org-agenda-custom-commands
-          '(("v" "Better Agenda View"
-            ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-            (tags "PRIORITY=\"B\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
-            (tags "PRIORITY=\"C\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
-            (agenda "")
-            (alltodo "")))))
-    (custom-set-faces!
-        '(org-agenda-calendar-event :inherit variable-pitch)
-        '(org-agenda-calendar-sexp :inherit variable-pitch)
-        '(org-agenda-filter-category :inherit variable-pitch)
-        '(org-agenda-filter-tags :inherit variable-pitch)
-        '(org-agenda-date :inherit variable-pitch :weight bold :height 1.09)
-        '(org-agenda-date-weekend :inherit variable-pitch :weight bold :height 1.06)
-        '(org-agenda-done :inherit variable-pitch :weight bold)
-        '(org-agenda-date-today :inherit variable-pitch :weight bold :slant italic :height 1.12)
-        '(org-agenda-date-weekend-today :inherit variable-pitch :weight bold :height 1.09)
-        '(org-agenda-dimmed-todo-face :inherit variable-pitch :weight bold)
-        '(org-agenda-current-time :inherit variable-pitch :weight bold)
-        '(org-agenda-clocking :inherit variable-pitch :weight bold))
-    (add-hook! 'org-agenda-mode-hook 'mixed-pitch-mode)
-    (add-hook! 'org-agenda-mode-hook (hide-mode-line-mode 1))
-    (custom-set-faces!
-        '(org-document-title :height 1.3)
-        '(org-level-1 :inherit outline-1 :weight extra-bold :height 1.35)
-        '(org-level-2 :inherit outline-2 :weight bold :height 1.15)
-        '(org-level-3 :inherit outline-3 :weight bold :height 1.12)
-        '(org-level-4 :inherit outline-4 :weight bold :height 1.09)
-        '(org-level-5 :inherit outline-5 :weight bold :height 1.06)
-        '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.03)
-        '(org-level-7 :inherit outline-7 :weight semi-bold)
-        '(org-level-8 :inherit outline-8 :weight semi-bold)))
-
-(after! org-fancy-priorities
-    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
-          org-priority-faces
-              '((?A :foreground "#ff0000" :weight bold)
-                (?B :foreground "#ffffff" :weight bold)
-                (?C :foreground "#0099ff" :weight bold))))
-
-(font-lock-add-keywords 'org-mode
-    '(("^ *\\([-]\\) "
-        (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-(after! treemacs
-    (setq doom-themes-treemacs-theme "doom-colors")
-    (setq doom-themes-treemacs-enable-variable-pitch t))
-
-(after! helm
-    (setq helm-show-completion-min-window-height 9))
-
 (after! doom-themes
     (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
@@ -211,29 +103,33 @@
     '(font-lock-comment-face :slant italic)
     '(font-lock-keyword-face :slant italic))
 
-(after! magit
+(add-hook! 'doom-dashboard-mode-hook 'garbage-collect)
+(add-hook! 'doom-load-theme-hook 'garbage-collect)
+(add-hook! 'doom-first-file-hook 'garbage-collect)
+(add-hook! 'kill-emacs-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'beacon-mode)
+(add-hook! 'doom-init-ui-hook 'garbage-collect)
+(add-hook! 'doom-after-init-modules-hook 'garbage-collect)
+(add-hook! 'eww-mode-hook 'garbage-collect)
+
+(after! circe
     (custom-set-faces!
-        '(magit-log-author :foreground "#f46")
-        '(magit-log-date :foreground "#7fc")
-        '(magit-hash :foreground "#0f3")
-        '(magit-filename :foreground "#ff3")
-        '(magit-branch-current :foreground "#e96"))
-    (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'magit-mode-hook 'garbage-collect)
-    (add-hook! 'magit-log-mode-hook 'garbage-collect)
-    (add-hook! 'magit-status-mode-hook 'garbage-collect)
-    (add-hook! 'magit-popup-mode-hook 'garbage-collect))
+        '(circe-prompt-face :foreground "#0ef")
+        '(circe-server-face :foreground "#ee0")
+        '(circe-my-message-face :weight bold :foreground "#f44")
+        '(circe-originator-face :foreground "b4f"))
+    (add-hook! 'circe-mode-hook 'garbage-collect))
 
-(after! diff-hl
-    (global-diff-hl-mode)
-    (diff-hl-margin-mode)
-    (diff-hl-flydiff-mode)
-    (diff-hl-dired-mode)
-    (diff-hl-show-hunk-mouse-mode))
+(setq dired-open-extensions '(("jpg" . "sxiv")
+                              ("png" . "sxiv")
+                              ("mkv" . "mpv")
+                              ("mp4" . "mpv")))
 
-(add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
-(add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+(require 'notifications)
+(notifications-notify
+    :title "Emacs Started"
+    :body "Emacs configuration loaded. Welcome!")
 
 (defvar splash-phrase-source-folder
     (expand-file-name "phrases/" doom-private-dir)
@@ -401,15 +297,61 @@
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan) :height 0.95)
         :action mpdel-playlist-open)))
 
-(add-hook! 'doom-dashboard-mode-hook 'garbage-collect)
-(add-hook! 'doom-load-theme-hook 'garbage-collect)
-(add-hook! 'doom-first-file-hook 'garbage-collect)
-(add-hook! 'kill-emacs-hook 'garbage-collect)
-(add-hook! 'after-init-hook 'garbage-collect)
-(add-hook! 'after-init-hook 'beacon-mode)
-(add-hook! 'doom-init-ui-hook 'garbage-collect)
-(add-hook! 'doom-after-init-modules-hook 'garbage-collect)
-(add-hook! 'eww-mode-hook 'garbage-collect)
+(setq +doom-dashboard-mode-map (make-sparse-keymap))
+(map! :map +doom-dashboard-mode-map
+    :desc "Forward" :ne "<down>" #'+doom-dashboard/forward-button
+    :desc "Backward" :ne "<up>" #'+doom-dashboard/backward-button
+    :desc "Find File" :ne "f" #'helm-find-files
+    :desc "Recent Files" :ne "r" #'helm-recentf
+    :desc "Doom Reload" :ne "R" #'doom/reload
+    :desc "Open Project" :ne "p" #'projectile-find-file
+    :desc "Config Dir" :ne "C" #'doom/open-private-config
+    :desc "Open Dired" :ne "j" (cmd! (dired "."))
+    :desc "Open Dired in Home Directory" :ne "J" (cmd! (dired "~/"))
+    :desc "Open config.org" :ne "c" #'open-config-org
+    :desc "Open init.org" :ne "i" (cmd! (find-file (expand-file-name "init.org" doom-private-dir)))
+    :desc "Open ZSH Config" :ne "z" (cmd! (find-file "~/.zsh.org"))
+    :desc "Open ZSH Theme" :ne "Z" (cmd! (find-file "~/.oh-my-zsh/themes/babkockicon.zsh-theme"))
+    :desc "Open Qutebrowser Config" :ne "q" (cmd! (find-file "~/.config/qutebrowser/config.org"))
+    :desc "Open Polybar Config" :ne "o" (cmd! (find-file "~/.config/polybar/config.org"))
+    :desc "Open Foot Config" :ne "F" #'open-foot-org
+    :desc "Open Waybar Config" :ne "w" (cmd! (find-file "~/.config/waybar/config.org"))
+    :desc "Open Waybar Style" :ne "W" (cmd! (find-file "~/.config/waybar/style.org"))
+    :desc "Open BSPWM Config" :ne "m" (cmd! (find-file "~/.config/bspwm/bspwm.org"))
+    :desc "Open MPV Config" :ne "M" (cmd! (find-file "~/.config/mpv/mpv.conf"))
+    :desc "Open Dotfile" :ne "d" (cmd! (doom-project-find-file "~/.config/"))
+    :desc "Open TBcom" :ne "t" #'open-tbcom
+    :desc "Open Dotfiles" :ne "D" #'open-dotfiles
+    :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
+    :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
+    :desc "Open Xresources" :ne "X" (cmd! (find-file "~/.Xresources"))
+    :desc "Open .xinitrc" :ne "x" (cmd! (find-file "~/.xinitrc"))
+    :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
+    :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
+    :desc "Open MPDel Playlist" :ne ";" #'mpdel-playlist-open
+    :desc "Open MPDel Browser" :ne "/" #'mpdel-browser-open
+    :desc "Toggle Play/Pause" :ne "," #'libmpdel-playback-play-pause
+    :desc "Open MPDel Artists" :ne "g" #'mpdel-core-open-artists
+    :desc "Play Next Song" :ne "]" #'libmpdel-playback-next
+    :desc "Play Previous Song" :ne "[" #'libmpdel-playback-previous
+    :desc "Clear Current Playlist" :ne "O" #'mpdel-core-replace-current-playlist
+    :desc "Doom Help" :ne "?" #'doom/help
+    :desc "Open Circe" :ne "." #'circe
+    :desc "Agenda" :ne "a" #'org-agenda
+    :desc "Open agenda.org" :ne "A" #'open-agenda-org
+    :desc "Open todo.org" :ne "V" (cmd! (find-file "~/org/todo.org"))
+    :desc "Kill All Buffers" :ne "k" #'doom/kill-all-buffers
+    :desc "Switch Buffers" :ne "b" #'helm-buffers-list
+    :desc "Previous Buffer" :ne "P" #'previous-buffer
+    :desc "Open Elfeed" :ne "e" #'elfeed
+    :desc "Open elfeed.org" :ne "E" (cmd! (find-file "~/org/elfeed.org"))
+    :desc "Reset Elfeed" :ne "n" #'elfeed-db-unload
+    :desc "Set Theme" :ne "T" #'consult-theme
+    :desc "Open video.org" :ne "v" (cmd! (find-file "~/org/video.org"))
+    :desc "Quit" :ne "Q" #'save-buffers-kill-terminal)
+
+;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
 (require 'elfeed-goodies)
 (after! elfeed
@@ -476,13 +418,119 @@
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20))
 
-(after! circe
+(after! elfeed-goodies
+    (evil-define-key 'normal elfeed-show-mode-map
+        (kbd "J") 'elfeed-goodies/split-show-next
+        (kbd "K") 'elfeed-goodies/split-show-prev)
+    (evil-define-key 'normal elfeed-search-mode-map
+        (kbd "J") 'elfeed-goodies/split-show-next
+        (kbd "K") 'elfeed-goodies/split-show-prev
+        (kbd "q") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +tumblr +unread"))
+        (kbd "e") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +reddit +unread"))
+        (kbd "p") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +stack +unread"))
+        (kbd "m") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +media +unread"))
+        (kbd "o") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +news +unread"))
+        (kbd "i") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +git +unread"))
+        (kbd "x") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +youtube +unread"))
+        (kbd "n") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +torrents +unread"))
+        (kbd "v") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +tech +unread"))
+        (kbd "g") (lambda () (interactive) (elfeed-search-browse-url)))
+    (map! :map +elfeed-search-mode-map
+        :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
+        :desc "Kill buffer" :ne "q" #'elfeed-kill-buffer
+        :desc "Set filter" :ne "S" #'elfeed-search-set-filter
+        :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter)
+    (map! :map +elfeed-show-mode-map
+        :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
+        :desc "Set filter" :ne "S" #'elfeed-search-set-filter
+        :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
+
+(after! helm
+    (setq helm-show-completion-min-window-height 9))
+
+(map!
+    :m "C-h" #'evil-window-left
+    :m "C-j" #'evil-window-down
+    :m "C-k" #'evil-window-up
+    :m "C-l" #'evil-window-right
+    :m "C-w" #'evil-window-vsplit
+    :m "C-o" #'evil-window-split
+)
+
+(map! :leader
+    :desc "Toggle Zen" "a" #'+zen/toggle
+    :desc "Beacon Mode" "b" #'beacon-mode
+    :desc "Rainbow Mode" "r" #'rainbow-mode
+    :desc "Play song in MPDel" "z" #'mpdnotify-play
+    :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
+    :desc "Org Tangle" "l" #'org-babel-tangle
+    :desc "MPDel Playlist" "m" #'mpdel-playlist-open
+    :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
+    :desc "MPDel Next Song" "]" #'libmpdel-playback-next
+    :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
+    :desc "Vterm" "v" #'+vterm/toggle
+    :desc "Org Mark Done" "d" #'org-todo
+    :desc "Mixed Pitch Mode" "x" #'mixed-pitch-mode
+    :desc "Magit Status" "y" #'magit-status
+    :desc "Delete Buffer" "u" #'evil-delete-buffer
+    :desc "Org Export to HTML" "p" #'org-html-export-to-html
+    :desc "Magit Log" "e" #'magit-log-all
+    :desc "Magit Stage File" "t" #'magit-stage-file
+    :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
+    :desc "Magit Pull" "j" #'magit-pull-from-pushremote
+    :desc "Switch Buffer" "," #'helm-buffers-list
+    :desc "Org Agenda" "-" #'org-agenda
+    :desc "Org Time Stamp" "=" #'org-time-stamp
+    :desc "Org Priority Up" "\\" #'org-priority-up
+    :desc "Org Priority Down" "'" #'org-priority-down)
+
+(after! magit
     (custom-set-faces!
-        '(circe-prompt-face :foreground "#0ef")
-        '(circe-server-face :foreground "#ee0")
-        '(circe-my-message-face :weight bold :foreground "#f44")
-        '(circe-originator-face :foreground "b4f"))
-    (add-hook! 'circe-mode-hook 'garbage-collect))
+        '(magit-log-author :foreground "#f46")
+        '(magit-log-date :foreground "#7fc")
+        '(magit-hash :foreground "#0f3")
+        '(magit-filename :foreground "#ff3")
+        '(magit-branch-current :foreground "#e96"))
+    (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'magit-mode-hook 'garbage-collect)
+    (add-hook! 'magit-log-mode-hook 'garbage-collect)
+    (add-hook! 'magit-status-mode-hook 'garbage-collect)
+    (add-hook! 'magit-popup-mode-hook 'garbage-collect))
+
+(after! diff-hl
+    (global-diff-hl-mode)
+    (diff-hl-margin-mode)
+    (diff-hl-flydiff-mode)
+    (diff-hl-dired-mode)
+    (diff-hl-show-hunk-mouse-mode))
+
+(add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+(add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+(after! modeline
+    (setq doom-modeline-buffer-file-name-style 'relative-to-project
+          doom-modeline-icon (display-graphic-p)
+          doom-modeline-major-mode-icon t
+          doom-modeline-major-mode-color-icon t
+          doom-modeline-env-version t
+          doom-modeline-persp-icon t
+          doom-modeline-unicode-fallback nil
+          doom-modeline-buffer-state-icon nil
+          doom-modeline-height 30
+          doom-modeline-hud t
+          doom-modeline-buffer-modification-icon nil)
+    (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
+(setq-default doom-modeline-major-mode-icon t
+              doom-modeline-major-mode-color-icon t
+              doom-modeline-buffer-file-name-style 'relative-to-project
+              doom-modeline-env-version t
+              doom-modeline-persp-icon t
+              doom-modeline-buffer-state-icon nil
+              doom-modeline-unicode-fallback nil
+              doom-modeline-hud t
+              doom-modeline-height 30
+              doom-modeline-buffer-modification-icon nil)
 
 (defun mpdnotify ()
     (interactive)
@@ -520,71 +568,6 @@
     (require 'mpdel)
     (mpdel-mode))
 
-(map!
-    :m "C-h" #'evil-window-left
-    :m "C-j" #'evil-window-down
-    :m "C-k" #'evil-window-up
-    :m "C-l" #'evil-window-right
-    :m "C-w" #'evil-window-vsplit
-    :m "C-o" #'evil-window-split
-)
-
-(setq +doom-dashboard-mode-map (make-sparse-keymap))
-(map! :map +doom-dashboard-mode-map
-    :desc "Forward" :ne "<down>" #'+doom-dashboard/forward-button
-    :desc "Backward" :ne "<up>" #'+doom-dashboard/backward-button
-    :desc "Find File" :ne "f" #'helm-find-files
-    :desc "Recent Files" :ne "r" #'helm-recentf
-    :desc "Doom Reload" :ne "R" #'doom/reload
-    :desc "Open Project" :ne "p" #'projectile-find-file
-    :desc "Config Dir" :ne "C" #'doom/open-private-config
-    :desc "Open Dired" :ne "j" (cmd! (dired "."))
-    :desc "Open Dired in Home Directory" :ne "J" (cmd! (dired "~/"))
-    :desc "Open config.org" :ne "c" #'open-config-org
-    :desc "Open init.org" :ne "i" (cmd! (find-file (expand-file-name "init.org" doom-private-dir)))
-    :desc "Open ZSH Config" :ne "z" (cmd! (find-file "~/.zsh.org"))
-    :desc "Open ZSH Theme" :ne "Z" (cmd! (find-file "~/.oh-my-zsh/themes/babkockicon.zsh-theme"))
-    :desc "Open Qutebrowser Config" :ne "q" (cmd! (find-file "~/.config/qutebrowser/config.org"))
-    :desc "Open Polybar Config" :ne "o" (cmd! (find-file "~/.config/polybar/config.org"))
-    :desc "Open Foot Config" :ne "F" #'open-foot-org
-    :desc "Open Waybar Config" :ne "w" (cmd! (find-file "~/.config/waybar/config.org"))
-    :desc "Open Waybar Style" :ne "W" (cmd! (find-file "~/.config/waybar/style.org"))
-    :desc "Open BSPWM Config" :ne "m" (cmd! (find-file "~/.config/bspwm/bspwm.org"))
-    :desc "Open MPV Config" :ne "M" (cmd! (find-file "~/.config/mpv/mpv.conf"))
-    :desc "Open Dotfile" :ne "d" (cmd! (doom-project-find-file "~/.config/"))
-    :desc "Open TBcom" :ne "t" #'open-tbcom
-    :desc "Open Dotfiles" :ne "D" #'open-dotfiles
-    :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
-    :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
-    :desc "Open Xresources" :ne "X" (cmd! (find-file "~/.Xresources"))
-    :desc "Open .xinitrc" :ne "x" (cmd! (find-file "~/.xinitrc"))
-    :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
-    :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
-    :desc "Open MPDel Playlist" :ne ";" #'mpdel-playlist-open
-    :desc "Open MPDel Browser" :ne "/" #'mpdel-browser-open
-    :desc "Toggle Play/Pause" :ne "," #'libmpdel-playback-play-pause
-    :desc "Open MPDel Artists" :ne "g" #'mpdel-core-open-artists
-    :desc "Play Next Song" :ne "]" #'libmpdel-playback-next
-    :desc "Play Previous Song" :ne "[" #'libmpdel-playback-previous
-    :desc "Clear Current Playlist" :ne "O" #'mpdel-core-replace-current-playlist
-    :desc "Doom Help" :ne "?" #'doom/help
-    :desc "Open Circe" :ne "." #'circe
-    :desc "Agenda" :ne "a" #'org-agenda
-    :desc "Open agenda.org" :ne "A" #'open-agenda-org
-    :desc "Open todo.org" :ne "V" (cmd! (find-file "~/org/todo.org"))
-    :desc "Kill All Buffers" :ne "k" #'doom/kill-all-buffers
-    :desc "Switch Buffers" :ne "b" #'helm-buffers-list
-    :desc "Previous Buffer" :ne "P" #'previous-buffer
-    :desc "Open Elfeed" :ne "e" #'elfeed
-    :desc "Open elfeed.org" :ne "E" (cmd! (find-file "~/org/elfeed.org"))
-    :desc "Reset Elfeed" :ne "n" #'elfeed-db-unload
-    :desc "Set Theme" :ne "T" #'consult-theme
-    :desc "Open video.org" :ne "v" (cmd! (find-file "~/org/video.org"))
-    :desc "Quit" :ne "Q" #'save-buffers-kill-terminal)
-
-;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
-(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
-
 (setq mpdel-playlist-mode-map (make-sparse-keymap))
 (map! :map mpdel-playlist-mode-map
     :desc "Play/Pause" :ne "p" #'libmpdel-playback-play-pause
@@ -600,66 +583,83 @@
     :desc "Next Song" :ne ">" #'libmpdel-playback-next
     :desc "Previous Song" :ne "<" #'libmpdel-playback-previous)
 
-(after! elfeed-goodies
-    (evil-define-key 'normal elfeed-show-mode-map
-        (kbd "J") 'elfeed-goodies/split-show-next
-        (kbd "K") 'elfeed-goodies/split-show-prev)
-    (evil-define-key 'normal elfeed-search-mode-map
-        (kbd "J") 'elfeed-goodies/split-show-next
-        (kbd "K") 'elfeed-goodies/split-show-prev
-        (kbd "q") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +tumblr +unread"))
-        (kbd "e") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +reddit +unread"))
-        (kbd "p") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +stack +unread"))
-        (kbd "m") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +media +unread"))
-        (kbd "o") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +news +unread"))
-        (kbd "i") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +git +unread"))
-        (kbd "x") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +youtube +unread"))
-        (kbd "n") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +torrents +unread"))
-        (kbd "v") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +tech +unread"))
-        (kbd "g") (lambda () (interactive) (elfeed-search-browse-url)))
-    (map! :map +elfeed-search-mode-map
-        :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
-        :desc "Kill buffer" :ne "q" #'elfeed-kill-buffer
-        :desc "Set filter" :ne "S" #'elfeed-search-set-filter
-        :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter)
-    (map! :map +elfeed-show-mode-map
-        :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
-        :desc "Set filter" :ne "S" #'elfeed-search-set-filter
-        :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
+(after! org
+    (add-hook! 'org-mode-hook 'garbage-collect)
+    (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
+    (setq org-directory "~/org/"
+          org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
+          org-agenda-block-separator 8411
+          org-default-notes-file (expand-file-name "notes.org" org-directory)
+          org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
+          org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
+          org-ellipsis "  "
+          org-catch-invisible-edits 'smart
+          org-log-done 'time
+          org-journal-dir "~/org/journal/"
+          org-hide-emphasis-markers t
+          org-support-shift-select t
+          org-src-preserve-indentation nil
+          org-src-tab-acts-natively t
+          org-edit-src-content-indentation 0)
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "VIDEO(v)" "IDEA(i)" "DONE(d)" "EVENT(e)"))
+          org-todo-keyword-faces
+          '(("TODO" . 'all-the-icons-red)
+            ("NEXT" . 'all-the-icons-blue)
+            ("VIDEO" . 'all-the-icons-yellow)
+            ("IDEA" . 'all-the-icons-green)
+            ("DONE" . 'all-the-icons-orange)
+            ("EVENT" . 'all-the-icons-cyan)))
+    (setq org-agenda-custom-commands
+          '(("v" "Better Agenda View"
+            ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (tags "PRIORITY=\"B\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
+            (tags "PRIORITY=\"C\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
+            (agenda "")
+            (alltodo "")))))
+    (custom-set-faces!
+        '(org-agenda-calendar-event :inherit variable-pitch)
+        '(org-agenda-calendar-sexp :inherit variable-pitch)
+        '(org-agenda-filter-category :inherit variable-pitch)
+        '(org-agenda-filter-tags :inherit variable-pitch)
+        '(org-agenda-date :inherit variable-pitch :weight bold :height 1.09)
+        '(org-agenda-date-weekend :inherit variable-pitch :weight bold :height 1.06)
+        '(org-agenda-done :inherit variable-pitch :weight bold)
+        '(org-agenda-date-today :inherit variable-pitch :weight bold :slant italic :height 1.12)
+        '(org-agenda-date-weekend-today :inherit variable-pitch :weight bold :height 1.09)
+        '(org-agenda-dimmed-todo-face :inherit variable-pitch :weight bold)
+        '(org-agenda-current-time :inherit variable-pitch :weight bold)
+        '(org-agenda-clocking :inherit variable-pitch :weight bold))
+    (add-hook! 'org-agenda-mode-hook 'mixed-pitch-mode)
+    (add-hook! 'org-agenda-mode-hook (hide-mode-line-mode 1))
+    (custom-set-faces!
+        '(org-document-title :height 1.3)
+        '(org-level-1 :inherit outline-1 :weight extra-bold :height 1.35)
+        '(org-level-2 :inherit outline-2 :weight bold :height 1.15)
+        '(org-level-3 :inherit outline-3 :weight bold :height 1.12)
+        '(org-level-4 :inherit outline-4 :weight bold :height 1.09)
+        '(org-level-5 :inherit outline-5 :weight bold :height 1.06)
+        '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.03)
+        '(org-level-7 :inherit outline-7 :weight semi-bold)
+        '(org-level-8 :inherit outline-8 :weight semi-bold)))
 
-(map! :leader
-    :desc "Toggle Zen" "a" #'+zen/toggle
-    :desc "Beacon Mode" "b" #'beacon-mode
-    :desc "Rainbow Mode" "r" #'rainbow-mode
-    :desc "Play song in MPDel" "z" #'mpdnotify-play
-    :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
-    :desc "Org Tangle" "l" #'org-babel-tangle
-    :desc "MPDel Playlist" "m" #'mpdel-playlist-open
-    :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
-    :desc "MPDel Next Song" "]" #'libmpdel-playback-next
-    :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
-    :desc "Vterm" "v" #'+vterm/toggle
-    :desc "Org Mark Done" "d" #'org-todo
-    :desc "Mixed Pitch Mode" "x" #'mixed-pitch-mode
-    :desc "Magit Status" "y" #'magit-status
-    :desc "Delete Buffer" "u" #'evil-delete-buffer
-    :desc "Org Export to HTML" "p" #'org-html-export-to-html
-    :desc "Magit Log" "e" #'magit-log-all
-    :desc "Magit Stage File" "t" #'magit-stage-file
-    :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
-    :desc "Magit Pull" "j" #'magit-pull-from-pushremote
-    :desc "Switch Buffer" "," #'helm-buffers-list
-    :desc "Org Agenda" "-" #'org-agenda
-    :desc "Org Time Stamp" "=" #'org-time-stamp
-    :desc "Org Priority Up" "\\" #'org-priority-up
-    :desc "Org Priority Down" "'" #'org-priority-down)
+(after! org-fancy-priorities
+    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
+          org-priority-faces
+              '((?A :foreground "#ff0000" :weight bold)
+                (?B :foreground "#ffffff" :weight bold)
+                (?C :foreground "#0099ff" :weight bold))))
 
-(setq dired-open-extensions '(("jpg" . "sxiv")
-                              ("png" . "sxiv")
-                              ("mkv" . "mpv")
-                              ("mp4" . "mpv")))
+(font-lock-add-keywords 'org-mode
+    '(("^ *\\([-]\\) "
+        (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-(require 'notifications)
-(notifications-notify
-    :title "Emacs Started"
-    :body "Emacs configuration loaded. Welcome!")
+(after! treemacs
+    (setq doom-themes-treemacs-theme "doom-colors")
+    (setq doom-themes-treemacs-enable-variable-pitch t))
