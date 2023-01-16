@@ -350,10 +350,10 @@ How to handle selecting a file for upload:
 
 #+begin_src python :tangle config.py
 c.fileselect.handler = 'external'
-c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
-#c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
-c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
-#c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+#c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
+c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+#c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
+c.fileselect.multiple_files.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
 #+end_src
 
 ** Keybindings
@@ -436,6 +436,7 @@ config.bind(',m', 'config-cycle fonts.completion.entry "17pt Space Mono Nerd Fon
 | =xy=             | Hide Tabs Mode |
 | =yx=             | Show Tabs Mode |
 | =zz=             | Clear History |
+| =l=              | Pin Tab |
 | =.=              | Cancel Download |
 
 #+begin_src python :tangle config.py
@@ -447,6 +448,7 @@ config.bind('yy', 'config-cycle statusbar.show always always')
 config.bind('xy', 'config-cycle tabs.show switching switching')
 config.bind('yx', 'config-cycle tabs.show multiple multiple')
 config.bind('zz', 'history-clear')
+config.bind('l', 'tab-pin')
 config.bind('.', 'download-cancel')
 #+end_src
 

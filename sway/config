@@ -22,6 +22,9 @@ exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
 output eDP-1 resolution 1920x1080 bg /home/babkock/.config/sway/wave.jpg fill
 output HDMI-A-2 resolution 1920x1080 bg /home/babkock/.config/sway/misty.jpg fill
 
+seat seat0 xcursor_theme "Adwaita" 28
+seat seat0 hide_cursor 5000
+
 input "2:7:SynPS/2_Synaptics_TouchPad" {
 	dwt enabled
 	tap enabled
@@ -66,16 +69,13 @@ smart_borders on
 gaps inner 4
 gaps outer 4
 
-exec swayidle -w timeout 600 "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 19 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000099 --ring-ver-color 40a78977 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill" timeout 1100 "swaymsg \"output * dpms off\"" resume "swaymsg \"output * dpms on\"" before-sleep "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 19 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000077 --ring-ver-color 40a78877 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill"
+exec swayidle -w timeout 600 "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 21 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000099 --ring-ver-color 40a78977 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill" timeout 1100 "swaymsg \"output * dpms off\"" resume "swaymsg \"output * dpms on\"" before-sleep "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 21 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000077 --ring-ver-color 40a78877 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill"
 
 exec xrdb -merge "$HOME/.Xresources"
-exec pkill -x pulseaudio
-exec pulseaudio --start &
-exec pkill -x tinyserve
+#exec pkill -x pulseaudio
+#exec pulseaudio --start &
 exec tinyserve
-exec pkill -x dunst
 exec dunst --silent
-exec pkill -x emacs
 exec emacs --daemon
 exec foot --server --config "$HOME/.config/foot/sway.ini"
 exec waybar -c "$HOME/.config/waybar/config.json"
@@ -125,11 +125,15 @@ for_window [app_id="Firefox"] focus
 for_window [class="Firefox"] focus
 for_window [app_id="Firefox"] move workspace to output HDMI-A-2
 for_window [class="Firefox"] move workspace to output HDMI-A-2
+for_window [app_id="Firefox"] inhibit_idle fullscreen
+for_window [class="Firefox"] inhibit_idle fullscreen
 for_window [class="Gimp"] focus
 for_window [class="GIMP"] move workspace to output HDMI-A-2
 for_window [class="Gimp"] move workspace to output HDMI-A-2
 for_window [app_id="mpv"] focus
 for_window [class="mpv"] focus
+for_window [app_id="mpv"] inhibit_idle fullscreen
+for_window [class="mpv"] inhibit_idle fullscreen
 for_window [app_id="mpv"] move workspace to output HDMI-A-2
 
 # Start a terminal

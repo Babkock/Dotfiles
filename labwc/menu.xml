@@ -33,21 +33,53 @@
 	</item>
 </menu>
 
-<menu id="root-menu">
-  <item label="Web browser">
-    <action name="Execute"><command>firefox</command></action>
+<menu id="root-menu" label="">
+  <item label="Qutebrowser" icon="qutebrowser">
+	<action name="Execute">
+		<command>qutebrowser --qt-arg stylesheet "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss"</command>
+	</action>
   </item>
-  <item label="Terminal">
-    <action name="Execute"><command>alacritty</command></action>
+  <item label="Firefox">
+	<action name="Execute">
+		<command>firefox-wayland</command>
+	</action>
   </item>
+  <item label="Music Player">
+	<action name="Execute">
+		<command>footclient ncmpcpp</command>
+	</action>
+  </item>
+  <item label="Emacs">
+	<action name="Execute">
+		<command>emacsclient -c -a "emacs"</command>
+	</action>
+  </item>
+  <item label="Nicotine">
+	<action name="Execute">
+		<command>nicotine</command>
+	</action>
+  </item>
+  <item label="Volume Control">
+	<action name="Execute">
+	    <command>pavucontrol</command>
+	</action>
+  </item>
+  <item label="Filezilla">
+	<action name="Execute">
+		<command>filezilla</command>
+	</action>
+  </item>
+  <item label="OBS">
+	<action name="Execute">
+		<command>swaynag -o eDP-1 --background a7516892 --text c77188ef --button-text efef20ff --border 39a5ebef --button-background 39a5ebef --button-margin-right 12 --button-border-size 3 --border-bottom-size 4 --border-bottom c77188ef -y overlay -f "SpaceMono Nerd Font" -e top -m "Make sure Pipewire and XDG-Desktop-Portal-Wlr are running!" -Z "Start OBS" "obs"</command>
+	</action>
+  </item>
+  <separator label="s1" />
   <item label="Reconfigure">
     <action name="Reconfigure"></action>
   </item>
   <item label="Exit">
     <action name="Exit"></action>
-  </item>
-  <item label="Poweroff">
-    <action name="Execute"><command>systemctl -i poweroff</command></action>
   </item>
 </menu>
 

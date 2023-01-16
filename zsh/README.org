@@ -79,14 +79,25 @@ export ZSH="/home/babkock/.oh-my-zsh"
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 
-source /home/babkock/.local/share/lscolors.sh
+#source /home/babkock/.local/share/lscolors.sh
 
-LSCOLORS=$LS_COLORS
-ZLS_COLORS=$LS_COLORS
-ZLSCOLORS=$LS_COLORS
-export LSCOLORS
-export ZLS_COLORS
-export ZLSCOLORS
+#LSCOLORS=$LS_COLORS
+#ZLS_COLORS=$LS_COLORS
+if [ -v $TERM ]; then
+    if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
+        export LS_COLORS="$(vivid generate snazzy)"
+    else
+        export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
+    fi
+else
+    export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
+fi
+export LSCOLORS=$LS_COLORS
+export ZLSCOLORS=$LS_COLORS
+export ZLS_COLORS=$LS_COLORS
+#export LSCOLORS
+#export ZLS_COLORS
+#export ZLSCOLORS
 #+end_src
 
 Determine if the shell is being started in a terminal, either *st* or *urxvt*. If the shell is being started in a real tty, or over ssh, load the separate
@@ -99,6 +110,8 @@ if [ -v TERM ]; then
     elif [[ ${TERM} = "rxvt-unicode" ]]; then
         ZSH_THEME="babkockicon"
     elif [[ ${TERM} = "xterm-256color" ]]; then
+        ZSH_THEME="babkockicon"
+    elif [[ ${TERM} = "kitty" ]]; then
         ZSH_THEME="babkockicon"
     elif [[ ${TERM} = "foot" ]]; then
         #ZSH_THEME="philips"
@@ -137,14 +150,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # HIST_STAMPS="mm/dd/yyyy"
 #+end_src
 
-Load the shell plugins. Make sure to never load too many, it's already bloated
-as it is.
+Load the shell plugins. Make sure to never load too many, it's already bloated as it is.
 
 #+begin_src sh :tangle .zshrc
 if [[ -n $SSH_CONNECTION ]]; then
     plugins=(gitfast colored-man-pages ssh-agent)
 else
-    plugins=(gitfast colored-man-pages ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
+    plugins=(gitfast colored-man-pages ssh-agent zsh-autosuggestions zsh-syntax-highlighting zsh-fzf-history-search you-should-use)
 fi
 
 zstyle :omz:plugins:ssh-agent identities gitlab_rsa github_rsa alpine_rsa tbcom_ssh
@@ -240,7 +252,7 @@ All of these =ls= commands have flags to show directories first, show human-read
 
 #+begin_src sh :tangle .zshrc
 if [ -v TERM ]; then
-    if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" ]]; then
+    if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "alacritty" || ${TERM} = "kitty" ]]; then
         alias ls="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
         alias l="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
         alias lsla="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
@@ -267,24 +279,26 @@ if [ -v TERM ]; then
         alias atc="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
         alias aclt="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
         alias atlc="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
-        alias e="emacsclient -c -a 'emacs' -q"
-        alias ee="emacsclient -c -a 'emacs' -q ."
-        alias ez="emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
-        alias eb="emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
-        alias ep="emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
-        alias eq="emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
-        alias ec="emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
-        alias ed="emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
-        alias ew="emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
-        alias es="emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
-        alias ef="emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
-        alias egp="emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
-        alias egs="emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
-        alias ei="emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias egl="emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias er="emacsclient -c -a 'emacs' -q --eval \"(ranger)\" > /dev/null"
+        alias e="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q"
+        alias ee="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q ."
+        alias ez="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
+        alias eb="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
+        alias eq="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
+        alias ed="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
+        alias ew="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
+        alias es="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
+        alias ef="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
+        alias egp="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
+        alias egs="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
+        alias ei="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias egl="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias er="riverctl set-focused-tags 8; emacsclient -c -a 'emacs' -q --eval \"(ranger)\" > /dev/null"
         alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc"
-        alias me="mpv av://v4l2:/dev/video0 --vo=wlshm --untimed --profile=low-latency --no-osc"
+        alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc"
+        alias me="mpv av://v4l2:/dev/video2 --vo=wlshm --untimed --profile=low-latency --no-osc"
+        alias mj="mpv av://v4l2:/dev/video0 --vo=wlshm --untimed --profile=low-latency --no-osc"
         alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
     elif [[ ${TERM} = "screen-256color" ]]; then
         alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
@@ -485,6 +499,7 @@ Launches the global XDG-Desktop-Portal, with XDPW right after it. These two comm
 #+begin_src sh :tangle .zshrc
 function portal() {
     /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l DEBUG &
+    pkill -x swayidle
 }
 #+end_src
 
@@ -498,7 +513,7 @@ function backup() {
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" tababcock@redacted:/home/www/tannerbabcock.com "$1"
         true
     fi
 }
@@ -586,16 +601,23 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =ncr=     | File name                | Encrypt given file with GNUPG                       |
 | =ne=      | N/A                      | Run Ncmpcpp with artwork                            |
 | =o=       | Process name             | Kill the given process                              |
-| =p=       | N/A                      | Run Gotop                                           |
+| =p=       | N/A                      | Run Flowtop                                         |
+| =po=      | N/A                      | Run Gotop                                           |
 | =q=       | File name                | Open given file in Feh                              |
 | =qw=      | N/A                      | Open current directory in SXIV                      |
 | =r=       | Directory                | Run Ranger on given or current directory            |
 | =s=       | N/A                      | Log in to my website via SSH                        |
 | =se=      | N/A                      | Restart Emacs Server                                |
+| =sl=      | N/A                      | Restart Waybar for LabWC                            |
 | =sp=      | N/A                      | Restart Pulseaudio                                  |
+| =sr=      | N/A                      | Restart Waybar for River                            |
+| =sw=      | N/A                      | Restart Waybar for Sway                             |
 | =ta=      | File name                | Extract given Tar archive                           |
 | =td=      | Output file, files       | Compress files into given output Tar archive        |
+| =ti=      | N/A                      | List Transmission torrents                          |
 | =tr=      | Options                  | Transmission-remote                                 |
+| =ts=      | N/A                      | Transmission Information                            |
+| =tt=      | N/A                      | Transmission Statistics                             |
 | =u=       | PID                      | Kill                                                |
 | =v=       | File name                | Open given file in Vim                              |
 | =vm=      | N/A                      | Run Virt-Manager                                    |
@@ -616,14 +638,13 @@ alias df="duf"
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
 alias i="tig"
 alias h="htop"
-alias ey="pkill -x emacs; sleep 1; emacs --daemon"
 alias ncr="gpg --encrypt --armor -r Tanner"
 alias dcr="gpg --decrypt"
 alias g="rg"
 alias gh="rg --context=4"
 alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 10 1 4"
 alias gp="gpg"
-alias gs="git status"
+alias gs="git status -sb"
 alias ga="git add"
 alias ge="git fetch --all"
 alias gf="git checkout HEAD --"
@@ -631,7 +652,7 @@ alias gcm="git commit -m"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gd="git diff"
-alias gl="git log"
+alias gl="git log --date=relative --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %C(yellow)(%cr) %C(bold blue) %an%Creset'"
 alias gw="git show"
 alias gr="git rm"
 alias grc="git rm --cached"
@@ -644,8 +665,8 @@ alias gpush="git push origin master"
 alias gpull="git pull origin master"
 alias gpusm="git push origin main"
 alias gpulm="git pull origin main"
-alias gpash="git push all master"
-alias gpasm="git push all main"
+alias gpash="git push all master; git pull origin master; git pull upstream master"
+alias gpasm="git push all main; git pull origin main; git pull upstream main"
 alias v="vim"
 alias vm="virt-manager"
 alias r="ranger"
@@ -656,14 +677,21 @@ alias n="ncmpcpp"
 alias ne="$HOME/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug"
 alias o="pkill -x"
 alias u="kill"
-alias p="gotop"
+alias po="gotop"
+alias p="sudo flowtop -46UTDISs -t 2"
 alias q="feh"
 alias qw="sxiv ."
-alias s="ssh redacted@redacted -p 2222"
+alias s="ssh tababcock@redacted -p 2222"
 alias se="pkill -x emacs; emacs --daemon"
 alias sp="pkill -x pulseaudio; pulseaudio --start"
+alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
+alias sw="pkill -x waybar; waybar -c '$HOME/.config/waybar/config.json' &"
+alias sl="pkill -x waybar; waybar -c '$HOME/.config/waybar/lconfig.json' -s '$HOME/.config/waybar/labwc.css' &"
 alias ta="tar xvf"
 alias td="tar czf"
+alias ti="transmission-remote -l"
+alias ts="transmission-remote -si"
+alias tt="transmission-remote -st"
 alias tr="transmission-remote"
 alias k="make"
 alias kc="make clean"

@@ -16,7 +16,7 @@
 	<theme>
 	    <name>labwc</name>
 	    <cornerRadius>0</cornerRadius>
-	    <font><name>SpaceMono Nerd Font</name><size>15</size></font>
+	    <font><name>SpaceMono Nerd Font</name><size>14</size></font>
 	</theme>
 	<keyboard>
 		<repeatRate>60</repeatRate>
@@ -46,7 +46,9 @@
 			<action name="Execute"><command>pavucontrol</command></action>
 		</keybind>
 		<keybind key="A-Slash">
-			<action name="Execute"><command>obs</command></action>
+			<action name="Execute">
+				<command>swaynag -o eDP-1 --background a7516892 --text c77188ef --button-text efef20ff --border 39a5ebef --button-background 39a5ebef --button-margin-right 12 --button-border-size 3 --border-bottom-size 4 --border-bottom c77188ef -y overlay -f "SpaceMono Nerd Font" -e top -m "Make sure Pipewire and XDG-Desktop-Portal-Wlr are running!" -Z "Start OBS" "obs"</command>
+			</action>
 		</keybind>
 		<keybind key="W-Semicolon">
 			<action name="Execute"><command>nicotine</command></action>

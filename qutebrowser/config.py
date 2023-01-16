@@ -227,10 +227,10 @@ c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
 c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!i': 'https://y.com.sb/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}' }
 
 c.fileselect.handler = 'external'
-c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
-#c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
-c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
-#c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+#c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
+c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+#c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
+c.fileselect.multiple_files.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
 
 # --- Keybindings: Bookmarks ---
 
@@ -271,4 +271,5 @@ config.bind('yy', 'config-cycle statusbar.show always always')
 config.bind('xy', 'config-cycle tabs.show switching switching')
 config.bind('yx', 'config-cycle tabs.show multiple multiple')
 config.bind('zz', 'history-clear')
+config.bind('l', 'tab-pin')
 config.bind('.', 'download-cancel')

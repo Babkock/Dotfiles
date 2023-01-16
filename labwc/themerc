@@ -1,8 +1,9 @@
 # general
 border.width: 2
 padding.height: 4
-menu.overlap.x: 0
+menu.overlap.x: -18
 menu.overlap.y: 0
+menu.border.width: 9
 
 # window border
 window.active.border.color: #ef7720
@@ -35,7 +36,7 @@ menu.items.bg.color: #121212
 menu.items.text.color: #efefef
 menu.items.active.bg.color: #242020
 menu.items.active.text.color: #ff8f8f
-menu.separator.width: 2
+menu.separator.width: 500
 menu.separator.padding.width: 6
 menu.separator.padding.height: 3
 menu.separator.color: #888888

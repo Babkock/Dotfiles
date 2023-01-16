@@ -40,6 +40,7 @@
 (setq fancy-battery-show-percentage t)
 
 (add-hook! 'minibuffer-setup-hook 'garbage-collect)
+(add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
 ; (setq doom-theme 'doom-tomorrow-night)
@@ -117,11 +118,11 @@
               doom-modeline-buffer-modification-icon nil)
 
 (after! org
-    (require 'org-bullets)
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
     (add-hook! 'org-mode-hook 'garbage-collect)
+    (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
     (setq org-directory "~/org/"
-          org-agenda-files '("~/org/todo.org" "~/org/video.org")
+          org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
+          org-agenda-block-separator 8411
           org-default-notes-file (expand-file-name "notes.org" org-directory)
           org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
           org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
@@ -134,6 +135,43 @@
           org-src-preserve-indentation nil
           org-src-tab-acts-natively t
           org-edit-src-content-indentation 0)
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "VIDEO(v)" "IDEA(i)" "DONE(d)" "EVENT(e)"))
+          org-todo-keyword-faces
+          '(("TODO" . 'all-the-icons-red)
+            ("NEXT" . 'all-the-icons-blue)
+            ("VIDEO" . 'all-the-icons-yellow)
+            ("IDEA" . 'all-the-icons-green)
+            ("DONE" . 'all-the-icons-orange)
+            ("EVENT" . 'all-the-icons-cyan)))
+    (setq org-agenda-custom-commands
+          '(("v" "Better Agenda View"
+            ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (tags "PRIORITY=\"B\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
+            (tags "PRIORITY=\"C\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
+            (agenda "")
+            (alltodo "")))))
+    (custom-set-faces!
+        '(org-agenda-calendar-event :inherit variable-pitch)
+        '(org-agenda-calendar-sexp :inherit variable-pitch)
+        '(org-agenda-filter-category :inherit variable-pitch)
+        '(org-agenda-filter-tags :inherit variable-pitch)
+        '(org-agenda-date :inherit variable-pitch :weight bold :height 1.09)
+        '(org-agenda-date-weekend :inherit variable-pitch :weight bold :height 1.06)
+        '(org-agenda-done :inherit variable-pitch :weight bold)
+        '(org-agenda-date-today :inherit variable-pitch :weight bold :slant italic :height 1.12)
+        '(org-agenda-date-weekend-today :inherit variable-pitch :weight bold :height 1.09)
+        '(org-agenda-dimmed-todo-face :inherit variable-pitch :weight bold)
+        '(org-agenda-current-time :inherit variable-pitch :weight bold)
+        '(org-agenda-clocking :inherit variable-pitch :weight bold))
+    (add-hook! 'org-agenda-mode-hook 'mixed-pitch-mode)
+    (add-hook! 'org-agenda-mode-hook (hide-mode-line-mode 1))
     (custom-set-faces!
         '(org-document-title :height 1.3)
         '(org-level-1 :inherit outline-1 :weight extra-bold :height 1.35)
@@ -144,6 +182,13 @@
         '(org-level-6 :inherit outline-6 :weight semi-bold :height 1.03)
         '(org-level-7 :inherit outline-7 :weight semi-bold)
         '(org-level-8 :inherit outline-8 :weight semi-bold)))
+
+(after! org-fancy-priorities
+    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
+          org-priority-faces
+              '((?A :foreground "#ff0000" :weight bold)
+                (?B :foreground "#ffffff" :weight bold)
+                (?C :foreground "#0099ff" :weight bold))))
 
 (font-lock-add-keywords 'org-mode
     '(("^ *\\([-]\\) "
@@ -279,6 +324,8 @@
 
 (setq config-org-file-name "config.org"
       config-org-directory "~/.doom.d/"
+      agenda-org-file-name "agenda.org"
+      agenda-org-directory "~/org/"
       foot-org-file-name "foot.org"
       foot-org-directory "~/.config/foot/")
 
@@ -286,6 +333,11 @@
     "Open your private Config.org file."
     (interactive)
     (find-file (expand-file-name config-org-file-name config-org-directory)))
+
+(defun open-agenda-org ()
+    "Open your agenda.org file."
+    (interactive)
+    (find-file (expand-file-name agenda-org-file-name agenda-org-directory)))
 
 (defun open-foot-org ()
     "Open the Foot configuration file."
@@ -319,11 +371,15 @@
         :icon (all-the-icons-alltheicon "git" :face 'all-the-icons-pink :height 0.94)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.95)
         :action open-tbcom)
-      ("Open Dotfiles"
-        :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-maroon :height 0.94)
+      ("Org Agenda"
+        :icon (all-the-icons-faicon "calendar" :face 'all-the-icons-maroon :height 0.94)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
+        :action org-agenda)
+      ("Open Dotfiles"
+        :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-blue :height 0.94)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
         :action open-dotfiles)
-      ("Open Elfeed"
+      ("RSS Feeds"
         :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.94)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.95)
         :action elfeed)
@@ -336,10 +392,10 @@
         :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.94)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.95)
         :action doom/reload)
-      ("Change Theme"
-        :icon (all-the-icons-faicon "paint-brush" :face 'all-the-icons-purple :height 0.94)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpurple) :height 0.95)
-        :action consult-theme)
+;      ("Change Theme"
+;        :icon (all-the-icons-faicon "paint-brush" :face 'all-the-icons-purple :height 0.94)
+;        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpurple) :height 0.95)
+;        :action consult-theme)
       ("Music Player"
         :icon (all-the-icons-faicon "music" :face 'all-the-icons-cyan :height 0.94)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan) :height 0.95)
@@ -350,6 +406,7 @@
 (add-hook! 'doom-first-file-hook 'garbage-collect)
 (add-hook! 'kill-emacs-hook 'garbage-collect)
 (add-hook! 'after-init-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'beacon-mode)
 (add-hook! 'doom-init-ui-hook 'garbage-collect)
 (add-hook! 'doom-after-init-modules-hook 'garbage-collect)
 (add-hook! 'eww-mode-hook 'garbage-collect)
@@ -427,6 +484,20 @@
         '(circe-originator-face :foreground "b4f"))
     (add-hook! 'circe-mode-hook 'garbage-collect))
 
+(defun mpdnotify ()
+    (interactive)
+    (shell-command "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh")
+    (notifications-notify
+        :title (shell-command-to-string "mpc --host 127.0.0.2 -f %title% | head -1")
+        :body (concat (shell-command-to-string "mpc --host 127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host 127.0.0.2 -f %album% | head -1") "</i>")
+        :image-path "/tmp/mpd_cover.jpg"
+))
+
+(defun mpdnotify-play ()
+    (interactive)
+    (mpdel-playlist-play)
+    (mpdnotify))
+
 (custom-set-faces!
     '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#0ef")
     '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#f44")
@@ -436,10 +507,13 @@
     '(mpdel-tablist-disc-face :foreground "#ef0")
     '(mpdel-tablist-date-face :foreground "#ee0")
     '(header-line :height 1.1))
+
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
-(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode 1))
+(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'mpdel-playlist-mode-hook 'mpdnotify)
+(add-hook! 'libmpdel-current-song-changed-hook 'mpdnotify)
 (add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
-(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode 1))
+(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
 (after! mpdel
     (setq libmpdel-hostname "127.0.0.2")
@@ -496,6 +570,7 @@
     :desc "Doom Help" :ne "?" #'doom/help
     :desc "Open Circe" :ne "." #'circe
     :desc "Agenda" :ne "a" #'org-agenda
+    :desc "Open agenda.org" :ne "A" #'open-agenda-org
     :desc "Open todo.org" :ne "V" (cmd! (find-file "~/org/todo.org"))
     :desc "Kill All Buffers" :ne "k" #'doom/kill-all-buffers
     :desc "Switch Buffers" :ne "b" #'helm-buffers-list
@@ -509,6 +584,21 @@
 
 ;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+
+(setq mpdel-playlist-mode-map (make-sparse-keymap))
+(map! :map mpdel-playlist-mode-map
+    :desc "Play/Pause" :ne "p" #'libmpdel-playback-play-pause
+    :desc "Play" :ne "RET" #'mpdnotify-play
+    :desc "Increase Volume" :ne "<right>" #'mpdel-core-volume-increase
+    :desc "Decrease Volume" :ne "<left>" #'mpdel-core-volume-decrease
+    :desc "Clear Playlist" :ne "c" #'mpdel-core-replace-current-playlist
+    :desc "Dired" :ne "e" #'mpdel-core-dired
+    :desc "Set Random" :ne "z" #'libmpdel-playback-set-random
+    :desc "Unset Random" :ne "Z" #'libmpdel-playback-unset-random
+    :desc "Set Single" :ne "y" #'libmpdel-playback-set-single-once
+    :desc "Unset Single" :ne "Y" #'libmpdel-playback-set-single-never
+    :desc "Next Song" :ne ">" #'libmpdel-playback-next
+    :desc "Previous Song" :ne "<" #'libmpdel-playback-previous)
 
 (after! elfeed-goodies
     (evil-define-key 'normal elfeed-show-mode-map
@@ -537,80 +627,39 @@
         :desc "Set filter" :ne "S" #'elfeed-search-set-filter
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
 
-;; SPC a
 (map! :leader
-    :desc "Toggle Zen" "a" #'+zen/toggle)
-;; SPC b
-(map! :leader
-    :desc "Beacon Mode" "b" #'beacon-mode)
-;; SPC r
-(map! :leader
-    :desc "Rainbow Mode" "r" #'rainbow-mode)
-;; SPC c
-(map! :leader
-    :desc "Highlight Indent Scope Mode" "c" #'hl-indent-scope-mode)
-;; SPC z
-(map! :leader
-    :desc "Play song in MPDel" "z" #'mpdel-playlist-play)
-;; SPC i
-(map! :leader
-    :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen)
-;; SPC l
-(map! :leader
-    :desc "Org Tangle" "l" #'org-babel-tangle)
-;; SPC n
-(map! :leader
-    :desc "MPDel Browser" "n" #'mpdel-browser-open)
-;; SPC m
-(map! :leader
-    :desc "MPDel Playlist" "m" #'mpdel-playlist-open)
-;; SPC /
-(map! :leader
-    :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist)
-;; SPC ]
-(map! :leader
-    :desc "MPDel Next Song" "]" #'libmpdel-playback-next)
-;; SPC [
-(map! :leader
-    :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous)
-;; SPC DEL
-(map! :leader
-    :desc "Clear MPDel Playlist" "DEL" #'mpdel-core-replace-current-playlist)
-;; SPC v
-(map! :leader
-    :desc "Vterm" "v" #'+vterm/toggle)
-;; SPC d
-(map! :leader
-    :desc "Org Mark Done" "d" #'org-todo)
-;; SPC x
-(map! :leader
-    :desc "Mixed Pitch Mode" "x" #'mixed-pitch-mode)
-;; SPC y
-(map! :leader
-    :desc "Magit Status" "y" #'magit-status)
-;; SPC u
-(map! :leader
-    :desc "Delete Buffer" "u" #'evil-delete-buffer)
-;; SPC p
-(map! :leader
-    :desc "Org Export to HTML" "p" #'org-html-export-to-html)
-;; SPC e
-(map! :leader
-    :desc "Magit Log" "e" #'magit-log-all)
-;; SPC t
-(map! :leader
-    :desc "Magit Stage File" "t" #'magit-stage-file)
-;; SPC k
-(map! :leader
-    :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote)
-;; SPC j
-(map! :leader
-    :desc "Magit Pull" "j" #'magit-pull-from-pushremote)
-;; SPC ,
-(map! :leader
-    :desc "Switch Buffer" "," #'helm-buffers-list)
+    :desc "Toggle Zen" "a" #'+zen/toggle
+    :desc "Beacon Mode" "b" #'beacon-mode
+    :desc "Rainbow Mode" "r" #'rainbow-mode
+    :desc "Play song in MPDel" "z" #'mpdnotify-play
+    :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
+    :desc "Org Tangle" "l" #'org-babel-tangle
+    :desc "MPDel Playlist" "m" #'mpdel-playlist-open
+    :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
+    :desc "MPDel Next Song" "]" #'libmpdel-playback-next
+    :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
+    :desc "Vterm" "v" #'+vterm/toggle
+    :desc "Org Mark Done" "d" #'org-todo
+    :desc "Mixed Pitch Mode" "x" #'mixed-pitch-mode
+    :desc "Magit Status" "y" #'magit-status
+    :desc "Delete Buffer" "u" #'evil-delete-buffer
+    :desc "Org Export to HTML" "p" #'org-html-export-to-html
+    :desc "Magit Log" "e" #'magit-log-all
+    :desc "Magit Stage File" "t" #'magit-stage-file
+    :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
+    :desc "Magit Pull" "j" #'magit-pull-from-pushremote
+    :desc "Switch Buffer" "," #'helm-buffers-list
+    :desc "Org Agenda" "-" #'org-agenda
+    :desc "Org Time Stamp" "=" #'org-time-stamp
+    :desc "Org Priority Up" "\\" #'org-priority-up
+    :desc "Org Priority Down" "'" #'org-priority-down)
 
 (setq dired-open-extensions '(("jpg" . "sxiv")
                               ("png" . "sxiv")
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
+
+(require 'notifications)
+(notifications-notify
+    :title "Emacs Started"
+    :body "Emacs configuration loaded. Welcome!")
