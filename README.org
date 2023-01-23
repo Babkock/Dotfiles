@@ -20,23 +20,23 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 * Programs Included
 
 The most commonly updated files in this collection are: my Emacs configuration; my Qutebrowser configuration, rice, and start page; my general
-rice/color scheme defined in [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/Xresources][Xresources]], [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/bspwm/README.org][Bspwmrc]], and Polybar; and my [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/zshrc][Zshrc]]. I do not use a display manager, so I use [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/xinitrc][xinitrc]].
+rice/color scheme defined in [[https://github.com/Babkock/Dotfiles/blob/master/Xresources][Xresources]], [[https://github.com/Babkock/Dotfiles/blob/master/bspwm/README.org][Bspwmrc]], and Polybar; and my [[https://github.com/Babkock/Dotfiles/blob/master/zshrc][Zshrc]]. I do not use a display manager, so I use [[https://github.com/Babkock/Dotfiles/blob/master/xinitrc][xinitrc]].
 
 This repository has configuration files for three different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], and [[https://github.com/labwc/labwc][LabWC]]. Each of these compositors are a
 self-contained environment, they each have their own Waybar, Foot, Swaylock, and Wob configurations, and their own color schemes.
-They are launched with scripts in the [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/bin][bin]] directory, and their autostart files load their respective configurations.
+They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree/master/bin][bin]] directory, and their autostart files load their respective configurations.
 
 ** Other Orgs
 
-- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/bspwm][Bspwm]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/doom.d/README.org][Doom Emacs config.org]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/doom.d/init.org][Doom Emacs init.org]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/foot][Foot]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/qutebrowser][Qutebrowser]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/polybar][Polybar]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/waybar/README.org][Waybar Config]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/waybar/style.org][Waybar Style]]
-- [[https://gitlab.com/Babkock/Dotfiles/-/tree/master/zsh][Zsh]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/bspwm][Bspwm]]
+- [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/README.org][Doom Emacs config.org]]
+- [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/init.org][Doom Emacs init.org]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/foot][Foot]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]
+- [[https://github.com/Babkock/Dotfiles/blob/master/waybar/README.org][Waybar Config]]
+- [[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][Waybar Style]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zsh]]
 
 ** List
 
