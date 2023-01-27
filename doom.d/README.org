@@ -50,23 +50,24 @@ This literate configuration is available online on my [[https://babkock.github.i
 - [[#circe][Circe]]
 - [[#dired][Dired]]
   - [[#file-associations][File Associations]]
+  - [[#keybindings][Keybindings]]
 - [[#doom-dashboard][Doom Dashboard]]
   - [[#splash-phrases][Splash Phrases]]
   - [[#functions][Functions]]
   - [[#menu][Menu]]
-  - [[#keybindings][Keybindings]]
+  - [[#keybindings-1][Keybindings]]
 - [[#elfeed][Elfeed]]
   - [[#preferences-1][Preferences]]
-  - [[#keybindings-1][Keybindings]]
+  - [[#keybindings-2][Keybindings]]
 - [[#helm][Helm]]
-- [[#keybindings-2][Keybindings]]
+- [[#keybindings-3][Keybindings]]
   - [[#global-keybindings][Global Keybindings]]
 - [[#magit][Magit]]
 - [[#modeline][Modeline]]
 - [[#mpdel][MPDel]]
   - [[#functions-1][Functions]]
   - [[#preferences-2][Preferences]]
-  - [[#keybindings-3][Keybindings]]
+  - [[#keybindings-4][Keybindings]]
 - [[#org][Org]]
 - [[#treemacs][Treemacs]]
 
@@ -163,6 +164,7 @@ Now the fun stuff, where I set the fonts, theme, and colors.
       display-time-default-load-average nil
       display-line-numbers-type 'relative
       confirm-kill-emacs t
+      confirm-kill-processes nil
       tab-width 4
       indent-tabs-mode t
       indent-line-function 'insert-tab
@@ -236,7 +238,8 @@ This is a simple list of font faces for various Circe UI elements.
         '(circe-server-face :foreground "#ee0")
         '(circe-my-message-face :weight bold :foreground "#f44")
         '(circe-originator-face :foreground "b4f"))
-    (add-hook! 'circe-mode-hook 'garbage-collect))
+    (add-hook! 'circe-mode-hook 'garbage-collect)
+    (add-hook! 'circe-server-connected-hook 'enable-circe-notifications))
 #+end_src
 
 * Dired
@@ -253,6 +256,14 @@ This is a simple list of font faces for various Circe UI elements.
 (notifications-notify
     :title "Emacs Started"
     :body "Emacs configuration loaded. Welcome!")
+#+end_src
+
+** Keybindings
+
+#+begin_src emacs-lisp :tangle yes
+(evil-define-key 'normal dired-mode-map
+    (kbd "J") 'image-dired-previous-line-and-display
+    (kbd "K") 'image-dired-next-line-and-display)
 #+end_src
 
 * Doom Dashboard
@@ -577,8 +588,8 @@ This first block of code defines font faces per Elfeed tags, font faces for UI e
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@2-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
-          elfeed-curl-max-connections 27
-          elfeed-curl-timeout 12)
+          elfeed-curl-max-connections 28
+          elfeed-curl-timeout 10)
     (defface git-entry
         '((t :foreground "#f44"))
         "Entry for Git")
@@ -908,10 +919,14 @@ This is a list of faces for the MPDel interface. After this list is where I add 
 #+begin_src emacs-lisp :tangle yes
 (after! org
     (add-hook! 'org-mode-hook 'garbage-collect)
+    (add-hook! 'org-mode-hook #'org-modern-mode)
+    (add-hook! 'org-agenda-finalize-hook #'org-modern-agenda)
     (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
     (setq org-directory "~/org/"
           org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
           org-agenda-block-separator 8411
+          org-tags-column 0
+          org-pretty-entities t
           org-default-notes-file (expand-file-name "notes.org" org-directory)
           org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
           org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
@@ -933,19 +948,6 @@ This is a list of faces for the MPDel interface. After this list is where I add 
             ("IDEA" . 'all-the-icons-green)
             ("DONE" . 'all-the-icons-orange)
             ("EVENT" . 'all-the-icons-cyan)))
-    (setq org-agenda-custom-commands
-          '(("v" "Better Agenda View"
-            ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-            (tags "PRIORITY=\"B\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
-            (tags "PRIORITY=\"C\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
-            (agenda "")
-            (alltodo "")))))
     (custom-set-faces!
         '(org-agenda-calendar-event :inherit variable-pitch)
         '(org-agenda-calendar-sexp :inherit variable-pitch)
@@ -973,7 +975,7 @@ This is a list of faces for the MPDel interface. After this list is where I add 
         '(org-level-8 :inherit outline-8 :weight semi-bold)))
 
 (after! org-fancy-priorities
-    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
+    (setq org-fancy-priorities-list '("#A" "#B" "#C")
           org-priority-faces
               '((?A :foreground "#ff0000" :weight bold)
                 (?B :foreground "#ffffff" :weight bold)

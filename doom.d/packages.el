@@ -16,6 +16,7 @@
 (package! fancy-battery)
 (package! diff-hl)
 (package! org-fancy-priorities)
+(package! org-modern)
 
 ;; `:files' in the `:recipe':
 ;(package! this-package

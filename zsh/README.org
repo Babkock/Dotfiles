@@ -52,6 +52,7 @@ Welcome to my Zshrc. This configuration relies on [[https://ohmyz.sh/][Oh-My-Zsh
   - [[#scr][scr]]
   - [[#xs][xs]]
   - [[#j][j]]
+  - [[#wb][wb]]
   - [[#pipewire][Pipewire]]
   - [[#xdg-desktop-portal][XDG-Desktop-Portal]]
   - [[#backup-website][Backup Website]]
@@ -470,6 +471,16 @@ j()
             . "$NNN_TMPFILE"
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
+}
+#+end_src
+
+** wb
+
+Set the wallpaper with two images, one for the left, and one for the right.
+
+#+begin_src sh :tangle .zshrc
+function wb() {
+    swaybg -o eDP-1 -i "$1" -o HDMI-A-2 -i "$2"
 }
 #+end_src
 

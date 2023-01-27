@@ -68,21 +68,21 @@ This was originally in a separate theme file, but I might as well include it in 
 # --- Colors ---
 # Match with Xresources
 base00 = "#171002"
-base01 = "#dd6359"
-base02 = "#63b268"
-base03 = "#eec484"
-base04 = "#5b9ad1"
-base05 = "#e99781"
-base06 = "#58a4a1"
-base07 = "#edc9b9"
+base01 = "#e93479"
+base02 = "#81db54"
+base03 = "#f9c65b"
+base04 = "#5879ee"
+base05 = "#d48eb6"
+base06 = "#9d8af7"
+base07 = "#dfefdf"
 base08 = "#171002"
-base09 = "#cd5349"
-base0A = "#539f58"
-base0B = "#ddb474"
-base0C = "#4b8ac0"
-base0D = "#d98771"
-base0E = "#58a4a1"
-base0F = "#edc9b9"
+base09 = "#d72463"
+base0A = "#70ca44"
+base0B = "#e9b64b"
+base0C = "#4768dd"
+base0D = "#a9668c"
+base0E = "#9d8af7"
+base0F = "#efefef"
 
 #+end_src
 
@@ -315,11 +315,11 @@ c.hints.padding = {
 }
 
 c.colors.completion.fg = '#efefef'
-c.colors.downloads.start.bg = '#58a4a1'
+c.colors.downloads.start.bg = '#9d8af7'
 c.colors.downloads.start.fg = '#000000'
-c.colors.downloads.stop.bg = '#5b9ad1'
+c.colors.downloads.stop.bg = '#4869ee'
 c.colors.downloads.stop.fg = '#000000'
-c.colors.keyhint.fg = '#eec484'
+c.colors.keyhint.fg = '#f9c65b'
 
 c.tabs.padding = {
     "left": 5,

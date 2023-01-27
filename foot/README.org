@@ -97,20 +97,20 @@ This is where you edit the actual color scheme.
 #+begin_src conf :tangle foot.ini
 regular0=000000
 bright0=121212
-regular1=cd5349
-bright1=dd6359
-regular2=539f58
-bright2=63b268
-regular3=ddb474
-bright3=eec484
-regular4=4b8ac0
-bright4=5b9ad1
-regular5=d98771
-bright5=e99781
-regular6=489390
-bright6=58a4a1
-regular7=edc9b9
-bright7=fdd9c9
+regular1=d72463
+bright1=e93479
+regular2=70ca44
+bright2=81db54
+regular3=e9b64b
+bright3=f9c65b
+regular4=3758dd
+bright4=4869ee
+regular5=a9668c
+bright5=d48eb6
+regular6=8c79e0
+bright6=9d8af7
+regular7=ffdfdf
+bright7=ffffff
 #+end_src
 
 * Sway

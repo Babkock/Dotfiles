@@ -18,8 +18,8 @@
 # -------------------------------------------
 # Get inputs by running: riverctl list-inputs
 
-WALL_LEFT="$HOME/.config/river/ibm.jpg"
-WALL_RIGHT="$HOME/.config/river/farmhouse.jpg"
+WALL_LEFT="$HOME/.config/river/samsung.jpg"
+WALL_RIGHT="$HOME/.config/river/windows95.jpg"
 TOUCHPAD="2:7:SynPS/2_Synaptics_TouchPad"
 MOUSE1="6127:24766:GamingMouseI_Gaming_Mouse"
 MOUSE2="6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control"
@@ -30,34 +30,34 @@ MOUSE2="6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control"
 # Timeout values are measured in seconds
 
 # should match $WALL_LEFT and $WALL_RIGHT
-IDLE_LEFT="eDP-1:$HOME/.config/river/ibmlock.jpg"
-IDLE_RIGHT="HDMI-A-2:$HOME/.config/river/farmhouselock.jpg"
+IDLE_LEFT="eDP-1:$HOME/.config/river/samsunglock.jpg"
+IDLE_RIGHT="HDMI-A-2:$HOME/.config/river/windows95lock.jpg"
 
-LOCK_TIMEOUT=600
+LOCK_TIMEOUT=700
 SCREEN_TIMEOUT=1200
 LOCK_FONT="SpaceMono Nerd Font"
 IDLE_RADIUS=90
 IDLE_RING="00000077"
-IDLE_TEXT="dfdfdf99"
-IDLE_INSIDE="00000077"
+IDLE_TEXT="efefefbb"
+IDLE_INSIDE="00000066"
 
 # green
 IDLE_INSIDEVER="00000099"
-IDLE_RINGVER="539f5877"
-IDLE_TEXTVER="63b26899"
+IDLE_RINGVER="70ca4488"
+IDLE_TEXTVER="81db54aa"
 # red
-IDLE_RINGWRONG="cd534977"
-IDLE_TEXTWRONG="dd635999"
+IDLE_RINGWRONG="d7246388"
+IDLE_TEXTWRONG="e93479aa"
 IDLE_INSIDEWRONG="00000099"
 # yellow
-IDLE_RINGCLEAR="ddb47477"
-IDLE_LINECLEAR="eec48477"
+IDLE_RINGCLEAR="e9b64b77"
+IDLE_LINECLEAR="ebb85c88"
 IDLE_INSIDECLEAR="00000088"
-IDLE_TEXTCLEAR="eec48499"
+IDLE_TEXTCLEAR="efefefaa"
 # any color
 IDLE_KEY="e9978188"
 # red
-IDLE_BS="dd635988"
+IDLE_BS="e93479bb"
 
 # -------------------------------------------
 # Fuzzel Colors and Font
@@ -65,14 +65,14 @@ IDLE_BS="dd635988"
 
 FUZZEL_FONT="SpaceMono Nerd Font:pixelsize=26:antialias=true"
 # red
-FUZZEL_BG="bd43395f"
-FUZZEL_FG="dd6359ff"
+FUZZEL_BG="a9668c6f"
+FUZZEL_FG="d48eb6ff"
 # blue
-FUZZEL_SELBG="4b8ac06f"
-FUZZEL_SELFG="5b9ad1fe"
+FUZZEL_SELBG="3758dd6f"
+FUZZEL_SELFG="efefeffe"
 # yellow
-FUZZEL_MATCH="ddb474fe"
-FUZZEL_SELMATCH="eec484ff"
+FUZZEL_MATCH="e9b64bfe"
+FUZZEL_SELMATCH="f9c65bff"
 FUZZEL_BORDER="000000cc"
 
 # -------------------------------------------
@@ -80,9 +80,9 @@ FUZZEL_BORDER="000000cc"
 # -------------------------------------------
 # These colors must be preceded with '0x'
 
-RIVER_BG="0x002b36"
-RIVER_FOCUSED="0xdd6359aa"
-RIVER_UNFOCUSED="0x5b9ad188"
+RIVER_BG="0x000000"
+RIVER_FOCUSED="0xe93479aa"
+RIVER_UNFOCUSED="0x81db5488"
 # keyboard repeat rate
 RIVER_REPEAT1=60
 RIVER_REPEAT2=300
@@ -119,7 +119,7 @@ swayidle -w timeout $LOCK_TIMEOUT "swaylock -F -f --font \"$LOCK_FONT\" --font-s
 # Start Daemons
 # -------------------------------------------
 
-exec dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_SESSION_TYPE QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME QT_WAYLAND_DISABLE_WINDOWDECORATION GTK_THEME MOZ_ENABLE_WAYLAND XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP=sway &
+exec dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_SESSION_TYPE QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME QT_WAYLAND_DISABLE_WINDOWDECORATION GTK_THEME MOZ_ENABLE_WAYLAND XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP &
 
 pkill -x xdg-desktop-por
 exec /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l INFO &
@@ -129,7 +129,7 @@ riverctl xcursor-theme "Adwaita" 30
 #pkill -x pulseaudio
 #exec pulseaudio --daemon &
 exec waybar -s "$WAY_STYLE" -c "$WAY_CONFIG" &
-exec dunst --silent &
+exec mako &
 pkill -x emacs
 exec emacs --daemon &
 exec foot --server &

@@ -13,6 +13,7 @@ sudo sv down pipewire
 pkill -x pipewire
 echo "Starting Sway..."
 dbus-launch --exit-with-session sway
+pkill -x mako
 pkill -x pipewire
 pkill -x emacs
 pkill -x tinyserve

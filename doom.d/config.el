@@ -68,6 +68,7 @@
       display-time-default-load-average nil
       display-line-numbers-type 'relative
       confirm-kill-emacs t
+      confirm-kill-processes nil
       tab-width 4
       indent-tabs-mode t
       indent-line-function 'insert-tab
@@ -119,7 +120,8 @@
         '(circe-server-face :foreground "#ee0")
         '(circe-my-message-face :weight bold :foreground "#f44")
         '(circe-originator-face :foreground "b4f"))
-    (add-hook! 'circe-mode-hook 'garbage-collect))
+    (add-hook! 'circe-mode-hook 'garbage-collect)
+    (add-hook! 'circe-server-connected-hook 'enable-circe-notifications))
 
 (setq dired-open-extensions '(("jpg" . "sxiv")
                               ("png" . "sxiv")
@@ -130,6 +132,10 @@
 (notifications-notify
     :title "Emacs Started"
     :body "Emacs configuration loaded. Welcome!")
+
+(evil-define-key 'normal dired-mode-map
+    (kbd "J") 'image-dired-previous-line-and-display
+    (kbd "K") 'image-dired-next-line-and-display)
 
 (defvar splash-phrase-source-folder
     (expand-file-name "phrases/" doom-private-dir)
@@ -358,8 +364,8 @@
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@2-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
-          elfeed-curl-max-connections 27
-          elfeed-curl-timeout 12)
+          elfeed-curl-max-connections 28
+          elfeed-curl-timeout 10)
     (defface git-entry
         '((t :foreground "#f44"))
         "Entry for Git")
@@ -585,10 +591,14 @@
 
 (after! org
     (add-hook! 'org-mode-hook 'garbage-collect)
+    (add-hook! 'org-mode-hook #'org-modern-mode)
+    (add-hook! 'org-agenda-finalize-hook #'org-modern-agenda)
     (add-hook! 'org-mode-hook 'org-fancy-priorities-mode)
     (setq org-directory "~/org/"
           org-agenda-files '("~/org/todo.org" "~/org/video.org" "~/org/agenda.org")
           org-agenda-block-separator 8411
+          org-tags-column 0
+          org-pretty-entities t
           org-default-notes-file (expand-file-name "notes.org" org-directory)
           org-superstar-headline-bullets-list '("◉" "● " "○ " "◆" "●" "○" "◆")
           org-superstar-item-bullet-alist '((?+ . ?➤) (?- . ?✦))
@@ -610,19 +620,6 @@
             ("IDEA" . 'all-the-icons-green)
             ("DONE" . 'all-the-icons-orange)
             ("EVENT" . 'all-the-icons-cyan)))
-    (setq org-agenda-custom-commands
-          '(("v" "Better Agenda View"
-            ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-            (tags "PRIORITY=\"B\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Medium-priority unfinished tasks:")))
-            (tags "PRIORITY=\"C\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "Low-priority unfinished tasks:")))
-            (agenda "")
-            (alltodo "")))))
     (custom-set-faces!
         '(org-agenda-calendar-event :inherit variable-pitch)
         '(org-agenda-calendar-sexp :inherit variable-pitch)
@@ -650,7 +647,7 @@
         '(org-level-8 :inherit outline-8 :weight semi-bold)))
 
 (after! org-fancy-priorities
-    (setq org-fancy-priorities-list '("🔴" "⚪" "🔵")
+    (setq org-fancy-priorities-list '("#A" "#B" "#C")
           org-priority-faces
               '((?A :foreground "#ff0000" :weight bold)
                 (?B :foreground "#ffffff" :weight bold)

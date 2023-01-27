@@ -1,0 +1,30 @@
+font=SpaceMono Nerd Font 14
+background-color=#00000066
+text-color=#e93479ef
+width=460
+height=220
+outer-margin=12
+margin=14
+padding=8
+border-size=3
+border-color=#81db549f
+max-icon-size=230
+default-timeout=2500
+max-visible=4
+text-alignment=right
+icon-location=right
+
+[urgency=critical]
+font=SpaceMono Nerd Font 15
+background-color=#e93479aa
+text-color=#ffffffff
+width=450
+height=220
+outer-margin=12
+margin=15
+padding=9
+border-size=3
+border-color=#ff0000ff
+default-timeout=4000
+text-alignment=right
+

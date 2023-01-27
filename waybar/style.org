@@ -226,7 +226,7 @@ Notice the space before the asterisk.
     font-family:"SpaceMono Nerd Font";
     font-size:21px;
     background:transparent;
-    color:#edc9b9;
+    color:#efefef;
 }
 #+end_src
 
@@ -234,7 +234,7 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #title, #window {
-    color:#edc9b9;
+    color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
@@ -243,7 +243,7 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #mpd {
-    color:#edc9b9;
+    color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
@@ -252,8 +252,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #cpu {
-    color:#dd6359;
-    background:linear-gradient(180deg, rgba(205, 83, 73, 0.7), rgba(0, 0, 0, 0.3));
+    color:#e93479;
+    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -266,8 +266,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #pulseaudio, #disk {
-    color:#eec484;
-    background:linear-gradient(180deg, rgba(221, 180, 116, 0.7), rgba(0, 0, 0, 0.3));
+    color:#f9c65b;
+    background:linear-gradient(180deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -280,8 +280,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #memory, #backlight {
-    color:#63b268;
-    background:linear-gradient(180deg, rgba(83, 159, 88, 0.7), rgba(0, 0, 0, 0.3));
+    color:#81db54;
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -294,7 +294,7 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #workspaces button, #tags button {
-    background:linear-gradient(180deg, rgba(75, 138, 192, 0.7), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(180deg, rgba(65, 88, 221, 0.7), rgba(0, 0, 0, 0.3));
     padding-left:16px;
     padding-right:16px;
     border-radius:0px 0px 0px 0px;
@@ -304,27 +304,25 @@ Notice the space before the asterisk.
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(180deg, rgba(221, 180, 116, 0.7), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.3));
     box-shadow:inherit;
     text-shadow:inherit;
     border-radius:0px 0px 0px 0px;
     border:0px solid transparent;
     color:#bcbcbc;
-    text-shadow:3px 3px rgba(221, 180, 116, 0.5);
+    text-shadow:3px 3px rgba(112, 202, 68, 0.5);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
-    background:linear-gradient(180deg, rgba(205, 83, 73, 0.7), rgba(0, 0, 0, 0.3));
-    color:#dd6359;
+    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.3));
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
-    text-shadow:3px 3px rgba(205, 83, 73, 0.7);
+    text-shadow:3px 3px rgba(215, 36, 99, 0.7);
 }
 
 #tags button.occupied {
-    background:linear-gradient(180deg, rgba(221, 180, 116, 0.6), rgba(0, 0, 0, 0.3));
-    color:#eec484;
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.3));
 }
 #+end_src
 
@@ -332,13 +330,13 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #battery {
-    color:#5b9ad1;
-    background:linear-gradient(180deg, rgba(75, 138, 192, 0.7), rgba(0, 0, 0, 0.3));
+    color:#587aff;
+    background:linear-gradient(180deg, rgba(65, 88, 221, 0.7), rgba(0, 0, 0, 0.3));
     margin-left:0;
     margin-right:0;
     padding-left:12px;
     padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    text-shadow:2px 2px goldenrod;
 }
 #+end_src
 
@@ -346,8 +344,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #custom-clock, #network {
-    color:#58a4a1;
-    background:linear-gradient(180deg, rgba(72, 147, 144, 0.7), rgba(0, 0, 0, 0.3));
+    color:#d48eb6;
+    background:linear-gradient(180deg, rgba(140, 121, 224, 0.7), rgba(0, 0, 0, 0.3));
     margin-left:0;
     margin-right:0;
     padding-left:13px;

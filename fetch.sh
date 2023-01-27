@@ -75,6 +75,7 @@ system_files=(
   "$HOME/.config/labwc/rc.xml"
   "$HOME/.config/labwc/menu.xml"
   "$HOME/.themes/labwc/openbox-3/themerc"
+  "$HOME/.config/mako/config"
 )
 
 repo_files=(
@@ -152,6 +153,7 @@ repo_files=(
   "labwc/rc.xml"
   "labwc/menu.xml"
   "labwc/themerc"
+  "mako/config"
 )
 
 compare() {
