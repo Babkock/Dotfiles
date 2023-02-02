@@ -8,7 +8,6 @@
 *** [[https://old.reddit.com/r/voidlinux/.rss][voidlinux]]
 *** [[https://old.reddit.com/r/WorkReform/.rss][WorkReform]]
 *** [[https://old.reddit.com/r/childfree/.rss][childfree]]
-*** [[https://old.reddit.com/r/antinatalism/.rss][antinatalism]]
 *** [[https://old.reddit.com/r/AbandonedPorn/.rss][AbandonedPorn]]
 *** [[https://old.reddit.com/r/antiwork/.rss][antiwork]]
 *** [[https://old.reddit.com/r/autism/.rss][autism]]
@@ -27,7 +26,6 @@
 *** [[https://old.reddit.com/r/nottheonion/.rss][nottheonion]]
 *** [[https://old.reddit.com/r/relationships/.rss][relationships]]
 *** [[https://old.reddit.com/r/worldnews/.rss][worldnews]]
-*** [[https://old.reddit.com/r/starterpacks/.rss][starterpacks]]
 *** [[https://old.reddit.com/r/criterion/.rss][criterion]]
 ** YouTube/Invidious                        :youtube:
 *** [[https://yt.funami.tech/feed/private?token=40JXZTlLKgHYVQvWEXvnEGi9O5x3l90KYmb_X4nSi9w=][Invidious]]
@@ -45,14 +43,13 @@
 *** [[https://odysee.com/$/rss/@Babkock:8][Tanner Babcock]]
 *** [[https://youtube.com/feeds/videos.xml?channel_id=UCdXmrPRUtsl-6pq83x3FrTQ][Tanner Babcock]]
 # do not commit these either
+*** [[https://github.com/Babkock.atom][GitHub User]]
 ** News                                                        :news:
 *** [[https://rss.nytimes.com/services/xml/rss/nyt/US.xml][New York Times]]
 *** [[https://old.reddit.com/r/politics+worldnews+technology+science+todayilearned+antiwork/.rss][Reddit News]]
 *** [[https://pitchfork.com/feed/feed-news/rss][Pitchfork News]]
 *** [[https://www.theonion.com/rss][The Onion]]
 *** [[https://thehardtimes.net/feed/][The Hard Times]]
-# remember to hide this next section when committing dotfiles
-
 ** Stack Overflow                                   :stack:
 *** [[https://stackoverflow.com/feeds/tag?tagnames=c&sort=newest][C]]
 *** [[https://stackoverflow.com/feeds/tag/c%2B%2B?sort=newest][C++]]

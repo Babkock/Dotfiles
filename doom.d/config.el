@@ -44,7 +44,7 @@
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
 ; (setq doom-theme 'doom-tomorrow-night)
-(setq doom-theme 'doom-peacock)
+(setq doom-theme 'doom-molokai)
 (setq which-key-idle-delay 0.3
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -115,13 +115,12 @@
 (add-hook! 'eww-mode-hook 'garbage-collect)
 
 (after! circe
-    (custom-set-faces!
-        '(circe-prompt-face :foreground "#0ef")
-        '(circe-server-face :foreground "#ee0")
-        '(circe-my-message-face :weight bold :foreground "#f44")
-        '(circe-originator-face :foreground "b4f"))
-    (add-hook! 'circe-mode-hook 'garbage-collect)
-    (add-hook! 'circe-server-connected-hook 'enable-circe-notifications))
+  (custom-set-faces!
+    '(circe-prompt-face :foreground "#0ef")
+    '(circe-server-face :foreground "#ee0")
+    '(circe-my-message-face :weight bold :foreground "#f44")
+    '(circe-originator-face :foreground "b4f"))
+  (add-hook! 'circe-mode-hook 'garbage-collect))
 
 (setq dired-open-extensions '(("jpg" . "sxiv")
                               ("png" . "sxiv")
@@ -367,25 +366,25 @@
           elfeed-curl-max-connections 28
           elfeed-curl-timeout 10)
     (defface git-entry
-        '((t :foreground "#f44"))
+        '((t :foreground "#e93479"))
         "Entry for Git")
     (defface reddit-entry
-        '((t :foreground "#ff3"))
+        '((t :foreground "#d48eb6"))
         "Entry for Reddit")
     (defface youtube-entry
-        '((t :foreground "#f46"))
+        '((t :foreground "#9d8af7"))
         "Entry for YouTube")
     (defface torrents-entry
-        '((t :foreground "#bfafac"))
+        '((t :foreground "#eecece"))
         "Entry for torrents")
     (defface stack-entry
-        '((t :foreground "#0f2"))
+        '((t :foreground "#81db54"))
         "Entry for Stack")
     (defface news-entry
-        '((t :foreground "#b4f"))
+        '((t :foreground "#4869ee"))
         "Entry for News")
     (defface tumblr-entry
-        '((t :foreground "#28f"))
+        '((t :foreground "#a9668c"))
         "Entry for Tumblr")
     (defface tech-entry
         '((t :foreground "#f90"))
@@ -401,11 +400,11 @@
 (push '(tech tech-entry) elfeed-search-face-alist)
 
 (custom-set-faces!
-    '(elfeed-search-feed-face :foreground "#2f3")
-    '(elfeed-search-tag-face :foreground "#ee0")
+    '(elfeed-search-feed-face :foreground "#70ca44")
+    '(elfeed-search-tag-face :foreground "#e9b64b")
     '(elfeed-search-title-face :inherit variable-pitch :slant italic)
-    '(elfeed-search-date-face :foreground "#0ef")
-    '(elfeed-search-last-update-face :foreground "#2f3"))
+    '(elfeed-search-date-face :foreground "#ffdfdf")
+    '(elfeed-search-last-update-face :foreground "#8c79e0"))
 (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
@@ -492,11 +491,11 @@
 
 (after! magit
     (custom-set-faces!
-        '(magit-log-author :foreground "#f46")
-        '(magit-log-date :foreground "#7fc")
-        '(magit-hash :foreground "#0f3")
-        '(magit-filename :foreground "#ff3")
-        '(magit-branch-current :foreground "#e96"))
+        '(magit-log-author :foreground "#e93479")
+        '(magit-log-date :foreground "#f9c65b")
+        '(magit-hash :foreground "#81db54")
+        '(magit-filename :foreground "#9d8af7")
+        '(magit-branch-current :foreground "#5879fe"))
     (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'magit-mode-hook 'garbage-collect)
@@ -553,13 +552,13 @@
     (mpdnotify))
 
 (custom-set-faces!
-    '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#0ef")
-    '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#f44")
-    '(mpdel-tablist-album-face :inherit variable-pitch :weight bold :slant italic :foreground "#b4f")
-    '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#0e0")
+    '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#9d8af7")
+    '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#e93478")
+    '(mpdel-tablist-album-face :inherit variable-pitch :weight bold :slant italic :foreground "#81db54")
+    '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#5879fe")
     '(mpdel-playlist-current-song-face :inherit variable-pitch :weight bold :slant italic :foreground "#efefef" :background "#000")
-    '(mpdel-tablist-disc-face :foreground "#ef0")
-    '(mpdel-tablist-date-face :foreground "#ee0")
+    '(mpdel-tablist-disc-face :foreground "#d48eb6")
+    '(mpdel-tablist-date-face :foreground "#f9c65b")
     '(header-line :height 1.1))
 
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
@@ -649,14 +648,14 @@
 (after! org-fancy-priorities
     (setq org-fancy-priorities-list '("#A" "#B" "#C")
           org-priority-faces
-              '((?A :foreground "#ff0000" :weight bold)
+              '((?A :foreground "#e93479" :weight bold)
                 (?B :foreground "#ffffff" :weight bold)
-                (?C :foreground "#0099ff" :weight bold))))
+                (?C :foreground "#5879fe" :weight bold))))
 
 (font-lock-add-keywords 'org-mode
     '(("^ *\\([-]\\) "
         (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
 (after! treemacs
-    (setq doom-themes-treemacs-theme "doom-colors")
+    (setq doom-themes-treemacs-theme "doom-molokai")
     (setq doom-themes-treemacs-enable-variable-pitch t))

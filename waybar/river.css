@@ -84,7 +84,7 @@
     margin-right:0;
     padding-left:12px;
     padding-right:11px;
-    text-shadow:2px 2px goldenrod;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
 #custom-clock, #network {

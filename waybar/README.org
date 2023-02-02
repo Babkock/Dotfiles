@@ -88,6 +88,23 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#network-2][Network]]
   - [[#backlight-5][Backlight]]
   - [[#clock-5][Clock]]
+- [[#hyprland-laptop-bar][Hyprland Laptop Bar]]
+  - [[#appearance-6][Appearance]]
+  - [[#mpd-4][MPD]]
+  - [[#clock-6][Clock]]
+  - [[#cpu-3][CPU]]
+  - [[#memory-3][Memory]]
+  - [[#battery-6][Battery]]
+  - [[#backlight-6][Backlight]]
+  - [[#pulseaudio-3][Pulseaudio]]
+- [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
+  - [[#appearance-7][Appearance]]
+  - [[#mpd-5][MPD]]
+  - [[#disk-3][Disk]]
+  - [[#battery-7][Battery]]
+  - [[#network-3][Network]]
+  - [[#backlight-7][Backlight]]
+  - [[#clock-7][Clock]]
 
 * Sway Laptop Bar
 
@@ -873,6 +890,299 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "tooltip": false
     }
 }]
+#+end_src
+
+* Hyprland Laptop Bar
+
+** Appearance
+
+#+begin_src json :tangle hconfig.json
+[{
+    "position": "bottom",
+    "height": 38,
+    "spacing": 0,
+    "output": "eDP-1",
+    "modules-left": ["wlr/workspaces"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "wlr/workspaces": {
+         "disable-scroll": false,
+         "all-outputs": false,
+         "format": "{icon}",
+         "format-icons": {
+             "1": "",
+             "2": "爵",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "7": "",
+             "8": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         },
+         "on-click": "activate",
+         "on-scroll-up": "hyprctl dispatch workspace e+1",
+         "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+    #+end_src
+
+** MPD
+
+#+begin_src json :tangle hconfig.json
+    "mpd": {
+        "server": "127.0.0.2",
+        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+        "format-disconnected": " ",
+        "format-stopped": "{consumeIcon}{singleIcon} ",
+        "title-len": 34,
+        "unknown-tag": "N/A",
+        "interval": 1,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "playing": " ",
+            "paused": " "
+        },
+        "tooltip-format": "{artist} - {album} ({date})",
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle hconfig.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    },
+#+end_src
+
+** CPU
+
+#+begin_src json :tangle hconfig.json
+    "cpu": {
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    },
+#+end_src
+
+** Memory
+
+#+begin_src json :tangle hconfig.json
+    "memory": {
+        "format": " {}%",
+        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle hconfig.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{time}"
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle hconfig.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+    },
+#+end_src
+
+** Pulseaudio
+
+#+begin_src json :tangle hconfig.json
+    "pulseaudio": {
+        "format": "{icon} <span style=\"italic\">{volume}%</span>",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "tooltip": false,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+    }
+#+end_src
+
+* Hyprland Monitor Bar
+
+** Appearance
+
+#+begin_src json :tangle hconfig.json
+}, {
+    "position": "bottom",
+    "height": 41,
+    "spacing": 0,
+    "output": "HDMI-A-2",
+    "modules-left": ["wlr/workspaces"],
+    "modules-right": ["mpd", "disk", "network", "battery", "backlight", "custom/clock"],
+    "wlr/workspaces": {
+         "disable-scroll": false,
+         "all-outputs": false,
+         "format": "{icon}",
+         "format-icons": {
+             "1": "",
+             "2": "爵",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "7": "",
+             "8": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         },
+         "on-click": "activate",
+         "on-scroll-up": "hyprctl dispatch workspace e+1",
+         "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+#+end_src
+
+** MPD
+
+#+begin_src json :tangle hconfig.json
+    "mpd": {
+        "server": "127.0.0.2",
+        "format": "{consumeIcon}{singleIcon}{title}  {stateIcon}",
+        "format-disconnected": " ",
+        "format-stopped": "{consumeIcon}{singleIcon} ",
+        "title-len": 32,
+        "unknown-tag": "N/A",
+        "interval": 1,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "playing": " ",
+            "paused": " "
+        },
+        "tooltip-format": "{artist} - {album} ({date})",
+    },
+#+end_src
+
+** Disk
+
+#+begin_src json :tangle hconfig.json
+    "disk": {
+        "path": "/",
+        "interval": 2,
+        "format": " <span style=\"italic\">{free}</span>",
+        "format-alt": " {used}",
+        "tooltip-format": "{percentageUsed}% of {total}"
+    },
+#+end_src
+
+** Battery
+
+#+begin_src json :tangle hconfig.json
+    "battery": {
+        "states": {
+            "good": 94,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+        "format-charging": " <span style=\"italic\">{capacity}%</span>",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "tooltip-format": "{time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+#+end_src
+
+** Network
+
+#+begin_src json :tangle hconfig.json
+    "network": {
+        "interface": "wlp0s20f3",
+        "interval": 1,
+        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
+        "format-alt": " {ipaddr}",
+        "format-disconnected": "",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+    },
+#+end_src
+
+** Backlight
+
+#+begin_src json :tangle hconfig.json
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle hconfig.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
+}]
+#+end_src
 #+end_src
 
 #+BEGIN_EXPORT html

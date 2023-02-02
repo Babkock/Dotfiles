@@ -66,9 +66,8 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#taskbar][Taskbar]]
   - [[#clocknetwork-2][Clock/Network]]
   - [[#mpd-2][MPD]]
-- [[#hikari-waybar-style][Hikari Waybar Style]]
+- [[#hyprland-waybar-style][Hyprland Waybar Style]]
   - [[#all-3][All]]
-  - [[#cpu-3][CPU]]
 
 * Sway Waybar Style
 
@@ -336,7 +335,7 @@ Notice the space before the asterisk.
     margin-right:0;
     padding-left:12px;
     padding-right:11px;
-    text-shadow:2px 2px goldenrod;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
 
@@ -489,30 +488,16 @@ Notice the space before the asterisk.
 }
 #+end_src
 
-* Hikari Waybar Style
+* Hyprland Waybar Style
 
 ** All
 
-#+begin_src css :tangle hikari.css
+#+begin_src css :tangle hyprland.css
  * {
     font-family:"SpaceMono Nerd Font";
     font-size:21px;
     background:transparent;
     color:#edc9b9;
-}
-#+end_src
-
-** CPU
-
-#+begin_src css :tangle hikari.css
-#cpu {
-    color:#d61b35;
-    background:linear-gradient(180deg, rgba(198, 11, 37, 0.9), rgba(0, 0, 0, 0.4));
-    margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
 
