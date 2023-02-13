@@ -56,7 +56,6 @@ Welcome to my Zshrc. This configuration relies on [[https://ohmyz.sh/][Oh-My-Zsh
   - [[#pipewire][Pipewire]]
   - [[#xdg-desktop-portal][XDG-Desktop-Portal]]
   - [[#backup-website][Backup Website]]
-  - [[#timer][Timer]]
   - [[#twitch][Twitch]]
 - [[#aliases][Aliases]]
 
@@ -73,9 +72,6 @@ that's what those other variables are for.
 # /___/____/_/ /_/_/   \___/
 
 export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/babkock/.oh-my-zsh"
 
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
@@ -94,37 +90,6 @@ else
     export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
 fi
 export LSCOLORS=$LS_COLORS
-export ZLSCOLORS=$LS_COLORS
-export ZLS_COLORS=$LS_COLORS
-#export LSCOLORS
-#export ZLS_COLORS
-#export ZLSCOLORS
-#+end_src
-
-Determine if the shell is being started in a terminal, either *st* or *urxvt*. If the shell is being started in a real tty, or over ssh, load the separate
-zsh-theme "[[https://gitlab.com/Babkock/Dotfiles/-/blob/master/babkock.zsh-theme][babkock]]" instead of "[[https://gitlab.com/Babkock/Dotfiles/-/blob/master/babkockicon.zsh-theme][babkockicon]]", so we don't see ugly squares in place of the icons.
-
-#+begin_src sh :tangle .zshrc
-if [ -v TERM ]; then
-    if [[ ${TERM} = "st-256color" ]]; then
-        ZSH_THEME="babkockicon"
-    elif [[ ${TERM} = "rxvt-unicode" ]]; then
-        ZSH_THEME="babkockicon"
-    elif [[ ${TERM} = "xterm-256color" ]]; then
-        ZSH_THEME="babkockicon"
-    elif [[ ${TERM} = "kitty" ]]; then
-        ZSH_THEME="babkockicon"
-    elif [[ ${TERM} = "foot" ]]; then
-       #ZSH_THEME="philips"
-       #ZSH_THEME="dieter"
-       #ZSH_THEME="clean"
-        ZSH_THEME="babkockicon"
-    elif [[ ${TERM} = "alacritty" ]]; then
-        ZSH_THEME="babkockicon"
-    else
-        ZSH_THEME="babkock"
-    fi
-fi
 #+end_src
 
 * Preferences
@@ -133,38 +98,9 @@ Set some preferences. The first line here is responsible for making sure the Shi
 like regular TAB moves forward.
 
 #+begin_src sh :tangle .zshrc
-
 export LANG=en_US.UTF-8
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-DISABLE_UPDATE_PROMPT="true"
-
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# HIST_STAMPS="mm/dd/yyyy"
-#+end_src
-
-Load the shell plugins. Make sure to never load too many, it's already bloated as it is.
-
-#+begin_src sh :tangle .zshrc
-if [[ -n $SSH_CONNECTION ]]; then
-    plugins=(gitfast colored-man-pages ssh-agent)
-else
-    plugins=(gitfast colored-man-pages ssh-agent zsh-autosuggestions zsh-syntax-highlighting zsh-fzf-history-search you-should-use)
-fi
-
-zstyle :omz:plugins:ssh-agent identities gitlab_rsa github_rsa alpine_rsa tbcom_ssh
-
 bindkey '^[[Z' reverse-menu-complete
-
-source $ZSH/oh-my-zsh.sh
 #+end_src
 
 * Conditional Aliases
@@ -524,28 +460,8 @@ function backup() {
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" tababcock@198.23.51.224:/home/www/tannerbabcock.com "$1"
         true
-    fi
-}
-#+end_src
-
-** Timer
-
-These two functions are special functions, they are executed before and after each command. I use these to keep a timer of each command,
-so my shell tells you how long your command took.
-
-#+begin_src sh :tangle .zshrc
-function preexec() {
-    timer=${timer:-$SECONDS}
-}
-
-function precmd() {
-    if [ $timer ]; then
-        timer_show=$(($SECONDS - $timer))
-        timer_show=$(printf '%d\n' $timer_show)
-        PROMPT='%{$fg[cyan]%}${timer_show}s %{$fg[white]%}[%c]$ %{$reset_color%}'
-        unset timer
     fi
 }
 #+end_src
@@ -641,7 +557,7 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 
 #+begin_src sh :tangle .zshrc
 alias b="br -dpghs"
-alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
+alias bb="neofetch --ascii_distro gentoo --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
 alias c="btm"
 alias ca="bat"
 alias cd="z"
@@ -693,7 +609,7 @@ alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="feh"
 alias qw="nsxiv ."
-alias s="ssh redacted@redacted -p 2222"
+alias s="ssh tababcock@198.23.51.224 -p 2222"
 alias se="pkill -x emacs; emacs --daemon"
 alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
@@ -716,9 +632,31 @@ These next lines accomplish a few things. They let me use directory-changers lik
 
 #+begin_src sh :tangle .zshrc
 source /home/babkock/.config/broot/launcher/bash/br
+fpath+=$HOME/.zsh/typewritten
+fpath+=$HOME/.zsh/nix-zsh-completions
+autoload -U promptinit; promptinit
+prompt typewritten
+autoload -U compinit; compinit
+
+source /home/babkock/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/babkock/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /home/babkock/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
+source /home/babkock/.zsh/zsh-nix-shell/nix-shell.plugin.zsh
+source /home/babkock/.zsh/you-should-use/you-should-use.plugin.zsh
+source /home/babkock/.zsh/completion.zsh
+source /home/babkock/.zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
+source /home/babkock/.zsh/correction.zsh
+source /home/babkock/.zsh/directories.zsh
+source /home/babkock/.zsh/history.zsh
+source /home/babkock/.zsh/colored-man-pages.plugin.zsh
+
+pkill -x ssh-agent
+eval $(ssh-agent) &> /dev/null
+ssh-add "$HOME/.ssh/tbcom_ssh" &> /dev/null
+ssh-add "$HOME/.ssh/github_rsa" &> /dev/null
+ssh-add "$HOME/.ssh/gitlab_rsa" &> /dev/null
 
 export GPG_TTY=$(tty)
-#export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 export EDITOR=vim
 export NNN_FIFO=/tmp/nnn.fifo
@@ -731,6 +669,9 @@ export _ZO_FZF_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:ital
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init zsh)"
 export WOBSOCK="$HOME/.wob.sock"
+setopt auto_cd
+
+prompt_nix_shell_setup #"$@"
 #+end_src
 
 #+BEGIN_EXPORT html
