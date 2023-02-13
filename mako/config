@@ -16,7 +16,7 @@ icon-location=right
 
 [urgency=critical]
 font=SpaceMono Nerd Font 15
-background-color=#e93479aa
+background-color=#e9347922
 text-color=#ffffffff
 width=450
 height=220

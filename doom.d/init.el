@@ -194,6 +194,7 @@
 (setq doom-fallback-buffer-name "► Doom"
     doom-dashboard-name "► Doom")
 ;(setq doom-fallback-buffer-name "*dashboard*")
+;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
 
@@ -226,10 +227,11 @@
             (nth (random (length alternatives)) alternatives))))
 
 (add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1))
-(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
+(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'after-init-hook #'doom-modeline-mode)
 (add-hook! 'after-init-hook #'fancy-battery-mode)
+(add-hook! 'after-init-hook #'global-hl-line-mode)
 (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
 
 (setq inhibit-compacting-font-caches t)

@@ -1,0 +1,20 @@
+#!/bin/sh
+export GTK_THEME="Sunset-Dark"
+export XDG_CURRENT_DESKTOP="Hyprland"
+export XDG_SESSION_DESKTOP="Hyprland"
+export QT_QPA_PLATFORM="wayland"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export XCURSOR_THEME="Adwaita"
+export XCURSOR_SIZE=30
+export MOZ_ENABLE_WAYLAND=1
+echo "Bringing Pipewire down..."
+sudo sv down pipewire
+pkill -x pipewire
+echo "Starting Hyprland..."
+dbus-launch --exit-with-session Hyprland
+pkill -x mako
+pkill -x pipewire
+pkill -x emacs
+pkill -x tinyserve
+

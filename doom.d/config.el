@@ -7,7 +7,10 @@
       gc-cons-percentage 0.1
       make-backup-files nil
       auto-save-default nil
-      create-lockfiles nil)
+      create-lockfiles nil
+      vc-follow-symlinks t
+      native-comp-async-report-warnings-errors nil
+      load-prefer-newer t)
 (set-language-environment "UTF-8")
 (set-locale-environment "en_US.UTF-8")
 (set-selection-coding-system 'utf-8-unix)
@@ -19,6 +22,8 @@
 (set-terminal-coding-system 'utf-8)
 (global-set-key (kbd "C-<wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "C-<wheel-down>") 'text-scale-decrease)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(delete-selection-mode t)
 (setq ranger-show-hidden t)
 (setq scroll-conservatively 101
       battery-update-interval 2
@@ -363,6 +368,7 @@
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@2-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
+          elfeed-use-curl t
           elfeed-curl-max-connections 28
           elfeed-curl-timeout 10)
     (defface git-entry
@@ -390,38 +396,39 @@
         '((t :foreground "#f90"))
         "Entry for Tech")
 
-(push '(git git-entry) elfeed-search-face-alist)
-(push '(reddit reddit-entry) elfeed-search-face-alist)
-(push '(youtube youtube-entry) elfeed-search-face-alist)
-(push '(torrents torrents-entry) elfeed-search-face-alist)
-(push '(stack stack-entry) elfeed-search-face-alist)
-(push '(news news-entry) elfeed-search-face-alist)
-(push '(tumblr tumblr-entry) elfeed-search-face-alist)
-(push '(tech tech-entry) elfeed-search-face-alist)
+    (push '(git git-entry) elfeed-search-face-alist)
+    (push '(reddit reddit-entry) elfeed-search-face-alist)
+    (push '(youtube youtube-entry) elfeed-search-face-alist)
+    (push '(torrents torrents-entry) elfeed-search-face-alist)
+    (push '(stack stack-entry) elfeed-search-face-alist)
+    (push '(news news-entry) elfeed-search-face-alist)
+    (push '(tumblr tumblr-entry) elfeed-search-face-alist)
+    (push '(tech tech-entry) elfeed-search-face-alist)
 
-(custom-set-faces!
-    '(elfeed-search-feed-face :foreground "#70ca44")
-    '(elfeed-search-tag-face :foreground "#e9b64b")
-    '(elfeed-search-title-face :inherit variable-pitch :slant italic)
-    '(elfeed-search-date-face :foreground "#ffdfdf")
-    '(elfeed-search-last-update-face :foreground "#8c79e0"))
-(add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
-(add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
-(add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-(add-hook! 'elfeed-search-mode-hook 'garbage-collect)
-(add-hook! 'elfeed-show-mode-hook #'elfeed-update)
-(add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(add-hook! 'elfeed-show-mode-hook 'garbage-collect)
-(add-hook! 'elfeed-update-init-hook 'garbage-collect)
-(add-hook! 'elfeed-db-unload-hook 'garbage-collect))
+    (custom-set-faces!
+        '(elfeed-search-feed-face :foreground "#70ca44")
+        '(elfeed-search-tag-face :foreground "#e9b64b")
+        '(elfeed-search-title-face :inherit variable-pitch :slant italic)
+        '(elfeed-search-date-face :foreground "#ffdfdf")
+        '(elfeed-search-last-update-face :foreground "#8c79e0"))
+    (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
+    (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
+    (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+    (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+;    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
+    (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
+    (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
+;    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
+;    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
+    (add-hook! 'elfeed-db-unload-hook 'garbage-collect))
 
 (after! elfeed-goodies
     (elfeed-goodies/setup)
     (setq elfeed-goodies/entry-pane-size 0.5
           elfeed-goodies/powerline-default-separator 'wave
           elfeed-goodies/show-mode-padding 1
-          elfeed-goodies/feed-source-column-width 20))
+          elfeed-goodies/feed-source-column-width 20
+          elfeed-goodies/tag-column-width 20))
 
 (after! elfeed-goodies
     (evil-define-key 'normal elfeed-show-mode-map
@@ -563,9 +570,12 @@
 
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'mpdel-playlist-mode-hook '(hl-line-mode))
 (add-hook! 'mpdel-playlist-mode-hook 'mpdnotify)
 (add-hook! 'libmpdel-current-song-changed-hook 'mpdnotify)
 (add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
+(add-hook! 'mpdel-browser-mode-hook '(hl-line-mode))
+(add-hook! 'navigel-tablist-mode-hook '(hl-line-mode))
 (add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
 (after! mpdel
@@ -576,6 +586,7 @@
 (setq mpdel-playlist-mode-map (make-sparse-keymap))
 (map! :map mpdel-playlist-mode-map
     :desc "Play/Pause" :ne "p" #'libmpdel-playback-play-pause
+    :desc "Browser" :ne "b" #'mpdel-browser-open
     :desc "Play" :ne "RET" #'mpdnotify-play
     :desc "Increase Volume" :ne "<right>" #'mpdel-core-volume-increase
     :desc "Decrease Volume" :ne "<left>" #'mpdel-core-volume-decrease

@@ -1,0 +1,30 @@
+#!/bin/sh
+IDLE_LEFT="eDP-1:$HOME/.config/river/samsunglock.jpg"
+IDLE_RIGHT="HDMI-A-2:$HOME/.config/river/windows95lock.jpg"
+
+LOCK_TIMEOUT=700
+SCREEN_TIMEOUT=1200
+LOCK_FONT="SpaceMono Nerd Font"
+IDLE_RADIUS=90
+IDLE_RING="00000077"
+IDLE_TEXT="efefefbb"
+IDLE_INSIDE="00000066"
+
+IDLE_INSIDEVER="00000099"
+IDLE_RINGVER="70ca4488"
+IDLE_TEXTVER="81db54aa"
+
+IDLE_RINGWRONG="d7246388"
+IDLE_TEXTWRONG="e93479aa"
+IDLE_INSIDEWRONG="00000099"
+
+IDLE_RINGCLEAR="e9b64b77"
+IDLE_LINECLEAR="ebb85c88"
+IDLE_INSIDECLEAR="00000088"
+IDLE_TEXTCLEAR="efefefaa"
+
+IDLE_KEY="e9978188"
+IDLE_BS="e93479bb"
+
+swayidle -w timeout $LOCK_TIMEOUT "swaylock -F -f --font \"$LOCK_FONT\" --font-size 21 --ring-color $IDLE_RING --text-color $IDLE_TEXT --inside-color $IDLE_INSIDE --inside-ver-color $IDLE_INSIDEVER --ring-ver-color $IDLE_RINGVER --text-ver-color $IDLE_TEXTVER --ring-wrong-color $IDLE_RINGWRONG --text-wrong-color $IDLE_TEXTWRONG --inside-wrong-color $IDLE_INSIDEWRONG --ring-clear-color $IDLE_RINGCLEAR --line-clear-color $IDLE_LINECLEAR --inside-clear-color $IDLE_INSIDECLEAR --text-clear-color $IDLE_TEXTCLEAR --key-hl-color $IDLE_KEY --bs-hl-color $IDLE_BS --indicator-radius $IDLE_RADIUS -L -r -i $IDLE_LEFT -s stretch -i $IDLE_RIGHT -s stretch" timeout $SCREEN_TIMEOUT "hyprctl dispatch dpms off" resume "hyprctl dispatch dpms on" before-sleep "swaylock -F -f --font \"$LOCK_FONT\" --font-size 21 --ring-color $IDLE_RING --text-color $IDLE_TEXT --inside-color $IDLE_INSIDE --inside-ver-color $IDLE_INSIDEVER --ring-ver-color $IDLE_RINGVER --text-ver-color $IDLE_TEXTVER --ring-wrong-color $IDLE_RINGWRONG --text-wrong-color $IDLE_TEXTWRONG --inside-wrong-color $IDLE_INSIDEWRONG --ring-clear-color $IDLE_RINGCLEAR --line-clear-color $IDLE_LINECLEAR --inside-clear-color $IDLE_INSIDECLEAR --text-clear-color $IDLE_TEXTCLEAR --key-hl-color $IDLE_KEY --bs-hl-color $IDLE_BS --indicator-radius $IDLE_RADIUS -L -r -i $IDLE_LEFT -s stretch -i $IDLE_RIGHT -s stretch"
+

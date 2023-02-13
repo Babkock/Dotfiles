@@ -899,6 +899,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 [{
     "position": "bottom",
+    "layer": "top",
     "height": 38,
     "spacing": 0,
     "output": "eDP-1",
@@ -912,7 +913,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "1": "",
              "2": "爵",
              "3": "",
-             "4": "",
+             "4": "",
              "5": "",
              "6": "",
              "7": "",
@@ -1054,6 +1055,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 }, {
     "position": "bottom",
+    "layer": "top",
     "height": 41,
     "spacing": 0,
     "output": "HDMI-A-2",

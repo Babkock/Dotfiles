@@ -97,7 +97,10 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
       gc-cons-percentage 0.1
       make-backup-files nil
       auto-save-default nil
-      create-lockfiles nil)
+      create-lockfiles nil
+      vc-follow-symlinks t
+      native-comp-async-report-warnings-errors nil
+      load-prefer-newer t)
 (set-language-environment "UTF-8")
 (set-locale-environment "en_US.UTF-8")
 (set-selection-coding-system 'utf-8-unix)
@@ -109,6 +112,8 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 (set-terminal-coding-system 'utf-8)
 (global-set-key (kbd "C-<wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "C-<wheel-down>") 'text-scale-decrease)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(delete-selection-mode t)
 (setq ranger-show-hidden t)
 (setq scroll-conservatively 101
       battery-update-interval 2
@@ -588,6 +593,7 @@ This first block of code defines font faces per Elfeed tags, font faces for UI e
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@2-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
+          elfeed-use-curl t
           elfeed-curl-max-connections 28
           elfeed-curl-timeout 10)
     (defface git-entry
@@ -642,11 +648,11 @@ Define additional font faces and hooks.
     (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
     (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
+;    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
     (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
     (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
-    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
+;    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
+;    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
     (add-hook! 'elfeed-db-unload-hook 'garbage-collect))
 #+end_src
 
@@ -658,7 +664,8 @@ This second block of code sets preferences for the =elfeed-goodies= package.
     (setq elfeed-goodies/entry-pane-size 0.5
           elfeed-goodies/powerline-default-separator 'wave
           elfeed-goodies/show-mode-padding 1
-          elfeed-goodies/feed-source-column-width 20))
+          elfeed-goodies/feed-source-column-width 20
+          elfeed-goodies/tag-column-width 20))
 #+end_src
 
 ** Keybindings
@@ -884,9 +891,12 @@ This is a list of faces for the MPDel interface. After this list is where I add 
 
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'mpdel-playlist-mode-hook '(hl-line-mode))
 (add-hook! 'mpdel-playlist-mode-hook 'mpdnotify)
 (add-hook! 'libmpdel-current-song-changed-hook 'mpdnotify)
 (add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
+(add-hook! 'mpdel-browser-mode-hook '(hl-line-mode))
+(add-hook! 'navigel-tablist-mode-hook '(hl-line-mode))
 (add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
 (after! mpdel
@@ -901,6 +911,7 @@ This is a list of faces for the MPDel interface. After this list is where I add 
 (setq mpdel-playlist-mode-map (make-sparse-keymap))
 (map! :map mpdel-playlist-mode-map
     :desc "Play/Pause" :ne "p" #'libmpdel-playback-play-pause
+    :desc "Browser" :ne "b" #'mpdel-browser-open
     :desc "Play" :ne "RET" #'mpdnotify-play
     :desc "Increase Volume" :ne "<right>" #'mpdel-core-volume-increase
     :desc "Decrease Volume" :ne "<left>" #'mpdel-core-volume-decrease

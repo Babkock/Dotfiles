@@ -1,0 +1,98 @@
+* {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#efefef;
+}
+
+#title, #window {
+    color:#efefef;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#mpd {
+    color:#efefef;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#cpu {
+    color:#e93479;
+    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#pulseaudio, #disk {
+    color:#f9c65b;
+    background:linear-gradient(180deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#memory, #backlight {
+    color:#81db54;
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#workspaces button, #tags button {
+    background:linear-gradient(180deg, rgba(65, 88, 221, 0.7), rgba(0, 0, 0, 0.3));
+    padding-left:16px;
+    padding-right:16px;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#fc3c35;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#workspaces button:hover, #tags button:hover {
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.3));
+    box-shadow:inherit;
+    text-shadow:inherit;
+    border-radius:0px 0px 0px 0px;
+    border:0px solid transparent;
+    color:#bcbcbc;
+    text-shadow:3px 3px rgba(112, 202, 68, 0.5);
+}
+
+#workspaces button.active, #tags button.active, #tags button.active.occupied {
+    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.3));
+}
+
+#workspaces button.active:hover, #tags button.active:hover, #tags button.active.occupied:hover {
+    text-shadow:3px 3px rgba(215, 36, 99, 0.7);
+}
+
+#tags button.occupied {
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.3));
+}
+
+#battery {
+    color:#587aff;
+    background:linear-gradient(180deg, rgba(65, 88, 221, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#custom-clock, #network {
+    color:#d48eb6;
+    background:linear-gradient(180deg, rgba(140, 121, 224, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:13px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
