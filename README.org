@@ -20,7 +20,7 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 The most commonly updated files in this collection are: my Emacs configuration; my Qutebrowser configuration, rice, and start page; my general
 rice/color scheme defined in [[https://github.com/Babkock/Dotfiles/blob/master/Xresources][Xresources]], [[https://github.com/Babkock/Dotfiles/blob/master/bspwm/README.org][Bspwmrc]], and Polybar; and my [[https://github.com/Babkock/Dotfiles/blob/master/zshrc][Zshrc]]. I do not use a display manager, so I use [[https://github.com/Babkock/Dotfiles/blob/master/xinitrc][xinitrc]].
 
-This repository has configuration files for three different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], and [[https://github.com/labwc/labwc][LabWC]]. Each of these compositors are a
+This repository has configuration files for four different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], [[https://github.com/labwc/labwc][LabWC]], and Hyprland. Each of these compositors are a
 self-contained environment, they each have their own Waybar, Foot, Swaylock, and Wob configurations, and their own color schemes.
 They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree/master/bin][bin]] directory, and their autostart files load their respective configurations.
 
