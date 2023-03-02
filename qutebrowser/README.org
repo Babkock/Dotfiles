@@ -67,7 +67,7 @@ This was originally in a separate theme file, but I might as well include it in 
 
 # --- Colors ---
 # Match with Xresources
-base00 = "#171002"
+base00 = "#101710"
 base01 = "#e93479"
 base02 = "#81db54"
 base03 = "#f9c65b"
@@ -97,33 +97,33 @@ the completion widget and context menu.
 # May be a single color to use for
 # all columns or a list of three colors, one for each column.
 c.colors.completion.fg = base05
-c.colors.completion.odd.bg = base00
-c.colors.completion.even.bg = base08
+c.colors.completion.odd.bg = '#99101010'
+c.colors.completion.even.bg = '#9917100e'
 
 # Foreground color of completion widget category headers.
 c.colors.completion.category.fg = base0F
-c.colors.completion.category.bg = base08
-c.colors.completion.category.border.top = base01
-c.colors.completion.category.border.bottom = base01
+c.colors.completion.category.bg = '#99171002'
+c.colors.completion.category.border.top = '#99e93479'
+c.colors.completion.category.border.bottom = '#99e93479'
 c.colors.completion.item.selected.fg = base00
-c.colors.completion.item.selected.bg = base02
-c.colors.completion.item.selected.border.top = base07
-c.colors.completion.item.selected.border.bottom = base02
+c.colors.completion.item.selected.bg = '#bb81db54'
+c.colors.completion.item.selected.border.top = '#ccefdfef'
+c.colors.completion.item.selected.border.bottom = '#cc81db54'
 c.colors.completion.item.selected.match.fg = base0F
 c.colors.completion.match.fg = base0A
 # Color of the scrollbar handle in the completion view.
-c.colors.completion.scrollbar.fg = base02
+c.colors.completion.scrollbar.fg = '#aa81db54'
 # Color of the scrollbar in the completion view.
-c.colors.completion.scrollbar.bg = base00
+c.colors.completion.scrollbar.bg = '#77101010'
 
 # --- Context menu ---
 
-c.colors.contextmenu.disabled.bg = base00
+c.colors.contextmenu.disabled.bg = '#77101010'
 c.colors.contextmenu.disabled.fg = base01
 # Background color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.bg = base08
+c.colors.contextmenu.menu.bg = '#99171002'
 c.colors.contextmenu.menu.fg =  base0F
-c.colors.contextmenu.selected.bg = base02
+c.colors.contextmenu.selected.bg = '#aa81db54'
 c.colors.contextmenu.selected.fg = base00
 
 #+end_src
@@ -133,35 +133,37 @@ Here is the setup for downloads, hints, and messages.
 #+begin_src python :tangle config.py
 # --- Downloads ---
 
-c.colors.downloads.bar.bg = base00
-c.colors.downloads.start.fg = base00
-c.colors.downloads.start.bg = base0D
-c.colors.downloads.stop.fg = base00
-c.colors.downloads.stop.bg = base0C
+c.colors.downloads.bar.bg = '#88101010'
+#c.colors.downloads.start.fg = base00
+#c.colors.downloads.start.bg = base0D
+c.colors.downloads.start.fg = base0D
+c.colors.downloads.start.bg = '#00101010'
+c.colors.downloads.stop.fg = base0C
+c.colors.downloads.stop.bg = '#77101010'
 c.colors.downloads.error.fg = base09
 
 # --- Hints ---
 
 c.colors.hints.fg = base0E
 # Note that you can use a `rgba(...)` value for transparency.
-c.colors.hints.bg = base00
+c.colors.hints.bg = '#88101010'
 c.colors.hints.match.fg = base05
 c.colors.keyhint.fg = base05
 # Highlight color for keys to complete the current keychain.
 c.colors.keyhint.suffix.fg = base05
-c.colors.keyhint.bg = base00
+c.colors.keyhint.bg = '#88101010'
 
 # --- Messages ---
 
 c.colors.messages.error.fg = base09
-c.colors.messages.error.bg = base08
+c.colors.messages.error.bg = '#66171002'
 c.colors.messages.error.border = base09
 c.colors.messages.warning.fg = base09
-c.colors.messages.warning.bg = base00
+c.colors.messages.warning.bg = '#77171002'
 c.colors.messages.warning.border = base09
 c.colors.messages.info.fg = base01
-c.colors.messages.info.bg = base00
-c.colors.messages.info.border = base00
+c.colors.messages.info.bg = '#66101010'
+c.colors.messages.info.border = '#99101010'
 
 #+end_src
 
@@ -172,9 +174,9 @@ The prompt:
 
 c.colors.prompts.fg = base0F
 # Border used around UI elements in prompts.
-c.colors.prompts.border = base09
-c.colors.prompts.bg = base08
-c.colors.prompts.selected.bg = base0A
+c.colors.prompts.border = '#d72463'
+c.colors.prompts.bg = '#171004'
+c.colors.prompts.selected.bg = '#70ca44'
 c.colors.prompts.selected.fg = base00
 
 #+end_src
@@ -185,23 +187,23 @@ The status bar object has many options to set, so this next section may be compl
 # --- Status bar ---
 
 c.colors.statusbar.normal.fg = base05
-c.colors.statusbar.normal.bg = base00
+c.colors.statusbar.normal.bg = '#99101010'
 c.colors.statusbar.insert.fg = base08
-c.colors.statusbar.insert.bg = base0A
+c.colors.statusbar.insert.bg = '#8881db54'
 c.colors.statusbar.passthrough.fg = base0A
-c.colors.statusbar.passthrough.bg = base00
+c.colors.statusbar.passthrough.bg = '#99101010'
 # Foreground color of the statusbar in private browsing mode.
 c.colors.statusbar.private.fg = base0E
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = base00
+c.colors.statusbar.private.bg = '#99101010'
 c.colors.statusbar.command.fg = base04
-c.colors.statusbar.command.bg = base00
+c.colors.statusbar.command.bg = '#cc171004'
 c.colors.statusbar.command.private.fg = base0E
-c.colors.statusbar.command.private.bg = base01
+c.colors.statusbar.command.private.bg = '#88171002'
 c.colors.statusbar.caret.fg = base0D
-c.colors.statusbar.caret.bg = base00
+c.colors.statusbar.caret.bg = '#99101010'
 c.colors.statusbar.caret.selection.fg = base0D
-c.colors.statusbar.caret.selection.bg = base00
+c.colors.statusbar.caret.selection.bg = '#99101010'
 c.colors.statusbar.progress.bg = base0D
 
 # --- Status bar URL ---
@@ -221,28 +223,28 @@ And finally, we have the tabs. An essential part of the interface.
 #+begin_src python :tangle config.py
 # --- Tabs ---
 
-c.colors.tabs.bar.bg = base08
+c.colors.tabs.bar.bg = '#10101010'
 c.colors.tabs.indicator.start = base03
 c.colors.tabs.indicator.stop = base0B
 c.colors.tabs.indicator.error = base08
 c.colors.tabs.odd.fg = base02
-c.colors.tabs.odd.bg = base00
+c.colors.tabs.odd.bg = '#88171002'
 c.colors.tabs.even.fg = base03
-c.colors.tabs.even.bg = base00
-c.colors.tabs.pinned.even.bg = base0F
+c.colors.tabs.even.bg = '#88171002'
+c.colors.tabs.pinned.even.bg = '#88171002'
 c.colors.tabs.pinned.even.fg = base00
-c.colors.tabs.pinned.odd.bg = base0F
+c.colors.tabs.pinned.odd.bg = '#88171002'
 c.colors.tabs.pinned.odd.fg = base00
-c.colors.tabs.pinned.selected.even.bg = base02
+c.colors.tabs.pinned.selected.even.bg = '#cc81db54'
 c.colors.tabs.pinned.selected.even.fg = base00
-c.colors.tabs.pinned.selected.odd.bg = base02
+c.colors.tabs.pinned.selected.odd.bg = '#cc81db54'
 c.colors.tabs.pinned.selected.odd.fg = base00
 
 # --- Selected tabs ---
 c.colors.tabs.selected.odd.fg = base0A
-c.colors.tabs.selected.odd.bg = base08
+c.colors.tabs.selected.odd.bg = '#99171002'
 c.colors.tabs.selected.even.fg = base0A
-c.colors.tabs.selected.even.bg = base08
+c.colors.tabs.selected.even.bg = '#88171002'
 # Default page background when there is none
 c.colors.webpage.bg = base00
 
@@ -258,7 +260,7 @@ configuration.
 #+begin_src python :tangle config.py
 config.load_autoconfig()
 
-c.completion.height = "32%"
+c.completion.height = "28%"
 c.downloads.location.directory = "/home/babkock"
 c.downloads.location.prompt = False
 c.prompt.filebrowser = False
@@ -315,11 +317,10 @@ c.hints.padding = {
 }
 
 c.colors.completion.fg = '#efefef'
-c.colors.downloads.start.bg = '#9d8af7'
-c.colors.downloads.start.fg = '#000000'
-c.colors.downloads.stop.bg = '#4869ee'
-c.colors.downloads.stop.fg = '#000000'
-c.colors.keyhint.fg = '#f9c65b'
+c.colors.downloads.start.fg = '#bb9d8af7'
+c.colors.downloads.start.bg = '#00101010'
+c.colors.downloads.stop.bg = '#00101010'
+c.colors.downloads.stop.fg = '#ef4869ee'
 
 c.tabs.padding = {
     "left": 5,
@@ -330,7 +331,7 @@ c.tabs.padding = {
 c.tabs.title.format = "{audio}{current_title}"
 c.tabs.last_close = "close"
 c.tabs.indicator.width = 0
-c.tabs.favicons.scale = 1.0
+c.tabs.favicons.scale = 1.4
 c.tabs.show_switching_delay = 700
 #+end_src
 
@@ -382,17 +383,17 @@ bookmarked sites. The second set is for loading my custom stylesheets.
 
 config.bind(',`', 'open https://github.com/Babkock')
 config.bind(',1', 'open https://gitlab.com/Babkock/')
-config.bind(',2', 'open https://y.com.sb/feed/subscriptions')
+config.bind(',2', 'open https://yt.funami.tech/feed/subscriptions')
 config.bind(',3', 'open https://proton.me')
-config.bind(',4', 'open https://en.wikipedia.org/wiki/Main_Page')
+config.bind(',4', 'open https://tannerbabcock.com/home')
 config.bind(',5', 'open https://passthepopcorn.me')
 config.bind(',6', 'open https://empornium.is')
 config.bind(',7', 'open https://boards.4channel.org/g/catalog')
-config.bind(',8', 'open https://recordsrecordings.bandcamp.com')
+config.bind(',8', 'open https://news.ycombinator.com/news')
 config.bind(',9', 'open https://old.reddit.com')
 config.bind(',0', 'open https://babkock.github.io')
 config.bind(',-', 'open https://www.messenger.com')
-config.bind(',=', 'open https://tannerbabcock.com/home')
+config.bind(',=', 'open https://en.wikipedia.org/wiki/Main_Page')
 #+end_src
 
 As you can see, I am a master of productivity and imagination. Don't ask me about any of these bookmarks or styles. They're all in this repository. I have bound the capital "M" for playing a selected link in MPV.
@@ -402,7 +403,6 @@ As you can see, I am a master of productivity and imagination. Don't ask me abou
 | =,c=              | Clear Stylesheet |
 | =,a=              | 4chan Style |
 | =,b=              | Reddit Style |
-| =,w=              | Wikipedia Style |
 | =,e=              | Empornium Style |
 | =,z=              | Change Default Font Size |
 | =,x=              | Toggle Font Size of Statusbar |
@@ -417,7 +417,6 @@ As you can see, I am a master of productivity and imagination. Don't ask me abou
 config.bind(',c', 'config-cycle content.user_stylesheets "" ""')
 config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4chan.css ""')
 config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
-config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')

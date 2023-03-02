@@ -99,8 +99,8 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#pulseaudio-3][Pulseaudio]]
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
   - [[#appearance-7][Appearance]]
-  - [[#mpd-5][MPD]]
   - [[#disk-3][Disk]]
+  - [[#idle-inhibit][Idle Inhibit]]
   - [[#battery-7][Battery]]
   - [[#network-3][Network]]
   - [[#backlight-7][Backlight]]
@@ -900,7 +900,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 38,
+    "height": 40,
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
@@ -913,7 +913,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "1": "",
              "2": "爵",
              "3": "",
-             "4": "",
+             "4": "",
              "5": "",
              "6": "",
              "7": "",
@@ -931,45 +931,46 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 ** MPD
 
 #+begin_src json :tangle hconfig.json
-    "mpd": {
-        "server": "127.0.0.2",
-        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
-        "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{singleIcon} ",
-        "title-len": 34,
-        "unknown-tag": "N/A",
-        "interval": 1,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "playing": " ",
-            "paused": " "
-        },
-        "tooltip-format": "{artist} - {album} ({date})",
+"mpd": {
+    "server": "127.0.0.2",
+    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+    "format-disconnected": " ",
+    "format-stopped": "{consumeIcon}{singleIcon} ",
+    "title-len": 34,
+    "unknown-tag": "N/A",
+    "interval": 1,
+    "on-click": "mpc --host 127.0.0.2 toggle",
+    "consume-icons": {
+        "on": " "
     },
+    "random-icons": {
+        "off": "<span color=\"#f53c3c\"></span> ",
+        "on": " "
+    },
+    "repeat-icons": {
+        "on": " "
+    },
+    "single-icons": {
+        "on": "1 "
+    },
+    "state-icons": {
+        "playing": " ",
+        "paused": " "
+    },
+    "tooltip-format": "{artist} - {album} ({date})",
+},
 #+end_src
 
 ** Clock
 
 #+begin_src json :tangle hconfig.json
-    "custom/clock": {
-        "exec": "date +'%I:%M:%S  %a, %b %d'",
-        "interval": 1,
-        "format": " {}",
-        "align": 1,
-        "tooltip": false
-    },
+"custom/clock": {
+    "exec": "date +'%I:%M:%S  %a, %b %d'",
+    "interval": 1,
+    "format": " {}",
+    "align": 1,
+    "tooltip": false
+},
 #+end_src
 
 ** CPU
@@ -1060,7 +1061,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "disk", "network", "battery", "backlight", "custom/clock"],
+    "modules-right": ["disk", "idle_inhibitor", "network", "battery", "backlight", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -1069,7 +1070,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "1": "",
              "2": "爵",
              "3": "",
-             "4": "",
+             "4": "",
              "5": "",
              "6": "",
              "7": "",
@@ -1084,38 +1085,6 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     },
 #+end_src
 
-** MPD
-
-#+begin_src json :tangle hconfig.json
-    "mpd": {
-        "server": "127.0.0.2",
-        "format": "{consumeIcon}{singleIcon}{title}  {stateIcon}",
-        "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{singleIcon} ",
-        "title-len": 32,
-        "unknown-tag": "N/A",
-        "interval": 1,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "playing": " ",
-            "paused": " "
-        },
-        "tooltip-format": "{artist} - {album} ({date})",
-    },
-#+end_src
-
 ** Disk
 
 #+begin_src json :tangle hconfig.json
@@ -1126,6 +1095,19 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "format-alt": " {used}",
         "tooltip-format": "{percentageUsed}% of {total}"
     },
+#+end_src
+
+** Idle Inhibit
+
+#+begin_src json :tangle hconfig.json
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": " ",
+        "deactivated": " "
+    },
+    "timeout": 60
+},
 #+end_src
 
 ** Battery

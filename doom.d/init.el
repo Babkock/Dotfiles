@@ -1,4 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
+;; -*- no-byte-compile: t; -*-
 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
@@ -136,9 +137,9 @@
        ;;lua               ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       ;;nix                 ; I hereby declare "nix geht mehr!"
+       nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +dragandrop +roam2)                 ; organize your plain life in plain text
+       (org +pretty +dragandrop)                 ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -191,8 +192,8 @@
                 (unless (string= "-" project-name)
                 (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
 
-(setq doom-fallback-buffer-name "► Doom"
-    doom-dashboard-name "► Doom")
+(setq doom-fallback-buffer-name "*doom*"
+    doom-dashboard-name "*doom*")
 ;(setq doom-fallback-buffer-name "*dashboard*")
 ;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 

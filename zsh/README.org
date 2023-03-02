@@ -19,7 +19,7 @@
 #+PROPERTY: header-args:sh :tangle
 #+LANGUAGE: en
 
-Welcome to my Zshrc. This configuration relies on [[https://ohmyz.sh/][Oh-My-Zsh]]. This literate configuration is available online on my [[https://babkock.github.io/configs/zsh.html][GitHub Pages]]. If you appreciate my work, please consider [[https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD][making a donation]].
+Welcome to my Zshrc. This configuration does not use any package managers or frameworks. This literate configuration is available online on my [[https://babkock.github.io/configs/zsh.html][GitHub Pages]]. If you appreciate my work, please consider [[https://www.paypal.com/donate/?business=X8ZY4CNBJEXVE&no_recurring=0&item_name=Please+help+me+pay+my+bills%2C+and+make+more+interesting+GNU%2FLinux+content%21+I+appreciate+you%21&currency_code=USD][making a donation]].
 
 #+BEGIN_EXPORT html
 <header>
@@ -58,6 +58,8 @@ Welcome to my Zshrc. This configuration relies on [[https://ohmyz.sh/][Oh-My-Zsh
   - [[#backup-website][Backup Website]]
   - [[#twitch][Twitch]]
 - [[#aliases][Aliases]]
+- [[#plugins][Plugins]]
+- [[#environment-variables][Environment Variables]]
 
 * Theme
 
@@ -90,6 +92,9 @@ else
     export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
 fi
 export LSCOLORS=$LS_COLORS
+
+zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
+zstyle ':completion:*:parameters' list-colors '=*=32'
 #+end_src
 
 * Preferences
@@ -390,7 +395,6 @@ function xs() {
 A wrapper function for [[https://github.com/jarun/nnn][nnn]] that changes CD when it exits.
 
 #+begin_src sh :tangle .zshrc
-
 j()
 {
     # Block nesting of nnn in subshells
@@ -523,10 +527,15 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =k=       | N/A                      | Make                                                |
 | =kc=      | N/A                      | Make clean                                          |
 | =m=       | File name                | Open given file in MPV                              |
+| =mb=      | N/A                      | Mount Baby blue drive                               |
+| =md=      | N/A                      | Mount External SSD                                  |
 | =mn=      | Man page                 | Man                                                 |
 | =n=       | N/A                      | Run Ncmpcpp                                         |
+| =nb=      | N/A                      | Nix Build                                           |
 | =ncr=     | File name                | Encrypt given file with GNUPG                       |
-| =ne=      | N/A                      | Run Ncmpcpp with artwork                            |
+| =ne=      | N/A                      | Run Ncmpcpp with Ueberzug                           |
+| =nfi=     | N/A                      | Nix Flake Init                                      |
+| =nfm=     | N/A                      | Nix Flake Metadata                                  |
 | =o=       | Process name             | Kill the given process                              |
 | =p=       | N/A                      | Run Flowtop                                         |
 | =po=      | N/A                      | Run Gotop                                           |
@@ -547,6 +556,8 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =ts=      | N/A                      | Transmission Information                            |
 | =tt=      | N/A                      | Transmission Statistics                             |
 | =u=       | PID                      | Kill                                                |
+| =ub=      | N/A                      | Unmount Baby blue drive                             |
+| =ud=      | N/A                      | Unmount External SSD                                |
 | =v=       | File name                | Open given file in Vim                              |
 | =vm=      | N/A                      | Run Virt-Manager                                    |
 | =wh=      | Command, alias, function | Which                                               |
@@ -557,7 +568,7 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 
 #+begin_src sh :tangle .zshrc
 alias b="br -dpghs"
-alias bb="neofetch --ascii_distro gentoo --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
+alias bb="neofetch --ascii_distro freebsd --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
 alias c="btm"
 alias ca="bat"
 alias cd="z"
@@ -599,10 +610,18 @@ alias v="vim"
 alias vm="virt-manager"
 alias r="ranger"
 alias m="mpv"
+alias mb="sudo mount /dev/sda1 /mnt/Baby"
+alias md="sudo mount /dev/sda1 /mnt/drive"
 alias mn="man"
 alias tl="tldr"
 alias n="ncmpcpp"
 alias ne="$HOME/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug"
+alias nb="nix build --extra-experimental-features nix-command --extra-experimental-features flakes"
+alias nfi="nix flake --extra-experimental-features nix-command --extra-experimental-features flakes init"
+alias nfm="nix flake --extra-experimental-features nix-command --extra-experimental-features flakes metadata"
+alias nfc="nix show-config --extra-experimental-features nix-command"
+alias nsh="nix-shell"
+alias nr="nix repl"
 alias o="pkill -x"
 alias u="kill"
 alias po="gotop"
@@ -622,18 +641,32 @@ alias ti="transmission-remote -l"
 alias ts="transmission-remote -si"
 alias tt="transmission-remote -st"
 alias tr="transmission-remote"
+alias ub="sudo umount /mnt/Baby"
+alias ud="sudo umount /mnt/drive"
 alias k="make"
 alias kc="make clean"
 alias wh="which"
 alias x="sudo zsh"
 #+end_src
 
-These next lines accomplish a few things. They let me use directory-changers like *nnn* and *Zoxide,* and configure the programs *bat*, *fzf*, and *wob*.
+* Plugins
+
+I use the following shell plug-ins, which are loaded from the =~/.zsh= directory.
+
+- [[https://github.com/reobin/typewritten][Typewritten theme]]
+- [[http://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
+- [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
+- [[https://github.com/zsh-users/zsh-completions][zsh-completions]]
+- [[https://github.com/joshskidmore/zsh-fzf-history-search][zsh-fzf-history-search]]
+- [[https://github.com/chisui/zsh-nix-shell][zsh-nix-shell]]
+- [[https://github.com/nix-community/nix-zsh-completions][nix-zsh-completions]]
+- [[https://github.com/MichaelAquilina/zsh-you-should-use][you-should-use]]
 
 #+begin_src sh :tangle .zshrc
 source /home/babkock/.config/broot/launcher/bash/br
 fpath+=$HOME/.zsh/typewritten
 fpath+=$HOME/.zsh/nix-zsh-completions
+fpath+=$HOME/.zsh/zsh-completions/src
 autoload -U promptinit; promptinit
 prompt typewritten
 autoload -U compinit; compinit
@@ -646,7 +679,7 @@ source /home/babkock/.zsh/you-should-use/you-should-use.plugin.zsh
 source /home/babkock/.zsh/completion.zsh
 source /home/babkock/.zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
 source /home/babkock/.zsh/correction.zsh
-source /home/babkock/.zsh/directories.zsh
+#source /home/babkock/.zsh/directories.zsh
 source /home/babkock/.zsh/history.zsh
 source /home/babkock/.zsh/colored-man-pages.plugin.zsh
 
@@ -655,7 +688,13 @@ eval $(ssh-agent) &> /dev/null
 ssh-add "$HOME/.ssh/tbcom_ssh" &> /dev/null
 ssh-add "$HOME/.ssh/github_rsa" &> /dev/null
 ssh-add "$HOME/.ssh/gitlab_rsa" &> /dev/null
+#+end_src
 
+* Environment Variables
+
+These next lines accomplish a few things. They let me use directory-changers like *nnn* and *Zoxide,* and configure the programs *bat*, *fzf*, and *wob*.
+
+#+begin_src sh :tangle .zshrc
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 export EDITOR=vim
@@ -672,6 +711,8 @@ export WOBSOCK="$HOME/.wob.sock"
 setopt auto_cd
 
 prompt_nix_shell_setup #"$@"
+
+colorscript -r
 #+end_src
 
 #+BEGIN_EXPORT html

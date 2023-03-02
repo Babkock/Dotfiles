@@ -396,16 +396,16 @@
         '((t :foreground "#f90"))
         "Entry for Tech")
 
-    (push '(git git-entry) elfeed-search-face-alist)
-    (push '(reddit reddit-entry) elfeed-search-face-alist)
-    (push '(youtube youtube-entry) elfeed-search-face-alist)
-    (push '(torrents torrents-entry) elfeed-search-face-alist)
-    (push '(stack stack-entry) elfeed-search-face-alist)
-    (push '(news news-entry) elfeed-search-face-alist)
-    (push '(tumblr tumblr-entry) elfeed-search-face-alist)
-    (push '(tech tech-entry) elfeed-search-face-alist)
+(push '(git git-entry) elfeed-search-face-alist)
+(push '(reddit reddit-entry) elfeed-search-face-alist)
+(push '(youtube youtube-entry) elfeed-search-face-alist)
+(push '(torrents torrents-entry) elfeed-search-face-alist)
+(push '(stack stack-entry) elfeed-search-face-alist)
+(push '(news news-entry) elfeed-search-face-alist)
+(push '(tumblr tumblr-entry) elfeed-search-face-alist)
+(push '(tech tech-entry) elfeed-search-face-alist)
 
-    (custom-set-faces!
+(custom-set-faces!
         '(elfeed-search-feed-face :foreground "#70ca44")
         '(elfeed-search-tag-face :foreground "#e9b64b")
         '(elfeed-search-title-face :inherit variable-pitch :slant italic)

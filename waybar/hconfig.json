@@ -1,7 +1,7 @@
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 38,
+    "height": 40,
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
@@ -14,7 +14,7 @@
              "1": "",
              "2": "爵",
              "3": "",
-             "4": "",
+             "4": "",
              "5": "",
              "6": "",
              "7": "",
@@ -36,6 +36,7 @@
     "title-len": 34,
     "unknown-tag": "N/A",
     "interval": 1,
+    "on-click": "mpc --host 127.0.0.2 toggle",
     "consume-icons": {
         "on": " "
     },
@@ -127,7 +128,7 @@
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "disk", "network", "battery", "backlight", "custom/clock"],
+    "modules-right": ["disk", "idle_inhibitor", "network", "battery", "backlight", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -136,7 +137,7 @@
              "1": "",
              "2": "爵",
              "3": "",
-             "4": "",
+             "4": "",
              "5": "",
              "6": "",
              "7": "",
@@ -150,40 +151,21 @@
          "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
 
-"mpd": {
-    "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{title}  {stateIcon}",
-    "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 32,
-    "unknown-tag": "N/A",
-    "interval": 1,
-    "consume-icons": {
-        "on": " "
-    },
-    "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
-        "on": " "
-    },
-    "repeat-icons": {
-        "on": " "
-    },
-    "single-icons": {
-        "on": "1 "
-    },
-    "state-icons": {
-        "playing": " ",
-        "paused": " "
-    },
-    "tooltip-format": "{artist} - {album} ({date})",
-},
-
 "disk": {
     "path": "/",
     "interval": 2,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip-format": "{percentageUsed}% of {total}"
+},
+
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": " ",
+        "deactivated": " "
+    },
+    "timeout": 60
 },
 
 "battery": {

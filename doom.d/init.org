@@ -54,6 +54,7 @@ Gotta have this at the beginning of the config file.
 
 #+begin_src emacs-lisp :tangle yes
 ;;; init.el -*- lexical-binding: t; -*-
+;; -*- no-byte-compile: t; -*-
 #+end_src
 
 * Packages
@@ -197,9 +198,9 @@ This is my list of enabled and installed packages. I try to have a small and min
        ;;lua               ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       ;;nix                 ; I hereby declare "nix geht mehr!"
+       nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +dragandrop +roam2)                 ; organize your plain life in plain text
+       (org +pretty +dragandrop)                 ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -268,8 +269,8 @@ Conditionally set the title of the frame (or X window) with project name and buf
 The default buffer name.
 
 #+begin_src emacs-lisp :tangle yes
-(setq doom-fallback-buffer-name "► Doom"
-    doom-dashboard-name "► Doom")
+(setq doom-fallback-buffer-name "*doom*"
+    doom-dashboard-name "*doom*")
 ;(setq doom-fallback-buffer-name "*dashboard*")
 ;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
