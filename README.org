@@ -4,6 +4,16 @@
 #+PROPERTY: header-args
 #+LANGUAGE: en
 
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar1.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar2.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar3.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar4.png]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar5.png]]
+
 Welcome to my Dotfiles. This repository contains my personal configuration files for various
 GNU/Linux programs. You can view the configurations that are literate/self-documenting [[https://babkock.github.io/][on my GitHub Pages]] - and these can be
 tangled via Emacs Org mode. This repository is old, from 2019, when I knew less about Linux,
