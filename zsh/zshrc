@@ -249,7 +249,7 @@ function backup() {
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" tababcock@198.23.51.224:/home/www/tannerbabcock.com "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
         true
     fi
 }
@@ -319,7 +319,7 @@ alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="feh"
 alias qw="nsxiv ."
-alias s="ssh tababcock@198.23.51.224 -p 2222"
+alias s="ssh redacted@redacted -p 2222"
 alias se="pkill -x emacs; emacs --daemon"
 alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
