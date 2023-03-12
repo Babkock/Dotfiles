@@ -84,7 +84,6 @@ better now!
 
 ** See also
 
-- My fork of [[https://gitlab.com/tbsuckless/st][st]]
-- My fork of [[https://gitlab.com/tbsuckless/dmenu][dmenu]]
+- My fork of [[https://github.com/Babkock/st][st]]
+- My fork of [[https://github.com/Babkock/dmenu][dmenu]]
 - My fork of [[https://gitlab.com/tbsuckless/dwm][dwm]]
-
