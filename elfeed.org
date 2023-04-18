@@ -20,10 +20,24 @@
 *** [[https://old.reddit.com/r/todayilearned/.rss][todayilearned]]
 *** [[http://old.reddit.com/r/nottheonion/.rss][nottheonion]]
 *** [[http://old.reddit.com/r/relationships/.rss][relationships]]
-*** [[http://old.reddit.com/r/virgin/.rss][virgin]]
 *** [[http://old.reddit.com/r/worldnews/.rss][worldnews]]
 *** [[http://old.reddit.com/r/criterion/.rss][criterion]]
-*** [[https://github.com/Babkock.atom][GitHub User]]
+** YouTube/Invidious                        :youtube:
+*** [[https://yt.funami.tech/feed/private?token=40JXZTlLKgHYVQvWEXvnEGi9O5x3l90KYmb_X4nSi9w=][Invidious]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
+*** [[http://www.youtube.com/feeds/videos.xml?channel_id=UCsVIQ2ipmCbua6s8ThFLo5A][Shrouded Hand]]
+*** [[http://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA][Brodie Robertson]]
+*** [[http://www.youtube.com/feeds/videos.xml?channel_id=UCpFFItkfZz1qz5PpHpqzYBw][Nexpo]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCMX31RavkfUHJvw03RbUZnA][Nick Crowley]]
+*** [[http://www.youtube.com/feeds/videos.xml?channel_id=UC17_IYMcWqFdD7gqrX5eIWQ][Nightmare Files]]
+*** [[http://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA][Computerfile]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwPhITr5r-ygh-nlx-oSV7g][Newt Grundy]]
+*** [[http://www.youtube.com/feeds/videos.xml?channel_id=UCchWU8ta6L-Dy3rGIxPINzw][ReignBot]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCaGOgwGKnDVOKY0DrFsBAiA][Scare Theater]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA][Mental Outlaw]]
+*** [[https://odysee.com/$/rss/@Babkock:8][Tanner Babcock]]
+*** [[https://youtube.com/feeds/videos.xml?channel_id=UCdXmrPRUtsl-6pq83x3FrTQ][Tanner Babcock]]
+# do not commit these either
 ** News                                                        :news:
 *** [[http://rss.nytimes.com/services/xml/rss/nyt/US.xml][New York Times]]
 *** [[http://old.reddit.com/r/politics+worldnews+technology+science+todayilearned+antiwork/.rss][Reddit News]]
@@ -42,6 +56,7 @@
 *** [[http://unix.stackexchange.com/feeds/tag?tagnames=bash+shell&sort=newest][Shell]]
 *** [[https://stackoverflow.com/feeds/user/913182][Tanner Babcock]]
 ** Tumblr                                                    :tumblr:
+*** [[https://goddess-complex.tumblr.com/rss][goddess-complex]]
 *** [[http://389.tumblr.com/rss][389]]
 *** [[http://j0yfriend.tumblr.com/rss][j0yfriend]]
 *** [[http://joan-mitchell.tumblr.com/rss][joan-mitchell]]
@@ -97,5 +112,3 @@
 *** [[https://letterboxd.com/criterion/rss/][criterion]]
 *** [[https://twitchrss.appspot.com/vod/babkock][Twitch babkock]]
 *** [[https://twitchrss.appspot.com/vod/newtgrundy][Twitch newtgrundy]]
-** Test Feed :test:
-*** [[https://tannerbabcock.com/feed][Please Work!]]

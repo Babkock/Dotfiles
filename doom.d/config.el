@@ -416,7 +416,7 @@
     (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
     (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-;    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
+    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
     (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
     (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
 ;    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
@@ -438,16 +438,16 @@
     (evil-define-key 'normal elfeed-search-mode-map
         (kbd "J") 'elfeed-goodies/split-show-next
         (kbd "K") 'elfeed-goodies/split-show-prev
-        (kbd "q") (lambda () (elfeed-search-set-filter "@2-weeks-ago +tumblr +unread"))
-        (kbd "e") (lambda () (elfeed-search-set-filter "@2-weeks-ago +reddit +unread"))
-        (kbd "p") (lambda () (elfeed-search-set-filter "@2-weeks-ago +stack +unread"))
-        (kbd "m") (lambda () (elfeed-search-set-filter "@2-weeks-ago +media +unread"))
-        (kbd "o") (lambda () (elfeed-search-set-filter "@2-weeks-ago +news +unread"))
-        (kbd "i") (lambda () (elfeed-search-set-filter "@2-weeks-ago +git +unread"))
-        (kbd "x") (lambda () (elfeed-search-set-filter "@2-weeks-ago +youtube +unread"))
-        (kbd "n") (lambda () (elfeed-search-set-filter "@2-weeks-ago +torrents +unread"))
-        (kbd "v") (lambda () (elfeed-search-set-filter "@2-weeks-ago +tech +unread"))
-        (kbd "g") (lambda () (elfeed-search-browse-url)))
+        (kbd "q") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +tumblr +unread"))
+        (kbd "e") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +reddit +unread"))
+        (kbd "p") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +stack +unread"))
+        (kbd "m") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +media +unread"))
+        (kbd "o") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +news +unread"))
+        (kbd "i") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +git +unread"))
+        (kbd "x") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +youtube +unread"))
+        (kbd "n") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +torrents +unread"))
+        (kbd "v") (lambda () (interactive) (elfeed-search-set-filter "@2-weeks-ago +tech +unread"))
+        (kbd "g") (lambda () (interactive) (elfeed-search-browse-url)))
     (map! :map +elfeed-search-mode-map
         :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
         :desc "Kill buffer" :ne "q" #'elfeed-kill-buffer

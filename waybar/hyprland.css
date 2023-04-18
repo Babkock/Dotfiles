@@ -6,11 +6,13 @@
 }
 
 #title, #window {
+    padding-left:5px;
     color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
-#mpd {
+#mpd, #bluetooth.off {
+    padding-right:5px;
     color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
@@ -79,7 +81,7 @@
 
 #battery, #idle_inhibitor {
     color:#587aff;
-    background:linear-gradient(180deg, rgba(65, 88, 221, 0.7), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(180deg, rgba(65, 88, 222, 0.7), rgba(0, 0, 0, 0.3));
     margin-left:0;
     margin-right:0;
     padding-left:12px;
@@ -94,5 +96,52 @@
     margin-right:0;
     padding-left:13px;
     padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.off {
+    padding-left:9px;
+    padding-right:9px;
+    margin-left:0;
+    margin-right:0;
+}
+
+#bluetooth.on {
+    color:#e93479;
+    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.connected, #bluetooth.connected.pairable {
+    color:#81db54;
+    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+    color:#587aff;
+    background:linear-gradient(180deg, rgba(65, 88, 222, 0.7), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.discovering {
+    color:#f9c65b;
+    background:linear-gradient(180deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:12px;
+    padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }

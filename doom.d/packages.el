@@ -13,7 +13,5 @@
 (package! mpdel)
 (package! ivy-mpdel)
 (package! fancy-battery)
-(package! diff-hl)
 (package! org-fancy-priorities)
 (package! org-modern)
-
