@@ -155,7 +155,7 @@
     "interval": 2,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
 "battery": {
@@ -179,6 +179,7 @@
     "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
     "format-alt": " {ipaddr}",
     "format-disconnected": "",
+    "tooltip": true,
     "tooltip-format": "{essid} ({signalStrength}%)",
 },
 

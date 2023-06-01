@@ -1,8 +1,9 @@
 * Contents     :elfeed:
 ** entry-title: \(linux\|emacs\|technology\)     :linux:
 ** Reddit                                                                        :reddit:
-*** [[https://old.reddit.com/.rss?feed=7d2d2656a9410f5dc706d7bca182f304cb23dff7&user=Babkock666][All Reddit]]
+
 *** [[http://old.reddit.com/r/linux/.rss][linux]]
+*** [[https://old.reddit.com/r/boringdystopia/.rss][boringdystopia]]
 *** [[http://old.reddit.com/r/unixporn/.rss][unixporn]]
 *** [[http://old.reddit.com/r/archlinux/.rss][archlinux]]
 *** [[https://old.reddit.com/r/voidlinux/.rss][voidlinux]]
@@ -13,6 +14,7 @@
 *** [[https://old.reddit.com/r/depression/.rss][depression]]
 *** [[http://old.reddit.com/r/adhd/.rss][adhd]]
 *** [[http://old.reddit.com/r/MapPorn/.rss][MapPorn]]
+*** [[https://old.reddit.com/r/Denver/.rss][Denver]]
 *** [[http://old.reddit.com/r/rust/.rss][rust]]
 *** [[http://old.reddit.com/r/LateStageCapitalism/.rss][LateStageCapitalism]]
 *** [[http://old.reddit.com/r/technology/.rss][technology]]
@@ -22,6 +24,9 @@
 *** [[http://old.reddit.com/r/relationships/.rss][relationships]]
 *** [[http://old.reddit.com/r/worldnews/.rss][worldnews]]
 *** [[http://old.reddit.com/r/criterion/.rss][criterion]]
+*** [[https://old.reddit.com/r/AreTheStraightsOk/.rss][AreTheStraightsOk]]
+# ** Incels                                                    :other:
+# *** [[http://incels.is/forums/-/index.rss][Incels]]
 ** YouTube/Invidious                        :youtube:
 *** [[https://yt.funami.tech/feed/private?token=40JXZTlLKgHYVQvWEXvnEGi9O5x3l90KYmb_X4nSi9w=][Invidious]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
@@ -38,6 +43,7 @@
 *** [[https://odysee.com/$/rss/@Babkock:8][Tanner Babcock]]
 *** [[https://youtube.com/feeds/videos.xml?channel_id=UCdXmrPRUtsl-6pq83x3FrTQ][Tanner Babcock]]
 # do not commit these either
+
 ** News                                                        :news:
 *** [[http://rss.nytimes.com/services/xml/rss/nyt/US.xml][New York Times]]
 *** [[http://old.reddit.com/r/politics+worldnews+technology+science+todayilearned+antiwork/.rss][Reddit News]]
@@ -55,31 +61,7 @@
 *** [[http://stackoverflow.com/feeds/tag?tagnames=rust+rust-cargo&sort=newest][Rust]]
 *** [[http://unix.stackexchange.com/feeds/tag?tagnames=bash+shell&sort=newest][Shell]]
 *** [[https://stackoverflow.com/feeds/user/913182][Tanner Babcock]]
-** Tumblr                                                    :tumblr:
-*** [[https://goddess-complex.tumblr.com/rss][goddess-complex]]
-*** [[http://389.tumblr.com/rss][389]]
-*** [[http://j0yfriend.tumblr.com/rss][j0yfriend]]
-*** [[http://joan-mitchell.tumblr.com/rss][joan-mitchell]]
-*** [[http://never-obsolete.tumblr.com/rss][never-obsolete]]
-*** [[http://oldguydoesstuff.tumblr.com/rss][oldguydoesstuff]]
-*** [[http://dailyrothko.tumblr.com/rss][dailyrothko]]
-*** [[http://webcomicname.tumblr.com/rss][webcomicname]]
-*** [[http://noimnotfunny.tumblr.com/rss][noimnotfunny]]
-*** [[http://filmaticbby.tumblr.com/rss][filmaticbby]]
-*** [[http://ortut.tumblr.com/rss][ortut]]
-*** [[http://pointandshooter.tumblr.com/rss][pointandshooter]]
-*** [[http://stremplerart.tumblr.com/rss][stremplerart]]
-*** [[http://56k-modem.tumblr.com/rss][56k-modem]]
-*** [[http://annaxmalina.tumblr.com/rss][annaxmalina]]
-*** [[http://sxyunixporn.tumblr.com/rss][sxyunixporn]]
-*** [[http://elixir.tumblr.com/rss][elixir]]
-*** [[http://petersolarz.tumblr.com/rss][petersolarz]]
-*** [[http://disease.tumblr.com/rss][disease]]
-*** [[http://cyberia2001.tumblr.com/rss][cyberia2001]]
-*** [[http://autistic-af.tumblr.com/rss][autistic-af]]
-*** [[http://nixcraft.tumblr.com/rss][nixcraft]]
-*** [[http://milkweeds.tumblr.com/rss][milkweeds]]
-*** [[http://vizuart.tumblr.com/rss][vizuart]]
+
 ** Technology                                            :tech:
 *** [[https://bugs.archlinux.org/feed.php?feed_type=rss2&project=1][Arch Linux Bugs]]
 *** [[http://archlinux.org/feeds/releases/][Arch Linux Releases]]
@@ -112,3 +94,5 @@
 *** [[https://letterboxd.com/criterion/rss/][criterion]]
 *** [[https://twitchrss.appspot.com/vod/babkock][Twitch babkock]]
 *** [[https://twitchrss.appspot.com/vod/newtgrundy][Twitch newtgrundy]]
+** Test Feed :test:
+*** [[https://tannerbabcock.com/feed][Please Work!]]

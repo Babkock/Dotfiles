@@ -1,13 +1,13 @@
 font=SpaceMono Nerd Font 14
-background-color=#00000066
-text-color=#efefefef
+background-color=#00000088
+text-color=#f28735ef
 width=460
 height=220
 outer-margin=12
 margin=14
 padding=8
 border-size=3
-border-color=#81db549f
+border-color=#49a6d0af
 max-icon-size=230
 default-timeout=2500
 max-visible=4

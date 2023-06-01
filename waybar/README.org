@@ -90,6 +90,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#clock-5][Clock]]
 - [[#hyprland-laptop-bar][Hyprland Laptop Bar]]
   - [[#appearance-6][Appearance]]
+  - [[#disk-external-hd][Disk (External HD)]]
   - [[#mpd-4][MPD]]
   - [[#clock-6][Clock]]
   - [[#cpu-3][CPU]]
@@ -99,19 +100,18 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#pulseaudio-3][Pulseaudio]]
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
   - [[#appearance-7][Appearance]]
-  - [[#disk-3][Disk]]
+  - [[#disk-internal-ssd][Disk (Internal SSD)]]
   - [[#bluetooth][Bluetooth]]
   - [[#idle-inhibit][Idle Inhibit]]
   - [[#battery-7][Battery]]
   - [[#network-3][Network]]
-  - [[#backlight-7][Backlight]]
   - [[#clock-7][Clock]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-8][Appearance]]
-  - [[#mpd-5][MPD]]
+  - [[#weather][Weather]]
   - [[#bluetooth-1][Bluetooth]]
   - [[#memory-4][Memory]]
-  - [[#disk-4][Disk]]
+  - [[#disk-3][Disk]]
   - [[#cpu-4][CPU]]
   - [[#clock-8][Clock]]
 
@@ -839,7 +839,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "interval": 2,
         "format": " <span style=\"italic\">{free}</span>",
         "format-alt": " {used}",
-        "tooltip-format": "{percentageUsed}% of {total}"
+        "tooltip-format": "{path} ({percentage_used}% of {total})"
     },
 #+end_src
 
@@ -864,15 +864,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 ** Network
 
 #+begin_src json :tangle lconfig.json
-    "network": {
-        "interface": "wlp0s20f3",
-        "interval": 1,
-        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-alt": " {ipaddr}",
-        "format-disconnected": "",
-        "tooltip-format": "{essid} ({signalStrength}%)",
-    },
+"network": {
+    "interface": "wlp0s20f3",
+    "interval": 1,
+    "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
+    "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
+    "format-alt": " {ipaddr}",
+    "format-disconnected": "",
+    "tooltip": true,
+    "tooltip-format": "{essid} ({signalStrength}%)",
+},
 #+end_src
 
 ** Backlight
@@ -913,7 +914,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -938,12 +939,25 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     },
     #+end_src
 
+** Disk (External HD)
+
+#+begin_src json :tangle hconfig.json
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": "󰋊 <span style=\"italic\">{free}</span>",
+    "format-alt": "󰋊 {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+#+end_src
+
 ** MPD
 
 #+begin_src json :tangle hconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+    "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 34,
@@ -1068,11 +1082,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 41,
+    "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "idle_inhibitor", "network", "battery", "bluetooth", "custom/clock"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "bluetooth", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -1101,16 +1115,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     },
 #+end_src
 
-** Disk
+** Disk (Internal SSD)
 
 #+begin_src json :tangle hconfig.json
 "disk": {
     "path": "/",
-    "interval": 2,
+    "interval": 1,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 #+end_src
 
@@ -1176,19 +1190,6 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     },
 #+end_src
 
-** Backlight
-
-#+begin_src json :tangle hconfig.json
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-    },
-#+end_src
-
 ** Clock
 
 #+begin_src json :tangle hconfig.json
@@ -1213,7 +1214,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "height": 43,
     "spacing": 0,
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "bluetooth", "cpu", "memory", "disk", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
     "wlr/workspaces": {
         "disable-scroll": false,
         "all-outputs": false,
@@ -1238,36 +1239,13 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     },
 #+end_src
 
-** MPD
+** Weather
 
 #+begin_src json :tangle hconfig.json
-"mpd": {
-    "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
-    "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 34,
-    "unknown-tag": "N/A",
-    "interval": 1,
-    "on-click": "mpc --host 127.0.0.2 toggle",
-    "consume-icons": {
-        "on": " "
-    },
-    "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
-        "on": " "
-    },
-    "repeat-icons": {
-        "on": " "
-    },
-    "single-icons": {
-        "on": "1 "
-    },
-    "state-icons": {
-        "playing": " ",
-        "paused": " "
-    },
-    "tooltip-format": "{artist} - {album} ({date})"
+"custom/weather": {
+    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "interval": 4,
+    "format": "{}"
 },
 #+end_src
 
@@ -1302,11 +1280,12 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hconfig.json
 "disk": {
-    "path": "/mnt/drive",
+    "path": "/mnt/drive/",
     "interval": 1,
-    "format": " <span style=\"italic\">{free}</span>",
-    "format-alt": " {used}",
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "format": "  <span style=\"italic\">{free}</span>",
+    "format-alt": "  {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 #+end_src
 
@@ -1335,7 +1314,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2022 Tanner Babcock.</p>
+        <p>Copyright &copy; 2022-2023 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;

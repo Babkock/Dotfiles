@@ -5,7 +5,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -29,9 +29,18 @@
          "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
 
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": "󰋊 <span style=\"italic\">{free}</span>",
+    "format-alt": "󰋊 {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+    "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 34,
@@ -126,11 +135,11 @@
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 41,
+    "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "idle_inhibitor", "network", "battery", "bluetooth", "custom/clock"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "bluetooth", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -160,11 +169,11 @@
 
 "disk": {
     "path": "/",
-    "interval": 2,
+    "interval": 1,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
 "bluetooth": {
@@ -213,15 +222,6 @@
     "format-disconnected": ""
 },
 
-"backlight": {
-    "device": "intel_backlight",
-    "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-},
-
 "custom/clock": {
     "exec": "date +'%I:%M:%S  %a, %b %d'",
     "interval": 1,
@@ -237,7 +237,7 @@
     "height": 43,
     "spacing": 0,
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "bluetooth", "cpu", "memory", "disk", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
     "wlr/workspaces": {
         "disable-scroll": false,
         "all-outputs": false,
@@ -261,33 +261,10 @@
          "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
 
-"mpd": {
-    "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
-    "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 34,
-    "unknown-tag": "N/A",
-    "interval": 1,
-    "on-click": "mpc --host 127.0.0.2 toggle",
-    "consume-icons": {
-        "on": " "
-    },
-    "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
-        "on": " "
-    },
-    "repeat-icons": {
-        "on": " "
-    },
-    "single-icons": {
-        "on": "1 "
-    },
-    "state-icons": {
-        "playing": " ",
-        "paused": " "
-    },
-    "tooltip-format": "{artist} - {album} ({date})"
+"custom/weather": {
+    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "interval": 4,
+    "format": "{}"
 },
 
 "bluetooth": {
@@ -310,11 +287,12 @@
 },
 
 "disk": {
-    "path": "/mnt/drive",
+    "path": "/mnt/drive/",
     "interval": 1,
-    "format": " <span style=\"italic\">{free}</span>",
-    "format-alt": " {used}",
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "format": "  <span style=\"italic\">{free}</span>",
+    "format-alt": "  {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
 "cpu": {

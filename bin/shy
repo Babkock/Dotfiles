@@ -12,7 +12,9 @@ echo "Bringing Pipewire down..."
 sudo sv down pipewire
 pkill -x pipewire
 echo "Starting Hyprland..."
+pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
 dbus-launch --exit-with-session Hyprland
+#dbus-launch --exit-with-session /nix/store/x914g43pim04v26l85wa9hb0s87ay8ca-hyprland-0.25.0+date=2023-05-03_f27873a/bin/Hyprland
 pkill -x mako
 pkill -x pipewire
 pkill -x emacs

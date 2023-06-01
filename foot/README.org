@@ -38,7 +38,7 @@ This is the configuration for the [[https://codeberg.org/dnkl/foot][Foot]] termi
 # #+TOC: headlines 2
 
 * Table of Contents :toc:
-- [[#river][River]]
+- [[#hyprland][Hyprland]]
   - [[#font][Font]]
   - [[#preferences][Preferences]]
   - [[#appearance][Appearance]]
@@ -54,7 +54,7 @@ This is the configuration for the [[https://codeberg.org/dnkl/foot][Foot]] termi
   - [[#appearance-2][Appearance]]
   - [[#colors-2][Colors]]
 
-* River
+* Hyprland
 
 ** Font
 
@@ -74,7 +74,7 @@ vertical-letter-offset=-4px
 line-height=25px
 letter-spacing=-1px
 bold-text-in-bright=palette-based
-resize-delay-ms=90
+resize-delay-ms=80
 #+end_src
 
 ** Appearance
@@ -85,8 +85,8 @@ style=beam
 blink=yes
 
 [colors]
-background=171002
-foreground=edc9b9
+background=100002
+foreground=fdeadb
 alpha=0.6
 #+end_src
 
@@ -97,20 +97,20 @@ This is where you edit the actual color scheme.
 #+begin_src conf :tangle foot.ini
 regular0=000000
 bright0=121212
-regular1=d72463
-bright1=e93479
-regular2=70ca44
-bright2=81db54
-regular3=e9b64b
-bright3=f9c65b
-regular4=3758dd
-bright4=4869ee
-regular5=a9668c
-bright5=d48eb6
-regular6=8c79e0
-bright6=9d8af7
-regular7=ffdfdf
-bright7=ffffff
+regular1=c03b3e
+bright1=d04b4e
+regular2=15b082
+bright2=25c192
+regular3=e27725
+bright3=f28735
+regular4=3996c0
+bright4=49a6d0
+regular5=e73d7b
+bright5=f74e8b
+regular6=c8988a
+bright6=d8a89a
+regular7=eddacb
+bright7=fdeadb
 #+end_src
 
 * Sway

@@ -55,7 +55,7 @@ This is my Qutebrowser config. This literate configuration is available online o
 
 ** Colors
 
-This was originally in a separate theme file, but I might as well include it in this one. These are the 16 colors that make up all of Qutebrowser's visual elements.
+This was originally in a separate theme file, but I might as well include it in this one. These are the 16 colors that make up all of Qutebrowser's visual elements. You should not use these variables if you want to use ARGB, or transparency.
 
 #+begin_src python :tangle config.py
 #               __       __
@@ -67,63 +67,63 @@ This was originally in a separate theme file, but I might as well include it in 
 
 # --- Colors ---
 # Match with Xresources
-base00 = "#101710"
-base01 = "#e93479"
-base02 = "#81db54"
-base03 = "#f9c65b"
-base04 = "#5879ee"
-base05 = "#d48eb6"
-base06 = "#9d8af7"
-base07 = "#dfefdf"
-base08 = "#171002"
-base09 = "#d72463"
-base0A = "#70ca44"
-base0B = "#e9b64b"
-base0C = "#4768dd"
-base0D = "#a9668c"
-base0E = "#9d8af7"
-base0F = "#efefef"
+base00 = "#101010"
+base01 = "#d0484e"
+base02 = "#25c192"
+base03 = "#f28735"
+base04 = "#49a6d0"
+base05 = "#f74e8b"
+base06 = "#d8a89a"
+base07 = "#fdeadb"
+base08 = "#121012"
+base09 = "#c0383e"
+base0A = "#15b082"
+base0B = "#e27725"
+base0C = "#3996c0"
+base0D = "#f74e8b"
+base0E = "#c8988a"
+base0F = "#fdeadb"
 
 #+end_src
 
 ** The Style
 
 I try to have dark backgrounds and light foregrounds. Here is the color scheme for
-the completion widget and context menu.
+the completion widget and context menu. Remember, these colors can be in the format =#AARRGGBB=.
 
 #+begin_src python :tangle config.py
 # --- Completion widget ---
 
 # May be a single color to use for
 # all columns or a list of three colors, one for each column.
-c.colors.completion.fg = base05
-c.colors.completion.odd.bg = '#99101010'
-c.colors.completion.even.bg = '#9917100e'
+c.colors.completion.fg = '#88fdeadb'
+c.colors.completion.odd.bg = '#88101010'
+c.colors.completion.even.bg = '#88100000'
 
 # Foreground color of completion widget category headers.
 c.colors.completion.category.fg = base0F
-c.colors.completion.category.bg = '#99171002'
-c.colors.completion.category.border.top = '#99e93479'
-c.colors.completion.category.border.bottom = '#99e93479'
+c.colors.completion.category.bg = '#77101010'
+c.colors.completion.category.border.top = '#8849a6d0'
+c.colors.completion.category.border.bottom = '#8849a6d0'
 c.colors.completion.item.selected.fg = base00
-c.colors.completion.item.selected.bg = '#bb81db54'
-c.colors.completion.item.selected.border.top = '#ccefdfef'
-c.colors.completion.item.selected.border.bottom = '#cc81db54'
+c.colors.completion.item.selected.bg = '#ccf74e8b'
+c.colors.completion.item.selected.border.top = '#aaefdfef'
+c.colors.completion.item.selected.border.bottom = '#bbe73d7b'
 c.colors.completion.item.selected.match.fg = base0F
 c.colors.completion.match.fg = base0A
 # Color of the scrollbar handle in the completion view.
-c.colors.completion.scrollbar.fg = '#aa81db54'
+c.colors.completion.scrollbar.fg = '#aaf28735'
 # Color of the scrollbar in the completion view.
-c.colors.completion.scrollbar.bg = '#77101010'
+c.colors.completion.scrollbar.bg = '#55101010'
 
 # --- Context menu ---
 
-c.colors.contextmenu.disabled.bg = '#77101010'
+c.colors.contextmenu.disabled.bg = '#77000000'
 c.colors.contextmenu.disabled.fg = base01
 # Background color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.bg = '#99171002'
+c.colors.contextmenu.menu.bg = '#99101010'
 c.colors.contextmenu.menu.fg =  base0F
-c.colors.contextmenu.selected.bg = '#aa81db54'
+c.colors.contextmenu.selected.bg = '#ddf74e8b'
 c.colors.contextmenu.selected.fg = base00
 
 #+end_src
@@ -141,6 +141,7 @@ c.colors.downloads.start.bg = '#00101010'
 c.colors.downloads.stop.fg = base0C
 c.colors.downloads.stop.bg = '#77101010'
 c.colors.downloads.error.fg = base09
+c.colors.downloads.system.bg = 'hsv'
 
 # --- Hints ---
 
@@ -156,10 +157,10 @@ c.colors.keyhint.bg = '#88101010'
 # --- Messages ---
 
 c.colors.messages.error.fg = base09
-c.colors.messages.error.bg = '#66171002'
+c.colors.messages.error.bg = '#66101010'
 c.colors.messages.error.border = base09
 c.colors.messages.warning.fg = base09
-c.colors.messages.warning.bg = '#77171002'
+c.colors.messages.warning.bg = '#77101010'
 c.colors.messages.warning.border = base09
 c.colors.messages.info.fg = base01
 c.colors.messages.info.bg = '#66101010'
@@ -174,9 +175,9 @@ The prompt:
 
 c.colors.prompts.fg = base0F
 # Border used around UI elements in prompts.
-c.colors.prompts.border = '#d72463'
-c.colors.prompts.bg = '#171004'
-c.colors.prompts.selected.bg = '#70ca44'
+c.colors.prompts.border = '#25c192'
+c.colors.prompts.bg = '#ef101010'
+c.colors.prompts.selected.bg = '#ef101010'
 c.colors.prompts.selected.fg = base00
 
 #+end_src
@@ -187,23 +188,23 @@ The status bar object has many options to set, so this next section may be compl
 # --- Status bar ---
 
 c.colors.statusbar.normal.fg = base05
-c.colors.statusbar.normal.bg = '#99101010'
+c.colors.statusbar.normal.bg = '#88101010'
 c.colors.statusbar.insert.fg = base08
-c.colors.statusbar.insert.bg = '#8881db54'
+c.colors.statusbar.insert.bg = '#aa25c192'
 c.colors.statusbar.passthrough.fg = base0A
-c.colors.statusbar.passthrough.bg = '#99101010'
+c.colors.statusbar.passthrough.bg = '#88101010'
 # Foreground color of the statusbar in private browsing mode.
 c.colors.statusbar.private.fg = base0E
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = '#99101010'
+c.colors.statusbar.private.bg = '#88101010'
 c.colors.statusbar.command.fg = base04
-c.colors.statusbar.command.bg = '#cc171004'
+c.colors.statusbar.command.bg = '#88101004'
 c.colors.statusbar.command.private.fg = base0E
-c.colors.statusbar.command.private.bg = '#88171002'
+c.colors.statusbar.command.private.bg = '#88101010'
 c.colors.statusbar.caret.fg = base0D
-c.colors.statusbar.caret.bg = '#99101010'
+c.colors.statusbar.caret.bg = '#77101010'
 c.colors.statusbar.caret.selection.fg = base0D
-c.colors.statusbar.caret.selection.bg = '#99101010'
+c.colors.statusbar.caret.selection.bg = '#77101010'
 c.colors.statusbar.progress.bg = base0D
 
 # --- Status bar URL ---
@@ -228,25 +229,25 @@ c.colors.tabs.indicator.start = base03
 c.colors.tabs.indicator.stop = base0B
 c.colors.tabs.indicator.error = base08
 c.colors.tabs.odd.fg = base02
-c.colors.tabs.odd.bg = '#88171002'
+c.colors.tabs.odd.bg = '#66101010'
 c.colors.tabs.even.fg = base03
-c.colors.tabs.even.bg = '#88171002'
-c.colors.tabs.pinned.even.bg = '#88171002'
+c.colors.tabs.even.bg = '#66101010'
+c.colors.tabs.pinned.even.bg = '#66101002'
 c.colors.tabs.pinned.even.fg = base00
-c.colors.tabs.pinned.odd.bg = '#88171002'
+c.colors.tabs.pinned.odd.bg = '#66101002'
 c.colors.tabs.pinned.odd.fg = base00
-c.colors.tabs.pinned.selected.even.bg = '#cc81db54'
+c.colors.tabs.pinned.selected.even.bg = '#aaf74e8b'
 c.colors.tabs.pinned.selected.even.fg = base00
-c.colors.tabs.pinned.selected.odd.bg = '#cc81db54'
+c.colors.tabs.pinned.selected.odd.bg = '#aaf74e8b'
 c.colors.tabs.pinned.selected.odd.fg = base00
 
 # --- Selected tabs ---
 c.colors.tabs.selected.odd.fg = base0A
-c.colors.tabs.selected.odd.bg = '#99171002'
+c.colors.tabs.selected.odd.bg = '#77101010'
 c.colors.tabs.selected.even.fg = base0A
-c.colors.tabs.selected.even.bg = '#88171002'
+c.colors.tabs.selected.even.bg = '#77101010'
 # Default page background when there is none
-c.colors.webpage.bg = base00
+c.colors.webpage.bg = base0F
 
 #+end_src
 
@@ -260,7 +261,7 @@ configuration.
 #+begin_src python :tangle config.py
 config.load_autoconfig()
 
-c.completion.height = "28%"
+c.completion.height = "30%"
 c.downloads.location.directory = "/home/babkock"
 c.downloads.location.prompt = False
 c.prompt.filebrowser = False
@@ -269,8 +270,16 @@ c.input.insert_mode.auto_leave = True
 c.downloads.prevent_mixed_content = True
 c.downloads.position = 'bottom'
 c.window.transparent = True
+c.content.notifications.enabled = True
 c.content.webgl = True
+c.content.pdfjs = True
 c.content.xss_auditing = False
+c.content.local_content_can_access_remote_urls = True
+c.content.plugins = True
+c.content.tls.certificate_errors = "load-insecurely"
+c.content.geolocation = False
+c.hints.radius = 7
+c.hints.uppercase = True
 
 #+end_src
 
@@ -310,17 +319,17 @@ to change some of the colors.
 # --- Appearance ---
 
 c.hints.padding = {
-    "left": 3,
-    "right": 3,
+    "left": 4,
+    "right": 4,
     "top": 3,
     "bottom": 4
 }
 
 c.colors.completion.fg = '#efefef'
-c.colors.downloads.start.fg = '#bb9d8af7'
+c.colors.downloads.start.fg = '#bbd0484e'
 c.colors.downloads.start.bg = '#00101010'
 c.colors.downloads.stop.bg = '#00101010'
-c.colors.downloads.stop.fg = '#ef4869ee'
+c.colors.downloads.stop.fg = '#ee25c192'
 
 c.tabs.padding = {
     "left": 5,
@@ -329,6 +338,7 @@ c.tabs.padding = {
     "bottom": 4
 }
 c.tabs.title.format = "{audio}{current_title}"
+c.window.title_format = "{perc}{current_title}"
 c.tabs.last_close = "close"
 c.tabs.indicator.width = 0
 c.tabs.favicons.scale = 1.4
@@ -344,7 +354,7 @@ Wikipedia, Invidious, YouTube, and GitHub.
 # --- Search engines ---
 
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!i': 'https://y.com.sb/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}' }
+c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!i': 'https://yewtu.be/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}' }
 #+end_src
 
 How to handle selecting a file for upload:

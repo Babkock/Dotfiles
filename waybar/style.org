@@ -56,7 +56,8 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#memorybacklight-1][Memory/Backlight]]
   - [[#workspaces-1][Workspaces]]
   - [[#battery-1][Battery]]
-  - [[#clocknetwork-1][Clock/Network]]
+  - [[#clock][Clock]]
+  - [[#network][Network]]
   - [[#bluetooth][Bluetooth]]
 - [[#labwc-waybar-style][LabWC Waybar Style]]
   - [[#all-2][All]]
@@ -65,7 +66,7 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#memorybacklight-2][Memory/Backlight]]
   - [[#battery-2][Battery]]
   - [[#taskbar][Taskbar]]
-  - [[#clocknetwork-2][Clock/Network]]
+  - [[#clocknetwork-1][Clock/Network]]
   - [[#mpd-2][MPD]]
 
 * Sway Waybar Style
@@ -224,7 +225,7 @@ Notice the space before the asterisk.
     font-family:"SpaceMono Nerd Font";
     font-size:21px;
     background:transparent;
-    color:#efefef;
+    color:#fdeadb;
 }
 #+end_src
 
@@ -232,8 +233,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #title, #window {
-    padding-left:5px;
-    color:#efefef;
+    padding-left:6px;
+    color:#fdeadb;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
@@ -242,8 +243,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #mpd, #bluetooth.off {
-    padding-right:5px;
-    color:#efefef;
+    padding-right:6px;
+    color:#fdeadb;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
@@ -252,8 +253,8 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #cpu {
-    color:#e93479;
-    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.4));
+    color:#d0484e;
+    background:linear-gradient(180deg, rgba(196, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -266,10 +267,11 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #pulseaudio, #disk {
-    color:#f9c65b;
-    background:linear-gradient(180deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.4));
-    margin-left:0;
+    color:#f28735;
+    background:linear-gradient(180deg, rgba(226, 119, 53, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:2px;
     margin-right:0;
+    border-radius:40px 0px 0px 40px;
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -280,13 +282,17 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #memory, #backlight {
-    color:#81db54;
-    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.4));
+    color:#25c192;
+    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#backlight {
+    border-radius:0px 40px 40px 0px;
+    margin-right:2px;
 }
 #+end_src
 
@@ -294,35 +300,39 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #workspaces button, #tags button {
-    background:linear-gradient(180deg, rgba(65, 88, 221, 0.7), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
     padding-left:16px;
-    padding-right:16px;
-    border-radius:0px 0px 0px 0px;
+    padding-right:17px;
+    margin-left:1px;
+    margin-right:1px;
+    border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#fc3c35;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
     box-shadow:inherit;
     text-shadow:inherit;
-    border-radius:0px 0px 0px 0px;
+    margin-left:1px;
+    margin-right:1px;
+    border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#bcbcbc;
-    text-shadow:3px 3px rgba(112, 202, 68, 0.5);
+    text-shadow:3px 3px rgba(247, 78, 139, 0.5);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied, #workspaces button.active {
-    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover, #workspaces button.active:hover {
-    text-shadow:3px 3px rgba(215, 36, 99, 0.7);
+    text-shadow:3px 3px rgba(21, 176, 130, 0.7);
 }
 
 #tags button.occupied {
-    background:linear-gradient(180deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.3));
+    background:linear-gradient(0deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.1));
 }
 #+end_src
 
@@ -330,27 +340,47 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle river.css
 #battery, #idle_inhibitor {
-    color:#587aff;
-    background:linear-gradient(180deg, rgba(65, 88, 222, 0.7), rgba(0, 0, 0, 0.3));
+    color:#3996c0;
+    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#idle_inhibitor {
+    border-radius:40px 0px 0px 40px;
+    margin-left:2px;
+}
+#+end_src
+
+** Clock
+
+#+begin_src css :tangle river.css
+#custom-clock {
+    color:#d8a89a;
+    background:linear-gradient(180deg, rgba(200, 152, 138, 0.7), rgba(0, 0, 0, 0.1));
+    border-radius:0px 40px 40px 0px;
+    margin-left:0;
+    margin-right:2px;
     padding-left:12px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
 
-** Clock/Network
+** Network
 
 #+begin_src css :tangle river.css
-#custom-clock, #network {
-    color:#d48eb6;
-    background:linear-gradient(180deg, rgba(140, 121, 224, 0.7), rgba(0, 0, 0, 0.3));
-    margin-left:0;
-    margin-right:0;
-    padding-left:13px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+#network {
+   color:#f74e8b;
+   background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
+   border-radius:0px 40px 40px 0px;
+   margin-left:0;
+   margin-right:2px;
+   padding-left:11px;
+   padding-right:11px;
+   text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
 
@@ -365,8 +395,8 @@ Notice the space before the asterisk.
 }
 
 #bluetooth.on {
-    color:#e93479;
-    background:linear-gradient(180deg, rgba(215, 36, 99, 0.7), rgba(0, 0, 0, 0.4));
+    color:#d0484e;
+    background:linear-gradient(180deg, rgba(186, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -375,8 +405,8 @@ Notice the space before the asterisk.
 }
 
 #bluetooth.connected, #bluetooth.connected.pairable {
-    color:#81db54;
-    background:linear-gradient(180deg, rgba(112, 202, 68, 0.7), rgba(0, 0, 0, 0.4));
+    color:#25c192;
+    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -385,22 +415,22 @@ Notice the space before the asterisk.
 }
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
-    color:#587aff;
-    background:linear-gradient(180deg, rgba(65, 88, 222, 0.7), rgba(0, 0, 0, 0.3));
+    color:#3996c0;
+    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
-    padding-left:12px;
+    padding-left:11px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
 #bluetooth.discovering {
     color:#f9c65b;
-    background:linear-gradient(180deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
-    padding-left:12px;
-    padding-right:12px;
+    padding-left:11px;
+    padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src

@@ -240,7 +240,7 @@ riverctl map normal Mod4+Shift L send-layout-cmd rivertile "main-count -1"
 riverctl map-pointer normal Mod4 BTN_LEFT move-view
 riverctl map-pointer normal Mod4 BTN_RIGHT resize-view
 
-for i in $(seq 1 7)
+for i in $(seq 1 8)
 do
     tags=$((1 << ($i - 1)))
     riverctl map normal Mod4 $i set-focused-tags $tags
@@ -249,18 +249,15 @@ done
 
 # Super+0 to focus all tags
 # Super+Shift+0 to tag focused view with all tags
-all_tags=$(((1 << 7) - 1))
+all_tags=$(((1 << 8) - 1))
 riverctl map normal Mod4 0 set-focused-tags $all_tags
 riverctl map normal Mod4+Shift 0 set-view-tags $all_tags
 
-riverctl map normal Mod4 8 set-focused-tags 3
-riverctl map normal Mod4 9 set-focused-tags 6
-
-scratch_tag=$((1 << 6 ))
+scratch_tag=$((1 << 9 ))
 
 riverctl map normal Mod4 M toggle-focused-tags ${scratch_tag}
 riverctl map normal Mod4+Shift M set-view-tags ${scratch_tag}
-all_but_scratch_tag=$(( ((1 << 7) - 1) ^ $scratch_tag ))
+all_but_scratch_tag=$(( ((1 << 8) - 1) ^ $scratch_tag ))
 riverctl spawn-tagmask ${all_but_scratch_tag}
 
 riverctl map normal Mod4 S toggle-float
