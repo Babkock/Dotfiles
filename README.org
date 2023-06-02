@@ -4,6 +4,8 @@
 #+PROPERTY: header-args
 #+LANGUAGE: en
 
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar6.png]]
+
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar1.png]]
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/waybar2.png]]
@@ -51,6 +53,7 @@ They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree
 - [[https://github.com/baskerville/bspwm][Bspwm]]
 - [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
 - [[https://dunst-project.org][Dunst]]
+- [[https://github.com/hyprwm/Hyprland][Hyprland]]
 - [[https://github.com/labwc/labwc][LabWC]]
 - Mozilla Firefox
 - [[https://github.com/mpv-player/mpv][mpv]]
@@ -71,6 +74,8 @@ They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree
 
 Various desktop screenshots I've collected over the years. My rice game is so much
 better now!
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/hyprland.png]]
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/bspCol-Dirty.png]]
 
