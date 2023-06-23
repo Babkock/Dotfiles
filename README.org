@@ -19,17 +19,18 @@
 Welcome to my Dotfiles. This repository contains my personal configuration files for various
 GNU/Linux programs. You can view the configurations that are literate/self-documenting [[https://babkock.github.io/][on my GitHub Pages]] - and these can be
 tangled via Emacs Org mode. [[https://gitlab.com/Babkock/Dotfiles][This repository is mirrored here, on GitLab.]] This repository is old, from 2019, when I knew less about Linux,
-so cloning may take a while as it is large and has many pictures. Try cloning with =git clone --depth 1 git@gitlab.com:Babkock/Dotfiles.git=
+so cloning may take a while as it is large and has many pictures. Try cloning with =git clone --depth 1 https://github.com/Babkock/Dotfiles.git=
 
 ** fetch
-
-[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]]
 
 This collection includes my [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/fetch.org][Dotfiles fetcher script]] which retrieves the most current
 configuration files from their specific spots on the system, overwrites their copies in
 this repo, and adds them to the Git staging area. I rely on this script for almost all of my commits.
 
 * Programs Included
+
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]]
 
 The most commonly updated files in this collection are: my Emacs configuration; my Qutebrowser configuration, rice, and start page; my general
 rice/color scheme defined in [[https://github.com/Babkock/Dotfiles/blob/master/Xresources][Xresources]], [[https://github.com/Babkock/Dotfiles/blob/master/bspwm/README.org][Bspwmrc]], and [[https://github.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]; and my [[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zshrc]]. I do not use a display manager, so I use [[https://github.com/Babkock/Dotfiles/blob/master/xinitrc][xinitrc]].
