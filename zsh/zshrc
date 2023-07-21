@@ -9,8 +9,6 @@ export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 
-#source /home/babkock/.local/share/lscolors.sh
-
 #LSCOLORS=$LS_COLORS
 #ZLS_COLORS=$LS_COLORS
 if [ -v $TERM ]; then
@@ -25,12 +23,25 @@ fi
 export LSCOLORS=$LS_COLORS
 
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
-zstyle ':completion:*:parameters' list-colors '=*=32'
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' use-cache on
+zstyle ':completion:' cache-path "$HOME/.cache/zsh/.zcompcache"
+zstyle ':completion:*:parameters' list-colors '=*=1;35'
+zstyle ':completion:*:builtins' list-colors '=*=1;34'
+zstyle ':completion:*:aliases' list-colors '=*=1;33'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{yellow} %d %f'
+zstyle ':completion:*:warnings' format ' %F{red}no matches found %f'
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=5;241;1"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 export LANG=en_US.UTF-8
 
-bindkey '^[[Z' reverse-menu-complete
+setopt auto_cd
+setopt appendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+setopt hist_ignore_dups
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -53,6 +64,7 @@ fi
 
 if [ -v TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "alacritty" || ${TERM} = "kitty" ]]; then
+        # graphical terminal
         alias ls="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
         alias l="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
         alias lsla="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
@@ -101,8 +113,10 @@ if [ -v TERM ]; then
         alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc"
         alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
     elif [[ ${TERM} = "screen-256color" ]]; then
+        # tmux
         alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
     else
+        # login shell or SSH
         alias ls="ls --group-directories-first -F --color=auto"
         alias lsla="ls -l -A -h --group-directories-first -F --color=auto"
         alias l="ls --group-directories-first -F --color=auto"
@@ -139,16 +153,6 @@ if [ -v TERM ]; then
         alias egl="emacsclient -c -a 'emacs' -nw --eval \"(magit-log-all)\""
     fi
 fi
-
-function picp() {
-    if [ -z "$1" ]; then
-        printf "picp needs an argument\n"
-        false
-    else
-        scp -i ~/.ssh/laptop2pi "$1" pi@192.168.0.24:~
-        true
-    fi
-}
 
 function pf() {
     if [ -z "$1" ]; then
@@ -191,16 +195,6 @@ function y() {
     fi
 }
 
-function scr() {
-    if [ -z "$1" ]; then
-        printf "Please specify output filename\n" > /dev/stderr
-        false
-    else
-        scrot -z -p -q 90 "$1"
-        notify-send "Screenshot saved" "$1"
-    fi
-}
-
 function xs() {
     cd ../../..
     ./xbps-src build -C -f "$1"
@@ -214,14 +208,13 @@ j()
         echo "nnn is already running"
         return
     fi
-
     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
     \nnn -d -i -l 2 -GUHRQD "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
 
@@ -229,28 +222,12 @@ function wb() {
     swaybg -o eDP-1 -i "$1" -o HDMI-A-2 -i "$2"
 }
 
-function pipes() {
-    sudo modprobe v4l2loopback
-    sudo modprobe v4l2-async
-    sudo modprobe v4l2-mem2mem
-    sudo modprobe v4l2-dv-timings
-    sudo modprobe v4l2-fwnode
-    sudo sv down pipewire
-    sudo pkill -x pipewire
-    pipewire &
-}
-
-function portal() {
-    /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l DEBUG &
-    pkill -x swayidle
-}
-
 function backup() {
     if [ -z "$1" ]; then
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/redacted "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" tababcock@198.23.51.224:/home/www/tannerbabcock.com "$1"
         true
     fi
 }
@@ -274,17 +251,29 @@ function um() {
     echo "sda Unmounted"
 }
 
-alias b="ansiweather -l \"Denver\" -u imperial -H true -h false -p false -i false -s true"
+function b() {
+    pkill -x ssh-agent
+    eval $(ssh-agent) > /dev/null 2>&1
+    printf "SSH identities loaded\n"
+    ssh-add "$HOME/.ssh/gitlab_rsa" > /dev/null
+    ssh-add "$HOME/.ssh/github_rsa" > /dev/null
+    ssh-add "$HOME/.ssh/tbcom_ssh" > /dev/null
+}
+
+# show weather in Denver today
 alias ba="ansiweather -l \"Denver\" -u imperial -H true -h false -p false -i false -s true -f 4"
+# neofetch
 alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
-alias c="btm"
-alias ca="bat"
-alias co="conky"
-alias df="duf"
+alias co="btm"
+alias c="bat" # like cat
+alias df="duf" # like df
+# fzf file picker with preview
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
 alias i="tig"
 alias h="htop"
+# encrypt file with GPG
 alias ncr="gpg --encrypt --armor -r Tanner"
+# decrypt file and output (use > direct)
 alias dcr="gpg --decrypt"
 alias g="rg"
 alias gh="rg --context=4"
@@ -298,6 +287,7 @@ alias gcm="git commit -m"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gd="git diff"
+# git log with special formatting
 alias gl="git log --date=relative --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %C(yellow)(%cr) %C(bold blue) %an%Creset'"
 alias gw="git show"
 alias gr="git rm"
@@ -307,11 +297,15 @@ alias ggo="git remote get-url origin"
 alias gso="git remote set-url origin"
 alias ggu="git remote get-url upstream"
 alias gsu="git remote set-url upstream"
+# use these if branch is 'master'
 alias gpush="git push origin master"
 alias gpull="git pull origin master"
+# use these if branch is 'main'
 alias gpusm="git push origin main"
 alias gpulm="git pull origin main"
+# push 'master' to multiple remotes
 alias gpash="git push all master; git pull origin master; git pull upstream master"
+# push 'main' to multiple remotes
 alias gpasm="git push all main; git pull origin main; git pull upstream main"
 alias v="vim"
 alias vm="virt-manager"
@@ -333,9 +327,9 @@ alias o="pkill -x"
 alias u="kill"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
-alias q="feh"
-alias qw="nsxiv ."
-alias s="ssh redacted@redacted -p 2222"
+alias q="swayimg"
+alias qw="swayimg --all"
+alias s="ssh tababcock@198.23.51.224 -p 2222"
 alias se="pkill -x emacs; emacs --daemon"
 alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
@@ -358,13 +352,17 @@ alias x="sudo zsh"
 fpath+=$HOME/.zsh/typewritten
 fpath+=$HOME/.zsh/nix-zsh-completions
 fpath+=$HOME/.zsh/zsh-completions/src
+autoload -U compinit; compinit
 autoload -U promptinit; promptinit
 prompt typewritten
-autoload -U compinit; compinit
 
 source /home/babkock/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/babkock/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=""
 source /home/babkock/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/babkock/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
+source /home/babkock/.zsh/zsh-autopair/autopair.zsh
+source /home/babkock/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
 source /home/babkock/.zsh/zsh-nix-shell/nix-shell.plugin.zsh
 source /home/babkock/.zsh/you-should-use/you-should-use.plugin.zsh
 source /home/babkock/.zsh/completion.zsh
@@ -373,17 +371,32 @@ source /home/babkock/.zsh/correction.zsh
 source /home/babkock/.zsh/history.zsh
 source /home/babkock/.zsh/colored-man-pages.plugin.zsh
 
+bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift+Tab
+bindkey -M menuselect '^@' reverse-menu-complete
+bindkey -M menuselect '^[[27;2;13~' accept-and-hold # Shift+Enter
+bindkey -M menuselect '^{' clear-screen # Escape
+bindkey -M menuselect '^[[A' vi-up-line-or-history
+bindkey -M menuselect '^[[B' vi-down-line-or-history
+bindkey -M menuselect '^[[D' vi-backward-char
+bindkey -M menuselect '^[[C' vi-forward-char
+bindkey -M menuselect '^[[1;2D' beginning-of-buffer-or-history # Shift+Left Arrow
+bindkey -M menuselect '^[[1;2C' end-of-buffer-or-history # Shift+Right Arrow
+bindkey -M main '^[[A' history-substring-search-up
+bindkey -M main '^[[B' history-substring-search-down
+bindkey -M main '^Z' undo # Control+Z
+bindkey -M main '^Y' redo # Control+Y
+
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 export EDITOR=vim
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555"
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG="p:-preview-tui;v:imgview;g:!tig*;v:!vim"
 export NNN_COLORS="2365"
 export BAT_STYLE="header,header-filesize,header-filename,changes"
 export FZF_DEFAULT_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:italic,gutter:-1,hl:blue,hl+:bright-blue,query:bright-yellow,prompt:bright-yellow,pointer:black:dim,info:magenta,preview-bg:black,border:black:dim"
 export WOBSOCK="$HOME/.wob.sock"
-setopt auto_cd
 
-prompt_nix_shell_setup #"$@"
+prompt_nix_shell_setup "$@"
 
 colorscript -r

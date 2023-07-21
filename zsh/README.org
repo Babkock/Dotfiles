@@ -40,28 +40,28 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
 
 * Table of Contents :toc:
 - [[#theme][Theme]]
+  - [[#completion-styles][Completion Styles]]
 - [[#preferences][Preferences]]
 - [[#conditional-aliases][Conditional Aliases]]
   - [[#ssh][SSH]]
   - [[#terminal][Terminal]]
 - [[#functions][Functions]]
-  - [[#picp][picp]]
   - [[#pf][pf]]
   - [[#t][t]]
   - [[#y][y]]
-  - [[#scr][scr]]
   - [[#xs][xs]]
   - [[#j][j]]
   - [[#wb][wb]]
-  - [[#pipewire][Pipewire]]
-  - [[#xdg-desktop-portal][XDG-Desktop-Portal]]
   - [[#backup-website][Backup Website]]
   - [[#twitch][Twitch]]
   - [[#mount-external-encrypted-drive][Mount External Encrypted Drive]]
   - [[#unmount-external-encrypted-drive][Unmount External Encrypted Drive]]
+  - [[#ssh-agent][SSH Agent]]
 - [[#aliases][Aliases]]
 - [[#plugins][Plugins]]
+  - [[#keybindings][Keybindings]]
 - [[#environment-variables][Environment Variables]]
+- [[#tricks][Tricks]]
 
 * Theme
 
@@ -80,8 +80,6 @@ export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 
-#source /home/babkock/.local/share/lscolors.sh
-
 #LSCOLORS=$LS_COLORS
 #ZLS_COLORS=$LS_COLORS
 if [ -v $TERM ]; then
@@ -94,21 +92,39 @@ else
     export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
 fi
 export LSCOLORS=$LS_COLORS
+#+end_src
 
+** Completion Styles
+
+These are my styles for the various TAB-completion menus that appear in ZSH themes.
+
+#+begin_src sh :tangle .zshrc
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
-zstyle ':completion:*:parameters' list-colors '=*=32'
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' use-cache on
+zstyle ':completion:' cache-path "$HOME/.cache/zsh/.zcompcache"
+zstyle ':completion:*:parameters' list-colors '=*=1;35'
+zstyle ':completion:*:builtins' list-colors '=*=1;34'
+zstyle ':completion:*:aliases' list-colors '=*=1;33'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{yellow} %d %f'
+zstyle ':completion:*:warnings' format ' %F{red}no matches found %f'
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=5;241;1"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 #+end_src
 
 * Preferences
 
-Set some preferences. The first line here is responsible for making sure the Shift + TAB combination moves the selection backwards,
-like regular TAB moves forward.
+Set some preferences. Auto CD, and no duplicates in history.
 
 #+begin_src sh :tangle .zshrc
 export LANG=en_US.UTF-8
 
-bindkey '^[[Z' reverse-menu-complete
+setopt auto_cd
+setopt appendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+setopt hist_ignore_dups
 #+end_src
 
 * Conditional Aliases
@@ -198,6 +214,7 @@ All of these =ls= commands have flags to show directories first, show human-read
 #+begin_src sh :tangle .zshrc
 if [ -v TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "alacritty" || ${TERM} = "kitty" ]]; then
+        # graphical terminal
         alias ls="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
         alias l="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
         alias lsla="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
@@ -246,8 +263,10 @@ if [ -v TERM ]; then
         alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc"
         alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
     elif [[ ${TERM} = "screen-256color" ]]; then
+        # tmux
         alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
     else
+        # login shell or SSH
         alias ls="ls --group-directories-first -F --color=auto"
         alias lsla="ls -l -A -h --group-directories-first -F --color=auto"
         alias l="ls --group-directories-first -F --color=auto"
@@ -287,22 +306,6 @@ fi
 #+end_src
 
 * Functions
-
-** picp
-
-I used to use this function to send files to my Raspberry Pi.
-
-#+begin_src sh :tangle .zshrc
-function picp() {
-    if [ -z "$1" ]; then
-        printf "picp needs an argument\n"
-        false
-    else
-        scp -i ~/.ssh/laptop2pi "$1" pi@192.168.0.24:~
-        true
-    fi
-}
-#+end_src
 
 ** pf
 
@@ -364,22 +367,6 @@ function y() {
 }
 #+end_src
 
-** scr
-
-Take a screenshot with the given name.
-
-#+begin_src sh :tangle .zshrc
-function scr() {
-    if [ -z "$1" ]; then
-        printf "Please specify output filename\n" > /dev/stderr
-        false
-    else
-        scrot -z -p -q 90 "$1"
-        notify-send "Screenshot saved" "$1"
-    fi
-}
-#+end_src
-
 ** xs
 
 Compile a project with =xbps-src= from within the build directory. This is useful, and easier than typing "make", or changing directory to run the
@@ -395,7 +382,7 @@ function xs() {
 
 ** j
 
-A wrapper function for [[https://github.com/jarun/nnn][nnn]] that changes CD when it exits.
+A wrapper function for [[https://github.com/jarun/nnn][nnn]] that changes the current directory when it exits.
 
 #+begin_src sh :tangle .zshrc
 j()
@@ -405,14 +392,13 @@ j()
         echo "nnn is already running"
         return
     fi
-
     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
     \nnn -d -i -l 2 -GUHRQD "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
 #+end_src
@@ -427,36 +413,6 @@ function wb() {
 }
 #+end_src
 
-** Pipewire
-
-Carefully launches PipeWire. So, if you'd want to use some OBS, be sure to run =pipes=, and then =portal=, in that order, and make sure PipeWire and XDPW are both running. These steps cannot be automated any further than this. After that you can type "=obs=" somewhere to start it.
-
-#+begin_src sh :tangle .zshrc
-function pipes() {
-    sudo modprobe v4l2loopback
-    sudo modprobe v4l2-async
-    sudo modprobe v4l2-mem2mem
-    sudo modprobe v4l2-dv-timings
-    sudo modprobe v4l2-fwnode
-    sudo sv down pipewire
-    sudo pkill -x pipewire
-    pipewire &
-}
-#+end_src
-
-And notice the ampersands. Even if you Control+C your way out of =pipes= and =portal=, there will still be leftover processes that must be discarded with =fg= or =pkill=.
-
-** XDG-Desktop-Portal
-
-Launches the global XDG-Desktop-Portal, with XDPW right after it. These two commands must be run together, in a shell, and not in a startup or configuration file.
-
-#+begin_src sh :tangle .zshrc
-function portal() {
-    /usr/libexec/xdg-desktop-portal -r & /usr/libexec/xdg-desktop-portal-wlr -l DEBUG &
-    pkill -x swayidle
-}
-#+end_src
-
 ** Backup Website
 
 This shell function backs up my website. It takes one argument, the output directory to store the backup in.
@@ -467,7 +423,7 @@ function backup() {
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/redacted "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" tababcock@198.23.51.224:/home/www/tannerbabcock.com "$1"
         true
     fi
 }
@@ -483,6 +439,8 @@ function twitch() {
 
 ** Mount External Encrypted Drive
 
+My external encrypted hard drive is automatically mounted on boot, but this is how to mount it manually.
+
 #+begin_src sh :tangle .zshrc
 function mm() {
     sudo cryptsetup luksOpen /dev/sda mega
@@ -496,11 +454,28 @@ function mm() {
 
 ** Unmount External Encrypted Drive
 
+This is how to unmount that drive.
+
 #+begin_src sh :tangle .zshrc
 function um() {
     sudo umount /mnt/mega
     sudo cryptsetup luksClose mega
     echo "sda Unmounted"
+}
+#+end_src
+
+** SSH Agent
+
+I have to do this every time I use Git, or log in to my website.
+
+#+begin_src sh :tangle .zshrc
+function b() {
+    pkill -x ssh-agent
+    eval $(ssh-agent) > /dev/null 2>&1
+    printf "SSH identities loaded\n"
+    ssh-add "$HOME/.ssh/gitlab_rsa" > /dev/null
+    ssh-add "$HOME/.ssh/github_rsa" > /dev/null
+    ssh-add "$HOME/.ssh/tbcom_ssh" > /dev/null
 }
 #+end_src
 
@@ -513,7 +488,6 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 
 | Command | Arguments                | What It Does                                        |
 |---------+--------------------------+-----------------------------------------------------|
-| =b=       | N/A                      | Show ANSI weather in Denver today                   |
 | =ba=      | N/A                      | Snow 5-day forecast in Denver                       |
 | =bb=      | N/A                      | Run neofetch with fancy bars                        |
 | =c=       | N/A                      | Run btm task manager                                |
@@ -535,7 +509,7 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =ggo=     | N/A                      | Returns URL for repo's origin                       |
 | =ggu=     | N/A                      | Returns URL for repo's upstream                     |
 | =gh=      | Pattern, file name       | Run Ripgrep with context with given pattern on file |
-| =gl=      | N/A                      | Run Git log                                         |
+| =gl=      | N/A                      | Run Git log with nice formatting                    |
 | =gm=      | File name, file name     | Move or rename file and add to staging area         |
 | =gp=      | Options                  | GNUPG                                               |
 | =gpull=   | N/A                      | Git Pull Origin master                              |
@@ -566,8 +540,8 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =o=       | Process name             | Kill the given process                              |
 | =p=       | N/A                      | Run Flowtop                                         |
 | =po=      | N/A                      | Run Gotop                                           |
-| =q=       | File name                | Open given file in Feh                              |
-| =qw=      | N/A                      | Open current directory in SXIV                      |
+| =q=       | File name                | Open given file in Swayimg                          |
+| =qw=      | N/A                      | Open current directory in Swayimg                   |
 | =r=       | Directory                | Run Ranger on given or current directory            |
 | =s=       | N/A                      | Log in to my website via SSH                        |
 | =se=      | N/A                      | Restart Emacs Server                                |
@@ -587,24 +561,27 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =ud=      | N/A                      | Unmount External SSD                                |
 | =v=       | File name                | Open given file in Vim                              |
 | =vm=      | N/A                      | Run Virt-Manager                                    |
-| =wh=      | Command, alias, function | Which                                               |
+| =wh=      | Command/alias/function    | Which                                               |
 | =x=       | N/A                      | Start Zsh as Root                                   |
 | =xx=      | N/A                      | Reboot system immediately                           |
 | =y=       | File name                | Open given file in MuPDF                            |
 | =z=       | Directory                | Run Zoxide on given directory                       |
 
 #+begin_src sh :tangle .zshrc
-alias b="ansiweather -l \"Denver\" -u imperial -H true -h false -p false -i false -s true"
+# show weather in Denver today
 alias ba="ansiweather -l \"Denver\" -u imperial -H true -h false -p false -i false -s true -f 4"
+# neofetch
 alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
-alias c="btm"
-alias ca="bat"
-alias co="conky"
-alias df="duf"
+alias co="btm"
+alias c="bat" # like cat
+alias df="duf" # like df
+# fzf file picker with preview
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
 alias i="tig"
 alias h="htop"
+# encrypt file with GPG
 alias ncr="gpg --encrypt --armor -r Tanner"
+# decrypt file and output (use > direct)
 alias dcr="gpg --decrypt"
 alias g="rg"
 alias gh="rg --context=4"
@@ -618,6 +595,7 @@ alias gcm="git commit -m"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gd="git diff"
+# git log with special formatting
 alias gl="git log --date=relative --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %C(yellow)(%cr) %C(bold blue) %an%Creset'"
 alias gw="git show"
 alias gr="git rm"
@@ -627,11 +605,15 @@ alias ggo="git remote get-url origin"
 alias gso="git remote set-url origin"
 alias ggu="git remote get-url upstream"
 alias gsu="git remote set-url upstream"
+# use these if branch is 'master'
 alias gpush="git push origin master"
 alias gpull="git pull origin master"
+# use these if branch is 'main'
 alias gpusm="git push origin main"
 alias gpulm="git pull origin main"
+# push 'master' to multiple remotes
 alias gpash="git push all master; git pull origin master; git pull upstream master"
+# push 'main' to multiple remotes
 alias gpasm="git push all main; git pull origin main; git pull upstream main"
 alias v="vim"
 alias vm="virt-manager"
@@ -653,9 +635,9 @@ alias o="pkill -x"
 alias u="kill"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
-alias q="feh"
-alias qw="nsxiv ."
-alias s="ssh redacted@redacted -p 2222"
+alias q="swayimg"
+alias qw="swayimg --all"
+alias s="ssh tababcock@198.23.51.224 -p 2222"
 alias se="pkill -x emacs; emacs --daemon"
 alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
@@ -682,6 +664,7 @@ I use the following shell plug-ins, which are loaded from the =~/.zsh= directory
 
 - [[https://github.com/reobin/typewritten][Typewritten theme]]
 - [[http://github.com/zsh-users/zsh-syntax-highlighting][zsh-syntax-highlighting]]
+- [[https://github.com/zsh-users/zsh-history-substring-search][zsh-history-substring-search]]
 - [[https://github.com/zsh-users/zsh-autosuggestions][zsh-autosuggestions]]
 - [[https://github.com/zsh-users/zsh-completions][zsh-completions]]
 - [[https://github.com/joshskidmore/zsh-fzf-history-search][zsh-fzf-history-search]]
@@ -693,13 +676,17 @@ I use the following shell plug-ins, which are loaded from the =~/.zsh= directory
 fpath+=$HOME/.zsh/typewritten
 fpath+=$HOME/.zsh/nix-zsh-completions
 fpath+=$HOME/.zsh/zsh-completions/src
+autoload -U compinit; compinit
 autoload -U promptinit; promptinit
 prompt typewritten
-autoload -U compinit; compinit
 
 source /home/babkock/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/babkock/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=""
 source /home/babkock/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/babkock/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
+source /home/babkock/.zsh/zsh-autopair/autopair.zsh
+source /home/babkock/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
 source /home/babkock/.zsh/zsh-nix-shell/nix-shell.plugin.zsh
 source /home/babkock/.zsh/you-should-use/you-should-use.plugin.zsh
 source /home/babkock/.zsh/completion.zsh
@@ -707,6 +694,27 @@ source /home/babkock/.zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
 source /home/babkock/.zsh/correction.zsh
 source /home/babkock/.zsh/history.zsh
 source /home/babkock/.zsh/colored-man-pages.plugin.zsh
+#+end_src
+
+** Keybindings
+
+Add more keybindings to the completion menu, history substring search on up and down arrows, and undo/redo functionality.
+
+#+begin_src sh :tangle .zshrc
+bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift+Tab
+bindkey -M menuselect '^@' reverse-menu-complete
+bindkey -M menuselect '^[[27;2;13~' accept-and-hold # Shift+Enter
+bindkey -M menuselect '^{' clear-screen # Escape
+bindkey -M menuselect '^[[A' vi-up-line-or-history
+bindkey -M menuselect '^[[B' vi-down-line-or-history
+bindkey -M menuselect '^[[D' vi-backward-char
+bindkey -M menuselect '^[[C' vi-forward-char
+bindkey -M menuselect '^[[1;2D' beginning-of-buffer-or-history # Shift+Left Arrow
+bindkey -M menuselect '^[[1;2C' end-of-buffer-or-history # Shift+Right Arrow
+bindkey -M main '^[[A' history-substring-search-up
+bindkey -M main '^[[B' history-substring-search-down
+bindkey -M main '^Z' undo # Control+Z
+bindkey -M main '^Y' redo # Control+Y
 #+end_src
 
 * Environment Variables
@@ -717,15 +725,19 @@ These next lines accomplish a few things. They let me use directory-changers lik
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 export EDITOR=vim
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555"
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG="p:-preview-tui;v:imgview;g:!tig*;v:!vim"
 export NNN_COLORS="2365"
 export BAT_STYLE="header,header-filesize,header-filename,changes"
 export FZF_DEFAULT_OPTS="--border=horizontal --color=bg+:black,fg+:bright-green:italic,gutter:-1,hl:blue,hl+:bright-blue,query:bright-yellow,prompt:bright-yellow,pointer:black:dim,info:magenta,preview-bg:black,border:black:dim"
 export WOBSOCK="$HOME/.wob.sock"
-setopt auto_cd
+#+end_src
 
-prompt_nix_shell_setup #"$@"
+* Tricks
+
+#+begin_src sh :tangle .zshrc
+prompt_nix_shell_setup "$@"
 
 colorscript -r
 #+end_src
