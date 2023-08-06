@@ -5,6 +5,15 @@
     color:#fdeadb;
 }
 
+tooltip {
+    border:none;
+    border-radius:0;
+    color:#fdeadb;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    margin-bottom:1px;
+    padding:0;
+}
+
 #title, #window {
     padding-left:6px;
     color:#fdeadb;
@@ -17,7 +26,7 @@
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
-#cpu {
+#cpu, #wireplumber.muted, #pulseaudio.muted {
     color:#d0484e;
     background:linear-gradient(180deg, rgba(196, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
@@ -38,7 +47,7 @@
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
-#memory, #backlight {
+#memory, #backlight, #wireplumber {
     color:#25c192;
     background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
@@ -88,7 +97,7 @@
     background:linear-gradient(0deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.1));
 }
 
-#battery, #idle_inhibitor {
+#battery, #idle_inhibitor, #pulseaudio.bluetooth {
     color:#3996c0;
     background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
@@ -97,7 +106,7 @@
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
-#idle_inhibitor {
+#idle_inhibitor, #pulseaudio.bluetooth {
     border-radius:40px 0px 0px 40px;
     margin-left:2px;
 }

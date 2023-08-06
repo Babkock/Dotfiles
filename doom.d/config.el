@@ -1,7 +1,7 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; no-byte-compile: t; coding: utf-8-unix; -*-
 
 (setq user-full-name "Tanner Babcock"
-      user-mail-address "babkock@protonmail.com")
+      user-mail-address (concat "babkock" "@" "protonmail" "." "com"))
 
 (setq gc-cons-threshold 134217738
       gc-cons-percentage 0.1
@@ -50,8 +50,7 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-; (setq doom-theme 'doom-tomorrow-night)
-(setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-horizon)
 (setq which-key-idle-delay 0.3
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -91,8 +90,8 @@
 (add-hook! 'writeroom-mode-disable-hook 'mixed-pitch-mode)
 
 ;(set-frame-parameter (selected-frame) 'alpha '(70 70))
-(set-frame-parameter (selected-frame) 'alpha 70)
-(add-to-list 'default-frame-alist '(alpha 70 70))
+(set-frame-parameter (selected-frame) 'alpha 90)
+(add-to-list 'default-frame-alist '(alpha 90 90))
 (add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
 (add-hook! 'dired-mode-hook 'garbage-collect)
 
@@ -301,10 +300,6 @@
         :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.95)
         :action doom/reload)
-;      ("Change Theme"
-;        :icon (all-the-icons-faicon "paint-brush" :face 'all-the-icons-purple :height 0.94)
-;        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpurple) :height 0.95)
-;        :action consult-theme)
       ("Music Player"
         :icon (all-the-icons-faicon "music" :face 'all-the-icons-cyan :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan) :height 0.95)
@@ -357,44 +352,48 @@
     :desc "Open Elfeed" :ne "e" #'elfeed
     :desc "Open elfeed.org" :ne "E" (cmd! (find-file "~/org/elfeed.org"))
     :desc "Reset Elfeed" :ne "n" #'elfeed-db-unload
-    :desc "Set Theme" :ne "T" #'consult-theme
+    :desc "Set Theme" :ne "T" #'load-theme
     :desc "Open video.org" :ne "v" (cmd! (find-file "~/org/video.org"))
     :desc "Quit" :ne "Q" #'save-buffers-kill-terminal)
 
 ;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+(add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
 
 (require 'elfeed-goodies)
+(require 'elfeed-org)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (after! elfeed
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
-    (setq elfeed-search-filter "@2-weeks-ago +unread"
+    (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
           elfeed-use-curl t
-          elfeed-curl-max-connections 28
-          elfeed-curl-timeout 10)
+          elfeed-curl-max-connections 20
+          elfeed-curl-timeout 8
+          elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
     (defface git-entry
-        '((t :foreground "#e93479"))
+        '((t :foreground "#d04b4e"))
         "Entry for Git")
     (defface reddit-entry
-        '((t :foreground "#d48eb6"))
+        '((t :foreground "#f28735"))
         "Entry for Reddit")
     (defface youtube-entry
-        '((t :foreground "#9d8af7"))
+        '((t :foreground "#f74e8b"))
         "Entry for YouTube")
     (defface torrents-entry
-        '((t :foreground "#eecece"))
+        '((t :foreground "#fdeadb"))
         "Entry for torrents")
     (defface stack-entry
-        '((t :foreground "#81db54"))
+        '((t :foreground "#25c192"))
         "Entry for Stack")
     (defface news-entry
-        '((t :foreground "#4869ee"))
+        '((t :foreground "#49a6d0"))
         "Entry for News")
     (defface tumblr-entry
-        '((t :foreground "#a9668c"))
+        '((t :foreground "#d8a89a"))
         "Entry for Tumblr")
     (defface tech-entry
-        '((t :foreground "#f90"))
+        '((t :foreground "#ffff00"))
         "Entry for Tech")
 
 (push '(git git-entry) elfeed-search-face-alist)
@@ -407,21 +406,17 @@
 (push '(tech tech-entry) elfeed-search-face-alist)
 
 (custom-set-faces!
-        '(elfeed-search-feed-face :foreground "#70ca44")
-        '(elfeed-search-tag-face :foreground "#e9b64b")
-        '(elfeed-search-title-face :inherit variable-pitch :slant italic)
-        '(elfeed-search-date-face :foreground "#ffdfdf")
-        '(elfeed-search-last-update-face :foreground "#8c79e0"))
-    (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
-    (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
-    (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-    (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
-    (add-hook! 'elfeed-show-mode-hook #'elfeed-update)
-    (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-;    (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
-;    (add-hook! 'elfeed-update-init-hook 'garbage-collect)
-    (add-hook! 'elfeed-db-unload-hook 'garbage-collect))
+    '(elfeed-search-feed-face :foreground "#25c192")
+    '(elfeed-search-tag-face :foreground "#f28735")
+    '(elfeed-search-title-face :inherit variable-pitch :slant italic)
+    '(elfeed-search-date-face :foreground "#d8a89a")
+    '(elfeed-search-last-update-face :foreground "#49a6d0"))
+(add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
+(add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
+(add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+(add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
+(add-hook! 'elfeed-show-mode-hook 'garbage-collect))
 
 (after! elfeed-goodies
     (elfeed-goodies/setup)
@@ -500,11 +495,11 @@
 
 (after! magit
     (custom-set-faces!
-        '(magit-log-author :foreground "#e93479")
-        '(magit-log-date :foreground "#f9c65b")
-        '(magit-hash :foreground "#81db54")
-        '(magit-filename :foreground "#9d8af7")
-        '(magit-branch-current :foreground "#5879fe"))
+        '(magit-log-author :foreground "#d04b4e")
+        '(magit-log-date :foreground "#f28735")
+        '(magit-hash :foreground "#25c192")
+        '(magit-filename :foreground "#49a6d0")
+        '(magit-branch-current :foreground "#f74e8b"))
     (add-hook! 'magit-status-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'magit-log-mode-hook (hide-mode-line-mode 1))
     (add-hook! 'magit-mode-hook 'garbage-collect)
@@ -561,13 +556,13 @@
     (mpdnotify))
 
 (custom-set-faces!
-    '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#9d8af7")
-    '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#e93478")
-    '(mpdel-tablist-album-face :inherit variable-pitch :weight bold :slant italic :foreground "#81db54")
-    '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#5879fe")
-    '(mpdel-playlist-current-song-face :inherit variable-pitch :weight bold :slant italic :foreground "#efefef" :background "#000")
-    '(mpdel-tablist-disc-face :foreground "#d48eb6")
-    '(mpdel-tablist-date-face :foreground "#f9c65b")
+    '(mpdel-tablist-song-name-face :inherit variable-pitch :weight bold :foreground "#f74e8b")
+    '(mpdel-tablist-artist-face :inherit variable-pitch :weight bold :foreground "#d04b4e")
+    '(mpdel-tablist-album-face :inherit variable-pitch :weight bold :slant italic :foreground "#25c192")
+    '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#49a6d0")
+    '(mpdel-playlist-current-song-face :inherit variable-pitch :weight bold :slant italic :foreground "#fdeadb" :background "#000")
+    '(mpdel-tablist-disc-face :foreground "#d8a89a")
+    '(mpdel-tablist-date-face :foreground "#f28735")
     '(header-line :height 1.1))
 
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)

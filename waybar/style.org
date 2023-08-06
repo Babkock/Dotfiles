@@ -1,7 +1,7 @@
 #+TITLE: Waybar Style
 #+AUTHOR: Tanner Babcock
 #+EMAIL: babkock@protonmail.com
-#+DESCRIPTION: The CSS configuration for Waybar. This literate configuration outputs three CSS files, one for each of the Waybars.
+#+DESCRIPTION: The CSS configuration for Waybar. This literate configuration outputs four CSS files, one for each of the Waybars.
 #+KEYWORDS: tanner babcock, tanner, babcock, emacs, linux, gnu linux, waybar, wayland, compositor, sway, river, labwc, sway wm, experimental, noise, technology, open source
 #+LANGUAGE: en
 #+STARTUP: showeverything
@@ -46,6 +46,7 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#memorybacklight][Memory/Backlight]]
   - [[#workspaces][Workspaces]]
   - [[#battery][Battery]]
+  - [[#bluetooth][Bluetooth]]
   - [[#clocknetwork][Clock/Network]]
 - [[#river-waybar-style][River Waybar Style]]
   - [[#all-1][All]]
@@ -58,7 +59,7 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#battery-1][Battery]]
   - [[#clock][Clock]]
   - [[#network][Network]]
-  - [[#bluetooth][Bluetooth]]
+  - [[#bluetooth-1][Bluetooth]]
 - [[#labwc-waybar-style][LabWC Waybar Style]]
   - [[#all-2][All]]
   - [[#cpu-2][CPU]]
@@ -68,10 +69,22 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#taskbar][Taskbar]]
   - [[#clocknetwork-1][Clock/Network]]
   - [[#mpd-2][MPD]]
+- [[#hyprland-waybar-style][Hyprland Waybar Style]]
+  - [[#all-3][All]]
+  - [[#title-1][Title]]
+  - [[#mpd-3][MPD]]
+  - [[#cpu-3][CPU]]
+  - [[#pulseaudiodisk-3][Pulseaudio/Disk]]
+  - [[#memorybacklight-3][Memory/Backlight]]
+  - [[#workspaces-2][Workspaces]]
+  - [[#battery-3][Battery]]
+  - [[#clock-1][Clock]]
+  - [[#network-1][Network]]
+  - [[#bluetooth-2][Bluetooth]]
 
 * Sway Waybar Style
 
-This is the Sway Waybar style. Load this document into Emacs, and turn on Rainbow mode for extra fun! Now these Org documents serve yet another purpose. The colors for each of the three CSS files match the rices for *Sway*, *River*, and *LabWC*.
+This is the Sway Waybar style. Load this document into Emacs, and turn on Rainbow mode for extra fun! Now these Org documents serve yet another purpose. The colors for each of the four CSS files match the rices for *Sway*, *River*, *LabWC*, and *Hyprland*.
 
 ** All
 
@@ -83,6 +96,15 @@ Notice the space before the asterisk.
     font-size:21px;
     background:transparent;
     color:#efefef;
+}
+
+tooltip {
+    border:none;
+    border-radius:0;
+    color:#efefef;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    margin-bottom:1px;
+    padding:0;
 }
 #+end_src
 
@@ -107,13 +129,13 @@ Notice the space before the asterisk.
 ** CPU
 
 #+begin_src css :tangle style.css
-#cpu {
-    color:#fc3c35;
-    background:linear-gradient(180deg, rgba(208, 56, 68, 0.7), rgba(0, 0, 0, 0.5));
+#cpu, #wireplumber.muted, #pulseaudio.muted {
+    color:#c94b3c;
+    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
-    padding-left:12px;
-    padding-right:12px;
+    padding-left:10px;
+    padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -126,8 +148,8 @@ Notice the space before the asterisk.
     background:linear-gradient(180deg, rgba(222, 220, 145, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
+    padding-left:10px;
+    padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -135,13 +157,13 @@ Notice the space before the asterisk.
 ** Memory/Backlight
 
 #+begin_src css :tangle style.css
-#memory, #backlight {
+#memory, #backlight, #wireplumber {
     color:#40a789;
     background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
+    padding-left:10px;
+    padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -164,13 +186,13 @@ Notice the space before the asterisk.
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(180deg, rgba(171, 43, 27, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
     box-shadow:inherit;
     text-shadow:inherit;
     border-radius:0px 0px 0px 0px;
     border:0px solid transparent;
-    color:#b93b2b;
-    text-shadow:3px 3px rgba(171, 43, 27, 0.6);
+    color:#c94b3b;
+    text-shadow:3px 3px rgba(181, 53, 27, 0.6);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
@@ -191,14 +213,65 @@ Notice the space before the asterisk.
 ** Battery
 
 #+begin_src css :tangle style.css
-#battery {
-    color:#61b8a6;
-    background:linear-gradient(180deg, rgba(107, 194, 176, 0.7), rgba(0, 0, 0, 0.5));
+#battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
+    color:#61b8b6;
+    background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+#+end_src
+
+** Bluetooth
+
+#+begin_src css :tangle style.css
+#bluetooth.off {
+    padding-left:9px;
+    padding-right:9px;
+    margin-left:0;
+    margin-right:0;
+}
+
+#bluetooth.on {
+    color:#c94b3b;
+    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.connected, #bluetooth.connected.pairable {
+    color:#50b799;
+    background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+    color:#61b8b6;
+    background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.discovering {
+    color:#dedc91;
+    background:linear-gradient(0deg, rgba(222, 220, 145, 0.6), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
 
@@ -227,6 +300,15 @@ Notice the space before the asterisk.
     background:transparent;
     color:#fdeadb;
 }
+
+tooltip {
+    border:none;
+    border-radius:0;
+    color:#fdeadb;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    margin-bottom:1px;
+    padding:0;
+}
 #+end_src
 
 ** Title
@@ -252,7 +334,7 @@ Notice the space before the asterisk.
 ** CPU
 
 #+begin_src css :tangle river.css
-#cpu {
+#cpu, #wireplumber.muted, #pulseaudio.muted {
     color:#d0484e;
     background:linear-gradient(180deg, rgba(196, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
@@ -281,7 +363,7 @@ Notice the space before the asterisk.
 ** Memory/Backlight
 
 #+begin_src css :tangle river.css
-#memory, #backlight {
+#memory, #backlight, #wireplumber {
     color:#25c192;
     background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
@@ -339,7 +421,7 @@ Notice the space before the asterisk.
 ** Battery
 
 #+begin_src css :tangle river.css
-#battery, #idle_inhibitor {
+#battery, #idle_inhibitor, #pulseaudio.bluetooth {
     color:#3996c0;
     background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;
@@ -348,7 +430,7 @@ Notice the space before the asterisk.
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
-#idle_inhibitor {
+#idle_inhibitor, #pulseaudio.bluetooth {
     border-radius:40px 0px 0px 40px;
     margin-left:2px;
 }
@@ -570,10 +652,239 @@ Notice the space before the asterisk.
 }
 #+end_src
 
+* Hyprland Waybar Style
+
+** All
+
+#+begin_src css :tangle hyprland.css
+ * {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#fdeadb;
+}
+
+tooltip {
+    border:none;
+    border-radius:0;
+    color:#fdeadb;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    margin-bottom:1px;
+    padding:0;
+}
+#+end_src
+
+** Title
+
+#+begin_src css :tangle hyprland.css
+#title, #window {
+    padding-left:6px;
+    color:#fdeadb;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** MPD
+
+#+begin_src css :tangle hyprland.css
+#mpd, #bluetooth.off {
+    padding-right:6px;
+    color:#fdeadb;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** CPU
+
+#+begin_src css :tangle hyprland.css
+#cpu, #wireplumber.muted, #pulseaudio.muted {
+    color:#d0484e;
+    background:linear-gradient(180deg, rgba(196, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Pulseaudio/Disk
+
+#+begin_src css :tangle hyprland.css
+#pulseaudio, #disk {
+    color:#f28735;
+    background:linear-gradient(180deg, rgba(226, 119, 53, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:2px;
+    margin-right:0;
+    border-radius:40px 0px 0px 40px;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Memory/Backlight
+
+#+begin_src css :tangle hyprland.css
+#memory, #backlight, #wireplumber {
+    color:#25c192;
+    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#backlight {
+    border-radius:0px 40px 40px 0px;
+    margin-right:2px;
+}
+#+end_src
+
+** Workspaces
+
+#+begin_src css :tangle hyprland.css
+#workspaces button, #tags button {
+    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
+    padding-left:16px;
+    padding-right:17px;
+    margin-left:1px;
+    margin-right:1px;
+    border-radius:40px 40px 40px 40px;
+    border:0px solid transparent;
+    color:#fc3c35;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#workspaces button:hover, #tags button:hover {
+    background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
+    box-shadow:inherit;
+    text-shadow:inherit;
+    margin-left:1px;
+    margin-right:1px;
+    border-radius:40px 40px 40px 40px;
+    border:0px solid transparent;
+    color:#bcbcbc;
+    text-shadow:3px 3px rgba(247, 78, 139, 0.5);
+}
+
+#workspaces button.focused, #tags button.focused, #tags button.focused.occupied, #workspaces button.active {
+    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
+}
+
+#workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover, #workspaces button.active:hover {
+    text-shadow:3px 3px rgba(21, 176, 130, 0.7);
+}
+
+#tags button.occupied {
+    background:linear-gradient(0deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.1));
+}
+#+end_src
+
+** Battery
+
+#+begin_src css :tangle hyprland.css
+#battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
+    color:#3996c0;
+    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#idle_inhibitor, #pulseaudio.bluetooth {
+    border-radius:40px 0px 0px 40px;
+    margin-left:2px;
+}
+#+end_src
+
+** Clock
+
+#+begin_src css :tangle hyprland.css
+#custom-clock {
+    color:#d8a89a;
+    background:linear-gradient(180deg, rgba(200, 152, 138, 0.7), rgba(0, 0, 0, 0.1));
+    border-radius:0px 40px 40px 0px;
+    margin-left:0;
+    margin-right:2px;
+    padding-left:12px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Network
+
+#+begin_src css :tangle hyprland.css
+#network {
+   color:#f74e8b;
+   background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
+   border-radius:0px 40px 40px 0px;
+   margin-left:0;
+   margin-right:2px;
+   padding-left:11px;
+   padding-right:11px;
+   text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+** Bluetooth
+
+#+begin_src css :tangle hyprland.css
+#bluetooth.off {
+    padding-left:9px;
+    padding-right:9px;
+    margin-left:0;
+    margin-right:0;
+}
+
+#bluetooth.on {
+    color:#d0484e;
+    background:linear-gradient(180deg, rgba(186, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.connected, #bluetooth.connected.pairable {
+    color:#25c192;
+    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+    color:#3996c0;
+    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.discovering {
+    color:#f9c65b;
+    background:linear-gradient(0deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+#+end_src
+
+
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2022 Tanner Babcock.</p>
+        <p>Copyright &copy; 2023 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;

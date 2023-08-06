@@ -43,50 +43,54 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#clock][Clock]]
   - [[#cpu][CPU]]
   - [[#memory][Memory]]
+  - [[#disk][Disk]]
+  - [[#temperature][Temperature]]
   - [[#battery][Battery]]
   - [[#backlight][Backlight]]
   - [[#pulseaudio][Pulseaudio]]
 - [[#sway-monitor-bar][Sway Monitor Bar]]
   - [[#appearance-1][Appearance]]
   - [[#window][Window]]
-  - [[#battery-1][Battery]]
+  - [[#idle-inhibit][Idle Inhibit]]
   - [[#network][Network]]
-  - [[#backlight-1][Backlight]]
-  - [[#disk][Disk]]
+  - [[#wireplumber][Wireplumber]]
+  - [[#bluetooth][Bluetooth]]
+  - [[#disk-1][Disk]]
   - [[#clock-1][Clock]]
+- [[#sway-tv-bar][Sway TV Bar]]
 - [[#river-laptop-bar][River Laptop Bar]]
   - [[#appearance-2][Appearance]]
   - [[#mpd-1][MPD]]
   - [[#clock-2][Clock]]
   - [[#cpu-1][CPU]]
   - [[#memory-1][Memory]]
-  - [[#battery-2][Battery]]
-  - [[#backlight-2][Backlight]]
+  - [[#battery-1][Battery]]
+  - [[#backlight-1][Backlight]]
   - [[#pulseaudio-1][Pulseaudio]]
 - [[#river-monitor-bar][River Monitor Bar]]
   - [[#appearance-3][Appearance]]
   - [[#window-1][Window]]
-  - [[#battery-3][Battery]]
+  - [[#battery-2][Battery]]
   - [[#network-1][Network]]
-  - [[#backlight-3][Backlight]]
-  - [[#disk-1][Disk]]
+  - [[#backlight-2][Backlight]]
+  - [[#disk-2][Disk]]
   - [[#clock-3][Clock]]
 - [[#labwc-laptop-bar][LabWC Laptop Bar]]
   - [[#appearance-4][Appearance]]
   - [[#mpd-2][MPD]]
   - [[#clock-4][Clock]]
   - [[#cpu-2][CPU]]
-  - [[#battery-4][Battery]]
+  - [[#battery-3][Battery]]
   - [[#memory-2][Memory]]
-  - [[#backlight-4][Backlight]]
+  - [[#backlight-3][Backlight]]
   - [[#pulseaudio-2][Pulseaudio]]
 - [[#labwc-monitor-bar][LabWC Monitor Bar]]
   - [[#appearance-5][Appearance]]
   - [[#mpd-3][MPD]]
-  - [[#disk-2][Disk]]
-  - [[#battery-5][Battery]]
+  - [[#disk-3][Disk]]
+  - [[#battery-4][Battery]]
   - [[#network-2][Network]]
-  - [[#backlight-5][Backlight]]
+  - [[#backlight-4][Backlight]]
   - [[#clock-5][Clock]]
 - [[#hyprland-laptop-bar][Hyprland Laptop Bar]]
   - [[#appearance-6][Appearance]]
@@ -95,23 +99,24 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#clock-6][Clock]]
   - [[#cpu-3][CPU]]
   - [[#memory-3][Memory]]
-  - [[#battery-6][Battery]]
-  - [[#backlight-6][Backlight]]
+  - [[#battery-5][Battery]]
+  - [[#backlight-5][Backlight]]
   - [[#pulseaudio-3][Pulseaudio]]
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
   - [[#appearance-7][Appearance]]
   - [[#disk-internal-ssd][Disk (Internal SSD)]]
-  - [[#bluetooth][Bluetooth]]
-  - [[#idle-inhibit][Idle Inhibit]]
-  - [[#battery-7][Battery]]
+  - [[#temperature-1][Temperature]]
+  - [[#wireplumber-1][Wireplumber]]
+  - [[#bluetooth-1][Bluetooth]]
+  - [[#idle-inhibit-1][Idle Inhibit]]
   - [[#network-3][Network]]
   - [[#clock-7][Clock]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-8][Appearance]]
   - [[#weather][Weather]]
-  - [[#bluetooth-1][Bluetooth]]
+  - [[#bluetooth-2][Bluetooth]]
   - [[#memory-4][Memory]]
-  - [[#disk-3][Disk]]
+  - [[#disk-4][Disk]]
   - [[#cpu-4][CPU]]
   - [[#clock-8][Clock]]
 
@@ -127,11 +132,11 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 #+begin_src json :tangle config.json
 [{
     "position": "bottom",
-    "height": 38,
+    "height": 40,
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "temperature", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -144,11 +149,11 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
              "3": "",
              "4": "",
              "5": "",
-             "6": "",
-             "7": "",
-             "8": "",
+             "6": "󰭹",
+             "7": "",
+            "8": "",
+            "9": "",
              "urgent": "",
-             "focused": "",
              "default": ""
          }
     },
@@ -162,17 +167,20 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     #+begin_src json :tangle config.json
     "mpd": {
         "server": "127.0.0.2",
-        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+        "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
         "format-disconnected": " ",
         "format-stopped": "{consumeIcon}{singleIcon} ",
-        "title-len": 34,
+        "title-len": 35,
         "unknown-tag": "N/A",
         "interval": 1,
+        "on-click": "mpc --host=127.0.0.2 toggle",
+        "on-click-right": "mpc --host=127.0.0.2 next",
+        "on-click-middle": "mpc --host=127.0.0.2 prev",
         "consume-icons": {
             "on": " "
         },
         "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
+            "off": " ",
             "on": " "
         },
         "repeat-icons": {
@@ -220,6 +228,30 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     },
 #+end_src
 
+** Disk
+
+#+begin_src json :tangle config.json
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": "󰋊 <span style=\"italic\">{free}</span>",
+    "format-alt": "󰋊 {used}",
+    "tooltip": true,
+    "tooltip-format": "{percentageUsed}% of {total}"
+},
+#+end_src
+
+** Temperature
+
+#+begin_src json :tangle config.json
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+#+end_src
+
 ** Battery
 
 #+begin_src json :tangle config.json
@@ -241,40 +273,44 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 ** Backlight
 
 #+begin_src json :tangle config.json
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
-        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
-        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
-    },
+"backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+    "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
+    "on-click-middle": "pkill -x gammastep",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
+},
 #+end_src
 
 ** Pulseaudio
 
 #+begin_src json :tangle config.json
-    "pulseaudio": {
-        "format": "{icon} <span style=\"italic\">{volume}%</span>",
-        "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
-        "tooltip": false,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
-    }
+"pulseaudio": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth-muted": "  {volume}%",
+    "format-muted": " {volume}%",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "tooltip": true,
+    "tooltip-format": "{desc}",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+    },
+    "on-click-right": "pavucontrol",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+}
 #+end_src
 
 * Sway Monitor Bar
@@ -286,11 +322,11 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle config.json
 }, {
     "position": "bottom",
-    "height": 39,
+    "height": 41,
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -303,11 +339,11 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
              "3": "",
              "4": "",
              "5": "",
-             "6": "",
-             "7": "",
-             "8": "",
+             "6": "󰭹",
+             "7": "",
+            "8": "",
+            "9": "",
              "urgent": "",
-             "focused": "",
              "default": ""
          }
     },
@@ -317,66 +353,85 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 #+begin_src json :tangle config.json
     "sway/window": {
-        "max-length": 71,
+        "max-length": 80,
         "format": " <span style=\"italic\">{}</span>"
     },
 #+end_src
 
-** Battery
+** Idle Inhibit
 
 #+begin_src json :tangle config.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "tooltip-format": "{time}", 
-        "format-icons": ["", "", "", "", ""]
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": " ",
+        "deactivated": " "
     },
+    "timeout": 60,
+    "tooltip": false
+},
 #+end_src
 
 ** Network
 
 #+begin_src json :tangle config.json
-    "network": {
-        "interface": "wlp0s20f3",
-        "interval": 1,
-        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-alt": " {ipaddr}",
-        "format-disconnected": "",
-        "tooltip-format": "{essid} ({signalStrength}%)",
-    },
+"network": {
+    "interface": "enp0s31f6",
+    "interval": 1,
+    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-alt": " {ipaddr} {netmask}",
+    "format-disconnected": "",
+    "tooltip": true,
+    "tooltip-format-ethernet": "{ifname} {gwaddr}",
+    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+},
 #+end_src
 
-** Backlight
+** Wireplumber
 
 #+begin_src json :tangle config.json
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
-        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
-        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
-    },
+"wireplumber": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-muted": " {volume}%",
+    "tooltip": true,
+    "tooltip-format": "{node_name}",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "helvum"
+},
+#+end_src
+
+** Bluetooth
+
+#+begin_src json :tangle config.json
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""]
+},
 #+end_src
 
 ** Disk
 
 #+begin_src json :tangle config.json
-    "disk": {
-        "path": "/",
-        "interval": 2,
-        "format": " <span style=\"italic\">{free}</span>",
-        "format-alt": " {used}",
-        "tooltip-format": "{percentageUsed}% of {total}"
-    },
+"disk": {
+    "path": "/",
+    "interval": 1,
+    "format": " <span style=\"italic\">{free}</span>",
+    "format-alt": " {used}",
+    "tooltip": true,
+    "tooltip-format": "{percentageUsed}% of {total}"
+},
 #+end_src
 
 ** Clock
@@ -389,6 +444,15 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "align": 1,
         "tooltip": false
     }
+#+end_src
+
+* Sway TV Bar
+
+#+begin_src json :tangle config.json
+}, {
+    "position": "bottom",
+    "output": "DP-1",
+    "height": 40,
 }]
 #+end_src
 
@@ -916,8 +980,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "modules-left": ["wlr/workspaces"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "wlr/workspaces": {
-         "disable-scroll": false,
          "all-outputs": false,
+         "disable-scroll": false,
          "format": "{icon}",
          "format-icons": {
             "1": "",
@@ -925,13 +989,12 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "3": "",
             "4": "",
             "5": "",
-            "6": "",
+            "6": "󰭹",
             "7": "",
             "8": "",
             "9": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
+            "focused": "",
+            "default": ""
          },
          "on-click": "activate",
          "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -960,15 +1023,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 34,
+    "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host 127.0.0.2 toggle",
+    "on-click": "mpc --host=127.0.0.2 toggle",
+    "on-click-right": "mpc --host=127.0.0.2 next",
+    "on-click-middle": "mpc --host=127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
     "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
+        "off": " ",
         "on": " "
     },
     "repeat-icons": {
@@ -1037,14 +1102,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 ** Backlight
 
 #+begin_src json :tangle hconfig.json
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-    },
+"backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
+    "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
+    "on-click-middle": "pkill -x gammastep",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
+    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh"
+},
 #+end_src
 
 ** Pulseaudio
@@ -1052,12 +1119,13 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "pulseaudio": {
     "format": "{icon} <span style=\"italic\">{volume}%</span>",
-    "format-bluetooth": "{icon} {volume}% {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth-muted": "  {volume}%",
+    "format-muted": " {volume}%",
     "format-source": " {volume}%",
     "format-source-muted": "",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "{desc}",
     "format-icons": {
         "headphone": "",
         "hands-free": "",
@@ -1085,8 +1153,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
-    "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "bluetooth", "custom/clock"],
+    "modules-left": ["wlr/workspaces"],
+    "modules-right": ["disk", "temperature", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -1097,7 +1165,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "3": "",
             "4": "",
             "5": "",
-            "6": "",
+            "6": "󰭹",
             "7": "",
             "8": "",
             "9": "",
@@ -1110,7 +1178,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
          "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
     "hyprland/window": {
-        "format": " <span style=\"italic\">{}</span>",
+        "format": "{}",
         "separate-outputs": false
     },
 #+end_src
@@ -1125,6 +1193,33 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+#+end_src
+
+** Temperature
+
+#+begin_src json :tangle hconfig.json
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+#+end_src
+
+** Wireplumber
+
+#+begin_src json :tangle hconfig.json
+"wireplumber": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-muted": " {volume}%",
+    "tooltip": true,
+    "tooltip-format": "{node_name}",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "helvum"
 },
 #+end_src
 
@@ -1159,35 +1254,20 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 },
 #+end_src
 
-** Battery
-
-#+begin_src json :tangle hconfig.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "tooltip-format": "{time}",
-        "format-icons": ["", "", "", "", ""]
-    },
-#+end_src
-
 ** Network
 
 #+begin_src json :tangle hconfig.json
-    "network": {
-        "interface": "enp0s31f6",
-        "interval": 1,
-        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-alt": " {ipaddr}",
-        "format-disconnected": ""
-    },
+"network": {
+    "interface": "enp0s31f6",
+    "interval": 1,
+    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-alt": " {ipaddr} {netmask}",
+    "format-disconnected": "",
+    "tooltip": true,
+    "tooltip-format-ethernet": "{ifname} {gwaddr}",
+    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+},
 #+end_src
 
 ** Clock
@@ -1225,7 +1305,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "3": "",
             "4": "",
             "5": "",
-            "6": "",
+            "6": "",
             "7": "",
             "8": "",
             "9": "",
@@ -1314,7 +1394,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2022-2023 Tanner Babcock.</p>
+        <p>Copyright &copy; 2023 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;

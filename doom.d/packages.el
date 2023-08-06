@@ -8,6 +8,9 @@
 
 (package! all-the-icons)
 (package! beacon)
+(package! elfeed-org)
+(package! elfeed-goodies)
+(package! cl-libify)
 (package! pinentry)
 (package! libmpdel)
 (package! mpdel)

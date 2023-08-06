@@ -7,8 +7,8 @@
     "modules-left": ["wlr/workspaces"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "wlr/workspaces": {
-         "disable-scroll": false,
          "all-outputs": false,
+         "disable-scroll": false,
          "format": "{icon}",
          "format-icons": {
             "1": "",
@@ -16,13 +16,12 @@
             "3": "",
             "4": "",
             "5": "",
-            "6": "",
+            "6": "󰭹",
             "7": "",
             "8": "",
             "9": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
+            "focused": "",
+            "default": ""
          },
          "on-click": "activate",
          "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -43,15 +42,17 @@
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 34,
+    "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host 127.0.0.2 toggle",
+    "on-click": "mpc --host=127.0.0.2 toggle",
+    "on-click-right": "mpc --host=127.0.0.2 next",
+    "on-click-middle": "mpc --host=127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
     "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
+        "off": " ",
         "on": " "
     },
     "repeat-icons": {
@@ -104,19 +105,22 @@
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+    "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
+    "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
+    "on-click-middle": "pkill -x gammastep",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
+    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh"
 },
 
 "pulseaudio": {
     "format": "{icon} <span style=\"italic\">{volume}%</span>",
-    "format-bluetooth": "{icon} {volume}% {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth-muted": "  {volume}%",
+    "format-muted": " {volume}%",
     "format-source": " {volume}%",
     "format-source-muted": "",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "{desc}",
     "format-icons": {
         "headphone": "",
         "hands-free": "",
@@ -138,8 +142,8 @@
     "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
-    "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "bluetooth", "custom/clock"],
+    "modules-left": ["wlr/workspaces"],
+    "modules-right": ["disk", "temperature", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -150,7 +154,7 @@
             "3": "",
             "4": "",
             "5": "",
-            "6": "",
+            "6": "󰭹",
             "7": "",
             "8": "",
             "9": "",
@@ -163,7 +167,7 @@
          "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
     "hyprland/window": {
-        "format": " <span style=\"italic\">{}</span>",
+        "format": "{}",
         "separate-outputs": false
     },
 
@@ -174,6 +178,25 @@
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+
+"wireplumber": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-muted": " {volume}%",
+    "tooltip": true,
+    "tooltip-format": "{node_name}",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "helvum"
 },
 
 "bluetooth": {
@@ -199,27 +222,16 @@
     "tooltip": false
 },
 
-"battery": {
-    "states": {
-        "good": 94,
-        "warning": 30,
-        "critical": 15
-    },
-    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-    "format-charging": " <span style=\"italic\">{capacity}%</span>",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}",
-    "tooltip-format": "{time}",
-    "format-icons": ["", "", "", "", ""]
-},
-
 "network": {
     "interface": "enp0s31f6",
     "interval": 1,
-    "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
-    "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
-    "format-alt": " {ipaddr}",
-    "format-disconnected": ""
+    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-alt": " {ipaddr} {netmask}",
+    "format-disconnected": "",
+    "tooltip": true,
+    "tooltip-format-ethernet": "{ifname} {gwaddr}",
+    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
 },
 
 "custom/clock": {
@@ -248,7 +260,7 @@
             "3": "",
             "4": "",
             "5": "",
-            "6": "",
+            "6": "",
             "7": "",
             "8": "",
             "9": "",

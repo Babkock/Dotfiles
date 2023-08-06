@@ -28,10 +28,11 @@ zstyle ':completion:' cache-path "$HOME/.cache/zsh/.zcompcache"
 zstyle ':completion:*:parameters' list-colors '=*=1;35'
 zstyle ':completion:*:builtins' list-colors '=*=1;34'
 zstyle ':completion:*:aliases' list-colors '=*=1;33'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{yellow} %d %f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{yellow}%d %f'
 zstyle ':completion:*:warnings' format ' %F{red}no matches found %f'
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=5;241;1"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} "ma=4;37"
+zstyle ':completion:*:*:-command-:*:*' group-order alias functions builtins commands
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 export LANG=en_US.UTF-8
@@ -112,9 +113,9 @@ if [ -v TERM ]; then
         alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc"
         alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc"
         alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
-    elif [[ ${TERM} = "screen-256color" ]]; then
+#    elif [[ ${TERM} = "screen-256color" ]]; then
         # tmux
-        alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
+#        alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
     else
         # login shell or SSH
         alias ls="ls --group-directories-first -F --color=auto"
@@ -201,8 +202,12 @@ function xs() {
     cd $OLDPWD
 }
 
-j()
+function j()
 {
+    if [[ ${TERM} = "screen-256color" ]]; then
+        \nnn -d -i -l 2 -HGURQD -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg
+        return
+    fi
     # Block nesting of nnn in subshells
     if [[ "${NNNLVL:-0}" -ge 1 ]]; then
         echo "nnn is already running"
@@ -255,9 +260,9 @@ function b() {
     pkill -x ssh-agent
     eval $(ssh-agent) > /dev/null 2>&1
     printf "SSH identities loaded\n"
-    ssh-add "$HOME/.ssh/gitlab_rsa" > /dev/null
-    ssh-add "$HOME/.ssh/github_rsa" > /dev/null
-    ssh-add "$HOME/.ssh/tbcom_ssh" > /dev/null
+    ssh-add "$HOME/.ssh/gitlab_rsa"
+    ssh-add "$HOME/.ssh/github_rsa"
+    ssh-add "$HOME/.ssh/tbcom_ssh"
 }
 
 # show weather in Denver today
@@ -329,6 +334,8 @@ alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="swayimg"
 alias qw="swayimg --all"
+alias qi="identify"
+alias qg="gimp"
 alias s="ssh tababcock@198.23.51.224 -p 2222"
 alias se="pkill -x emacs; emacs --daemon"
 alias sp="pkill -x pulseaudio; pulseaudio --start"

@@ -14,15 +14,19 @@ set $down j
 set $up k
 set $right l
 
-set $term footclient
+set $term alacritty
 
-exec --no-startup-id dbus-update-activation-environment --all DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP
+exec --no-startup-id pkill -x pulseaudio
+exec --no-startup-id pkill -x pipewire
+exec pipewire &
+exec --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
 
-output eDP-1 resolution 1920x1080 bg /home/babkock/.config/sway/wave.jpg fill
-output HDMI-A-2 resolution 1920x1080 bg /home/babkock/.config/sway/misty.jpg fill
+output DP-1 pos 0 0 resolution 1920x1080@60Hz bg /home/babkock/.config/sway/glitch.jpg fill
+output eDP-1 pos 1920 0 resolution 1920x1080@60Hz bg /home/babkock/.config/sway/wave.jpg fill
+output HDMI-A-2 pos 3840 0 resolution 1920x1080@60Hz bg /home/babkock/.config/sway/misty.jpg fill
 
-seat seat0 xcursor_theme "Adwaita" 28
+seat seat0 xcursor_theme "Adwaita" 30
 seat seat0 hide_cursor 5000
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
@@ -36,13 +40,13 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 }
 
 input "6127:24766:GamingMouseI_Gaming_Mouse" {
-	pointer_accel 0.5
+	pointer_accel 0.6
 	accel_profile "adaptive"
 	scroll_factor 1.2
 }
 
 input "6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control" {
-	pointer_accel 0.5
+	pointer_accel 0.6
 	accel_profile "adaptive"
 	scroll_factor 1.2
 }
@@ -69,15 +73,11 @@ smart_borders on
 gaps inner 4
 gaps outer 4
 
-exec swayidle -w timeout 600 "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 21 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000099 --ring-ver-color 40a78977 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill" timeout 1100 "swaymsg \"output * dpms off\"" resume "swaymsg \"output * dpms on\"" before-sleep "swaylock -F -f --font \"SpaceMono Nerd Font\" --font-size 21 --ring-color 00000077 --inside-color 00000077 --text-color dfdfdf99 --inside-ver-color 00000077 --ring-ver-color 40a78877 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101088 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101088 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill"
+exec swayidle -w timeout 700 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color 40a78977 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101066 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101066 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/glitchlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill" timeout 1200 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color 40a78877 --text-ver-color 40a78999 --ring-wrong-color fc3c3577 --text-wrong-color fc3c3599 --inside-wrong-color 10101066 --text-clear-color c26cd599 --ring-clear-color c26cd577 --inside-clear-color 10101066 --key-hl-color 50b79988 --bs-hl-color fc3c3588 --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/glitchlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/wavelock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mistylock.jpg -s fill"
 
 exec xrdb -merge "$HOME/.Xresources"
-#exec pkill -x pulseaudio
-#exec pulseaudio --start &
-exec tinyserve
 exec mako &
 exec emacs --daemon
-exec foot --server --config "$HOME/.config/foot/sway.ini"
 exec waybar -c "$HOME/.config/waybar/config.json"
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 
@@ -91,8 +91,9 @@ workspace 3 output eDP-1
 workspace 4 output HDMI-A-2
 workspace 5 output HDMI-A-2
 workspace 6 output HDMI-A-2
-workspace 7 output HDMI-A-2
+workspace 7 output DP-1
 workspace 8 output eDP-1
+workspace 9 output DP-1
 
 assign [app_id="Emacs"] 4
 assign [class="Emacs"] 4
@@ -102,8 +103,8 @@ assign [class="Firefox"] 2
 assign [app_id="com.obsproject.Studio"] 8
 assign [app_id="org.qutebrowser.qutebrowser"] 2
 assign [app_id="org.nicotine_plus.Nicotine"] 5
-assign [app_id="mpv"] 6
-assign [class="mpv"] 6
+assign [app_id="mpv"] 7
+assign [class="mpv"] 7
 assign [app_id="GIMP"] 5
 assign [class="GIMP"] 5
 assign [app_id="Gimp"] 5
@@ -151,7 +152,7 @@ bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$H
 
 bindsym $mod+Shift+period workspace number 2; exec firefox-wayland
 
-bindsym $mod+comma workspace number 3; exec $term ncmpcpp
+bindsym $mod+comma workspace number 3; exec $term -e ncmpcpp
 
 bindsym $mod+Shift+comma workspace number 4; exec emacsclient -c -a "emacs"
 
@@ -163,9 +164,9 @@ bindsym $mod+semicolon workspace number 5; exec nicotine
 
 bindsym $mod+Shift+semicolon workspace number 5; exec filezilla
 
-bindsym $mod+backslash workspace number 5; exec $term nnn -d -i -l 2 -HGURQD -P preview-tui
+bindsym $mod+backslash workspace number 5; exec pcmanfm
 
-bindsym $mod+Shift+backslash workspace number 5; exec pcmanfm
+bindsym $mod+Shift+backslash workspace number 2; exec chromium
 
 floating_modifier $mod normal
 

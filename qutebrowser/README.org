@@ -326,10 +326,10 @@ c.hints.padding = {
 }
 
 c.colors.completion.fg = '#efefef'
-c.colors.downloads.start.fg = '#bbd0484e'
+c.colors.downloads.start.fg = '#bbd94a4f'
 c.colors.downloads.start.bg = '#00101010'
 c.colors.downloads.stop.bg = '#00101010'
-c.colors.downloads.stop.fg = '#ee25c192'
+c.colors.downloads.stop.fg = '#ee35d1a2'
 
 c.tabs.padding = {
     "left": 5,

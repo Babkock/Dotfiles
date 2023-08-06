@@ -5,6 +5,15 @@
     color:#efefef;
 }
 
+tooltip {
+    border:none;
+    border-radius:0;
+    color:#efefef;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    margin-bottom:1px;
+    padding:0;
+}
+
 #window {
     color:#010101;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6)
@@ -15,13 +24,13 @@
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
-#cpu {
-    color:#fc3c35;
-    background:linear-gradient(180deg, rgba(208, 56, 68, 0.7), rgba(0, 0, 0, 0.5));
+#cpu, #wireplumber.muted, #pulseaudio.muted {
+    color:#c94b3c;
+    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
-    padding-left:12px;
-    padding-right:12px;
+    padding-left:10px;
+    padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -30,18 +39,18 @@
     background:linear-gradient(180deg, rgba(222, 220, 145, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
+    padding-left:10px;
+    padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
-#memory, #backlight {
+#memory, #backlight, #wireplumber {
     color:#40a789;
     background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
+    padding-left:10px;
+    padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -60,13 +69,13 @@
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(180deg, rgba(171, 43, 27, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
     box-shadow:inherit;
     text-shadow:inherit;
     border-radius:0px 0px 0px 0px;
     border:0px solid transparent;
-    color:#b93b2b;
-    text-shadow:3px 3px rgba(171, 43, 27, 0.6);
+    color:#c94b3b;
+    text-shadow:3px 3px rgba(181, 53, 27, 0.6);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
@@ -83,14 +92,61 @@
     color:#fff293;
 }
 
-#battery {
-    color:#61b8a6;
-    background:linear-gradient(180deg, rgba(107, 194, 176, 0.7), rgba(0, 0, 0, 0.5));
+#battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
+    color:#61b8b6;
+    background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#bluetooth.off {
+    padding-left:9px;
+    padding-right:9px;
+    margin-left:0;
+    margin-right:0;
+}
+
+#bluetooth.on {
+    color:#c94b3b;
+    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.connected, #bluetooth.connected.pairable {
+    color:#50b799;
+    background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+    color:#61b8b6;
+    background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.discovering {
+    color:#dedc91;
+    background:linear-gradient(0deg, rgba(222, 220, 145, 0.6), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
 #custom-clock, #network {

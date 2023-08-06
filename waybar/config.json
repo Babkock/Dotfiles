@@ -1,10 +1,10 @@
 [{
     "position": "bottom",
-    "height": 38,
+    "height": 40,
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "temperature", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -17,11 +17,11 @@
              "3": "",
              "4": "",
              "5": "",
-             "6": "",
-             "7": "",
-             "8": "",
+             "6": "󰭹",
+             "7": "",
+            "8": "",
+            "9": "",
              "urgent": "",
-             "focused": "",
              "default": ""
          }
     },
@@ -31,17 +31,20 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+    "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 34,
+    "title-len": 35,
     "unknown-tag": "N/A",
     "interval": 1,
+    "on-click": "mpc --host=127.0.0.2 toggle",
+    "on-click-right": "mpc --host=127.0.0.2 next",
+    "on-click-middle": "mpc --host=127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
     "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
+        "off": " ",
         "on": " "
     },
     "repeat-icons": {
@@ -76,6 +79,22 @@
     "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
 },
 
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": "󰋊 <span style=\"italic\">{free}</span>",
+    "format-alt": "󰋊 {used}",
+    "tooltip": true,
+    "tooltip-format": "{percentageUsed}% of {total}"
+},
+
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+
 "battery": {
     "states": {
         "good": 94,
@@ -95,18 +114,21 @@
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
+    "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
+    "on-click-middle": "pkill -x gammastep",
     "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
     "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
 },
 
 "pulseaudio": {
     "format": "{icon} <span style=\"italic\">{volume}%</span>",
-    "format-bluetooth": "{icon} {volume}% {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth-muted": "  {volume}%",
+    "format-muted": " {volume}%",
     "format-source": " {volume}%",
     "format-source-muted": "",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "{desc}",
     "format-icons": {
         "headphone": "",
         "hands-free": "",
@@ -116,6 +138,7 @@
         "car": "",
         "default": ["", "", ""]
     },
+    "on-click-right": "pavucontrol",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
@@ -123,11 +146,11 @@
 
 }, {
     "position": "bottom",
-    "height": 39,
+    "height": 41,
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -140,66 +163,86 @@
              "3": "",
              "4": "",
              "5": "",
-             "6": "",
-             "7": "",
-             "8": "",
+             "6": "󰭹",
+             "7": "",
+            "8": "",
+            "9": "",
              "urgent": "",
-             "focused": "",
              "default": ""
          }
     },
 
 "sway/window": {
-    "max-length": 71,
+    "max-length": 80,
     "format": " <span style=\"italic\">{}</span>"
 },
 
-"battery": {
-    "states": {
-        "good": 94,
-        "warning": 30,
-        "critical": 15
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": " ",
+        "deactivated": " "
     },
-    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-    "format-charging": " <span style=\"italic\">{capacity}%</span>",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}",
-    "tooltip-format": "{time}", 
-    "format-icons": ["", "", "", "", ""]
+    "timeout": 60,
+    "tooltip": false
 },
 
 "network": {
-    "interface": "wlp0s20f3",
+    "interface": "enp0s31f6",
     "interval": 1,
-    "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
-    "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
-    "format-alt": " {ipaddr}",
+    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-alt": " {ipaddr} {netmask}",
     "format-disconnected": "",
-    "tooltip-format": "{essid} ({signalStrength}%)",
+    "tooltip": true,
+    "tooltip-format-ethernet": "{ifname} {gwaddr}",
+    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
 },
 
-"backlight": {
-    "device": "intel_backlight",
-    "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
-    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock; pkill -x sh",
-    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock; pkill -x sh"
+"wireplumber": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-muted": " {volume}%",
+    "tooltip": true,
+    "tooltip-format": "{node_name}",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "helvum"
+},
+
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""]
 },
 
 "disk": {
     "path": "/",
-    "interval": 2,
+    "interval": 1,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
+    "tooltip": true,
     "tooltip-format": "{percentageUsed}% of {total}"
 },
 
 "custom/clock": {
-        "exec": "date +'%I:%M:%S  %a, %b %d'",
-        "interval": 1,
-        "format": " {}",
-        "align": 1,
-        "tooltip": false
-    }
+    "exec": "date +'%I:%M:%S  %a, %b %d'",
+    "interval": 1,
+    "format": " {}",
+    "align": 1,
+    "tooltip": false
+}
+
+}, {
+    "position": "bottom",
+    "output": "DP-1",
+    "height": 40,
 }]

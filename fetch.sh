@@ -43,7 +43,7 @@ system_files=(
   "$HOME/.config/qutebrowser/config.py"
   "$HOME/.config/qutebrowser/config.org"
   "$HOME/.config/qutebrowser/quickmarks"
-  "$HOME/.config/tinyserve/index.html"
+#  "$HOME/.config/tinyserve/index.html"
   "$HOME/.fonts.conf"
   "$HOME/.config/gtk-2.0/gtkfilechooser.ini"
   "$HOME/.config/gtk-2.0/gtkrc"
@@ -78,6 +78,7 @@ system_files=(
   "$HOME/.themes/labwc/openbox-3/themerc"
   "$HOME/.config/mako/config"
   "$HOME/.config/hypr/hyprlandd.conf"
+  "$HOME/.config/alacritty/alacritty.yml"
 )
 
 repo_files=(
@@ -123,7 +124,7 @@ repo_files=(
   "qutebrowser/config.py"
   "qutebrowser/README.org"
   "qutebrowser/quickmarks"
-  "tinyserve/index.html"
+#  "tinyserve/index.html"
   "fonts.conf"
   "gtkfilechooser.ini"
   "gtkrc"
@@ -158,6 +159,7 @@ repo_files=(
   "labwc/themerc"
   "mako/config"
   "hyprlandd.conf"
+  "alacritty.yml"
 )
 
 compare() {

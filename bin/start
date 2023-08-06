@@ -8,13 +8,13 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export XCURSOR_THEME="Adwaita"
 export XCURSOR_SIZE=30
 export MOZ_ENABLE_WAYLAND=1
-echo "Bringing Pipewire down..."
-sudo sv down pipewire
-pkill -x pipewire
+pkill -x pipewire 2> /dev/null
+pkill -x pulseaudio 2> /dev/null
 echo "Starting River..."
+pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+gsettings set org.gnome.desktop.interface cursor-size 30
 dbus-launch --exit-with-session river
-pkill -x mako
-pkill -x pipewire
-pkill -x emacs
-pkill -x tinyserve
+pkill -x mako 2> /dev/null
+pkill -x emacs 2> /dev/null
 

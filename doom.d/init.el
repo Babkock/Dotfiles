@@ -1,5 +1,4 @@
-;;; init.el -*- lexical-binding: t; -*-
-;; -*- no-byte-compile: t; -*-
+;;; init.el -*- lexical-binding: t; no-byte-compile: t; -*-
 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
@@ -198,6 +197,7 @@
 ;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (let ((banners '("squaree.png"
                  "bluee.png"
@@ -249,3 +249,6 @@
 (setq browse-url-browser-function 'eww-browse-url)
 
 (setq libmpdel-hostname "127.0.0.2")
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))

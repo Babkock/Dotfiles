@@ -18,8 +18,13 @@ set encoding=utf-8
 set t_Co=256
 set ttimeoutlen=50
 set signcolumn=yes
+set scrolloff=3
 filetype off
 syntax on
+
+if $TERM == 'alacritty'
+	set ttymouse=sgr
+endif
 
 hi CursorLine term=bold cterm=bold ctermbg=235
 hi CursorLineNr term=none cterm=none ctermbg=235 ctermfg=1

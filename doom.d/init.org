@@ -53,8 +53,7 @@ This is the other, secondary Doom Emacs config file =init.org=, which tangles to
 Gotta have this at the beginning of the config file.
 
 #+begin_src emacs-lisp :tangle yes
-;;; init.el -*- lexical-binding: t; -*-
-;; -*- no-byte-compile: t; -*-
+;;; init.el -*- lexical-binding: t; no-byte-compile: t; -*-
 #+end_src
 
 * Packages
@@ -275,6 +274,7 @@ The default buffer name.
 ;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 #+end_src
 
 ** Doom Dashboard
@@ -340,6 +340,9 @@ Show a custom image on the splash screen, and hide cursor and mode line.
 
 #+begin_src emacs-lisp :tangle yes
 (setq libmpdel-hostname "127.0.0.2")
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 #+end_src
 
 #+BEGIN_EXPORT html
