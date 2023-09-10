@@ -4,7 +4,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "temperature", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -17,12 +17,13 @@
              "3": "",
              "4": "",
              "5": "",
-             "6": "󰭹",
+             "6": "",
              "7": "",
-            "8": "",
-            "9": "",
+             "8": "",
+             "9": "",
              "urgent": "",
-             "default": ""
+             "default": "",
+             "focused": ""
          }
     },
     "sway/mode": {
@@ -31,15 +32,16 @@
 
 "mpd": {
     "server": "127.0.0.2",
+    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 35,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle",
-    "on-click-right": "mpc --host=127.0.0.2 next",
-    "on-click-middle": "mpc --host=127.0.0.2 prev",
+    "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
+    "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
+    "on-click-middle": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
@@ -58,6 +60,13 @@
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
+},
+
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
 },
 
 "custom/clock": {
@@ -86,13 +95,6 @@
     "format-alt": "󰋊 {used}",
     "tooltip": true,
     "tooltip-format": "{percentageUsed}% of {total}"
-},
-
-"temperature": {
-    "thermal-zone": 1,
-    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    "format": " {temperatureF}°F",
-    "format-alt": " {temperatureC}°C"
 },
 
 "battery": {
@@ -157,24 +159,43 @@
         "enable-bar-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
-         "format-icons": {
-             "1": "",
-             "2": "爵",
-             "3": "",
-             "4": "",
-             "5": "",
-             "6": "󰭹",
-             "7": "",
+        "format-icons": {
+            "1": "",
+            "2": "爵",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
             "8": "",
             "9": "",
-             "urgent": "",
-             "default": ""
-         }
+            "urgent": "",
+            "default": "",
+            "focused": "",
+        }
     },
 
 "sway/window": {
-    "max-length": 80,
-    "format": " <span style=\"italic\">{}</span>"
+    "format": "{title}",
+    "separate-outputs": false,
+    "rewrite": {
+        "Alacritty": " ",
+        "ranger:(.*)": " $1",
+        "Mozilla Firefox": " ",
+        "(.*) — Mozilla Firefox": " $1",
+        "(.*) – Doom Emacs": " $1",
+        "(.*) — Doom Emacs": " $1",
+        "GNU Emacs at thing": " ",
+        "Untitled - Chromium": " ",
+        "(.*) - Chromium": " $1",
+        "swayimg: (.*)": " $1",
+        "(.*) - mpv": " $1",
+        "(.*) - VLC Media Player": " $1",
+        "(.*) - Discord": "󰙯 $1",
+        "Discord Updater": "󰙯 "
+    },
+    "max-length": 56
+    "all-outputs": true
 },
 
 "idle_inhibitor": {

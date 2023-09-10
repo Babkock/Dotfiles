@@ -8,21 +8,14 @@
 *** [[http://old.reddit.com/r/slackware/.rss][slackware]]
 *** [[http://old.reddit.com/r/WorkReform/.rss][WorkReform]]
 *** [[http://old.reddit.com/r/AbandonedPorn/.rss][AbandonedPorn]]
-*** [[https://old.reddit.com/r/autism/.rss][autism]]
-*** [[https://old.reddit.com/r/aspergers/.rss][aspergers]]
-*** [[https://old.reddit.com/r/depression/.rss][depression]]
-*** [[http://old.reddit.com/r/adhd/.rss][adhd]]
 *** [[http://old.reddit.com/r/MapPorn/.rss][MapPorn]]
 *** [[https://old.reddit.com/r/Denver/.rss][Denver]]
 *** [[http://old.reddit.com/r/rust/.rss][rust]]
 *** [[http://old.reddit.com/r/LateStageCapitalism/.rss][LateStageCapitalism]]
-*** [[https://old.reddit.com/r/boringdystopia/.rss][boringdystopia]]
+*** [[https://old.reddit.com/r/aboringdystopia/.rss][ABoringDystopia]]
 *** [[http://old.reddit.com/r/technology/.rss][technology]]
 *** [[https://old.reddit.com/r/oddlyterrifying/.rss][oddlyterrifying]]
 *** [[https://old.reddit.com/r/Feminism/.rss][Feminism]]
-*** [[https://old.reddit.com/r/lgbt/.rss][lgbt]]
-*** [[https://old.reddit.com/r/trans/.rss][trans]]
-*** [[https://old.reddit.com/r/antiwork/.rss][antiwork]]
 *** [[http://old.reddit.com/r/programming/.rss][programming]]
 *** [[https://old.reddit.com/r/todayilearned/.rss][todayilearned]]
 *** [[http://old.reddit.com/r/nottheonion/.rss][nottheonion]]
@@ -30,9 +23,6 @@
 *** [[http://old.reddit.com/r/worldnews/.rss][worldnews]]
 *** [[https://old.reddit.com/r/criterion/.rss][criterion]]
 *** [[https://old.reddit.com/r/politics/.rss][politics]]
-*** [[https://old.reddit.com/r/AreTheStraightsOk/.rss][AreTheStraightsOk]]
-
-
 ** YouTube/Invidious                        :youtube:
 *** [[https://yt.funami.tech/feed/private?token=40JXZTlLKgHYVQvWEXvnEGi9O5x3l90KYmb_X4nSi9w=][Invidious]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
@@ -48,8 +38,6 @@
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA][Mental Outlaw]]
 *** [[https://odysee.com/$/rss/@Babkock:8][Tanner Babcock]]
 *** [[https://youtube.com/feeds/videos.xml?channel_id=UCdXmrPRUtsl-6pq83x3FrTQ][Tanner Babcock]]
-# do not commit these either
-** GitLab and GitHub :git:
 *** [[https://github.com/Babkock.atom][GitHub User]]
 ** News                                                        :news:
 *** [[https://rss.nytimes.com/services/xml/rss/nyt/US.xml][New York Times]]
@@ -63,8 +51,6 @@
 *** [[https://thehardtimes.net/feed/][The Hard Times]]
 *** [[https://www.spectrumnews.org/feed/][Spectrum News]]
 *** [[https://github.blog/changelog/feed/][GitHub News]]
-# remember to hide this next section when committing dotfiles
-** Torrents                                                 :torrents:
 ** Stack Overflow                                   :stack:
 *** [[https://stackoverflow.com/feeds/tag?tagnames=c&sort=newest][C]]
 *** [[https://stackoverflow.com/feeds/tag/c%2B%2B?sort=newest][C++]]
@@ -131,4 +117,4 @@
 *** [[https://twitchrss.appspot.com/vod/babkock][Twitch babkock]]
 *** [[https://twitchrss.appspot.com/vod/newtgrundy][Twitch newtgrundy]]
 ** Test Feed :test:
-# *** [[https://tannerbabcock.com/feed][Please Work!]]
+***  [[https://tannerbabcock.com/feed][Tanner Babcock Feed]]

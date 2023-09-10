@@ -121,6 +121,7 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
       mouse-wheel-scroll-amount '(2 ((shift) . 2))
       mouse-wheel-progressive-speed t
       mouse-wheel-follow-mouse 't
+      display-line-numbers-type t
       scroll-step 1
       scroll-margin 2
       scroll-up-aggressively 0.01
@@ -168,7 +169,6 @@ Now the fun stuff, where I set the fonts, theme, and colors.
 (setq ls-lisp-use-localized-time-format t
       display-time-format "%I:%M"
       display-time-default-load-average nil
-      display-line-numbers-type 'relative
       confirm-kill-emacs t
       confirm-kill-processes nil
       tab-width 4
@@ -733,33 +733,34 @@ This first bit lets us navigate between windows easier.
 
 ** Global Keybindings
 
-These are global keybindings, which are available in all modes. The Magit key bindings will not work if the file is not in a Git repository.
+These are global keybindings, which are available in all modes. The Magit key bindings will not work if the file is not in a Git repository. =SPC /= and =SPC z= will only work in an MPDel buffer.
+Obviously, it is not possible to tangle an Org document, if you are not editing an Org document.
 
 | Keybinding | Action                     |
 |------------+----------------------------|
 | =SPC DEL=    | Clear MPDel Playlist       |
 | =SPC a=      | Toggle Zen Mode            |
-| =SPC b=      | Beacon Mode                |
-| =SPC c=      | Highlight Scope Mode       |
-| =SPC d=      | Org Todo                   |
-| =SPC e=      | Magit Log                  |
+| =SPC b=      | Toggle Beacon Mode         |
+| =SPC c=      | Toggle Multiple Cursors    |
+| =SPC d=      | Insert Org Todo            |
+| =SPC e=      | Open Magit Log Buffer      |
 | =SPC i=      | Toggle Fullscreen Zen      |
 | =SPC j=      | Magit Pull                 |
 | =SPC k=      | Magit Push Remote          |
 | =SPC l=      | Org Tangle                 |
-| =SPC m=      | MPDel Playlist             |
-| =SPC n=      | MPDel Browser              |
+| =SPC m=      | Open MPDel Playlist        |
+| =SPC n=      | Open MPDel Browser         |
 | =SPC p=      | Org Export to HTML         |
-| =SPC r=      | Rainbow Mode               |
+| =SPC r=      | Toggle Rainbow Mode        |
 | =SPC t=      | Magit Stage File           |
-| =SPC u=      | Delete Buffer              |
-| =SPC v=      | Vterm                      |
-| =SPC x=      | Mixed Pitch Mode           |
-| =SPC y=      | Magit Status               |
+| =SPC u=      | Delete Active Buffer       |
+| =SPC v=      | Open Vterm Buffer          |
+| =SPC x=      | Toggle Mixed Pitch Mode    |
+| =SPC y=      | Open Magit Status Buffer   |
 | =SPC z=      | Play Song in MPDel         |
-| =SPC /=      | Add Song to MPDel Playlist |
-| =SPC -=      | Org Agenda                 |
-| =SPC ==      | Org Time Stamp             |
+| =SPC /=      | Add Song to MPDel Playlist  |
+| =SPC -=      | Open Org Agenda Buffer     |
+| =SPC ==      | Insert Org Time Stamp      |
 | =SPC ]=      | Next Song                  |
 | =SPC [=      | Previous Song              |
 
@@ -860,8 +861,8 @@ These two functions are useful for showing MPD notifications with album artwork 
     (interactive)
     (shell-command "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh")
     (notifications-notify
-        :title (shell-command-to-string "mpc --host 127.0.0.2 -f %title% | head -1")
-        :body (concat (shell-command-to-string "mpc --host 127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host 127.0.0.2 -f %album% | head -1") "</i>")
+        :title (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %title% | head -1")
+        :body (concat (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %album% | head -1") "</i>")
         :image-path "/tmp/mpd_cover.jpg"
 ))
 

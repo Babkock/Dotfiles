@@ -31,6 +31,7 @@
       mouse-wheel-scroll-amount '(2 ((shift) . 2))
       mouse-wheel-progressive-speed t
       mouse-wheel-follow-mouse 't
+      display-line-numbers-type t
       scroll-step 1
       scroll-margin 2
       scroll-up-aggressively 0.01
@@ -72,7 +73,6 @@
 (setq ls-lisp-use-localized-time-format t
       display-time-format "%I:%M"
       display-time-default-load-average nil
-      display-line-numbers-type 'relative
       confirm-kill-emacs t
       confirm-kill-processes nil
       tab-width 4
@@ -545,8 +545,8 @@
     (interactive)
     (shell-command "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh")
     (notifications-notify
-        :title (shell-command-to-string "mpc --host 127.0.0.2 -f %title% | head -1")
-        :body (concat (shell-command-to-string "mpc --host 127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host 127.0.0.2 -f %album% | head -1") "</i>")
+        :title (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %title% | head -1")
+        :body (concat (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %album% | head -1") "</i>")
         :image-path "/tmp/mpd_cover.jpg"
 ))
 

@@ -6,12 +6,9 @@
 #                     /_/        /_/   /_/
 #
 ncmpcpp_directory = ~/.ncmpcpp
+lyrics_directory = ~/.lyrics
 
-#lyrics_directory = ~/.lyrics
-
-mpd_host = 127.0.0.2
-#mpd_host = 127.0.0.3
-#mpd_port = 6600
+mpd_host = "111222333zzxxccvvbbnn/@127.0.0.2"
 mpd_port = 6600
 mpd_connection_timeout = 3
 

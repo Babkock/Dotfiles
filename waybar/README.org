@@ -40,11 +40,11 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
 - [[#sway-laptop-bar][Sway Laptop Bar]]
   - [[#appearance][Appearance]]
   - [[#mpd][MPD]]
+  - [[#temperature][Temperature]]
   - [[#clock][Clock]]
   - [[#cpu][CPU]]
   - [[#memory][Memory]]
   - [[#disk][Disk]]
-  - [[#temperature][Temperature]]
   - [[#battery][Battery]]
   - [[#backlight][Backlight]]
   - [[#pulseaudio][Pulseaudio]]
@@ -96,6 +96,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#appearance-6][Appearance]]
   - [[#disk-external-hd][Disk (External HD)]]
   - [[#mpd-4][MPD]]
+  - [[#temperature-1][Temperature]]
   - [[#clock-6][Clock]]
   - [[#cpu-3][CPU]]
   - [[#memory-3][Memory]]
@@ -105,7 +106,6 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
   - [[#appearance-7][Appearance]]
   - [[#disk-internal-ssd][Disk (Internal SSD)]]
-  - [[#temperature-1][Temperature]]
   - [[#wireplumber-1][Wireplumber]]
   - [[#bluetooth-1][Bluetooth]]
   - [[#idle-inhibit-1][Idle Inhibit]]
@@ -136,7 +136,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "temperature", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -149,12 +149,13 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
              "3": "",
              "4": "",
              "5": "",
-             "6": "󰭹",
+             "6": "",
              "7": "",
-            "8": "",
-            "9": "",
+             "8": "",
+             "9": "",
              "urgent": "",
-             "default": ""
+             "default": "",
+             "focused": ""
          }
     },
     "sway/mode": {
@@ -167,15 +168,16 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     #+begin_src json :tangle config.json
     "mpd": {
         "server": "127.0.0.2",
+        "password": "000999888qqwweerrttyy/",
         "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
         "format-disconnected": " ",
         "format-stopped": "{consumeIcon}{singleIcon} ",
         "title-len": 35,
         "unknown-tag": "N/A",
         "interval": 1,
-        "on-click": "mpc --host=127.0.0.2 toggle",
-        "on-click-right": "mpc --host=127.0.0.2 next",
-        "on-click-middle": "mpc --host=127.0.0.2 prev",
+        "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
+        "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
+        "on-click-middle": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 prev",
         "consume-icons": {
             "on": " "
         },
@@ -196,6 +198,17 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
         "tooltip-format": "{artist} - {album} ({date})",
     },
     #+end_src
+
+** Temperature
+
+#+begin_src json :tangle config.json
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+#+end_src
 
 ** Clock
 
@@ -238,17 +251,6 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     "format-alt": "󰋊 {used}",
     "tooltip": true,
     "tooltip-format": "{percentageUsed}% of {total}"
-},
-#+end_src
-
-** Temperature
-
-#+begin_src json :tangle config.json
-"temperature": {
-    "thermal-zone": 1,
-    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    "format": " {temperatureF}°F",
-    "format-alt": " {temperatureC}°C"
 },
 #+end_src
 
@@ -333,29 +335,48 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "enable-bar-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
-         "format-icons": {
-             "1": "",
-             "2": "爵",
-             "3": "",
-             "4": "",
-             "5": "",
-             "6": "󰭹",
-             "7": "",
+        "format-icons": {
+            "1": "",
+            "2": "爵",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
             "8": "",
             "9": "",
-             "urgent": "",
-             "default": ""
-         }
+            "urgent": "",
+            "default": "",
+            "focused": "",
+        }
     },
 #+end_src
 
 ** Window
 
 #+begin_src json :tangle config.json
-    "sway/window": {
-        "max-length": 80,
-        "format": " <span style=\"italic\">{}</span>"
+"sway/window": {
+    "format": "{title}",
+    "separate-outputs": false,
+    "rewrite": {
+        "Alacritty": " ",
+        "ranger:(.*)": " $1",
+        "Mozilla Firefox": " ",
+        "(.*) — Mozilla Firefox": " $1",
+        "(.*) – Doom Emacs": " $1",
+        "(.*) — Doom Emacs": " $1",
+        "GNU Emacs at thing": " ",
+        "Untitled - Chromium": " ",
+        "(.*) - Chromium": " $1",
+        "swayimg: (.*)": " $1",
+        "(.*) - mpv": " $1",
+        "(.*) - VLC Media Player": " $1",
+        "(.*) - Discord": "󰙯 $1",
+        "Discord Updater": "󰙯 "
     },
+    "max-length": 56
+    "all-outputs": true
+},
 #+end_src
 
 ** Idle Inhibit
@@ -479,33 +500,34 @@ This is the first and primary bar for the River compositor. It appears on my lap
 ** MPD
 
 #+begin_src json :tangle rconfig.json
-    "mpd": {
-        "server": "127.0.0.2",
-        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
-        "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{singleIcon} ",
-        "title-len": 34,
-        "unknown-tag": "N/A",
-        "interval": 1,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "playing": " ",
-            "paused": " "
-        },
-        "tooltip-format": "{artist} - {album} ({date})",
+"mpd": {
+    "server": "127.0.0.2",
+    "password": "000999888qqwweerrttyy/",
+    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+    "format-disconnected": " ",
+    "format-stopped": "{consumeIcon}{singleIcon} ",
+    "title-len": 34,
+    "unknown-tag": "N/A",
+    "interval": 1,
+    "consume-icons": {
+        "on": " "
     },
+    "random-icons": {
+        "off": "<span color=\"#f53c3c\"></span> ",
+        "on": " "
+    },
+    "repeat-icons": {
+        "on": " "
+    },
+    "single-icons": {
+        "on": "1 "
+    },
+    "state-icons": {
+        "playing": " ",
+        "paused": " "
+    },
+    "tooltip-format": "{artist} - {album} ({date})",
+},
 #+end_src
 
 ** Clock
@@ -722,33 +744,34 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 ** MPD
 
 #+begin_src json :tangle lconfig.json
-    "mpd": {
-        "server": "127.0.0.2",
-        "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
-        "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{singleIcon} ",
-        "title-len": 40,
-        "unknown-tag": "N/A",
-        "interval": 1,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "playing": " ",
-            "paused": " "
-        },
-        "tooltip-format": "{artist} - {album} ({date})",
+"mpd": {
+    "server": "127.0.0.2",
+    "password": "000999888qqwweerrttyy/",
+    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
+    "format-disconnected": " ",
+    "format-stopped": "{consumeIcon}{singleIcon} ",
+    "title-len": 40,
+    "unknown-tag": "N/A",
+    "interval": 1,
+    "consume-icons": {
+        "on": " "
     },
+    "random-icons": {
+        "off": "<span color=\"#f53c3c\"></span> ",
+        "on": " "
+    },
+    "repeat-icons": {
+        "on": " "
+    },
+    "single-icons": {
+        "on": "1 "
+    },
+    "state-icons": {
+        "playing": " ",
+        "paused": " "
+    },
+    "tooltip-format": "{artist} - {album} ({date})",
+},
 #+end_src
 
 ** Clock
@@ -978,27 +1001,28 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "temperature", "custom/clock"],
     "wlr/workspaces": {
-         "all-outputs": false,
-         "disable-scroll": false,
-         "format": "{icon}",
-         "format-icons": {
+        "all-outputs": false,
+        "disable-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
             "1": "",
             "2": "爵",
             "3": "",
             "4": "",
             "5": "",
-            "6": "󰭹",
+            "6": "",
             "7": "",
             "8": "",
             "9": "",
+            "urgent": "",
             "focused": "",
             "default": ""
-         },
-         "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
+        },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
     #+end_src
 
@@ -1020,15 +1044,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "mpd": {
     "server": "127.0.0.2",
+    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle",
-    "on-click-right": "mpc --host=127.0.0.2 next",
-    "on-click-middle": "mpc --host=127.0.0.2 prev",
+    "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
+    "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
+    "on-click-middle": "mpc --host=009988qqwweerrttyy/@127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
@@ -1047,6 +1072,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
+},
+#+end_src
+
+** Temperature
+
+#+begin_src json :tangle hconfig.json
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
 },
 #+end_src
 
@@ -1153,22 +1189,22 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
-    "modules-left": ["wlr/workspaces"],
-    "modules-right": ["disk", "temperature", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
+    "modules-left": ["wlr/workspaces", "hyprland/window"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
          "format": "{icon}",
          "format-icons": {
-            "1": "",
-            "2": "爵",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "󰭹",
-            "7": "",
-            "8": "",
-            "9": "",
+             "1": "",
+             "2": "爵",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "7": "",
+             "8": "",
+             "9": "",
              "urgent": "",
              "focused": "",
              "default": ""
@@ -1178,8 +1214,25 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
          "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
     "hyprland/window": {
-        "format": "{}",
-        "separate-outputs": false
+        "format": "{title}",
+        "separate-outputs": false,
+        "rewrite": {
+            "Alacritty": " ",
+            "ranger:(.*)": " $1",
+            "Mozilla Firefox": " ",
+            "(.*) — Mozilla Firefox": " $1",
+            "GNU Emacs at thing": " ",
+            "(.*) – Doom Emacs": " $1",
+            "(.*) — Doom Emacs": " $1",
+            "Untitled - Chromium": " ",
+            "(.*) - Chromium": " $1",
+            "swayimg: (.*)": " $1",
+            "(.*) - mpv": " $1",
+            "(.*) - VLC Media Player": " $1",
+            "(.*) - Discord": "󰙯 $1",
+            "Discord Updater": "󰙯 "
+        },
+        "max-length": 56
     },
 #+end_src
 
@@ -1193,17 +1246,6 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
-},
-#+end_src
-
-** Temperature
-
-#+begin_src json :tangle hconfig.json
-"temperature": {
-    "thermal-zone": 1,
-    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    "format": " {temperatureF}°F",
-    "format-alt": " {temperatureC}°C"
 },
 #+end_src
 

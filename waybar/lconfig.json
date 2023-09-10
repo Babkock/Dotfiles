@@ -16,6 +16,7 @@
 
 "mpd": {
     "server": "127.0.0.2",
+    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
