@@ -113,7 +113,8 @@ tooltip {
 #+begin_src css :tangle style.css
 #window {
     color:#010101;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.6)
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    padding-left:5px;
 }
 #+end_src
 
@@ -146,10 +147,11 @@ tooltip {
 #pulseaudio, #disk {
     color:#dedc91;
     background:linear-gradient(180deg, rgba(222, 220, 145, 0.7), rgba(0, 0, 0, 0.5));
-    margin-left:0;
+    margin-left:2px;
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
+    border-radius:40px 0px 0px 40px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -175,29 +177,37 @@ tooltip {
     background:linear-gradient(180deg, rgba(120, 120, 120, 0.7), rgba(0, 0, 0, 0.5));
     padding-left:17px;
     padding-right:17px;
-    border-radius:0px 0px 0px 0px;
+    margin-left:1px;
+    margin-right:2px;
+    border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#dfdfdf;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    outline:0;
 }
 
 #workspaces button * {
     background:none;
+    outline:0;
 }
 
 #workspaces button:hover, #tags button:hover {
     background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
-    box-shadow:inherit;
     text-shadow:inherit;
-    border-radius:0px 0px 0px 0px;
+    margin-left:1px;
+    margin-right:2px;
+    border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#c94b3b;
     text-shadow:3px 3px rgba(181, 53, 27, 0.6);
+    box-shadow:2px 2px rgba(181, 53, 27, 0.5);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
     background:linear-gradient(180deg, rgba(97, 185, 167, 0.7), rgba(0, 0, 0, 0.5));
     color:#81d8c6;
+    box-shadow:2px 2px rgba(107, 195, 177, 0.5);
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
@@ -216,11 +226,30 @@ tooltip {
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
     color:#61b8b6;
     background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#pulseaudio.bluetooth, #temperature {
     margin-left:0;
     margin-right:0;
     padding-left:11px;
     padding-right:12px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#battery {
+    border-radius:0px 40px 40px 0px;
+    padding-left:10px;
+    padding-right:12px;
+    margin-left:0;
+    margin-right:2px;
+}
+
+#idle_inhibitor {
+    border-radius:40px 0px 0px 40px;
+    padding-left:11px;
+    padding-right:10px;
+    margin-left:2px;
+    margin-right:0;
 }
 #+end_src
 
@@ -282,9 +311,10 @@ tooltip {
     color:#c26cd5;
     background:linear-gradient(180deg, rgba(176, 105, 152, 0.7), rgba(0, 0, 0, 0.5));
     margin-left:0;
-    margin-right:0;
+    margin-right:2px;
     padding-left:12px;
     padding-right:10px;
+    border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -678,7 +708,7 @@ tooltip {
 
 #+begin_src css :tangle hyprland.css
 #title, #window {
-    padding-left:6px;
+    padding-left:5px;
     color:#fdeadb;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
@@ -746,30 +776,37 @@ tooltip {
 #+begin_src css :tangle hyprland.css
 #workspaces button, #tags button {
     background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
-    padding-left:16px;
+    padding-left:17px;
     padding-right:17px;
     margin-left:1px;
-    margin-right:1px;
+    margin-right:2px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#fc3c35;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    outline:0;
+}
+
+#workspaces button * {
+    outline:0;
 }
 
 #workspaces button:hover, #tags button:hover {
     background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
-    box-shadow:inherit;
     text-shadow:inherit;
     margin-left:1px;
-    margin-right:1px;
+    margin-right:2px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#bcbcbc;
     text-shadow:3px 3px rgba(247, 78, 139, 0.5);
+    box-shadow:2px 2px rgba(247, 78, 139, 0.4);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied, #workspaces button.active {
     background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
+    box-shadow:2px 2px rgba(21, 176, 130, 0.5);
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover, #workspaces button.active:hover {

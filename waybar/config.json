@@ -22,8 +22,7 @@
              "8": "",
              "9": "",
              "urgent": "",
-             "default": "",
-             "focused": ""
+             "default": ""
          }
     },
     "sway/mode": {
@@ -32,16 +31,15 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 35,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
-    "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
-    "on-click-middle": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 prev",
+    "on-click": "mpc --host=127.0.0.2 toggle",
+    "on-click-right": "mpc --host=127.0.0.2 next",
+    "on-click-middle": "mpc --host=127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
@@ -148,7 +146,7 @@
 
 }, {
     "position": "bottom",
-    "height": 41,
+    "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
@@ -170,8 +168,7 @@
             "8": "",
             "9": "",
             "urgent": "",
-            "default": "",
-            "focused": "",
+            "default": ""
         }
     },
 
@@ -179,6 +176,7 @@
     "format": "{title}",
     "separate-outputs": false,
     "rewrite": {
+        "foot": " ",
         "Alacritty": " ",
         "ranger:(.*)": " $1",
         "Mozilla Firefox": " ",
@@ -194,7 +192,7 @@
         "(.*) - Discord": "󰙯 $1",
         "Discord Updater": "󰙯 "
     },
-    "max-length": 56
+    "max-length": 58,
     "all-outputs": true
 },
 
@@ -265,5 +263,74 @@
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 40,
+    "height": 41,
+    "modules-left": ["sway/workspaces"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "爵",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+
+"custom/weather": {
+    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "interval": 4,
+    "format": "{}"
+},
+
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""]
+},
+
+"memory": {
+    "format": " {}%",
+    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+},
+
+"disk": {
+    "path": "/mnt/drive/",
+    "interval": 1,
+    "format": "  <span style=\"italic\">{free}</span>",
+    "format-alt": "  {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+},
+
+"custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
 }]

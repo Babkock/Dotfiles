@@ -41,8 +41,8 @@ bspc rule -a feh state=floating follow=on focus=on
 bspc rule -a "Sxiv" state=floating follow=on focus=on
 bspc rule -a surf2 desktop='^2' state=tiled
 bspc rule -a Surf desktop='^2' state=tiled
-bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
-bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
+#bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
+#bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
 bspc rule -a "Nicotine" desktop='^5' state=tiled focus=on follow=on
 bspc rule -a "Filezilla" desktop='^5' state=tiled focus=on follow=on
 bspc rule -a *:Dialog state=floating

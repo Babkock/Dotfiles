@@ -25,8 +25,8 @@
             "default": ""
         },
         "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1"
+        "on-scroll-up": "hyprctl dispatch workspace m+1",
+        "on-scroll-down": "hyprctl dispatch workspace m-1"
     },
 
 "disk": {
@@ -40,16 +40,15 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
-    "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
-    "on-click-middle": "mpc --host=009988qqwweerrttyy/@127.0.0.2 prev",
+    "on-click": "mpc --host=127.0.0.2 toggle",
+    "on-click-right": "mpc --host=127.0.0.2 next",
+    "on-click-middle": "mpc --host=127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
@@ -172,30 +171,32 @@
              "default": ""
          },
          "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
+         "on-scroll-up": "hyprctl dispatch workspace m+1",
+         "on-scroll-down": "hyprctl dispatch workspace m-1"
     },
-    "hyprland/window": {
-        "format": "{title}",
-        "separate-outputs": false,
-        "rewrite": {
-            "Alacritty": " ",
-            "ranger:(.*)": " $1",
-            "Mozilla Firefox": " ",
-            "(.*) — Mozilla Firefox": " $1",
-            "GNU Emacs at thing": " ",
-            "(.*) – Doom Emacs": " $1",
-            "(.*) — Doom Emacs": " $1",
-            "Untitled - Chromium": " ",
-            "(.*) - Chromium": " $1",
-            "swayimg: (.*)": " $1",
-            "(.*) - mpv": " $1",
-            "(.*) - VLC Media Player": " $1",
-            "(.*) - Discord": "󰙯 $1",
-            "Discord Updater": "󰙯 "
-        },
-        "max-length": 56
+
+"hyprland/window": {
+    "format": "{title}",
+    "separate-outputs": false,
+    "rewrite": {
+        "foot": " ",
+        "Alacritty": " ",
+        "ranger:(.*)": " $1",
+        "Mozilla Firefox": " ",
+        "(.*) — Mozilla Firefox": " $1",
+        "GNU Emacs at thing": " ",
+        "(.*) – Doom Emacs": " $1",
+        "(.*) — Doom Emacs": " $1",
+        "Untitled - Chromium": " ",
+        "(.*) - Chromium": " $1",
+        "swayimg: (.*)": " $1",
+        "(.*) - mpv": " $1",
+        "(.*) - VLC Media Player": " $1",
+        "(.*) - Discord": "󰙯 $1",
+        "Discord Updater": "󰙯 "
     },
+    "max-length": 58
+},
 
 "disk": {
     "path": "/",

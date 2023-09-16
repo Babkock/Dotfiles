@@ -15,7 +15,6 @@
 *** [[https://old.reddit.com/r/aboringdystopia/.rss][ABoringDystopia]]
 *** [[http://old.reddit.com/r/technology/.rss][technology]]
 *** [[https://old.reddit.com/r/oddlyterrifying/.rss][oddlyterrifying]]
-*** [[https://old.reddit.com/r/Feminism/.rss][Feminism]]
 *** [[http://old.reddit.com/r/programming/.rss][programming]]
 *** [[https://old.reddit.com/r/todayilearned/.rss][todayilearned]]
 *** [[http://old.reddit.com/r/nottheonion/.rss][nottheonion]]
@@ -51,6 +50,7 @@
 *** [[https://thehardtimes.net/feed/][The Hard Times]]
 *** [[https://www.spectrumnews.org/feed/][Spectrum News]]
 *** [[https://github.blog/changelog/feed/][GitHub News]]
+# remember to hide this next section when committing dotfiles
 ** Stack Overflow                                   :stack:
 *** [[https://stackoverflow.com/feeds/tag?tagnames=c&sort=newest][C]]
 *** [[https://stackoverflow.com/feeds/tag/c%2B%2B?sort=newest][C++]]
@@ -106,15 +106,5 @@
 *** [[https://hnrss.org/ask][Ask Hacker News]]
 *** [[https://hnrss.org/bestcomments][Hacker News Comments]]
 *** [[https://hnrss.org/show][Show Hacker News]]
-** Media                                                      :media:
-*** [[https://letterboxd.com/babkock/rss/][babkock]]
-*** [[https://letterboxd.com/heyaudreyk/rss/][heyaudreyk]]
-*** [[https://letterboxd.com/goldengal/rss/][goldengal]]
-*** [[https://letterboxd.com/filmaticbby/rss/][filmaticbby]]
-*** [[https://letterboxd.com/henryk1009/rss/][henryk1009]]
-*** [[https://letterboxd.com/donaman99/rss/][donaman99]]
-*** [[https://letterboxd.com/criterion/rss/][criterion]]
-*** [[https://twitchrss.appspot.com/vod/babkock][Twitch babkock]]
-*** [[https://twitchrss.appspot.com/vod/newtgrundy][Twitch newtgrundy]]
 ** Test Feed :test:
 ***  [[https://tannerbabcock.com/feed][Tanner Babcock Feed]]

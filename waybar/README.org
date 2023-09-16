@@ -58,12 +58,18 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#disk-1][Disk]]
   - [[#clock-1][Clock]]
 - [[#sway-tv-bar][Sway TV Bar]]
+  - [[#weather][Weather]]
+  - [[#bluetooth-1][Bluetooth]]
+  - [[#memory-1][Memory]]
+  - [[#disk-2][Disk]]
+  - [[#cpu-1][CPU]]
+  - [[#clock-2][Clock]]
 - [[#river-laptop-bar][River Laptop Bar]]
   - [[#appearance-2][Appearance]]
   - [[#mpd-1][MPD]]
-  - [[#clock-2][Clock]]
-  - [[#cpu-1][CPU]]
-  - [[#memory-1][Memory]]
+  - [[#clock-3][Clock]]
+  - [[#cpu-2][CPU]]
+  - [[#memory-2][Memory]]
   - [[#battery-1][Battery]]
   - [[#backlight-1][Backlight]]
   - [[#pulseaudio-1][Pulseaudio]]
@@ -73,52 +79,53 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#battery-2][Battery]]
   - [[#network-1][Network]]
   - [[#backlight-2][Backlight]]
-  - [[#disk-2][Disk]]
-  - [[#clock-3][Clock]]
+  - [[#disk-3][Disk]]
+  - [[#clock-4][Clock]]
 - [[#labwc-laptop-bar][LabWC Laptop Bar]]
   - [[#appearance-4][Appearance]]
   - [[#mpd-2][MPD]]
-  - [[#clock-4][Clock]]
-  - [[#cpu-2][CPU]]
+  - [[#clock-5][Clock]]
+  - [[#cpu-3][CPU]]
   - [[#battery-3][Battery]]
-  - [[#memory-2][Memory]]
+  - [[#memory-3][Memory]]
   - [[#backlight-3][Backlight]]
   - [[#pulseaudio-2][Pulseaudio]]
 - [[#labwc-monitor-bar][LabWC Monitor Bar]]
   - [[#appearance-5][Appearance]]
   - [[#mpd-3][MPD]]
-  - [[#disk-3][Disk]]
+  - [[#disk-4][Disk]]
   - [[#battery-4][Battery]]
   - [[#network-2][Network]]
   - [[#backlight-4][Backlight]]
-  - [[#clock-5][Clock]]
+  - [[#clock-6][Clock]]
 - [[#hyprland-laptop-bar][Hyprland Laptop Bar]]
   - [[#appearance-6][Appearance]]
   - [[#disk-external-hd][Disk (External HD)]]
   - [[#mpd-4][MPD]]
   - [[#temperature-1][Temperature]]
-  - [[#clock-6][Clock]]
-  - [[#cpu-3][CPU]]
-  - [[#memory-3][Memory]]
+  - [[#clock-7][Clock]]
+  - [[#cpu-4][CPU]]
+  - [[#memory-4][Memory]]
   - [[#battery-5][Battery]]
   - [[#backlight-5][Backlight]]
   - [[#pulseaudio-3][Pulseaudio]]
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
   - [[#appearance-7][Appearance]]
+  - [[#window-2][Window]]
   - [[#disk-internal-ssd][Disk (Internal SSD)]]
   - [[#wireplumber-1][Wireplumber]]
-  - [[#bluetooth-1][Bluetooth]]
+  - [[#bluetooth-2][Bluetooth]]
   - [[#idle-inhibit-1][Idle Inhibit]]
   - [[#network-3][Network]]
-  - [[#clock-7][Clock]]
+  - [[#clock-8][Clock]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-8][Appearance]]
-  - [[#weather][Weather]]
-  - [[#bluetooth-2][Bluetooth]]
-  - [[#memory-4][Memory]]
-  - [[#disk-4][Disk]]
-  - [[#cpu-4][CPU]]
-  - [[#clock-8][Clock]]
+  - [[#weather-1][Weather]]
+  - [[#bluetooth-3][Bluetooth]]
+  - [[#memory-5][Memory]]
+  - [[#disk-5][Disk]]
+  - [[#cpu-5][CPU]]
+  - [[#clock-9][Clock]]
 
 * Sway Laptop Bar
 
@@ -154,8 +161,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
              "8": "",
              "9": "",
              "urgent": "",
-             "default": "",
-             "focused": ""
+             "default": ""
          }
     },
     "sway/mode": {
@@ -168,16 +174,15 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     #+begin_src json :tangle config.json
     "mpd": {
         "server": "127.0.0.2",
-        "password": "000999888qqwweerrttyy/",
         "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
         "format-disconnected": " ",
         "format-stopped": "{consumeIcon}{singleIcon} ",
         "title-len": 35,
         "unknown-tag": "N/A",
         "interval": 1,
-        "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
-        "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
-        "on-click-middle": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 prev",
+        "on-click": "mpc --host=127.0.0.2 toggle",
+        "on-click-right": "mpc --host=127.0.0.2 next",
+        "on-click-middle": "mpc --host=127.0.0.2 prev",
         "consume-icons": {
             "on": " "
         },
@@ -324,7 +329,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle config.json
 }, {
     "position": "bottom",
-    "height": 41,
+    "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
@@ -346,8 +351,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
             "8": "",
             "9": "",
             "urgent": "",
-            "default": "",
-            "focused": "",
+            "default": ""
         }
     },
 #+end_src
@@ -359,6 +363,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "format": "{title}",
     "separate-outputs": false,
     "rewrite": {
+        "foot": " ",
         "Alacritty": " ",
         "ranger:(.*)": " $1",
         "Mozilla Firefox": " ",
@@ -374,7 +379,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) - Discord": "󰙯 $1",
         "Discord Updater": "󰙯 "
     },
-    "max-length": 56
+    "max-length": 58,
     "all-outputs": true
 },
 #+end_src
@@ -473,7 +478,100 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 40,
+    "height": 41,
+    "modules-left": ["sway/workspaces"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "爵",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+#+end_src
+
+** Weather
+
+#+begin_src json :tangle config.json
+"custom/weather": {
+    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "interval": 4,
+    "format": "{}"
+},
+#+end_src
+
+** Bluetooth
+
+#+begin_src json :tangle config.json
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""]
+},
+#+end_src
+
+** Memory
+
+#+begin_src json :tangle config.json
+"memory": {
+    "format": " {}%",
+    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+},
+#+end_src
+
+** Disk
+
+#+begin_src json :tangle config.json
+"disk": {
+    "path": "/mnt/drive/",
+    "interval": 1,
+    "format": "  <span style=\"italic\">{free}</span>",
+    "format-alt": "  {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+#+end_src
+
+** CPU
+
+#+begin_src json :tangle config.json
+    "cpu": {
+        "format": " {usage}%",
+        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    },
+#+end_src
+
+** Clock
+
+#+begin_src json :tangle config.json
+    "custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
 }]
 #+end_src
 
@@ -502,7 +600,6 @@ This is the first and primary bar for the River compositor. It appears on my lap
 #+begin_src json :tangle rconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
@@ -746,7 +843,6 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 #+begin_src json :tangle lconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
@@ -1021,8 +1117,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "default": ""
         },
         "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1"
+        "on-scroll-up": "hyprctl dispatch workspace m+1",
+        "on-scroll-down": "hyprctl dispatch workspace m-1"
     },
     #+end_src
 
@@ -1044,16 +1140,15 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "password": "000999888qqwweerrttyy/",
     "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon} ",
     "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 toggle",
-    "on-click-right": "mpc --host=000999888qqwweerrttyy/@127.0.0.2 next",
-    "on-click-middle": "mpc --host=009988qqwweerrttyy/@127.0.0.2 prev",
+    "on-click": "mpc --host=127.0.0.2 toggle",
+    "on-click-right": "mpc --host=127.0.0.2 next",
+    "on-click-middle": "mpc --host=127.0.0.2 prev",
     "consume-icons": {
         "on": " "
     },
@@ -1210,30 +1305,36 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "default": ""
          },
          "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
+         "on-scroll-up": "hyprctl dispatch workspace m+1",
+         "on-scroll-down": "hyprctl dispatch workspace m-1"
     },
-    "hyprland/window": {
-        "format": "{title}",
-        "separate-outputs": false,
-        "rewrite": {
-            "Alacritty": " ",
-            "ranger:(.*)": " $1",
-            "Mozilla Firefox": " ",
-            "(.*) — Mozilla Firefox": " $1",
-            "GNU Emacs at thing": " ",
-            "(.*) – Doom Emacs": " $1",
-            "(.*) — Doom Emacs": " $1",
-            "Untitled - Chromium": " ",
-            "(.*) - Chromium": " $1",
-            "swayimg: (.*)": " $1",
-            "(.*) - mpv": " $1",
-            "(.*) - VLC Media Player": " $1",
-            "(.*) - Discord": "󰙯 $1",
-            "Discord Updater": "󰙯 "
-        },
-        "max-length": 56
+#+end_src
+
+** Window
+
+#+begin_src json :tangle hconfig.json
+"hyprland/window": {
+    "format": "{title}",
+    "separate-outputs": false,
+    "rewrite": {
+        "foot": " ",
+        "Alacritty": " ",
+        "ranger:(.*)": " $1",
+        "Mozilla Firefox": " ",
+        "(.*) — Mozilla Firefox": " $1",
+        "GNU Emacs at thing": " ",
+        "(.*) – Doom Emacs": " $1",
+        "(.*) — Doom Emacs": " $1",
+        "Untitled - Chromium": " ",
+        "(.*) - Chromium": " $1",
+        "swayimg: (.*)": " $1",
+        "(.*) - mpv": " $1",
+        "(.*) - VLC Media Player": " $1",
+        "(.*) - Discord": "󰙯 $1",
+        "Discord Updater": "󰙯 "
     },
+    "max-length": 58
+},
 #+end_src
 
 ** Disk (Internal SSD)

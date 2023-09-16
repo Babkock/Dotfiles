@@ -32,7 +32,7 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]]
 
-This repository has configuration files for four different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], [[https://github.com/labwc/labwc][LabWC]], and Hyprland. Each of these compositors are a
+This repository has configuration files for four different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], [[https://github.com/labwc/labwc][LabWC]], and [[https://github.com/hyprwm/Hyprland][Hyprland]]. Each of these compositors are a
 self-contained environment, they each have their own Waybar, Foot, Swaylock, and Wob configurations, and their own color schemes.
 They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree/master/bin][bin]] directory, and their autostart files load their respective configurations.
 
@@ -48,13 +48,17 @@ They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree
 - [[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][Waybar Style]]
 - [[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zsh]]
 
-** List
+** My Stack
 
+- [[https://github.com/alacritty/alacritty][Alacritty]]
 - [[https://github.com/baskerville/bspwm][Bspwm]]
 - [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
 - [[https://dunst-project.org][Dunst]]
+- [[https://codeberg.org/dnkl/foot][Foot]]
+- [[https://codeberg.org/dnkl/fuzzel][Fuzzel]]
 - [[https://github.com/hyprwm/Hyprland][Hyprland]]
 - [[https://github.com/labwc/labwc][LabWC]]
+- [[https://github.com/emersion/mako][Mako]]
 - Mozilla Firefox
 - [[https://github.com/mpv-player/mpv][mpv]]
 - [[https://github.com/arybczak/ncmpcpp][ncmpcpp]]
@@ -66,20 +70,23 @@ They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree
 - [[https://github.com/baskerville/sxhkd][sxhkd]]
 - [[https://github.com/swaywm/sway][Sway]]
 - [[https://gitlab.com/tbcargo/Tinyserve][Tinyserve]]
+- [[https://github.com/tremc/tremc][Transmission]]
 - [[https://www.vim.org][Vim]]
 - [[https://github.com/Alexays/Waybar][Waybar]]
 - [[http://zsh.sourceforge.net][Zsh]]
 
 * Keybindings
 
+These are the keybindings for my Sway and Hyprland sessions.
+
 | Key Combination        | Action                |
 |------------------------+-----------------------|
 | Super + Space          | Fuzzel                |
-| Super + Return         | Alacritty             |
-| Super + Period         | Qutebrowser           |
-| Super + Shift + Period | Mozilla Firefox       |
-| Super + Comma          | Terminal with Ncmpcpp |
-| Super + Shift + Comma  | Emacs                 |
+| Super + Return         | [[https://github.com/Babkock/Dotfiles/blob/master/alacritty.yml][Alacritty]]       |
+| Super + Period         | [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]       |
+| Super + Shift + Period | [[https://github.com/Babkock/Dotfiles/tree/master/chrome][Mozilla Firefox]] |
+| Super + Comma          | Terminal with [[https://github.com/Babkock/Dotfiles/blob/master/ncmpcpp/config][Ncmpcpp]] |
+| Super + Shift + Comma  | [[https://github.com/Babkock/Dotfiles/tree/master/doom.d][Emacs]]           |
 | Super + Semicolon      | Nicotine              |
 | Super + Shift + Semicolon | OBS                |
 | Super + Backslash         | Discord            |
