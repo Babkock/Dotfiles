@@ -18,14 +18,23 @@ font:
 
 draw_bold_text_with_bright_colors: true
 
+scrolling:
+  multiplier: 4
+
 window:
-  opacity: 0.6
+  opacity: 0.7
 
   decorations: none
 
   padding:
     x: 9
     y: 9
+
+  dynamic_padding: true
+  dynamic_title: true
+
+mouse:
+  hide_when_typing: true
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
@@ -57,4 +66,27 @@ colors:
     magenta: '0xf74e8b'
     cyan:    '0xd8a89a'
     white:   '0xfdeadb'
+
+bell:
+  animation: Ease
+  duration: 700
+  color: '#ffffff'
+
+cursor:
+  style:
+    shape: Beam
+    blinking: Always
+
+  unfocused_hollow: false
+  blink_interval: 500
+  blink_timeout: 30
+
+shell:
+  program: /bin/zsh
+
+hints:
+    hyperlinks: false
+    mouse:
+      enabled: true
+      mods: Shift
 

@@ -48,6 +48,9 @@ c.colors.completion.scrollbar.fg = '#aaf28735'
 # Color of the scrollbar in the completion view.
 c.colors.completion.scrollbar.bg = '#55101010'
 
+c.colors.tooltip.bg = '#aa101010'
+c.colors.tooltip.fg = '#eefdeadb'
+
 # --- Context menu ---
 
 c.colors.contextmenu.disabled.bg = '#77000000'
@@ -159,7 +162,7 @@ c.colors.tabs.selected.odd.bg = '#77101010'
 c.colors.tabs.selected.even.fg = base0A
 c.colors.tabs.selected.even.bg = '#77101010'
 # Default page background when there is none
-c.colors.webpage.bg = base0F
+c.colors.webpage.bg = '#ffffffff'
 
 config.load_autoconfig()
 
@@ -167,13 +170,14 @@ c.completion.height = "30%"
 c.downloads.location.directory = "/home/babkock"
 c.downloads.location.prompt = False
 c.prompt.filebrowser = False
+c.prompt.radius = 20
 c.input.insert_mode.auto_load = True
 c.input.insert_mode.auto_leave = True
 c.downloads.prevent_mixed_content = True
-c.downloads.position = 'bottom'
+c.downloads.position = "bottom"
 c.window.transparent = True
-c.completion.timestamp_format = '%H:%M:%S'
-c.completion.scrollbar.width = 30
+c.completion.timestamp_format = "%a, %b %d %H:%M:%S"
+c.completion.scrollbar.width = 20
 c.content.cookies.accept = 'all'
 c.content.media.video_capture = True
 c.content.media.audio_capture = True
@@ -187,11 +191,14 @@ c.content.local_content_can_access_remote_urls = True
 c.content.plugins = True
 c.content.tls.certificate_errors = "load-insecurely"
 c.content.geolocation = False
-c.hints.radius = 8
+c.content.javascript.clipboard = "access"
+c.content.prefers_reduced_motion = True
+c.hints.radius = 20
 c.hints.uppercase = True
-c.scrolling.bar = 'always'
+c.scrolling.bar = "always"
 c.scrolling.smooth = False
 c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss"]
+c.qt.chromium.experimental_web_platform_features = "always"
 
 # --- Fonts ---
 
@@ -202,11 +209,12 @@ c.fonts.messages.info = '14pt Space Mono Nerd Font'
 c.fonts.messages.warning = '14pt Space Mono Nerd Font'
 c.fonts.statusbar = '14pt Space Mono Nerd Font'
 c.fonts.downloads = '14pt Space Mono Nerd Font'
-c.fonts.prompts = '14pt Space Mono Nerd Font'
+c.fonts.prompts = '15pt Victor Mono Nerd Font'
 c.fonts.keyhint = '14pt Space Mono Nerd Font'
 c.fonts.hints = '14pt Space Mono Nerd Font'
 c.fonts.contextmenu = '14pt Space Mono Nerd Font'
 c.fonts.completion.category = 'bold 15pt Victor Mono Nerd Font'
+c.fonts.tooltip = '15pt Victor Mono Nerd Font'
 c.fonts.completion.entry = '14pt Space Mono Nerd Font'
 c.fonts.tabs.selected = 'italic 14pt Space Mono Nerd Font'
 c.fonts.tabs.unselected = '14pt Space Mono Nerd Font'
@@ -236,22 +244,26 @@ c.tabs.padding = {
     "bottom": 4
 }
 c.tabs.title.format = "{audio}{current_title}"
+c.tabs.title.format_pinned = "{audio}{index}"
 c.window.title_format = "{perc}{current_title}"
 c.tabs.last_close = "close"
 c.tabs.indicator.width = 0
 c.tabs.favicons.scale = 1.3
 c.tabs.show_switching_delay = 700
+c.tabs.pinned.frozen = False
+c.completion.shrink = True
+c.auto_save.interval = 20000
 
 # --- Search engines ---
 
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!i': 'https://yewtu.be/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}' }
+c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}' }
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
-c.fileselect.single_file.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+c.fileselect.single_file.command = ['alacritty', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
 #c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
-c.fileselect.multiple_files.command = ['foot', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+c.fileselect.multiple_files.command = ['alacritty', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
 
 # --- Keybindings: Bookmarks ---
 
@@ -275,6 +287,7 @@ config.bind(',c', 'config-cycle content.user_stylesheets "" ""')
 config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4chan.css ""')
 config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
+config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
 config.bind(',x', 'config-cycle fonts.statusbar "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')

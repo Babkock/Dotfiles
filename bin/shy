@@ -8,6 +8,7 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export XCURSOR_THEME="Adwaita"
 export XCURSOR_SIZE=30
 export MOZ_ENABLE_WAYLAND=1
+pkill -x mpdas 2> /dev/null
 pkill -x pipewire 2> /dev/null
 pkill -x pulseaudio 2> /dev/null
 echo "Starting Hyprland..."

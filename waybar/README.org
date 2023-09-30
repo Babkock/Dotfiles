@@ -48,6 +48,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#battery][Battery]]
   - [[#backlight][Backlight]]
   - [[#pulseaudio][Pulseaudio]]
+  - [[#tray][Tray]]
 - [[#sway-monitor-bar][Sway Monitor Bar]]
   - [[#appearance-1][Appearance]]
   - [[#window][Window]]
@@ -109,6 +110,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#battery-5][Battery]]
   - [[#backlight-5][Backlight]]
   - [[#pulseaudio-3][Pulseaudio]]
+  - [[#tray-1][Tray]]
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
   - [[#appearance-7][Appearance]]
   - [[#window-2][Window]]
@@ -143,7 +145,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock", "tray"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -180,9 +182,9 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
         "title-len": 35,
         "unknown-tag": "N/A",
         "interval": 1,
-        "on-click": "mpc --host=127.0.0.2 toggle",
-        "on-click-right": "mpc --host=127.0.0.2 next",
-        "on-click-middle": "mpc --host=127.0.0.2 prev",
+        "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
+        "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
+        "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
         "consume-icons": {
             "on": " "
         },
@@ -317,6 +319,16 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+},
+#+end_src
+
+** Tray
+
+#+begin_src json :tangle config.json
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
 }
 #+end_src
 
@@ -1097,7 +1109,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "temperature", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "temperature", "custom/clock", "tray"],
     "wlr/workspaces": {
         "all-outputs": false,
         "disable-scroll": false,
@@ -1117,8 +1129,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "default": ""
         },
         "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace m+1",
-        "on-scroll-down": "hyprctl dispatch workspace m-1"
+        "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
     #+end_src
 
@@ -1146,9 +1158,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle",
-    "on-click-right": "mpc --host=127.0.0.2 next",
-    "on-click-middle": "mpc --host=127.0.0.2 prev",
+    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
+    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
+    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
     "consume-icons": {
         "on": " "
     },
@@ -1270,6 +1282,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "pavucontrol"
+},
+#+end_src
+
+** Tray
+
+#+begin_src json :tangle hconfig.json
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
 }
 #+end_src
 
@@ -1305,8 +1327,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "default": ""
          },
          "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace m+1",
-         "on-scroll-down": "hyprctl dispatch workspace m-1"
+         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 #+end_src
 

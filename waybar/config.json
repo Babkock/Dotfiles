@@ -4,7 +4,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock", "tray"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -37,9 +37,9 @@
     "title-len": 35,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle",
-    "on-click-right": "mpc --host=127.0.0.2 next",
-    "on-click-middle": "mpc --host=127.0.0.2 prev",
+    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
+    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
+    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
     "consume-icons": {
         "on": " "
     },
@@ -142,6 +142,12 @@
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
+},
+
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
 }
 
 }, {

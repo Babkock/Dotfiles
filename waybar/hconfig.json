@@ -5,7 +5,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "temperature", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "temperature", "custom/clock", "tray"],
     "wlr/workspaces": {
         "all-outputs": false,
         "disable-scroll": false,
@@ -25,8 +25,8 @@
             "default": ""
         },
         "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace m+1",
-        "on-scroll-down": "hyprctl dispatch workspace m-1"
+        "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 
 "disk": {
@@ -46,9 +46,9 @@
     "title-len": 38,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle",
-    "on-click-right": "mpc --host=127.0.0.2 next",
-    "on-click-middle": "mpc --host=127.0.0.2 prev",
+    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
+    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
+    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
     "consume-icons": {
         "on": " "
     },
@@ -142,6 +142,12 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "pavucontrol"
+},
+
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
 }
 
 }, {
@@ -171,8 +177,8 @@
              "default": ""
          },
          "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace m+1",
-         "on-scroll-down": "hyprctl dispatch workspace m-1"
+         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 
 "hyprland/window": {

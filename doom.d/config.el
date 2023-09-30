@@ -528,6 +528,7 @@
           doom-modeline-buffer-state-icon nil
           doom-modeline-height 30
           doom-modeline-hud t
+          doom-modeline-indent-info t
           doom-modeline-buffer-modification-icon nil)
     (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
 (setq-default doom-modeline-major-mode-icon t
@@ -539,14 +540,15 @@
               doom-modeline-unicode-fallback nil
               doom-modeline-hud t
               doom-modeline-height 30
+              doom-modeline-indent-info t
               doom-modeline-buffer-modification-icon nil)
 
 (defun mpdnotify ()
     (interactive)
     (shell-command "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh")
     (notifications-notify
-        :title (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %title% | head -1")
-        :body (concat (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host=000999888qqwweerrttyy/@127.0.0.2 -f %album% | head -1") "</i>")
+        :title (shell-command-to-string "mpc --host=127.0.0.2 -f %title% | head -1")
+        :body (concat (shell-command-to-string "mpc --host=127.0.0.2 -f %artist% | head -1") "<i>" (shell-command-to-string "mpc --host=127.0.0.2 -f %album% | head -1") "</i>")
         :image-path "/tmp/mpd_cover.jpg"
 ))
 
