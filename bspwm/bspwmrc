@@ -31,7 +31,8 @@ bspc config split_ratio             0.5
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
 
-bspc monitor eDP1 -d I II III IV V VI
+bspc monitor eDP1 -d I II III IV V
+bspc monitor HDMI2 -d VI VII VIII IX
 bspc rule -a "mpv" desktop='^3' state=floating focus=on follow=on
 bspc rule -a "emacs" desktop='^4' state=tiled focus=on follow=on
 bspc rule -a "Emacs" desktop='^4' state=tiled focus=on follow=on
@@ -41,8 +42,8 @@ bspc rule -a feh state=floating follow=on focus=on
 bspc rule -a "Sxiv" state=floating follow=on focus=on
 bspc rule -a surf2 desktop='^2' state=tiled
 bspc rule -a Surf desktop='^2' state=tiled
-#bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
-#bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
+bspc rule -a Steam desktop='^6' state=tiled focus=on follow=on
+bspc rule -a steam desktop='^6' state=tiled focus=on follow=on
 bspc rule -a "Nicotine" desktop='^5' state=tiled focus=on follow=on
 bspc rule -a "Filezilla" desktop='^5' state=tiled focus=on follow=on
 bspc rule -a *:Dialog state=floating
@@ -52,15 +53,23 @@ transmission-remote --download-dir "/home/babkock/Downloads"
 transmission-remote --incomplete-dir "/home/babkock/Downloads"
 transmission-remote --torrent-done-script "/usr/bin/trnotify"
 
+gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+gsettings set org.gnome.desktop.interface cursor-size 30
+
 # These daemons must be started here and not in xinitrc
 
 pkill -x polybar 2> /dev/null
 polybar -r --log=error laptop &
+polybar -r --log=error monitor &
 
-pkill -x picom 2> /dev/null
+pgrep pulseaudio | xargs kill 2> /dev/null
+pgrep pipewire | xargs kill 2> /dev/null
+pipewire &
+
+pgrep picom | xargs kill 2> /dev/null
 picom -b -C -c -o 0.35 -m 0.8 -r 9 -l 3 -t 3 --inactive-dim 0.1 --blur-background-exclude "class_g='dmenu' || class_g='dunst'" 2> /dev/null
 
-pkill -x dunst 2> /dev/null
+pgrep dunst | xargs kill 2> /dev/null
 dunst --silent &
 
 pkill -x emacs 2> /dev/null

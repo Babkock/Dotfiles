@@ -140,14 +140,7 @@ tooltip {
    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
-#bluetooth.off {
-    padding-left:9px;
-    padding-right:9px;
-    margin-left:0;
-    margin-right:0;
-}
-
-#bluetooth.on {
+#bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#d0484e;
     background:linear-gradient(180deg, rgba(186, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;

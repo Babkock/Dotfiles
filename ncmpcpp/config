@@ -40,7 +40,7 @@ visualizer_data_source = /tmp/mpd.fifo
 visualizer_in_stereo = yes
 
 ## Available values: spectrum, wave, wave_filled, ellipse.
-visualizer_type = wave
+visualizer_type = spectrum
 
 visualizer_look = ?$
 
@@ -131,10 +131,6 @@ alternative_header_second_line_format = {{$5$b%a$/b$9}{ - $6$b%b$/b$9}{ ($4%y$9)
 
 #current_item_inactive_column_suffix = $/r$(end)
 
-#now_playing_prefix = $b
-
-#now_playing_suffix = {$R%#}
-
 #browser_playlist_prefix = "$2playlist$9 "
 
 #selected_item_prefix = $6
@@ -143,7 +139,7 @@ alternative_header_second_line_format = {{$5$b%a$/b$9}{ - $6$b%b$/b$9}{ ($4%y$9)
 
 #modified_item_prefix = $3> $9
 
-song_window_title_format = {%a - }{%t}|{%f}
+song_window_title_format = zncmpcpp {%a - }{%t}|{%f}
 
 #browser_sort_mode = name
 
@@ -214,7 +210,7 @@ volume_change_step = 3
 
 #autocenter_mode = no
 
-#centered_cursor = no
+centered_cursor = yes
 
 progressbar_look = 
 
@@ -226,7 +222,7 @@ user_interface = alternative
 
 media_library_primary_tag = artist
 
-#media_library_albums_split_by_date = yes
+media_library_albums_split_by_date = no
 
 #default_find_mode = wrapped
 
@@ -236,13 +232,13 @@ header_visibility = yes
 
 statusbar_visibility = yes
 
-titles_visibility = yes
+titles_visibility = no
 
 header_text_scrolling = yes
 
 cyclic_scrolling = yes
 
-#lines_scrolled = 2
+lines_scrolled = 3
 
 #lyrics_fetchers = azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
 
@@ -291,13 +287,13 @@ display_volume_level = yes
 
 display_bitrate = yes
 
-display_remaining_time = no
+display_remaining_time = yes
 
 regular_expressions = perl
 
 ignore_leading_the = yes
 
-#ignore_diacritics = no
+ignore_diacritics = yes
 
 #block_search_constraints_change_if_items_found = yes
 

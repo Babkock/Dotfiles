@@ -95,7 +95,7 @@ Notice the space before the asterisk.
     font-family:"SpaceMono Nerd Font";
     font-size:21px;
     background:transparent;
-    color:#efefef;
+    color:#ffefef;
 }
 
 tooltip {
@@ -112,7 +112,7 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #window {
-    color:#010101;
+    color:#ffefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     padding-left:5px;
 }
@@ -122,7 +122,7 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #mpd {
-    color:#010101;
+    color:#ffefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -131,8 +131,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #cpu, #wireplumber.muted, #pulseaudio.muted {
-    color:#c94b3c;
-    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
+    color:#ea4d48;
+    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -145,8 +145,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #pulseaudio, #disk {
-    color:#dedc91;
-    background:linear-gradient(180deg, rgba(222, 220, 145, 0.7), rgba(0, 0, 0, 0.5));
+    color:#fbb73e;
+    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:2px;
     margin-right:0;
     padding-left:10px;
@@ -160,8 +160,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #memory, #backlight, #wireplumber {
-    color:#40a789;
-    background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.5));
+    color:#74c280;
+    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -174,7 +174,7 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #workspaces button, #tags button {
-    background:linear-gradient(180deg, rgba(120, 120, 120, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(120, 120, 120, 0.5), rgba(0, 0, 0, 0.4));
     padding-left:17px;
     padding-right:17px;
     margin-left:1px;
@@ -193,29 +193,29 @@ tooltip {
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:inherit;
     margin-left:1px;
     margin-right:2px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#c94b3b;
-    text-shadow:3px 3px rgba(181, 53, 27, 0.6);
-    box-shadow:2px 2px rgba(181, 53, 27, 0.5);
+    text-shadow:3px 3px rgba(116, 194, 128, 0.6);
+    box-shadow:2px 2px rgba(116, 194, 128, 0.5);
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
-    background:linear-gradient(180deg, rgba(97, 185, 167, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
     color:#81d8c6;
-    box-shadow:2px 2px rgba(107, 195, 177, 0.5);
+    box-shadow:2px 2px rgba(234, 72, 77, 0.5);
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
-    text-shadow:3px 3px rgba(107, 195, 177, 0.6);
+    text-shadow:3px 3px rgba(234, 72, 77, 0.6);
 }
 
 #tags button.occupied {
-    background:linear-gradient(180deg, rgba(239, 175, 96, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(180deg, rgba(239, 175, 96, 0.5), rgba(0, 0, 0, 0.4));
     color:#fff293;
 }
 #+end_src
@@ -224,8 +224,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
-    color:#61b8b6;
-    background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.5));
+    color:#5b55ca;
+    background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -256,16 +256,9 @@ tooltip {
 ** Bluetooth
 
 #+begin_src css :tangle style.css
-#bluetooth.off {
-    padding-left:9px;
-    padding-right:9px;
-    margin-left:0;
-    margin-right:0;
-}
-
-#bluetooth.on {
-    color:#c94b3b;
-    background:linear-gradient(180deg, rgba(181, 53, 28, 0.7), rgba(0, 0, 0, 0.5));
+#bluetooth.on, #bluetooth.off {
+    color:#ea4d48;
+    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -274,8 +267,8 @@ tooltip {
 }
 
 #bluetooth.connected, #bluetooth.connected.pairable {
-    color:#50b799;
-    background:linear-gradient(180deg, rgba(58, 161, 131, 0.7), rgba(0, 0, 0, 0.1));
+    color:#74c280;
+    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -284,8 +277,8 @@ tooltip {
 }
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
-    color:#61b8b6;
-    background:linear-gradient(180deg, rgba(107, 194, 182, 0.7), rgba(0, 0, 0, 0.1));
+    color:#5b55ca;
+    background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -294,8 +287,8 @@ tooltip {
 }
 
 #bluetooth.discovering {
-    color:#dedc91;
-    background:linear-gradient(0deg, rgba(222, 220, 145, 0.6), rgba(0, 0, 0, 0.1));
+    color:#fbb73e;
+    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -308,8 +301,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #custom-clock, #network {
-    color:#c26cd5;
-    background:linear-gradient(180deg, rgba(176, 105, 152, 0.7), rgba(0, 0, 0, 0.5));
+    color:#d154af;
+    background:linear-gradient(0deg, rgba(193, 68, 159, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:2px;
     padding-left:12px;
@@ -869,14 +862,7 @@ tooltip {
 ** Bluetooth
 
 #+begin_src css :tangle hyprland.css
-#bluetooth.off {
-    padding-left:9px;
-    padding-right:9px;
-    margin-left:0;
-    margin-right:0;
-}
-
-#bluetooth.on {
+#bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#d0484e;
     background:linear-gradient(180deg, rgba(186, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
     margin-left:0;

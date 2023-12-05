@@ -51,7 +51,7 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-(setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-peacock)
 (setq which-key-idle-delay 0.3
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -279,14 +279,18 @@
         :icon (all-the-icons-alltheicon "git" :face 'all-the-icons-pink :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.95)
         :action tb/open-tbcom)
-      ("Org Agenda"
-        :icon (all-the-icons-faicon "calendar" :face 'all-the-icons-maroon :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
-        :action org-agenda)
+      ; ("Org Agenda"
+      ;  :icon (all-the-icons-faicon "calendar" :face 'all-the-icons-maroon :height 0.95)
+      ;  :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
+      ;  :action org-agenda)
       ("Open Dotfiles"
         :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-blue :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
         :action tb/open-dotfiles)
+      ("Mastodon"
+        :icon (all-the-icons-material "chat" :face 'all-the-icons-maroon :height 0.95)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-maroon) :height 0.95)
+        :action mastodon)
       ("RSS Feeds"
         :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.95)
@@ -324,14 +328,14 @@
     :desc "Open Foot Config" :ne "F" #'tb/open-foot-org
     :desc "Open Waybar Config" :ne "w" (cmd! (find-file "~/.config/waybar/config.org"))
     :desc "Open Waybar Style" :ne "W" (cmd! (find-file "~/.config/waybar/style.org"))
-    :desc "Open BSPWM Config" :ne "m" (cmd! (find-file "~/.config/bspwm/bspwm.org"))
-    :desc "Open MPV Config" :ne "M" (cmd! (find-file "~/.config/mpv/mpv.conf"))
+    :desc "Mastodon" :ne "m" #'mastodon
+    :desc "Mastodon Local" :ne "M" #'mastodon-tl--get-local-timeline
     :desc "Open TBcom" :ne "t" #'tb/open-tbcom
     :desc "Open Dotfiles" :ne "D" #'tb/open-dotfiles
     :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
     :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
     :desc "Open Xresources" :ne "X" (cmd! (find-file "~/.Xresources"))
-    :desc "Open .xinitrc" :ne "x" (cmd! (find-file "~/.xinitrc"))
+    :desc "Mastodon Followed Tags" :ne "x" #'mastodon-tl--followed-tags-timeline
     :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
     :desc "Open MPDel Playlist" :ne ";" #'mpdel-playlist-open
@@ -362,15 +366,17 @@
 
 (require 'elfeed-goodies)
 (require 'elfeed-org)
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (after! elfeed
+    (add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
           elfeed-use-curl t
           elfeed-curl-max-connections 20
           elfeed-curl-timeout 8
-          elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
+          elfeed-curl-extra-arguments '("--insecure" "--fail-early" "--tcp-fastopen" "--ssl-allow-beast"))
     (defface git-entry
         '((t :foreground "#d04b4e"))
         "Entry for Git")
@@ -416,6 +422,7 @@
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
+(add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect))
 
 (after! elfeed-goodies
@@ -472,7 +479,7 @@
     :desc "Play song in MPDel" "z" #'mpdnotify-play
     :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
     :desc "Org Tangle" "l" #'org-babel-tangle
-    :desc "MPDel Playlist" "m" #'mpdel-playlist-open
+    :desc "Mastodon Toggle Boost" "m" #'mastodon-toot--toggle-boost
     :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
     :desc "MPDel Next Song" "]" #'libmpdel-playback-next
     :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
@@ -488,7 +495,7 @@
     :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
     :desc "Switch Buffer" "," #'helm-buffers-list
-    :desc "Org Agenda" "-" #'org-agenda
+    :desc "Mastodon Toggle Favorite" "-" #'mastodon-toot--toggle-favourite
     :desc "Org Time Stamp" "=" #'org-time-stamp
     :desc "Org Priority Up" "\\" #'org-priority-up
     :desc "Org Priority Down" "'" #'org-priority-down)
@@ -516,6 +523,13 @@
 
 (add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
 (add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+(use-package mastodon
+    :config
+    (setq mastodon-instance-url "https://fosstodon.org"
+          mastodon-active-user "babkock"))
+(add-hook! 'mastodon-toot-mode-hook
+    (lambda () (auto-fill-mode -1)))
 
 (after! modeline
     (setq doom-modeline-buffer-file-name-style 'relative-to-project

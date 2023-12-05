@@ -18,3 +18,4 @@
 (package! fancy-battery)
 (package! org-fancy-priorities)
 (package! org-modern)
+(package! mastodon)

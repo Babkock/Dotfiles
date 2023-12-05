@@ -153,6 +153,73 @@ else
     alias gh="rg --context=4"
     alias reboot="loginctl reboot"
     alias xx="loginctl reboot"
+    # functions only for login shells
+    function shy() {
+        export GTK_THEME="Sunset-Dark"
+        export XDG_CURRENT_DESKTOP="Hyprland"
+        export XDG_SESSION_DESKTOP="Hyprland"
+        export QT_QPA_PLATFORM="wayland-egl"
+        export QT_QPA_PLATFORMTHEME="qt6ct"
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export XCURSOR_THEME="Adwaita"
+        export XCURSOR_SIZE=30
+        export MOZ_ENABLE_WAYLAND=1
+        pgrep mpdas | xargs kill 2> /dev/null
+        pgrep pipewire | xargs kill 2> /dev/null
+        pgrep pulseaudio | xargs kill 2> /dev/null
+        echo "Starting Hyprland..."
+        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+        gsettings set org.gnome.desktop.interface cursor-size 30
+        dbus-launch --exit-with-session Hyprland
+        pgrep mako | xargs kill 2> /dev/null
+        pgrep emacs | xargs kill 2> /dev/null
+        true
+    }
+    function swa() {
+        export GTK_THEME="Sunset-Dark"
+        export XDG_CURRENT_DESKTOP="sway"
+        export XDG_SESSION_DESKTOP="sway"
+        export QT_QPA_PLATFORM="wayland-egl"
+        export QT_QPA_PLATFORMTHEME="qt6ct"
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+            export XCURSOR_THEME="Adwaita"
+            export XCURSOR_SIZE=30
+            export MOZ_ENABLE_WAYLAND=1
+            pgrep mpdas | xargs kill 2> /dev/null
+            pgrep pipewire | xargs kill 2> /dev/null
+            pgrep pulseaudio | xargs kill 2> /dev/null
+            echo "Starting Sway..."
+            pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+            gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+            gsettings set org.gnome.desktop.interface cursor-size 30
+            dbus-launch --exit-with-session sway
+            pgrep mako | xargs kill 2> /dev/null
+            pgrep emacs | xargs kill 2> /dev/null
+            true
+    }
+    function sri() {
+        export GTK_THEME="Sunset-Dark"
+        export XDG_CURRENT_DESKTOP="sway"
+        export XDG_SESSION_DESKTOP="sway"
+        export QT_QPA_PLATFORM="wayland-egl"
+        export QT_QPA_PLATFORMTHEME="qt6ct"
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export XCURSOR_THEME="Adwaita"
+        export XCURSOR_SIZE=30
+        export MOZ_ENABLE_WAYLAND=1
+        pgrep mpdas | xargs kill 2> /dev/null
+        pgrep pipewire | xargs kill 2> /dev/null
+        pgrep pulseaudio | xargs kill 2> /dev/null
+        echo "Starting River..."
+        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+        gsettings set org.gnome.desktop.interface cursor-size 30
+        dbus-launch --exit-with-session river
+        pgrep mako | xargs kill 2> /dev/null
+        pgrep emacs | xargs kill 2> /dev/null
+        true
+    }
 fi
 #+end_src
 
@@ -216,32 +283,29 @@ All of these =ls= commands have flags to show directories first, show human-read
 if [ -v TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "alacritty" || ${TERM} = "kitty" ]]; then
         # graphical terminal
-        alias ls="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
-        alias l="lsd --config-file=\"$HOME/.config/lsd/config.yml\""
-        alias lsla="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
-        alias la="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
-        alias ll="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t"
-        alias lsl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A"
-        alias lsa="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A"
-        alias lst="lsd --config-file=\"$HOME/.config/lsd/config.yml\" --tree"
-        alias lstl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --tree"
-        alias ltl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A -t --tree"
-        alias lc="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size"
-        alias lct="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size --tree"
-        alias lctl="lsd --config-file=\"$HOME/.config/lsd/config.yml\" -l -A --total-size --tree -t"
-        alias a="exa --icons --group-directories-first -F"
-        alias al="exa --icons --group-directories-first --git --color-scale -F -h -l -a"
-        alias aa="exa --icons --group-directories-first --git --color-scale -F -h -l -a"
-        alias at="exa --icons --group-directories-first -F --tree -L 3"
-        alias atl="exa --icons --group-directories-first --git --color-scale -F --tree -L 3 -h -l -a"
-        alias alt="exa --icons --group-directories-first --git --color-scale -F --tree -L 3 -h -l -a"
-        alias ac="exa --icons --group-directories-first -F -s time -r"
-        alias acl="exa --icons --group-directories-first --git --color-scale -F -h -l -a -s time -r"
-        alias aca="exa --icons --group-directories-first --git --color-scale -F -h -l -a -s time -r"
-        alias act="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
-        alias atc="exa --icons --group-directories-first -F --tree -L 3 -s time -r"
-        alias aclt="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
-        alias atlc="exa --icons --group-directories-first --git --color-scale -F -h -l -a --tree -L 3 -s time -r"
+        alias ls="eza --icons --group-directories-first --no-quotes -X -F"
+        alias l="eza --icons --group-directories-first --no-quotes -X -F"
+        alias lsla="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S"
+        alias la="eza --icons --group-directories-first --no-quotes -X -F -A"
+        alias ll="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
+        alias lsl="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
+        alias lsa="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S"
+        alias lst="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
+        alias lstl="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
+        alias ltl="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
+        alias lc="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
+        alias lct="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
+        alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
+        alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
+        #alias a="eza --icons --group-directories-first --no-quotes -X -F"
+        alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
+        #alias aa="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S"
+        #alias at="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
+        #alias atl="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
+        #alias alt="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
+        #alias ac="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
+        #alias acl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
+        #alias aca="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
         alias e="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q"
         alias ee="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q ."
         alias ez="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
@@ -274,19 +338,15 @@ if [ -v TERM ]; then
         alias lsl="ls -l -A -h --group-directories-first -F --color=auto"
         alias la="ls -l -A -h --group-directories-first -F --color=auto"
         alias ll="ls -l -A -h --group-directories-first -F --color=auto"
-        alias a="exa --group-directories-first -F"
-        alias al="exa --group-directories-first --git -F -h -l -a"
-        alias aa="exa --group-directories-first --git -F -h -l -a"
-        alias at="exa --group-directories-first -F --tree -L 3"
-        alias atl="exa --group-directories-first --git -F --tree -L 3 -h -l -a"
-        alias alt="exa --group-directories-first --git -F --tree -L 3 -h -l -a"
-        alias ac="exa --group-directories-first -F -s time -r"
-        alias acl="exa --group-directories-first --git -F -h -l -a -s time -r"
-        alias aca="exa --group-directories-first --git -F -h -l -a -s time -r"
-        alias act="exa --group-directories-first -F --tree -L 3 -s time -r"
-        alias atc="exa --group-directories-first -F --tree -L 3 -s time -r"
-        alias aclt="exa --group-directories-first --git -F -h -l -a --tree -L 3 -s time -r"
-        alias atlc="exa --group-directories-first --git -F -h -l -a --tree -L 3 -s time -r"
+        alias a="eza --group-directories-first --no-quotes -F -G -S"
+        alias al="eza --group-directories-first --no-quotes --git --git-repos -l -A -F -G -S"
+        alias aa="eza --group-directories-first --no-quotes --git --git-repos -l -A -F -G -S"
+        alias at="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S -T --level 2"
+        alias atl="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S -T --level 2"
+        alias alt="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S -T --level 2"
+        alias ac="eza --group-directories-first --no-quotes --git --git-repos -l -T -S -F --level 2 --total-size"
+        alias acl="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S --total-size -T --level 2"
+        alias aca="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S --total-size -T --level 2"
         alias e="emacsclient -c -a 'emacs' -nw"
         alias ee="emacsclient -c -a 'emacs' -nw ."
         alias ez="emacsclient -c -a 'emacs' -nw \"$HOME/.zsh.org\""
@@ -561,7 +621,7 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =tr=      | Options                  | Transmission-remote                                 |
 | =ts=      | N/A                      | Transmission Information                            |
 | =tt=      | N/A                      | Transmission Statistics                             |
-| =u=       | PID                      | Kill                                                |
+| =u=       | N/A                      | Open Neomutt                                        |
 | =ub=      | N/A                      | Unmount Baby blue drive                             |
 | =ud=      | N/A                      | Unmount External SSD                                |
 | =v=       | File name                | Open given file in Vim                              |
@@ -637,7 +697,8 @@ alias nfc="nix show-config --extra-experimental-features nix-command"
 alias nsh="nix-shell"
 alias nr="nix repl"
 alias o="pkill -x"
-alias u="kill"
+alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
+alias u="neomutt -F '$HOME/.muttrc'"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="swayimg"

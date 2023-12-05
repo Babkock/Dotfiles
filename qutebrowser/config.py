@@ -7,44 +7,44 @@
 
 # --- Colors ---
 # Match with Xresources
-base00 = "#101010"
-base01 = "#d0484e"
-base02 = "#25c192"
-base03 = "#f28735"
-base04 = "#49a6d0"
-base05 = "#f74e8b"
-base06 = "#d8a89a"
-base07 = "#fdeadb"
-base08 = "#121012"
-base09 = "#c0383e"
-base0A = "#15b082"
-base0B = "#e27725"
-base0C = "#3996c0"
-base0D = "#f74e8b"
-base0E = "#c8988a"
-base0F = "#fdeadb"
+base00 = "#000000"
+base01 = "#ea4d48"
+base02 = "#74c280"
+base03 = "#fbb73e"
+base04 = "#7b75ea"
+base05 = "#d154af"
+base06 = "#4ca4b6"
+base07 = "#fefefe"
+base08 = "#101010"
+base09 = "#da3d38"
+base0A = "#64b270"
+base0B = "#eba72e"
+base0C = "#6b65da"
+base0D = "#c1449f"
+base0E = "#3c94a6"
+base0F = "#fefefe"
 
 # --- Completion widget ---
 
 # May be a single color to use for
 # all columns or a list of three colors, one for each column.
-c.colors.completion.fg = '#88fdeadb'
-c.colors.completion.odd.bg = '#88101010'
-c.colors.completion.even.bg = '#88100000'
+c.colors.completion.fg = '#88fefefe'
+c.colors.completion.odd.bg = '#77101010'
+c.colors.completion.even.bg = '#77100000'
 
 # Foreground color of completion widget category headers.
 c.colors.completion.category.fg = base0F
 c.colors.completion.category.bg = '#77101010'
-c.colors.completion.category.border.top = '#8849a6d0'
-c.colors.completion.category.border.bottom = '#8849a6d0'
+c.colors.completion.category.border.top = '#774ca4b6'
+c.colors.completion.category.border.bottom = '#774ca4b6'
 c.colors.completion.item.selected.fg = base00
-c.colors.completion.item.selected.bg = '#ccf74e8b'
-c.colors.completion.item.selected.border.top = '#aaefdfef'
-c.colors.completion.item.selected.border.bottom = '#bbe73d7b'
+c.colors.completion.item.selected.bg = '#ccea4d48'
+c.colors.completion.item.selected.border.top = '#ddea4d48'
+c.colors.completion.item.selected.border.bottom = '#aa49a6d0'
 c.colors.completion.item.selected.match.fg = base0F
 c.colors.completion.match.fg = base0A
 # Color of the scrollbar handle in the completion view.
-c.colors.completion.scrollbar.fg = '#aaf28735'
+c.colors.completion.scrollbar.fg = '#aafbb73e'
 # Color of the scrollbar in the completion view.
 c.colors.completion.scrollbar.bg = '#55101010'
 
@@ -58,7 +58,7 @@ c.colors.contextmenu.disabled.fg = base01
 # Background color of the context menu. If set to null, the Qt default is used.
 c.colors.contextmenu.menu.bg = '#99101010'
 c.colors.contextmenu.menu.fg =  base0F
-c.colors.contextmenu.selected.bg = '#ddf74e8b'
+c.colors.contextmenu.selected.bg = '#ddea4d48'
 c.colors.contextmenu.selected.fg = base00
 
 # --- Downloads ---
@@ -100,7 +100,7 @@ c.colors.messages.info.border = '#99101010'
 
 c.colors.prompts.fg = base0F
 # Border used around UI elements in prompts.
-c.colors.prompts.border = '#25c192'
+c.colors.prompts.border = '#ef64b270'
 c.colors.prompts.bg = '#ef101010'
 c.colors.prompts.selected.bg = '#ef101010'
 c.colors.prompts.selected.fg = base00
@@ -108,21 +108,21 @@ c.colors.prompts.selected.fg = base00
 # --- Status bar ---
 
 c.colors.statusbar.normal.fg = base05
-c.colors.statusbar.normal.bg = '#88101010'
+c.colors.statusbar.normal.bg = '#77000000'
 c.colors.statusbar.insert.fg = base08
-c.colors.statusbar.insert.bg = '#aa25c192'
+c.colors.statusbar.insert.bg = '#aa74c280'
 c.colors.statusbar.passthrough.fg = base0A
 c.colors.statusbar.passthrough.bg = '#88101010'
 # Foreground color of the statusbar in private browsing mode.
 c.colors.statusbar.private.fg = base0E
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = '#88101010'
+c.colors.statusbar.private.bg = '#88210020'
 c.colors.statusbar.command.fg = base04
-c.colors.statusbar.command.bg = '#88101004'
+c.colors.statusbar.command.bg = '#77000000'
 c.colors.statusbar.command.private.fg = base0E
-c.colors.statusbar.command.private.bg = '#88101010'
+c.colors.statusbar.command.private.bg = '#88210020'
 c.colors.statusbar.caret.fg = base0D
-c.colors.statusbar.caret.bg = '#77101010'
+c.colors.statusbar.caret.bg = '#77000000'
 c.colors.statusbar.caret.selection.fg = base0D
 c.colors.statusbar.caret.selection.bg = '#77101010'
 c.colors.statusbar.progress.bg = base0D
@@ -144,23 +144,23 @@ c.colors.tabs.indicator.start = base03
 c.colors.tabs.indicator.stop = base0B
 c.colors.tabs.indicator.error = base08
 c.colors.tabs.odd.fg = base02
-c.colors.tabs.odd.bg = '#66101010'
+c.colors.tabs.odd.bg = '#66000000'
 c.colors.tabs.even.fg = base03
-c.colors.tabs.even.bg = '#66101010'
-c.colors.tabs.pinned.even.bg = '#66101002'
+c.colors.tabs.even.bg = '#66000000'
+c.colors.tabs.pinned.even.bg = '#66000000'
 c.colors.tabs.pinned.even.fg = base00
-c.colors.tabs.pinned.odd.bg = '#66101002'
+c.colors.tabs.pinned.odd.bg = '#66000000'
 c.colors.tabs.pinned.odd.fg = base00
-c.colors.tabs.pinned.selected.even.bg = '#aaf74e8b'
+c.colors.tabs.pinned.selected.even.bg = '#aa4ca4b6'
 c.colors.tabs.pinned.selected.even.fg = base00
-c.colors.tabs.pinned.selected.odd.bg = '#aaf74e8b'
+c.colors.tabs.pinned.selected.odd.bg = '#aa4ca4b6'
 c.colors.tabs.pinned.selected.odd.fg = base00
 
 # --- Selected tabs ---
 c.colors.tabs.selected.odd.fg = base0A
-c.colors.tabs.selected.odd.bg = '#77101010'
+c.colors.tabs.selected.odd.bg = '#77000000'
 c.colors.tabs.selected.even.fg = base0A
-c.colors.tabs.selected.even.bg = '#77101010'
+c.colors.tabs.selected.even.bg = '#77100000'
 # Default page background when there is none
 c.colors.webpage.bg = '#ffffffff'
 
@@ -247,6 +247,7 @@ c.tabs.title.format = "{audio}{current_title}"
 c.tabs.title.format_pinned = "{audio}{index}"
 c.window.title_format = "{perc}{current_title}"
 c.tabs.last_close = "close"
+c.tabs.mode_on_change = "restore"
 c.tabs.indicator.width = 0
 c.tabs.favicons.scale = 1.3
 c.tabs.show_switching_delay = 700

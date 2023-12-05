@@ -5,8 +5,8 @@
 #  _>  </ / / / / / /_/ /  / /__  
 # /_/|_/_/_/ /_/_/\__/_/   \___/
 #
-xwallpaper --output eDP1 --stretch ~/.config/river/ibm.jpg 2> /dev/null
-pkill -x tinyserve 2> /dev/null
+xwallpaper --output eDP1 --stretch "$HOME/.config/river/ibm.jpg" --output HDMI2 --stretch "$HOME/.config/river/farmhouse.jpg" 2> /dev/null
+pgrep tinyserve | xargs kill 2> /dev/null
 tinyserve &
 
 xinput set-prop 11 "Synaptics Tap Action" 1 1 1 1 1
@@ -30,9 +30,8 @@ xrandr --output HDMI1 --brightness 0.7
 xrandr --output HDMI2 --brightness 0.7
 
 xrdb -merge ~/.Xresources
-pulseaudio --start &
-bspwm
-pkill -x emacs
+dbus-launch --exit-with-session bspwm
+pgrep emacs | xargs kill 2> /dev/null
 
 pkill -x mpc 2> /dev/null
 pkill -x tinyserve 2> /dev/null

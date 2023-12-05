@@ -17,7 +17,7 @@ super + shift + Return
 
 # program launcher
 super + @space
-	dmenu_run_history -w 780 -l 7 -y 200
+	dmenu_run_history -w 780 -l 8 -y 200
 
 super + shift + @space
 	mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc
@@ -27,7 +27,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + period
-	qutebrowser --qt-arg stylesheet ~/.local/share/qutebrowser/fix-tooltips.qss "file:///home/babkock/.config/qutebrowser/index.html"
+	QT_QPA_PLATFORM="xcb" qutebrowser --qt-arg stylesheet ~/.local/share/qutebrowser/fix-tooltips.qss "file:///home/babkock/.config/qutebrowser/index.html"
 
 super + shift + period
 	bspc desktop -f "^5"; obs

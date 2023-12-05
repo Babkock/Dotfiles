@@ -222,7 +222,12 @@
                  "ue-red.png"
                  "mx-butterfly.png"
                  "vaporwave.png"
-                 "rings.png")))
+                 "rings.png"
+                 "gnu-colors.png"
+                 "spacemacs.png"
+                 "emacsNeon.png"
+                 "doomieScary.png"
+                 "fancyEmacs.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"
             (nth (random (length banners)) banners))))

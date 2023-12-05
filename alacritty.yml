@@ -14,7 +14,7 @@ font:
   size: 14
   offset:
     x: 0
-    y: -2
+    y: -3
 
 draw_bold_text_with_bright_colors: true
 
@@ -69,8 +69,8 @@ colors:
 
 bell:
   animation: Ease
-  duration: 700
-  color: '#ffffff'
+  duration: 300
+  color: '#202020'
 
 cursor:
   style:
@@ -85,8 +85,13 @@ shell:
   program: /bin/zsh
 
 hints:
-    hyperlinks: false
-    mouse:
-      enabled: true
-      mods: Shift
+  hyperlinks: false
+  enabled:
+    - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+              [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      command: xdg-open
+      post_processing: true
+      mouse:
+        enabled: true
+        mods: Control
 
