@@ -89,9 +89,9 @@ These are the keybindings for my Sway and Hyprland sessions.
 | Super + Shift + Comma  | [[https://github.com/Babkock/Dotfiles/tree/master/doom.d][Emacs]]           |
 | Super + Semicolon      | Nicotine              |
 | Super + Shift + Semicolon | OBS                |
-| Super + Backslash         | Discord            |
-| Super + Shift + Backslash | Steam              |
-| Super + Slash             | Pavucontrol        |
+| Super + Backslash         | Terminal with Neomutt |
+| Super + Shift + Backslash | Discord            |
+| Super + Slash             | Sublime Text       |
 | Super + Shift + Slash     | Chromium           |
 | Super + Backspace         | Terminal with Tremc |
 | Super + Shift + Backspace | Transmission GTK   |
