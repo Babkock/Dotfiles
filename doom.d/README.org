@@ -60,6 +60,7 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#preferences-1][Preferences]]
   - [[#keybindings-2][Keybindings]]
 - [[#helm][Helm]]
+  - [[#helm-org-rifle][Helm Org Rifle]]
 - [[#keybindings-3][Keybindings]]
   - [[#global-keybindings][Global Keybindings]]
 - [[#magit][Magit]]
@@ -70,6 +71,7 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#preferences-2][Preferences]]
   - [[#keybindings-4][Keybindings]]
 - [[#org][Org]]
+- [[#stack-exchange][Stack Exchange]]
 - [[#treemacs][Treemacs]]
 
 * Opening
@@ -148,8 +150,8 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 Now the fun stuff, where I set the fonts, theme, and colors.
 
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'doom-peacock)
-(setq which-key-idle-delay 0.3
+(setq doom-theme 'doom-tomorrow-night)
+(setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
       +doom-dashboard-banner-padding '(0 . 0))
@@ -492,8 +494,8 @@ Dashboard menu sections.
 | =j=          | Open Dired in Current Directory |
 | =J=          | Open Dired in Home Directory    |
 | =k=          | Kill All Buffers                |
-| =m=          | Open BSPWM Config               |
-| =M=          | Open MPV Config                 |
+| =m=          | Mastodon                        |
+| =M=          | Mastodon Local                  |
 | =o=          | Open Polybar Config             |
 | =O=          | Clear MPD Playlist              |
 | =p=          | Open Project                    |
@@ -508,8 +510,8 @@ Dashboard menu sections.
 | =V=          | Open video.org                  |
 | =w=          | Open Waybar Config              |
 | =W=          | Open Waybar Style               |
-| =x=          | Open .Xresources                |
-| =X=          | Open .xinitrc                   |
+| =x=          | Mastodon Followed Tags          |
+| =X=          | Stack Exchange Front Page       |
 | =z=          | Open ZSH Config                 |
 | =Z=          | Open ZSH Theme                  |
 | =?=          | Doom Help                       |
@@ -548,7 +550,7 @@ Dashboard menu sections.
     :desc "Open Dotfiles" :ne "D" #'tb/open-dotfiles
     :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
     :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
-    :desc "Open Xresources" :ne "X" (cmd! (find-file "~/.Xresources"))
+    :desc "Stack Exchange Front Page" :ne "X" #'sx-tab-frontpage
     :desc "Mastodon Followed Tags" :ne "x" #'mastodon-tl--followed-tags-timeline
     :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
@@ -656,7 +658,7 @@ Define additional font faces and hooks.
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
+(add-hook! 'elfeed-show-mode-hook (mixed-pitch-mode))
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect))
 #+end_src
 
@@ -666,6 +668,7 @@ This second block of code sets preferences for the =elfeed-goodies= package.
 (after! elfeed-goodies
     (elfeed-goodies/setup)
     (setq elfeed-goodies/entry-pane-size 0.5
+          elfeed-goodies/wide-threshold 0.2
           elfeed-goodies/powerline-default-separator 'wave
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
@@ -724,6 +727,15 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
     (setq helm-show-completion-min-window-height 9))
 #+end_src
 
+** Helm Org Rifle
+
+#+begin_src emacs-lisp :tangle yes
+(after! helm-org-rifle
+    (setq helm-org-rifle-show-path t
+          helm-org-rifle-show-level-stars t)
+    (add-hook! 'helm-org-rifle-after-init-hook 'mixed-pitch-mode))
+#+end_src
+
 * Keybindings
 
 This first bit lets us navigate between windows easier.
@@ -744,33 +756,35 @@ This first bit lets us navigate between windows easier.
 These are global keybindings, which are available in all modes. The Magit key bindings will not work if the file is not in a Git repository. =SPC /= and =SPC z= will only work in an MPDel buffer.
 Obviously, it is not possible to tangle an Org document, if you are not editing an Org document.
 
-| Keybinding | Action                     |
-|------------+----------------------------|
-| =SPC DEL=    | Clear MPDel Playlist       |
-| =SPC a=      | Toggle Zen Mode            |
-| =SPC b=      | Toggle Beacon Mode         |
-| =SPC c=      | Toggle Multiple Cursors    |
-| =SPC d=      | Insert Org Todo            |
-| =SPC e=      | Open Magit Log Buffer      |
-| =SPC i=      | Toggle Fullscreen Zen      |
-| =SPC j=      | Magit Pull                 |
-| =SPC k=      | Magit Push Remote          |
-| =SPC l=      | Org Tangle                 |
-| =SPC m=      | Mastodon Boost Toot        |
-| =SPC n=      | Open MPDel Browser         |
-| =SPC p=      | Org Export to HTML         |
-| =SPC r=      | Toggle Rainbow Mode        |
-| =SPC t=      | Magit Stage File           |
-| =SPC u=      | Delete Active Buffer       |
-| =SPC v=      | Open Vterm Buffer          |
-| =SPC x=      | Toggle Mixed Pitch Mode    |
-| =SPC y=      | Open Magit Status Buffer   |
-| =SPC z=      | Play Song in MPDel         |
+| Keybinding | Action                      |
+|------------+-----------------------------|
+| =SPC DEL=    | Clear MPDel Playlist        |
+| =SPC a=      | Toggle Zen Mode             |
+| =SPC b=      | Toggle Beacon Mode          |
+| =SPC c=      | Toggle Multiple Cursors     |
+| =SPC d=      | Insert Org Todo             |
+| =SPC e=      | Open Magit Log Buffer       |
+| =SPC f=      | Helm Org Rifle in Org       |
+| =SPC i=      | Toggle Fullscreen Zen       |
+| =SPC j=      | Magit Pull                  |
+| =SPC k=      | Magit Push Remote           |
+| =SPC l=      | Org Tangle                  |
+| =SPC m=      | Mastodon Boost Toot         |
+| =SPC n=      | Open MPDel Browser          |
+| =SPC p=      | Org Export to HTML          |
+| =SPC r=      | Toggle Rainbow Mode         |
+| =SPC s=      | Toggle Dired Sidebar        |
+| =SPC t=      | Magit Stage File            |
+| =SPC u=      | Delete Active Buffer        |
+| =SPC v=      | Helm Org Rifle on Directory |
+| =SPC x=      | Toggle Mixed Pitch Mode     |
+| =SPC y=      | Open Magit Status Buffer    |
+| =SPC z=      | Play Song in MPDel          |
 | =SPC /=      | Add Song to MPDel Playlist  |
-| =SPC -=      | Mastodon Favorite Toot     |
-| =SPC ==      | Insert Org Time Stamp      |
-| =SPC ]=      | Next Song                  |
-| =SPC [=      | Previous Song              |
+| =SPC -=      | Mastodon Favorite Toot      |
+| =SPC ==      | Insert Org Time Stamp       |
+| =SPC ]=      | Next Song                   |
+| =SPC [=      | Previous Song               |
 
 #+begin_src emacs-lisp :tangle yes
 (map! :leader
@@ -784,13 +798,15 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
     :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
     :desc "MPDel Next Song" "]" #'libmpdel-playback-next
     :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
-    :desc "Vterm" "v" #'+vterm/toggle
+    :desc "Helm Org Rifle Org" "f" #'helm-org-rifle-org-directory
+    :desc "Helm Org Rifle Directories" "v" #'helm-org-rifle-directories
     :desc "Org Mark Done" "d" #'org-todo
     :desc "Mixed Pitch Mode" "x" #'mixed-pitch-mode
     :desc "Magit Status" "y" #'magit-status
     :desc "Delete Buffer" "u" #'evil-delete-buffer
     :desc "Org Export to HTML" "p" #'org-html-export-to-html
     :desc "Multiple Cursors Toggle" "c" #'+multiple-cursors/evil-mc-toggle-cursors
+    :desc "Dired Sidebar" "s" #'dired-sidebar-toggle-sidebar
     :desc "Magit Log" "e" #'magit-log-all
     :desc "Magit Stage File" "t" #'magit-stage-file
     :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
@@ -1014,6 +1030,20 @@ This is a list of faces for the MPDel interface. After this list is where I add 
 (font-lock-add-keywords 'org-mode
     '(("^ *\\([-]\\) "
         (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+#+end_src
+
+* Stack Exchange
+
+#+begin_src emacs-lisp :tangle yes
+(after! sx
+    (setq sx-question-list-mode-map (make-sparse-keymap))
+    (map! :map sx-question-list-mode-map
+        :desc "Display Question" :ne "RET" #'sx-display-question)
+    (custom-set-faces!
+        '(sx-question-list-unread-question :inherit variable-pitch :weight bold :height 1.09)
+        '(sx-question-list-read-question :inherit variable-pitch :height 1.09)
+        '(sx-question-mode-title :inherit variable-pitch :height 1.21)
+        '(sx-question-mode-content-face :inherit variable-pitch :height 1.02)))
 #+end_src
 
 * Treemacs

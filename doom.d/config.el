@@ -51,8 +51,8 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-(setq doom-theme 'doom-peacock)
-(setq which-key-idle-delay 0.3
+(setq doom-theme 'doom-tomorrow-night)
+(setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
       +doom-dashboard-banner-padding '(0 . 0))
@@ -334,7 +334,7 @@
     :desc "Open Dotfiles" :ne "D" #'tb/open-dotfiles
     :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
     :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
-    :desc "Open Xresources" :ne "X" (cmd! (find-file "~/.Xresources"))
+    :desc "Stack Exchange Front Page" :ne "X" #'sx-tab-frontpage
     :desc "Mastodon Followed Tags" :ne "x" #'mastodon-tl--followed-tags-timeline
     :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
@@ -422,12 +422,13 @@
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
+(add-hook! 'elfeed-show-mode-hook (mixed-pitch-mode))
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect))
 
 (after! elfeed-goodies
     (elfeed-goodies/setup)
     (setq elfeed-goodies/entry-pane-size 0.5
+          elfeed-goodies/wide-threshold 0.2
           elfeed-goodies/powerline-default-separator 'wave
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
@@ -463,6 +464,11 @@
 (after! helm
     (setq helm-show-completion-min-window-height 9))
 
+(after! helm-org-rifle
+    (setq helm-org-rifle-show-path t
+          helm-org-rifle-show-level-stars t)
+    (add-hook! 'helm-org-rifle-after-init-hook 'mixed-pitch-mode))
+
 (map!
     :m "C-h" #'evil-window-left
     :m "C-j" #'evil-window-down
@@ -483,13 +489,15 @@
     :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
     :desc "MPDel Next Song" "]" #'libmpdel-playback-next
     :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
-    :desc "Vterm" "v" #'+vterm/toggle
+    :desc "Helm Org Rifle Org" "f" #'helm-org-rifle-org-directory
+    :desc "Helm Org Rifle Directories" "v" #'helm-org-rifle-directories
     :desc "Org Mark Done" "d" #'org-todo
     :desc "Mixed Pitch Mode" "x" #'mixed-pitch-mode
     :desc "Magit Status" "y" #'magit-status
     :desc "Delete Buffer" "u" #'evil-delete-buffer
     :desc "Org Export to HTML" "p" #'org-html-export-to-html
     :desc "Multiple Cursors Toggle" "c" #'+multiple-cursors/evil-mc-toggle-cursors
+    :desc "Dired Sidebar" "s" #'dired-sidebar-toggle-sidebar
     :desc "Magit Log" "e" #'magit-log-all
     :desc "Magit Stage File" "t" #'magit-stage-file
     :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
@@ -679,6 +687,16 @@
 (font-lock-add-keywords 'org-mode
     '(("^ *\\([-]\\) "
         (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(after! sx
+    (setq sx-question-list-mode-map (make-sparse-keymap))
+    (map! :map sx-question-list-mode-map
+        :desc "Display Question" :ne "RET" #'sx-display-question)
+    (custom-set-faces!
+        '(sx-question-list-unread-question :inherit variable-pitch :weight bold :height 1.09)
+        '(sx-question-list-read-question :inherit variable-pitch :height 1.09)
+        '(sx-question-mode-title :inherit variable-pitch :height 1.21)
+        '(sx-question-mode-content-face :inherit variable-pitch :height 1.02)))
 
 (after! treemacs
     (setq doom-themes-treemacs-theme "doom-colors")

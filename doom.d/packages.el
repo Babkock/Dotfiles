@@ -7,15 +7,19 @@
       :recipe (:host github :repo "magit/transient"))
 
 (package! all-the-icons)
-(package! beacon)
-(package! elfeed-org)
-(package! elfeed-goodies)
-(package! cl-libify)
-(package! pinentry)
-(package! libmpdel)
-(package! mpdel)
+(package! beacon)         ;; Honestly really nice
+(package! cl-libify)      ;; This is important to suppress errors
+(package! dired-sidebar)
+(package! dired-hacks)
+(package! elfeed-org)     ;; Elfeed
+(package! elfeed-goodies) ;; Elfeed
+(package! fancy-battery)  ;; Not neccessary but neat
+(package! helm-org-rifle)
 (package! ivy-mpdel)
-(package! fancy-battery)
+(package! libmpdel)
+(package! mastodon)
+(package! mpdel)
 (package! org-fancy-priorities)
 (package! org-modern)
-(package! mastodon)
+(package! pinentry)
+(package! sx)

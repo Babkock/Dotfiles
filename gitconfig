@@ -31,3 +31,24 @@
 	gpgSign = true
 [color]
 	ui = 1
+[push]
+	default = simple
+[pull]
+	ff = only
+
+[alias]
+	a = add
+	cm = commit -m
+	ca = commit --allow-empty-message -m ''
+	d = diff
+	dt = diff-tree
+	dy = diff HEAD^^
+	dz = diff HEAD^
+	f = checkout HEAD --
+	go = remote get-url origin
+	i = init
+	so = remote set-url origin
+	r = rm
+	rc = rm --cached
+	s = status -s -b
+

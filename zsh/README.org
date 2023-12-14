@@ -57,6 +57,7 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#mount-external-encrypted-drive][Mount External Encrypted Drive]]
   - [[#unmount-external-encrypted-drive][Unmount External Encrypted Drive]]
   - [[#ssh-agent][SSH Agent]]
+  - [[#swayimg][Swayimg]]
 - [[#aliases][Aliases]]
 - [[#plugins][Plugins]]
   - [[#keybindings][Keybindings]]
@@ -488,7 +489,7 @@ function backup() {
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" tababcock@198.23.51.224:/home/www/tannerbabcock.com "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
         true
     fi
 }
@@ -541,6 +542,15 @@ function b() {
     ssh-add "$HOME/.ssh/gitlab_rsa"
     ssh-add "$HOME/.ssh/github_rsa"
     ssh-add "$HOME/.ssh/tbcom_ssh"
+}
+#+end_src
+
+** Swayimg
+
+#+begin_src sh :tangle .zshrc
+function q() {
+    identify "$1"
+    swayimg "$1"
 }
 #+end_src
 
@@ -657,9 +667,13 @@ alias ga="git add"
 alias ge="git fetch --all"
 alias gf="git checkout HEAD --"
 alias gcm="git commit -m"
+alias gca="git commit --allow-empty-message -m ''"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gd="git diff"
+alias gdt="git diff-tree"
+alias gdz="git diff HEAD^"
+alias gdy="git diff HEAD^^"
 # git log with special formatting
 alias gl="git log --date=relative --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %C(yellow)(%cr) %C(bold blue) %an%Creset'"
 alias gw="git show"
@@ -701,11 +715,10 @@ alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> 
 alias u="neomutt -F '$HOME/.muttrc'"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
-alias q="swayimg"
 alias qw="swayimg --all"
 alias qi="identify"
 alias qg="gimp"
-alias s="ssh tababcock@198.23.51.224 -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
+alias s="ssh redacted@redacted -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
 alias se="pkill -x emacs; emacs --daemon"
 #alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"

@@ -9,10 +9,20 @@
 *** [[http://old.reddit.com/r/slackware/.rss][slackware]]
 *** [[http://old.reddit.com/r/WorkReform/.rss][WorkReform]]
 *** [[http://old.reddit.com/r/AbandonedPorn/.rss][AbandonedPorn]]
-*** [[http://old.reddit.com/r/AutismInWomen/.rss][AutismInWomen]]
+
+
+
+
+
+
 *** [[http://old.reddit.com/r/MapPorn/.rss][MapPorn]]
+*** [[http://old.reddit.com/r/Denver/.rss][Denver]]
+*** [[http://old.reddit.com/r/Colorado/.rss][Colorado]]
+
+
 *** [[http://old.reddit.com/r/rust/.rss][rust]]
 *** [[http://old.reddit.com/r/LateStageCapitalism/.rss][LateStageCapitalism]]
+*** [[http://old.reddit.com/r/boringdystopia/.rss][BoringDystopia]]
 *** [[http://old.reddit.com/r/cringepics/.rss][cringepics]]
 *** [[http://old.reddit.com/r/technology/.rss][technology]]
 *** [[http://old.reddit.com/r/oddlyterrifying/.rss][oddlyterrifying]]
@@ -24,11 +34,12 @@
 *** [[http://old.reddit.com/r/worldnews/.rss][worldnews]]
 *** [[http://old.reddit.com/r/criterion/.rss][criterion]]
 *** [[http://old.reddit.com/r/politics/.rss][politics]]
+*** [[http://old.reddit.com/r/BlackPeopleTwitter/.rss][BlackPeopleTwitter]]
+*** [[http://old.reddit.com/r/MechanicalKeyboards/.rss][MechanicalKeyboards]]
 *** [[http://old.reddit.com/r/battlestations/.rss][battlestations]]
 *** [[http://old.reddit.com/r/natureporn/.rss][natureporn]]
 *** [[http://old.reddit.com/r/hiphop101/.rss][hiphop101]]
 *** [[http://old.reddit.com/r/VinylReleases/.rss][VinylReleases]]
-
 ** YouTube/Invidious                        :youtube:
 *** [[https://yt.funami.tech/feed/private?token=40JXZTlLKgHYVQvWEXvnEGi9O5x3l90KYmb_X4nSi9w=][Invidious]]
 *** [[https://inv.zzls.xyz/feed/channel/UCsVIQ2ipmCbua6s8ThFLo5A][Shrouded Hand]]
@@ -51,12 +62,15 @@
 ** News                                                        :news:
 *** [[http://rss.nytimes.com/services/xml/rss/nyt/US.xml][New York Times]]
 *** [[http://coloradosun.com/feed][Colorado Sun]]
+*** [[http://feeds.denverpost.com/dp-news-local-crime][Denver Post Crime]]
+*** [[http://feeds.denverpost.com/dp-news-topstories][Denver Post]]
+*** [[http://feeds.denverpost.com/dp-news-marijuana][Denver Post Marijuana]]
+*** [[http://feeds.denverpost.com/dp-news-local-county-arvada/lakewood][Denver Post Arvada]]
+*** [[http://pitchfork.com/feed/feed-news/rss][Pitchfork News]]
 *** [[http://www.theonion.com/rss][The Onion]]
 *** [[https://thehardtimes.net/feed/][The Hard Times]]
 *** [[http://www.spectrumnews.org/feed/][Spectrum News]]
 *** [[http://github.blog/changelog/feed/][GitHub News]]
-# remember to hide this next section when committing dotfiles
-** Torrents                                                 :torrents:
 ** Stack Overflow                                   :stack:
 *** [[https://stackoverflow.com/feeds/tag?tagnames=c&sort=newest][C]]
 *** [[https://stackoverflow.com/feeds/tag/c%2B%2B?sort=newest][C++]]
@@ -66,9 +80,7 @@
 *** [[http://unix.stackexchange.com/feeds/tag?tagnames=bash+shell&sort=newest][Shell]]
 *** [[https://stackoverflow.com/feeds/user/913182][Tanner Babcock]]
 ** Tumblr                                                    :tumblr:
-*** [[https://goddess-complex.tumblr.com/rss][goddess-complex]]
 *** [[http://389.tumblr.com/rss][389]]
-*** [[http://j0yfriend.tumblr.com/rss][j0yfriend]]
 *** [[http://joan-mitchell.tumblr.com/rss][joan-mitchell]]
 *** [[https://never-obsolete.tumblr.com/rss][never-obsolete]]
 *** [[https://oldguydoesstuff.tumblr.com/rss][oldguydoesstuff]]
@@ -81,12 +93,10 @@
 *** [[http://stremplerart.tumblr.com/rss][stremplerart]]
 *** [[http://56k-modem.tumblr.com/rss][56k-modem]]
 *** [[http://annaxmalina.tumblr.com/rss][annaxmalina]]
-*** [[http://sxyunixporn.tumblr.com/rss][sxyunixporn]]
 *** [[http://elixir.tumblr.com/rss][elixir]]
 *** [[http://petersolarz.tumblr.com/rss][petersolarz]]
 *** [[http://disease.tumblr.com/rss][disease]]
 *** [[http://cyberia2001.tumblr.com/rss][cyberia2001]]
-*** [[http://autistic-af.tumblr.com/rss][autistic-af]]
 *** [[http://nixcraft.tumblr.com/rss][nixcraft]]
 *** [[http://milkweeds.tumblr.com/rss][milkweeds]]
 *** [[http://vizuart.tumblr.com/rss][vizuart]]
@@ -129,5 +139,4 @@
 *** [[https://letterboxd.com/donaman99/rss/][donaman99]]
 *** [[https://letterboxd.com/criterion/rss/][criterion]]
 *** [[https://twitchrss.appspot.com/vod/babkock][Twitch babkock]]
-** Test Feed :test:
-***  [[https://tannerbabcock.com/feed][Tanner Babcock Feed]]
+
