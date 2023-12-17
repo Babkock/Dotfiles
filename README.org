@@ -30,11 +30,7 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 * Programs Included
 
 
-[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]]
-
-This repository has configuration files for four different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][river]], [[https://github.com/labwc/labwc][LabWC]], and [[https://github.com/hyprwm/Hyprland][Hyprland]]. Each of these compositors are a
-self-contained environment, they each have their own Waybar, Foot, Swaylock, and Wob configurations, and their own color schemes.
-They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree/master/bin][bin]] directory, and their autostart files load their respective configurations.
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]] [[https://raw.githubusercontent.com/WillPower3309/swayfx/5e866d0345449f34ac51c6590a3aac285cb2f8bf/assets/swayfx_logo.svg]]
 
 ** Other Orgs
 
@@ -57,7 +53,6 @@ They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree
 - [[https://codeberg.org/dnkl/foot][Foot]]
 - [[https://codeberg.org/dnkl/fuzzel][Fuzzel]]
 - [[https://github.com/hyprwm/Hyprland][Hyprland]]
-- [[https://github.com/labwc/labwc][LabWC]]
 - [[https://github.com/emersion/mako][Mako]]
 - Mozilla Firefox
 - [[https://github.com/mpv-player/mpv][mpv]]
@@ -65,8 +60,6 @@ They are launched with scripts in the [[https://github.com/Babkock/Dotfiles/tree
 - [[https://github.com/polybar/polybar][Polybar]]
 - [[https://github.com/qutebrowser/qutebrowser][Qutebrowser]]
 - [[https://github.com/ranger/ranger][Ranger]]
-- [[https://github.com/riverwm/river][River]]
-- [[https://github.com/conformal/spectrwm][Spectrwm]]
 - [[https://github.com/baskerville/sxhkd][sxhkd]]
 - [[https://github.com/swaywm/sway][Sway]]
 - [[https://gitlab.com/tbcargo/Tinyserve][Tinyserve]]
