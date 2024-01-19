@@ -187,6 +187,7 @@ else
             export XCURSOR_THEME="Adwaita"
             export XCURSOR_SIZE=30
             export MOZ_ENABLE_WAYLAND=1
+            pgrep eww | xargs kill 2> /dev/null
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
@@ -198,6 +199,28 @@ else
             pgrep mako | xargs kill 2> /dev/null
             pgrep emacs | xargs kill 2> /dev/null
             true
+    }
+    function swf() {
+        export GTK_THEME="Sunset-Dark"
+        export XDG_CURRENT_DESKTOP="sway"
+        export XDG_SESSION_DESKTOP="sway"
+        export QT_QPA_PLATFORM="wayland-egl"
+        export QT_QPA_PLATFORMTHEME="qt6ct"
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export XCURSOR_THEME="Adwaita"
+        export XCURSOR_SIZE=30
+        pgrep eww | xargs kill 2> /dev/null
+        pgrep mpdas | xargs kill 2> /dev/null
+        pgrep pipewire | xargs kill 2> /dev/null
+        pgrep pulseaudio | xargs kill 2> /dev/null
+        echo "Starting Wayfire..."
+        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+        gsettings set org.gnome.desktop.interface cursor-size 30
+        dbus-launch --exit-with-session wayfire
+        pgrep mako | xargs kill 2> /dev/null
+        pgrep emacs | xargs kill 2> /dev/null
+        true
     }
     function sri() {
         export GTK_THEME="Sunset-Dark"

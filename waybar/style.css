@@ -28,11 +28,14 @@ tooltip {
 #cpu, #wireplumber.muted, #pulseaudio.muted {
     color:#ea4d48;
     background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
-    margin-left:0;
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#cpu, #wireplumber.muted {
+    margin-left:0;
 }
 
 #pulseaudio, #disk {
@@ -44,6 +47,10 @@ tooltip {
     padding-right:10px;
     border-radius:40px 0px 0px 40px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#pulseaudio.muted {
+    margin-left:2px;
 }
 
 #memory, #backlight, #wireplumber {
@@ -102,6 +109,31 @@ tooltip {
     color:#fff293;
 }
 
+#keyboard-state {
+    padding-left:8px;
+    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.4));
+    border-radius:0px 40px 40px 0px;
+    box-shadow:2px 2px rgba(230, 150, 40, 0.4);
+    margin-right:2px;
+}
+
+#keyboard-state label {
+    color:#fbb73e;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#keyboard-state label.locked {
+    color:#ffffff;
+    text-shadow:2px 2px rgba(255, 0, 0, 0.5);
+}
+
+#image {
+    background:none;
+    border:none;
+    color:black;
+    box-shadow:2px 2px rgba(0, 0, 0, 0.3);
+}
+
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
     color:#5b55ca;
     background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.4));
@@ -121,6 +153,7 @@ tooltip {
     padding-right:12px;
     margin-left:0;
     margin-right:2px;
+    box-shadow:3px 3px rgba(72, 61, 180, 0.4);
 }
 
 #idle_inhibitor {
@@ -175,9 +208,10 @@ tooltip {
     color:#d154af;
     background:linear-gradient(0deg, rgba(193, 68, 159, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:2px;
+    margin-right:4px;
     padding-left:12px;
     padding-right:10px;
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    box-shadow:3px 3px rgba(190, 60, 140, 0.4);
 }

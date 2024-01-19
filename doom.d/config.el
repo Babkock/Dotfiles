@@ -369,7 +369,6 @@
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (after! elfeed
-    (add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
@@ -423,13 +422,15 @@
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
 (add-hook! 'elfeed-show-mode-hook (mixed-pitch-mode))
-(add-hook! 'elfeed-show-mode-hook 'garbage-collect))
+(add-hook! 'elfeed-show-mode-hook 'garbage-collect)
+(add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
+(add-hook! 'elfeed-search-mode-hook (setq header-line-format nil))
+(add-hook! 'elfeed-show-mode-hook (setq header-line-format nil)))
 
 (after! elfeed-goodies
     (elfeed-goodies/setup)
     (setq elfeed-goodies/entry-pane-size 0.5
           elfeed-goodies/wide-threshold 0.2
-          elfeed-goodies/powerline-default-separator 'wave
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
           elfeed-goodies/tag-column-width 20))
@@ -586,17 +587,20 @@
     '(mpdel-tablist-track-face :inherit variable-pitch :weight bold :foreground "#49a6d0")
     '(mpdel-playlist-current-song-face :inherit variable-pitch :weight bold :slant italic :foreground "#fdeadb" :background "#000")
     '(mpdel-tablist-disc-face :foreground "#d8a89a")
-    '(mpdel-tablist-date-face :foreground "#f28735")
-    '(header-line :height 1.1))
+    '(mpdel-tablist-date-face :foreground "#f28735"))
 
 (add-hook! 'mpdel-playlist-mode-hook 'garbage-collect)
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'mpdel-playlist-mode-hook '(hl-line-mode))
+(add-hook! 'mpdel-playlist-mode-hook (setq header-line-format nil))
 (add-hook! 'mpdel-playlist-mode-hook 'mpdnotify)
 (add-hook! 'libmpdel-current-song-changed-hook 'mpdnotify)
 (add-hook! 'mpdel-tablist-mode-hook 'garbage-collect)
 (add-hook! 'mpdel-browser-mode-hook '(hl-line-mode))
+(add-hook! 'mpdel-browser-mode-hook (setq header-line-format nil))
 (add-hook! 'navigel-tablist-mode-hook '(hl-line-mode))
+(add-hook! 'navigel-tablist-mode-hook (setq header-line-format nil))
+(add-hook! 'mpdel-tablist-mode-hook (setq header-line-format nil))
 (add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'navigel-tablist-mode-hook (hide-mode-line-mode 1))
 (after! mpdel
@@ -689,14 +693,18 @@
         (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
 (after! sx
+    (add-hook! 'sx-question-mode-hook (setq header-line-format nil))
+    (add-hook! 'sx-question-list-mode-hook (setq header-line-format nil))
+    (add-hook! 'sx-question-list-mode-hook (hide-mode-line-mode 1))
     (setq sx-question-list-mode-map (make-sparse-keymap))
     (map! :map sx-question-list-mode-map
         :desc "Display Question" :ne "RET" #'sx-display-question)
     (custom-set-faces!
+        '(markdown-inline-code-face :inherit fixed-pitch :height 1.05)
+        '(markdown-markup-face :inherit variable-pitch)
         '(sx-question-list-unread-question :inherit variable-pitch :weight bold :height 1.09)
         '(sx-question-list-read-question :inherit variable-pitch :height 1.09)
-        '(sx-question-mode-title :inherit variable-pitch :height 1.21)
-        '(sx-question-mode-content-face :inherit variable-pitch :height 1.02)))
+        '(sx-question-mode-title :inherit variable-pitch :height 1.21)))
 
 (after! treemacs
     (setq doom-themes-treemacs-theme "doom-colors")

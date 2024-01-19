@@ -5,7 +5,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "temperature", "custom/clock", "tray"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "wlr/workspaces": {
         "all-outputs": false,
         "disable-scroll": false,
@@ -40,10 +40,10 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 38,
+    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon} ",
+    "title-len": 41,
     "unknown-tag": "N/A",
     "interval": 1,
     "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
@@ -67,13 +67,6 @@
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
-},
-
-"temperature": {
-    "thermal-zone": 1,
-    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    "format": " {temperatureF}°F",
-    "format-alt": " {temperatureC}°C"
 },
 
 "custom/clock": {
@@ -144,10 +137,10 @@
     "on-click-right": "pavucontrol"
 },
 
-"tray": {
-    "icon-size": 32,
-    "spacing": 1,
-    "show-passive-items": true
+"image#album-art": {
+    "path": "/tmp/mpd_cover.jpg",
+    "size": 40,
+    "interval": 1
 }
 
 }, {
@@ -157,7 +150,7 @@
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "keyboard-state", "tray"],
     "wlr/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -184,6 +177,7 @@
 "hyprland/window": {
     "format": "{title}",
     "separate-outputs": false,
+    "tooltip": false,
     "rewrite": {
         "foot": " ",
         "Alacritty": " ",
@@ -325,12 +319,23 @@
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
 },
 
-"custom/clock": {
-    "exec": "date +'%I:%M:%S  %a, %b %d'",
-    "interval": 1,
-    "format": " {}",
-    "align": 1,
-    "tooltip": false
+"keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": {
+        "numlock": " {icon}",
+        "capslock": "󰪛 {icon}"
+    },
+    "format-icons": {
+        "locked": " ",
+        "unlocked": " "
+    }
+},
+
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
 }
 
 }, {

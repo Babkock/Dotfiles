@@ -172,7 +172,7 @@ tooltip {
 
 #bluetooth.discovering {
     color:#f9c65b;
-    background:linear-gradient(0deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(180deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;

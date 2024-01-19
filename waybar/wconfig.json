@@ -1,0 +1,378 @@
+[{
+    "position": "bottom",
+    "height": 40,
+    "spacing": 0,
+    "output": "eDP-1",
+    "modules-left": ["wlr/taskbar"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "wlr/taskbar": {
+        "format": "{short_state}{icon}",
+        "on-click": "minimize-raise",
+        "on-click-right": "close",
+        "on-click-middle": "maximize",
+        "tooltip-format": "{app_id} {title}",
+        "icon-size": 32,
+        "ignore-list": [
+            "Alacritty"
+        ]
+    },
+
+"mpd": {
+    "server": "127.0.0.2",
+    "format": "{consumeIcon}{artist} - {title} {singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+    "format-disconnected": " ",
+    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
+    "title-len": 40,
+    "unknown-tag": "N/A",
+    "interval": 1,
+    "consume-icons": {
+        "on": " "
+    },
+    "random-icons": {
+        "off": "",
+        "on": " "
+    },
+    "repeat-icons": {
+        "on": " "
+    },
+    "single-icons": {
+        "on": "1 "
+    },
+    "state-icons": {
+        "playing": " ",
+        "paused": " "
+    },
+    "tooltip-format": "{artist} - {album} ({date})",
+    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
+    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
+    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
+},
+
+"custom/clock": {
+    "exec": "date +'%I:%M:%S  %a, %b %d'",
+    "interval": 1,
+    "format": " {}",
+    "align": 1,
+    "tooltip": false
+},
+
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+},
+
+"battery": {
+    "states": {
+        "good": 94,
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+    "format-charging": " <span style=\"italic\">{capacity}%</span>",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": false,
+},
+
+"memory": {
+    "format": " {}%",
+    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+},
+
+"backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-click": "light -S 20",
+    "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
+    "on-click-middle": "pkill -x gammastep",
+    "on-scroll-up": "swayosd-client --brightness 1",
+    "on-scroll-down": "swayosd-client --brightness -1"
+},
+
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": " <span style=\"italic\">{free}</span>",
+    "format-alt": " {used}",
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"pulseaudio": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
+    "format-bluetooth-muted": " {volume}%",
+    "format-muted": " {volume}%",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "tooltip": false,
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "swayosd-client --output-volume 2",
+    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click-right": "pavucontrol"
+},
+
+"image#album-art": {
+    "path": "/tmp/mpd_cover.jpg",
+    "size": 40,
+    "interval": 1
+}
+
+}, {
+    "position": "bottom",
+    "height": 41,
+    "spacing": 0,
+    "output": "HDMI-A-2",
+    "modules-left": ["wlr/taskbar"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "tray"],
+    "wlr/taskbar": {
+        "format": "{icon}{title}",
+        "icon-size": 32,
+        "tooltip-format": "{app_id} {title}",
+        "on-click": "minimize-raise",
+        "on-click-right": "close",
+        "on-click-middle": "maximize",
+        "markup": true,
+        "all-outputs": false,
+        "ignore-list": [
+            "Alacritty"
+        ],
+        "rewrite": {
+            "foot": " ",
+            " Alacritty": " ",
+            "st": " ",
+            "Steam": " ",
+            "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
+            "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
+            "ranger:(.*)": " $1",
+            "Mozilla Firefox": " ",
+            "YouTube": " ",
+            "GitHub": " ",
+            "Explore GitHub": " ",
+            "GitHub Dashboard": " ",
+            "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
+            "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "Tumblr": " ",
+            "(.*) Tumblr": " <span style=\"italic\">$1</span>",
+            "(.*) - Gmail": "󰊫 <span style=\"italic\">$1</span>",
+            "(.*) \\| Proton Mail": " <span style=\"italic\">$1</span>",
+            "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
+            "(.*) - (.*) - Stack Overflow": " <span style=\"italic\">$2</span>",
+            "(.*) - (.*) - Stack Overflow — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+            "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
+            "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+            "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
+            "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+            "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) on Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
+            "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) · GitLab": " <span style=\"italic\">$1</span>",
+            "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
+            "(.*) - ArchWiki — Mozilla Firefox": "󰣇 <span style=\"italic\">$1</span>",
+            "(.*) - Wikipedia — Mozilla Firefox": "󰖬 <span style=\"italic\">$1</span>",
+            "(.*) :: PassThePopcorn — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) :: Empornium — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) :: PassThePopcorn": " <span style=\"italic\">$1</span>",
+            "(.*) :: Empornium": " <span style=\"italic\">$1</span>",
+            "(.*) :: Orpheus": " <span style=\"italic\">$1</span>",
+            "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
+            "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "Hacker News": " ",
+            "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
+            "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) - YouTube — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) - Invidious": " <span style=\"italic\">$1</span>",
+            "(.*) - YouTube": " <span style=\"italic\">$1</span>",
+            "(.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
+            "(.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+            "(.*) - (.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
+            "(.*) - (.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+            "(.*) - Gmail — Mozilla Firefox": "󰊫 <span style=\"italic\">$1</span>",
+            "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
+            "(.*) - Google Search": " <span style=\"italic\">$1</span>",
+            "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) \\| Proton Mail — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
+            "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+            "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "GNU Emacs at thing": " ",
+            "(.*) – Doom Emacs": " <span style=\"italic\">$1</span>",
+            "(.*) — Doom Emacs": " <span style=\"italic\">$1</span>",
+            "(.*) - Chromium": " <span style=\"italic\">$1</span>",
+            "swayimg: (.*)": " <span style=\"italic\">$1</span>",
+            "feh \\[1 of 1\\] - (.*)": " <span style=\"italic\">$1</span>",
+            "feh \\[1 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
+            "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
+            "(.*) - mpv": " <span style=\"italic\">$1</span>",
+            "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
+            "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
+            "Discord Updater": "󰙯 ",
+            "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+            "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
+            "(.*) - Sublime Text": " $1",
+            " \\*Minibuf-1\\* — Doom Emacs": " ",
+            " \\*Minibuf-1\\* – Doom Emacs":  " ",
+            " \\*Minibuf-2\\* — Doom Emacs": " ",
+            " \\*Minibuf-2\\* – Doom Emacs":  " ",
+            "Nicotine\\+": "󰒴"
+        }
+    },
+
+"disk": {
+    "path": "/",
+    "interval": 1,
+    "format": " <span style=\"italic\">{free}</span>",
+    "format-alt": " {used}",
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"network": {
+    "interface": "enp0s31f6",
+    "interval": 1,
+    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-alt": " {ipaddr} {netmask}",
+    "format-disconnected": "",
+    "tooltip": true,
+    "tooltip-format-ethernet": "{ifname} {gwaddr}",
+    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+},
+
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": " ",
+        "deactivated": " "
+    },
+    "timeout": 60,
+    "tooltip": false
+},
+
+"wireplumber": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-muted": " {volume}%",
+    "tooltip": true,
+    "tooltip-format": "{node_name}",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "swayosd-client --output-volume 2",
+    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click-right": "helvum"
+},
+
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""]
+},
+
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+
+"keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": {
+        "numlock": " {icon}",
+        "capslock": "󰪛 {icon}"
+    },
+    "format-icons": {
+        "locked": " ",
+        "unlocked": " "
+    }
+},
+
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
+}
+
+}, {
+    "position": "bottom",
+    "output": "DP-1",
+    "height": 41,
+    "modules-left": ["wlr/taskbar"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
+    "wlr/taskbar": {
+        "format": "{short_state}{icon}",
+        "on-click": "minimize-raise",
+        "on-click-right": "close",
+        "on-click-middle": "maximize",
+        "tooltip-format": "{app_id} {title}",
+        "icon-size": 32,
+    },
+
+"custom/weather": {
+    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "interval": 4,
+    "format": "{}"
+},
+
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""]
+},
+
+"memory": {
+    "format": " {}%",
+    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
+    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+},
+
+"disk": {
+    "path": "/mnt/drive/",
+    "interval": 1,
+    "format": "  <span style=\"italic\">{free}</span>",
+    "format-alt": "  {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+},
+
+"custom/clock": {
+        "exec": "date +'%I:%M:%S  %a, %b %d'",
+        "interval": 1,
+        "format": " {}",
+        "align": 1,
+        "tooltip": false
+    }
+}]

@@ -1,0 +1,221 @@
+* {
+    font-family:"SpaceMono Nerd Font";
+    font-size:21px;
+    background:transparent;
+    color:#efefef;
+}
+
+#cpu, #wireplumber.muted, #pulseaudio.muted {
+    color:#f61919;
+    background:linear-gradient(180deg, rgba(230, 10, 10, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#pulseaudio, #disk {
+    color:#f1d664;
+    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:40px 0px 0px 40px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#pulseaudio.muted {
+    margin-left:2px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#memory, #backlight {
+    color:#1cd98b;
+    background:linear-gradient(180deg, rgba(12, 201, 123, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
+    color:#51a4ce;
+    background:linear-gradient(180deg, rgba(65, 148, 190, 0.7), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#pulseaudio.bluetooth {
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:12px;
+}
+
+#battery, #temperature {
+    border-radius:0px 40px 40px 0px;
+    padding-left:10px;
+    padding-right:12px;
+    margin-left:0;
+    margin-right:2px;
+    box-shadow:3px 3px rgba(65, 148, 190, 0.5);
+}
+
+#idle_inhibitor {
+    border-radius:40px 0px 0px 40px;
+    padding-left:11px;
+    padding-right:10px;
+    margin-left:2px;
+    margin-right:0;
+}
+
+#bluetooth.on, #bluetooth.off {
+    color:#f61919;
+    background:linear-gradient(180deg, rgba(230, 10, 10, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.connected, #bluetooth.connected.pairable {
+    color:#1cd98b;
+    background:linear-gradient(180deg, rgba(12, 201, 123, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:10px;
+    padding-right:10px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+    color:#51a4ce;
+    background:linear-gradient(180deg, rgba(65, 148, 190, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#bluetooth.discovering {
+    color:#f1d664;
+    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.1));
+    margin-left:0;
+    margin-right:0;
+    padding-left:11px;
+    padding-right:11px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#taskbar button {
+    background:linear-gradient(180deg, rgba(230, 10, 10, 0.9), rgba(0, 0, 0, 0.5));
+    padding-left:12px;
+    padding-right:11px;
+    border-radius:40px 40px 40px 40px;
+    border:0px solid transparent;
+    color:#f61919;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    box-shadow:2px 2px rgba(240, 20, 20, 0.5);
+    margin-left:4px;
+    margin-right:4px;
+}
+#taskbar button:hover {
+    padding-left:12px;
+    padding-right:11px;
+    border-radius:40px 40px 40px 40px;
+    border:0px solid transparent;
+    color:#f1d664;
+    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(220, 190, 82, 0.5);
+    box-shadow:2px 2px rgba(225, 198, 82, 0.5);
+}
+#taskbar button.maximized {
+    color:#1cd98b;
+    background:linear-gradient(180deg, rgba(12, 201, 123, 0.7), rgba(0, 0, 0, 0.5));
+    box-shadow:2px 2px rgba(12, 201, 123, 0.5);
+}
+#taskbar button.minimized {
+    color:#9b9b9b;
+    background:linear-gradient(180deg, rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.5));
+    box-shadow:2px 2px rgba(70, 70, 70, 0.5);
+}
+#taskbar button.active {
+    color:#51a4ce;
+    box-shadow:2px 2px rgba(68, 152, 192, 0.5);
+    background:linear-gradient(180deg, rgba(65, 148, 190, 0.7), rgba(0, 0, 0, 0.5));
+}
+#taskbar button.maximized:hover {
+    color:#d78198;
+    background:linear-gradient(180deg, rgba(204, 117, 140, 0.7), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(197, 109, 130, 0.6);
+    box-shadow:2px 2px rgba(199, 113, 136, 0.5);
+}
+#taskbar button.active:hover, #taskbar button.minimized:hover {
+    color:#21d9b3;
+    background:linear-gradient(180deg, rgba(17, 201, 163, 0.7), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(15, 195, 153, 0.6);
+    box-shadow:2px 2px rgba(33, 217, 179, 0.5);
+}
+
+#custom-clock, #clock, #network {
+    color:#21d9b3;
+    background:linear-gradient(180deg, rgba(17, 201, 163, 0.7), rgba(0, 0, 0, 0.4));
+    margin-left:0;
+    margin-right:2px;
+    padding-left:11px;
+    padding-right:13px;
+    border-radius:0px 40px 40px 0px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    box-shadow:2px 2px rgba(17, 201, 163, 0.5);
+}
+
+#mpd {
+    color:#efefef;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#wireplumber {
+    border-radius:0px 0px 0px 0px;
+    color:#e791a7;
+    background:linear-gradient(180deg, rgba(204, 117, 140, 0.7), rgba(0, 0, 0, 0.5));
+    padding-left:12px;
+    padding-right:11px;
+    margin-left:0px;
+    margin-right:0px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#wireplumber.muted {
+    padding-left:12px;
+    padding-right:11px;
+}
+
+#keyboard-state {
+    padding-left:8px;
+    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.4));
+    border-radius:0px 40px 40px 0px;
+    box-shadow:2px 2px rgba(225, 198, 84, 0.4);
+    margin-right:2px;
+}
+
+#keyboard-state label {
+    color:#f1d664;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#keyboard-state label.locked {
+    color:#ffffff;
+    text-shadow:2px 2px rgba(255, 0, 0, 0.5);
+}
+
+#image {
+    background:none;
+    border:none;
+    color:black;
+    box-shadow:2px 2px rgba(0, 0, 0, 0.3);
+}

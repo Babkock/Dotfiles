@@ -4,7 +4,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "temperature", "custom/clock", "tray"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -31,10 +31,10 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - <span style=\"italic\">{title}</span>  {stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
     "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 35,
+    "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
+    "title-len": 42,
     "unknown-tag": "N/A",
     "interval": 1,
     "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
@@ -60,11 +60,11 @@
     "tooltip-format": "{artist} - {album} ({date})",
 },
 
-"temperature": {
-    "thermal-zone": 1,
-    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    "format": " {temperatureF}°F",
-    "format-alt": " {temperatureC}°C"
+"image#album-art": {
+    "path": "/tmp/mpd_cover.jpg",
+    "size": 40,
+    "interval": 1,
+    "on-click": "swayimg /tmp/mpd_cover.jpg"
 },
 
 "custom/clock": {
@@ -142,12 +142,6 @@
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-scroll-up": "swayosd-client --output-volume 2",
     "on-scroll-down": "swayosd-client --output-volume -2"
-},
-
-"tray": {
-    "icon-size": 32,
-    "spacing": 1,
-    "show-passive-items": true
 }
 
 }, {
@@ -156,7 +150,7 @@
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "custom/clock"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -181,6 +175,7 @@
 "sway/window": {
     "format": "{title}",
     "separate-outputs": false,
+    "tooltip": false,
     "rewrite": {
         "foot": " ",
         "Alacritty": " ",
@@ -315,6 +310,13 @@
     "format-icons": ["", "", "", "", ""]
 },
 
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
+},
+
 "disk": {
     "path": "/",
     "interval": 1,
@@ -324,12 +326,23 @@
     "tooltip-format": "{percentageUsed}% of {total}"
 },
 
-"custom/clock": {
-    "exec": "date +'%I:%M:%S  %a, %b %d'",
-    "interval": 1,
-    "format": " {}",
-    "align": 1,
-    "tooltip": false
+"keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": {
+        "numlock": " {icon}",
+        "capslock": "󰪛 {icon}"
+    },
+    "format-icons": {
+        "locked": " ",
+        "unlocked": " "
+    }
+},
+
+"tray": {
+    "icon-size": 32,
+    "spacing": 1,
+    "show-passive-items": true
 }
 
 }, {
@@ -349,7 +362,7 @@
             "2": "爵",
             "3": "",
             "4": "",
-            "5": "",
+            "5": "󰭹",
             "6": "",
             "7": "",
             "8": "",

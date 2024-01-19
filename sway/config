@@ -22,12 +22,38 @@ exec pipewire &
 exec --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP
 exec --no-startup-id /usr/libexec/xdg-desktop-portal -r &
 exec swayosd-server --top-margin=0.2 &
+exec eww --force-wayland daemon
+exec eww open calendar
 exec hydroxide imap &
 exec hydroxide smtp &
 
-output DP-1 pos 0 0 resolution 1920x1080@60Hz bg /home/babkock/.config/sway/rainbow.jpg fill
-output eDP-1 pos 1920 0 resolution 1920x1080@60Hz adaptive_sync on bg /home/babkock/.config/sway/hotlava.jpg fill
-output HDMI-A-2 pos 3840 0 resolution 1920x1080@60Hz adaptive_sync on bg /home/babkock/.config/sway/purpletree.jpg fill
+output "eDP-1" {
+	mode 1920x1080@60.008Hz
+	pos 0 0
+	transform normal
+	scale 1.0
+	adaptive_sync on
+	dpms on
+	bg /home/babkock/.config/sway/hotlava.jpg fill
+}
+output "HDMI-A-2" {
+	mode 1920x1080@60.0Hz
+	pos 1920 0
+	transform normal
+	scale 1.0
+	adaptive_sync on
+	dpms on
+	bg /home/babkock/.config/sway/purpletree.jpg fill
+}
+output "DP-1" {
+	mode 1920x1080@60.0Hz
+	pos 3840 0
+	transform normal
+	scale 1.0
+	adaptive_sync on
+	dpms on
+	bg /home/babkock/.config/sway/rainbow.jpg fill
+}
 
 seat seat0 xcursor_theme "Adwaita" 30
 seat seat0 hide_cursor 5000
@@ -70,15 +96,15 @@ shadows_on_csd enable
 shadow_blur_radius 2
 shadow_color #88000088
 default_dim_inactive 0.15
-titlebar_separator disable
+titlebar_separator enable
 
-client.focused #ea4d48df #ea4d48df #efefefef #c53034ef
-client.focused_tab_title #d154afdf #d154afdf #efefefef
-client.focused_inactive #74c280dd #74c280dd #000000ef
+client.focused #ea4d488f #ea4d488f #efefefef #c530348f
+client.focused_tab_title #d154af7f #d154af7f #efefefef
+client.focused_inactive #74c2808d #74c2807d #000000ef
 client.unfocused #fbb73edd #eba72edd #434343dd
-default_border pixel 2
-default_floating_border pixel 2
-for_window [class="^.*"] border pixel 2
+default_border pixel 1
+default_floating_border pixel 1
+for_window [class="^.*"] border pixel 1
 
 font pango:SpaceMono Nerd Font Medium 14
 
@@ -103,7 +129,7 @@ workspace 1 output eDP-1
 workspace 2 output HDMI-A-2
 workspace 3 output eDP-1
 workspace 4 output HDMI-A-2
-workspace 5 output HDMI-A-2
+workspace 5 output DP-1
 workspace 6 output HDMI-A-2
 workspace 7 output DP-1
 workspace 8 output eDP-1
@@ -123,6 +149,8 @@ assign [app_id="GIMP"] 5
 assign [class="GIMP"] 5
 assign [app_id="Gimp"] 5
 assign [class="Gimp"] 5
+assign [class="mpv"] 7
+assign [app_id="mpv"] 7
 for_window [app_id="Emacs"] focus
 for_window [class="Emacs"] focus
 for_window [app_id="mpv"] floating enable
@@ -142,11 +170,7 @@ for_window [app_id="Firefox"] focus
 for_window [class="Firefox"] focus
 for_window [app_id="Firefox"] move workspace to output HDMI-A-2
 for_window [class="Firefox"] move workspace to output HDMI-A-2
-for_window [app_id="Firefox"] inhibit_idle fullscreen
-for_window [class="Firefox"] inhibit_idle fullscreen
 for_window [class="Gimp"] focus
-for_window [class="GIMP"] move workspace to output HDMI-A-2
-for_window [class="Gimp"] move workspace to output HDMI-A-2
 for_window [app_id="mpv"] focus
 for_window [class="mpv"] focus
 for_window [app_id="mpv"] inhibit_idle fullscreen
@@ -177,7 +201,7 @@ bindsym $mod+semicolon workspace number 5; exec nicotine
 
 bindsym $mod+Shift+semicolon workspace number 6; exec obs
 
-bindsym $mod+Shift+Slash workspace number 4; exec chromium
+#bindsym $mod+Shift+Slash workspace number 4; exec chromium
 
 bindsym $mod+backspace exec $term -e tremc
 
@@ -234,6 +258,7 @@ bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
 
 bindsym $mod+b splith
 bindsym $mod+v splitv
@@ -263,24 +288,6 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
-mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10pr
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
 
 include @sysconfdir@/sway/config.d/*
 

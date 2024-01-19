@@ -51,11 +51,6 @@ system_files=(
   "$HOME/.config/dunst/dunstrc"
   "/usr/bin/batnotify"
   "$HOME/bin/hdmi"
-  "$HOME/bin/rhdmi"
-  "$HOME/bin/ssway"
-  "$HOME/bin/start"
-  "$HOME/bin/slabwc"
-  "$HOME/bin/shy"
   "$HOME/.config/sway/config"
   "$HOME/.config/waybar/config.org"
   "$HOME/.config/waybar/style.org"
@@ -63,8 +58,8 @@ system_files=(
   "$HOME/.config/waybar/style.css"
   "$HOME/.config/waybar/rconfig.json"
   "$HOME/.config/waybar/river.css"
-  "$HOME/.config/waybar/lconfig.json"
-  "$HOME/.config/waybar/labwc.css"
+  "$HOME/.config/waybar/wconfig.json"
+  "$HOME/.config/waybar/wayfire.css"
   "$HOME/.config/waybar/hconfig.json"
   "$HOME/.config/waybar/hyprland.css"
 #  "$HOME/.config/river/init"
@@ -79,6 +74,7 @@ system_files=(
   "$HOME/.config/mako/config"
   "$HOME/.config/hypr/hyprland.conf"
   "$HOME/.config/alacritty/alacritty.yml"
+  "$HOME/.config/alacritty/sway.yml"
 )
 
 repo_files=(
@@ -132,11 +128,6 @@ repo_files=(
   "dunstrc"
   "bin/batnotify"
   "bin/hdmi"
-  "bin/rhdmi"
-  "bin/ssway"
-  "bin/start"
-  "bin/slabwc"
-  "bin/shy"
   "sway/config"
   "waybar/README.org"
   "waybar/style.org"
@@ -144,8 +135,8 @@ repo_files=(
   "waybar/style.css"
   "waybar/rconfig.json"
   "waybar/river.css"
-  "waybar/lconfig.json"
-  "waybar/labwc.css"
+  "waybar/wconfig.json"
+  "waybar/wayfire.css"
   "waybar/hconfig.json"
   "waybar/hyprland.css"
 #  "river/init"
@@ -159,7 +150,8 @@ repo_files=(
 #  "labwc/themerc"
   "mako/config"
   "hyprland.conf"
-  "alacritty.yml"
+  "alacritty/alacritty.yml"
+  "alacritty/sway.yml"
 )
 
 compare() {
