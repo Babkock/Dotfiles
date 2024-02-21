@@ -197,7 +197,7 @@ c.hints.radius = 20
 c.hints.uppercase = True
 c.scrolling.bar = "always"
 c.scrolling.smooth = False
-c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss"]
+c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss", "enable-gpu-rasterization", "ignore-gpu-blocklist", "use-gl=egl", "enable-accelerated-video-decode"]
 c.qt.chromium.experimental_web_platform_features = "always"
 
 # --- Fonts ---

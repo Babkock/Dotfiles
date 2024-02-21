@@ -23,7 +23,7 @@
        ;;hydra
        indent-guides     ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
-       ;;minimap             ; show a map of the code on the side
+       minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -41,7 +41,7 @@
        :editor
        (evil +everywhere); come to the dark side, we have cookies
        ;;file-templates    ; auto-snippets for empty files
-       fold              ; (nigh) universal code folding
+       ;;fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
@@ -130,13 +130,13 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex (+cdlatex +fold)             ; writing papers in Emacs has never been so fun
+       ;;latex (+cdlatex +fold)             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
        markdown            ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       nix                 ; I hereby declare "nix geht mehr!"
+       ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +pretty +dragandrop +modern)                 ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
@@ -158,7 +158,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
-       yaml              ; JSON, but readable
+       ;;yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email
@@ -178,18 +178,18 @@
        ;;literate
        (default +bindings +smartparens))
 
-(setq frame-title-format
-    '(""
-        (:eval
-            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-                (replace-regexp-in-string
-                    ".*/[0-9]*-?" "☰ "
-                    (subst-char-in-string ?_ ?  buffer-file-name))
-                "► %b"))
-        (:eval
-            (let ((project-name (projectile-project-name)))
-                (unless (string= "-" project-name)
-                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
+;(setq frame-title-format
+;    '(""
+;        (:eval
+;            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+;                (replace-regexp-in-string
+;                    ".*/[0-9]*-?" "☰ "
+;                    (subst-char-in-string ?_ ?  buffer-file-name))
+;                "► %b"))
+;        (:eval
+;            (let ((project-name (projectile-project-name)))
+;                (unless (string= "-" project-name)
+;                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
 
 (setq doom-fallback-buffer-name "*doom*"
     doom-dashboard-name "*doom*")
@@ -232,7 +232,9 @@
         (concat doom-private-dir "splash/"
             (nth (random (length banners)) banners))))
 
+(add-hook! 'find-file-hook (elcord-mode 1))
 (add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
+(add-hook! '+doom-dashboard-mode-hook (elcord-mode -1))
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'after-init-hook #'doom-modeline-mode)
@@ -242,6 +244,8 @@
 
 (setq inhibit-compacting-font-caches t)
 (setq find-file-visit-truename t)
+(setq version-control t)
+(setq vc-follow-symlinks t)
 
 (setq doom-modeline-buffer-file-name-style 'auto
       doom-modeline-icon (display-graphic-p)

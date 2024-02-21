@@ -36,14 +36,14 @@ hi Visual ctermbg=14 ctermfg=232
 hi LineNr ctermfg=248
 hi Folded ctermbg=0 ctermfg=248 cterm=bold term=bold
 hi GitGutterAdd ctermfg=2
-hi GitGutterAddNr ctermbg=22 ctermfg=2
-hi GitGutterAddLine ctermbg=22 ctermfg=2
+hi GitGutterAddNr ctermbg=22
+hi GitGutterAddLine ctermbg=22
 hi GitGutterChange ctermfg=3
-hi GitGutterChangeNr ctermbg=94 ctermfg=3
-hi GitGutterChangeLine ctermbg=94 ctermfg=3
+hi GitGutterChangeNr ctermbg=94
+hi GitGutterChangeLine ctermbg=94
 hi GitGutterDelete ctermfg=1
-hi GitGutterDeleteNr ctermbg=88 ctermfg=1
-hi GitGutterDeleteLine ctermbg=88 ctermfg=1
+hi GitGutterDeleteNr ctermbg=88
+hi GitGutterDeleteLine ctermbg=88
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()

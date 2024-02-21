@@ -4,7 +4,7 @@
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -121,7 +121,7 @@
 },
 
 "pulseaudio": {
-    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
     "format-bluetooth-muted": "  {volume}%",
     "format-muted": " {volume}%",
@@ -150,7 +150,7 @@
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -181,6 +181,9 @@
         "Alacritty": " ",
         "st": " ",
         "Steam": " ",
+        "Sign in to Steam": " ",
+        "Shutdown": " ",
+        "cava": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
@@ -259,7 +262,7 @@
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
         "Nicotine\\+": "󰒴"
     },
-    "max-length": 64,
+    "max-length": 80,
     "all-outputs": true
 },
 
@@ -350,7 +353,7 @@
     "output": "DP-1",
     "height": 41,
     "modules-left": ["sway/workspaces"],
-    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,

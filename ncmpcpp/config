@@ -133,9 +133,9 @@ alternative_header_second_line_format = {{$5$b%a$/b$9}{ - $6$b%b$/b$9}{ ($4%y$9)
 
 #browser_playlist_prefix = "$2playlist$9 "
 
-#selected_item_prefix = $6
+selected_item_prefix = $6
 
-#selected_item_suffix = $9
+selected_item_suffix = $9
 
 #modified_item_prefix = $3> $9
 
@@ -176,7 +176,7 @@ song_window_title_format = zncmpcpp {%a - }{%t}|{%f}
 ##
 song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (28)[red]{t|f:Title} (25)[green]{a} (22)[magenta]{b} (4)[yellow]{yE}
 
-execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
+execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh; eww reload 2> /dev/null"
 
 ## The environment variable MPD_PLAYER_STATE is set to the current
 ## state (either unknown, play, pause, or stop).
@@ -188,7 +188,7 @@ execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_
 
 #playlist_shorten_total_times = no
 
-#playlist_separate_albums = yes
+playlist_separate_albums = yes
 
 playlist_display_mode = columns
 

@@ -58,6 +58,7 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#unmount-external-encrypted-drive][Unmount External Encrypted Drive]]
   - [[#ssh-agent][SSH Agent]]
   - [[#swayimg][Swayimg]]
+  - [[#fix-pulseaudio-sink][Fix PulseAudio Sink]]
 - [[#aliases][Aliases]]
 - [[#plugins][Plugins]]
   - [[#keybindings][Keybindings]]
@@ -81,18 +82,27 @@ export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 
+CITY="Arvada"
+VIVID_THEME="alabaster_dark"
+TRANS_CREDENTIALS="redacted:redacted@127.0.0.1:9091"
+TRANS_PASS="redacted:redacted"
+WEBSITE_ADDRESS="redacted@redacted"
+RSYNC_PATH="redacted"
+
 #LSCOLORS=$LS_COLORS
 #ZLS_COLORS=$LS_COLORS
 if [ -v $TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
-        export LS_COLORS="$(vivid generate snazzy)"
+        export LS_COLORS="$(vivid generate $VIVID_THEME)"
     else
-        export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
+        export LS_COLORS="$(vivid -m 8-bit generate $VIVID_THEME)"
     fi
 else
-    export LS_COLORS="$(vivid -m 8-bit generate snazzy)"
+    export LS_COLORS="$(vivid -m 8-bit generate $VIVID_THEME)"
 fi
+
 export LSCOLORS=$LS_COLORS
+ZLS_COLORS=$LS_COLORS
 #+end_src
 
 ** Completion Styles
@@ -157,14 +167,19 @@ else
     # functions only for login shells
     function shy() {
         export GTK_THEME="Sunset-Dark"
+        export GDK_BACKEND="wayland"
+        export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="Hyprland"
         export XDG_SESSION_DESKTOP="Hyprland"
+        export XDG_SESSION_TYPE="wayland"
         export QT_QPA_PLATFORM="wayland-egl"
         export QT_QPA_PLATFORMTHEME="qt6ct"
         export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
         export XCURSOR_THEME="Adwaita"
         export XCURSOR_SIZE=30
         export MOZ_ENABLE_WAYLAND=1
+        export MOZ_WEBRENDER=1
+        pgrep eww | xargs kill 2> /dev/null
         pgrep mpdas | xargs kill 2> /dev/null
         pgrep pipewire | xargs kill 2> /dev/null
         pgrep pulseaudio | xargs kill 2> /dev/null
@@ -175,40 +190,57 @@ else
         dbus-launch --exit-with-session Hyprland
         pgrep mako | xargs kill 2> /dev/null
         pgrep emacs | xargs kill 2> /dev/null
+        pgrep hydroxide | xargs kill 2> /dev/null
+        pkill -x hydroxide
+        pgrep mpdas | xargs kill 2> /dev/null
+        pkill -x mpdas
         true
     }
     function swa() {
         export GTK_THEME="Sunset-Dark"
+        export GDK_BACKEND="wayland"
+        export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="sway"
         export XDG_SESSION_DESKTOP="sway"
-        export QT_QPA_PLATFORM="wayland-egl"
-        export QT_QPA_PLATFORMTHEME="qt6ct"
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-            export XCURSOR_THEME="Adwaita"
-            export XCURSOR_SIZE=30
-            export MOZ_ENABLE_WAYLAND=1
-            pgrep eww | xargs kill 2> /dev/null
-            pgrep mpdas | xargs kill 2> /dev/null
-            pgrep pipewire | xargs kill 2> /dev/null
-            pgrep pulseaudio | xargs kill 2> /dev/null
-            echo "Starting Sway..."
-            pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
-            gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-            gsettings set org.gnome.desktop.interface cursor-size 30
-            dbus-launch --exit-with-session sway
-            pgrep mako | xargs kill 2> /dev/null
-            pgrep emacs | xargs kill 2> /dev/null
-            true
-    }
-    function swf() {
-        export GTK_THEME="Sunset-Dark"
-        export XDG_CURRENT_DESKTOP="sway"
-        export XDG_SESSION_DESKTOP="sway"
+        export XDG_SESSION_TYPE="wayland"
         export QT_QPA_PLATFORM="wayland-egl"
         export QT_QPA_PLATFORMTHEME="qt6ct"
         export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
         export XCURSOR_THEME="Adwaita"
         export XCURSOR_SIZE=30
+        export MOZ_ENABLE_WAYLAND=1
+        export MOZ_WEBRENDER=1
+        pgrep eww | xargs kill 2> /dev/null
+        pgrep mpdas | xargs kill 2> /dev/null
+        pgrep pipewire | xargs kill 2> /dev/null
+        pgrep pulseaudio | xargs kill 2> /dev/null
+        echo "Starting Sway..."
+        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+        gsettings set org.gnome.desktop.interface cursor-size 30
+        dbus-launch --exit-with-session sway
+        pgrep mako | xargs kill 2> /dev/null
+        pgrep emacs | xargs kill 2> /dev/null
+        pgrep hydroxide | xargs kill 2> /dev/null
+        pkill -x hydroxide
+        pgrep mpdas | xargs kill 2> /dev/null
+        pkill -x mpdas
+        true
+    }
+    function swf() {
+        export GTK_THEME="Sunset-Dark"
+        export GDK_BACKEND="wayland"
+        export SDL_VIDEODRIVER="wayland"
+        export XDG_CURRENT_DESKTOP="sway"
+        export XDG_SESSION_DESKTOP="sway"
+        export XDG_SESSION_TYPE="wayland"
+        export QT_QPA_PLATFORM="wayland-egl"
+        export QT_QPA_PLATFORMTHEME="qt6ct"
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export XCURSOR_THEME="Adwaita"
+        export XCURSOR_SIZE=30
+        export MOZ_ENABLE_WAYLAND=1
+        export MOZ_WEBRENDER=1
         pgrep eww | xargs kill 2> /dev/null
         pgrep mpdas | xargs kill 2> /dev/null
         pgrep pipewire | xargs kill 2> /dev/null
@@ -220,18 +252,26 @@ else
         dbus-launch --exit-with-session wayfire
         pgrep mako | xargs kill 2> /dev/null
         pgrep emacs | xargs kill 2> /dev/null
+        pgrep hydroxide | xargs kill 2> /dev/null
+        pkill -x hydroxide
+        pgrep mpdas | xargs kill 2> /dev/null
+        pkill -x mpdas
         true
     }
     function sri() {
         export GTK_THEME="Sunset-Dark"
+        export GDK_BACKEND="wayland"
+        export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="sway"
         export XDG_SESSION_DESKTOP="sway"
+        export XDG_SESSION_TYPE="wayland"
         export QT_QPA_PLATFORM="wayland-egl"
         export QT_QPA_PLATFORMTHEME="qt6ct"
         export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
         export XCURSOR_THEME="Adwaita"
         export XCURSOR_SIZE=30
         export MOZ_ENABLE_WAYLAND=1
+        export MOZ_WEBRENDER=1
         pgrep mpdas | xargs kill 2> /dev/null
         pgrep pipewire | xargs kill 2> /dev/null
         pgrep pulseaudio | xargs kill 2> /dev/null
@@ -257,32 +297,21 @@ All of these =ls= commands have flags to show directories first, show human-read
 
 | Command | In Terminal                                        | In TTY                            |
 |---------+----------------------------------------------------+-----------------------------------|
-| =ls=      | Regular LSD listing                                | Regular LS listing                |
-| =l=       | Regular LSD listing                                | Regular LS listing                |
+| =ls=      | Regular Eza listing                                | Regular LS listing                |
+| =l=       | Regular Eza listing                                | Regular LS listing                |
 | =la=      | Long listing with total directory sizes, all files | LS long listing, all files        |
-| =ll=      | LSD Long listing with total sizes, all files       | LS long listing, all files        |
-| =lc=      | LSD Long listing with total sizes                  | N/A                               |
-| =lct=     | LSD Long listing with total sizes and tree         | N/A                               |
-| =lctl=    | LSD Long listing with total sizes and tree         | N/A                               |
+| =ll=      | Eza Long listing with total sizes, all files       | LS long listing, all files        |
+| =lc=      | Eza Long listing with total sizes                  | N/A                               |
+| =lct=     | Eza Long listing with total sizes and tree         | N/A                               |
+| =lctl=    | Eza Long listing with total sizes and tree         | N/A                               |
 | =lsl=     | Long listing, all files                            | LS long listing, all files        |
 | =lsa=     | Long listing, all files                            | LS long listing, all files        |
 | =lsla=    | Long listing with total sizes, all files           | LS long listing, all files        |
-| =lst=     | LSD listing with tree                              | N/A                               |
-| =lstl=    | LSD long listing with tree                         | N/A                               |
-| =ltl=     | LSD long listing with total sizes and tree         | N/A                               |
-| =a=       | Regular Exa listing                                | Same, without icons               |
-| =al=      | Exa long listing, all files                        | Same, without icons               |
-| =aa=      | Exa long listing, all files                        | Same, without icons               |
-| =at=      | Exa listing with tree                              | Same                              |
-| =atl=     | Exa long listing with tree                         | Same                              |
-| =alt=     | Exa long listing with tree                         | Same                              |
-| =ac=      | Exa listing sorted by time modified                | Same                              |
-| =acl=     | Exa long listing sorted by time                    | Same                              |
-| =aca=     | Exa long listing sorted by time                    | Same                              |
-| =act=     | Exa listing with tree, sorted by time              | Same                              |
-| =atc=     | Exa listing with tree, sorted by time              | Same                              |
-| =aclt=    | Exa long listing with tree, by time                | Same                              |
-| =atlc=    | Exa long listing with tree, by time                | Same                              |
+| =lst=     | Eza listing with tree                              | N/A                               |
+| =lstl=    | Eza long listing with tree                         | N/A                               |
+| =ltl=     | Eza long listing with total sizes and tree         | N/A                               |
+| =a=       | Run YT-DLP on the given URL                        | N/A                               |
+| =al=      | Eza long listing, all files                        | Same, without icons               |
 | =e=       | Opens new Emacs window                             | Opens Emacs in Console            |
 | =ez=      | Edit zsh.org in new Emacs window                   | Edit zsh.org in Console           |
 | =eb=      | Edit bspwm.org in new Emacs window                 | Edit bspwm.org in Console         |
@@ -321,15 +350,7 @@ if [ -v TERM ]; then
         alias lct="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
-        #alias a="eza --icons --group-directories-first --no-quotes -X -F"
         alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
-        #alias aa="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S"
-        #alias at="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
-        #alias atl="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
-        #alias alt="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S -T --level 3"
-        #alias ac="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
-        #alias acl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
-        #alias aca="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
         alias e="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q"
         alias ee="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q ."
         alias ez="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
@@ -346,10 +367,10 @@ if [ -v TERM ]; then
         alias ei="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
         alias egl="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
         alias er="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
-        alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc"
-        alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc"
-        alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc"
-        alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc"
+        alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
+        alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
+        alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=60 --window-scale=0.31"
+        alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=60 --window-scale=0.31"
         alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
 #    elif [[ ${TERM} = "screen-256color" ]]; then
         # tmux
@@ -362,15 +383,6 @@ if [ -v TERM ]; then
         alias lsl="ls -l -A -h --group-directories-first -F --color=auto"
         alias la="ls -l -A -h --group-directories-first -F --color=auto"
         alias ll="ls -l -A -h --group-directories-first -F --color=auto"
-        alias a="eza --group-directories-first --no-quotes -F -G -S"
-        alias al="eza --group-directories-first --no-quotes --git --git-repos -l -A -F -G -S"
-        alias aa="eza --group-directories-first --no-quotes --git --git-repos -l -A -F -G -S"
-        alias at="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S -T --level 2"
-        alias atl="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S -T --level 2"
-        alias alt="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S -T --level 2"
-        alias ac="eza --group-directories-first --no-quotes --git --git-repos -l -T -S -F --level 2 --total-size"
-        alias acl="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S --total-size -T --level 2"
-        alias aca="eza --group-directories-first --no-quotes --git --git-repos -l -F -G -S --total-size -T --level 2"
         alias e="emacsclient -c -a 'emacs' -nw"
         alias ee="emacsclient -c -a 'emacs' -nw ."
         alias ez="emacsclient -c -a 'emacs' -nw \"$HOME/.zsh.org\""
@@ -415,20 +427,20 @@ If it is given a second argument, it interprets that as the preferred download s
 #+begin_src sh :tangle .zshrc
 function t() {
     if [ -z "$1" ]; then
-        tremc
+        tremc --ssl -X -r -c "$TRANS_CREDENTIALS"
         true
      elif [ -z "$2" ]; then
         printf "Starting %s...\n" "$1"
-        tremc "$1" > /dev/null
+        tremc --ssl -c "$TRANS_CREDENTIALS" "$1" > /dev/null
         rm "$1" 2> /dev/null
-        tremc
+        tremc --ssl -X -r -c "$TRANS_CREDENTIALS"
         true
     elif [ -z "$3" ]; then
         printf "Starting %s with speed %s kbps...\n" "$1" "$2"
-        tremc "$1" > /dev/null
-        transmission-remote -asd "$2"
+        tremc --ssl -c  "$1" > /dev/null
+        transmission-remote --auth="$TRANS_PASS" -asd "$2"
         rm "$1" 2> /dev/null
-        tremc
+        tremc --ssl -X -r -c "$TRANS_CREDENTIALS"
         true
     else
         printf "Too many arguments\n" > /dev/stderr
@@ -512,7 +524,7 @@ function backup() {
         printf "Please specify directory to store backup in\n" > /dev/stderr
         false
     else
-        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" redacted@redacted:/home/www/tannerbabcock.com "$1"
+        sudo rsync -Pa -e "ssh -p 2222 -i $HOME/.ssh/tbcom_ssh" "$WEBSITE_ADDRESS:$RSYNC_PATH" "$1"
         true
     fi
 }
@@ -577,6 +589,15 @@ function q() {
 }
 #+end_src
 
+** Fix PulseAudio Sink
+
+#+begin_src sh :tangle .zshrc
+function pv() {
+    pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+    pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
+}
+#+end_src
+
 * Aliases
 
 This is my collection of aliases. Each letter of the alphabet should have its own command, to make the overall way of life easier.
@@ -588,10 +609,11 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 |---------+--------------------------+-----------------------------------------------------|
 | =ba=      | N/A                      | Snow 5-day forecast in Denver                       |
 | =bb=      | N/A                      | Run neofetch with fancy bars                        |
-| =c=       | N/A                      | Run btm task manager                                |
+| =c=       | File name                | Run Bat on given files                              |
 | =ca=      | File name                | Run Bat on given files                              |
-| =cd=      | Directory                | Run Zoxide on given directory                       |
-| =co=      | N/A                      | Run Conky                                           |
+| =cb=      | N/A                      | Cargo build --release                               |
+| =co=      | N/A                      | Run btm task manager                                |
+| =ct=      | N/A                      | Cargo test --release                                |
 | =d=       | N/A                      | Run fd Find                                         |
 | =dcr=     | File name                | Decrypt given file with GNUPG                       |
 | =df=      | N/A                      | Run duf                                             |
@@ -609,6 +631,8 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =gh=      | Pattern, file name       | Run Ripgrep with context with given pattern on file |
 | =gl=      | N/A                      | Run Git log with nice formatting                    |
 | =gm=      | File name, file name     | Move or rename file and add to staging area         |
+| =gn=      | Repository URL           | Git clone                                           |
+| =gnn=     | Repository URL           | Git clone --depth 2                                 |
 | =gp=      | Options                  | GNUPG                                               |
 | =gpull=   | N/A                      | Git Pull Origin master                              |
 | =gpulm=   | N/A                      | Git Pull Origin main                                |
@@ -618,36 +642,52 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =gpasm=   | N/A                      | Git Push All main                                   |
 | =gr=      | File name                | Delete file from staging area                       |
 | =grc=     | File name                | Delete file from staging area                       |
-| =gs=      | N/A                      | Run Git show                                        |
+| =gs=      | N/A                      | Run Git Status                                      |
 | =gso=     | URL                      | Set URL for repo's origin                           |
 | =gsu=     | URL                      | Set URL for repo's upstream                         |
 | =h=       | N/A                      | Run Htop                                            |
 | =i=       | N/A                      | Run Tig Git client                                  |
 | =k=       | N/A                      | Make                                                |
 | =kc=      | N/A                      | Make clean                                          |
+| =km=      | N/A                      | Meson Setup Build                                   |
+| =kn=      | N/A                      | Ninja -j4                                           |
 | =m=       | File name                | Open given file in MPV                              |
 | =mb=      | N/A                      | Mount Baby blue drive                               |
 | =md=      | N/A                      | Mount External SSD                                  |
+| =mi=      | File name                | Open given file in MPV, muted                       |
 | =mn=      | Man page                 | Man                                                 |
+| =mt=      | File name                | Open given file in MPV, with sound sent to TV       |
 | =n=       | N/A                      | Run Ncmpcpp                                         |
 | =nb=      | N/A                      | Nix Build                                           |
 | =ncr=     | File name                | Encrypt given file with GNUPG                       |
 | =ne=      | N/A                      | Run Ncmpcpp with Ueberzug                           |
 | =nfi=     | N/A                      | Nix Flake Init                                      |
 | =nfm=     | N/A                      | Nix Flake Metadata                                  |
+| =npi=     | Package name             | Nix Profile Install                                 |
+| =npl=     | N/A                      | Nix Profile List                                    |
+| =npr=     | Package number           | Nix Profile Remove                                  |
 | =o=       | Process name             | Kill the given process                              |
+| =oa=      | N/A                      | Eww Active Windows                                  |
+| =oc=      | Eww window               | Eww Close Window                                    |
+| =oi=      | N/A                      | Eww Inspector                                       |
+| =ol=      | N/A                      | Eww List Windows                                    |
+| =oo=      | Eww window               | Eww Open Window                                     |
+| =or=      | N/A                      | Eww Reload                                          |
 | =p=       | N/A                      | Run Flowtop                                         |
 | =po=      | N/A                      | Run Gotop                                           |
 | =q=       | File name                | Open given file in Swayimg                          |
+| =qg=      | File name                | Open given file in GIMP                             |
 | =qw=      | N/A                      | Open current directory in Swayimg                   |
 | =r=       | Directory                | Run Ranger on given or current directory            |
 | =s=       | N/A                      | Log in to my website via SSH                        |
+| =sb=      | N/A                      | Restart Bluetooth Daemons                           |
 | =se=      | N/A                      | Restart Emacs Server                                |
-| =sl=      | N/A                      | Restart Waybar for LabWC                            |
-| =sp=      | N/A                      | Restart Pulseaudio                                  |
+| =sf=      | N/A                      | Restart Waybar for Wayfire                          |
+| =sp=      | N/A                      | Restart Pipewire                                    |
 | =sr=      | N/A                      | Restart Waybar for River                            |
 | =sw=      | N/A                      | Restart Waybar for Sway                             |
 | =sy=      | N/A                      | Restart Waybar for Hyprland                         |
+| =sz=      | N/A                      | Kill wpa_supplicant and restart with Ethernet       |
 | =ta=      | File name                | Extract given Tar archive                           |
 | =td=      | Output file, files       | Compress files into given output Tar archive        |
 | =ti=      | N/A                      | List Transmission torrents                          |
@@ -661,17 +701,22 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =vm=      | N/A                      | Run Virt-Manager                                    |
 | =wh=      | Command/alias/function    | Which                                               |
 | =x=       | N/A                      | Start Zsh as Root                                   |
+| =xl=      | N/A                      | List installed packages                             |
+| =xu=      | N/A                      | Update system with XBPS                             |
 | =xx=      | N/A                      | Reboot system immediately                           |
 | =y=       | File name                | Open given file in MuPDF                            |
-| =z=       | Directory                | Run Zoxide on given directory                       |
+| =z=       | N/A                      | Start Bluetoothctl                                  |
 
 #+begin_src sh :tangle .zshrc
 # show weather in Denver today
-alias ba="ansiweather -l \"Denver\" -u imperial -H true -h false -p false -i false -s true -f 4"
+alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
 alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
+alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
+alias ci="cargo init"
+alias ct="cargo test --release"
 alias df="duf" # like df
 # fzf file picker with preview
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
@@ -703,6 +748,8 @@ alias gw="git show"
 alias gr="git rm"
 alias grc="git rm --cached"
 alias gm="git mv"
+alias gn="git clone"
+alias gnn="git clone --depth 2"
 alias ggo="git remote get-url origin"
 alias gso="git remote set-url origin"
 alias ggu="git remote get-url upstream"
@@ -723,10 +770,15 @@ alias r="ranger"
 alias m="mpv"
 alias mb="sudo mount /dev/sdb1 /mnt/Baby; echo 'sdb Mounted'"
 alias md="sudo mount /dev/sdb1 /mnt/drive; echo 'sdb Mounted'"
+alias mi="mpv --mute=yes"
+alias mt="mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
 alias mn="man"
 alias tl="tldr"
 alias n="ncmpcpp"
 alias ne="$HOME/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug"
+alias npi="nix profile install"
+alias npl="nix profile list"
+alias npr="nix profile remove"
 alias nb="nix build --extra-experimental-features nix-command --extra-experimental-features flakes"
 alias nfi="nix flake --extra-experimental-features nix-command --extra-experimental-features flakes init"
 alias nfm="nix flake --extra-experimental-features nix-command --extra-experimental-features flakes metadata"
@@ -734,6 +786,12 @@ alias nfc="nix show-config --extra-experimental-features nix-command"
 alias nsh="nix-shell"
 alias nr="nix repl"
 alias o="pkill -x"
+alias oa="eww active-windows"
+alias oc="eww close"
+alias oi="eww inspector"
+alias ol="eww list-windows"
+alias oo="eww open"
+alias or="eww reload"
 alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
 alias u="neomutt -F '$HOME/.muttrc'"
 alias po="gotop"
@@ -741,25 +799,35 @@ alias p="sudo flowtop -46UTDISs -t 2"
 alias qw="swayimg --all"
 alias qi="identify"
 alias qg="gimp"
-alias s="ssh redacted@redacted -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
+alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
+alias sb="sudo sv restart bluez-alsa; sudo sv restart bluetoothd"
 alias se="pkill -x emacs; emacs --daemon"
-#alias sp="pkill -x pulseaudio; pulseaudio --start"
 alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
 alias sw="pkill -x waybar; waybar -c '$HOME/.config/waybar/config.json' &"
-alias sl="pkill -x waybar; waybar -c '$HOME/.config/waybar/lconfig.json' -s '$HOME/.config/waybar/labwc.css' &"
+alias sf="pkill -x waybar; waybar -c '$HOME/.config/waybar/wconfig.json' -s '$HOME/.config/waybar/wayfire.css' &"
 alias sy="pkill -x waybar; waybar -c '$HOME/.config/waybar/hconfig.json' -s '$HOME/.config/waybar/hyprland.css' &"
+alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; pipewire &"
+alias sz="sudo pkill -x wpa_supplicant; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
 alias ta="tar xvf"
 alias td="tar czf"
-alias ti="transmission-remote -l"
-alias ts="transmission-remote -si"
-alias tt="transmission-remote -st"
-alias tr="transmission-remote"
+alias ti="transmission-remote --auth='$TRANS_PASS' -l"
+alias ts="transmission-remote --auth='$TRANS_PASS' -si"
+alias tt="transmission-remote --auth='$TRANS_PASS' -st"
+alias tr="transmission-remote --auth='$TRANS_PASS'"
 alias ub="sudo umount /mnt/Baby; echo Unmounted"
 alias ud="sudo umount /mnt/drive; echo Unmounted"
 alias k="make"
 alias kc="make clean"
+alias ki="sudo make install"
+alias km="meson setup build --buildtype=release --prefix=/usr"
+alias kn="ninja -j4"
 alias wh="which"
 alias x="sudo zsh"
+alias xb="./xbps-src binary-bootstrap"
+alias xz="./xbps-src zap"
+alias xl="sudo xbps-query -l"
+alias xu="sudo xbps-install -Su"
+alias z="bluetoothctl"
 #+end_src
 
 * Plugins
@@ -843,7 +911,18 @@ export WOBSOCK="$HOME/.wob.sock"
 #+begin_src sh :tangle .zshrc
 prompt_nix_shell_setup "$@"
 
-colorscript -r
+random=$(shuf -i 1-3 -n 1)
+if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
+    if [[ "$random" == "1" ]]; then
+        pokemon-colorscripts --no-title -r 1-3
+    elif [[ "$random" == "2" ]]; then
+        pokemon-colorscripts --no-title -s -r 1-3
+    else
+        colorscript -r
+    fi
+else
+    colorscript -r
+fi
 #+end_src
 
 #+BEGIN_EXPORT html

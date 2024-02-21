@@ -1,0 +1,311 @@
+.calendar, .waycalendar {
+	background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
+	border-radius:84px 84px 84px 84px;
+	border:1px solid transparent;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.waycalendar {
+	box-shadow:0 0 4px 4px rgba(225, 198, 82, 0.5);
+}
+.calendar {
+    box-shadow:0 0 4px 4px rgba(235, 167, 46, 0.5);
+}
+.waycalendar *, .calendar * {
+    background:none;
+}
+
+
+.waymem, .mem {
+	background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
+	border-radius:84px 84px 84px 84px;
+	border:1px solid transparent;
+}
+
+.waymem {
+	box-shadow:0 0 4px 4px rgba(12, 201, 123, 0.5);
+}
+.mem {
+    box-shadow:0 0 4px 4px rgba(100, 178, 112, 0.5);
+}
+
+.calendar calendar, .waycalendar calendar {
+	background:none;
+}
+
+.waypower, .power {
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
+    border-radius:84px 84px 84px 84px;
+    border:1px solid transparent;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.mypower, .mywaypower {
+    background:none;
+    margin-left:0px;
+}
+
+.power {
+    box-shadow:0 0 3px 3px rgba(218, 61, 56, 0.5);
+    .poweroff {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(218, 61, 56, 0.6));
+        color:#ea4d48;
+        font-size:2.1em;
+        border-radius:60px 60px 60px 60px;
+        border:1px solid transparent;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-left:15px;
+        padding-right:15px;
+        text-shadow:2px 2px black;
+        box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .poweroff:hover {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.6));
+        color:white;
+    }
+    .poweroff:active {
+        background:rgba(0, 0, 0, 0.5);
+        color:#da3d38;
+    }
+    .logout {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(100, 178, 112, 0.6));
+        color:#74c280;
+        font-size:2.1em;
+        border-radius:60px 60px 60px 60px;
+        border:1px solid transparent;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-left:15px;
+        padding-right:15px;
+        text-shadow:2px 2px black;
+        box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .logout:hover {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.6));
+        color:white;
+    }
+    .logout:active {
+        background:rgba(0, 0, 0, 0.5);
+        color:#74c280;
+    }
+    .reboot {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(193, 68, 159, 0.5));
+        color:#d154af;
+        font-size:2.1em;
+        border-radius:60px 60px 60px 60px;
+        border:1px solid transparent;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-left:15px;
+        padding-right:15px;
+        text-shadow:2px 2px black;
+        box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .reboot:hover {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.6));
+        color:white;
+    }
+    .reboot:active {
+        background:rgba(0, 0, 0, 0.5);
+        color:#d154af;
+    }
+}
+
+.waypower {
+    box-shadow:0 0 3px 3px rgba(230, 10, 10, 0.5);
+    .poweroff {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(230, 10, 10, 0.6));
+        color:#f61919;
+        font-size:2.1em;
+        border-radius:60px 60px 60px 60px;
+        border:1px solid transparent;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-left:15px;
+        padding-right:15px;
+        text-shadow:2px 2px black;
+        box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .poweroff:hover {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.6));
+        color:white;
+    }
+    .poweroff:active {
+        background:rgba(0, 0, 0, 0.5);
+        color:#f61919;
+    }
+    .logout {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(12, 201, 123, 0.6));
+        color:#1cd98b;
+        font-size:2.1em;
+        border-radius:60px 60px 60px 60px;
+        border:1px solid transparent;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-left:15px;
+        padding-right:15px;
+        text-shadow:2px 2px black;
+        box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .logout:hover {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.6));
+        color:white;
+    }
+    .logout:active {
+        background:rgba(0, 0, 0, 0.5);
+        color:#1cd98b;
+    }
+    .reboot {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(17, 201, 163, 0.6));
+        color:#21d9b3;
+        font-size:2.1em;
+        border-radius:60px 60px 60px 60px;
+        border:1px solid transparent;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-left:15px;
+        padding-right:15px;
+        text-shadow:2px 2px black;
+        box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .reboot:hover {
+        background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.6));
+        color:white;
+    }
+    .reboot:active {
+        background:rgba(0, 0, 0, 0.5);
+        color:#21d9b3;
+    }
+}
+
+.calendar, .calendar calendar, .waycalendar, .waycalendar calendar, .mem, .waymem {
+	font-family:"Space Mono Nerd Font";
+	font-size:1.15em;
+	color:#efefef;
+	border:1px solid transparent;
+	transition:all 0.4s ease 0s;
+}
+
+.calendar calendar:selected, .calendar calendar.highlight {
+	color:#ea4d48;
+}
+
+.waycalendar calendar:selected, .waycalendar calendar.highlight {
+	color:#e60909;
+}
+
+.calendar calendar.header {
+	color:#64b270;
+}
+
+.waycalendar calendar.header {
+	color:#21d9b3;
+}
+
+.waydiskbox {
+    background:radial-gradient(rgba(225, 198, 84, 0.4), rgba(0, 0, 0, 0.01));
+}
+.waymegabox {
+    background:radial-gradient(rgba(65, 148, 190, 0.4), rgba(0, 0, 0, 0.01));
+}
+.wayrambox {
+    background:radial-gradient(rgba(12, 201, 123, 0.4), rgba(0, 0, 0, 0.01));
+}
+.waycpubox {
+    background:radial-gradient(rgba(230, 10, 10, 0.4), rgba(0, 0, 0, 0.01));
+}
+.diskbox {
+    background:radial-gradient(rgba(235, 167, 46, 0.4), rgba(0, 0, 0, 0.01));
+}
+.megabox {
+    background:radial-gradient(rgba(75, 69, 186, 0.4), rgba(0, 0, 0, 0.01));
+}
+.rambox {
+    background:radial-gradient(rgba(100, 178, 112, 0.4), rgba(0, 0, 0, 0.01));
+}
+.cpubox {
+    background:radial-gradient(rgba(218, 61, 56, 0.4), rgba(0, 0, 0, 0.01));
+}
+
+.disk {
+	color:#fbb73e;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:40px;
+    text-shadow:2px 2px red;
+}
+.mega {
+	color:#6b65da;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:40px;
+}
+.waydisk {
+	color:#f1d664;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:40px;
+}
+.waymega {
+	color:#51a4ce;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:40px;
+}
+.ram {
+	color:#74c280;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:15px;
+	margin-bottom:15px;
+}
+.wayram {
+	color:#1cd98b;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:15px;
+	margin-bottom:15px;
+}
+.cpu {
+	color:#ea4d48;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:15px;
+	margin-bottom:15px;	
+}
+.waycpu {
+	color:#f61919;
+	background:rgba(0, 0, 0, 0.3);
+	margin-top:15px;
+	margin-bottom:15px;
+}
+
+.art {
+	background:url('/tmp/mpd_cover.jpg');
+	background-origin:padding-box;
+	background-size:contain;
+	background-repeat:no-repeat;
+	border-top:1.5em solid transparent;
+	border-left:2em solid transparent;
+	opacity:0.9;
+}
+
+.wayprogress, .progress {
+	margin-top:2px;
+	margin-bottom:-15px;
+	margin-left:30px;
+	margin-right:30px;
+}
+
+progressbar.wayprogress > trough, progressbar.progress > trough {
+	background:none;
+	border:none;
+}
+
+progressbar.wayprogress > trough *, progressbar.wayprogress > trough * {
+	color:yellow;
+	background:linear-gradient(90deg, rgba(225, 198, 84, 0.5), rgba(255, 255, 255, 0.5));
+    border:none;
+}
+
+progressbar.progress > trough *, progressbar.progress > trough * {
+    background:linear-gradient(90deg, rgba(75, 69, 186, 0.5), rgba(255, 255, 255, 0.5));
+    border:none;
+}
+

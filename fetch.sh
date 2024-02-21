@@ -52,6 +52,7 @@ system_files=(
   "/usr/bin/batnotify"
   "$HOME/bin/hdmi"
   "$HOME/.config/sway/config"
+  "$HOME/.config/wayfire.ini"
   "$HOME/.config/waybar/config.org"
   "$HOME/.config/waybar/style.org"
   "$HOME/.config/waybar/config.json"
@@ -72,9 +73,13 @@ system_files=(
 #  "$HOME/.config/labwc/menu.xml"
 #  "$HOME/.themes/labwc/openbox-3/themerc"
   "$HOME/.config/mako/config"
+  "$HOME/.config/mako/swayconfig"
   "$HOME/.config/hypr/hyprland.conf"
   "$HOME/.config/alacritty/alacritty.yml"
   "$HOME/.config/alacritty/sway.yml"
+  "$HOME/.config/alacritty/wayfire.yml"
+  "$HOME/.config/eww/eww.yuck"
+  "$HOME/.config/eww/eww.scss"
 )
 
 repo_files=(
@@ -129,6 +134,7 @@ repo_files=(
   "bin/batnotify"
   "bin/hdmi"
   "sway/config"
+  "wayfire.ini"
   "waybar/README.org"
   "waybar/style.org"
   "waybar/config.json"
@@ -149,9 +155,13 @@ repo_files=(
 #  "labwc/menu.xml"
 #  "labwc/themerc"
   "mako/config"
+  "mako/swayconfig"
   "hyprland.conf"
   "alacritty/alacritty.yml"
   "alacritty/sway.yml"
+  "alacritty/wayfire.yml"
+  "eww/eww.yuck"
+  "eww/eww.scss"
 )
 
 compare() {

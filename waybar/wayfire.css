@@ -5,6 +5,14 @@
     color:#efefef;
 }
 
+tooltip {
+    border:none;
+    outline:none;
+    background:none;
+    border-radius:0px;
+    font-size:19px;
+}
+
 #cpu, #wireplumber.muted, #pulseaudio.muted {
     color:#f61919;
     background:linear-gradient(180deg, rgba(230, 10, 10, 0.7), rgba(0, 0, 0, 0.4));

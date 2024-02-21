@@ -11,8 +11,11 @@
 (package! cl-libify)      ;; This is important to suppress errors
 (package! dired-sidebar)
 (package! dired-hacks)
+(package! elcord)
 (package! elfeed-org)     ;; Elfeed
 (package! elfeed-goodies) ;; Elfeed
+(package! elfeed-tube)    ;; YouTube
+(package! elfeed-tube-mpv) ;; MPV
 (package! fancy-battery)  ;; Not neccessary but neat
 (package! helm-org-rifle)
 (package! ivy-mpdel)

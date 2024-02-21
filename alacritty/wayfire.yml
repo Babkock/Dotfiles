@@ -1,0 +1,60 @@
+font:
+  normal:
+    family: 'SpaceMono Nerd Font'
+    style: Regular
+  bold:
+    family: 'SpaceMono Nerd Font'
+    style: Bold
+  italic:
+    family: 'SpaceMono Nerd Font'
+    style: Italic
+  bold_italic:
+    family: 'SpaceMono Nerd Font'
+    style: Bold Italic
+  size: 14
+  offset:
+    x: 0
+    y: -2
+
+draw_bold_text_with_bright_colors: true
+
+window:
+  opacity: 0.6
+
+  decorations: none
+
+  padding:
+    x: 9
+    y: 9
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+colors:
+  # Default colors
+  primary:
+    background: '0x070202'
+    foreground: '0xefefef'
+
+  # Normal colors
+  normal:
+    black:   '0x000000'
+    red:     '0xe60909'
+    green:   '0x0cc97b'
+    yellow:  '0xe1c654'
+    blue:    '0x4194be'
+    magenta: '0xc1449f'
+    cyan:    '0x11c9a3'
+    white:   '0xeeeeee'
+
+  # Bright colors
+  bright:
+    black:   '0x121212'
+    red:     '0xf61919'
+    green:   '0x1cd98b'
+    yellow:  '0xf1d664'
+    blue:    '0x51a4ce'
+    magenta: '0xd154af'
+    cyan:    '0x21d9b3'
+    white:   '0xffffff'
+

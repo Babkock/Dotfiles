@@ -51,7 +51,7 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-ayu-dark)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -364,6 +364,14 @@
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
 
+(require 'elcord)
+(after! elcord
+    (add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
+    (add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
+    (add-hook! 'mastodon-mode-hook (elcord-mode -1))
+    (add-hook! 'circe-channel-mode-hook (elcord-mode -1))
+    (add-hook! 'circe-server-connected-hook (elcord-mode -1)))
+
 (require 'elfeed-goodies)
 (require 'elfeed-org)
 
@@ -420,10 +428,12 @@
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+(add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(add-hook! 'elfeed-show-mode-hook (mixed-pitch-mode))
+(add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
 (add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
+(add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
 (add-hook! 'elfeed-search-mode-hook (setq header-line-format nil))
 (add-hook! 'elfeed-show-mode-hook (setq header-line-format nil)))
 
@@ -434,6 +444,20 @@
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
           elfeed-goodies/tag-column-width 20))
+
+(require 'elfeed-tube)
+(elfeed-tube-setup)
+(setq elfeed-tube-auto-save-p t)
+(define-key! elfeed-show-mode-map (kbd "F") 'elfeed-tube-fetch)
+(define-key! elfeed-search-mode-map (kbd "F") 'elfeed-tube-fetch)
+
+(require 'elfeed-tube-mpv)
+(define-key! elfeed-show-mode-map (kbd "f") 'elfeed-tube-mpv-follow-mode)
+(define-key! elfeed-show-mode-map (kbd "w") 'elfeed-tube-mpv-where)
+
+;(elfeed-tube-add-feeds '("https://www.youtube.com/@BarelySociable"
+;                         "https://www.youtube.com/@MentalOutlaw"
+;                         "https://www.youtube.com/@ShroudedHand"))
 
 (after! elfeed-goodies
     (evil-define-key 'normal elfeed-show-mode-map
@@ -505,6 +529,7 @@
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
     :desc "Switch Buffer" "," #'helm-buffers-list
     :desc "Mastodon Toggle Favorite" "-" #'mastodon-toot--toggle-favourite
+    :desc "Toggle Elcord Mode" "o" (cmd! (elcord-mode 'toggle))
     :desc "Org Time Stamp" "=" #'org-time-stamp
     :desc "Org Priority Up" "\\" #'org-priority-up
     :desc "Org Priority Down" "'" #'org-priority-down)

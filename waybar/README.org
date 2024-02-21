@@ -159,7 +159,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -312,7 +312,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 
 #+begin_src json :tangle config.json
 "pulseaudio": {
-    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
     "format-bluetooth-muted": "  {volume}%",
     "format-muted": " {volume}%",
@@ -350,7 +350,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -385,6 +385,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Alacritty": " ",
         "st": " ",
         "Steam": " ",
+        "Sign in to Steam": " ",
+        "Shutdown": " ",
+        "cava": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
@@ -463,7 +466,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
         "Nicotine\\+": "󰒴"
     },
-    "max-length": 64,
+    "max-length": 80,
     "all-outputs": true
 },
 #+end_src
@@ -592,7 +595,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "output": "DP-1",
     "height": 41,
     "modules-left": ["sway/workspaces"],
-    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -939,7 +942,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/taskbar"],
-    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "wlr/taskbar": {
         "format": "{short_state}{icon}",
         "on-click": "minimize-raise",
@@ -1068,7 +1071,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 #+begin_src json :tangle wconfig.json
 "pulseaudio": {
-    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
     "format-bluetooth-muted": " {volume}%",
     "format-muted": " {volume}%",
@@ -1114,11 +1117,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["wlr/taskbar"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "temperature", "tray"],
     "wlr/taskbar": {
         "format": "{icon}{title}",
         "icon-size": 32,
-        "tooltip-format": "{app_id} {title}",
+        "tooltip-format": "{app_id}",
         "on-click": "minimize-raise",
         "on-click-right": "close",
         "on-click-middle": "maximize",
@@ -1132,6 +1135,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             " Alacritty": " ",
             "st": " ",
             "Steam": " ",
+            "Sign in to Steam": " ",
+            "Shutdown": " ",
             "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
             "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
             "ranger:(.*)": " $1",
@@ -1187,27 +1192,27 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
             "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-            "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
-            "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-            "GNU Emacs at thing": " ",
-            "(.*) – Doom Emacs": " <span style=\"italic\">$1</span>",
-            "(.*) — Doom Emacs": " <span style=\"italic\">$1</span>",
+            "• Discord \\| (.*) \\| (.*) — (.*)": "<span style=\"italic\">$1</span>: $2",
+            "(.*) — Mozilla Firefox": "<span style=\"italic\">$1</span>",
+            "GNU Emacs at thing": " ",
+            "(.*) – Doom Emacs": "<span style=\"italic\">$1</span>",
+            "(.*) — Doom Emacs": "<span style=\"italic\">$1</span>",
             "(.*) - Chromium": " <span style=\"italic\">$1</span>",
             "swayimg: (.*)": " <span style=\"italic\">$1</span>",
             "feh \\[1 of 1\\] - (.*)": " <span style=\"italic\">$1</span>",
             "feh \\[1 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
             "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
-            "(.*) - mpv": " <span style=\"italic\">$1</span>",
-            "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
-            "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
-            "Discord Updater": "󰙯 ",
-            "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+            "(.*) - mpv": "<span style=\"italic\">$1</span>",
+            "(.*) - VLC Media Player": "<span style=\"italic\">$1</span>",
+            "(.*) - Discord": "<span style=\"italic\">$1</span>",
+            "Discord Updater": " ",
+            "• Discord \\| (.*) \\| (.*)": "<span style=\"italic\">$1</span>: $2",
             "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
             "(.*) - Sublime Text": " $1",
-            " \\*Minibuf-1\\* — Doom Emacs": " ",
-            " \\*Minibuf-1\\* – Doom Emacs":  " ",
-            " \\*Minibuf-2\\* — Doom Emacs": " ",
-            " \\*Minibuf-2\\* – Doom Emacs":  " ",
+            " \\*Minibuf-1\\* — Doom Emacs": " ",
+            " \\*Minibuf-1\\* – Doom Emacs":  " ",
+            " \\*Minibuf-2\\* — Doom Emacs": " ",
+            " \\*Minibuf-2\\* – Doom Emacs":  " ",
             "Nicotine\\+": "󰒴"
         }
     },
@@ -1336,14 +1341,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "output": "DP-1",
     "height": 41,
     "modules-left": ["wlr/taskbar"],
-    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
     "wlr/taskbar": {
         "format": "{short_state}{icon}",
         "on-click": "minimize-raise",
         "on-click-right": "close",
         "on-click-middle": "maximize",
-        "tooltip-format": "{app_id} {title}",
+        "tooltip-format": "{title}",
         "icon-size": 32,
+        "ignore-list": [
+            "Alacritty"
+        ],
     },
 #+end_src
 
@@ -1656,6 +1664,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Alacritty": " ",
         "st": " ",
         "Steam": " ",
+        "Sign in to Steam": " ",
+        "Shutdown": " ",
+        "cava": "",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",

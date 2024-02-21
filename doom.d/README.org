@@ -56,8 +56,10 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#functions][Functions]]
   - [[#menu][Menu]]
   - [[#keybindings-1][Keybindings]]
+- [[#elcord][Elcord]]
 - [[#elfeed][Elfeed]]
   - [[#preferences-1][Preferences]]
+  - [[#elfeed-tube][Elfeed-Tube]]
   - [[#keybindings-2][Keybindings]]
 - [[#helm][Helm]]
   - [[#helm-org-rifle][Helm Org Rifle]]
@@ -150,7 +152,7 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 Now the fun stuff, where I set the fonts, theme, and colors.
 
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-ayu-dark)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -585,6 +587,18 @@ This part removes other elements of the Dashboard.
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
 #+end_src
 
+* Elcord
+
+#+begin_src emacs-lisp :tangle yes
+(require 'elcord)
+(after! elcord
+    (add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
+    (add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
+    (add-hook! 'mastodon-mode-hook (elcord-mode -1))
+    (add-hook! 'circe-channel-mode-hook (elcord-mode -1))
+    (add-hook! 'circe-server-connected-hook (elcord-mode -1)))
+#+end_src
+
 * Elfeed
 
 This first block of code defines font faces per Elfeed tags, font faces for UI elements, preferences, and hooks.
@@ -656,10 +670,12 @@ Define additional font faces and hooks.
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+(add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(add-hook! 'elfeed-show-mode-hook (mixed-pitch-mode))
+(add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
 (add-hook! 'elfeed-show-mode-hook 'mixed-pitch-mode)
+(add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
 (add-hook! 'elfeed-search-mode-hook (setq header-line-format nil))
 (add-hook! 'elfeed-show-mode-hook (setq header-line-format nil)))
 #+end_src
@@ -674,6 +690,24 @@ This second block of code sets preferences for the =elfeed-goodies= package.
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
           elfeed-goodies/tag-column-width 20))
+#+end_src
+
+** Elfeed-Tube
+
+#+begin_src emacs-lisp :tangle yes
+(require 'elfeed-tube)
+(elfeed-tube-setup)
+(setq elfeed-tube-auto-save-p t)
+(define-key! elfeed-show-mode-map (kbd "F") 'elfeed-tube-fetch)
+(define-key! elfeed-search-mode-map (kbd "F") 'elfeed-tube-fetch)
+
+(require 'elfeed-tube-mpv)
+(define-key! elfeed-show-mode-map (kbd "f") 'elfeed-tube-mpv-follow-mode)
+(define-key! elfeed-show-mode-map (kbd "w") 'elfeed-tube-mpv-where)
+
+;(elfeed-tube-add-feeds '("https://www.youtube.com/@BarelySociable"
+;                         "https://www.youtube.com/@MentalOutlaw"
+;                         "https://www.youtube.com/@ShroudedHand"))
 #+end_src
 
 ** Keybindings
@@ -772,6 +806,7 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
 | =SPC l=      | Org Tangle                  |
 | =SPC m=      | Mastodon Boost Toot         |
 | =SPC n=      | Open MPDel Browser          |
+| =SPC o=      | Toggle Elcord Mode          |
 | =SPC p=      | Org Export to HTML          |
 | =SPC r=      | Toggle Rainbow Mode         |
 | =SPC s=      | Toggle Dired Sidebar        |
@@ -814,6 +849,7 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
     :desc "Switch Buffer" "," #'helm-buffers-list
     :desc "Mastodon Toggle Favorite" "-" #'mastodon-toot--toggle-favourite
+    :desc "Toggle Elcord Mode" "o" (cmd! (elcord-mode 'toggle))
     :desc "Org Time Stamp" "=" #'org-time-stamp
     :desc "Org Priority Up" "\\" #'org-priority-up
     :desc "Org Priority Down" "'" #'org-priority-down)

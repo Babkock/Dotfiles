@@ -105,6 +105,7 @@ Notice the space before the asterisk.
 tooltip {
     border:none;
     border-radius:0;
+    outline:none;
     color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     margin-bottom:1px;
@@ -594,6 +595,14 @@ tooltip {
     font-size:21px;
     background:transparent;
     color:#efefef;
+}
+
+tooltip {
+    border:none;
+    outline:none;
+    background:none;
+    border-radius:0px;
+    font-size:19px;
 }
 #+end_src
 
