@@ -70,8 +70,6 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 
 * Keybindings
 
-These are the keybindings for my Sway and Hyprland sessions.
-
 | Key Combination        | Action                |
 |------------------------+-----------------------|
 | Super + Space          | Fuzzel                |
@@ -81,11 +79,11 @@ These are the keybindings for my Sway and Hyprland sessions.
 | Super + Comma          | Terminal with [[https://github.com/Babkock/Dotfiles/blob/master/ncmpcpp/config][Ncmpcpp]] |
 | Super + Shift + Comma  | [[https://github.com/Babkock/Dotfiles/tree/master/doom.d][Emacs]]           |
 | Super + Semicolon      | Nicotine              |
-| Super + Shift + Semicolon | OBS                |
+| Super + Shift + Semicolon | Virt-Manager       |
 | Super + Backslash         | Terminal with Neomutt |
 | Super + Shift + Backslash | Discord            |
 | Super + Slash             | Sublime Text       |
-| Super + Shift + Slash     | Chromium           |
+| Super + Shift + Slash     | Steam              |
 | Super + Backspace         | Terminal with Tremc |
 | Super + Shift + Backspace | Transmission GTK   |
 | Super + Shift + C         | Close window       |
