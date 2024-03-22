@@ -224,6 +224,10 @@
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": " ",
+        "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
+        "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
         "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
@@ -373,7 +377,7 @@
     },
 
 "custom/weather": {
-    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 4,
     "format": "{}"
 },

@@ -23,7 +23,7 @@
        ;;hydra
        indent-guides     ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
-       minimap             ; show a map of the code on the side
+       ;;minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -232,7 +232,6 @@
         (concat doom-private-dir "splash/"
             (nth (random (length banners)) banners))))
 
-(add-hook! 'find-file-hook (elcord-mode 1))
 (add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! '+doom-dashboard-mode-hook (elcord-mode -1))
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))

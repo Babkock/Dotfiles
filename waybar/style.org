@@ -43,6 +43,7 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#mpd][MPD]]
   - [[#cpu][CPU]]
   - [[#pulseaudiodisk][Pulseaudio/Disk]]
+  - [[#privacy][Privacy]]
   - [[#memorybacklight][Memory/Backlight]]
   - [[#workspaces][Workspaces]]
   - [[#keyboard-state][Keyboard State]]
@@ -70,6 +71,7 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#bluetooth-2][Bluetooth]]
   - [[#taskbar][Taskbar]]
   - [[#clocknetwork-1][Clock/Network]]
+  - [[#privacy-1][Privacy]]
   - [[#mpd-2][MPD]]
   - [[#wireplumber][Wireplumber]]
   - [[#keyboard-state-1][Keyboard State]]
@@ -96,17 +98,17 @@ Notice the space before the asterisk.
 
 #+begin_src css :tangle style.css
  * {
-    font-family:"SpaceMono Nerd Font";
-    font-size:21px;
+    font-family:"VictorMono Nerd Font";
+    font-size:23px;
     background:transparent;
-    color:#ffefef;
+    color:#fedd83;
 }
 
 tooltip {
     border:none;
     border-radius:0;
     outline:none;
-    color:#efefef;
+    color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     margin-bottom:1px;
     padding:0;
@@ -117,7 +119,7 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #window {
-    color:#ffefef;
+    color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     padding-left:5px;
 }
@@ -127,7 +129,7 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #mpd {
-    color:#ffefef;
+    color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 #+end_src
@@ -135,9 +137,9 @@ tooltip {
 ** CPU
 
 #+begin_src css :tangle style.css
-#cpu, #wireplumber.muted, #pulseaudio.muted {
-    color:#ea4d48;
-    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
+#cpu, #wireplumber.muted, #pulseaudio.muted, #privacy {
+    color:#fe0219;
+    background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
@@ -153,8 +155,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #pulseaudio, #disk {
-    color:#fbb73e;
-    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.4));
+    color:#f4df23;
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:2px;
     margin-right:0;
     padding-left:10px;
@@ -168,12 +170,22 @@ tooltip {
 }
 #+end_src
 
+** Privacy
+
+#+begin_src css :tangle style.css
+#privacy-item {
+    padding-left:4px;
+    padding-right:4px;
+    background:linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.3));
+}
+#+end_src
+
 ** Memory/Backlight
 
 #+begin_src css :tangle style.css
 #memory, #backlight, #wireplumber {
-    color:#74c280;
-    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
+    color:#a9df11;
+    background:linear-gradient(0deg, rgba(153, 208, 2, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -205,25 +217,31 @@ tooltip {
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(154, 208, 2, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:inherit;
     margin-left:1px;
     margin-right:2px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
-    color:#c94b3b;
-    text-shadow:3px 3px rgba(116, 194, 128, 0.6);
-    box-shadow:2px 2px rgba(116, 194, 128, 0.5);
+    text-shadow:3px 3px rgba(154, 208, 2, 0.6);
+    box-shadow:2px 2px rgba(154, 208, 2, 0.5);
+}
+
+#workspaces button:hover label {
+    color:#a9df11;
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
-    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
-    color:#81d8c6;
-    box-shadow:2px 2px rgba(234, 72, 77, 0.5);
+    background:linear-gradient(0deg, rgba(238, 1, 10, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    box-shadow:2px 2px rgba(238, 0, 10, 0.5);
+}
+#workspaces button.focused label {
+    color:#fe0219;
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
-    text-shadow:3px 3px rgba(234, 72, 77, 0.6);
+    text-shadow:3px 3px rgba(238, 0, 10, 0.6);
 }
 
 #tags button.occupied {
@@ -237,20 +255,20 @@ tooltip {
 #+begin_src css :tangle style.css
 #keyboard-state {
     padding-left:8px;
-    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.4));
     border-radius:0px 40px 40px 0px;
-    box-shadow:2px 2px rgba(230, 150, 40, 0.4);
+    box-shadow:2px 2px rgba(228, 207, 19, 0.4);
     margin-right:2px;
 }
 
 #keyboard-state label {
-    color:#fbb73e;
+    color:#f4df23;
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #keyboard-state label.locked {
     color:#ffffff;
-    text-shadow:2px 2px rgba(255, 0, 0, 0.5);
+    text-shadow:2px 2px rgba(238, 0, 10, 0.5);
 }
 #+end_src
 
@@ -267,8 +285,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
-    color:#5b55ca;
-    background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.4));
+    color:#6264fe;
+    background:linear-gradient(0deg, rgba(118, 112, 229, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -285,7 +303,7 @@ tooltip {
     padding-right:12px;
     margin-left:0;
     margin-right:2px;
-    box-shadow:3px 3px rgba(72, 61, 180, 0.4);
+    box-shadow:3px 3px rgba(118, 112, 229, 0.4);
 }
 
 #idle_inhibitor {
@@ -301,8 +319,8 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #bluetooth.on, #bluetooth.off {
-    color:#ea4d48;
-    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
+    color:#fe0219;
+    background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -311,8 +329,8 @@ tooltip {
 }
 
 #bluetooth.connected, #bluetooth.connected.pairable {
-    color:#74c280;
-    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
+    color:#a9df11;
+    background:linear-gradient(0deg, rgba(153, 207, 1, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -321,8 +339,8 @@ tooltip {
 }
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
-    color:#5b55ca;
-    background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.1));
+    color:#5254fe;
+    background:linear-gradient(0deg, rgba(108, 102, 218, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -331,8 +349,8 @@ tooltip {
 }
 
 #bluetooth.discovering {
-    color:#fbb73e;
-    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.1));
+    color:#f4df23;
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -345,15 +363,15 @@ tooltip {
 
 #+begin_src css :tangle style.css
 #custom-clock, #network {
-    color:#d154af;
-    background:linear-gradient(0deg, rgba(193, 68, 159, 0.5), rgba(0, 0, 0, 0.4));
+    color:#ff4de7;
+    background:linear-gradient(0deg, rgba(175, 56, 219, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:4px;
     padding-left:12px;
     padding-right:10px;
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
-    box-shadow:3px 3px rgba(190, 60, 140, 0.4);
+    box-shadow:3px 3px rgba(175, 56, 219, 0.4);
 }
 #+end_src
 
@@ -609,9 +627,9 @@ tooltip {
 ** CPU
 
 #+begin_src css :tangle wayfire.css
-#cpu, #wireplumber.muted, #pulseaudio.muted {
-    color:#f61919;
-    background:linear-gradient(180deg, rgba(230, 10, 10, 0.7), rgba(0, 0, 0, 0.4));
+#cpu, #wireplumber.muted, #pulseaudio.muted, #privacy {
+    color:#f63117;
+    background:linear-gradient(180deg, rgba(206, 40, 40, 0.7), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -624,8 +642,8 @@ tooltip {
 
 #+begin_src css :tangle wayfire.css
 #pulseaudio, #disk {
-    color:#f1d664;
-    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.4));
+    color:#fef47f;
+    background:linear-gradient(180deg, rgba(255, 176, 2, 0.8), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -646,7 +664,7 @@ tooltip {
 #+begin_src css :tangle wayfire.css
 #memory, #backlight {
     color:#1cd98b;
-    background:linear-gradient(180deg, rgba(12, 201, 123, 0.7), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(180deg, rgba(12, 201, 123, 0.8), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -659,8 +677,8 @@ tooltip {
 
 #+begin_src css :tangle wayfire.css
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
-    color:#51a4ce;
-    background:linear-gradient(180deg, rgba(65, 148, 190, 0.7), rgba(0, 0, 0, 0.4));
+    color:#19ccee;
+    background:linear-gradient(180deg, rgba(40, 137, 186, 0.8), rgba(0, 0, 0, 0.5));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -677,7 +695,7 @@ tooltip {
     padding-right:12px;
     margin-left:0;
     margin-right:2px;
-    box-shadow:3px 3px rgba(65, 148, 190, 0.5);
+    box-shadow:3px 3px rgba(40, 137, 186, 0.5);
 }
 
 #idle_inhibitor {
@@ -693,8 +711,8 @@ tooltip {
 
 #+begin_src css :tangle wayfire.css
 #bluetooth.on, #bluetooth.off {
-    color:#f61919;
-    background:linear-gradient(180deg, rgba(230, 10, 10, 0.7), rgba(0, 0, 0, 0.4));
+    color:#f63117;
+    background:linear-gradient(180deg, rgba(206, 40, 40, 0.8), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -704,7 +722,7 @@ tooltip {
 
 #bluetooth.connected, #bluetooth.connected.pairable {
     color:#1cd98b;
-    background:linear-gradient(180deg, rgba(12, 201, 123, 0.7), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(180deg, rgba(12, 201, 123, 0.8), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -713,8 +731,8 @@ tooltip {
 }
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
-    color:#51a4ce;
-    background:linear-gradient(180deg, rgba(65, 148, 190, 0.7), rgba(0, 0, 0, 0.4));
+    color:#19ccee;
+    background:linear-gradient(180deg, rgba(40, 137, 186, 0.8), rgba(0, 0, 0, 0.5));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -723,8 +741,8 @@ tooltip {
 }
 
 #bluetooth.discovering {
-    color:#f1d664;
-    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.1));
+    color:#fef47f;
+    background:linear-gradient(180deg, rgba(255, 176, 2, 0.8), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -737,14 +755,14 @@ tooltip {
 
 #+begin_src css :tangle wayfire.css
 #taskbar button {
-    background:linear-gradient(180deg, rgba(230, 10, 10, 0.9), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(180deg, rgba(206, 40, 40, 0.8), rgba(0, 0, 0, 0.5));
     padding-left:12px;
     padding-right:11px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
-    color:#f61919;
+    color:#f63117;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    box-shadow:2px 2px rgba(240, 20, 20, 0.5);
+    box-shadow:2px 2px rgba(206, 40, 40, 0.5);
     margin-left:4px;
     margin-right:4px;
 }
@@ -753,37 +771,37 @@ tooltip {
     padding-right:11px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
-    color:#f1d664;
-    background:linear-gradient(180deg, rgba(225, 198, 84, 0.7), rgba(0, 0, 0, 0.5));
-    text-shadow:2px 2px rgba(220, 190, 82, 0.5);
-    box-shadow:2px 2px rgba(225, 198, 82, 0.5);
+    color:#fef47f;
+    background:linear-gradient(180deg, rgba(255, 176, 2, 0.8), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(255, 176, 2, 0.5);
+    box-shadow:2px 2px rgba(255, 176, 2, 0.5);
 }
 #taskbar button.maximized {
     color:#1cd98b;
-    background:linear-gradient(180deg, rgba(12, 201, 123, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(180deg, rgba(12, 201, 123, 0.8), rgba(0, 0, 0, 0.5));
     box-shadow:2px 2px rgba(12, 201, 123, 0.5);
 }
 #taskbar button.minimized {
     color:#9b9b9b;
-    background:linear-gradient(180deg, rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(180deg, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.5));
     box-shadow:2px 2px rgba(70, 70, 70, 0.5);
 }
 #taskbar button.active {
-    color:#51a4ce;
-    box-shadow:2px 2px rgba(68, 152, 192, 0.5);
-    background:linear-gradient(180deg, rgba(65, 148, 190, 0.7), rgba(0, 0, 0, 0.5));
+    color:#19ccee;
+    box-shadow:2px 2px rgba(40, 137, 186, 0.5);
+    background:linear-gradient(180deg, rgba(40, 137, 186, 0.8), rgba(0, 0, 0, 0.5));
 }
 #taskbar button.maximized:hover {
-    color:#d78198;
-    background:linear-gradient(180deg, rgba(204, 117, 140, 0.7), rgba(0, 0, 0, 0.5));
-    text-shadow:2px 2px rgba(197, 109, 130, 0.6);
-    box-shadow:2px 2px rgba(199, 113, 136, 0.5);
+    color:#e36ab1;
+    background:linear-gradient(180deg, rgba(196, 105, 166, 0.8), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(196, 105, 166, 0.6);
+    box-shadow:2px 2px rgba(196, 107, 169, 0.5);
 }
 #taskbar button.active:hover, #taskbar button.minimized:hover {
-    color:#21d9b3;
-    background:linear-gradient(180deg, rgba(17, 201, 163, 0.7), rgba(0, 0, 0, 0.5));
-    text-shadow:2px 2px rgba(15, 195, 153, 0.6);
-    box-shadow:2px 2px rgba(33, 217, 179, 0.5);
+    color:#9aadf9;
+    background:linear-gradient(180deg, rgba(144, 129, 246, 0.8), rgba(0, 0, 0, 0.5));
+    text-shadow:2px 2px rgba(144, 129, 246, 0.6);
+    box-shadow:2px 2px rgba(144, 129, 246, 0.5);
 }
 #+end_src
 
@@ -791,15 +809,25 @@ tooltip {
 
 #+begin_src css :tangle wayfire.css
 #custom-clock, #clock, #network {
-    color:#21d9b3;
-    background:linear-gradient(180deg, rgba(17, 201, 163, 0.7), rgba(0, 0, 0, 0.4));
+    color:#9aadf9;
+    background:linear-gradient(180deg, rgba(144, 129, 246, 0.7), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:2px;
     padding-left:11px;
     padding-right:13px;
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    box-shadow:2px 2px rgba(17, 201, 163, 0.5);
+    box-shadow:2px 2px rgba(144, 129, 246, 0.5);
+}
+#+end_src
+
+** Privacy
+
+#+begin_src css :tangle wayfire.css
+#privacy-item {
+    padding-left:4px;
+    padding-right:4px;
+    background:linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.3));
 }
 #+end_src
 
@@ -807,7 +835,7 @@ tooltip {
 
 #+begin_src css :tangle wayfire.css
 #mpd {
-    color:#efefef;
+    color:#ffffff;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 #+end_src
@@ -817,8 +845,8 @@ tooltip {
 #+begin_src css :tangle wayfire.css
 #wireplumber {
     border-radius:0px 0px 0px 0px;
-    color:#e791a7;
-    background:linear-gradient(180deg, rgba(204, 117, 140, 0.7), rgba(0, 0, 0, 0.5));
+    color:#e96ab1;
+    background:linear-gradient(180deg, rgba(196, 105, 166, 0.8), rgba(0, 0, 0, 0.5));
     padding-left:12px;
     padding-right:11px;
     margin-left:0px;

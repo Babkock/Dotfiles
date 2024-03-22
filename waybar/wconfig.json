@@ -84,8 +84,7 @@
 "backlight": {
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20",
+    "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
     "on-click-middle": "pkill -x gammastep",
     "on-scroll-up": "swayosd-client --brightness 1",
@@ -192,6 +191,10 @@
             "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
             "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
+            "Letterboxd • Social film discovery.": " ",
+            "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
+            "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "Hacker News": " ",
             "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
             "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -321,7 +324,7 @@
     "output": "DP-1",
     "height": 41,
     "modules-left": ["wlr/taskbar"],
-    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "privacy", "cpu", "memory", "bluetooth", "custom/clock"],
     "wlr/taskbar": {
         "format": "{short_state}{icon}",
         "on-click": "minimize-raise",
@@ -335,7 +338,7 @@
     },
 
 "custom/weather": {
-    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 4,
     "format": "{}"
 },
@@ -366,6 +369,29 @@
     "format-alt": "  {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"privacy": {
+    "icon-spacing": 8,
+    "icon-size": 24,
+    "transition-duration": 350,
+    "modules": [
+        {
+            "type": "screenshare",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-out",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-in",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        }
+    ]
 },
 
 "cpu": {

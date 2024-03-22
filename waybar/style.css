@@ -1,34 +1,34 @@
 * {
-    font-family:"SpaceMono Nerd Font";
-    font-size:21px;
+    font-family:"VictorMono Nerd Font";
+    font-size:23px;
     background:transparent;
-    color:#ffefef;
+    color:#fedd83;
 }
 
 tooltip {
     border:none;
     border-radius:0;
     outline:none;
-    color:#efefef;
+    color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     margin-bottom:1px;
     padding:0;
 }
 
 #window {
-    color:#ffefef;
+    color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     padding-left:5px;
 }
 
 #mpd {
-    color:#ffefef;
+    color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
-#cpu, #wireplumber.muted, #pulseaudio.muted {
-    color:#ea4d48;
-    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
+#cpu, #wireplumber.muted, #pulseaudio.muted, #privacy {
+    color:#fe0219;
+    background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
@@ -40,8 +40,8 @@ tooltip {
 }
 
 #pulseaudio, #disk {
-    color:#fbb73e;
-    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.4));
+    color:#f4df23;
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:2px;
     margin-right:0;
     padding-left:10px;
@@ -54,9 +54,15 @@ tooltip {
     margin-left:2px;
 }
 
+#privacy-item {
+    padding-left:4px;
+    padding-right:4px;
+    background:linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.3));
+}
+
 #memory, #backlight, #wireplumber {
-    color:#74c280;
-    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
+    color:#a9df11;
+    background:linear-gradient(0deg, rgba(153, 208, 2, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -84,25 +90,31 @@ tooltip {
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(154, 208, 2, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:inherit;
     margin-left:1px;
     margin-right:2px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
-    color:#c94b3b;
-    text-shadow:3px 3px rgba(116, 194, 128, 0.6);
-    box-shadow:2px 2px rgba(116, 194, 128, 0.5);
+    text-shadow:3px 3px rgba(154, 208, 2, 0.6);
+    box-shadow:2px 2px rgba(154, 208, 2, 0.5);
+}
+
+#workspaces button:hover label {
+    color:#a9df11;
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
-    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
-    color:#81d8c6;
-    box-shadow:2px 2px rgba(234, 72, 77, 0.5);
+    background:linear-gradient(0deg, rgba(238, 1, 10, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    box-shadow:2px 2px rgba(238, 0, 10, 0.5);
+}
+#workspaces button.focused label {
+    color:#fe0219;
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
-    text-shadow:3px 3px rgba(234, 72, 77, 0.6);
+    text-shadow:3px 3px rgba(238, 0, 10, 0.6);
 }
 
 #tags button.occupied {
@@ -112,20 +124,20 @@ tooltip {
 
 #keyboard-state {
     padding-left:8px;
-    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.4));
     border-radius:0px 40px 40px 0px;
-    box-shadow:2px 2px rgba(230, 150, 40, 0.4);
+    box-shadow:2px 2px rgba(228, 207, 19, 0.4);
     margin-right:2px;
 }
 
 #keyboard-state label {
-    color:#fbb73e;
+    color:#f4df23;
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #keyboard-state label.locked {
     color:#ffffff;
-    text-shadow:2px 2px rgba(255, 0, 0, 0.5);
+    text-shadow:2px 2px rgba(238, 0, 10, 0.5);
 }
 
 #image {
@@ -136,8 +148,8 @@ tooltip {
 }
 
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
-    color:#5b55ca;
-    background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.4));
+    color:#6264fe;
+    background:linear-gradient(0deg, rgba(118, 112, 229, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
@@ -154,7 +166,7 @@ tooltip {
     padding-right:12px;
     margin-left:0;
     margin-right:2px;
-    box-shadow:3px 3px rgba(72, 61, 180, 0.4);
+    box-shadow:3px 3px rgba(118, 112, 229, 0.4);
 }
 
 #idle_inhibitor {
@@ -166,8 +178,8 @@ tooltip {
 }
 
 #bluetooth.on, #bluetooth.off {
-    color:#ea4d48;
-    background:linear-gradient(0deg, rgba(218, 61, 56, 0.5), rgba(0, 0, 0, 0.4));
+    color:#fe0219;
+    background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -176,8 +188,8 @@ tooltip {
 }
 
 #bluetooth.connected, #bluetooth.connected.pairable {
-    color:#74c280;
-    background:linear-gradient(0deg, rgba(100, 178, 112, 0.5), rgba(0, 0, 0, 0.4));
+    color:#a9df11;
+    background:linear-gradient(0deg, rgba(153, 207, 1, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -186,8 +198,8 @@ tooltip {
 }
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
-    color:#5b55ca;
-    background:linear-gradient(0deg, rgba(75, 69, 186, 0.5), rgba(0, 0, 0, 0.1));
+    color:#5254fe;
+    background:linear-gradient(0deg, rgba(108, 102, 218, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -196,8 +208,8 @@ tooltip {
 }
 
 #bluetooth.discovering {
-    color:#fbb73e;
-    background:linear-gradient(0deg, rgba(235, 167, 46, 0.5), rgba(0, 0, 0, 0.1));
+    color:#f4df23;
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
@@ -206,13 +218,13 @@ tooltip {
 }
 
 #custom-clock, #network {
-    color:#d154af;
-    background:linear-gradient(0deg, rgba(193, 68, 159, 0.5), rgba(0, 0, 0, 0.4));
+    color:#ff4de7;
+    background:linear-gradient(0deg, rgba(175, 56, 219, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:4px;
     padding-left:12px;
     padding-right:10px;
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
-    box-shadow:3px 3px rgba(190, 60, 140, 0.4);
+    box-shadow:3px 3px rgba(175, 56, 219, 0.4);
 }

@@ -1,3 +1,304 @@
+#+TITLE: Eww Widgets
+#+AUTHOR: Tanner Babcock
+#+EMAIL: babkock@protonmail.com
+#+STARTUP: showeverything
+#+OPTIONS: num:nil
+#+DESCRIPTION: My Yuck and SCSS code for my Eww widgets. Found in my Dotfiles repository.
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="solarized-dark.min.css" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
+#+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+#+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+#+LANGUAGE: en
+
+This is my literate configuration for my [[https://github.com/elkowar/eww][Eww widgets]].
+
+#+BEGIN_EXPORT html
+<header>
+    <center>
+        <ul>
+            <li><a href="https://babkock.github.io">Home</a></li>
+            <li><a href="https://tannerbabcock.com/home">Website</a></li>
+            <li><a href="https://github.com/Babkock" target="_blank">GitHub</a></li>
+            <li><a href="https://github.com/Babkock/Babkock.github.io" target="_blank">This Repository</a></li>
+            <li><a href="https://gitlab.com/Babkock/" target="_blank">GitLab</a></li>
+            <li><a href="https://www.youtube.com/channel/UCdXmrPRUtsl-6pq83x3FrTQ" target="_blank">YouTube</a></li>
+        </ul>
+    </center>
+</header>
+#+END_EXPORT
+
+* Table of Contents :toc:
+- [[#yuck-configuration][Yuck Configuration]]
+  - [[#variables][Variables]]
+  - [[#commands][Commands]]
+  - [[#widgets][Widgets]]
+  - [[#windows][Windows]]
+- [[#scss-style][SCSS Style]]
+  - [[#calendar][Calendar]]
+  - [[#memory][Memory]]
+  - [[#power-menu][Power Menu]]
+  - [[#files][Files]]
+
+* Yuck Configuration
+
+** Variables
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defpoll calendar_day :interval "5h" "date '+%d'")
+(defpoll calendar_year :interval "5h" "date '+%Y'")
+(defpoll music_progress :interval "1s" "mpc --host=127.0.0.2 | grep '%)' | awk '{print $4}' | tr -d '(%)'")
+#+end_src
+
+** Commands
+
+*** Reboot/Power off/Logout
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defvar swayreboot "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background af38db99 --text ff4de7ff --button-background 00000077 --button-text ff4de7ff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to reboot?' -B 'Reboot' 'loginctl reboot'")
+(defvar wayreboot "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 11e9a399 --text 21d9b3ff --button-background 00000077 --button-text 21d9b3ff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to reboot?' -B 'Reboot' 'loginctl reboot'")
+(defvar swaypoweroff "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background ee000999 --text fe0219ff --button-background 00000077 --button-text fe0219ff --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to shut down?' -B 'Shut Down' 'loginctl poweroff' -B 'Reboot' 'loginctl reboot'")
+(defvar waypoweroff "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background d6040499 --text f61919ff --button-background 00000077 --button-text f61919 --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to shut down?' -B 'Shut Down' 'loginctl poweroff' -B 'Reboot' 'loginctl reboot'")
+(defvar swaylogout "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 99cf0199 --text a9df11ff --button-background 00000077 --button-text a9df11ff --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to exit the Sway session?' -B 'Exit' 'pkill -x sway'")
+(defvar waylogout "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 0cc97b88 --text 1cd98bff --button-background 00000077 --button-text 1cd98bff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to exit the Wayfire session?' -B 'Exit' 'pkill -x wayfire'")
+#+end_src
+
+*** File Browser
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defvar openhome "pcmanfm /home/babkock")
+(defvar opendocuments "pcmanfm /home/babkock/Documents")
+(defvar opendownloads "pcmanfm /home/babkock/Downloads")
+(defvar openmusic "pcmanfm /home/babkock/Music")
+(defvar openpictures "pcmanfm /home/babkock/Pictures")
+(defvar openvideos "pcmanfm /home/babkock/Videos")
+(defvar openmega "pcmanfm /mnt/mega")
+(defvar opentbcom "pcmanfm /home/babkock/git/TBcom")
+#+end_src
+
+** Widgets
+
+*** Monitor 1
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defwidget cal [?class]
+	(calendar :halign "center"
+			  :valign "start"
+			  :class {class}
+             :active false
+			  :day calendar_day
+			  :year calendar_year))
+
+(defwidget ssd [?class]
+	(circular-progress
+	   :thickness 20
+	   :class {class}
+	   :value {((EWW_DISK["/"].used / EWW_DISK["/"].total)) * 100}))
+
+(defwidget hdd [?class]
+	(circular-progress
+	   :thickness 20
+	   :class {class}
+	   :value {((EWW_DISK["/mnt/mega"].used / EWW_DISK["/mnt/mega"].total)) * 100}))
+#+end_src
+
+*** Monitor 2
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defwidget system [?class]
+    (circular-progress
+       :thickness 20
+       :class {class}
+       :value {EWW_RAM.used_mem_perc}))
+
+(defwidget power [?class]
+	(circular-progress
+	   :thickness 20
+	   :class {class}
+	   :value {round(EWW_CPU.avg, 0)}))
+
+(defwidget musicprogress [?class]
+	(progress
+	   :class {class}
+	   :value music_progress
+	   :orientation "horizontal"))
+
+(defwidget albumart [?class]
+	(box :orientation "vertical"
+		 :class {class}))
+#+end_src
+
+*** Monitor 0
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defwidget powermenu [?class]
+	(box :orientation "vertical"
+		 :class {class}
+		 :halign "center"
+		 :space-evenly "true"
+		 (button :class "logout" :onclick {class == "mywaypower" ? waylogout : swaylogout} :timeout 600 "󰍃")
+		 (button :class "poweroff" :onclick {class == "mywaypower" ? waypoweroff : swaypoweroff} :timeout 600 "⏻")
+		 (button :class "reboot" :onclick {class == "mywaypower" ? wayreboot : swayreboot} :timeout 600 "󰑐")))
+
+(defwidget filesmenu [?class]
+	(box :orientation "vertical"
+		 :class {class}
+		 :halign "center"
+		 :space-evenly "true"
+		 (button :class "home" :onclick openhome :timeout 600 "󱂵")
+		 (button :class "documents" :onclick opendocuments :timeout 600 "󰃖")
+		 (button :class "downloads" :onclick opendownloads :timeout 600 "󰉍")
+		 (button :class "music" :onclick openmusic :timeout 600 "󱍙")))
+
+(defwidget othermenu [?class]
+	(box :orientation "vertical"
+		 :class {class}
+		 :halign "center"
+		 :space-evenly "true"
+		 (button :class "pictures" :onclick openpictures :timeout 600 "󰉏")
+		 (button :class "videos" :onclick openvideos :timeout 600 "")
+		 (button :class "mymega" :onclick openmega :timeout 600 "")
+		 (button :class "tbcom" :onclick opentbcom :timeout 600 "")))
+#+end_src
+
+** Windows
+
+*** Monitor 1
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defwindow calendar
+	:wm-ignore: true
+	:monitor 1
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "310px"
+						:height "800px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "vertical"
+		 :valign "center"
+		 (cal :class "cal")
+		 (box :orientation "vertical" :class "diskbox"
+			(ssd :class "disk"))
+		 (box :orientation "vertical" :class "megabox"
+			(hdd :class "mega"))))
+
+(defwindow waycalendar
+	:wm-ignore: true
+	:monitor 2
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "310px"
+						:height "800px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "vertical"
+		 :valign "center"
+		 (cal :class "waycal")
+		 (box :orientation "vertical" :class "waydiskbox"
+		     (ssd :class "waydisk"))
+		 (box :orientation "vertical" :class "waymegabox"
+		     (hdd :class "waymega"))))
+#+end_src
+
+*** Monitor 2
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defwindow mem
+	:wm-ignore: true
+	:monitor 2
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "340px"
+						:height "890px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "vertical"
+		(overlay
+			(musicprogress :class "progress")
+			(albumart :class "art"))
+		(box :orientation "vertical" :class "cpubox"
+		    (power :class "cpu"))
+		(box :orientation "vertical" :class "rambox"
+		    (system :class "ram"))))
+
+(defwindow waymem
+    :wm-ignore: true
+    :monitor 1
+    :geometry (geometry :x "50px"
+                        :y "100px"
+                        :width "340px"
+                        :height "890px"
+                        :anchor "top right")
+    :stacking "bottom"
+    (box :orientation "vertical"
+		(overlay
+			(musicprogress :class "wayprogress")
+			(albumart :class "art"))
+        (box :orientation "vertical" :class "waycpubox"
+		    (power :class "waycpu"))
+		(box :orientation "vertical" :class "wayrambox"
+		    (system :class "wayram"))))
+#+end_src
+
+*** Monitor 0
+
+#+begin_src emacs-lisp :tangle eww.yuck
+(defwindow power
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "190px"
+						:height "500px"
+						:anchor "top right")
+	:stacking "bottom"
+	(powermenu :class "mypower"))
+
+(defwindow waypower
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "190px"
+						:height "500px"
+						:anchor "top right")
+	:stacking "bottom"
+	(powermenu :class "mywaypower"))
+
+(defwindow files
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "250px"
+						:y "80px"
+						:width "500px"
+						:height "600px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "horizontal"
+		 (filesmenu :class "myfiles")
+		 (othermenu :class "myfiles")))
+
+(defwindow wayfiles
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "250px"
+						:y "80px"
+						:width "500px"
+						:height "600px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "horizontal"
+		 (filesmenu :class "mywayfiles")
+		 (othermenu :class "mywayfiles")))
+
+; vim:filetype=lisp
+#+end_src
+
+* SCSS Style
+
+** Calendar
+
+#+begin_src scss :tangle eww.scss
 .vertical.calendar, .vertical.waycalendar {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
@@ -65,7 +366,11 @@
     background:rgba(0, 0, 0, 0.3);
     margin-top:40px;
 }
+#+end_src
 
+** Memory
+
+#+begin_src scss :tangle eww.scss
 .vertical.waymem, .vertical.mem {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
@@ -146,7 +451,11 @@ progressbar.progress > trough *, progressbar.progress > trough * {
     background:linear-gradient(90deg, rgba(108, 102, 218, 0.5), rgba(255, 255, 255, 0.5));
     border:none;
 }
+#+end_src
 
+** Power Menu
+
+#+begin_src scss :tangle eww.scss
 .waypower, .power {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
@@ -315,7 +624,11 @@ progressbar.progress > trough *, progressbar.progress > trough * {
         border:1px solid black;
     }
 }
+#+end_src
 
+** Files
+
+#+begin_src scss :tangle eww.scss
 .background.files, .background.wayfiles {
     background:none;
 }
@@ -507,3 +820,15 @@ progressbar.progress > trough *, progressbar.progress > trough * {
         border:1px solid #19ccee;
     }
 }
+#+end_src
+
+#+BEGIN_EXPORT html
+<footer>
+    <center>
+    <p>Copyright &copy; 2024 Tanner Babcock.</p>
+    <p><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io">This Repository</a> &nbsp;&bull;&nbsp;
+    <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
+    <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp; <a href="https://www.twitch.tv/babkock">Twitch</a></p>
+    </center>
+</footer>
+#+END_EXPORT

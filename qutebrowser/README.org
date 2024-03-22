@@ -68,20 +68,20 @@ This was originally in a separate theme file, but I might as well include it in 
 # --- Colors ---
 # Match with Xresources
 base00 = "#000000"
-base01 = "#ea4d48"
-base02 = "#74c280"
-base03 = "#fbb73e"
-base04 = "#7b75ea"
-base05 = "#d154af"
-base06 = "#4ca4b6"
+base01 = "#fe0219"
+base02 = "#a9df11"
+base03 = "#f4df23"
+base04 = "#6264fe"
+base05 = "#ff4de7"
+base06 = "#53f7f9"
 base07 = "#fefefe"
 base08 = "#101010"
-base09 = "#da3d38"
-base0A = "#64b270"
-base0B = "#eba72e"
-base0C = "#6b65da"
-base0D = "#c1449f"
-base0E = "#3c94a6"
+base09 = "#ee0009"
+base0A = "#99cf01"
+base0B = "#e4cf13"
+base0C = "#7b75ea"
+base0D = "#af38db"
+base0E = "#43e7e9"
 base0F = "#fefefe"
 
 #+end_src
@@ -96,28 +96,28 @@ the completion widget and context menu. Remember, these colors can be in the for
 
 # May be a single color to use for
 # all columns or a list of three colors, one for each column.
-c.colors.completion.fg = '#88fefefe'
+c.colors.completion.fg = '#88fedd83'
 c.colors.completion.odd.bg = '#77101010'
 c.colors.completion.even.bg = '#77100000'
 
 # Foreground color of completion widget category headers.
 c.colors.completion.category.fg = base0F
-c.colors.completion.category.bg = '#77101010'
-c.colors.completion.category.border.top = '#774ca4b6'
-c.colors.completion.category.border.bottom = '#774ca4b6'
+c.colors.completion.category.bg = '#77000000'
+c.colors.completion.category.border.top = '#77fe0219'
+c.colors.completion.category.border.bottom = '#77a9df11'
 c.colors.completion.item.selected.fg = base00
-c.colors.completion.item.selected.bg = '#ccea4d48'
-c.colors.completion.item.selected.border.top = '#ddea4d48'
-c.colors.completion.item.selected.border.bottom = '#aa49a6d0'
+c.colors.completion.item.selected.bg = '#ccf4df23'
+c.colors.completion.item.selected.border.top = '#dde4cf13'
+c.colors.completion.item.selected.border.bottom = '#dde4cf13'
 c.colors.completion.item.selected.match.fg = base0F
 c.colors.completion.match.fg = base0A
 # Color of the scrollbar handle in the completion view.
-c.colors.completion.scrollbar.fg = '#aafbb73e'
+c.colors.completion.scrollbar.fg = '#aba9df11'
 # Color of the scrollbar in the completion view.
 c.colors.completion.scrollbar.bg = '#55101010'
 
-c.colors.tooltip.bg = '#aa101010'
-c.colors.tooltip.fg = '#eefdeadb'
+c.colors.tooltip.bg = '#aa000000'
+c.colors.tooltip.fg = '#eefedd83'
 
 # --- Context menu ---
 
@@ -126,7 +126,7 @@ c.colors.contextmenu.disabled.fg = base01
 # Background color of the context menu. If set to null, the Qt default is used.
 c.colors.contextmenu.menu.bg = '#99101010'
 c.colors.contextmenu.menu.fg =  base0F
-c.colors.contextmenu.selected.bg = '#ddea4d48'
+c.colors.contextmenu.selected.bg = '#ddf4df23'
 c.colors.contextmenu.selected.fg = base00
 
 #+end_src
@@ -160,14 +160,14 @@ c.colors.keyhint.bg = '#88101010'
 # --- Messages ---
 
 c.colors.messages.error.fg = base09
-c.colors.messages.error.bg = '#66101010'
+c.colors.messages.error.bg = '#66000000'
 c.colors.messages.error.border = base09
 c.colors.messages.warning.fg = base09
-c.colors.messages.warning.bg = '#77101010'
+c.colors.messages.warning.bg = '#77000000'
 c.colors.messages.warning.border = base09
 c.colors.messages.info.fg = base01
-c.colors.messages.info.bg = '#66101010'
-c.colors.messages.info.border = '#99101010'
+c.colors.messages.info.bg = '#66000000'
+c.colors.messages.info.border = '#99000000'
 
 #+end_src
 
@@ -178,9 +178,9 @@ The prompt:
 
 c.colors.prompts.fg = base0F
 # Border used around UI elements in prompts.
-c.colors.prompts.border = '#ef64b270'
-c.colors.prompts.bg = '#ef101010'
-c.colors.prompts.selected.bg = '#ef101010'
+c.colors.prompts.border = '#ef53f7f9'
+c.colors.prompts.bg = '#ef000000'
+c.colors.prompts.selected.bg = '#ef000000'
 c.colors.prompts.selected.fg = base00
 
 #+end_src
@@ -193,21 +193,21 @@ The status bar object has many options to set, so this next section may be compl
 c.colors.statusbar.normal.fg = base05
 c.colors.statusbar.normal.bg = '#77000000'
 c.colors.statusbar.insert.fg = base08
-c.colors.statusbar.insert.bg = '#aa74c280'
+c.colors.statusbar.insert.bg = '#aaa9df11'
 c.colors.statusbar.passthrough.fg = base0A
-c.colors.statusbar.passthrough.bg = '#88101010'
+c.colors.statusbar.passthrough.bg = '#88000000'
 # Foreground color of the statusbar in private browsing mode.
 c.colors.statusbar.private.fg = base0E
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = '#88210020'
+c.colors.statusbar.private.bg = '#ddaf38db'
 c.colors.statusbar.command.fg = base04
 c.colors.statusbar.command.bg = '#77000000'
 c.colors.statusbar.command.private.fg = base0E
-c.colors.statusbar.command.private.bg = '#88210020'
+c.colors.statusbar.command.private.bg = '#ccaf38db'
 c.colors.statusbar.caret.fg = base0D
 c.colors.statusbar.caret.bg = '#77000000'
 c.colors.statusbar.caret.selection.fg = base0D
-c.colors.statusbar.caret.selection.bg = '#77101010'
+c.colors.statusbar.caret.selection.bg = '#77000000'
 c.colors.statusbar.progress.bg = base0D
 
 # --- Status bar URL ---
@@ -227,7 +227,7 @@ And finally, we have the tabs. An essential part of the interface.
 #+begin_src python :tangle config.py
 # --- Tabs ---
 
-c.colors.tabs.bar.bg = '#10101010'
+c.colors.tabs.bar.bg = '#10000000'
 c.colors.tabs.indicator.start = base03
 c.colors.tabs.indicator.stop = base0B
 c.colors.tabs.indicator.error = base08
@@ -239,9 +239,9 @@ c.colors.tabs.pinned.even.bg = '#66000000'
 c.colors.tabs.pinned.even.fg = base00
 c.colors.tabs.pinned.odd.bg = '#66000000'
 c.colors.tabs.pinned.odd.fg = base00
-c.colors.tabs.pinned.selected.even.bg = '#aa4ca4b6'
+c.colors.tabs.pinned.selected.even.bg = '#bb99cf01'
 c.colors.tabs.pinned.selected.even.fg = base00
-c.colors.tabs.pinned.selected.odd.bg = '#aa4ca4b6'
+c.colors.tabs.pinned.selected.odd.bg = '#bb99cf01'
 c.colors.tabs.pinned.selected.odd.fg = base00
 
 # --- Selected tabs ---
@@ -342,11 +342,11 @@ c.hints.padding = {
     "bottom": 4
 }
 
-c.colors.completion.fg = '#efefef'
-c.colors.downloads.start.fg = '#bbd94a4f'
-c.colors.downloads.start.bg = '#00101010'
-c.colors.downloads.stop.bg = '#00101010'
-c.colors.downloads.stop.fg = '#ee35d1a2'
+c.colors.completion.fg = '#ccfedd83'
+c.colors.downloads.start.fg = '#bbfe0219'
+c.colors.downloads.start.bg = '#00000000'
+c.colors.downloads.stop.bg = '#00000000'
+c.colors.downloads.stop.fg = '#eea9df11'
 
 c.tabs.padding = {
     "left": 5,

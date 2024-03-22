@@ -18,12 +18,11 @@ set $term alacritty --config-file "$HOME/.config/alacritty/sway.toml"
 
 exec --no-startup-id pkill -x pulseaudio
 exec --no-startup-id pkill -x pipewire
-exec_always --no-startup-id autotiling -l 2 --outputs HDMI-A-2 DP-1
-exec dbus-launch pipewire &
+exec pipewire &
 exec --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
 exec_always pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
 exec_always pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
-exec --no-startup-id swayosd-server --top-margin=0.2 &
+exec_always --no-startup-id autotiling -l 2
 exec eww --force-wayland daemon
 exec --no-startup-id pkill -x hydroxide
 exec hydroxide imap &
@@ -36,7 +35,7 @@ output "eDP-1" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/hotlava.jpg fill
+	bg /home/babkock/.config/sway/stoplights.png fill
 }
 output "HDMI-A-2" {
 	mode 1920x1080@60.0Hz
@@ -45,7 +44,7 @@ output "HDMI-A-2" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/purpletree.jpg fill
+	bg /home/babkock/.config/sway/rainbowclouds.jpg fill
 }
 output "DP-1" {
 	mode 1920x1080@60.0Hz
@@ -54,7 +53,7 @@ output "DP-1" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/rainbow.jpg fill
+	bg /home/babkock/.config/sway/rainreflection.jpg fill
 }
 
 seat seat0 xcursor_theme "Adwaita" 30
@@ -93,24 +92,23 @@ blur enable
 blur_passes 1
 blur_radius 2
 blur_noise 0.1
-corner_radius 36
+corner_radius 35
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 2
-shadow_color #da3d3899
-shadow_inactive_color #74c28099
-shadow_offset 2 1
-default_dim_inactive 0.15
+shadow_color #ee000999
+shadow_inactive_color #99cf01aa
+shadow_offset 1 1
+default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
-titlebar_padding 37 37
 
 hide_edge_borders smart_no_gaps
 
-client.focused #ea4d488f #ea4d488f #efefefef #c530348f
-client.focused_tab_title #d154af7f #d154af7f #efefefef
-client.focused_inactive #74c2808d #74c2807d #000000ef
-client.unfocused #fbb73edd #eba72edd #434343dd
+client.focused #ee0009af #fe0219af #efefefef #ee00098f
+client.focused_tab_title #74c2808f #74c2808f #efefefef #99cf0188
+client.focused_inactive #a9df118d #a9df118d #000000ef #99cf0188
+client.unfocused #a9df11af #a9df11dd #000000dd #99cf0188
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
@@ -120,19 +118,20 @@ font pango:SpaceMono Nerd Font Medium 14
 smart_gaps on
 smart_borders on
 gaps inner 4
-gaps outer 4
+gaps outer 3
 
 exec eww open calendar
 exec eww open mem
 exec eww open power
+exec eww open files
 
-exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color 64b27077 --text-ver-color 74c28099 --ring-wrong-color da3d3888 --text-wrong-color ea4d4899 --inside-wrong-color 10101066 --text-clear-color c1449f99 --ring-clear-color d154af77 --inside-clear-color 10101066 --key-hl-color fbb73e88 --bs-hl-color da3d3888 --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/rainbowlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/hotlavalock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/purpletreelock.jpg -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color 64b27077 --text-ver-color 74c28099 --ring-wrong-color da3d3888 --text-wrong-color ea4d4899 --inside-wrong-color 00000066 --text-clear-color c1449f99 --ring-clear-color d154af77 --inside-clear-color 00000066 --key-hl-color fbb73e88 --bs-hl-color da3d3888 --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/rainbowlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/hotlavalock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/purpletreelock.jpg -s fill"
+exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color a9df11aa --ring-wrong-color fe021988 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 10101066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/rainreflectionlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/stoplightslock.png -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainbowcloudslock.jpg -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color 74c280aa --ring-wrong-color fe021999 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 00000066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/rainreflectionlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/stoplightslock.png -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainbowcloudslock.jpg -s fill"
 
 exec mako -c "$HOME/.config/mako/swayconfig" &
+exec waybar -c "$HOME/.config/waybar/config.json"
 exec pkill -x emacs
 exec emacs --daemon
-exec waybar -c "$HOME/.config/waybar/config.json"
-#exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
+exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
 exec mpdas -d
 
@@ -157,14 +156,24 @@ assign [class="Firefox"] 2
 assign [app_id="com.obsproject.Studio"] 8
 assign [app_id="org.qutebrowser.qutebrowser"] 2
 assign [app_id="org.nicotine_plus.Nicotine"] 5
+assign [app_id="com.sublimetext.three"] 4
+assign [app_id="sublime"] 4
 assign [app_id="Steam"] 6
 assign [class="Steam"] 6
 assign [app_id="GIMP"] 5
 assign [class="GIMP"] 5
 assign [app_id="Gimp"] 5
 assign [class="Gimp"] 5
+assign [class="Discord"] 5
+assign [app_id="Discord"] 5
+assign [app_id="discord"] 5
+assign [class="discord"] 5
 assign [class="mpv"] 7
 assign [app_id="mpv"] 7
+assign [app_id="PCManFM"] 5
+assign [class="PCManFM"] 5
+assign [app_id="pcmanfm"] 5
+assign [class="pcmanfm"] 5
 for_window [app_id="Emacs"] focus
 for_window [class="Emacs"] focus
 for_window [app_id="mpv"] floating enable
@@ -178,6 +187,8 @@ for_window [instance="feh"] floating enable
 for_window [class="Sxiv"] floating enable
 for_window [app_id="Swayimg"] floating enable
 for_window [class="Swayimg"] floating enable
+for_window [app_id="pcmanfm"] floating enable
+for_window [app_id="PCManFM"] floating enable
 for_window [app_id="com.obsproject.Studio"] focus
 for_window [app_id="com.obsproject.Studio"] move workspace to output eDP-1
 for_window [app_id="Firefox"] focus
@@ -199,7 +210,7 @@ bindsym $mod+Shift+c kill
 # Start your launcher
 bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf -S 74c280ef -m bbaa00ef -M fbb73eef -f "SpaceMono Nerd Font:pixelsize=24:antialias=true" -x 6 -r 0 -B 2 -C 000000cc -d | sh
 
-bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc
+bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5
 
 bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$HOME/.local/share/qutebrowser/fix-tooltips.qss"
 
@@ -209,11 +220,11 @@ bindsym $mod+comma workspace number 3; exec $term -e ncmpcpp
 
 bindsym $mod+Shift+comma workspace number 4; exec emacsclient -c -a "emacs"
 
-bindsym $mod+slash exec subl3
+bindsym $mod+slash workspace number 4; exec subl3
 
 bindsym $mod+semicolon workspace number 5; exec nicotine
 
-bindsym $mod+Shift+semicolon exec dbus-launch virt-manager
+bindsym $mod+Shift+semicolon exec virt-manager
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
 
@@ -274,8 +285,8 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 
-bindsym $mod+b splith
-bindsym $mod+v splitv
+#bindsym $mod+b splith
+#bindsym $mod+v splitv
 
 bindsym $mod+p move container to output right
 bindsym $mod+o move container to output left
@@ -285,7 +296,7 @@ bindsym $mod+Shift+o move workspace to output left
 
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Make the current focus fullscreen

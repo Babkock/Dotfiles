@@ -1,18 +1,28 @@
 (defpoll calendar_day :interval "5h" "date '+%d'")
 (defpoll calendar_year :interval "5h" "date '+%Y'")
 (defpoll music_progress :interval "1s" "mpc --host=127.0.0.2 | grep '%)' | awk '{print $4}' | tr -d '(%)'")
-(defvar swayreboot "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background c1449f99 --text e164bfff --button-background 00000077 --button-text e164bfff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to reboot?' -B 'Reboot' 'loginctl reboot'")
+
+(defvar swayreboot "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background af38db99 --text ff4de7ff --button-background 00000077 --button-text ff4de7ff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to reboot?' -B 'Reboot' 'loginctl reboot'")
 (defvar wayreboot "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 11e9a399 --text 21d9b3ff --button-background 00000077 --button-text 21d9b3ff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to reboot?' -B 'Reboot' 'loginctl reboot'")
-(defvar swaypoweroff "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background ca2d2899 --text ea4d48ff --button-background 00000077 --button-text ea4d48ff --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to shut down?' -B 'Shut Down' 'loginctl poweroff' -B 'Reboot' 'loginctl reboot'")
+(defvar swaypoweroff "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background ee000999 --text fe0219ff --button-background 00000077 --button-text fe0219ff --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to shut down?' -B 'Shut Down' 'loginctl poweroff' -B 'Reboot' 'loginctl reboot'")
 (defvar waypoweroff "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background d6040499 --text f61919ff --button-background 00000077 --button-text f61919 --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to shut down?' -B 'Shut Down' 'loginctl poweroff' -B 'Reboot' 'loginctl reboot'")
-(defvar swaylogout "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 54a26099 --text 74c280ff --button-background 00000077 --button-text 74c280ff --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to exit the Sway session?' -B 'Exit' 'pkill -x sway'")
+(defvar swaylogout "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 99cf0199 --text a9df11ff --button-background 00000077 --button-text a9df11ff --button-border-size 0 --button-gap 5 --button-padding 5 --border-bottom-size 0 -m 'Are you sure you want to exit the Sway session?' -B 'Exit' 'pkill -x sway'")
 (defvar waylogout "pkill -x swaynag; swaynag -f 'VictorMono Nerd Font 15' --background 0cc97b88 --text 1cd98bff --button-background 00000077 --button-text 1cd98bff --button-border-size 0 --button-gap 5 --button-padding 6 --border-bottom-size 0 -m 'Are you sure you want to exit the Wayfire session?' -B 'Exit' 'pkill -x wayfire'")
+
+(defvar openhome "pcmanfm /home/babkock")
+(defvar opendocuments "pcmanfm /home/babkock/Documents")
+(defvar opendownloads "pcmanfm /home/babkock/Downloads")
+(defvar openmusic "pcmanfm /home/babkock/Music")
+(defvar openpictures "pcmanfm /home/babkock/Pictures")
+(defvar openvideos "pcmanfm /home/babkock/Videos")
+(defvar openmega "pcmanfm /mnt/mega")
+(defvar opentbcom "pcmanfm /home/babkock/git/TBcom")
 
 (defwidget cal [?class]
 	(calendar :halign "center"
 			  :valign "start"
 			  :class {class}
-              :active false
+             :active false
 			  :day calendar_day
 			  :year calendar_year))
 
@@ -59,27 +69,25 @@
 		 (button :class "poweroff" :onclick {class == "mywaypower" ? waypoweroff : swaypoweroff} :timeout 600 "⏻")
 		 (button :class "reboot" :onclick {class == "mywaypower" ? wayreboot : swayreboot} :timeout 600 "󰑐")))
 
-(defwindow power
-	:wm-ignore: true
-	:monitor 0
-	:geometry (geometry :x "50px"
-						:y "100px"
-						:width "190px"
-						:height "500px"
-						:anchor "top right")
-	:stacking "bottom"
-	(powermenu :class "mypower"))
+(defwidget filesmenu [?class]
+	(box :orientation "vertical"
+		 :class {class}
+		 :halign "center"
+		 :space-evenly "true"
+		 (button :class "home" :onclick openhome :timeout 600 "󱂵")
+		 (button :class "documents" :onclick opendocuments :timeout 600 "󰃖")
+		 (button :class "downloads" :onclick opendownloads :timeout 600 "󰉍")
+		 (button :class "music" :onclick openmusic :timeout 600 "󱍙")))
 
-(defwindow waypower
-	:wm-ignore: true
-	:monitor 0
-	:geometry (geometry :x "50px"
-						:y "100px"
-						:width "190px"
-						:height "500px"
-						:anchor "top right")
-	:stacking "bottom"
-	(powermenu :class "mywaypower"))
+(defwidget othermenu [?class]
+	(box :orientation "vertical"
+		 :class {class}
+		 :halign "center"
+		 :space-evenly "true"
+		 (button :class "pictures" :onclick openpictures :timeout 600 "󰉏")
+		 (button :class "videos" :onclick openvideos :timeout 600 "")
+		 (button :class "mymega" :onclick openmega :timeout 600 "")
+		 (button :class "tbcom" :onclick opentbcom :timeout 600 "")))
 
 (defwindow calendar
 	:wm-ignore: true
@@ -120,8 +128,8 @@
 	:monitor 2
 	:geometry (geometry :x "50px"
 						:y "100px"
-						:width "330px"
-						:height "850px"
+						:width "340px"
+						:height "890px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -138,8 +146,8 @@
     :monitor 1
     :geometry (geometry :x "50px"
                         :y "100px"
-                        :width "330px"
-                        :height "850px"
+                        :width "340px"
+                        :height "890px"
                         :anchor "top right")
     :stacking "bottom"
     (box :orientation "vertical"
@@ -150,5 +158,53 @@
 		    (power :class "waycpu"))
 		(box :orientation "vertical" :class "wayrambox"
 		    (system :class "wayram"))))
+
+(defwindow power
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "190px"
+						:height "500px"
+						:anchor "top right")
+	:stacking "bottom"
+	(powermenu :class "mypower"))
+
+(defwindow waypower
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "190px"
+						:height "500px"
+						:anchor "top right")
+	:stacking "bottom"
+	(powermenu :class "mywaypower"))
+
+(defwindow files
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "250px"
+						:y "80px"
+						:width "500px"
+						:height "600px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "horizontal"
+		 (filesmenu :class "myfiles")
+		 (othermenu :class "myfiles")))
+
+(defwindow wayfiles
+	:wm-ignore: true
+	:monitor 0
+	:geometry (geometry :x "250px"
+						:y "80px"
+						:width "500px"
+						:height "600px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "horizontal"
+		 (filesmenu :class "mywayfiles")
+		 (othermenu :class "mywayfiles")))
 
 ; vim:filetype=lisp

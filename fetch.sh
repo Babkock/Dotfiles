@@ -78,6 +78,7 @@ system_files=(
   "$HOME/.config/alacritty/alacritty.yml"
   "$HOME/.config/alacritty/sway.yml"
   "$HOME/.config/alacritty/wayfire.yml"
+  "$HOME/.config/eww/eww.org"
   "$HOME/.config/eww/eww.yuck"
   "$HOME/.config/eww/eww.scss"
 )
@@ -160,6 +161,7 @@ repo_files=(
   "alacritty/alacritty.yml"
   "alacritty/sway.yml"
   "alacritty/wayfire.yml"
+  "eww/README.org"
   "eww/eww.yuck"
   "eww/eww.scss"
 )

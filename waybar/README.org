@@ -55,6 +55,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#network][Network]]
   - [[#wireplumber][Wireplumber]]
   - [[#bluetooth][Bluetooth]]
+  - [[#privacy][Privacy]]
   - [[#temperature][Temperature]]
   - [[#disk-1][Disk]]
   - [[#keyboard-state][Keyboard State]]
@@ -111,6 +112,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#bluetooth-3][Bluetooth]]
   - [[#memory-4][Memory]]
   - [[#disk-6][Disk]]
+  - [[#privacy-1][Privacy]]
   - [[#cpu-4][CPU]]
   - [[#clock-5][Clock]]
 - [[#hyprland-laptop-bar][Hyprland Laptop Bar]]
@@ -299,12 +301,12 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 "backlight": {
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20",
+    "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
     "on-click-middle": "pkill -x gammastep",
-    "on-scroll-up": "swayosd-client --brightness 1",
-    "on-scroll-down": "swayosd-client --brightness -1"
+    "on-click": "light -S 20 && light -G && echo 20 > .wob.sock",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-down": "light -U 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
 },
 #+end_src
 
@@ -330,9 +332,9 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
         "default": ["", "", ""]
     },
     "on-click-right": "pavucontrol",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "swayosd-client --output-volume 2",
-    "on-scroll-down": "swayosd-client --output-volume -2"
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
 }
 #+end_src
 
@@ -350,7 +352,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "spacing": 0,
     "output": "HDMI-A-2",
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -425,6 +427,10 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": " ",
+        "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
+        "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
         "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -466,7 +472,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
         "Nicotine\\+": "󰒴"
     },
-    "max-length": 80,
+    "max-length": 85,
     "all-outputs": true
 },
 #+end_src
@@ -510,9 +516,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "tooltip": true,
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "swayosd-client --output-volume 2",
-    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "helvum"
 },
 #+end_src
@@ -531,6 +537,33 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
     "format-icons": ["", "", "", "", ""]
+},
+#+end_src
+
+** Privacy
+
+#+begin_src json :tangle config.json
+"privacy": {
+    "icon-spacing": 8,
+    "icon-size": 24,
+    "transition-duration": 350,
+    "modules": [
+        {
+            "type": "screenshare",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-out",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-in",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        }
+    ]
 },
 #+end_src
 
@@ -622,7 +655,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 #+begin_src json :tangle config.json
 "custom/weather": {
-    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 4,
     "format": "{}"
 },
@@ -1046,8 +1079,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 "backlight": {
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20",
+    "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
     "on-click-middle": "pkill -x gammastep",
     "on-scroll-up": "swayosd-client --brightness 1",
@@ -1174,6 +1206,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
             "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
+            "Letterboxd • Social film discovery.": " ",
+            "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
+            "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "Hacker News": " ",
             "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
             "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -1341,7 +1377,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "output": "DP-1",
     "height": 41,
     "modules-left": ["wlr/taskbar"],
-    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "privacy", "cpu", "memory", "bluetooth", "custom/clock"],
     "wlr/taskbar": {
         "format": "{short_state}{icon}",
         "on-click": "minimize-raise",
@@ -1359,7 +1395,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle wconfig.json
 "custom/weather": {
-    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 4,
     "format": "{}"
 },
@@ -1402,6 +1438,33 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format-alt": "  {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+#+end_src
+
+** Privacy
+
+#+begin_src json :tangle wconfig.json
+"privacy": {
+    "icon-spacing": 8,
+    "icon-size": 24,
+    "transition-duration": 350,
+    "modules": [
+        {
+            "type": "screenshare",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-out",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-in",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        }
+    ]
 },
 #+end_src
 
@@ -1705,6 +1768,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": " ",
+        "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
+        "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
         "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
@@ -1893,7 +1960,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hconfig.json
 "custom/weather": {
-    "exec": "ansiweather -a false -l Denver -u imperial -H true -h false -p false -i false -s true",
+    "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 4,
     "format": "{}"
 },

@@ -123,6 +123,7 @@ system_files=(
   "$HOME/.config/alacritty/alacritty.yml"
   "$HOME/.config/alacritty/sway.yml"
   "$HOME/.config/alacritty/wayfire.yml"
+  "$HOME/.config/eww/eww.org"
   "$HOME/.config/eww/eww.yuck"
   "$HOME/.config/eww/eww.scss"
 )
@@ -211,6 +212,7 @@ repo_files=(
   "alacritty/alacritty.yml"
   "alacritty/sway.yml"
   "alacritty/wayfire.yml"
+  "eww/README.org"
   "eww/eww.yuck"
   "eww/eww.scss"
 )
@@ -308,7 +310,7 @@ Simple type "Y" or "y" and then Enter to proceed with the script, or "N" to canc
 #+BEGIN_EXPORT html
 <footer>
     <center>
-    <p>Copyright &copy; 2022 Tanner Babcock.</p>
+    <p>Copyright &copy; 2022-2024 Tanner Babcock.</p>
     <p><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io">This Repository</a> &nbsp;&bull;&nbsp;
     <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;
     <a href="https://gitlab.com/Babkock/Dotfiles">Dotfiles</a> &nbsp;&bull;&nbsp; <a href="https://www.twitch.tv/babkock">Twitch</a></p>

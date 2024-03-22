@@ -37,6 +37,7 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 - [[https://github.com/Babkock/Dotfiles/tree/master/bspwm][Bspwm]]
 - [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/README.org][Doom Emacs config.org]]
 - [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/init.org][Doom Emacs init.org]]
+- [[https://github.com/Babkock/Dotfiles/tree/master/eww][Eww Widgets]]
 - [[https://github.com/Babkock/Dotfiles/tree/master/foot][Foot]]
 - [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]
 - [[https://github.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]
