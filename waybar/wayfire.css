@@ -72,6 +72,25 @@ tooltip {
     box-shadow:3px 3px rgba(40, 137, 186, 0.5);
 }
 
+#battery.warning {
+    color:#fef47f;
+    border-radius:0px 40px 40px 0px;
+    background:linear-gradient(180deg, rgba(255, 176, 2, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:1px;
+    margin-right:3px;
+    box-shadow:3px 3px rgba(254, 175, 2, 0.5);
+}
+
+#battery.critical {
+    color:#f63117;
+    font-weight:bold;
+    border-radius:0px 40px 40px 0px;
+    background:linear-gradient(180deg, rgba(206, 40, 40, 0.8), rgba(0, 0, 0, 0.5));
+    margin-left:2px;
+    margin-right:4px;
+    box-shadow:3px 3px rgba(255, 255, 255, 0.5);
+}
+
 #idle_inhibitor {
     border-radius:40px 0px 0px 40px;
     padding-left:11px;

@@ -3,6 +3,8 @@
     "height": 40,
     "spacing": 0,
     "output": "eDP-1",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["wlr/taskbar"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "wlr/taskbar": {
@@ -63,32 +65,37 @@
 
 "battery": {
     "states": {
-        "good": 94,
-        "warning": 30,
-        "critical": 15
+        "good": 99,
+        "warning": 50,
+        "critical": 20
     },
-    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+    "full-at": 94,
+    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
     "format-charging": " <span style=\"italic\">{capacity}%</span>",
     "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}",
-    "format-icons": ["", "", "", "", ""],
-    "tooltip": false,
+    "format-alt": "{icon}   {time}",
+    "format-time": "{H}:{m}",
+    "format-icons": ["", "", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": " {time} 󱐋 {power} watts"
 },
 
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
     "on-click-middle": "pkill -x gammastep",
-    "on-scroll-up": "swayosd-client --brightness 1",
-    "on-scroll-down": "swayosd-client --brightness -1"
+    "on-click": "light -S 20 && light -G && echo 20 > .wob.sock",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-down": "light -U 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
 },
 
 "disk": {
@@ -96,6 +103,7 @@
     "interval": 1,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
+    "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
@@ -116,9 +124,9 @@
         "car": "",
         "default": ["", "", ""]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "swayosd-client --output-volume 2",
-    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "pavucontrol"
 },
 
@@ -133,6 +141,8 @@
     "height": 41,
     "spacing": 0,
     "output": "HDMI-A-2",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["wlr/taskbar"],
     "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "temperature", "tray"],
     "wlr/taskbar": {
@@ -157,6 +167,7 @@
             "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
             "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
             "ranger:(.*)": " $1",
+            "Mozilla Thunderbird": " ",
             "Mozilla Firefox": " ",
             "YouTube": " ",
             "GitHub": " ",
@@ -215,6 +226,8 @@
             "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "• Discord \\| (.*) \\| (.*) — (.*)": "<span style=\"italic\">$1</span>: $2",
             "(.*) — Mozilla Firefox": "<span style=\"italic\">$1</span>",
+            "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
+            "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
             "GNU Emacs at thing": " ",
             "(.*) – Doom Emacs": "<span style=\"italic\">$1</span>",
             "(.*) — Doom Emacs": "<span style=\"italic\">$1</span>",
@@ -225,6 +238,8 @@
             "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
             "(.*) - mpv": "<span style=\"italic\">$1</span>",
             "(.*) - VLC Media Player": "<span style=\"italic\">$1</span>",
+            "VLC media player": " ",
+            "File Upload": " ",
             "(.*) - Discord": "<span style=\"italic\">$1</span>",
             "Discord Updater": " ",
             "• Discord \\| (.*) \\| (.*)": "<span style=\"italic\">$1</span>: $2",
@@ -243,6 +258,7 @@
     "interval": 1,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
+    "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
@@ -274,9 +290,9 @@
     "tooltip": true,
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "swayosd-client --output-volume 2",
-    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "helvum"
 },
 
@@ -323,6 +339,8 @@
     "position": "bottom",
     "output": "DP-1",
     "height": 41,
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["wlr/taskbar"],
     "modules-right": ["custom/weather", "disk", "privacy", "cpu", "memory", "bluetooth", "custom/clock"],
     "wlr/taskbar": {
@@ -358,8 +376,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {

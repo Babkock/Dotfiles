@@ -306,6 +306,25 @@ tooltip {
     box-shadow:3px 3px rgba(118, 112, 229, 0.4);
 }
 
+#battery.warning {
+    color:#f4df23;
+    border-radius:0px 40px 40px 0px;
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.3));
+    margin-left:0;
+    margin-right:3px;
+    box-shadow:3px 3px rgba(224, 202, 16, 0.5);
+}
+
+#battery.critical {
+    color:#fe0219;
+    border-radius:0px 40px 40px 0px;
+    font-weight:bold;
+    background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
+    margin-left:3px;
+    margin-right:4px;
+    box-shadow:3px 3px rgba(255, 255, 255, 0.5);
+}
+
 #idle_inhibitor {
     border-radius:40px 0px 0px 40px;
     padding-left:11px;
@@ -696,6 +715,25 @@ tooltip {
     margin-left:0;
     margin-right:2px;
     box-shadow:3px 3px rgba(40, 137, 186, 0.5);
+}
+
+#battery.warning {
+    color:#fef47f;
+    border-radius:0px 40px 40px 0px;
+    background:linear-gradient(180deg, rgba(255, 176, 2, 0.9), rgba(0, 0, 0, 0.5));
+    margin-left:1px;
+    margin-right:3px;
+    box-shadow:3px 3px rgba(254, 175, 2, 0.5);
+}
+
+#battery.critical {
+    color:#f63117;
+    font-weight:bold;
+    border-radius:0px 40px 40px 0px;
+    background:linear-gradient(180deg, rgba(206, 40, 40, 0.8), rgba(0, 0, 0, 0.5));
+    margin-left:2px;
+    margin-right:4px;
+    box-shadow:3px 3px rgba(255, 255, 255, 0.5);
 }
 
 #idle_inhibitor {
@@ -1123,7 +1161,7 @@ tooltip {
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2023 Tanner Babcock.</p>
+        <p>Copyright &copy; 2024 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;

@@ -157,9 +157,11 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 #+begin_src json :tangle config.json
 [{
     "position": "bottom",
-    "height": 40,
+    "height": 42,
     "spacing": 0,
     "output": "eDP-1",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
@@ -259,8 +261,8 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 #+begin_src json :tangle config.json
     "memory": {
         "format": " {}%",
-        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+        "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+        "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
     },
 #+end_src
 
@@ -280,19 +282,22 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 ** Battery
 
 #+begin_src json :tangle config.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}", 
-        "format-icons": ["", "", "", "", ""],
-        "tooltip": false,
+"battery": {
+    "states": {
+        "good": 99,
+        "warning": 50,
+        "critical": 20
     },
+    "full-at": 94,
+    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
+    "format-charging": " <span style=\"italic\">{capacity}%</span>",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon}   {time}",
+    "format-time": "{H}:{m}",
+    "format-icons": ["", "", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": " {time} 󱐋 {power} watts"
+},
 #+end_src
 
 ** Backlight
@@ -300,6 +305,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 #+begin_src json :tangle config.json
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
@@ -351,6 +357,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/window"],
     "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
@@ -386,6 +394,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "foot": " ",
         "Alacritty": " ",
         "st": " ",
+        "\\[spaceman\\] (.*)": " $1",
+        "\\[spaceman\\] exit (.*)": " $1",
         "Steam": " ",
         "Sign in to Steam": " ",
         "Shutdown": " ",
@@ -394,6 +404,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
         "Mozilla Firefox": " ",
+        "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "GitHub": " ",
         "Explore GitHub": " ",
@@ -450,7 +461,13 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
+        "Stash":  " ",
+        "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
+        "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
         "(.*) – Doom Emacs": " <span style=\"italic\">$1</span>",
         "(.*) — Doom Emacs": " <span style=\"italic\">$1</span>",
@@ -459,8 +476,13 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "feh \\[1 of 1\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[1 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
-        "(.*) - mpv": " <span style=\"italic\">$1</span>",
-        "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
+        "(.*) - mpv": " <span style=\"italic\">$1</span>",
+        "(.*) - VLC Media Player": "󰕼 <span style=\"italic\">$1</span>",
+        "VLC media player": "󰕼 ",
+        "Current Media Information": "󰕼 ",
+        "Simple Preferences": "󰕼 ",
+        "Adjustments and Effects": "󰕼 ",
+        "File Upload": " ",
         "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
         "Discord Updater": "󰙯 ",
         "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
@@ -470,9 +492,11 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴"
+        "Nicotine\\+": "󰒴",
+        "Volume Control": " ",
+        "Helvum - Pipewire Patchbay": " ",
     },
-    "max-length": 85,
+    "max-length": 86,
     "all-outputs": true
 },
 #+end_src
@@ -626,7 +650,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 41,
+    "height": 42,
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["sway/workspaces"],
     "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
     "sway/workspaces": {
@@ -683,8 +709,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle config.json
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 #+end_src
 
@@ -827,14 +853,15 @@ This is the first and primary bar for the River compositor. It appears on my lap
 ** Backlight
 
 #+begin_src json :tangle rconfig.json
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-    },
+"backlight": {
+    "device": "intel_backlight",
+    "tooltip": false,
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+},
 #+end_src
 
 ** Pulseaudio
@@ -927,14 +954,15 @@ This is the second status bar that River uses. It appears on my monitor (=HDMI-A
 ** Backlight
 
 #+begin_src json :tangle rconfig.json
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-        "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-    },
+"backlight": {
+    "device": "intel_backlight",
+    "tooltip": false,
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
+},
 #+end_src
 
 ** Disk
@@ -974,6 +1002,8 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
     "height": 40,
     "spacing": 0,
     "output": "eDP-1",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["wlr/taskbar"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "wlr/taskbar": {
@@ -1048,19 +1078,22 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 ** Battery
 
 #+begin_src json :tangle wconfig.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip": false,
+"battery": {
+    "states": {
+        "good": 99,
+        "warning": 50,
+        "critical": 20
     },
+    "full-at": 94,
+    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
+    "format-charging": " <span style=\"italic\">{capacity}%</span>",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon}   {time}",
+    "format-time": "{H}:{m}",
+    "format-icons": ["", "", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": " {time} 󱐋 {power} watts"
+},
 #+end_src
 
 ** Memory
@@ -1068,8 +1101,8 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 #+begin_src json :tangle wconfig.json
     "memory": {
         "format": " {}%",
-        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+        "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+        "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
     },
 #+end_src
 
@@ -1078,25 +1111,28 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 #+begin_src json :tangle wconfig.json
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
     "on-click-middle": "pkill -x gammastep",
-    "on-scroll-up": "swayosd-client --brightness 1",
-    "on-scroll-down": "swayosd-client --brightness -1"
+    "on-click": "light -S 20 && light -G && echo 20 > .wob.sock",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-down": "light -U 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
 },
 #+end_src
 
 ** Disk
 
 #+begin_src json :tangle wconfig.json
-    "disk": {
-        "path": "/mnt/mega/",
-        "interval": 1,
-        "format": " <span style=\"italic\">{free}</span>",
-        "format-alt": " {used}",
-        "tooltip-format": "{path} ({percentage_used}% of {total})"
-    },
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": " <span style=\"italic\">{free}</span>",
+    "format-alt": " {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
 #+end_src
 
 ** Pulseaudio
@@ -1119,9 +1155,9 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
         "car": "",
         "default": ["", "", ""]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "swayosd-client --output-volume 2",
-    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "pavucontrol"
 },
 #+end_src
@@ -1148,6 +1184,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "height": 41,
     "spacing": 0,
     "output": "HDMI-A-2",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["wlr/taskbar"],
     "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "temperature", "tray"],
     "wlr/taskbar": {
@@ -1172,6 +1210,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
             "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
             "ranger:(.*)": " $1",
+            "Mozilla Thunderbird": " ",
             "Mozilla Firefox": " ",
             "YouTube": " ",
             "GitHub": " ",
@@ -1230,6 +1269,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "• Discord \\| (.*) \\| (.*) — (.*)": "<span style=\"italic\">$1</span>: $2",
             "(.*) — Mozilla Firefox": "<span style=\"italic\">$1</span>",
+            "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
+            "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
             "GNU Emacs at thing": " ",
             "(.*) – Doom Emacs": "<span style=\"italic\">$1</span>",
             "(.*) — Doom Emacs": "<span style=\"italic\">$1</span>",
@@ -1240,6 +1281,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
             "(.*) - mpv": "<span style=\"italic\">$1</span>",
             "(.*) - VLC Media Player": "<span style=\"italic\">$1</span>",
+            "VLC media player": " ",
+            "File Upload": " ",
             "(.*) - Discord": "<span style=\"italic\">$1</span>",
             "Discord Updater": " ",
             "• Discord \\| (.*) \\| (.*)": "<span style=\"italic\">$1</span>: $2",
@@ -1257,13 +1300,14 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 ** Disk
 
 #+begin_src json :tangle wconfig.json
-    "disk": {
-        "path": "/",
-        "interval": 1,
-        "format": " <span style=\"italic\">{free}</span>",
-        "format-alt": " {used}",
-        "tooltip-format": "{path} ({percentage_used}% of {total})"
-    },
+"disk": {
+    "path": "/",
+    "interval": 1,
+    "format": " <span style=\"italic\">{free}</span>",
+    "format-alt": " {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
 #+end_src
 
 ** Network
@@ -1305,9 +1349,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip": true,
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "swayosd-client --output-volume 2",
-    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "helvum"
 },
 #+end_src
@@ -1376,6 +1420,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "position": "bottom",
     "output": "DP-1",
     "height": 41,
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["wlr/taskbar"],
     "modules-right": ["custom/weather", "disk", "privacy", "cpu", "memory", "bluetooth", "custom/clock"],
     "wlr/taskbar": {
@@ -1423,8 +1469,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle wconfig.json
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 #+end_src
 
@@ -1502,7 +1548,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "spacing": 0,
     "output": "eDP-1",
     "modules-left": ["wlr/workspaces"],
-    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
+    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "wlr/workspaces": {
         "all-outputs": false,
         "disable-scroll": false,
@@ -1601,27 +1647,30 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
     "memory": {
         "format": " {}%",
-        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+        "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+        "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
     },
 #+end_src
 
 ** Battery
 
 #+begin_src json :tangle hconfig.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip-format": "{time}"
+"battery": {
+    "states": {
+        "good": 99,
+        "warning": 50,
+        "critical": 20
     },
+    "full-at": 94,
+    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
+    "format-charging": " <span style=\"italic\">{capacity}%</span>",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon}   {time}",
+    "format-time": "{H}:{m}",
+    "format-icons": ["", "", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": " {time} 󱐋 {power} watts"
+},
 #+end_src
 
 ** Backlight
@@ -1629,6 +1678,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
@@ -2031,7 +2081,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2023 Tanner Babcock.</p>
+        <p>Copyright &copy; 2024 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;

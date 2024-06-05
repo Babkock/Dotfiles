@@ -1,8 +1,10 @@
 [{
     "position": "bottom",
-    "height": 40,
+    "height": 42,
     "spacing": 0,
     "output": "eDP-1",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
@@ -82,8 +84,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {
@@ -97,20 +99,24 @@
 
 "battery": {
     "states": {
-        "good": 94,
-        "warning": 30,
-        "critical": 15
+        "good": 99,
+        "warning": 50,
+        "critical": 20
     },
-    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+    "full-at": 94,
+    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
     "format-charging": " <span style=\"italic\">{capacity}%</span>",
     "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}", 
-    "format-icons": ["", "", "", "", ""],
-    "tooltip": false,
+    "format-alt": "{icon}   {time}",
+    "format-time": "{H}:{m}",
+    "format-icons": ["", "", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": " {time} 󱐋 {power} watts"
 },
 
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
@@ -149,6 +155,8 @@
     "height": 42,
     "spacing": 0,
     "output": "HDMI-A-2",
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/window"],
     "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
@@ -180,6 +188,8 @@
         "foot": " ",
         "Alacritty": " ",
         "st": " ",
+        "\\[spaceman\\] (.*)": " $1",
+        "\\[spaceman\\] exit (.*)": " $1",
         "Steam": " ",
         "Sign in to Steam": " ",
         "Shutdown": " ",
@@ -188,6 +198,7 @@
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
         "Mozilla Firefox": " ",
+        "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "GitHub": " ",
         "Explore GitHub": " ",
@@ -244,7 +255,13 @@
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
+        "Stash":  " ",
+        "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
+        "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
         "(.*) – Doom Emacs": " <span style=\"italic\">$1</span>",
         "(.*) — Doom Emacs": " <span style=\"italic\">$1</span>",
@@ -253,8 +270,13 @@
         "feh \\[1 of 1\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[1 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
-        "(.*) - mpv": " <span style=\"italic\">$1</span>",
-        "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
+        "(.*) - mpv": " <span style=\"italic\">$1</span>",
+        "(.*) - VLC Media Player": "󰕼 <span style=\"italic\">$1</span>",
+        "VLC media player": "󰕼 ",
+        "Current Media Information": "󰕼 ",
+        "Simple Preferences": "󰕼 ",
+        "Adjustments and Effects": "󰕼 ",
+        "File Upload": " ",
         "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
         "Discord Updater": "󰙯 ",
         "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
@@ -264,9 +286,11 @@
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴"
+        "Nicotine\\+": "󰒴",
+        "Volume Control": " ",
+        "Helvum - Pipewire Patchbay": " ",
     },
-    "max-length": 85,
+    "max-length": 86,
     "all-outputs": true
 },
 
@@ -378,7 +402,9 @@
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 41,
+    "height": 42,
+    "reload_style_on_change": true,
+    "mode": "dock",
     "modules-left": ["sway/workspaces"],
     "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
     "sway/workspaces": {
@@ -423,8 +449,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {
