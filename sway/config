@@ -20,13 +20,13 @@ exec --no-startup-id pkill -x pulseaudio
 exec --no-startup-id pkill -x pipewire
 exec pipewire &
 exec --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
-exec_always pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
-exec_always pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
 exec_always --no-startup-id autotiling -l 2
 exec eww --force-wayland daemon
 exec --no-startup-id pkill -x hydroxide
 exec hydroxide imap &
 exec hydroxide smtp &
+exec --no-startup-id pkill -x stash
+exec stash &
 
 output "eDP-1" {
 	mode 1920x1080@60.008Hz
@@ -67,6 +67,11 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 	accel_profile "adaptive"
 	pointer_accel 1.0
 	scroll_factor 1.2
+	tap_button_map lrm
+}
+
+input "2:10:TPPS/2_Elan_TrackPoint" {
+	pointer_accel 0.8
 }
 
 input "6127:24766:GamingMouseI_Gaming_Mouse" {
@@ -79,6 +84,14 @@ input "6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control" {
 	pointer_accel 0.8
 	accel_profile "adaptive"
 	scroll_factor 1.3
+}
+
+input "2362:9488:PixArt_USB_Optical_Mouse" {
+	pointer_accel 1.0
+	scroll_factor 1.2
+	accel_profile "adaptive"
+	natural_scroll enabled
+	middle_emulation enabled
 }
 
 input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 300
@@ -103,6 +116,8 @@ default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
 
+layer_effects "waybar" blur enable; shadows disable; corner_radius 0
+
 hide_edge_borders smart_no_gaps
 
 client.focused #ee0009af #fe0219af #efefefef #ee00098f
@@ -119,6 +134,9 @@ smart_gaps on
 smart_borders on
 gaps inner 4
 gaps outer 3
+
+exec_always pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+exec_always pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
 
 exec eww open calendar
 exec eww open mem
@@ -145,7 +163,7 @@ workspace 5 output DP-1
 workspace 6 output HDMI-A-2
 workspace 7 output DP-1
 workspace 8 output eDP-1
-workspace 9 output DP-1
+#workspace 9 output DP-1
 
 assign [app_id="Emacs"] 4
 assign [class="Emacs"] 4
@@ -153,6 +171,7 @@ assign [app_id="emacs"] 4
 assign [class="emacs"] 4
 assign [app_id="Firefox"] 2
 assign [class="Firefox"] 2
+assign [app_id="qutebrowser"] 2
 assign [app_id="com.obsproject.Studio"] 8
 assign [app_id="org.qutebrowser.qutebrowser"] 2
 assign [app_id="org.nicotine_plus.Nicotine"] 5
@@ -168,16 +187,50 @@ assign [class="Discord"] 5
 assign [app_id="Discord"] 5
 assign [app_id="discord"] 5
 assign [class="discord"] 5
+assign [app_id="^thunderbird$"] 5
+assign [class="Thunderbird"] 5
+assign [app_id="Thunderbird"] 5
+assign [title="Mozilla Thunderbird"] 5
 assign [class="mpv"] 7
 assign [app_id="mpv"] 7
-assign [app_id="PCManFM"] 5
-assign [class="PCManFM"] 5
-assign [app_id="pcmanfm"] 5
-assign [class="pcmanfm"] 5
+assign [app_id="vlc"] 7
+assign [class="vlc"] 7
+assign [class="VLC"] 7
+assign [app_id="VLC"] 7
+assign [title="VLC media player"] 7
+#assign [app_id="PCManFM"] 5
+#assign [class="PCManFM"] 5
+#assign [app_id="pcmanfm"] 5
+#assign [class="pcmanfm"] 5
+
+for_window [app_id="mpv"] {
+	floating enable
+	focus
+	inhibit_idle fullscreen
+}
+for_window [class="mpv"] {
+	floating enable
+	focus
+	inhibit_idle fullscreen
+}
+for_window [title="VLC media player"] {
+	floating enable
+	focus
+	inhibit_idle fullscreen
+}
+
+for_window [window_role="GtkFileChooserDialog"] {
+	floating enable
+	resize set 900 700
+	move position center
+}
+
 for_window [app_id="Emacs"] focus
 for_window [class="Emacs"] focus
-for_window [app_id="mpv"] floating enable
-for_window [class="mpv"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="helvum"] floating enable
+for_window [app_id="Helvum"] floating enable
+for_window [title="Helvum - PipeWire Patchbay"] floating enable
 for_window [app_id="GIMP"] floating enable
 for_window [class="GIMP"] floating enable
 for_window [app_id="Gimp"] floating enable
@@ -196,10 +249,17 @@ for_window [class="Firefox"] focus
 for_window [app_id="Firefox"] move workspace to output HDMI-A-2
 for_window [class="Firefox"] move workspace to output HDMI-A-2
 for_window [class="Gimp"] focus
-for_window [app_id="mpv"] focus
-for_window [class="mpv"] focus
-for_window [app_id="mpv"] inhibit_idle fullscreen
-for_window [class="mpv"] inhibit_idle fullscreen
+for_window [app_id="VLC"] inhibit_idle fullscreen
+for_window [class="VLC"] inhibit_idle fullscreen
+for_window [app_id="vlc"] inhibit_idle fullscreen
+for_window [class="vlc"] inhibit_idle fullscreen
+for_window [title="^Open File$"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
 
 # Start a terminal
 bindsym $mod+Return exec $term
@@ -208,7 +268,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+c kill
 
 # Start your launcher
-bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf -S 74c280ef -m bbaa00ef -M fbb73eef -f "SpaceMono Nerd Font:pixelsize=24:antialias=true" -x 6 -r 0 -B 2 -C 000000cc -d | sh
+bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf -S 74c280ef -m bbaa00ef -M fbb73eef -f "SpaceMono Nerd Font:pixelsize=24:antialias=true" -x 6 -r 38 -B 2 -P 1 -p "$ " -C 000000cc -d | sh
 
 bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5
 
@@ -232,7 +292,7 @@ bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin
 
 bindsym $mod+Shift+backspace exec transmission-remote-gtk
 
-bindsym $mod+backslash exec $term -e neomutt -F "/home/babkock/.muttrc"
+bindsym $mod+backslash workspace number 5; exec thunderbird
 
 bindsym $mod+Shift+backslash workspace number 5; exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations
 
@@ -283,7 +343,7 @@ bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
+#bindsym $mod+Shift+9 move container to workspace number 9
 
 #bindsym $mod+b splith
 #bindsym $mod+v splitv
@@ -295,7 +355,7 @@ bindsym $mod+Shift+p move workspace to output right
 bindsym $mod+Shift+o move workspace to output left
 
 # Switch the current container between different layout styles
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 #bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
