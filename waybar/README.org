@@ -175,7 +175,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
              "2": "爵",
              "3": "",
              "4": "",
-             "5": "",
+             "5": "󰭹",
              "6": "",
              "7": "",
              "8": "",

@@ -81,7 +81,7 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 | Super + Shift + Comma  | [[https://github.com/Babkock/Dotfiles/tree/master/doom.d][Emacs]]           |
 | Super + Semicolon      | Nicotine              |
 | Super + Shift + Semicolon | Virt-Manager       |
-| Super + Backslash         | Terminal with Neomutt |
+| Super + Backslash         | Mozilla Thunderbird   |
 | Super + Shift + Backslash | Discord            |
 | Super + Slash             | Sublime Text       |
 | Super + Shift + Slash     | Steam              |
