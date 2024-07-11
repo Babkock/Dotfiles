@@ -10,7 +10,8 @@
 #+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
 #+LANGUAGE: en
 
-This is my literate configuration for my [[https://github.com/elkowar/eww][Eww widgets]].
+This is my literate configuration for my [[https://github.com/elkowar/eww][Eww widgets]]. This Org document exports to two different files, =eww.yuck= and =eww.scss=. If running, Eww will automatically reload its
+configuration files after tangling.
 
 #+BEGIN_EXPORT html
 <header>
@@ -40,6 +41,8 @@ This is my literate configuration for my [[https://github.com/elkowar/eww][Eww w
   - [[#files][Files]]
 
 * Yuck Configuration
+
+Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting, and colored parenthesis in the following code blocks.
 
 ** Variables
 
@@ -84,7 +87,7 @@ This is my literate configuration for my [[https://github.com/elkowar/eww][Eww w
 	(calendar :halign "center"
 			  :valign "start"
 			  :class {class}
-             :active false
+             ; :active false
 			  :day calendar_day
 			  :year calendar_year))
 
@@ -299,12 +302,21 @@ This is my literate configuration for my [[https://github.com/elkowar/eww][Eww w
 ** Calendar
 
 #+begin_src scss :tangle eww.scss
+.cal, .waycal {
+    background:none;
+}
+
+$yellow: rgba(228, 207, 19, 0.4);
+$yellow2: #f4df23;
+
 .vertical.calendar, .vertical.waycalendar {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
     border:1px solid transparent;
     margin-top:9px;
     margin-bottom:9px;
+    margin-left:3px;
+    margin-right:3px;
 }
 .vertical.waycalendar {
     box-shadow:0 0 4px 4px rgba(255, 176, 2, 0.5);
@@ -321,6 +333,8 @@ This is my literate configuration for my [[https://github.com/elkowar/eww][Eww w
     color:#efefef;
     border:1px solid transparent;
     transition:all 0.4s ease 0s;
+    padding-left:1px;
+    padding-right:1px;
 }
 .calendar calendar:selected, .calendar calendar.highlight {
     color:#fe0219;
@@ -341,13 +355,13 @@ This is my literate configuration for my [[https://github.com/elkowar/eww][Eww w
     background:radial-gradient(rgba(40, 137, 186, 0.4), rgba(0, 0, 0, 0.01));
 }
 .diskbox {
-    background:radial-gradient(rgba(228, 207, 19, 0.4), rgba(0, 0, 0, 0.01));
+    background:radial-gradient($yellow, rgba(0, 0, 0, 0.01));
 }
 .megabox {
     background:radial-gradient(rgba(108, 102, 218, 0.4), rgba(0, 0, 0, 0.01));
 }
 .disk {
-    color:#f4df23;
+    color:$yellow2;
     background:rgba(0, 0, 0, 0.3);
     margin-top:40px;
 }
@@ -377,6 +391,8 @@ This is my literate configuration for my [[https://github.com/elkowar/eww][Eww w
     border:1px solid transparent;
     margin-top:6px;
     margin-bottom:6px;
+    margin-left:3px;
+    margin-right:3px;
 }
 .vertical.waymem {
     box-shadow:0 0 4px 4px rgba(12, 201, 123, 0.5);
@@ -459,14 +475,14 @@ progressbar.progress > trough *, progressbar.progress > trough * {
 .waypower, .power {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
-    border:1px solid transparent;
-    margin-top:10px;
-    margin-bottom:10px;
+    border:0px;
 }
 .vertical.waypower, .vertical.power, .horizontal.files, .horizontal.wayfiles {
     background:none;
     border-radius:0px;
     border:none;
+    margin-left:14px;
+    margin-right:14px;
 }
 .mypower, .mywaypower, .myfiles, .mywayfiles {
     background:none;

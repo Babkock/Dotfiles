@@ -4,7 +4,7 @@
 #  / /_(__  ) / / / /  / /__
 # /___/____/_/ /_/_/   \___/
 
-export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$PATH
+export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$HOME/.zsh/forgit/bin:$PATH
 
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
@@ -103,7 +103,7 @@ else
         true
     }
     function swa() {
-        export GTK_THEME="Sunset-Dark"
+        export GTK_THEME="Sunset"
         export GDK_BACKEND="wayland"
         export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="sway"
@@ -121,7 +121,9 @@ else
         pgrep pipewire | xargs kill 2> /dev/null
         pgrep pulseaudio | xargs kill 2> /dev/null
         echo "Starting Sway..."
-        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+        #pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+        gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+        gsettings set org.gnome.desktop.interface gtk-theme Sunset
         gsettings set org.gnome.desktop.interface cursor-theme Adwaita
         gsettings set org.gnome.desktop.interface cursor-size 30
         dbus-launch --exit-with-session sway
@@ -210,22 +212,24 @@ if [ -v TERM ]; then
         alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
         alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
-        alias e="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q"
-        alias ee="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q ."
-        alias ez="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
-        alias eb="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
-        alias ep="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
-        alias eq="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
-        alias ec="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
-        alias ed="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
-        alias ew="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
-        alias es="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
-        alias ef="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
-        alias egp="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
-        alias egs="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
-        alias ei="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias egl="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias er="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
+        alias e="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q"
+        alias ee="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q ."
+        alias ea="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/alacritty/config.org\""
+        alias ez="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
+        alias eb="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
+        alias eq="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
+        alias ed="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
+        alias ew="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
+        alias es="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
+        alias ef="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
+        alias egp="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
+        alias egs="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
+        alias ei="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias egl="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias er="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
+        alias eo="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/eww/eww.org\""
         alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5"
@@ -253,6 +257,8 @@ if [ -v TERM ]; then
         alias ew="emacsclient -c -a 'emacs' -nw \"$HOME/.config/waybar/config.org\""
         alias es="emacsclient -c -a 'emacs' -nw \"$HOME/.config/waybar/style.org\""
         alias ef="emacsclient -c -a 'emacs' -nw \"$HOME/.config/foot/foot.org\""
+        alias ea="emacsclient -c -a 'emacs' -nw \"$HOME/.config/alacritty/config.org\""
+        alias eo="emacsclient -c -a 'emacs' -nw \"$HOME/.config/eww/eww.org\""
         alias egp="emacsclient -c -a 'emacs' -nw --eval \"(magit-push)\""
         alias egs="emacsclient -c -a 'emacs' -nw --eval \"(magit-status)\""
         alias ei="emacsclient -c -a 'emacs' -nw --eval \"(magit-log-all)\""
@@ -260,9 +266,49 @@ if [ -v TERM ]; then
     fi
 fi
 
+function tbef() {
+    if [ -z "$1" ]; then
+        printf "Must specify the name of a film file to edit\n" > /dev/stderr
+        false
+    elif [ -z "$2" ]; then
+        vim "$HOME/TBcom/resources/op/film/$1.html"
+        pushd "$HOME/TBcom/resources/op" > /dev/null
+        git add film
+        popd > /dev/null
+        true
+    else
+        vim "$HOME/TBcom/resources/op/film/$1.html"
+        vim "$HOME/TBcom/resources/op/film/$2.html"
+        pushd "$HOME/TBcom/resources/op" > /dev/null
+        git add film
+        popd > /dev/null
+        true
+    fi
+}
+
+function tbem() {
+    if [ -z "$1" ]; then
+        printf "Must specify the name of an artist file to edit\n" > /dev/stderr
+        false
+    elif [ -z "$2" ]; then
+        vim "$HOME/TBcom/resources/op/music/$1.html"
+        pushd "$HOME/TBcom/resources/op" > /dev/null
+        git add music
+        popd > /dev/null
+        true
+    else
+        vim "$HOME/TBcom/resources/op/music/$1.html"
+        vim "$HOME/TBcom/resources/op/music/$2.html"
+        pushd "$HOME/TBcom/resources/op" > /dev/null
+        git add music
+        popd > /dev/null
+        true
+    fi
+}
+
 function pf() {
     if [ -z "$1" ]; then
-        printf "pf needs a process name to search for\n"
+        printf "pf needs a process name to search for\n" > /dev/stderr
         false
     else
         ps -aux | rg "$1"
@@ -346,6 +392,19 @@ function twitch() {
     /home/babkock/git/twitch-chat-cli/cli.js connect babkock
 }
 
+function record() {
+    if [[ -z "$1" && -z "$2" ]]; then
+        printf "USAGE: %s [display] [output file]\n" "$0" > /dev/stderr
+        false
+    elif [ -z "$2" ]; then
+        wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o HDMI-A-2 -c libx264rgb -r 60 -f "$1"
+        true
+    else
+        wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o "$1" -c libx264rgb -r 60 -f "$2"
+        true
+    fi
+}
+
 function mm() {
     sudo cryptsetup luksOpen /dev/sda mega
     sudo mount -o rw,users /dev/mapper/mega /mnt/mega
@@ -373,6 +432,15 @@ function b() {
 function q() {
     identify "$1"
     swayimg "$1"
+}
+
+function pcp() {
+    if [[ -z "$1" ]]; then
+        printf "No file specified\n" > /dev/stderr
+        false
+    else
+        scp -i "$HOME/.ssh/comp2pi" "$1" pi@192.168.0.13:~
+    fi
 }
 
 function pv() {
@@ -468,6 +536,7 @@ alias or="eww reload"
 alias ow="eww open mem; eww open calendar; eww open power; eww open files"
 alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
 alias u="neomutt -F '$HOME/.muttrc'"
+alias spi="ssh -i '$HOME/.ssh/comp2pi' pi@192.168.0.13"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias qw="swayimg --all"
@@ -476,11 +545,11 @@ alias qg="gimp"
 alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
 alias sb="sudo sv restart bluez-alsa; sudo sv restart bluetoothd"
 alias se="pkill -x emacs; emacs --daemon"
-alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' &"
-alias sw="pkill -x waybar; waybar -c '$HOME/.config/waybar/config.json' &"
-alias sf="pkill -x waybar; waybar -c '$HOME/.config/waybar/wconfig.json' -s '$HOME/.config/waybar/wayfire.css' &"
+alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' -l off &"
+alias sw="pkill -x waybar; waybar -c '$HOME/.config/waybar/config.json' -l off &"
+alias sf="pkill -x waybar; waybar -c '$HOME/.config/waybar/wconfig.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
 alias so="pkill -x eww"
-alias sy="pkill -x waybar; waybar -c '$HOME/.config/waybar/hconfig.json' -s '$HOME/.config/waybar/hyprland.css' &"
+alias sy="pkill -x waybar; waybar -c '$HOME/.config/waybar/hconfig.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
 alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; pipewire &"
 alias sz="sudo pkill -x wpa_supplicant; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
 alias ta="tar xvf"
@@ -511,20 +580,20 @@ autoload -U compinit; compinit
 autoload -U promptinit; promptinit
 prompt typewritten
 
-source /home/babkock/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/babkock/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=""
-source /home/babkock/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/babkock/.zsh/zsh-autopair/autopair.zsh
-source /home/babkock/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
-source /home/babkock/.zsh/zsh-nix-shell/nix-shell.plugin.zsh
-source /home/babkock/.zsh/you-should-use/you-should-use.plugin.zsh
-source /home/babkock/.zsh/completion.zsh
-source /home/babkock/.zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
-source /home/babkock/.zsh/correction.zsh
-source /home/babkock/.zsh/history.zsh
-source /home/babkock/.zsh/colored-man-pages.plugin.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.zsh/zsh-autopair/autopair.zsh
+source $HOME/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
+source $HOME/.zsh/zsh-nix-shell/nix-shell.plugin.zsh
+source $HOME/.zsh/you-should-use/you-should-use.plugin.zsh
+source $HOME/.zsh/completion.zsh
+source $HOME/.zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
+source $HOME/.zsh/correction.zsh
+source $HOME/.zsh/history.zsh
+source $HOME/.zsh/colored-man-pages.plugin.zsh
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift+Tab
 bindkey -M menuselect '^@' reverse-menu-complete
