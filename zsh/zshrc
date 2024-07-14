@@ -11,9 +11,6 @@ export TARGET=i386-elf
 
 CITY="Arvada"
 VIVID_THEME="alabaster_dark"
-TRANS_CREDENTIALS="tababcock0987:kristin12345@127.0.0.1:9091"
-TRANS_PASS="tababcock0987:kristin12345"
-WEBSITE_ADDRESS="tababcock@198.23.51.224"
 RSYNC_PATH="/home/www/tannerbabcock.com"
 
 #LSCOLORS=$LS_COLORS
