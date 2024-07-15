@@ -86,9 +86,8 @@ export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 
-CITY="Arvada"
+source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
-RSYNC_PATH="/home/www/tannerbabcock.com"
 
 #LSCOLORS=$LS_COLORS
 #ZLS_COLORS=$LS_COLORS
