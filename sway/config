@@ -16,16 +16,19 @@ set $right l
 
 set $term alacritty --config-file "$HOME/.config/alacritty/sway.toml"
 
-exec --no-startup-id pkill -x pulseaudio
-exec --no-startup-id pkill -x pipewire
+exec pgrep pulseaudio | xargs kill
+exec pkill -x pulseaudio
+exec pkill -x pipewire
 exec pipewire &
-exec --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
-exec_always --no-startup-id autotiling -l 2
-exec eww --force-wayland daemon
-exec --no-startup-id pkill -x hydroxide
+exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
+exec --no-startup-id autotiling -l 2 &
+exec gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+exec gsettings set org.gnome.desktop.interface cursor-size 30
+exec pkill -x hydroxide
+exec pgrep hydroxide | xargs kill
 exec hydroxide imap &
 exec hydroxide smtp &
-exec --no-startup-id pkill -x stash
+exec pkill -x stash
 exec stash &
 
 output "eDP-1" {
@@ -77,13 +80,13 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
 input "6127:24766:GamingMouseI_Gaming_Mouse" {
 	pointer_accel 0.8
 	accel_profile "adaptive"
-	scroll_factor 1.3
+	scroll_factor 1.2
 }
 
 input "6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control" {
 	pointer_accel 0.8
 	accel_profile "adaptive"
-	scroll_factor 1.3
+	scroll_factor 1.2
 }
 
 input "2362:9488:PixArt_USB_Optical_Mouse" {
@@ -104,14 +107,11 @@ input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 60
 blur enable
 blur_passes 1
 blur_radius 2
-blur_noise 0.1
 corner_radius 35
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 2
 shadow_color #ee000999
-shadow_inactive_color #99cf01aa
-shadow_offset 1 1
 default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
@@ -138,17 +138,18 @@ gaps outer 3
 exec_always pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
 exec_always pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
 
+exec pkill -x eww
+exec eww --force-wayland daemon &
 exec eww open calendar
 exec eww open mem
 exec eww open power
-exec eww open files
 
 exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color a9df11aa --ring-wrong-color fe021988 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 10101066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/rainreflectionlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/stoplightslock.png -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainbowcloudslock.jpg -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color 74c280aa --ring-wrong-color fe021999 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 00000066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/rainreflectionlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/stoplightslock.png -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainbowcloudslock.jpg -s fill"
 
 exec mako -c "$HOME/.config/mako/swayconfig" &
-exec waybar -c "$HOME/.config/waybar/config.json"
+exec waybar -c "$HOME/.config/waybar/config.json" -l off &
 exec pkill -x emacs
-exec emacs --daemon
+exec emacs --daemon &
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
 exec mpdas -d
@@ -163,7 +164,7 @@ workspace 5 output DP-1
 workspace 6 output HDMI-A-2
 workspace 7 output DP-1
 workspace 8 output eDP-1
-#workspace 9 output DP-1
+workspace 9 output DP-1
 
 assign [app_id="Emacs"] 4
 assign [class="Emacs"] 4
@@ -187,10 +188,10 @@ assign [class="Discord"] 5
 assign [app_id="Discord"] 5
 assign [app_id="discord"] 5
 assign [class="discord"] 5
-assign [app_id="^thunderbird$"] 5
-assign [class="Thunderbird"] 5
-assign [app_id="Thunderbird"] 5
-assign [title="Mozilla Thunderbird"] 5
+assign [app_id="^thunderbird$"] 7
+assign [class="Thunderbird"] 7
+assign [app_id="Thunderbird"] 7
+assign [title="Mozilla Thunderbird"] 7
 assign [class="mpv"] 7
 assign [app_id="mpv"] 7
 assign [app_id="vlc"] 7
@@ -288,11 +289,11 @@ bindsym $mod+Shift+semicolon exec virt-manager
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
 
-bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin12345@127.0.0.1:9091'
+bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'redacted'
 
 bindsym $mod+Shift+backspace exec transmission-remote-gtk
 
-bindsym $mod+backslash workspace number 5; exec thunderbird
+bindsym $mod+backslash workspace number 7; exec thunderbird
 
 bindsym $mod+Shift+backslash workspace number 5; exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations
 
@@ -334,6 +335,7 @@ bindsym $mod+5 workspace number 5
 bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
 
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -343,7 +345,7 @@ bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
-#bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+9 move container to workspace number 9
 
 #bindsym $mod+b splith
 #bindsym $mod+v splitv

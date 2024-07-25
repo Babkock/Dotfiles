@@ -392,7 +392,7 @@
 "privacy": {
     "icon-spacing": 8,
     "icon-size": 24,
-    "transition-duration": 350,
+    "transition-duration": 400,
     "modules": [
         {
             "type": "screenshare",

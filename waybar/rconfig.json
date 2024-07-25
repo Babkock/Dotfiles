@@ -73,6 +73,7 @@
 
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
@@ -145,6 +146,7 @@
 
 "backlight": {
     "device": "intel_backlight",
+    "tooltip": false,
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",

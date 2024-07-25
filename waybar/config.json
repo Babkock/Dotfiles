@@ -157,7 +157,7 @@
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
     "mode": "dock",
-    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
     "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
@@ -179,6 +179,14 @@
             "default": ""
         }
     },
+
+"sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", " ", " "],
+    "tooltip": true,
+    "tooltip-format": "{title}"
+},
 
 "sway/window": {
     "format": "{title}",
@@ -277,7 +285,7 @@
         "Simple Preferences": "󰕼 ",
         "Adjustments and Effects": "󰕼 ",
         "File Upload": " ",
-        "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
+        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
         "Discord Updater": "󰙯 ",
         "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
@@ -391,6 +399,24 @@
         "locked": " ",
         "unlocked": " "
     }
+},
+
+"cava": {
+    "framerate": 30,
+    "autosens": 1,
+    "bars": 6,
+    "bar_delimiter": 32,
+    "input_delay": 2,
+    "method": "fifo",
+    "source": "/tmp/mpd.fifo",
+    "sample_bits": 16,
+    "sample_rate": 44100,
+    "stereo": true,
+    "reverse": false,
+    "waves": false,
+    "monstercat": false,
+    "hide_on_silence": true,
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 },
 
 "tray": {

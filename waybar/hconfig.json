@@ -1,13 +1,15 @@
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 40,
+    "height": 41,
     "spacing": 0,
     "output": "eDP-1",
-    "modules-left": ["wlr/workspaces"],
+    "reload_style_on_change": true,
+    "modules-left": ["hyprland/workspaces"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "all-outputs": false,
+        "move-to-monitor": true,
         "disable-scroll": false,
         "format": "{icon}",
         "format-icons": {
@@ -24,7 +26,6 @@
             "focused": "",
             "default": ""
         },
-        "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
@@ -40,7 +41,7 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon} ",
     "title-len": 41,
@@ -95,7 +96,7 @@
         "critical": 20
     },
     "full-at": 94,
-    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
+    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
     "format-charging": " <span style=\"italic\">{capacity}%</span>",
     "format-plugged": " {capacity}%",
     "format-alt": "{icon}   {time}",
@@ -118,7 +119,7 @@
 },
 
 "pulseaudio": {
-    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
     "format-bluetooth-muted": "  {volume}%",
     "format-muted": " {volume}%",
@@ -150,12 +151,13 @@
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 42,
+    "height": 43,
     "spacing": 0,
+    "reload_style_on_change": true,
     "output": "HDMI-A-2",
-    "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "keyboard-state", "tray"],
-    "wlr/workspaces": {
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
          "format": "{icon}",
@@ -172,10 +174,9 @@
              "urgent": "",
              "focused": "",
              "default": ""
-         },
-         "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
-         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 
 "hyprland/window": {
@@ -186,6 +187,8 @@
         "foot": " ",
         "Alacritty": " ",
         "st": " ",
+        "\\[spaceman\\] (.*)": " $1",
+        "\\[spaceman\\] exit(.*)": " $1",
         "Steam": " ",
         "Sign in to Steam": " ",
         "Shutdown": " ",
@@ -194,6 +197,7 @@
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
         "Mozilla Firefox": " ",
+        "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "Wikipedia, the free encyclopedia": "󰖬 ",
         "(.*) - Wikipedia": "󰖬 <span style=\"italic\">$1</span>",
@@ -250,7 +254,15 @@
         "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
+        "Stash":  " ",
+        "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
+        "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
         "(.*) – Doom Emacs": " <span style=\"italic\">$1</span>",
         "(.*) — Doom Emacs": " <span style=\"italic\">$1</span>",
@@ -261,17 +273,26 @@
         "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) - mpv": " <span style=\"italic\">$1</span>",
         "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
-        "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
+        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
         "Discord Updater": "󰙯 ",
+        "Discord": "󰙯 ",
+        "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
         " \\*Minibuf-1\\* — Doom Emacs": " ",
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴"
+        "Nicotine\\+": "󰒴",
+        "\\*Minibuf-1\\* — Doom Emacs": " ",
+        "\\*Minibuf-1\\* – Doom Emacs":  " ",
+        "\\*Minibuf-2\\* — Doom Emacs": " ",
+        "\\*Minibuf-2\\* – Doom Emacs":  " ",
+        "Nicotine\\+": "󰒴",
+        "Volume Control": " ",
+        "Helvum - Pipewire Patchbay": " ",
     },
-    "max-length": 64
+    "max-length": 66
 },
 
 "disk": {
@@ -281,6 +302,29 @@
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+
+"privacy": {
+    "icon-spacing": 8,
+    "icon-size": 24,
+    "transition-duration": 400,
+    "modules": [
+        {
+            "type": "screenshare",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-out",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-in",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        }
+    ]
 },
 
 "wireplumber": {
@@ -295,19 +339,6 @@
     "on-click-right": "helvum"
 },
 
-"bluetooth": {
-    "format-on": " {controller_alias}",
-    "format-disabled": "",
-    "format-off": "󰂲",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {icon} {device_alias}",
-    "tooltip-format-on": "{controller_address} {controller_address_type}",
-    "tooltip-format-off": "{controller_address} {controller_address_type}",
-    "tooltip-format-connected": "{device_address} {controller_alias}",
-    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
-},
-
 "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -316,6 +347,13 @@
     },
     "timeout": 60,
     "tooltip": false
+},
+
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
 },
 
 "network": {
@@ -355,9 +393,9 @@
     "output": "DP-1",
     "height": 43,
     "spacing": 0,
-    "modules-left": ["wlr/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": false,
         "all-outputs": false,
         "format": "{icon}",
@@ -375,9 +413,8 @@
             "focused": "",
             "default": ""
          },
-         "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
+         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 
 "custom/weather": {
@@ -401,8 +438,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {

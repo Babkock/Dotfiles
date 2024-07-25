@@ -38,6 +38,7 @@
 
 [alias]
 	a = add
+	c = checkout
 	cm = commit -m
 	ca = commit --allow-empty-message -m ''
 	d = diff
@@ -51,4 +52,6 @@
 	r = rm
 	rc = rm --cached
 	s = status -s -b
+	pusm = push -u origin main
+	pulm = pull origin main
 

@@ -50,6 +50,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#pulseaudio][Pulseaudio]]
 - [[#sway-monitor-bar][Sway Monitor Bar]]
   - [[#appearance-1][Appearance]]
+  - [[#scratchpad][Scratchpad]]
   - [[#window][Window]]
   - [[#idle-inhibit][Idle Inhibit]]
   - [[#network][Network]]
@@ -59,6 +60,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#temperature][Temperature]]
   - [[#disk-1][Disk]]
   - [[#keyboard-state][Keyboard State]]
+  - [[#cava][Cava]]
   - [[#tray][Tray]]
 - [[#sway-tv-bar][Sway TV Bar]]
   - [[#appearance-2][Appearance]]
@@ -130,16 +132,17 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#appearance-9][Appearance]]
   - [[#window-2][Window]]
   - [[#disk-internal-ssd][Disk (Internal SSD)]]
+  - [[#privacy-2][Privacy]]
   - [[#wireplumber-2][Wireplumber]]
-  - [[#bluetooth-4][Bluetooth]]
   - [[#idle-inhibit-2][Idle Inhibit]]
+  - [[#temperature-2][Temperature]]
   - [[#network-3][Network]]
   - [[#keyboard-state-2][Keyboard State]]
   - [[#tray-2][Tray]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-10][Appearance]]
   - [[#weather-2][Weather]]
-  - [[#bluetooth-5][Bluetooth]]
+  - [[#bluetooth-4][Bluetooth]]
   - [[#memory-6][Memory]]
   - [[#disk-7][Disk]]
   - [[#cpu-6][CPU]]
@@ -359,7 +362,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
     "mode": "dock",
-    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
     "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
@@ -381,6 +384,18 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
             "default": ""
         }
     },
+#+end_src
+
+** Scratchpad
+
+#+begin_src json :tangle config.json
+"sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", " ", " "],
+    "tooltip": true,
+    "tooltip-format": "{title}"
+},
 #+end_src
 
 ** Window
@@ -483,7 +498,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Simple Preferences": "󰕼 ",
         "Adjustments and Effects": "󰕼 ",
         "File Upload": " ",
-        "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
+        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
         "Discord Updater": "󰙯 ",
         "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
@@ -629,6 +644,28 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "locked": " ",
         "unlocked": " "
     }
+},
+#+end_src
+
+** Cava
+
+#+begin_src json :tangle config.json
+"cava": {
+    "framerate": 30,
+    "autosens": 1,
+    "bars": 6,
+    "bar_delimiter": 32,
+    "input_delay": 2,
+    "method": "fifo",
+    "source": "/tmp/mpd.fifo",
+    "sample_bits": 16,
+    "sample_rate": 44100,
+    "stereo": true,
+    "reverse": false,
+    "waves": false,
+    "monstercat": false,
+    "hide_on_silence": true,
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 },
 #+end_src
 
@@ -1493,7 +1530,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 "privacy": {
     "icon-spacing": 8,
     "icon-size": 24,
-    "transition-duration": 350,
+    "transition-duration": 400,
     "modules": [
         {
             "type": "screenshare",
@@ -1544,13 +1581,15 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 40,
+    "height": 41,
     "spacing": 0,
     "output": "eDP-1",
-    "modules-left": ["wlr/workspaces"],
+    "reload_style_on_change": true,
+    "modules-left": ["hyprland/workspaces"],
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "all-outputs": false,
+        "move-to-monitor": true,
         "disable-scroll": false,
         "format": "{icon}",
         "format-icons": {
@@ -1567,7 +1606,6 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
         },
-        "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
@@ -1591,7 +1629,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon} ",
     "title-len": 41,
@@ -1662,7 +1700,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "critical": 20
     },
     "full-at": 94,
-    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
+    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
     "format-charging": " <span style=\"italic\">{capacity}%</span>",
     "format-plugged": " {capacity}%",
     "format-alt": "{icon}   {time}",
@@ -1693,7 +1731,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hconfig.json
 "pulseaudio": {
-    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
     "format-bluetooth-muted": "  {volume}%",
     "format-muted": " {volume}%",
@@ -1736,12 +1774,13 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 42,
+    "height": 43,
     "spacing": 0,
+    "reload_style_on_change": true,
     "output": "HDMI-A-2",
-    "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "wireplumber", "bluetooth", "temperature", "keyboard-state", "tray"],
-    "wlr/workspaces": {
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
          "format": "{icon}",
@@ -1758,10 +1797,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "urgent": "",
              "focused": "",
              "default": ""
-         },
-         "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
-         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 #+end_src
 
@@ -1776,6 +1814,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "foot": " ",
         "Alacritty": " ",
         "st": " ",
+        "\\[spaceman\\] (.*)": " $1",
+        "\\[spaceman\\] exit(.*)": " $1",
         "Steam": " ",
         "Sign in to Steam": " ",
         "Shutdown": " ",
@@ -1784,6 +1824,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
         "Mozilla Firefox": " ",
+        "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "Wikipedia, the free encyclopedia": "󰖬 ",
         "(.*) - Wikipedia": "󰖬 <span style=\"italic\">$1</span>",
@@ -1840,7 +1881,15 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
+        "Stash":  " ",
+        "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
+        "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
         "(.*) – Doom Emacs": " <span style=\"italic\">$1</span>",
         "(.*) — Doom Emacs": " <span style=\"italic\">$1</span>",
@@ -1851,17 +1900,26 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) - mpv": " <span style=\"italic\">$1</span>",
         "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
-        "(.*) - Discord": "󰙯 <span style=\"italic\">$1</span>",
+        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
         "Discord Updater": "󰙯 ",
+        "Discord": "󰙯 ",
+        "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
         " \\*Minibuf-1\\* — Doom Emacs": " ",
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴"
+        "Nicotine\\+": "󰒴",
+        "\\*Minibuf-1\\* — Doom Emacs": " ",
+        "\\*Minibuf-1\\* – Doom Emacs":  " ",
+        "\\*Minibuf-2\\* — Doom Emacs": " ",
+        "\\*Minibuf-2\\* – Doom Emacs":  " ",
+        "Nicotine\\+": "󰒴",
+        "Volume Control": " ",
+        "Helvum - Pipewire Patchbay": " ",
     },
-    "max-length": 64
+    "max-length": 66
 },
 #+end_src
 
@@ -1875,6 +1933,33 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})"
+},
+#+end_src
+
+** Privacy
+
+#+begin_src json :tangle hconfig.json
+"privacy": {
+    "icon-spacing": 8,
+    "icon-size": 24,
+    "transition-duration": 400,
+    "modules": [
+        {
+            "type": "screenshare",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-out",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        },
+        {
+            "type": "audio-in",
+            "tooltip": true,
+            "tooltip-icon-size": 28
+        }
+    ]
 },
 #+end_src
 
@@ -1894,23 +1979,6 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 },
 #+end_src
 
-** Bluetooth
-
-#+begin_src json :tangle hconfig.json
-"bluetooth": {
-    "format-on": " {controller_alias}",
-    "format-disabled": "",
-    "format-off": "󰂲",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {icon} {device_alias}",
-    "tooltip-format-on": "{controller_address} {controller_address_type}",
-    "tooltip-format-off": "{controller_address} {controller_address_type}",
-    "tooltip-format-connected": "{device_address} {controller_alias}",
-    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
-},
-#+end_src
-
 ** Idle Inhibit
 
 #+begin_src json :tangle hconfig.json
@@ -1922,6 +1990,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     },
     "timeout": 60,
     "tooltip": false
+},
+#+end_src
+
+** Temperature
+
+#+begin_src json :tangle hconfig.json
+"temperature": {
+    "thermal-zone": 1,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "format": " {temperatureF}°F",
+    "format-alt": " {temperatureC}°C"
 },
 #+end_src
 
@@ -1980,9 +2059,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "output": "DP-1",
     "height": 43,
     "spacing": 0,
-    "modules-left": ["wlr/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": false,
         "all-outputs": false,
         "format": "{icon}",
@@ -2000,9 +2079,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
          },
-         "on-click": "activate",
-         "on-scroll-up": "hyprctl dispatch workspace e+1",
-         "on-scroll-down": "hyprctl dispatch workspace e-1"
+         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
+         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
     },
 #+end_src
 
@@ -2038,8 +2116,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "memory": {
     "format": " {}%",
-    "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-    "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
+    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 #+end_src
 

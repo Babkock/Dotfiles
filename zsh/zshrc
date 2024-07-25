@@ -68,7 +68,7 @@ else
     alias xx="loginctl reboot"
     # functions only for login shells
     function shy() {
-        export GTK_THEME="Sunset-Dark"
+        export GTK_THEME="Sunset"
         export GDK_BACKEND="wayland"
         export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="Hyprland"
@@ -447,13 +447,13 @@ function pv() {
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="neofetch --disk_display bar --memory_display bar --battery_display bar --bar_length 20 --underline off --bar_colors 30 210"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Font:Theme:Break:CPU:GPU:CPUUsage:Memory:Swap:Battery:LocalIp:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white'"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
 alias ci="cargo init"
 alias ct="cargo test --release"
-alias df="duf" # like df
+alias df="duf -hide-mp \"/run/systemd,/boot/efi,/run,/run/user,/sys/fs/cgroup,/dev/shm\"" # like df
 # fzf file picker with preview
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
 alias i="tig"

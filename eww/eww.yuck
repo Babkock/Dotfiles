@@ -22,7 +22,7 @@
 	(calendar :halign "center"
 			  :valign "start"
 			  :class {class}
-             :active false
+             ; :active false
 			  :day calendar_day
 			  :year calendar_year))
 

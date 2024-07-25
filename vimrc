@@ -1,9 +1,3 @@
-"         _                    
-"  _   __(_)___ ___  __________
-" | | / / / __ `__ \/ ___/ ___/
-" | |/ / / / / / / / /  / /__  
-" |___/_/_/ /_/ /_/_/   \___/  
-"
 set nocompatible
 set incsearch
 set hlsearch
@@ -25,12 +19,18 @@ syntax on
 if $TERM == 'alacritty'
 	set ttymouse=sgr
 endif
+if $TERM == 'xterm-kitty'
+	set ttymouse=sgr
+endif
+if $TERM == 'foot'
+	set ttymouse=sgr
+endif
 
 hi CursorLine term=bold cterm=bold ctermbg=235
 hi CursorLineNr term=none cterm=none ctermbg=235 ctermfg=1
 hi CursorColumn ctermbg=234 ctermfg=239
 hi SignColumn ctermbg=none cterm=bold term=bold
-hi Search ctermfg=0 ctermbg=9 cterm=underline term=underline
+hi Search ctermfg=0 ctermbg=0 cterm=underline term=underline
 hi VertSplit ctermbg=0 ctermfg=0
 hi Visual ctermbg=14 ctermfg=232
 hi LineNr ctermfg=248
@@ -40,7 +40,7 @@ hi GitGutterAddNr ctermbg=22
 hi GitGutterAddLine ctermbg=22
 hi GitGutterChange ctermfg=3
 hi GitGutterChangeNr ctermbg=94
-hi GitGutterChangeLine ctermbg=94
+hi GitGutterChangeLine ctermbg=22
 hi GitGutterDelete ctermfg=1
 hi GitGutterDeleteNr ctermbg=88
 hi GitGutterDeleteLine ctermbg=88
@@ -54,7 +54,6 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
@@ -69,8 +68,4 @@ let g:airline#extensions#whitespace#checks = ['']
 let g:gitgutter_set_sign_backgrounds = 0
 let g:gitgutter_highlight_lines = 1
 let g:gitgutter_highlight_linenrs = 1
-
-nmap [. <Plug>(GitGutterPrevHunk)
-nmap ]. <Plug>(GitGutterNextHunk)
-nmap <F2> :GitGutterLineHighlightsToggle<CR>
 

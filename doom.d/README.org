@@ -91,6 +91,7 @@ Here, I set my name and email address.
 #+begin_src emacs-lisp :tangle yes
 (setq user-full-name "Tanner Babcock"
       user-mail-address (concat "babkock" "@" "protonmail" "." "com"))
+(use-package all-the-icons)
 #+end_src
 
 ** Preferences
@@ -575,6 +576,7 @@ Dashboard menu sections.
     :desc "Open elfeed.org" :ne "E" (cmd! (find-file "~/org/elfeed.org"))
     :desc "Reset Elfeed" :ne "n" #'elfeed-db-unload
     :desc "Set Theme" :ne "T" #'load-theme
+    :desc "Open eww.org" :ne "y" (cmd! (find-file "~/.config/eww/eww.org"))
     :desc "Open video.org" :ne "v" (cmd! (find-file "~/org/video.org"))
     :desc "Quit" :ne "Q" #'save-buffers-kill-terminal)
 #+end_src
