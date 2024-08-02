@@ -173,8 +173,8 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 	:monitor 1
 	:geometry (geometry :x "50px"
 						:y "100px"
-						:width "310px"
-						:height "800px"
+						:width "340px"
+						:height "820px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -190,8 +190,8 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 	:monitor 2
 	:geometry (geometry :x "50px"
 						:y "100px"
-						:width "310px"
-						:height "800px"
+						:width "340px"
+						:height "820px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -201,6 +201,23 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 		     (ssd :class "waydisk"))
 		 (box :orientation "vertical" :class "waymegabox"
 		     (hdd :class "waymega"))))
+
+(defwindow hycalendar
+	:wm-ignore: true
+	:monitor 2
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "340px"
+						:height "820px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "vertical"
+		 :valign "center"
+		 (cal :class "hycal")
+		 (box :orientation "vertical" :class "hydiskbox"
+		     (ssd :class "hydisk"))
+		 (box :orientation "vertical" :class "hymegabox"
+		     (hdd :class "hymega"))))
 #+end_src
 
 *** Monitor 2
@@ -211,7 +228,7 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 	:monitor 2
 	:geometry (geometry :x "50px"
 						:y "100px"
-						:width "340px"
+						:width "350px"
 						:height "890px"
 						:anchor "top right")
 	:stacking "bottom"
@@ -229,7 +246,7 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
     :monitor 1
     :geometry (geometry :x "50px"
                         :y "100px"
-                        :width "340px"
+                        :width "350px"
                         :height "890px"
                         :anchor "top right")
     :stacking "bottom"
@@ -241,6 +258,24 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 		    (power :class "waycpu"))
 		(box :orientation "vertical" :class "wayrambox"
 		    (system :class "wayram"))))
+
+(defwindow hymem
+    :wm-ignore: true
+    :monitor 1
+    :geometry (geometry :x "50px"
+                        :y "100px"
+                        :width "350px"
+                        :height "890px"
+                        :anchor "top right")
+    :stacking "bottom"
+    (box :orientation "vertical"
+		(overlay
+			(musicprogress :class "wayprogress")
+			(albumart :class "art"))
+        (box :orientation "vertical" :class "hycpubox"
+		    (power :class "hycpu"))
+		(box :orientation "vertical" :class "hyrambox"
+		    (system :class "hyram"))))
 #+end_src
 
 *** Monitor 0
@@ -302,14 +337,14 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 ** Calendar
 
 #+begin_src scss :tangle eww.scss
-.cal, .waycal {
+.cal, .waycal, .hycal {
     background:none;
 }
 
 $yellow: rgba(228, 207, 19, 0.4);
 $yellow2: #f4df23;
 
-.vertical.calendar, .vertical.waycalendar {
+.vertical.calendar, .vertical.waycalendar, .vertical.hycalendar {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
     border:1px solid transparent;
@@ -324,10 +359,13 @@ $yellow2: #f4df23;
 .vertical.calendar {
     box-shadow:0 0 4px 4px rgba(228, 207, 19, 0.5);
 }
-.waycalendar, .calendar {
+.vertical.hycalendar {
+    box-shadow:0 0 4px 4px rgba(233, 212, 167, 0.5);
+}
+.waycalendar, .calendar, .hycalendar {
     background:none;
 }
-.calendar, .calendar calendar, .waycalendar, .waycalendar calendar, .mem, .waymem {
+.calendar, .calendar calendar, .waycalendar, .waycalendar calendar, .mem, .waymem, .hycalendar, .hycalendar calendar, .hymem {
     font-family:"Space Mono Nerd Font";
     font-size:1.15em;
     color:#efefef;
@@ -342,11 +380,17 @@ $yellow2: #f4df23;
 .waycalendar calendar:selected, .waycalendar calendar.highlight {
     color:#f63117;
 }
+.hycalendar calendar:selected, .hycalendar calendar.highlight {
+    color:#e6727a;
+}
 .calendar calendar.header {
     color:#a9df11;
 }
 .waycalendar calendar.header {
     color:#1accee;
+}
+.hycalendar calendar.header {
+    color:#c3eb59;
 }
 .waydiskbox {
     background:radial-gradient(rgba(255, 176, 2, 0.4), rgba(0, 0, 0, 0.01));
@@ -359,6 +403,12 @@ $yellow2: #f4df23;
 }
 .megabox {
     background:radial-gradient(rgba(108, 102, 218, 0.4), rgba(0, 0, 0, 0.01));
+}
+.hydiskbox {
+    background:radial-gradient(rgba(233, 212, 167, 0.4), rgba(0, 0, 0, 0.01));
+}
+.hymegabox {
+    background:radial-gradient(rgba(77, 119, 213, 0.4), rgba(0, 0, 0, 0.01));
 }
 .disk {
     color:$yellow2;
@@ -380,12 +430,22 @@ $yellow2: #f4df23;
     background:rgba(0, 0, 0, 0.3);
     margin-top:40px;
 }
+.hymega {
+    color:#44bdda;
+    background:rgba(0, 0, 0, 0.3);
+    margin-top:40px;
+}
+.hydisk {
+    color:#ffee60;
+    background:rgba(0, 0, 0, 0.3);
+    margin-top:40px;
+}
 #+end_src
 
 ** Memory
 
 #+begin_src scss :tangle eww.scss
-.vertical.waymem, .vertical.mem {
+.vertical.waymem, .vertical.mem, .vertical.hymem, .vertical.hycalendar {
     background:linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.5));
     border-radius:84px 84px 84px 84px;
     border:1px solid transparent;
@@ -400,7 +460,10 @@ $yellow2: #f4df23;
 .vertical.mem {
     box-shadow:0 0 4px 4px rgba(153, 208, 2, 0.5);
 }
-.waymem, .mem {
+.vertical.hymem {
+    box-shadow:0 0 4px 4px rgba(201, 223, 146, 0.5);
+}
+.waymem, .mem, .hymem {
     background:none;
 }
 .wayrambox {
@@ -414,6 +477,12 @@ $yellow2: #f4df23;
 }
 .cpubox {
     background:radial-gradient(rgba(238, 0, 10, 0.4), rgba(0, 0, 0, 0.01));
+}
+.hyrambox {
+    background:radial-gradient(rgba(201, 223, 146, 0.4), rgba(0, 0, 0, 0.01));
+}
+.hycpubox {
+    background:radial-gradient(rgba(238, 75, 80, 0.4), rgba(0, 0, 0, 0.01));
 }
 .ram {
     color:#a9df11;
@@ -435,6 +504,18 @@ $yellow2: #f4df23;
 }
 .waycpu {
     color:#f63117;
+    background:rgba(0, 0, 0, 0.3);
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.hyram {
+    color:#c3eb59;
+    background:rgba(0, 0, 0, 0.3);
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.hycpu {
+    color:#e6727a;
     background:rgba(0, 0, 0, 0.3);
     margin-top:15px;
     margin-bottom:15px;

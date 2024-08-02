@@ -2,7 +2,7 @@
 # Activate additional HDMI monitor, position it to the right of laptop
 echo "Activating monitor"
 if [ $(xrandr | grep " connected " | awk '{ print$1 }' | tail -1) == "HDMI2" ]; then
-#	xrandr --output eDP1 --primary --mode 1920x1080 --brightness 0.7 --output HDMI2 --right-of eDP1 --mode 1920x1080 --brightness 0.9 --output DP1 --left-of eDP1 --mode 1920x1080
+	xrandr --output eDP1 --primary --mode 1920x1080 --brightness 0.7 --output HDMI2 --right-of eDP1 --mode 1920x1080 --brightness 0.9 --output DP1 --right-of HDMI2 --mode 1920x1080
 
 	# show second polybar
 	pkill -x polybar
@@ -25,7 +25,7 @@ if [ $(xrandr | grep " connected " | awk '{ print$1 }' | tail -1) == "HDMI2" ]; 
 	bspc rule -a "filezilla" desktop='^8' state=floating focus=on follow=on
 
 	# set two wallpapers
-	xwallpaper --output eDP1 --stretch ~/.config/river/ibm.jpg --output HDMI2 --stretch ~/.config/river/farmhouse.jpg
+	xwallpaper --output eDP1 --stretch ~/.config/river/ibm.jpg --output HDMI2 --stretch ~/.config/river/farmhouse.jpg --output DP1 --stretch ~/.config/hypr/blackmechkeyboard.jpg
 
 	# bspwm configuration
 	bspc monitor eDP1 -d II III IV V

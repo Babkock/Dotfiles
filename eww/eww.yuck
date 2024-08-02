@@ -94,8 +94,8 @@
 	:monitor 1
 	:geometry (geometry :x "50px"
 						:y "100px"
-						:width "310px"
-						:height "800px"
+						:width "340px"
+						:height "820px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -111,8 +111,8 @@
 	:monitor 2
 	:geometry (geometry :x "50px"
 						:y "100px"
-						:width "310px"
-						:height "800px"
+						:width "340px"
+						:height "820px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -123,12 +123,29 @@
 		 (box :orientation "vertical" :class "waymegabox"
 		     (hdd :class "waymega"))))
 
-(defwindow mem
+(defwindow hycalendar
 	:wm-ignore: true
 	:monitor 2
 	:geometry (geometry :x "50px"
 						:y "100px"
 						:width "340px"
+						:height "820px"
+						:anchor "top right")
+	:stacking "bottom"
+	(box :orientation "vertical"
+		 :valign "center"
+		 (cal :class "hycal")
+		 (box :orientation "vertical" :class "hydiskbox"
+		     (ssd :class "hydisk"))
+		 (box :orientation "vertical" :class "hymegabox"
+		     (hdd :class "hymega"))))
+
+(defwindow mem
+	:wm-ignore: true
+	:monitor 2
+	:geometry (geometry :x "50px"
+						:y "100px"
+						:width "350px"
 						:height "890px"
 						:anchor "top right")
 	:stacking "bottom"
@@ -146,7 +163,7 @@
     :monitor 1
     :geometry (geometry :x "50px"
                         :y "100px"
-                        :width "340px"
+                        :width "350px"
                         :height "890px"
                         :anchor "top right")
     :stacking "bottom"
@@ -158,6 +175,24 @@
 		    (power :class "waycpu"))
 		(box :orientation "vertical" :class "wayrambox"
 		    (system :class "wayram"))))
+
+(defwindow hymem
+    :wm-ignore: true
+    :monitor 1
+    :geometry (geometry :x "50px"
+                        :y "100px"
+                        :width "350px"
+                        :height "890px"
+                        :anchor "top right")
+    :stacking "bottom"
+    (box :orientation "vertical"
+		(overlay
+			(musicprogress :class "wayprogress")
+			(albumart :class "art"))
+        (box :orientation "vertical" :class "hycpubox"
+		    (power :class "hycpu"))
+		(box :orientation "vertical" :class "hyrambox"
+		    (system :class "hyram"))))
 
 (defwindow power
 	:wm-ignore: true

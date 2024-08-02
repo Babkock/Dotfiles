@@ -424,6 +424,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "GitHub": " ",
         "Explore GitHub": " ",
         "GitHub Dashboard": " ",
+        "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Tumblr": " ",
@@ -478,6 +481,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
+        "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Stash — Mozilla Firefox":  " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -1629,7 +1634,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon} ",
     "title-len": 41,
@@ -1831,6 +1836,12 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "GitHub": " ",
         "Explore GitHub": " ",
         "GitHub Dashboard": " ",
+        "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "(.*) at master · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "(.*) at main · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "Release (.*) · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
         "Tumblr": " ",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -1885,6 +1896,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
+        "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Stash — Mozilla Firefox":  " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -1919,7 +1932,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
     },
-    "max-length": 66
+    "max-length": 67
 },
 #+end_src
 

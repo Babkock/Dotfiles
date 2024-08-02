@@ -289,7 +289,7 @@ bindsym $mod+Shift+semicolon exec virt-manager
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
 
-bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'redacted'
+bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin12345@127.0.0.1:9091'
 
 bindsym $mod+Shift+backspace exec transmission-remote-gtk
 

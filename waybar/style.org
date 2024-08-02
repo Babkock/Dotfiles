@@ -937,15 +937,13 @@ tooltip {
 #+begin_src css :tangle hyprland.css
  * {
     font-family:"VictorMono Nerd Font";
-    font-size:23px;
+    font-size:24px;
     background:transparent;
     color:#fdeadb;
-    margin-bottom:1px;
-    margin-top:1px;
 }
 
 window {
-    background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0));
 }
 
 tooltip {
