@@ -14,7 +14,7 @@
          "all-outputs": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
+             "1": "",
              "2": "爵",
              "3": "",
              "4": "",
@@ -84,8 +84,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {
@@ -152,13 +152,13 @@
 
 }, {
     "position": "bottom",
-    "height": 42,
+    "height": 43,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
-    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "cava", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -166,7 +166,7 @@
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -225,6 +225,8 @@
         "(.*) - (.*) - Stack Overflow — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -243,8 +245,10 @@
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
-        "Letterboxd • Social film discovery.": " ",
+        "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": "󰇙 ",
+        "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
@@ -265,11 +269,15 @@
         "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "• Discord \\| (.*) \\| (.*) — (.*)": " <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
+        "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Hyprland Wiki": " ",
+        "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -290,9 +298,9 @@
         "Simple Preferences": "󰕼 ",
         "Adjustments and Effects": "󰕼 ",
         "File Upload": " ",
-        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
-        "Discord Updater": "󰙯 ",
-        "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) - Discord": "  <span style=\"italic\">$1</span>",
+        "Discord Updater": " ",
+        "• Discord \\| (.*) \\| (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
         " \\*Minibuf-1\\* — Doom Emacs": " ",
@@ -433,7 +441,7 @@
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 42,
+    "height": 43,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],
@@ -445,7 +453,7 @@
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -480,8 +488,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {

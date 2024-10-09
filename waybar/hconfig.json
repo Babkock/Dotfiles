@@ -1,7 +1,7 @@
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 41,
+    "height": 42,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
@@ -13,7 +13,7 @@
         "disable-scroll": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -41,10 +41,10 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon} ",
-    "title-len": 41,
+    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
+    "title-len": 42,
     "unknown-tag": "N/A",
     "interval": 1,
     "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
@@ -85,8 +85,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "battery": {
@@ -151,18 +151,18 @@
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 43,
+    "height": 44,
     "spacing": 0,
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "cava", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
+             "1": "",
              "2": "爵",
              "3": "",
              "4": "",
@@ -200,6 +200,7 @@
         "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "Wikipedia, the free encyclopedia": "󰖬 ",
+        "Wikipedia": "󰖬 ",
         "(.*) - Wikipedia": "󰖬 <span style=\"italic\">$1</span>",
         "GitHub": " ",
         "Explore GitHub": " ",
@@ -225,6 +226,8 @@
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) · GitLab": " <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
@@ -238,8 +241,10 @@
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
-        "Letterboxd • Social film discovery.": " ",
+        "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": "󰇙 ",
+        "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
@@ -260,12 +265,16 @@
         "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
-        "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
+        "• Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
+        "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Hyprland Wiki": " ",
+        "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -279,12 +288,16 @@
         "feh \\[1 of 1\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[1 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
-        "(.*) - mpv": " <span style=\"italic\">$1</span>",
-        "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
-        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
-        "Discord Updater": "󰙯 ",
-        "Discord": "󰙯 ",
-        "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) - mpv": " <span style=\"italic\">$1</span>",
+        "(.*) - VLC Media Player": "󰕼 <span style=\"italic\">$1</span>",
+        "VLC media player": "󰕼 ",
+        "Current Media Information": "󰕼 ",
+        "Simple Preferences": "󰕼 ",
+        "Adjustments and Effects": "󰕼 ",
+        "(.*) - Discord": "  <span style=\"italic\">$1</span>",
+        "Discord Updater": " ",
+        "Discord": " ",
+        "• Discord \\| (.*) \\| (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
         " \\*Minibuf-1\\* — Doom Emacs": " ",
@@ -376,21 +389,26 @@
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
 },
 
-"keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": {
-        "numlock": " {icon}",
-        "capslock": "󰪛 {icon}"
-    },
-    "format-icons": {
-        "locked": " ",
-        "unlocked": " "
-    }
+"cava": {
+    "framerate": 34,
+    "autosens": 1,
+    "bars": 6,
+    "bar_delimiter": 32,
+    "input_delay": 2,
+    "method": "fifo",
+    "source": "/tmp/mpd.fifo",
+    "sample_bits": 16,
+    "sample_rate": 44100,
+    "stereo": true,
+    "reverse": false,
+    "waves": false,
+    "monstercat": false,
+    "hide_on_silence": true,
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 },
 
 "tray": {
-    "icon-size": 32,
+    "icon-size": 33,
     "spacing": 1,
     "show-passive-items": true
 }
@@ -401,6 +419,7 @@
     "output": "DP-1",
     "height": 43,
     "spacing": 0,
+    "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
     "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
     "hyprland/workspaces": {
@@ -408,7 +427,7 @@
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -446,8 +465,8 @@
 
 "memory": {
     "format": " {}%",
-    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 
 "disk": {

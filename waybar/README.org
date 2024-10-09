@@ -4,18 +4,28 @@
 #+LANGUAGE: en
 #+STARTUP: showeverything
 #+OPTIONS: toc:nil num:nil
-#+DESCRIPTION: Waybar configuration on Tanner Babcock GitHub Pages. Contains working status bars for Sway, River, and LabWC.
-#+KEYWORDS: tanner babcock, emacs, waybar, wayland, compositor, sway, river, labwc, org mode, linux, gnu linux, experimental, noise
+#+DESCRIPTION: Waybar configuration on Tanner Babcock GitHub Pages. Contains working status bars for Sway, River, Wayfire, and Hyprland.
+#+KEYWORDS: tanner babcock, emacs, waybar, wayland, compositor, sway, river, hyprland, wayfire, labwc, org mode, linux, gnu linux, experimental, noise
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
 #+HTML_HEAD_EXTRA: <meta property="og:image" content="/images/ogimage.png" />
 #+HTML_HEAD_EXTRA: <meta property="og:image:width" content="660" />
 #+HTML_HEAD_EXTRA: <meta property="og:image:height" content="461" />
 #+HTML_HEAD_EXTRA: <meta property="og:title" content="Waybar" />
-#+HTML_HEAD_EXTRA: <meta property="og:description" content="Waybar configuration on Tanner Babcock GitHub Pages. Contains working status bars for Sway, River, and LabWC." />
+#+HTML_HEAD_EXTRA: <meta property="og:description" content="Waybar configuration on Tanner Babcock GitHub Pages. Contains working status bars for Sway, River, Wayfire, and Hyprland." />
 #+HTML_HEAD_EXTRA: <meta property="og:locale" content="en_US" />
 #+HTML_HEAD_EXTRA: <link rel="icon" href="/images/favicon.png" />
 #+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
 #+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
+
+This Org documents contains my Waybar configurations for four different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][River]], [[https://github.com/WayfireWM/wayfire][Wayfire]], and [[https://github.com/hyprwm/Hyprland][Hyprland]].
+I use three monitors, side-by-side. The leftmost one being my laptop's display, the middle one is a Lenovo HDMI monitor, and the right one is an
+HP monitor. Each configuration file has three separate status bars, for each of the three outputs. The appearances of these bars may change
+slightly, depending on the GTK+/Libadwaita theme in use, and the associated CSS files.
+
+If you've ever seen me use a Wayland compositor in a video, I was using a Waybar from this document.
+
+This Org document outputs to four separate files: =config.json= for Sway, =rconfig.json= for River, =wconfig.json= for Wayfire, and =hconfig.json= for Hyprland.
+Please see the document *[[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][style.org]]* for the associated CSS files: =style.css=, =river.css=, =wayfire.css=, and =hyprland.css= respectively.
 
 Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literate configuration. Please, if you appreciate my work, consider [[https://tannerbabcock.com/donate][making a donation]].
 
@@ -34,7 +44,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
 </header>
 #+END_EXPORT
 
-# #+TOC: headlines 2
+# +# TOC: headlines 2
 
 * Table of Contents :toc:
 - [[#sway-laptop-bar][Sway Laptop Bar]]
@@ -137,7 +147,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#idle-inhibit-2][Idle Inhibit]]
   - [[#temperature-2][Temperature]]
   - [[#network-3][Network]]
-  - [[#keyboard-state-2][Keyboard State]]
+  - [[#cava-1][Cava]]
   - [[#tray-2][Tray]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-10][Appearance]]
@@ -150,10 +160,8 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
 
 * Sway Laptop Bar
 
-This Org documents contains my Waybar configurations for three different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][River]], and [[https://github.com/labwc/labwc][LabWC]]. It has a total of six separate status bars, one for each of my two outputs, on each of the three compositors.
-If you've ever seen me use a Wayland compositor in a video, I was using a Waybar from this document.
-
-This Org document outputs to three separate files: =config.json=, =rconfig.json= for River, and =lconfig.json= for LabWC. In turn, these bars use the stylesheets =style.css=, =river.css=, and =labwc.css= respectively.
+Some of the Waybar JSON objects have stray modules that are not included in the "=modules=" fields of the bars. This is because I don't always like to use
+every single one of the modules, if I don't have to. The modules and their orders are always subject to change.
 
 ** Appearance
 
@@ -174,7 +182,7 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
          "all-outputs": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
+             "1": "",
              "2": "爵",
              "3": "",
              "4": "",
@@ -264,8 +272,8 @@ This Org document outputs to three separate files: =config.json=, =rconfig.json=
 #+begin_src json :tangle config.json
     "memory": {
         "format": " {}%",
-        "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-        "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+        "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+        "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
     },
 #+end_src
 
@@ -357,13 +365,13 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle config.json
 }, {
     "position": "bottom",
-    "height": 42,
+    "height": 43,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
-    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "cava", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -371,7 +379,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -438,6 +446,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) - (.*) - Stack Overflow — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -456,8 +466,10 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
-        "Letterboxd • Social film discovery.": " ",
+        "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": "󰇙 ",
+        "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
@@ -478,11 +490,15 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "• Discord \\| (.*) \\| (.*) — (.*)": " <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
+        "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Hyprland Wiki": " ",
+        "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -503,9 +519,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Simple Preferences": "󰕼 ",
         "Adjustments and Effects": "󰕼 ",
         "File Upload": " ",
-        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
-        "Discord Updater": "󰙯 ",
-        "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) - Discord": "  <span style=\"italic\">$1</span>",
+        "Discord Updater": " ",
+        "• Discord \\| (.*) \\| (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
         " \\*Minibuf-1\\* — Doom Emacs": " ",
@@ -692,7 +708,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 42,
+    "height": 43,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],
@@ -704,7 +720,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -751,8 +767,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle config.json
 "memory": {
     "format": " {}%",
-    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 #+end_src
 
@@ -1586,7 +1602,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 41,
+    "height": 42,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
@@ -1598,7 +1614,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "disable-scroll": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -1634,10 +1650,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon} ",
-    "title-len": 41,
+    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
+    "title-len": 42,
     "unknown-tag": "N/A",
     "interval": 1,
     "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
@@ -1690,8 +1706,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
     "memory": {
         "format": " {}%",
-        "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-        "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+        "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+        "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
     },
 #+end_src
 
@@ -1779,18 +1795,18 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 43,
+    "height": 44,
     "spacing": 0,
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "cava", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
+             "1": "",
              "2": "爵",
              "3": "",
              "4": "",
@@ -1832,6 +1848,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "Wikipedia, the free encyclopedia": "󰖬 ",
+        "Wikipedia": "󰖬 ",
         "(.*) - Wikipedia": "󰖬 <span style=\"italic\">$1</span>",
         "GitHub": " ",
         "Explore GitHub": " ",
@@ -1857,6 +1874,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) · GitLab": " <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
@@ -1870,8 +1889,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) • Letterboxd": " <span style=\"italic\">$1</span>",
-        "Letterboxd • Social film discovery.": " ",
+        "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery.": "󰇙 ",
+        "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Hacker News": " ",
@@ -1892,12 +1913,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
-        "• Discord \\| (.*) \\| (.*) — (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
+        "• Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
+        "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Hyprland Wiki": " ",
+        "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -1911,12 +1936,16 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "feh \\[1 of 1\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[1 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
         "feh \\[2 of 2\\] - (.*)": " <span style=\"italic\">$1</span>",
-        "(.*) - mpv": " <span style=\"italic\">$1</span>",
-        "(.*) - VLC Media Player": " <span style=\"italic\">$1</span>",
-        "(.*) - Discord": "󰙯  <span style=\"italic\">$1</span>",
-        "Discord Updater": "󰙯 ",
-        "Discord": "󰙯 ",
-        "• Discord \\| (.*) \\| (.*)": "󰙯 <span style=\"italic\">$1</span>: $2",
+        "(.*) - mpv": " <span style=\"italic\">$1</span>",
+        "(.*) - VLC Media Player": "󰕼 <span style=\"italic\">$1</span>",
+        "VLC media player": "󰕼 ",
+        "Current Media Information": "󰕼 ",
+        "Simple Preferences": "󰕼 ",
+        "Adjustments and Effects": "󰕼 ",
+        "(.*) - Discord": "  <span style=\"italic\">$1</span>",
+        "Discord Updater": " ",
+        "Discord": " ",
+        "• Discord \\| (.*) \\| (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
         " \\*Minibuf-1\\* — Doom Emacs": " ",
@@ -2033,20 +2062,25 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 },
 #+end_src
 
-** Keyboard State
+** Cava
 
 #+begin_src json :tangle hconfig.json
-"keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": {
-        "numlock": " {icon}",
-        "capslock": "󰪛 {icon}"
-    },
-    "format-icons": {
-        "locked": " ",
-        "unlocked": " "
-    }
+"cava": {
+    "framerate": 34,
+    "autosens": 1,
+    "bars": 6,
+    "bar_delimiter": 32,
+    "input_delay": 2,
+    "method": "fifo",
+    "source": "/tmp/mpd.fifo",
+    "sample_bits": 16,
+    "sample_rate": 44100,
+    "stereo": true,
+    "reverse": false,
+    "waves": false,
+    "monstercat": false,
+    "hide_on_silence": true,
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 },
 #+end_src
 
@@ -2054,7 +2088,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hconfig.json
 "tray": {
-    "icon-size": 32,
+    "icon-size": 33,
     "spacing": 1,
     "show-passive-items": true
 }
@@ -2072,6 +2106,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "output": "DP-1",
     "height": 43,
     "spacing": 0,
+    "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
     "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
     "hyprland/workspaces": {
@@ -2079,7 +2114,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "爵",
             "3": "",
             "4": "",
@@ -2129,8 +2164,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "memory": {
     "format": " {}%",
-    "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": "󰍛 {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
 },
 #+end_src
 
@@ -2172,7 +2207,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2024 Tanner Babcock.</p>
+        <p>Copyright &copy; 2025 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;
