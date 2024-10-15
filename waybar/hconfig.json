@@ -390,7 +390,7 @@
 },
 
 "cava": {
-    "framerate": 34,
+    "framerate": 40,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,
@@ -409,7 +409,7 @@
 
 "tray": {
     "icon-size": 33,
-    "spacing": 1,
+    "spacing": 2,
     "show-passive-items": true
 }
 

@@ -672,7 +672,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 #+begin_src json :tangle config.json
 "cava": {
-    "framerate": 30,
+    "framerate": 40,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,
@@ -694,7 +694,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 #+begin_src json :tangle config.json
 "tray": {
-    "icon-size": 32,
+    "icon-size": 33,
     "spacing": 1,
     "show-passive-items": true
 }
@@ -2066,7 +2066,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hconfig.json
 "cava": {
-    "framerate": 34,
+    "framerate": 40,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,
@@ -2089,7 +2089,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "tray": {
     "icon-size": 33,
-    "spacing": 1,
+    "spacing": 2,
     "show-passive-items": true
 }
 #+end_src
