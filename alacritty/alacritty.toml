@@ -1,0 +1,112 @@
+#     ___    __                _ __  __       
+#    /   |  / /___ ___________(_) /_/ /___  __
+#   / /| | / / __ `/ ___/ ___/ / __/ __/ / / /
+#  / ___ |/ / /_/ / /__/ /  / / /_/ /_/ /_/ / 
+# /_/  |_/_/\__,_/\___/_/  /_/\__/\__/\__, /  
+#                                   /____/   
+
+[bell]
+animation = "EaseOut"
+color = "#101010"
+duration = 200
+
+[colors]
+draw_bold_text_with_bright_colors = true
+transparent_background_colors = true
+
+[colors.bright]
+black = "0x121212"
+blue = "0x54cdea"
+cyan = "0xcdab24"
+green = "0xc3ea59"
+magenta = "0xd170cb"
+red = "0xe6727a"
+white = "0xfdeadb"
+yellow = "0xffee60"
+
+[colors.normal]
+black = "0x000000"
+blue = "0x4d77d5"
+cyan = "0xdc8e50"
+green = "0xb9cf82"
+magenta = "0xc48b9b"
+red = "0xee4b50"
+white = "0xeddacb"
+yellow = "0xe9d3a7"
+
+[colors.primary]
+background = "0x020202"
+foreground = "0xffefef"
+
+[cursor]
+blink_interval = 300
+blink_timeout = 30
+unfocused_hollow = false
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[font]
+size = 14
+
+[font.bold]
+family = "SpaceMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "SpaceMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "SpaceMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "SpaceMono Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = -3
+
+#[hints]
+#enabled = true
+#hyperlinks = true
+
+#[[hints.enabled]]
+#command = "xdg-open"
+#post_processing = true
+#regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+#[hints.enabled.mouse]
+#enabled = true
+#mods = "Control"
+
+[mouse]
+hide_when_typing = true
+
+#[[mouse.bindings]]
+#action = "PasteSelection"
+#mouse = "Middle"
+
+[scrolling]
+multiplier = 4
+
+[terminal.shell]
+program = "/bin/zsh"
+
+[window]
+decorations = "none"
+decorations_theme_variant = "Dark"
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.7
+
+[window.padding]
+x = 9
+y = 9
+
+[debug]
+prefer_egl = true
+

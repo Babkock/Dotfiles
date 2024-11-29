@@ -1,8 +1,12 @@
 * {
     font-family:"VictorMono Nerd Font";
-    font-size:23px;
-    background:transparent;
+    font-size:24px;
+    /* background:rgba(0, 0, 0, 0); */
     color:#fedd83;
+}
+
+window {
+    background:none;
 }
 
 tooltip {
@@ -35,6 +39,14 @@ tooltip {
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
+#cpu {
+    margin-left:3px;
+    margin-right:0px;
+    padding-left:13px;
+    padding-right:10px;
+    border-radius:40px 0px 0px 40px;
+}
+
 #cpu, #wireplumber.muted {
     margin-left:0;
 }
@@ -45,9 +57,18 @@ tooltip {
     margin-left:2px;
     margin-right:0;
     padding-left:10px;
-    padding-right:10px;
+    padding-right:11px;
     border-radius:40px 0px 0px 40px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+}
+
+#pulseaudio {
+    border-radius:40px 40px 40px 40px;
+    padding-left:11px;
+    padding-right:12px;
+    margin-right:3px;
+    margin-left:1px;
+    box-shadow:3px 2px rgba(228, 207, 19, 0.4);
 }
 
 #pulseaudio.muted {
@@ -58,6 +79,10 @@ tooltip {
     padding-left:4px;
     padding-right:4px;
     background:linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.3));
+}
+
+#privacy-item label {
+    color:#fe0219;
 }
 
 #memory, #backlight, #wireplumber {
@@ -71,16 +96,16 @@ tooltip {
 }
 
 #workspaces button, #tags button {
-    background:linear-gradient(0deg, rgba(120, 120, 120, 0.5), rgba(0, 0, 0, 0.4));
-    padding-left:17px;
-    padding-right:17px;
-    margin-left:1px;
-    margin-right:2px;
+    background:linear-gradient(0deg, rgba(60, 60, 30, 0.5), rgba(0, 0, 0, 0.5));
+    padding-left:16px;
+    padding-right:18px;
+    margin-left:2px;
+    margin-right:3px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     color:#dfdfdf;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
-    box-shadow:2px 2px rgba(0, 0, 0, 0.5);
+    box-shadow:3px 2px rgba(0, 0, 0, 0.5);
     outline:0;
 }
 
@@ -90,14 +115,14 @@ tooltip {
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(0deg, rgba(154, 208, 2, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(154, 208, 2, 0.5), rgba(0, 0, 0, 0.5));
     text-shadow:inherit;
-    margin-left:1px;
-    margin-right:2px;
+    margin-left:2px;
+    margin-right:3px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
     text-shadow:3px 3px rgba(154, 208, 2, 0.6);
-    box-shadow:2px 2px rgba(154, 208, 2, 0.5);
+    box-shadow:3px 2px rgba(154, 208, 2, 0.5);
 }
 
 #workspaces button:hover label {
@@ -105,9 +130,9 @@ tooltip {
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
-    background:linear-gradient(0deg, rgba(238, 1, 10, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(0deg, rgba(238, 1, 10, 0.5), rgba(0, 0, 0, 0.5));
     color:#efefef;
-    box-shadow:2px 2px rgba(238, 0, 10, 0.5);
+    box-shadow:3px 2px rgba(238, 0, 10, 0.5);
 }
 #workspaces button.focused label {
     color:#fe0219;
@@ -118,16 +143,26 @@ tooltip {
 }
 
 #tags button.occupied {
-    background:linear-gradient(180deg, rgba(239, 175, 96, 0.5), rgba(0, 0, 0, 0.4));
+    background:linear-gradient(180deg, rgba(239, 175, 96, 0.5), rgba(0, 0, 0, 0.5));
     color:#fff293;
+}
+
+#cava {
+    background:linear-gradient(0deg, rgba(238, 1, 10, 0.5), rgba(0, 0, 0, 0.3));
+    color:#fe0219;
+    padding-left:4px;
+    padding-right:2px;
+    text-shadow:3px 3px rgba(0, 0, 0, 0.4);
 }
 
 #keyboard-state {
     padding-left:8px;
-    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.4));
+    padding-right:5px;
+    background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.5));
     border-radius:0px 40px 40px 0px;
-    box-shadow:2px 2px rgba(228, 207, 19, 0.4);
-    margin-right:2px;
+    box-shadow:3px 2px rgba(228, 207, 19, 0.4);
+    margin-right:4px;
+    margin-left:0px;
 }
 
 #keyboard-state label {
@@ -160,13 +195,22 @@ tooltip {
     padding-right:12px;
 }
 
+#pulseaudio.bluetooth {
+    border-radius:40px 40px 40px 40px;
+    margin-left:1px;
+    margin-right:3px;
+    padding-left:11px;
+    padding-right:13px;
+    box-shadow:3px 2px rgba(118, 112, 229, 0.5);
+}
+
 #battery {
     border-radius:0px 40px 40px 0px;
     padding-left:10px;
     padding-right:12px;
     margin-left:0;
-    margin-right:2px;
-    box-shadow:3px 3px rgba(118, 112, 229, 0.4);
+    margin-right:3px;
+    box-shadow:3px 2px rgba(118, 112, 229, 0.4);
 }
 
 #battery.warning {
@@ -175,7 +219,7 @@ tooltip {
     background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.3));
     margin-left:0;
     margin-right:3px;
-    box-shadow:3px 3px rgba(224, 202, 16, 0.5);
+    box-shadow:3px 2px rgba(224, 202, 16, 0.5);
 }
 
 #battery.critical {
@@ -183,7 +227,7 @@ tooltip {
     border-radius:0px 40px 40px 0px;
     font-weight:bold;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
-    margin-left:3px;
+    margin-left:0px;
     margin-right:4px;
     box-shadow:3px 3px rgba(255, 255, 255, 0.5);
 }
@@ -200,40 +244,48 @@ tooltip {
     color:#fe0219;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
+    margin-right:3px;
+    padding-left:11px;
+    padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    border-radius:0px 40px 40px 0px;
+    box-shadow:3px 2px rgba(283, 0, 10, 0.4);
 }
 
 #bluetooth.connected, #bluetooth.connected.pairable {
     color:#a9df11;
     background:linear-gradient(0deg, rgba(153, 207, 1, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
+    margin-right:3px;
+    padding-left:11px;
+    padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    border-radius:0px 40px 40px 0px;
+    box-shadow:3px 2px rgba(153, 207, 1, 0.5);
 }
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
     color:#5254fe;
     background:linear-gradient(0deg, rgba(108, 102, 218, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
-    margin-right:0;
+    margin-right:3px;
     padding-left:11px;
-    padding-right:11px;
+    padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    border-radius:0px 40px 40px 0px;
+    box-shadow:3px 2px rgba(108, 102, 218, 0.4);
 }
 
 #bluetooth.discovering {
     color:#f4df23;
     background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
-    margin-right:0;
+    margin-right:3px;
     padding-left:11px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    border-radius:0px 40px 40px 0px;
+    box-shadow:3px 2px rgba(228, 207, 19, 0.4);
 }
 
 #custom-clock, #network {
@@ -245,5 +297,5 @@ tooltip {
     padding-right:10px;
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
-    box-shadow:3px 3px rgba(175, 56, 219, 0.4);
+    box-shadow:3px 2px rgba(175, 56, 219, 0.4);
 }

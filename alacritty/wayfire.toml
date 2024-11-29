@@ -1,0 +1,75 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+transparent_background_colors = true
+
+[colors.bright]
+black = "0x121212"
+blue = "0x09bcde"
+cyan = "0x9aadf9"
+green = "0x1cd98b"
+magenta = "0xe36ab1"
+red = "0xf63117"
+white = "0xffffff"
+yellow = "0xfef47f"
+
+[colors.normal]
+black = "0x000000"
+blue = "0x2889ba"
+cyan = "0x9081f6"
+green = "0x0cc97b"
+magenta = "0xc469a6"
+red = "0xce2828"
+white = "0xeeeeee"
+yellow = "0xffb002"
+
+[colors.primary]
+background = "0x070202"
+foreground = "0xefefef"
+
+[font]
+size = 14
+
+[font.bold]
+family = "SpaceMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "SpaceMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "SpaceMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "SpaceMono Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = -2
+
+[mouse]
+hide_when_typing = true
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[window]
+decorations = "none"
+opacity = 0.7
+decorations_theme_variant = "Dark"
+dynamic_padding = true
+
+[cursor]
+blink_interval = 500
+[cursor.style]
+shape = "Beam"
+blinking = "Always"
+[cursor.vi_mode_style]
+shape = "Beam"
+blinking = "Always"
+
+[window.padding]
+x = 9
+y = 9

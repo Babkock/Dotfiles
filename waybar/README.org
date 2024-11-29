@@ -183,7 +183,7 @@ every single one of the modules, if I don't have to. The modules and their order
          "format": "{icon}",
          "format-icons": {
              "1": "",
-             "2": "爵",
+             "2": "󰖟",
              "3": "",
              "4": "",
              "5": "󰭹",
@@ -286,7 +286,7 @@ every single one of the modules, if I don't have to. The modules and their order
     "format": "󰋊 <span style=\"italic\">{free}</span>",
     "format-alt": "󰋊 {used}",
     "tooltip": true,
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 #+end_src
 
@@ -380,7 +380,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "format": "{icon}",
         "format-icons": {
             "1": "",
-            "2": "爵",
+            "2": "󰖟",
             "3": "",
             "4": "",
             "5": "󰭹",
@@ -531,6 +531,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Nicotine\\+": "󰒴",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
+        "(.*) | MDN": " <span style=\"italic\">$1</span>"
     },
     "max-length": 86,
     "all-outputs": true
@@ -647,7 +648,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 #+end_src
 
@@ -712,7 +713,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],
-    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -721,7 +722,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "format": "{icon}",
         "format-icons": {
             "1": "",
-            "2": "爵",
+            "2": "󰖟",
             "3": "",
             "4": "",
             "5": "󰭹",
@@ -823,7 +824,7 @@ This is the first and primary bar for the River compositor. It appears on my lap
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
     "river/tags": {
         "num-tags": 6,
-        "tag-labels": ["", "爵", "", "", "", ""]
+        "tag-labels": ["", "󰖟", "", "", "", ""]
     },
 #+end_src
 
@@ -964,7 +965,7 @@ This is the second status bar that River uses. It appears on my monitor (=HDMI-A
     "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
     "river/tags": {
         "num-tags": 4,
-        "tag-labels": ["", "爵", "", ""]
+        "tag-labels": ["", "󰖟", "", ""]
     },
 #+end_src
 
@@ -1340,7 +1341,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "(.*) - mpv": "<span style=\"italic\">$1</span>",
             "(.*) - VLC Media Player": "<span style=\"italic\">$1</span>",
             "VLC media player": " ",
-            "File Upload": " ",
+            "File Upload": "󰖟 ",
             "(.*) - Discord": "<span style=\"italic\">$1</span>",
             "Discord Updater": " ",
             "• Discord \\| (.*) \\| (.*)": "<span style=\"italic\">$1</span>: $2",
@@ -1615,7 +1616,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "format": "{icon}",
         "format-icons": {
             "1": "",
-            "2": "爵",
+            "2": "󰖟",
             "3": "",
             "4": "",
             "5": "󰭹",
@@ -1807,7 +1808,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
          "format": "{icon}",
          "format-icons": {
              "1": "",
-             "2": "爵",
+             "2": "󰖟",
              "3": "",
              "4": "",
              "5": "󰭹",
@@ -1960,6 +1961,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Nicotine\\+": "󰒴",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
+        "(.*) | MDN": " <span style=\"italic\">$1</span>",
     },
     "max-length": 67
 },
@@ -2115,7 +2117,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "format": "{icon}",
         "format-icons": {
             "1": "",
-            "2": "爵",
+            "2": "󰖟",
             "3": "",
             "4": "",
             "5": "󰭹",
