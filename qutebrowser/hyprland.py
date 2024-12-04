@@ -261,7 +261,7 @@ c.completion.favorite_paths = ["file:///home/babkock/.config/qutebrowser/index.h
 # --- Search engines ---
 
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}' }
+c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',  '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}',  '!o': 'https://odysee.com/$/search?q={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!p': 'https://iptorrents.me/t?89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&q={}&qf=ti#torrents', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}' }
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']

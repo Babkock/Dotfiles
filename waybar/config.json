@@ -15,13 +15,13 @@
          "format": "{icon}",
          "format-icons": {
              "1": "",
-             "2": "爵",
+             "2": "󰖟",
              "3": "",
              "4": "",
              "5": "󰭹",
              "6": "",
-             "7": "",
-             "8": "",
+             "7": "",
+             "8": "󰨜",
              "9": "",
              "urgent": "",
              "default": ""
@@ -94,7 +94,7 @@
     "format": "󰋊 <span style=\"italic\">{free}</span>",
     "format-alt": "󰋊 {used}",
     "tooltip": true,
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
 "battery": {
@@ -167,13 +167,13 @@
         "format": "{icon}",
         "format-icons": {
             "1": "",
-            "2": "爵",
+            "2": "󰖟",
             "3": "",
             "4": "",
             "5": "󰭹",
             "6": "",
-            "7": "",
-            "8": "",
+            "7": "",
+            "8": "󰨜",
             "9": "",
             "urgent": "",
             "default": ""
@@ -310,6 +310,7 @@
         "Nicotine\\+": "󰒴",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
+        "(.*) | MDN": " <span style=\"italic\">$1</span>"
     },
     "max-length": 86,
     "all-outputs": true
@@ -398,7 +399,7 @@
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{percentageUsed}% of {total}"
+    "tooltip-format": "{path} ({percentage_used}% of {total})"
 },
 
 "keyboard-state": {
@@ -445,7 +446,7 @@
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],
-    "modules-right": ["custom/weather", "disk", "cpu", "memory", "bluetooth", "custom/clock"],
+    "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -454,13 +455,13 @@
         "format": "{icon}",
         "format-icons": {
             "1": "",
-            "2": "爵",
+            "2": "󰖟",
             "3": "",
             "4": "",
             "5": "󰭹",
             "6": "",
-            "7": "",
-            "8": "",
+            "7": "",
+            "8": "󰨜",
             "9": "",
             "urgent": "",
             "default": ""

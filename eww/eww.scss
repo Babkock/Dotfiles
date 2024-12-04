@@ -11,8 +11,8 @@ $yellow2: #f4df23;
     border:1px solid transparent;
     margin-top:9px;
     margin-bottom:9px;
-    margin-left:3px;
-    margin-right:3px;
+    margin-left:5px;
+    margin-right:5px;
 }
 .vertical.waycalendar {
     box-shadow:0 0 4px 4px rgba(255, 176, 2, 0.5);
@@ -108,8 +108,8 @@ $yellow2: #f4df23;
     border:1px solid transparent;
     margin-top:6px;
     margin-bottom:6px;
-    margin-left:3px;
-    margin-right:3px;
+    margin-left:5px;
+    margin-right:5px;
 }
 .vertical.waymem {
     box-shadow:0 0 4px 4px rgba(12, 201, 123, 0.5);
@@ -182,13 +182,14 @@ $yellow2: #f4df23;
     background-origin:padding-box;
     background-size:contain;
     background-repeat:no-repeat;
-    border-top:1.5em solid transparent;
-    border-left:2em solid transparent;
+    border-top:1.4em solid transparent;
+    border-left:2.2em solid transparent;
+    border-bottom:0.5em solid transparent;
     opacity:0.9;
 }
 .wayprogress, .progress {
-    margin-top:2px;
-    margin-bottom:-15px;
+    margin-top:10px;
+    margin-bottom:-10px;
     margin-left:30px;
     margin-right:30px;
 }
@@ -217,6 +218,8 @@ progressbar.progress > trough *, progressbar.progress > trough * {
     border:none;
     margin-left:14px;
     margin-right:14px;
+    margin-top:4px;
+    margin-bottom:4px;
 }
 .mypower, .mywaypower, .myfiles, .mywayfiles {
     background:none;

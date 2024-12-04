@@ -22,7 +22,7 @@
 	(calendar :halign "center"
 			  :valign "start"
 			  :class {class}
-             ; :active false
+             :active false
 			  :day calendar_day
 			  :year calendar_year))
 
@@ -93,9 +93,9 @@
 	:wm-ignore: true
 	:monitor 1
 	:geometry (geometry :x "50px"
-						:y "100px"
+						:y "40px"
 						:width "340px"
-						:height "820px"
+						:height "830px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -110,9 +110,9 @@
 	:wm-ignore: true
 	:monitor 2
 	:geometry (geometry :x "50px"
-						:y "100px"
+						:y "40px"
 						:width "340px"
-						:height "820px"
+						:height "830px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -127,9 +127,9 @@
 	:wm-ignore: true
 	:monitor 2
 	:geometry (geometry :x "50px"
-						:y "100px"
+						:y "40px"
 						:width "340px"
-						:height "820px"
+						:height "830px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -144,9 +144,9 @@
 	:wm-ignore: true
 	:monitor 2
 	:geometry (geometry :x "50px"
-						:y "100px"
+						:y "40px"
 						:width "350px"
-						:height "890px"
+						:height "900px"
 						:anchor "top right")
 	:stacking "bottom"
 	(box :orientation "vertical"
@@ -162,9 +162,9 @@
     :wm-ignore: true
     :monitor 1
     :geometry (geometry :x "50px"
-                        :y "100px"
+                        :y "40px"
                         :width "350px"
-                        :height "890px"
+                        :height "900px"
                         :anchor "top right")
     :stacking "bottom"
     (box :orientation "vertical"
@@ -180,9 +180,9 @@
     :wm-ignore: true
     :monitor 1
     :geometry (geometry :x "50px"
-                        :y "100px"
+                        :y "40px"
                         :width "350px"
-                        :height "890px"
+                        :height "900px"
                         :anchor "top right")
     :stacking "bottom"
     (box :orientation "vertical"

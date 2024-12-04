@@ -239,7 +239,7 @@
             "(.*) - mpv": "<span style=\"italic\">$1</span>",
             "(.*) - VLC Media Player": "<span style=\"italic\">$1</span>",
             "VLC media player": " ",
-            "File Upload": " ",
+            "File Upload": "󰖟 ",
             "(.*) - Discord": "<span style=\"italic\">$1</span>",
             "Discord Updater": " ",
             "• Discord \\| (.*) \\| (.*)": "<span style=\"italic\">$1</span>: $2",

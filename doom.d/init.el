@@ -223,10 +223,15 @@
                  "mx-butterfly.png"
                  "vaporwave.png"
                  "rings.png"
+                 "purpledots.png"
+                 "purplegradient.png"
                  "gnu-colors.png"
                  "spacemacs.png"
                  "emacsNeon.png"
                  "doomieScary.png"
+                 "3demacs.png"
+                 "3demacsborder.png"
+                 "tangnu.png"
                  "fancyEmacs.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"

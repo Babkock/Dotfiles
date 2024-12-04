@@ -9,8 +9,6 @@ export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 
-# Don't forget about this. Put sensitive environment variables in here,
-# so you can still commit this file without having to censor
 source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
 
@@ -70,7 +68,7 @@ else
     alias xx="loginctl reboot"
     # functions only for login shells
     function shy() {
-        export GTK_THEME="Sunset"
+        export GTK_THEME="Vimix-dark-ruby"
         export GDK_BACKEND="wayland"
         export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="Hyprland"
@@ -83,16 +81,20 @@ else
         export XCURSOR_SIZE=30
         export MOZ_ENABLE_WAYLAND=1
         export MOZ_WEBRENDER=1
+        export WLR_DRM_NO_MODIFIERS=1
+        export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/renderD128"
         pgrep eww | xargs kill 2> /dev/null
         pgrep mpdas | xargs kill 2> /dev/null
         pgrep pipewire | xargs kill 2> /dev/null
         pgrep pulseaudio | xargs kill 2> /dev/null
         echo "Starting Hyprland..."
-		gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-		gsettings set org.gnome.desktop.interface gtk-theme Sunset
+        gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+        gsettings set org.gnome.desktop.interface gtk-theme Sunset
         gsettings set org.gnome.desktop.interface cursor-theme Adwaita
         gsettings set org.gnome.desktop.interface cursor-size 30
         dbus-launch --exit-with-session Hyprland
+        pgrep hypridle | xargs kill 2> /dev/null
+        pgrep stash | xargs kill 2> /dev/null
         pgrep mako | xargs kill 2> /dev/null
         pgrep emacs | xargs kill 2> /dev/null
         pgrep hydroxide | xargs kill 2> /dev/null
@@ -102,7 +104,7 @@ else
         true
     }
     function swa() {
-        export GTK_THEME="Sunset"
+        export GTK_THEME="Vimix-dark-ruby"
         export GDK_BACKEND="wayland"
         export SDL_VIDEODRIVER="wayland"
         export XDG_CURRENT_DESKTOP="sway"
@@ -121,12 +123,13 @@ else
         pgrep pulseaudio | xargs kill 2> /dev/null
         echo "Starting Sway..."
         gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-        gsettings set org.gnome.desktop.interface gtk-theme Sunset
+        gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby
         gsettings set org.gnome.desktop.interface cursor-theme Adwaita
         gsettings set org.gnome.desktop.interface cursor-size 30
         dbus-launch --exit-with-session sway
         pgrep mako | xargs kill 2> /dev/null
         pgrep emacs | xargs kill 2> /dev/null
+        pgrep stash | xargs kill 2> /dev/null
         pgrep hydroxide | xargs kill 2> /dev/null
         pkill -x hydroxide
         pgrep mpdas | xargs kill 2> /dev/null
@@ -158,6 +161,7 @@ else
         dbus-launch --exit-with-session wayfire
         pgrep mako | xargs kill 2> /dev/null
         pgrep emacs | xargs kill 2> /dev/null
+        pgrep stash | xargs kill 2> /dev/null
         pgrep hydroxide | xargs kill 2> /dev/null
         pkill -x hydroxide
         pgrep mpdas | xargs kill 2> /dev/null
@@ -427,17 +431,14 @@ function b() {
     ssh-add "$HOME/.ssh/tbcom_ssh"
 }
 
-function q() {
-    identify "$1"
-    swayimg "$1"
-}
-
 function pcp() {
     if [[ -z "$1" ]]; then
         printf "No file specified\n" > /dev/stderr
         false
+    elif [[ -z "$2" ]]; then
+        scp -i "$HOME/.ssh/comp2pinew" "$1" pi@192.168.0.13:~
     else
-        scp -i "$HOME/.ssh/comp2pi" "$1" pi@192.168.0.13:~
+        scp -i "$HOME/.ssh/comp2pinew" "$1" "$2" pi@192.168.0.13:~
     fi
 }
 
@@ -449,7 +450,7 @@ function pv() {
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Font:Theme:Break:CPU:GPU:CPUUsage:Memory:Swap:Battery:LocalIp:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white'"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:LocalIp:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white'"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
@@ -534,9 +535,11 @@ alias or="eww reload"
 alias ow="eww open mem; eww open calendar; eww open power; eww open files"
 alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
 alias u="neomutt -F '$HOME/.muttrc'"
-alias spi="ssh -i '$HOME/.ssh/comp2pi' pi@192.168.0.13"
+alias spi="ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
+alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.15"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
+alias q="swayimg"
 alias qw="swayimg --all"
 alias qi="identify"
 alias qg="gimp"

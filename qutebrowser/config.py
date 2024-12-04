@@ -255,13 +255,10 @@ c.tabs.pinned.frozen = False
 c.completion.shrink = True
 c.auto_save.interval = 20000
 
-c.completion.cmd_history_max_items = 20
-c.completion.favorite_paths = ["file:///home/babkock/.config/qutebrowser/index.html"]
-
 # --- Search engines ---
 
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}' }
+c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!o': 'https://odysee.com/$/search?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!p': 'https://iptorrents.me/t?89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&q={}&qf=ti#torrents' }
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
@@ -291,7 +288,6 @@ config.bind(',c', 'config-cycle content.user_stylesheets "" ""')
 config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4chan.css ""')
 config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
-config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
 config.bind(',x', 'config-cycle fonts.statusbar "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')

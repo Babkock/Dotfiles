@@ -7,7 +7,7 @@
     "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
     "river/tags": {
         "num-tags": 6,
-        "tag-labels": ["", "爵", "", "", "", ""]
+        "tag-labels": ["", "󰖟", "", "", "", ""]
     },
 
 "mpd": {
@@ -112,7 +112,7 @@
     "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
     "river/tags": {
         "num-tags": 4,
-        "tag-labels": ["", "爵", "", ""]
+        "tag-labels": ["", "󰖟", "", ""]
     },
 
 "river/window": {

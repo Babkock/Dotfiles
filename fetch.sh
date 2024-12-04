@@ -201,8 +201,6 @@ if [[ $contin == "y" || $contin == "Y" ]]; then
     printf "\e[93;1mFinished fetching\n"
     git add "$0"
     unset compare
-    git checkout HEAD -- qutebrowser/quickmarks
-    vim elfeed.org
     true
 else
     printf "\e[91;mFetch cancelled\n"
