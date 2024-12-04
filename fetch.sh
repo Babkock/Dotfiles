@@ -3,14 +3,11 @@
 system_files=(
   "$HOME/.config/bspwm/bspwmrc"
   "$HOME/.config/bspwm/bspwm.org"
-  "$HOME/.config/.dwm/autostart.sh"
-  "$HOME/.config/.dwm/autostart_blocking.sh"
   "$HOME/.ncmpcpp/config"
   "$HOME/.ncmpcpp/bindings"
   "$HOME/.config/polybar/config.ini"
   "$HOME/.config/polybar/config.org"
   "$HOME/.config/sxhkd/sxhkdrc"
-#  "$HOME/.config/conky/conky.conf"
   "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userChrome.css"
   "$HOME/.mozilla/firefox/m7etmxn4.default/chrome/userContent.css"
   "$HOME/.mozilla/firefox/m7etmxn4.default/user.js"
@@ -68,11 +65,6 @@ system_files=(
   "$HOME/.config/wob/wob.ini"
   "$HOME/.config/wob/labwc.ini"
   "$HOME/.config/wob/sway.ini"
-#  "$HOME/.config/labwc/autostart"
-#  "$HOME/.config/labwc/environment"
-#  "$HOME/.config/labwc/rc.xml"
-#  "$HOME/.config/labwc/menu.xml"
-#  "$HOME/.themes/labwc/openbox-3/themerc"
   "$HOME/.config/mako/config"
   "$HOME/.config/mako/swayconfig"
   "$HOME/.config/hypr/hyprland.conf"
@@ -83,21 +75,23 @@ system_files=(
   "$HOME/.config/eww/eww.org"
   "$HOME/.config/eww/eww.yuck"
   "$HOME/.config/eww/eww.scss"
+  "$HOME/.config/pipewire/pipewire.conf"
+  "$HOME/.config/pipewire/pipewire-pulse.conf"
+  "$HOME/.config/pipewire/jack.conf"
+  "$HOME/.config/pipewire/client.conf"
+  "$HOME/.config/pipewire/client-rt.conf"
 )
 
 repo_files=(
   "bspwm/bspwmrc"
   "bspwm/README.org"
-  "dwm/autostart.sh"
-  "dwm/autostart_blocking.sh"
   "ncmpcpp/config"
   "ncmpcpp/bindings"
   "polybar/config.ini"
   "polybar/README.org"
   "sxhkd/sxhkdrc"
-#  "conky.conf"
-  "chrome/userChrome.css"
-  "chrome/userContent.css"
+  "firefox/userChrome.css"
+  "firefox/userContent.css"
   "user.js"
   "vim/webdevicons.vim"
   "ranger/devicons.py"
@@ -153,11 +147,6 @@ repo_files=(
   "wob/wob.ini"
   "wob/labwc.ini"
   "wob/sway.ini"
-#  "labwc/autostart"
-#  "labwc/environment"
-#  "labwc/rc.xml"
-#  "labwc/menu.xml"
-#  "labwc/themerc"
   "mako/config"
   "mako/swayconfig"
   "hypr/hyprland.conf"
@@ -168,6 +157,11 @@ repo_files=(
   "eww/README.org"
   "eww/eww.yuck"
   "eww/eww.scss"
+  "pipewire/pipewire.conf"
+  "pipewire/pipewire-pulse.conf"
+  "pipewire/jack.conf"
+  "pipewire/client.conf"
+  "pipewire/client-rt.conf"
 )
 
 compare() {
@@ -177,9 +171,7 @@ compare() {
         if [[ $result == 1 ]]; then
             cp "$1" "$2" > /dev/null
             printf "\e[92;1mChanged -- \e[95m%s\n" "$2"
-            if [[ "$2" != "surf/bookmarks.txt" && "$2" != "qutebrowser/quickmarks" ]]; then
-                git add "$2"
-            fi
+            git add "$2"
         elif [[ $result == 0 ]]; then
             printf "\e[33mUnchanged -- \e[93m%s\n" "$2"
         fi
