@@ -312,7 +312,30 @@
         "Nicotine\\+": "󰒴",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
-        "(.*) | MDN": " <span style=\"italic\">$1</span>",
+        "MDN Web Docs": " ",
+        "Transmission Web Interface": " ",
+        "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) Redlib": "󰑍 $1",
+        "Redlib": "󰑍 ",
+        "reddit: the front page of the internet": "󰑍 ",
+        "(.*) - r/(.*)": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "Packagist": " ",
+        "(.*) - Packagist": " <span style=\"italic\">$1</span>",
+        "(.*) - Packagist — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Composer": " ",
+        "(.*) - Composer": " <span style=\"italic\">$1</span>",
+        "(.*) - Composer — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Fosstodon": " ",
+        "(.*) - Fosstodon": " <span style=\"italic\">$1</span>",
+        "(.*) - Fosstodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Mastodon": " ",
+        "(.*) - Mastodon": " <span style=\"italic\">$1</span>",
+        "(.*) - Mastodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>"
     },
     "max-length": 67
 },
@@ -447,7 +470,7 @@
 
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 4,
+    "interval": 8,
     "format": "{}"
 },
 

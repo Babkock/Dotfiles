@@ -437,6 +437,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
         "Tumblr": " ",
         "(.*) Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) - Gmail": "󰊫 <span style=\"italic\">$1</span>",
@@ -531,7 +532,30 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Nicotine\\+": "󰒴",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
-        "(.*) | MDN": " <span style=\"italic\">$1</span>"
+        "MDN Web Docs": " ",
+        "Transmission Web Interface": " ",
+        "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) Redlib": "󰑍 $1",
+        "Redlib": "󰑍 ",
+        "reddit: the front page of the internet": "󰑍 ",
+        "(.*) - r/(.*)": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "Packagist": " ",
+        "(.*) - Packagist": " <span style=\"italic\">$1</span>",
+        "(.*) - Packagist — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Composer": " ",
+        "(.*) - Composer": " <span style=\"italic\">$1</span>",
+        "(.*) - Composer — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Fosstodon": " ",
+        "(.*) - Fosstodon": " <span style=\"italic\">$1</span>",
+        "(.*) - Fosstodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Mastodon": " ",
+        "(.*) - Mastodon": " <span style=\"italic\">$1</span>",
+        "(.*) - Mastodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>"
     },
     "max-length": 86,
     "all-outputs": true
@@ -741,7 +765,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle config.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 4,
+    "interval": 8,
     "format": "{}"
 },
 #+end_src
@@ -1961,7 +1985,30 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Nicotine\\+": "󰒴",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
-        "(.*) | MDN": " <span style=\"italic\">$1</span>",
+        "MDN Web Docs": " ",
+        "Transmission Web Interface": " ",
+        "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) Redlib": "󰑍 $1",
+        "Redlib": "󰑍 ",
+        "reddit: the front page of the internet": "󰑍 ",
+        "(.*) - r/(.*)": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "Packagist": " ",
+        "(.*) - Packagist": " <span style=\"italic\">$1</span>",
+        "(.*) - Packagist — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Composer": " ",
+        "(.*) - Composer": " <span style=\"italic\">$1</span>",
+        "(.*) - Composer — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Fosstodon": " ",
+        "(.*) - Fosstodon": " <span style=\"italic\">$1</span>",
+        "(.*) - Fosstodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Mastodon": " ",
+        "(.*) - Mastodon": " <span style=\"italic\">$1</span>",
+        "(.*) - Mastodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>"
     },
     "max-length": 67
 },
@@ -2139,7 +2186,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hconfig.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 4,
+    "interval": 8,
     "format": "{}"
 },
 #+end_src
@@ -2209,7 +2256,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2025 Tanner Babcock.</p>
+        <p>Copyright &copy; 2026 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;
