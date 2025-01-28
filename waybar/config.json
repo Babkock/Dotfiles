@@ -440,7 +440,7 @@
 },
 
 "cava": {
-    "framerate": 40,
+    "framerate": 30,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,
@@ -453,7 +453,7 @@
     "reverse": false,
     "waves": false,
     "monstercat": false,
-    "hide_on_silence": true,
+    "hide_on_silence": false,
     "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 },
 

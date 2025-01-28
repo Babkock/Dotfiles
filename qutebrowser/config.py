@@ -176,9 +176,11 @@ c.input.insert_mode.auto_leave = True
 c.downloads.prevent_mixed_content = True
 c.downloads.position = "bottom"
 c.window.transparent = True
+c.completion.web_history.max_items = 6
 c.completion.timestamp_format = "%a, %b %d %H:%M:%S"
 c.completion.scrollbar.width = 20
-c.content.cookies.accept = 'all'
+c.content.blocking.method = "adblock"
+c.content.cookies.accept = "all"
 c.content.media.video_capture = True
 c.content.media.audio_capture = True
 c.content.media.audio_video_capture = True
@@ -199,6 +201,8 @@ c.scrolling.bar = "always"
 c.scrolling.smooth = False
 c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss", "enable-gpu-rasterization", "ignore-gpu-blocklist", "use-gl=egl", "enable-accelerated-video-decode"]
 c.qt.chromium.experimental_web_platform_features = "always"
+c.qt.workarounds.disable_hangouts_extension = True
+c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "tabs", "progress", "clock"]
 
 # --- Fonts ---
 
@@ -257,6 +261,7 @@ c.auto_save.interval = 20000
 
 # --- Search engines ---
 
+c.url.open_base_url = True
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
 c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!o': 'https://odysee.com/$/search?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!p': 'https://iptorrents.me/t?89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&q={}&qf=ti#torrents' }
 

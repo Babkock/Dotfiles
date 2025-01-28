@@ -414,7 +414,7 @@
 },
 
 "cava": {
-    "framerate": 40,
+    "framerate": 30,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,

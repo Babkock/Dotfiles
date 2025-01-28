@@ -17,15 +17,15 @@
 #+HTML_HEAD_EXTRA: <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
 #+HTML_HEAD_EXTRA: <link rel="icon" href="/images/icon-hires.png" sizes="192x192" />
 
-This Org documents contains my Waybar configurations for four different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/riverwm/river][River]], [[https://github.com/WayfireWM/wayfire][Wayfire]], and [[https://github.com/hyprwm/Hyprland][Hyprland]].
+This Org documents contains my Waybar configurations for three different Wayland compositors: [[https://github.com/swaywm/sway][Sway]], [[https://github.com/WayfireWM/wayfire][Wayfire]], and [[https://github.com/hyprwm/Hyprland][Hyprland]].
 I use three monitors, side-by-side. The leftmost one being my laptop's display, the middle one is a Lenovo HDMI monitor, and the right one is an
 HP monitor. Each configuration file has three separate status bars, for each of the three outputs. The appearances of these bars may change
 slightly, depending on the GTK+/Libadwaita theme in use, and the associated CSS files.
 
 If you've ever seen me use a Wayland compositor in a video, I was using a Waybar from this document.
 
-This Org document outputs to four separate files: =config.json= for Sway, =rconfig.json= for River, =wconfig.json= for Wayfire, and =hconfig.json= for Hyprland.
-Please see the document *[[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][style.org]]* for the associated CSS files: =style.css=, =river.css=, =wayfire.css=, and =hyprland.css= respectively.
+This Org document outputs to three separate files: =config.json= for Sway, =wconfig.json= for Wayfire, and =hconfig.json= for Hyprland.
+Please see the document *[[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][style.org]]* for the associated CSS files: =style.css=, =wayfire.css=, and =hyprland.css= respectively.
 
 Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literate configuration. Please, if you appreciate my work, consider [[https://tannerbabcock.com/donate][making a donation]].
 
@@ -80,38 +80,21 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#disk-2][Disk]]
   - [[#cpu-1][CPU]]
   - [[#clock-1][Clock]]
-- [[#river-laptop-bar][River Laptop Bar]]
+- [[#wayfire-laptop-bar][Wayfire Laptop Bar]]
   - [[#appearance-3][Appearance]]
   - [[#mpd-1][MPD]]
   - [[#clock-2][Clock]]
   - [[#cpu-2][CPU]]
-  - [[#memory-2][Memory]]
   - [[#battery-1][Battery]]
+  - [[#memory-2][Memory]]
   - [[#backlight-1][Backlight]]
-  - [[#pulseaudio-1][Pulseaudio]]
-- [[#river-monitor-bar][River Monitor Bar]]
-  - [[#appearance-4][Appearance]]
-  - [[#window-1][Window]]
-  - [[#battery-2][Battery]]
-  - [[#network-1][Network]]
-  - [[#backlight-2][Backlight]]
   - [[#disk-3][Disk]]
-  - [[#clock-3][Clock]]
-- [[#wayfire-laptop-bar][Wayfire Laptop Bar]]
-  - [[#appearance-5][Appearance]]
-  - [[#mpd-2][MPD]]
-  - [[#clock-4][Clock]]
-  - [[#cpu-3][CPU]]
-  - [[#battery-3][Battery]]
-  - [[#memory-3][Memory]]
-  - [[#backlight-3][Backlight]]
-  - [[#disk-4][Disk]]
-  - [[#pulseaudio-2][Pulseaudio]]
+  - [[#pulseaudio-1][Pulseaudio]]
   - [[#image-1][Image]]
 - [[#wayfire-monitor-bar][Wayfire Monitor Bar]]
-  - [[#appearance-6][Appearance]]
-  - [[#disk-5][Disk]]
-  - [[#network-2][Network]]
+  - [[#appearance-4][Appearance]]
+  - [[#disk-4][Disk]]
+  - [[#network-1][Network]]
   - [[#idle-inhibit-1][Idle Inhibit]]
   - [[#wireplumber-1][Wireplumber]]
   - [[#bluetooth-2][Bluetooth]]
@@ -119,44 +102,44 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#keyboard-state-1][Keyboard State]]
   - [[#tray-1][Tray]]
 - [[#wayfire-tv-bar][Wayfire TV Bar]]
-  - [[#appearance-7][Appearance]]
+  - [[#appearance-5][Appearance]]
   - [[#weather-1][Weather]]
   - [[#bluetooth-3][Bluetooth]]
-  - [[#memory-4][Memory]]
-  - [[#disk-6][Disk]]
+  - [[#memory-3][Memory]]
+  - [[#disk-5][Disk]]
   - [[#privacy-1][Privacy]]
-  - [[#cpu-4][CPU]]
-  - [[#clock-5][Clock]]
+  - [[#cpu-3][CPU]]
+  - [[#clock-3][Clock]]
 - [[#hyprland-laptop-bar][Hyprland Laptop Bar]]
-  - [[#appearance-8][Appearance]]
+  - [[#appearance-6][Appearance]]
   - [[#disk-external-hd][Disk (External HD)]]
-  - [[#mpd-3][MPD]]
-  - [[#clock-6][Clock]]
-  - [[#cpu-5][CPU]]
-  - [[#memory-5][Memory]]
-  - [[#battery-4][Battery]]
-  - [[#backlight-4][Backlight]]
-  - [[#pulseaudio-3][Pulseaudio]]
+  - [[#mpd-2][MPD]]
+  - [[#clock-4][Clock]]
+  - [[#cpu-4][CPU]]
+  - [[#memory-4][Memory]]
+  - [[#battery-2][Battery]]
+  - [[#backlight-2][Backlight]]
+  - [[#pulseaudio-2][Pulseaudio]]
   - [[#image-2][Image]]
 - [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
-  - [[#appearance-9][Appearance]]
-  - [[#window-2][Window]]
+  - [[#appearance-7][Appearance]]
+  - [[#window-1][Window]]
   - [[#disk-internal-ssd][Disk (Internal SSD)]]
   - [[#privacy-2][Privacy]]
   - [[#wireplumber-2][Wireplumber]]
   - [[#idle-inhibit-2][Idle Inhibit]]
   - [[#temperature-2][Temperature]]
-  - [[#network-3][Network]]
+  - [[#network-2][Network]]
   - [[#cava-1][Cava]]
   - [[#tray-2][Tray]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
-  - [[#appearance-10][Appearance]]
+  - [[#appearance-8][Appearance]]
   - [[#weather-2][Weather]]
   - [[#bluetooth-4][Bluetooth]]
-  - [[#memory-6][Memory]]
-  - [[#disk-7][Disk]]
-  - [[#cpu-6][CPU]]
-  - [[#clock-7][Clock]]
+  - [[#memory-5][Memory]]
+  - [[#disk-6][Disk]]
+  - [[#cpu-5][CPU]]
+  - [[#clock-5][Clock]]
 
 * Sway Laptop Bar
 
@@ -697,7 +680,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 #+begin_src json :tangle config.json
 "cava": {
-    "framerate": 40,
+    "framerate": 30,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,
@@ -710,7 +693,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "reverse": false,
     "waves": false,
     "monstercat": false,
-    "hide_on_silence": true,
+    "hide_on_silence": false,
     "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 },
 #+end_src
@@ -822,247 +805,6 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 ** Clock
 
 #+begin_src json :tangle config.json
-    "custom/clock": {
-        "exec": "date +'%I:%M:%S  %a, %b %d'",
-        "interval": 1,
-        "format": " {}",
-        "align": 1,
-        "tooltip": false
-    }
-}]
-#+end_src
-
-* River Laptop Bar
-
-This is the first and primary bar for the River compositor. It appears on my laptop's screen (=eDP-1=). Notice how the =modules-left= are different for each of the three output files.
-
-** Appearance
-
-#+begin_src json :tangle rconfig.json
-[{
-    "position": "bottom",
-    "height": 38,
-    "spacing": 0,
-    "output": "eDP-1",
-    "modules-left": ["river/tags"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "custom/clock"],
-    "river/tags": {
-        "num-tags": 6,
-        "tag-labels": ["", "󰖟", "", "", "", ""]
-    },
-#+end_src
-
-** MPD
-
-#+begin_src json :tangle rconfig.json
-"mpd": {
-    "server": "127.0.0.2",
-    "format": "{consumeIcon}{singleIcon}{artist} - {title}  {stateIcon}",
-    "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon} ",
-    "title-len": 34,
-    "unknown-tag": "N/A",
-    "interval": 1,
-    "consume-icons": {
-        "on": " "
-    },
-    "random-icons": {
-        "off": "<span color=\"#f53c3c\"></span> ",
-        "on": " "
-    },
-    "repeat-icons": {
-        "on": " "
-    },
-    "single-icons": {
-        "on": "1 "
-    },
-    "state-icons": {
-        "playing": " ",
-        "paused": " "
-    },
-    "tooltip-format": "{artist} - {album} ({date})",
-},
-#+end_src
-
-** Clock
-
-#+begin_src json :tangle rconfig.json
-    "custom/clock": {
-        "exec": "date +'%I:%M:%S  %a, %b %d'",
-        "interval": 1,
-        "format": " {}",
-        "align": 1,
-        "tooltip": false
-    },
-#+end_src
-
-** CPU
-
-#+begin_src json :tangle rconfig.json
-    "cpu": {
-        "format": " {usage}%",
-        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
-    },
-#+end_src
-
-** Memory
-
-#+begin_src json :tangle rconfig.json
-    "memory": {
-        "format": " {}%",
-        "format-alt": " {used:0.1f} GB {swapUsed:0.1f} GB",
-        "tooltip-format": "RAM: {used:0.2f} GB, Swap: {swapUsed:0.2f} GB"
-    },
-#+end_src
-
-** Battery
-
-#+begin_src json :tangle rconfig.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}", 
-        "format-icons": ["", "", "", "", ""],
-        "tooltip-format": "{time}"
-    },
-#+end_src
-
-** Backlight
-
-#+begin_src json :tangle rconfig.json
-"backlight": {
-    "device": "intel_backlight",
-    "tooltip": false,
-    "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-},
-#+end_src
-
-** Pulseaudio
-
-#+begin_src json :tangle rconfig.json
-    "pulseaudio": {
-        "format": "{icon} <span style=\"italic\">{volume}%</span>",
-        "format-bluetooth": "{icon}  {volume}% {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
-        "tooltip": false,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock"
-    }
-#+end_src
-
-* River Monitor Bar
-
-This is the second status bar that River uses. It appears on my monitor (=HDMI-A-2=).
-
-** Appearance
-
-#+begin_src json :tangle rconfig.json
-}, {
-    "position": "bottom",
-    "height": 40,
-    "spacing": 0,
-    "output": "HDMI-A-2",
-    "modules-left": ["river/tags", "river/window"],
-    "modules-right": ["disk", "network", "battery", "backlight", "custom/clock"],
-    "river/tags": {
-        "num-tags": 4,
-        "tag-labels": ["", "󰖟", "", ""]
-    },
-#+end_src
-
-** Window
-
-#+begin_src json :tangle rconfig.json
-    "river/window": {
-        "max-length": 67,
-        "format": " <span style=\"italic\">{}</span>"
-    },
-#+end_src
-
-** Battery
-
-#+begin_src json :tangle rconfig.json
-    "battery": {
-        "states": {
-            "good": 94,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} <span style=\"italic\">{capacity}%</span>",
-        "format-charging": " <span style=\"italic\">{capacity}%</span>",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "tooltip-format": "{time}", 
-        "format-icons": ["", "", "", "", ""]
-    },
-#+end_src
-
-** Network
-
-#+begin_src json :tangle rconfig.json
-    "network": {
-        "interface": "wlp0s20f3",
-        "interval": 1,
-        "format-wifi": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-ethernet": " {bandwidthDownBits} {bandwidthUpBits} ",
-        "format-alt": " {ipaddr}",
-        "format-disconnected": "",
-        "tooltip-format": "{essid} ({signalStrength}%)",
-    },
-#+end_src
-
-** Backlight
-
-#+begin_src json :tangle rconfig.json
-"backlight": {
-    "device": "intel_backlight",
-    "tooltip": false,
-    "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
-    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock"
-},
-#+end_src
-
-** Disk
-
-#+begin_src json :tangle rconfig.json
-    "disk": {
-        "path": "/",
-        "interval": 2,
-        "format": " <span style=\"italic\">{free}</span>",
-        "format-alt": " {used}",
-        "tooltip-format": "{percentageUsed}% of {total}"
-    },
-#+end_src
-
-** Clock
-
-#+begin_src json :tangle rconfig.json
     "custom/clock": {
         "exec": "date +'%I:%M:%S  %a, %b %d'",
         "interval": 1,
@@ -2115,7 +1857,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hconfig.json
 "cava": {
-    "framerate": 40,
+    "framerate": 30,
     "autosens": 1,
     "bars": 6,
     "bar_delimiter": 32,

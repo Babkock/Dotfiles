@@ -66,19 +66,24 @@ tooltip {
     border-radius:40px 40px 40px 40px;
     padding-left:11px;
     padding-right:12px;
-    margin-right:3px;
+    margin-right:4px;
     margin-left:1px;
-    box-shadow:3px 2px rgba(228, 207, 19, 0.4);
+    box-shadow:3px 3px rgba(228, 207, 19, 0.4);
 }
 
 #pulseaudio.muted {
     margin-left:2px;
+    margin-right:4px;
+    box-shadow:3px 3px rgba(238, 0, 10, 0.4);
+    padding-left:12px;
+    padding-right:12px;
 }
 
 #privacy-item {
     padding-left:4px;
     padding-right:4px;
-    background:linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.3));
+    background:none;
+    color:#fe0219;
 }
 
 #privacy-item label {

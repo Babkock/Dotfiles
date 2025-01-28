@@ -51,7 +51,7 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#pf][pf]]
   - [[#t][t]]
   - [[#y][y]]
-  - [[#xs][xs]]
+  - [[#xbps-src-helper-functions][XBPS-Src Helper Functions]]
   - [[#j][j]]
   - [[#wb][wb]]
   - [[#backup-website][Backup Website]]
@@ -84,6 +84,7 @@ export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$
 
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
+export VOIDPKG="/home/babkock/git/void-packages"
 
 source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
@@ -358,24 +359,24 @@ if [ -v TERM ]; then
         alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
         alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
-        alias e="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q"
-        alias ee="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q ."
-        alias ea="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/alacritty/config.org\""
-        alias ez="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
-        alias eb="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
-        alias ep="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
-        alias eq="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
-        alias ec="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
-        alias ed="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
-        alias ew="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
-        alias es="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
-        alias ef="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
-        alias egp="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
-        alias egs="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
-        alias ei="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias egl="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias er="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
-        alias eo="riverctl set-focused-tags 8 2> /dev/null; hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/eww/eww.org\""
+        alias e="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q"
+        alias ee="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q ."
+        alias ea="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/alacritty/config.org\""
+        alias ez="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
+        alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
+        alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
+        alias eq="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
+        alias ed="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
+        alias ew="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
+        alias es="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
+        alias ef="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
+        alias egp="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
+        alias egs="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
+        alias ei="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias egl="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias er="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
+        alias eo="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/eww/eww.org\""
         alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5"
@@ -490,20 +491,20 @@ If it is given a second argument, it interprets that as the preferred download s
 #+begin_src sh :tangle .zshrc
 function t() {
     if [ -z "$1" ]; then
-        tremc --ssl -X -r -c "$TRANS_CREDENTIALS"
+        tremc --ssl -X -r -c "$TRANS_CREDENTIALS" 2> /dev/null
         true
      elif [ -z "$2" ]; then
         printf "Starting %s...\n" "$1"
         tremc --ssl -c "$TRANS_CREDENTIALS" "$1" > /dev/null
         rm "$1" 2> /dev/null
-        tremc --ssl -X -r -c "$TRANS_CREDENTIALS"
+        tremc --ssl -X -r -c "$TRANS_CREDENTIALS" 2> /dev/null
         true
     elif [ -z "$3" ]; then
         printf "Starting %s with speed %s kbps...\n" "$1" "$2"
         tremc --ssl -c  "$1" > /dev/null
         transmission-remote --auth="$TRANS_PASS" -asd "$2"
         rm "$1" 2> /dev/null
-        tremc --ssl -X -r -c "$TRANS_CREDENTIALS"
+        tremc --ssl -X -r -c "$TRANS_CREDENTIALS" 2> /dev/null
         true
     else
         printf "Too many arguments\n" > /dev/stderr
@@ -519,24 +520,88 @@ Open a file with *mupdf*.
 #+begin_src sh :tangle .zshrc
 function y() {
     if [ -z "$1" ]; then
-        printf "Please specify file to read\n"
+        printf "Please specify file to read\n" > /dev/stderr
         false
     else
         mupdf -I "$1"
+        true
     fi
 }
 #+end_src
 
-** xs
+** XBPS-Src Helper Functions
 
-Compile a project with =xbps-src= from within the build directory. This is useful, and easier than typing "make", or changing directory to run the
-build script. It requires the package name (therefore, part of the current directory's name) as an argument.
+*** xs
 
 #+begin_src sh :tangle .zshrc
 function xs() {
-    cd ../../..
-    ./xbps-src build -C -f "$1"
-    cd $OLDPWD
+    if [ -z "$1" ]; then
+        printf "Please specify package name\n" > /dev/stderr
+        false
+    else
+        pushd $VOIDPKG > /dev/null
+        ./xbps-src show "$1"
+        popd > /dev/null
+        true
+    fi
+}
+#+end_src
+
+*** xb
+
+#+begin_src sh :tangle .zshrc
+function xb() {
+    if [ -z "$1" ]; then
+        printf "Please specify package name\n" > /dev/stderr
+        false
+    else
+        pushd $VOIDPKG > /dev/null
+        ./xbps-src build -C -f -j 4 "$1"
+        popd > /dev/null
+        true
+    fi
+}
+#+end_src
+
+*** xp
+
+#+begin_src sh :tangle .zshrc
+function xp() {
+    if [ -z "$1" ]; then
+        printf "Please specify package name\n" > /dev/stderr
+        false
+    else
+        pushd $VOIDPKG > /dev/null
+        ./xbps-src pkg -C -f -Q -j 4 "$1"
+        popd > /dev/null
+        true
+    fi
+}
+#+end_src
+
+*** xxr
+
+#+begin_src sh :tangle .zshrc
+function xxr() {
+    if [ -z "$1" ]; then
+        printf "Please specify package name\n" > /dev/stderr
+        false
+    elif [ -z "$2" ]; then
+        pushd $VOIDPKG > /dev/null
+        ./xbps-src remove "$1"
+        popd > /dev/null
+        true
+    elif [ -z "$3" ]; then
+        pushd $VOIDPKG > /dev/null
+        ./xbps-src remove "$1" "$2"
+        popd > /dev/null
+        true
+    elif [ -z "$4" ]; then
+        pushd $VOIDPKG > /dev/null
+        ./xbps-src remove "$1" "$2" "$3"
+        popd > /dev/null
+        true
+    fi
 }
 #+end_src
 
@@ -773,7 +838,6 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 | =sko=     | N/A                      | Log in to K's old Mac                               |
 | =sp=      | N/A                      | Restart Pipewire                                    |
 | =spi=     | N/A                      | Log in to Raspberry Pi via SSH                      |
-| =sr=      | N/A                      | Restart Waybar for River                            |
 | =sw=      | N/A                      | Restart Waybar for Sway                             |
 | =sy=      | N/A                      | Restart Waybar for Hyprland                         |
 | =sz=      | N/A                      | Kill wpa_supplicant and restart with Ethernet       |
@@ -896,7 +960,6 @@ alias qg="gimp"
 alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
 alias sb="sudo sv restart bluez-alsa; sudo sv restart bluetoothd"
 alias se="pkill -x emacs; emacs --daemon"
-alias sr="pkill -x waybar; waybar -c '$HOME/.config/waybar/rconfig.json' -s '$HOME/.config/waybar/river.css' -l off &"
 alias sw="pkill -x waybar; waybar -c '$HOME/.config/waybar/config.json' -l off &"
 alias sf="pkill -x waybar; waybar -c '$HOME/.config/waybar/wconfig.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
 alias so="pkill -x eww"
@@ -918,10 +981,21 @@ alias km="meson setup build --buildtype=release --prefix=/usr"
 alias kn="ninja -j4"
 alias wh="which"
 alias x="sudo zsh"
-alias xb="./xbps-src binary-bootstrap"
-alias xz="./xbps-src zap"
+alias xxb="cd $VOIDPKG; ./xbps-src binary-bootstrap; cd $OLDPWD"
+alias xz="cd $VOIDPKG; ./xbps-src zap; cd $OLDPWD"
+alias xi="sudo xbps-install -S"
 alias xl="sudo xbps-query -l"
+alias xr="sudo xbps-remove"
+alias xo="sudo xbps-query -O"
 alias xu="sudo xbps-install -Su"
+#alias xb="./xbps-src build -C -f -j 4"
+#alias xp="./xbps-src pkg -C -f -Q -j 4"
+#alias xxr="./xbps-src remove"
+alias xxu="cd $VOIDPKG; ./xbps-src update-sys; cd $OLDPWD"
+alias xxl="cd $VOIDPKG; ./xbps-src list; cd $OLDPWD"
+#alias xs="./xbps-src show"
+alias xlu="cd $VOIDPKG; ./xbps-src show-local-updates; cd $OLDPWD"
+alias xsu="cd $VOIDPKG; ./xbps-src show-sys-updates; cd $OLDPWD"
 alias z="bluetoothctl"
 #+end_src
 
@@ -1023,7 +1097,7 @@ fi
 #+BEGIN_EXPORT html
 <footer>
     <center>
-    <p>Copyright &copy; 2025 Tanner Babcock.</p>
+    <p>Copyright &copy; 2026 Tanner Babcock.</p>
     <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
     <p class="nav"><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/zsh.html" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
     <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;

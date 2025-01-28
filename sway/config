@@ -78,13 +78,13 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
 }
 
 input "6127:24766:GamingMouseI_Gaming_Mouse" {
-	pointer_accel 0.8
+	pointer_accel 0.9
 	accel_profile "adaptive"
 	scroll_factor 1.2
 }
 
 input "6127:24766:GamingMouseI_Gaming_Mouse_Consumer_Control" {
-	pointer_accel 0.8
+	pointer_accel 0.9
 	accel_profile "adaptive"
 	scroll_factor 1.2
 }
@@ -100,9 +100,9 @@ input "2362:9488:PixArt_USB_Optical_Mouse" {
 input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 300
 input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 60
 input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_delay 300
-input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_rate 60
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_rate 55
 input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_delay 300
-input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 60
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 55
 
 blur enable
 blur_passes 1
@@ -135,11 +135,8 @@ smart_borders on
 gaps inner 4
 gaps outer 3
 
-exec_always pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
-exec_always pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
-
 exec pkill -x eww
-exec eww --force-wayland daemon &
+exec eww --force-wayland daemon
 exec eww open calendar
 exec eww open mem
 exec eww open power
@@ -197,6 +194,10 @@ assign [class="vlc"] 7
 assign [class="VLC"] 7
 assign [app_id="VLC"] 7
 assign [title="VLC media player"] 7
+assign [class="steam"] 6
+assign [title="Steam"] 6
+assign [app_id="factorio"] 6
+assign [app_id="gamescope"] 6
 #assign [app_id="PCManFM"] 5
 #assign [class="PCManFM"] 5
 #assign [app_id="pcmanfm"] 5
@@ -222,6 +223,16 @@ for_window [window_role="GtkFileChooserDialog"] {
 	floating enable
 	resize set 900 700
 	move position center
+}
+
+for_window [app_id="gamescope"] {
+	inhibit_idle fullscreen
+	focus
+}
+
+for_window [app_id="factorio"] {
+	inhibit_idle fullscreen
+	focus
 }
 
 for_window [app_id="Emacs"] focus
@@ -262,6 +273,8 @@ for_window [window_type="menu"] floating enable
 
 # Start a terminal
 bindsym $mod+Return exec $term
+
+bindsym $mod+Shift+Return workspace number 5; exec $term
 
 # Kill focused window
 bindsym $mod+Shift+c kill

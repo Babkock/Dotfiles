@@ -167,6 +167,7 @@ c.colors.webpage.bg = '#ffffffff'
 config.load_autoconfig()
 
 c.completion.height = "30%"
+c.completion.web_history.max_items = 6
 c.downloads.location.directory = "/home/babkock"
 c.downloads.location.prompt = False
 c.prompt.filebrowser = False
@@ -199,6 +200,10 @@ c.scrolling.bar = "always"
 c.scrolling.smooth = False
 c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss", "enable-gpu-rasterization", "ignore-gpu-blocklist", "use-gl=egl", "enable-accelerated-video-decode"]
 c.qt.chromium.experimental_web_platform_features = "always"
+c.qt.workarounds.disable_hangouts_extension = True
+
+c.content.blocking.method = "adblock"
+c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "tabs", "progress", "clock"]
 
 # --- Fonts ---
 
