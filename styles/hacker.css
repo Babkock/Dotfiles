@@ -1,0 +1,527 @@
+a, a:link, a:active, .commtext a, .commtext a:active, .commtext a:link, .Story_comment span p a, .Story_comment span p a:link, .Story_comment span p a:active {
+    color:#efefef;
+}
+
+a:hover, .commtext a:hover, .Story_comment span p a:hover {
+    color:orange;
+    text-decoration:underline;
+}
+
+.Story_comment span p a {
+    transition:none;
+}
+
+a:visited, .commtext a:visited, .Story_comment span p a:visited {
+    color:goldenrod;
+}
+
+.comhead a, .comhead a:link {
+    color:#cdcdcd;
+}
+
+.comhead a:hover {
+    color:goldenrod;
+    text-decoration:underline;
+}
+
+a.hnuser:link, a.hnuser:visited, a.hnuser:active {
+    color:#ffffff;
+}
+
+tr.spacer {
+    height:11px !important;
+}
+
+body {
+    background:linear-gradient(180deg, #dd8800, #331010);
+    color:#efefef;
+    min-height:800px;
+}
+
+.c5A, .cAE, .c88 {
+    color:#fefefe;
+}
+
+#hnmain {
+    width:90%;
+    background:rgba(0, 0, 0, 0.4);
+    border-radius:50px 50px 50px 50px;
+}
+
+td[bgcolor="#ff6600"] {
+    background:rgba(0, 0, 0, 0.2);
+    padding-top:14px;
+    padding-bottom:14px;
+    border-radius:50px 50px 50px 50px;
+}
+
+span.pagetop {
+    font-size:1.5em;
+    font-family:auto;
+    color:#f00;
+}
+
+b.hnname a {
+    font-size:1.6em;
+    padding-top:2px;
+    color:#ffffff;
+}
+
+.pagetop a:visited {
+    color:#ffffff;
+}
+
+.title {
+    font-size:1.3em;
+    font-family:"Helvetica";
+    padding-top:4px;
+    padding-bottom:4px;
+}
+
+.subtext, .Story_meta {
+    font-size:0.9em;
+    padding-top:6px;
+    padding-bottom:7px;
+    color:#dddddd;
+}
+
+.subtext a, .subtext a:link, .subtext a:visited {
+    color:#dddddd;
+    margin-left:1px;
+    margin-right:1px;
+}
+
+.c73 {
+    color:#efefef;
+}
+
+td.title[align="right"] {
+    color:rgba(0, 0, 0, 0);
+}
+
+.votearrow, span.sitebit, footer.Footer {
+    display:none;
+}
+
+tr.athing.submission + tr {
+    background:rgba(0, 0, 0, 0.1);
+}
+
+tr.athing.submission:not(.fatitem tbody tr.athing.submission) td {
+    background:rgba(0, 0, 0, 0.1);
+}
+
+tr.athing.submission td.title {
+    font-style:italic;
+}
+
+#hnmain tbody tr td table {
+    width:90%;
+    margin-left:5%;
+    margin-right:5%;
+}
+
+.commtext.c00, .reply p font, .athing td .comment, .commtext.c9C {
+    font-size:1.1em;
+}
+
+.c00, .c9C {
+    color:white;
+    font-size:0.9em;
+}
+
+.comhead {
+    color:#c0c0c0;
+    font-size:1.2em;
+    font-family:"Helvetica";
+}
+
+#hnmain tbody tr td table tbody tr.athing.submission:first-child td.title {
+  font-size: 1.85em;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.athing.comtr td table tbody tr td.default {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding-left: 12px;
+  padding-top: 4px;
+  padding-bottom: 5px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.yclinks {
+    font-family:"Helvetica";
+    color:#ff9d10;
+    font-size:1.2em;
+    padding-top:5px;
+}
+
+.default {
+    background: rgba(0, 0, 0, 0.3);
+  padding-left: 11px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  border-radius: 19px;
+}
+
+pre code {
+  background: rgba(0, 0, 0, 0.4);
+  display: block;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: 1px dashed yellow;
+}
+
+td .toptext {
+    font-size:1.2em;
+    color:white;
+    font-family:"Helvetica";
+}
+
+.fatitem tbody tr:nth-child(2) td {
+    background:none !important;
+    font-size:1em;
+}
+
+.fatitem tr.athing.submission + tr {
+    background:none !important;
+    font-size:1em;
+}
+
+textarea {
+  font-family: "Helvetica";
+  font-size: 12pt;
+  resize: none;
+  background: #101010;
+  border: none !important;
+  color: white;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 6px;
+  min-height: 100px;
+  min-width: 800px;
+}
+
+input[type="text"] {
+    -moz-appearance:none;
+    appearance:none;
+    padding:7px;
+    font-family:"Helvetica";
+    font-size:12pt;
+    background:#101010;
+    border:none !important;
+    width:450px;
+    color:white;
+}
+
+td center {
+    color:#efefef;
+    font-size:12pt;
+}
+
+html[op="user"] #hnmain tbody tr:nth-child(3) td table[border="0"] {
+    background:rgba(0, 0, 0, 0.2);
+    border:2px solid black;
+    line-height:30px;
+}
+
+html[op="user"] #hnmain tbody tr:nth-child(3) td table[border="0"] tr td {
+    font-size:1.3em;
+    font-family:"Helvetica" !important;
+    background:rgba(0, 0, 0, 0.1);
+    border:1px solid black;
+}
+
+html[op="user"] #hnmain tbody tr:nth-child(3) td table[border="0"] tr td[valign="top"] {
+    text-align:right;
+}
+
+table[width="100%"][cellspacing="0"][cellpadding="1"], td[style="width:18px;padding-right:4px"] a[href="https://news.ycombinator.com"]
+{
+    display:none;
+}
+
+.pagetop * {
+    font-family:"Arial" !important;
+}
+
+.pagetop a, .pagetop a:link, .pagetop b a, .pagetop b a:link, .pagetop a:visited, .pagetop b a:visited, .pagetop a:active, .pagetop b a:active {
+    color:#ffd0d0;
+    transition:all 0.2s ease 0s;
+}
+
+span.yclinks a, span.yclinks a:link, span.yclinks a:visited, span.yclinks a:active {
+    color:#dd6060;
+    transition:all 0.2s ease 0s;
+}
+
+.pagetop a:hover, .pagetop b a:hover {
+    color:#ffffff;
+}
+
+span.yclinks a:hover, span.yclinks a:visited:hover {
+    color:#ffd0d0;
+}
+
+input[type="submit"] {
+    appearance:none;
+    -moz-appearance:none;
+    background:linear-gradient(180deg, rgba(10, 180, 20, 0.9), rgba(10, 10, 10, 0.9));
+    color:#efefef;
+    font-size:1.45em;
+    border:1px solid transparent !important;
+    padding:8px;
+    padding-left:11px;
+    padding-right:11px;
+    border-radius:40px 40px 40px 40px;
+    margin-top:6px;
+    margin-bottom:7px;
+    transition:all 0.2s ease 0s;
+}
+
+input[type="submit"]:hover {
+    appearance:none;
+    -moz-appearance:none;
+    background:linear-gradient(180deg, rgba(20, 210, 30, 0.9), rgba(30, 30, 30, 0.9));
+    color:#ffffff;
+    font-size:1.45em;
+    border:1px solid transparent !important;
+    padding:8px;
+    padding-left:11px;
+    padding-right:11px;
+    border-radius:40px 40px 40px 40px;
+    margin-top:6px;
+    margin-bottom:7px;
+}
+
+input[type="submit"]:active {
+    appearance:none;
+    -moz-appearance:none;
+    background:linear-gradient(0deg, rgba(20, 210, 30, 0.9), rgba(30, 30, 30, 0.9));
+    color:#dddddd;
+    font-size:1.45em;
+    border:1px solid transparent !important;
+    padding:8px;
+    padding-left:11px;
+    padding-right:11px;
+    border-radius:40px 40px 40px 40px;
+}
+
+td select, .Settings_inputContainer select {
+    appearance:none;
+    -moz-appearance:none;
+    background:linear-gradient(180deg, rgba(40, 40, 40, 0.9), rgba(10, 10, 10, 0.9));
+    color:#efefef;
+    padding:7px;
+    padding-left:10px;
+    padding-right:10px;
+    font-size:0.9em;
+    margin-top:2px;
+    margin-bottom:2px;
+    border:1px solid black;
+}
+
+td select:hover, .Settings_inputContainer select:hover {
+    border:1px solid gray;
+}
+
+.Settings_inputContainer select {
+    font-size:1.2em;
+    padding:8px;
+    padding-left:11px;
+    padding-right:11px;
+}
+
+td font[size="2"] {
+    font-size:0.9em;
+    margin-top:3px;
+    margin-bottom:3px;
+}
+
+span.admin center table[width="500"] tbody tr td {
+    color:#fefefe;
+    font-size:1.1em;
+}
+
+.SearchHeader .SearchInput {
+    border-radius:40px 40px 40px 40px;
+    background:rgba(0, 0, 0, 0.6);
+    color:#fefefe;
+    font-size:1.4em;
+    height:48px;
+}
+
+.SearchResults {
+    background:rgba(0, 0, 0, 0.2);
+}
+
+.SearchFilters {
+    background:rgba(0, 0, 0, 0.4);
+    color:#fefefe;
+    font-family:"Arial";
+    font-size:1.3em;
+    min-height:50px;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.Story {
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:18px;
+    padding-right:18px;
+    background:rgba(0, 0, 0, 0.2);
+    margin-top:4px;
+    margin-bottom:4px;
+}
+
+.Story_title {
+    font-style:italic;
+    font-size:1.45em;
+}
+
+.Story_title a {
+    transition:none;
+}
+
+.Story_comment {
+    padding:10px 10px;
+    margin-top:7px;
+}
+
+.Story_comment span {
+    margin-left:6px;
+    font-size:1.2em;
+    color:#ffffff;
+    line-height:1.5;
+}
+
+.Story_comment span em, .Story_comment span p em {
+    background:#ff9010 !important;
+    color:black;
+}
+
+.Story_comment span p {
+    margin-left:6px;
+    line-height:1.5;
+}
+
+.Story_title em {
+    background:#ff7710 !important;
+    color:#000000;
+    font-style:italic;
+}
+
+div.PoweredBy, a.Story_link, span.SearchHeader_logo, div.SocialShare {
+    display:none !important;
+}
+
+.Pagination {
+    background:rgba(0, 0, 0, 0.2);
+    border-radius:0px 0px 80px 80px;
+}
+
+.Pagination_item button {
+    font-size:1.4em;
+    background:linear-gradient(180deg, rgba(100, 100, 100, 0.5), rgba(10, 10, 10, 0.5));
+    color:#efefef;
+    padding:8px;
+    padding-left:10px;
+    padding-right:10px;
+    min-width:80px;
+    height:80px;
+    border-radius:0px;
+}
+
+.Pagination_item button:hover {
+    font-size:1.4em;
+    background:linear-gradient(180deg, rgba(200, 105, 10, 0.5), rgba(10, 10, 10, 0.5));
+    color:#ffffff;
+    padding:8px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:0px;
+    border:1px solid #ff9010;
+}
+
+.Pagination_item-current button {
+    color:#ff7710;
+}
+
+.Story_meta {
+    font-size:1em;
+    color:#bdbdbd;
+}
+
+.Story_meta span a, .Story_meta span a:link, .Story_meta span a:active, .Story_meta span a:visited {
+    color:#bdbdbd;
+}
+
+.Dropdown_label:not(#downshift-7-label) {
+    font-size:1.15em;
+    border-radius:0px;
+    background:rgba(0, 0, 0, 0.5);
+    border:1px solid #101010;
+    color:#efefef;
+    padding:6px;
+    padding-left:8px;
+    padding-right:8px;
+}
+
+.Dropdown_list {
+    background:none;
+    border-radius:0px;
+    border:1px solid black;
+}
+
+.Dropdown_list li button {
+    background:rgba(0, 0, 0, 0.5);
+    color:#efefef;
+    padding:9px 20px;
+    font-size:1.4em;
+}
+
+.Dropdown_list li button:hover {
+    background:rgba(70, 10, 10, 0.5);
+    color:#fefefe;
+    padding:9px 20px;
+}
+
+#root .default.light {
+    border-radius:0px;
+    background:rgba(0, 0, 0, 0.1);
+}
+
+section.Settings {
+    background:rgba(0, 0, 0, 0.5);
+    border-radius:0px 0px 80px 80px;
+}
+
+section.Settings h2 {
+    color:#efefef;
+    font-size:1.7em;
+}
+
+.Settings label {
+    color:#efefef;
+    font-size:1.2em;
+}
+
+.SearchHeader.container {
+    background:rgba(0, 0, 0, 0.5);
+    border-radius:70px 70px 0px 0px;
+    padding-left:20px;
+    padding-right:10px;
+}
+
+.SearchHeader_search {
+    background:none !important;
+    padding-top:8px;
+    padding-bottom:10px;
+}
+
+.SearchHeader_settings a, .SearchHeader_settings a:hover, .SearchHeader_settings a:visited {
+    color:#efefef;
+}

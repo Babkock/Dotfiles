@@ -162,7 +162,7 @@ c.colors.tabs.selected.odd.bg = '#77000000'
 c.colors.tabs.selected.even.fg = base0A
 c.colors.tabs.selected.even.bg = '#77100000'
 # Default page background when there is none
-c.colors.webpage.bg = '#ffffffff'
+c.colors.webpage.bg = '#ffffff'
 
 config.load_autoconfig()
 
@@ -179,6 +179,7 @@ c.window.transparent = True
 c.completion.web_history.max_items = 6
 c.completion.timestamp_format = "%a, %b %d %H:%M:%S"
 c.completion.scrollbar.width = 20
+c.content.default_encoding = "utf-8"
 c.content.blocking.method = "adblock"
 c.content.cookies.accept = "all"
 c.content.media.video_capture = True
@@ -202,7 +203,7 @@ c.scrolling.smooth = False
 c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss", "enable-gpu-rasterization", "ignore-gpu-blocklist", "use-gl=egl", "enable-accelerated-video-decode"]
 c.qt.chromium.experimental_web_platform_features = "always"
 c.qt.workarounds.disable_hangouts_extension = True
-c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "tabs", "progress", "clock"]
+c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
 
 # --- Fonts ---
 
@@ -267,9 +268,10 @@ c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
-c.fileselect.single_file.command = ['alacritty', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+c.fileselect.single_file.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-i', '-x', '-GQ', '-p', '{}']
 #c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
-c.fileselect.multiple_files.command = ['alacritty', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+c.fileselect.multiple_files.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-i', '-x', '-GQ', '-p', '{}']
+c.fileselect.folder.command = ['footclient', '-e', 'ranger', '--choosedir={}']
 
 # --- Keybindings: Bookmarks ---
 
@@ -293,6 +295,8 @@ config.bind(',c', 'config-cycle content.user_stylesheets "" ""')
 config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4chan.css ""')
 config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
+config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
+config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
 config.bind(',x', 'config-cycle fonts.statusbar "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')

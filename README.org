@@ -109,6 +109,7 @@ better now!
 
 ** See also
 
+- [[https://github.com/Babkock/Pifiles][Raspberry Pi Dotfiles]]
 - My fork of [[https://github.com/Babkock/st][st]]
 - My fork of [[https://github.com/Babkock/dmenu][dmenu]]
 - My fork of [[https://gitlab.com/tbsuckless/dwm][dwm]]
