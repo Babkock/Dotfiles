@@ -476,7 +476,7 @@ config.bind('.', 'download-cancel')
 #+BEGIN_EXPORT html
 <footer>
     <center>
-    <p>Copyright &copy; 2022 Tanner Babcock.</p>
+    <p>Copyright &copy; 2026 Tanner Babcock.</p>
     <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
     <p class="nav"><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
     <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;

@@ -44,6 +44,7 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
 - [[#preferences][Preferences]]
 - [[#conditional-aliases][Conditional Aliases]]
   - [[#ssh][SSH]]
+  - [[#login-shell-functions][Login Shell Functions]]
   - [[#terminal][Terminal]]
 - [[#functions][Functions]]
   - [[#tbef][tbef]]
@@ -61,6 +62,8 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#unmount-external-encrypted-drive][Unmount External Encrypted Drive]]
   - [[#ssh-agent][SSH Agent]]
   - [[#raspberry-pi-copy][Raspberry Pi Copy]]
+  - [[#cheatsh-lookup][Cheat.sh Lookup]]
+  - [[#cheatsh-learn][Cheat.sh Learn]]
   - [[#fix-pulseaudio-sink][Fix PulseAudio Sink]]
 - [[#aliases][Aliases]]
 - [[#plugins][Plugins]]
@@ -131,7 +134,8 @@ Set some preferences. Auto CD, and no duplicates in history.
 #+begin_src sh :tangle .zshrc
 export LANG=en_US.UTF-8
 
-setopt auto_cd
+source <(fzf --zsh)
+setopt autocd
 setopt appendhistory
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
@@ -155,143 +159,157 @@ if [[ -n $SSH_CONNECTION ]]; then
     alias grep="/usr/bin/grep --color=auto"
     alias g="/usr/bin/grep --color=auto"
     alias gh="/usr/bin/grep --color=auto --context=4"
+    alias xx="echo Can not reboot from SSH > /dev/stderr"
+    alias reboot="echo Can not reboot from SSH > /dev/stderr"
+    alias shutdown="echo Can not shutdown from SSH > /dev/stderr"
 else
     alias c="bat"
     alias cat="bat"
     alias d="fd"
-    alias grep="rg"
-    alias g="rg"
-    alias gh="rg --context=4"
+    alias grep="ug"
+    alias g="ug"
+    alias gh="ug --context=4"
     alias reboot="loginctl reboot"
+    alias shutdown="sudo /usr/bin/shutdown -h now"
     alias xx="loginctl reboot"
+#+end_src
+
+** Login Shell Functions
+
+#+begin_src sh :tangle .zshrc
     # functions only for login shells
-    function shy() {
-        export GTK_THEME="Vimix-dark-ruby"
-        export GDK_BACKEND="wayland"
-        export SDL_VIDEODRIVER="wayland"
-        export XDG_CURRENT_DESKTOP="Hyprland"
-        export XDG_SESSION_DESKTOP="Hyprland"
-        export XDG_SESSION_TYPE="wayland"
-        export QT_QPA_PLATFORM="wayland-egl"
-        export QT_QPA_PLATFORMTHEME="qt6ct"
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-        export XCURSOR_THEME="Adwaita"
-        export XCURSOR_SIZE=30
-        export MOZ_ENABLE_WAYLAND=1
-        export MOZ_WEBRENDER=1
-        export WLR_DRM_NO_MODIFIERS=1
-        export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/renderD128"
-        pgrep eww | xargs kill 2> /dev/null
-        pgrep mpdas | xargs kill 2> /dev/null
-        pgrep pipewire | xargs kill 2> /dev/null
-        pgrep pulseaudio | xargs kill 2> /dev/null
-        echo "Starting Hyprland..."
-        gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-        gsettings set org.gnome.desktop.interface gtk-theme Sunset
-        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-        gsettings set org.gnome.desktop.interface cursor-size 30
-        dbus-launch --exit-with-session Hyprland
-        pgrep hypridle | xargs kill 2> /dev/null
-        pgrep stash | xargs kill 2> /dev/null
-        pgrep mako | xargs kill 2> /dev/null
-        pgrep emacs | xargs kill 2> /dev/null
-        pgrep hydroxide | xargs kill 2> /dev/null
-        pkill -x hydroxide
-        pgrep mpdas | xargs kill 2> /dev/null
-        pkill -x mpdas
-        true
-    }
-    function swa() {
-        export GTK_THEME="Vimix-dark-ruby"
-        export GDK_BACKEND="wayland"
-        export SDL_VIDEODRIVER="wayland"
-        export XDG_CURRENT_DESKTOP="sway"
-        export XDG_SESSION_DESKTOP="sway"
-        export XDG_SESSION_TYPE="wayland"
-        export QT_QPA_PLATFORM="wayland-egl"
-        export QT_QPA_PLATFORMTHEME="qt6ct"
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-        export XCURSOR_THEME="Adwaita"
-        export XCURSOR_SIZE=30
-        export MOZ_ENABLE_WAYLAND=1
-        export MOZ_WEBRENDER=1
-        pgrep eww | xargs kill 2> /dev/null
-        pgrep mpdas | xargs kill 2> /dev/null
-        pgrep pipewire | xargs kill 2> /dev/null
-        pgrep pulseaudio | xargs kill 2> /dev/null
-        echo "Starting Sway..."
-        gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-        gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby
-        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-        gsettings set org.gnome.desktop.interface cursor-size 30
-        dbus-launch --exit-with-session sway
-        pgrep mako | xargs kill 2> /dev/null
-        pgrep emacs | xargs kill 2> /dev/null
-        pgrep stash | xargs kill 2> /dev/null
-        pgrep hydroxide | xargs kill 2> /dev/null
-        pkill -x hydroxide
-        pgrep mpdas | xargs kill 2> /dev/null
-        pkill -x mpdas
-        true
-    }
-    function swf() {
-        export GTK_THEME="Sunset-Dark"
-        export GDK_BACKEND="wayland"
-        export SDL_VIDEODRIVER="wayland"
-        export XDG_CURRENT_DESKTOP="sway"
-        export XDG_SESSION_DESKTOP="sway"
-        export XDG_SESSION_TYPE="wayland"
-        export QT_QPA_PLATFORM="wayland-egl"
-        export QT_QPA_PLATFORMTHEME="qt6ct"
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-        export XCURSOR_THEME="Adwaita"
-        export XCURSOR_SIZE=30
-        export MOZ_ENABLE_WAYLAND=1
-        export MOZ_WEBRENDER=1
-        pgrep eww | xargs kill 2> /dev/null
-        pgrep mpdas | xargs kill 2> /dev/null
-        pgrep pipewire | xargs kill 2> /dev/null
-        pgrep pulseaudio | xargs kill 2> /dev/null
-        echo "Starting Wayfire..."
-        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
-        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-        gsettings set org.gnome.desktop.interface cursor-size 30
-        dbus-launch --exit-with-session wayfire
-        pgrep mako | xargs kill 2> /dev/null
-        pgrep emacs | xargs kill 2> /dev/null
-        pgrep stash | xargs kill 2> /dev/null
-        pgrep hydroxide | xargs kill 2> /dev/null
-        pkill -x hydroxide
-        pgrep mpdas | xargs kill 2> /dev/null
-        pkill -x mpdas
-        true
-    }
-    function sri() {
-        export GTK_THEME="Sunset-Dark"
-        export GDK_BACKEND="wayland"
-        export SDL_VIDEODRIVER="wayland"
-        export XDG_CURRENT_DESKTOP="sway"
-        export XDG_SESSION_DESKTOP="sway"
-        export XDG_SESSION_TYPE="wayland"
-        export QT_QPA_PLATFORM="wayland-egl"
-        export QT_QPA_PLATFORMTHEME="qt6ct"
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-        export XCURSOR_THEME="Adwaita"
-        export XCURSOR_SIZE=30
-        export MOZ_ENABLE_WAYLAND=1
-        export MOZ_WEBRENDER=1
-        pgrep mpdas | xargs kill 2> /dev/null
-        pgrep pipewire | xargs kill 2> /dev/null
-        pgrep pulseaudio | xargs kill 2> /dev/null
-        echo "Starting River..."
-        pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
-        gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-        gsettings set org.gnome.desktop.interface cursor-size 30
-        dbus-launch --exit-with-session river
-        pgrep mako | xargs kill 2> /dev/null
-        pgrep emacs | xargs kill 2> /dev/null
-        true
-    }
+    if [[ "$TERM" == "linux" ]]; then
+        function shy() {
+            export GTK_THEME="Vimix-dark-ruby"
+            export GDK_BACKEND="wayland"
+            export SDL_VIDEODRIVER="wayland"
+            export XDG_CURRENT_DESKTOP="Hyprland"
+            export XDG_SESSION_DESKTOP="Hyprland"
+            export XDG_SESSION_TYPE="wayland"
+            export QT_QPA_PLATFORM="wayland-egl"
+            export QT_QPA_PLATFORMTHEME="qt6ct"
+            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+            export XCURSOR_THEME="Adwaita"
+            export XCURSOR_SIZE=32
+            export MOZ_ENABLE_WAYLAND=1
+            export MOZ_WEBRENDER=1
+            export WLR_DRM_NO_MODIFIERS=1
+            export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/renderD128"
+            pgrep mpdas | xargs kill 2> /dev/null
+            pgrep pipewire | xargs kill 2> /dev/null
+            pgrep pulseaudio | xargs kill 2> /dev/null
+            echo "Starting Hyprland..."
+            gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby
+            gsettings set org.gnome.desktop.interface cursor-theme Adwaita
+            gsettings set org.gnome.desktop.interface cursor-size 32
+            dbus-launch --exit-with-session Hyprland &> /dev/null
+            pgrep hypridle | xargs kill 2> /dev/null
+            pgrep stash | xargs kill 2> /dev/null
+            pgrep mako | xargs kill 2> /dev/null
+            pgrep emacs | xargs kill 2> /dev/null
+            pgrep hydroxide | xargs kill 2> /dev/null
+            pkill -x hydroxide
+            pgrep mpdas | xargs kill 2> /dev/null
+            pkill -x mpdas
+            true
+        }
+        function swa() {
+            export GTK_THEME="Vimix-dark-ruby"
+            export GDK_BACKEND="wayland"
+            export SDL_VIDEODRIVER="wayland"
+            export XDG_CURRENT_DESKTOP="sway"
+            export XDG_SESSION_DESKTOP="sway"
+            export XDG_SESSION_TYPE="wayland"
+            export QT_QPA_PLATFORM="wayland-egl"
+            export QT_QPA_PLATFORMTHEME="qt6ct"
+            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+            export XCURSOR_THEME="Adwaita"
+            export XCURSOR_SIZE=32
+            export MOZ_ENABLE_WAYLAND=1
+            export MOZ_WEBRENDER=1
+            pgrep mpdas | xargs kill 2> /dev/null
+            pgrep pipewire | xargs kill 2> /dev/null
+            pgrep pulseaudio | xargs kill 2> /dev/null
+            echo "Starting Sway..."
+            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
+            dbus-launch --exit-with-session sway &> /dev/null
+            pkill -x eww
+            pgrep emacs | xargs kill 2> /dev/null
+            pgrep stash | xargs kill 2> /dev/null
+            pgrep hydroxide | xargs kill 2> /dev/null
+            pkill -x hydroxide
+            pgrep mpdas | xargs kill 2> /dev/null
+            pkill -x mpdas
+            true
+        }
+        function swf() {
+            export GTK_THEME="Vimix-dark-ruby"
+            export GDK_BACKEND="wayland"
+            export SDL_VIDEODRIVER="wayland"
+            export XDG_CURRENT_DESKTOP="sway"
+            export XDG_SESSION_DESKTOP="sway"
+            export XDG_SESSION_TYPE="wayland"
+            export QT_QPA_PLATFORM="wayland-egl"
+            export QT_QPA_PLATFORMTHEME="qt6ct"
+            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+            export XCURSOR_THEME="Adwaita"
+            export XCURSOR_SIZE=32
+            export MOZ_ENABLE_WAYLAND=1
+            export MOZ_WEBRENDER=1
+            pgrep mpdas | xargs kill 2> /dev/null
+            pgrep pipewire | xargs kill 2> /dev/null
+            pgrep pulseaudio | xargs kill 2> /dev/null
+            echo "Starting Wayfire..."
+            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
+            dbus-launch --exit-with-session wayfire &> /dev/null
+            pkill -x eww
+            pgrep emacs | xargs kill 2> /dev/null
+            pgrep stash | xargs kill 2> /dev/null
+            pgrep hydroxide | xargs kill 2> /dev/null
+            pkill -x hydroxide
+            pgrep mpdas | xargs kill 2> /dev/null
+            pkill -x mpdas
+            true
+        }
+        function sri() {
+            export GTK_THEME="Vimix-dark-ruby"
+            export GDK_BACKEND="wayland"
+            export SDL_VIDEODRIVER="wayland"
+            export XDG_CURRENT_DESKTOP="sway"
+            export XDG_SESSION_DESKTOP="sway"
+            export XDG_SESSION_TYPE="wayland"
+            export QT_QPA_PLATFORM="wayland-egl"
+            export QT_QPA_PLATFORMTHEME="qt6ct"
+            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+            export XCURSOR_THEME="Adwaita"
+            export XCURSOR_SIZE=32
+            export MOZ_ENABLE_WAYLAND=1
+            export MOZ_WEBRENDER=1
+            pgrep mpdas | xargs kill 2> /dev/null
+            pgrep pipewire | xargs kill 2> /dev/null
+            pgrep pulseaudio | xargs kill 2> /dev/null
+            echo "Starting River..."
+            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby
+            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
+            dbus-launch --exit-with-session river &> /dev/null
+            pkill -x eww
+            pgrep emacs | xargs kill 2> /dev/null
+            pgrep stash | xargs kill 2> /dev/null
+            pgrep hydroxide | xargs kill 2> /dev/null
+            pkill -x hydroxide
+            pgrep mpdas | xargs kill 2> /dev/null
+            true
+        }
+    fi
 fi
 #+end_src
 
@@ -359,24 +377,24 @@ if [ -v TERM ]; then
         alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
         alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
-        alias e="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q"
-        alias ee="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q ."
-        alias ea="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/alacritty/config.org\""
-        alias ez="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
-        alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
-        alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
-        alias eq="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
-        alias ec="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
-        alias ed="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
-        alias ew="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
-        alias es="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
-        alias ef="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
-        alias egp="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
-        alias egs="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
-        alias ei="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias egl="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
-        alias er="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
-        alias eo="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/eww/eww.org\""
+        alias e="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q"
+        alias ee="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q ."
+        alias ea="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/alacritty/config.org\""
+        alias ez="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.zsh.org\""
+        #alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/bspwm/bspwm.org\""
+        #alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/polybar/config.org\""
+        alias eq="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/qutebrowser/config.org\""
+        alias ec="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/init.org\""
+        alias ed="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.doom.d/config.org\""
+        alias ew="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/config.org\""
+        alias es="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/waybar/style.org\""
+        alias ef="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/foot/foot.org\""
+        alias egp="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-push)\" > /dev/null"
+        alias egs="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-status)\" > /dev/null"
+        alias ei="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias egl="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(magit-log-all)\" > /dev/null"
+        alias er="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q --eval \"(elfeed)\" > /dev/null"
+        alias eo="swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q \"$HOME/.config/eww/eww.org\""
         alias mx="mpv av://v4l2:/dev/video0 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5"
@@ -426,14 +444,14 @@ function tbef() {
         printf "Must specify the name of a film file to edit\n" > /dev/stderr
         false
     elif [ -z "$2" ]; then
-        vim "$HOME/TBcom/resources/op/film/$1.html"
+        vim -n -T alacritty "$HOME/TBcom/resources/op/film/$1.html"
         pushd "$HOME/TBcom/resources/op" > /dev/null
         git add film
         popd > /dev/null
         true
     else
-        vim "$HOME/TBcom/resources/op/film/$1.html"
-        vim "$HOME/TBcom/resources/op/film/$2.html"
+        vim -n -T alacritty "$HOME/TBcom/resources/op/film/$1.html"
+        vim -n -T alacritty "$HOME/TBcom/resources/op/film/$2.html"
         pushd "$HOME/TBcom/resources/op" > /dev/null
         git add film
         popd > /dev/null
@@ -452,14 +470,14 @@ function tbem() {
         printf "Must specify the name of an artist file to edit\n" > /dev/stderr
         false
     elif [ -z "$2" ]; then
-        vim "$HOME/TBcom/resources/op/music/$1.html"
+        vim -n -T alacritty "$HOME/TBcom/resources/op/music/$1.html"
         pushd "$HOME/TBcom/resources/op" > /dev/null
         git add music
         popd > /dev/null
         true
     else
-        vim "$HOME/TBcom/resources/op/music/$1.html"
-        vim "$HOME/TBcom/resources/op/music/$2.html"
+        vim -n -T alacritty "$HOME/TBcom/resources/op/music/$1.html"
+        vim -n -T alacritty "$HOME/TBcom/resources/op/music/$2.html"
         pushd "$HOME/TBcom/resources/op" > /dev/null
         git add music
         popd > /dev/null
@@ -613,7 +631,7 @@ A wrapper function for [[https://github.com/jarun/nnn][nnn]] that changes the cu
 function j()
 {
     if [[ ${TERM} = "screen-256color" ]]; then
-        \nnn -d -i -l 2 -HGURQD -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg
+        \nnn -d -i -l 2 -HGURQD -x -e -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg
         return
     fi
     # Block nesting of nnn in subshells
@@ -623,7 +641,7 @@ function j()
     fi
     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
-    \nnn -d -i -l 2 -GUHRQD "$@"
+    \nnn -d -i -l 2 -GUHRQD -x -e "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
         . "$NNN_TMPFILE"
@@ -736,6 +754,49 @@ function pcp() {
         scp -i "$HOME/.ssh/comp2pinew" "$1" pi@192.168.0.13:~
     else
         scp -i "$HOME/.ssh/comp2pinew" "$1" "$2" pi@192.168.0.13:~
+    fi
+}
+#+end_src
+
+** Cheat.sh Lookup
+
+#+begin_src sh :tangle .zshrc
+function ch() {
+    if [[ -z "$1" ]]; then
+        printf "No command to look up\n" > /dev/stderr
+        false
+    elif [[ -z "$2" ]]; then
+        curl "https://cht.sh/$1"
+        true
+    else
+        curl "https://cht.sh/$1/$2"
+        true
+    fi
+}
+#+end_src
+
+** Cheat.sh Learn
+
+#+begin_src sh :tangle .zshrc
+function chp() {
+    if [[ -z "$1" ]]; then
+        printf "Enter a programming language to learn\n" > /dev/stderr
+        false
+    else
+        curl "https://cht.sh/$1/:learn"
+        true
+    fi
+}
+#+end_src
+
+#+begin_src sh :tangle .zshrc
+function chl() {
+    if [[ -z "$1" ]]; then
+        printf "Enter a programming language to list topics for\n" > /dev/stderr
+        false
+    else
+        curl "https://cht.sh/$1/:list"
+        true
     fi
 }
 #+end_src
@@ -864,7 +925,7 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:LocalIp:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white'"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white'"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
@@ -879,8 +940,9 @@ alias h="htop"
 alias ncr="gpg --encrypt --armor -r Tanner"
 # decrypt file and output (use > direct)
 alias dcr="gpg --decrypt"
-alias g="rg"
-alias gh="rg --context=4"
+alias g="ug -I --depth=4 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
+alias gz="ug -I --depth=2 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
+alias gh="ug -I --context=4 --depth=4 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
 alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 10 1 4"
 alias gp="gpg"
 alias gs="git status -sb"
@@ -917,8 +979,12 @@ alias gpulm="git pull origin main"
 alias gpash="git push all master; git pull origin master; git pull upstream master"
 # push 'main' to multiple remotes
 alias gpasm="git push all main; git pull origin main; git pull upstream main"
-alias v="vim"
+alias v="vim -n -T alacritty"
+alias vh="vim -n -T alacritty -o"
+alias vv="vim -n -T alacritty -O"
+alias vim="vim -n -T alacritty"
 alias vm="virt-manager"
+alias lb="lsblk --paths --fs --perms"
 alias r="ranger"
 alias m="mpv"
 alias mb="mount /mnt/Baby; echo 'sdb Mounted'"
@@ -947,14 +1013,14 @@ alias ol="eww list-windows"
 alias oo="eww open"
 alias or="eww reload"
 alias ow="eww open mem; eww open calendar; eww open power; eww open files"
-alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
+#alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
 alias u="neomutt -F '$HOME/.muttrc'"
-alias spi="ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
+alias spi="TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
 alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.15"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="swayimg"
-alias qw="swayimg --all"
+alias qw="swayimg -g -r -w 1920,1080 -p 0,0"
 alias qi="identify"
 alias qg="gimp"
 alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
@@ -996,6 +1062,7 @@ alias xxl="cd $VOIDPKG; ./xbps-src list; cd $OLDPWD"
 #alias xs="./xbps-src show"
 alias xlu="cd $VOIDPKG; ./xbps-src show-local-updates; cd $OLDPWD"
 alias xsu="cd $VOIDPKG; ./xbps-src show-sys-updates; cd $OLDPWD"
+alias yz="yazi"
 alias z="bluetoothctl"
 #+end_src
 
@@ -1065,6 +1132,7 @@ These next lines accomplish a few things. They let me use directory-changers lik
 #+begin_src sh :tangle .zshrc
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
+export GREP_COLORS="fn=bh:ln=gh:mt=rh:cx=y"
 export EDITOR=vim
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555"
 export NNN_FIFO=/tmp/nnn.fifo
