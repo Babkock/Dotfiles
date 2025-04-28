@@ -40,7 +40,7 @@ visualizer_data_source = /tmp/mpd.fifo
 visualizer_in_stereo = yes
 
 ## Available values: spectrum, wave, wave_filled, ellipse.
-visualizer_type = spectrum
+visualizer_type = ellipse
 
 visualizer_look = ?$
 
@@ -176,7 +176,7 @@ song_window_title_format = zncmpcpp {%a - }{%t}|{%f}
 ##
 song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (28)[red]{t|f:Title} (25)[green]{a} (22)[magenta]{b} (4)[yellow]{yE}
 
-execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh; eww reload 2> /dev/null"
+execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh &"
 
 ## The environment variable MPD_PLAYER_STATE is set to the current
 ## state (either unknown, play, pause, or stop).
@@ -206,7 +206,7 @@ incremental_seeking = yes
 
 seek_time = 2
 
-volume_change_step = 3
+volume_change_step = 2
 
 #autocenter_mode = no
 
@@ -222,7 +222,7 @@ user_interface = alternative
 
 media_library_primary_tag = artist
 
-media_library_albums_split_by_date = no
+media_library_albums_split_by_date = yes
 
 #default_find_mode = wrapped
 
@@ -269,7 +269,7 @@ show_hidden_files_in_local_browser = no
 
 startup_screen = clock
 
-#startup_slave_screen = ""
+#startup_slave_screen = last_fm
 
 #startup_slave_screen_focus = no
 

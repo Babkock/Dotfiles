@@ -93,13 +93,14 @@
 ;(set-frame-parameter (selected-frame) 'alpha '(70 70))
 (set-frame-parameter (selected-frame) 'alpha 90)
 (add-to-list 'default-frame-alist '(alpha 90 90))
-(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
+(add-hook! 'dired-mode-hook 'nerd-icons-dired-mode)
+;(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
 (add-hook! 'dired-mode-hook 'garbage-collect)
 
 (setq warning-minimum-level :emergency)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+;(scroll-bar-mode -1)
 
 (after! doom-themes
     (setq doom-themes-enable-bold t

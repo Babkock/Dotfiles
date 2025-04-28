@@ -51,44 +51,32 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#battery][Battery]]
   - [[#bluetooth][Bluetooth]]
   - [[#clocknetwork][Clock/Network]]
-- [[#river-waybar-style][River Waybar Style]]
+- [[#wayfire-waybar-style][Wayfire Waybar Style]]
   - [[#all-1][All]]
-  - [[#title][Title]]
-  - [[#mpd-1][MPD]]
   - [[#cpu-1][CPU]]
   - [[#pulseaudiodisk-1][Pulseaudio/Disk]]
   - [[#memorybacklight-1][Memory/Backlight]]
-  - [[#workspaces-1][Workspaces]]
   - [[#battery-1][Battery]]
-  - [[#clock][Clock]]
-  - [[#network][Network]]
   - [[#bluetooth-1][Bluetooth]]
-- [[#wayfire-waybar-style][Wayfire Waybar Style]]
-  - [[#all-2][All]]
-  - [[#cpu-2][CPU]]
-  - [[#pulseaudiodisk-2][Pulseaudio/Disk]]
-  - [[#memorybacklight-2][Memory/Backlight]]
-  - [[#battery-2][Battery]]
-  - [[#bluetooth-2][Bluetooth]]
   - [[#taskbar][Taskbar]]
   - [[#clocknetwork-1][Clock/Network]]
   - [[#privacy-1][Privacy]]
-  - [[#mpd-2][MPD]]
+  - [[#mpd-1][MPD]]
   - [[#wireplumber][Wireplumber]]
   - [[#keyboard-state-1][Keyboard State]]
 - [[#hyprland-waybar-style][Hyprland Waybar Style]]
-  - [[#all-3][All]]
-  - [[#title-1][Title]]
-  - [[#mpd-3][MPD]]
-  - [[#cpu-3][CPU]]
-  - [[#pulseaudiodisk-3][Pulseaudio/Disk]]
-  - [[#memorybacklight-3][Memory/Backlight]]
-  - [[#workspaces-2][Workspaces]]
-  - [[#battery-3][Battery]]
-  - [[#clock-1][Clock]]
+  - [[#all-2][All]]
+  - [[#title][Title]]
+  - [[#mpd-2][MPD]]
+  - [[#cpu-2][CPU]]
+  - [[#pulseaudiodisk-2][Pulseaudio/Disk]]
+  - [[#memorybacklight-2][Memory/Backlight]]
+  - [[#workspaces-1][Workspaces]]
+  - [[#battery-2][Battery]]
+  - [[#clock][Clock]]
   - [[#cava-1][Cava]]
-  - [[#network-1][Network]]
-  - [[#bluetooth-3][Bluetooth]]
+  - [[#network][Network]]
+  - [[#bluetooth-2][Bluetooth]]
 
 * Sway Waybar Style
 
@@ -98,7 +86,7 @@ This is the Sway Waybar style. Load this document into Emacs, and turn on Rainbo
 
 Notice the space before the asterisk.
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
  * {
     font-family:"VictorMono Nerd Font";
     font-size:24px;
@@ -123,7 +111,7 @@ tooltip {
 
 ** Window
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #window {
     color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
@@ -133,7 +121,7 @@ tooltip {
 
 ** MPD
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #mpd {
     color:#fedd83;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
@@ -142,7 +130,7 @@ tooltip {
 
 ** CPU
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #cpu, #wireplumber.muted, #pulseaudio.muted, #privacy {
     color:#fe0219;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
@@ -150,6 +138,13 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    transition:all 0.2s ease 0s;
+}
+
+#cpu:hover, #wireplumber.muted:hover, #pulseaudio.muted:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
 }
 
 #cpu {
@@ -167,7 +162,7 @@ tooltip {
 
 ** Pulseaudio/Disk
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #pulseaudio, #disk {
     color:#f4df23;
     background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.4));
@@ -179,6 +174,15 @@ tooltip {
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
+#disk {
+    transition:all 0.2s ease 0s;
+}
+#disk:hover, #pulseaudio:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    text-shadow:2px 2px rgba(80, 80, 80, 0.6);
+}
+
 #pulseaudio {
     border-radius:40px 40px 40px 40px;
     padding-left:11px;
@@ -186,6 +190,10 @@ tooltip {
     margin-right:4px;
     margin-left:1px;
     box-shadow:3px 3px rgba(228, 207, 19, 0.4);
+    transition:all 0.2s ease 0s;
+}
+#pulseaudio:hover {
+    box-shadow:3px 3px rgba(80, 80, 80, 0.6);
 }
 
 #pulseaudio.muted {
@@ -199,7 +207,7 @@ tooltip {
 
 ** Privacy
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #privacy-item {
     padding-left:4px;
     padding-right:4px;
@@ -214,7 +222,7 @@ tooltip {
 
 ** Memory/Backlight
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #memory, #backlight, #wireplumber {
     color:#a9df11;
     background:linear-gradient(0deg, rgba(153, 208, 2, 0.5), rgba(0, 0, 0, 0.4));
@@ -223,12 +231,19 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    transition:all 0.2s ease 0s;
+}
+
+#memory:hover, #backlight:hover, #wireplumber:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    text-shadow:2px 2px rgba(50, 50, 50, 0.6);
 }
 #+end_src
 
 ** Workspaces
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #workspaces button, #tags button {
     background:linear-gradient(0deg, rgba(60, 60, 30, 0.5), rgba(0, 0, 0, 0.5));
     padding-left:16px;
@@ -284,7 +299,7 @@ tooltip {
 
 ** Cava
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #cava {
     background:linear-gradient(0deg, rgba(238, 1, 10, 0.5), rgba(0, 0, 0, 0.3));
     color:#fe0219;
@@ -296,7 +311,7 @@ tooltip {
 
 ** Keyboard State
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #keyboard-state {
     padding-left:8px;
     padding-right:5px;
@@ -305,11 +320,23 @@ tooltip {
     box-shadow:3px 2px rgba(228, 207, 19, 0.4);
     margin-right:4px;
     margin-left:0px;
+    transition:all 0.2s ease 0s;
 }
 
 #keyboard-state label {
     color:#f4df23;
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#keyboard-state:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.5));
+    border-radius:0px 40px 40px 0px;
+    box-shadow:3px 2px rgba(150, 150, 150, 0.4);
+}
+
+#keyboard-state:hover label {
+    color:#efefef;
+    text-shadow:2px 2px rgba(60, 60, 60, 0.5);
 }
 
 #keyboard-state label.locked {
@@ -318,7 +345,7 @@ tooltip {
 }
 #+end_src
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #image {
     background:none;
     border:none;
@@ -329,11 +356,18 @@ tooltip {
 
 ** Battery
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
     color:#6264fe;
     background:linear-gradient(0deg, rgba(118, 112, 229, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    transition:all 0.2s ease 0s;
+}
+
+#battery:hover, #idle_inhibitor:hover, #pulseaudio.bluetooth:hover, #temperature:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
 }
 
 #pulseaudio.bluetooth, #temperature {
@@ -350,6 +384,10 @@ tooltip {
     padding-left:11px;
     padding-right:13px;
     box-shadow:3px 2px rgba(118, 112, 229, 0.5);
+}
+
+#pulseaudio:hover {
+    box-shadow:3px 2px rgba(150, 150, 150, 0.5);
 }
 
 #battery {
@@ -391,12 +429,16 @@ tooltip {
 
 ** Bluetooth
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
+#bluetooth {
+    transition:all 0.2s ease 0s;
+}
+
 #bluetooth.on, #bluetooth.off {
     color:#fe0219;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -408,7 +450,7 @@ tooltip {
     color:#a9df11;
     background:linear-gradient(0deg, rgba(153, 207, 1, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -420,7 +462,7 @@ tooltip {
     color:#5254fe;
     background:linear-gradient(0deg, rgba(108, 102, 218, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -432,7 +474,7 @@ tooltip {
     color:#f4df23;
     background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -443,7 +485,7 @@ tooltip {
 
 ** Clock/Network
 
-#+begin_src css :tangle style.css
+#+begin_src css :tangle sway.css
 #custom-clock, #network {
     color:#ff4de7;
     background:linear-gradient(0deg, rgba(175, 56, 219, 0.5), rgba(0, 0, 0, 0.4));
@@ -454,234 +496,14 @@ tooltip {
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     box-shadow:3px 2px rgba(175, 56, 219, 0.4);
-}
-#+end_src
-
-* River Waybar Style
-
-** All
-
-#+begin_src css :tangle river.css
- * {
-    font-family:"SpaceMono Nerd Font";
-    font-size:21px;
-    background:transparent;
-    color:#fdeadb;
+    transition:all 0.2s ease 0s;
 }
 
-tooltip {
-    border:none;
-    border-radius:0;
-    color:#fdeadb;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.6);
-    margin-bottom:1px;
-    padding:0;
-}
-#+end_src
-
-** Title
-
-#+begin_src css :tangle river.css
-#title, #window {
-    padding-left:6px;
-    color:#fdeadb;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#+end_src
-
-** MPD
-
-#+begin_src css :tangle river.css
-#mpd, #bluetooth.off {
-    padding-right:6px;
-    color:#fdeadb;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#+end_src
-
-** CPU
-
-#+begin_src css :tangle river.css
-#cpu, #wireplumber.muted, #pulseaudio.muted {
-    color:#d0484e;
-    background:linear-gradient(180deg, rgba(196, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#+end_src
-
-** Pulseaudio/Disk
-
-#+begin_src css :tangle river.css
-#pulseaudio, #disk {
-    color:#f28735;
-    background:linear-gradient(180deg, rgba(226, 119, 53, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:2px;
-    margin-right:0;
-    border-radius:40px 0px 0px 40px;
-    padding-left:10px;
-    padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#+end_src
-
-** Memory/Backlight
-
-#+begin_src css :tangle river.css
-#memory, #backlight, #wireplumber {
-    color:#25c192;
-    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#backlight {
-    border-radius:0px 40px 40px 0px;
-    margin-right:2px;
-}
-#+end_src
-
-** Workspaces
-
-#+begin_src css :tangle river.css
-#workspaces button, #tags button {
-    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
-    padding-left:16px;
-    padding-right:17px;
-    margin-left:1px;
-    margin-right:1px;
-    border-radius:40px 40px 40px 40px;
-    border:0px solid transparent;
-    color:#fc3c35;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-
-#workspaces button:hover, #tags button:hover {
-    background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
-    box-shadow:inherit;
-    text-shadow:inherit;
-    margin-left:1px;
-    margin-right:1px;
-    border-radius:40px 40px 40px 40px;
-    border:0px solid transparent;
-    color:#bcbcbc;
-    text-shadow:3px 3px rgba(247, 78, 139, 0.5);
-}
-
-#workspaces button.focused, #tags button.focused, #tags button.focused.occupied, #workspaces button.active {
-    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
-}
-
-#workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover, #workspaces button.active:hover {
-    text-shadow:3px 3px rgba(21, 176, 130, 0.7);
-}
-
-#tags button.occupied {
-    background:linear-gradient(0deg, rgba(112, 202, 68, 0.6), rgba(0, 0, 0, 0.1));
-}
-#+end_src
-
-** Battery
-
-#+begin_src css :tangle river.css
-#battery, #idle_inhibitor, #pulseaudio.bluetooth {
-    color:#3996c0;
-    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#idle_inhibitor, #pulseaudio.bluetooth {
-    border-radius:40px 0px 0px 40px;
-    margin-left:2px;
-}
-#+end_src
-
-** Clock
-
-#+begin_src css :tangle river.css
-#custom-clock {
-    color:#d8a89a;
-    background:linear-gradient(180deg, rgba(200, 152, 138, 0.7), rgba(0, 0, 0, 0.1));
-    border-radius:0px 40px 40px 0px;
-    margin-left:0;
-    margin-right:2px;
-    padding-left:12px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#+end_src
-
-** Network
-
-#+begin_src css :tangle river.css
-#network {
-   color:#f74e8b;
-   background:linear-gradient(180deg, rgba(231, 61, 123, 0.7), rgba(0, 0, 0, 0.1));
-   border-radius:0px 40px 40px 0px;
-   margin-left:0;
-   margin-right:2px;
-   padding-left:11px;
-   padding-right:11px;
-   text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-#+end_src
-
-** Bluetooth
-
-#+begin_src css :tangle river.css
-#bluetooth.off {
-    padding-left:9px;
-    padding-right:9px;
-    margin-left:0;
-    margin-right:0;
-}
-
-#bluetooth.on {
-    color:#d0484e;
-    background:linear-gradient(180deg, rgba(186, 60, 72, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-
-#bluetooth.connected, #bluetooth.connected.pairable {
-    color:#25c192;
-    background:linear-gradient(180deg, rgba(21, 176, 130, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:10px;
-    padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-
-#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
-    color:#3996c0;
-    background:linear-gradient(180deg, rgba(57, 150, 192, 0.7), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-}
-
-#bluetooth.discovering {
-    color:#f9c65b;
-    background:linear-gradient(0deg, rgba(233, 182, 75, 0.6), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:0;
-    padding-left:11px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+#custom-clock:hover, #network:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
+    box-shadow:3px 2px rgba(150, 150, 150, 0.4);
 }
 #+end_src
 
@@ -1052,11 +874,18 @@ tooltip {
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
 
+#cpu:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.7), rgba(0, 0, 0, 0.2));
+    color:#efefef;
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+}
+
 #cpu {
     border-radius:40px 0px 0px 40px;
     margin-left:2px;
     margin-right:0px;
     padding-left:12px;
+    transition:all 0.2s ease 0s;
 }
 #+end_src
 
@@ -1072,6 +901,12 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#pulseaudio:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.7), rgba(0, 0, 0, 0.1));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
 }
 
 #pulseaudio {
@@ -1258,7 +1093,7 @@ tooltip {
     border-radius:0px 40px 40px 0px;
     box-shadow:3px 2px rgba(238, 75, 80, 0.5);
     margin-left:0;
-    margin-right:2px;
+    margin-right:4px;
     padding-left:10px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -1269,7 +1104,7 @@ tooltip {
     background:linear-gradient(0deg, rgba(154, 176, 99, 0.7), rgba(0, 0, 0, 0.2));
     border-radius:0px 40px 40px 0px;
     margin-left:0;
-    margin-right:2px;
+    margin-right:4px;
     padding-left:10px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -1281,7 +1116,7 @@ tooltip {
     background:linear-gradient(0deg, rgba(77, 119, 213, 0.7), rgba(0, 0, 0, 0.1));
     border-radius:0px 40px 40px 0px;
     margin-left:0;
-    margin-right:2px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -1293,7 +1128,7 @@ tooltip {
     background:linear-gradient(0deg, rgba(233, 212, 167, 0.6), rgba(0, 0, 0, 0.1));
     border-radius:0px 40px 40px 0px;
     margin-left:0;
-    margin-right:1px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -1305,7 +1140,7 @@ tooltip {
 #+BEGIN_EXPORT html
 <footer>
     <center>
-        <p>Copyright &copy; 2025 Tanner Babcock.</p>
+        <p>Copyright &copy; 2026 Tanner Babcock.</p>
         <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
         <p class="nav">
             <a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;

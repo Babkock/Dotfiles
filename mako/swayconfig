@@ -1,3 +1,4 @@
+anchor=top-right
 font=VictorMono Nerd Font 15
 background-color=#00000077
 text-color=#fe0219dd
@@ -16,6 +17,7 @@ text-alignment=right
 icon-location=right
 
 [urgency=critical]
+anchor=top-right
 font=VictorMono Nerd Font 15
 background-color=#33000088
 text-color=#ffffffff

@@ -24,6 +24,7 @@ if $TERM == 'xterm-kitty'
 endif
 if $TERM == 'foot'
 	set ttymouse=sgr
+	set t_TI= t_TE=
 endif
 
 hi CursorLine term=bold cterm=bold ctermbg=235

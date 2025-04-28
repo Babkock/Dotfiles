@@ -1,49 +1,41 @@
 [{
     "position": "bottom",
-    "layer": "top",
-    "height": 42,
+    "height": 48,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
-    "hyprland/workspaces": {
-        "all-outputs": false,
-        "move-to-monitor": true,
-        "disable-scroll": false,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "󰖟",
-            "3": "",
-            "4": "",
-            "5": "󰭹",
-            "6": "",
-            "7": "",
-            "8": "󰨜",
-            "9": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        },
-        "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
-        "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
+    "mode": "dock",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "sway/workspaces": {
+         "disable-scroll": false,
+         "disable-scroll-wraparound": true,
+         "enable-bar-scroll": true,
+         "all-outputs": false,
+         "format": "{icon}",
+         "format-icons": {
+             "1": "",
+             "2": "󰖟",
+             "3": "",
+             "4": "",
+             "5": "󰭹",
+             "6": "",
+             "7": "",
+             "8": "󰨜",
+             "9": "",
+             "urgent": "",
+             "default": ""
+         }
     },
-
-"disk": {
-    "path": "/mnt/mega/",
-    "interval": 1,
-    "format": "󰋊 <span style=\"italic\">{free}</span>",
-    "format-alt": "󰋊 {used}",
-    "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
-},
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
     "format-disconnected": " ",
-    "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
+    "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
     "title-len": 42,
     "unknown-tag": "N/A",
     "interval": 1,
@@ -70,23 +62,44 @@
     "tooltip-format": "{artist} - {album} ({date})",
 },
 
+"image#album-art": {
+    "path": "/tmp/mpd_cover.jpg",
+    "size": 38,
+    "interval": 1,
+    "on-click": "swayimg /tmp/mpd_cover.jpg",
+    "on-click-right": "footclient -e ncmpcpp"
+},
+
 "custom/clock": {
     "exec": "date +'%I:%M:%S  %a, %b %d'",
     "interval": 1,
     "format": " {}",
     "align": 1,
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
+    "on-click-right": "pkill -x eww"
 },
 
 "cpu": {
     "format": " {usage}%",
     "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
 },
 
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+},
+
+"disk": {
+    "path": "/mnt/mega/",
+    "interval": 1,
+    "format": "󰋊 <span style=\"italic\">{free}</span>",
+    "format-alt": "󰋊 {used}",
+    "tooltip": true,
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pcmanfm /mnt/mega"
 },
 
 "battery": {
@@ -96,7 +109,7 @@
         "critical": 20
     },
     "full-at": 94,
-    "format": "{icon} <span style=\"italic\">{capacity}%</span>",
+    "format": "{icon}  <span style=\"italic\">{capacity}%</span>",
     "format-charging": " <span style=\"italic\">{capacity}%</span>",
     "format-plugged": " {capacity}%",
     "format-alt": "{icon}   {time}",
@@ -110,12 +123,12 @@
     "device": "intel_backlight",
     "tooltip": false,
     "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-click": "light -S 20 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
+    "format-icons": ["", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
     "on-click-right": "pkill -x gammastep; gammastep -O 4500K",
     "on-click-middle": "pkill -x gammastep",
-    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock ; pkill -x sh",
-    "on-scroll-down": "light -U 1 && light -G | cut -d '.' -f1 > /home/babkock/.wob.sock ; pkill -x sh"
+    "on-click": "light -S 20 && light -G && echo 20 > .wob.sock",
+    "on-scroll-up": "light -A 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
+    "on-scroll-down": "light -U 1 && light -G | cut -d'.' -f1 > /home/babkock/.wob.sock",
 },
 
 "pulseaudio": {
@@ -136,50 +149,51 @@
         "car": "",
         "default": ["", "", ""]
     },
+    "on-click-right": "pavucontrol",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "pavucontrol"
-},
-
-"image#album-art": {
-    "path": "/tmp/mpd_cover.jpg",
-    "size": 40,
-    "interval": 1
 }
 
 }, {
     "position": "bottom",
-    "layer": "top",
-    "height": 44,
+    "height": 50,
     "spacing": 0,
-    "reload_style_on_change": true,
     "output": "HDMI-A-2",
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "cava", "temperature", "tray"],
-    "hyprland/workspaces": {
-         "disable-scroll": false,
-         "all-outputs": false,
-         "format": "{icon}",
-         "format-icons": {
-             "1": "",
-             "2": "󰖟",
-             "3": "",
-             "4": "",
-             "5": "󰭹",
-             "6": "",
-             "7": "",
-             "8": "󰨜",
-             "9": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-        },
-        "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
-        "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
+    "reload_style_on_change": true,
+    "mode": "dock",
+    "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
+    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "󰖟",
+            "3": "",
+            "4": "",
+            "5": "󰭹",
+            "6": "",
+            "7": "",
+            "8": "󰨜",
+            "9": "",
+            "urgent": "",
+            "default": ""
+        }
     },
 
-"hyprland/window": {
+"sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", " ", " "],
+    "tooltip": true,
+    "tooltip-format": "{title}"
+},
+
+"sway/window": {
     "format": "{title}",
     "separate-outputs": false,
     "tooltip": false,
@@ -188,96 +202,129 @@
         "Alacritty": " ",
         "st": " ",
         "\\[spaceman\\] (.*)": " $1",
-        "\\[spaceman\\] exit(.*)": " $1",
+        "\\[spaceman\\] exit (.*)": " $1",
         "Steam": " ",
         "Sign in to Steam": " ",
         "Shutdown": " ",
-        "cava": "",
+        "cava": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
+        "DeaDBeeF - (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
+        "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
         "YouTube": " ",
-        "Wikipedia, the free encyclopedia": "󰖬 ",
-        "Wikipedia": "󰖬 ",
-        "(.*) - Wikipedia": "󰖬 <span style=\"italic\">$1</span>",
         "GitHub": " ",
         "Explore GitHub": " ",
         "GitHub Dashboard": " ",
+        "Bitcoin Core": " ",
+        "Node window": " ",
+        "Yazi: (.*)": " $1",
+        "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "(.*) at master · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "(.*) at main · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "Release (.*) · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "Tumblr": " ",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Void Linux Handbook — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Zen Browser": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "Tumblr": " ",
         "(.*) Tumblr": " <span style=\"italic\">$1</span>",
-        "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - Gmail": "󰊫 <span style=\"italic\">$1</span>",
         "(.*) \\| Proton Mail": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Stack Overflow": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Stack Overflow — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Stack Overflow — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
-        "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
-        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Ask Ubuntu — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
         "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Zen Browser": " <span style=\"italic\">$2</span>",
+        "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) · GitLab": " <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki — Mozilla Firefox": "󰣇 <span style=\"italic\">$1</span>",
-        "(.*) - Wikipedia — Mozilla Firefox": "󰖬 <span style=\"italic\">$1</span>",
+        "(.*) - ArchWiki — Zen Browser": "󰣇 <span style=\"italic\">$1</span>",
+        "(.*) - Wikipedia — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) :: PassThePopcorn — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) :: Empornium — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Wikipedia — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) :: PassThePopcorn — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) :: Empornium — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) :: PassThePopcorn": " <span style=\"italic\">$1</span>",
         "(.*) :: Empornium": " <span style=\"italic\">$1</span>",
         "(.*) :: Orpheus": " <span style=\"italic\">$1</span>",
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - IPTorrents - \\#1 Private Tracker — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
         "Letterboxd • Social film discovery.": "󰇙 ",
         "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "(.*) • Letterboxd — Zen Browser": "󰇙 <span style=\"italic\">$1</span>",
         "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Hacker News": " ",
-        "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
-        "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
-        "(.*) - Google Search": " <span style=\"italic\">$1</span>",
-        "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Rate Your Music — Zen Browser": " <span style=\"italic\">$1</span>",
+        "Hacker News": " ",
+        "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - YouTube — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Invidious — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - YouTube — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious": " <span style=\"italic\">$1</span>",
         "(.*) - YouTube": " <span style=\"italic\">$1</span>",
         "(.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - 4chan — Zen Browser": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - (.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - (.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
-        "(.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - (.*) - 4chan — Zen Browser": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - Gmail — Mozilla Firefox": "󰊫 <span style=\"italic\">$1</span>",
+        "(.*) - Gmail — Zen Browser": "󰊫 <span style=\"italic\">$1</span>",
+        "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
+        "(.*) - Google Search": " <span style=\"italic\">$1</span>",
+        "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Google Search — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| Proton Mail — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Proton Mail — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Hacker News — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
+        "(.*) at DuckDuckGo — Zen Browser": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
-        "• Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
+        "(.*) · GitLab — Zen Browser": " <span style=\"italic\">$1</span>",
+        "• Discord \\| (.*) \\| (.*) — (.*)": " <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Stash — Zen Browser": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
         "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
         "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Zen Browser": " <span style=\"italic\">$1</span>",
         "Hyprland Wiki": " ",
         "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi Documentation — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi Documentation — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Zen Browser": "󰪥 <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
@@ -294,9 +341,9 @@
         "Current Media Information": "󰕼 ",
         "Simple Preferences": "󰕼 ",
         "Adjustments and Effects": "󰕼 ",
+        "File Upload": " ",
         "(.*) - Discord": "  <span style=\"italic\">$1</span>",
         "Discord Updater": " ",
-        "Discord": " ",
         "• Discord \\| (.*) \\| (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
@@ -304,55 +351,124 @@
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴",
-        "\\*Minibuf-1\\* — Doom Emacs": " ",
-        "\\*Minibuf-1\\* – Doom Emacs":  " ",
-        "\\*Minibuf-2\\* — Doom Emacs": " ",
-        "\\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴",
+        "(.*) - Wikipedia": " <span style=\"italic\">$1</span>",
+        "Wikipedia, the free encyclopedia": " ",
+        "Wikipedia": " ",
+        "Nicotine\\+": "󰒴 ",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
         "MDN Web Docs": " ",
         "Transmission Web Interface": " ",
         "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN Blog": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN Blog — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) Redlib": "󰑍 $1",
+        "(.*) Redlib — Mozilla Firefox": "󰑍 $1",
+        "(.*) Redlib — Zen Browser": "󰑍 $1",
         "Redlib": "󰑍 ",
         "reddit: the front page of the internet": "󰑍 ",
         "(.*) - r/(.*)": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Zen Browser": "󰑍 $1 <span style=\"italic\">$2</span>",
         "Packagist": " ",
         "(.*) - Packagist": " <span style=\"italic\">$1</span>",
         "(.*) - Packagist — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Packagist — Zen Browser": " <span style=\"italic\">$1</span>",
         "Composer": " ",
         "(.*) - Composer": " <span style=\"italic\">$1</span>",
         "(.*) - Composer — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Composer — Zen Browser": " <span style=\"italic\">$1</span>",
         "Fosstodon": " ",
         "(.*) - Fosstodon": " <span style=\"italic\">$1</span>",
         "(.*) - Fosstodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Fosstodon — Zen Browser": " <span style=\"italic\">$1</span>",
         "Mastodon": " ",
         "(.*) - Mastodon": " <span style=\"italic\">$1</span>",
         "(.*) - Mastodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Mastodon — Zen Browser": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*) — Zen Browser": " <span style=\"italic\">$1</span>",
         "Pi-hole - (.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>"
+        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp": " $1",
+        "(.*) \\| Erases Eraser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp — Mozilla Firefox": " $1",
+        "(.*) \\| Erases Eraser — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp — Zen Browser": " $1",
+        "(.*) \\| Erases Eraser — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings — Zen Browser": " <span style=\"italic\">$1</span>"
     },
-    "max-length": 67
+    "max-length": 86,
+    "all-outputs": true
 },
 
-"disk": {
-    "path": "/",
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": " ",
+        "deactivated": " "
+    },
+    "timeout": 60,
+    "tooltip": false
+},
+
+"network": {
+    "interface": "enp0s31f6",
     "interval": 1,
-    "format": " <span style=\"italic\">{free}</span>",
-    "format-alt": " {used}",
+    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
+    "format-alt": " {ipaddr} {netmask}",
+    "format-disconnected": "",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format-ethernet": "{ifname} {gwaddr}",
+    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+    "on-click-right": "footclient -e neomutt -F /home/babkock/.muttrc"
+},
+
+"wireplumber": {
+    "format": "{icon} <span style=\"italic\">{volume}%</span>",
+    "format-muted": " {volume}%",
+    "tooltip": true,
+    "tooltip-format": "{node_name}",
+    "format-icons": ["", "", ""],
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "helvum",
+    "on-click-middle": "footclient -e pw-top"
+},
+
+"bluetooth": {
+    "format-on": " {controller_alias}",
+    "format-disabled": "",
+    "format-off": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {icon} {device_alias}",
+    "tooltip-format-on": "{controller_address} {controller_address_type}",
+    "tooltip-format-off": "{controller_address} {controller_address_type}",
+    "tooltip-format-connected": "{device_address} {controller_alias}",
+    "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
+    "format-icons": ["", "", "", "", ""],
+    "on-click-right": "footclient -e bluetoothctl"
 },
 
 "privacy": {
     "icon-spacing": 8,
     "icon-size": 24,
-    "transition-duration": 400,
+    "transition-duration": 350,
     "modules": [
         {
             "type": "screenshare",
@@ -372,28 +488,6 @@
     ]
 },
 
-"wireplumber": {
-    "format": "{icon} <span style=\"italic\">{volume}%</span>",
-    "format-muted": " {volume}%",
-    "tooltip": true,
-    "tooltip-format": "{node_name}",
-    "format-icons": ["", "", ""],
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum"
-},
-
-"idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-        "activated": " ",
-        "deactivated": " "
-    },
-    "timeout": 60,
-    "tooltip": false
-},
-
 "temperature": {
     "thermal-zone": 1,
     "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
@@ -401,16 +495,27 @@
     "format-alt": " {temperatureC}°C"
 },
 
-"network": {
-    "interface": "enp0s31f6",
+"disk": {
+    "path": "/",
     "interval": 1,
-    "format-wifi": " {bandwidthDownBytes} {bandwidthUpBytes} ",
-    "format-ethernet": " {bandwidthDownBytes} {bandwidthUpBytes} ",
-    "format-alt": " {ipaddr} {netmask}",
-    "format-disconnected": "",
+    "format": " <span style=\"italic\">{free}</span>",
+    "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format-ethernet": "{ifname} {gwaddr}",
-    "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pcmanfm"
+},
+
+"keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": {
+        "numlock": " {icon}",
+        "capslock": "󰪛 {icon}"
+    },
+    "format-icons": {
+        "locked": " ",
+        "unlocked": " "
+    }
 },
 
 "cava": {
@@ -427,27 +532,29 @@
     "reverse": false,
     "waves": false,
     "monstercat": false,
-    "hide_on_silence": true,
-    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "hide_on_silence": false,
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "alacritty -e cava"
 },
 
 "tray": {
-    "icon-size": 33,
-    "spacing": 2,
+    "icon-size": 35,
+    "spacing": 1,
     "show-passive-items": true
 }
 
 }, {
     "position": "bottom",
-    "layer": "top",
     "output": "DP-1",
-    "height": 43,
-    "spacing": 0,
+    "height": 48,
     "reload_style_on_change": true,
-    "modules-left": ["hyprland/workspaces"],
+    "mode": "dock",
+    "modules-left": ["sway/workspaces"],
     "modules-right": ["custom/weather", "disk", "bluetooth", "cpu", "memory", "custom/clock"],
-    "hyprland/workspaces": {
+    "sway/workspaces": {
         "disable-scroll": false,
+        "disable-scroll-wraparound": true,
+        "enable-bar-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
@@ -461,11 +568,8 @@
             "8": "󰨜",
             "9": "",
             "urgent": "",
-            "focused": "",
             "default": ""
-         },
-         "on-scroll-up": "hyprctl dispatch workspace m+1 > /dev/null",
-         "on-scroll-down": "hyprctl dispatch workspace m-1 > /dev/null"
+        }
     },
 
 "custom/weather": {
@@ -484,7 +588,8 @@
     "tooltip-format-off": "{controller_address} {controller_address_type}",
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
+    "on-click": "footclient -e bluetoothctl"
 },
 
 "memory": {
@@ -505,6 +610,7 @@
 "cpu": {
     "format": " {usage}%",
     "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
 },
 
 "custom/clock": {
@@ -512,6 +618,8 @@
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
+        "on-click-right": "pkill -x eww"
     }
 }]

@@ -178,23 +178,23 @@
        ;;literate
        (default +bindings +smartparens))
 
-;(setq frame-title-format
-;    '(""
-;        (:eval
-;            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-;                (replace-regexp-in-string
-;                    ".*/[0-9]*-?" "☰ "
-;                    (subst-char-in-string ?_ ?  buffer-file-name))
-;                "► %b"))
-;        (:eval
-;            (let ((project-name (projectile-project-name)))
-;                (unless (string= "-" project-name)
-;                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
+(setq frame-title-format
+    '(""
+        (:eval
+            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+                (replace-regexp-in-string
+                    ".*/[0-9]*-?" "☰ "
+                    (subst-char-in-string ?_ ?  buffer-file-name))
+                "► %b"))
+        (:eval
+            (let ((project-name (projectile-project-name)))
+                (unless (string= "-" project-name)
+                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
 
 (setq doom-fallback-buffer-name "*doom*"
     doom-dashboard-name "*doom*")
-;(setq doom-fallback-buffer-name "*dashboard*")
-;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+(setq doom-fallback-buffer-name "*dashboard*")
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -246,7 +246,7 @@
 (add-hook! 'after-init-hook #'global-hl-line-mode)
 (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
 
-(setq inhibit-compacting-font-caches t)
+;(setq inhibit-compacting-font-caches t)
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)

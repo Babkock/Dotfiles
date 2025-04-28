@@ -132,13 +132,13 @@
 
 "image#album-art": {
     "path": "/tmp/mpd_cover.jpg",
-    "size": 40,
+    "size": 35,
     "interval": 1
 }
 
 }, {
     "position": "bottom",
-    "height": 41,
+    "height": 50,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
@@ -193,7 +193,7 @@
             "(.*) · GitLab": " <span style=\"italic\">$1</span>",
             "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
             "(.*) - ArchWiki — Mozilla Firefox": "󰣇 <span style=\"italic\">$1</span>",
-            "(.*) - Wikipedia — Mozilla Firefox": "󰖬 <span style=\"italic\">$1</span>",
+            "(.*) - Wikipedia — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) :: PassThePopcorn — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) :: Empornium — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) :: PassThePopcorn": " <span style=\"italic\">$1</span>",
@@ -206,8 +206,8 @@
             "Letterboxd • Social film discovery.": " ",
             "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
             "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-            "Hacker News": " ",
-            "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
+            "Hacker News": " ",
+            "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
             "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) - YouTube — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) - Invidious": " <span style=\"italic\">$1</span>",
@@ -221,7 +221,7 @@
             "(.*) - Google Search": " <span style=\"italic\">$1</span>",
             "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) \\| Proton Mail — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-            "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
             "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "• Discord \\| (.*) \\| (.*) — (.*)": "<span style=\"italic\">$1</span>: $2",
@@ -249,7 +249,7 @@
             " \\*Minibuf-1\\* – Doom Emacs":  " ",
             " \\*Minibuf-2\\* — Doom Emacs": " ",
             " \\*Minibuf-2\\* – Doom Emacs":  " ",
-            "Nicotine\\+": "󰒴"
+            "Nicotine\\+": "󰒴 "
         }
     },
 

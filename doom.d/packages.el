@@ -11,6 +11,7 @@
 (package! beacon)         ;; Honestly really nice
 (package! cl-lib)
 (package! cl-libify)      ;; This is important to suppress errors
+(package! dashboard)
 (package! dired-sidebar)
 (package! dired-hacks)
 (package! elcord)

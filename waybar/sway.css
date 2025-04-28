@@ -37,6 +37,13 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    transition:all 0.2s ease 0s;
+}
+
+#cpu:hover, #wireplumber.muted:hover, #pulseaudio.muted:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
 }
 
 #cpu {
@@ -62,6 +69,15 @@ tooltip {
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
+#disk {
+    transition:all 0.2s ease 0s;
+}
+#disk:hover, #pulseaudio:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    text-shadow:2px 2px rgba(80, 80, 80, 0.6);
+}
+
 #pulseaudio {
     border-radius:40px 40px 40px 40px;
     padding-left:11px;
@@ -69,6 +85,10 @@ tooltip {
     margin-right:4px;
     margin-left:1px;
     box-shadow:3px 3px rgba(228, 207, 19, 0.4);
+    transition:all 0.2s ease 0s;
+}
+#pulseaudio:hover {
+    box-shadow:3px 3px rgba(80, 80, 80, 0.6);
 }
 
 #pulseaudio.muted {
@@ -98,6 +118,13 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    transition:all 0.2s ease 0s;
+}
+
+#memory:hover, #backlight:hover, #wireplumber:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    text-shadow:2px 2px rgba(50, 50, 50, 0.6);
 }
 
 #workspaces button, #tags button {
@@ -168,11 +195,23 @@ tooltip {
     box-shadow:3px 2px rgba(228, 207, 19, 0.4);
     margin-right:4px;
     margin-left:0px;
+    transition:all 0.2s ease 0s;
 }
 
 #keyboard-state label {
     color:#f4df23;
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#keyboard-state:hover {
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.5));
+    border-radius:0px 40px 40px 0px;
+    box-shadow:3px 2px rgba(150, 150, 150, 0.4);
+}
+
+#keyboard-state:hover label {
+    color:#efefef;
+    text-shadow:2px 2px rgba(60, 60, 60, 0.5);
 }
 
 #keyboard-state label.locked {
@@ -191,6 +230,13 @@ tooltip {
     color:#6264fe;
     background:linear-gradient(0deg, rgba(118, 112, 229, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
+    transition:all 0.2s ease 0s;
+}
+
+#battery:hover, #idle_inhibitor:hover, #pulseaudio.bluetooth:hover, #temperature:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
 }
 
 #pulseaudio.bluetooth, #temperature {
@@ -207,6 +253,10 @@ tooltip {
     padding-left:11px;
     padding-right:13px;
     box-shadow:3px 2px rgba(118, 112, 229, 0.5);
+}
+
+#pulseaudio:hover {
+    box-shadow:3px 2px rgba(150, 150, 150, 0.5);
 }
 
 #battery {
@@ -245,11 +295,15 @@ tooltip {
     margin-right:0;
 }
 
+#bluetooth {
+    transition:all 0.2s ease 0s;
+}
+
 #bluetooth.on, #bluetooth.off {
     color:#fe0219;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -261,7 +315,7 @@ tooltip {
     color:#a9df11;
     background:linear-gradient(0deg, rgba(153, 207, 1, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -273,7 +327,7 @@ tooltip {
     color:#5254fe;
     background:linear-gradient(0deg, rgba(108, 102, 218, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -285,7 +339,7 @@ tooltip {
     color:#f4df23;
     background:linear-gradient(0deg, rgba(228, 207, 19, 0.5), rgba(0, 0, 0, 0.1));
     margin-left:0;
-    margin-right:3px;
+    margin-right:4px;
     padding-left:11px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
@@ -303,4 +357,12 @@ tooltip {
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     box-shadow:3px 2px rgba(175, 56, 219, 0.4);
+    transition:all 0.2s ease 0s;
+}
+
+#custom-clock:hover, #network:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
+    box-shadow:3px 2px rgba(150, 150, 150, 0.4);
 }

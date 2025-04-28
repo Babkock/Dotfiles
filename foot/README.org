@@ -38,86 +38,29 @@ This is the configuration for the [[https://codeberg.org/dnkl/foot][Foot]] termi
 # #+TOC: headlines 2
 
 * Table of Contents :toc:
-- [[#hyprland][Hyprland]]
+- [[#sway][Sway]]
   - [[#font][Font]]
   - [[#preferences][Preferences]]
   - [[#appearance][Appearance]]
   - [[#colors][Colors]]
-- [[#sway][Sway]]
+- [[#wayfire][Wayfire]]
   - [[#font-1][Font]]
   - [[#preferences-1][Preferences]]
   - [[#appearance-1][Appearance]]
   - [[#colors-1][Colors]]
-- [[#labwc][LabWC]]
+- [[#hyprland][Hyprland]]
   - [[#font-2][Font]]
   - [[#preferences-2][Preferences]]
   - [[#appearance-2][Appearance]]
   - [[#colors-2][Colors]]
-
-* Hyprland
-
-** Font
-
-#+begin_src conf :tangle foot.ini
-font = SpaceMono Nerd Font:pixelsize=19:antialias=true
-font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
-font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
-font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
-#+end_src
-
-** Preferences
-
-#+begin_src conf :tangle foot.ini
-dpi-aware=yes
-pad=9x9 center
-vertical-letter-offset=-4px
-line-height=25px
-letter-spacing=-1px
-bold-text-in-bright=palette-based
-resize-delay-ms=80
-#+end_src
-
-** Appearance
-
-#+begin_src conf :tangle foot.ini
-[cursor]
-style=beam
-blink=yes
-
-[colors]
-background=100002
-foreground=fdeadb
-alpha=0.6
-#+end_src
-
-** Colors
-
-This is where you edit the actual color scheme.
-
-#+begin_src conf :tangle foot.ini
-regular0=000000
-bright0=121212
-regular1=c03b3e
-bright1=d04b4e
-regular2=15b082
-bright2=25c192
-regular3=e27725
-bright3=f28735
-regular4=3996c0
-bright4=49a6d0
-regular5=e73d7b
-bright5=f74e8b
-regular6=c8988a
-bright6=d8a89a
-regular7=eddacb
-bright7=fdeadb
-#+end_src
 
 * Sway
 
 ** Font
 
 #+begin_src conf :tangle sway.ini
+shell = /usr/bin/zsh
+
 font = SpaceMono Nerd Font:pixelsize=19:antialias=true
 font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
 font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
@@ -130,7 +73,8 @@ font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=
 dpi-aware=yes
 pad=9x9 center
 vertical-letter-offset=-4px
-line-height=25px
+notify=notify-send -i ${app-id} {$title} {$body}
+line-height=24px
 letter-spacing=-1px
 bold-text-in-bright=palette-based
 resize-delay-ms=90
@@ -143,10 +87,23 @@ resize-delay-ms=90
 style=beam
 blink=yes
 
+[bell]
+urgent=yes
+notify=yes
+visual=yes
+
+[mouse]
+hide-when-typing=yes
+alternate-scroll-mode=no
+
+[url]
+launch=xdg-open ${url}
+
 [colors]
-background=030303
+background=020202
 foreground=eeeeee
 alpha=0.6
+flash=ffffff
 #+end_src
 
 ** Colors
@@ -154,27 +111,30 @@ alpha=0.6
 #+begin_src conf :tangle sway.ini
 regular0=000000
 bright0=121212
-regular1=b93b2b
-bright1=d54044
-regular2=40a789
-bright2=50b799
-regular3=dedc91
-bright3=eeeca1
-regular4=61b8a6
-bright4=71c9b7
-regular5=b06998
-bright5=c26cd5
-regular6=6d878d
-bright6=42717b
-regular7=eeeeee
-bright7=fefefe
+regular1=ee0009
+bright1=fe0219
+regular2=99cf01
+bright2=a9df11
+regular3=e4cf13
+bright3=f4df23
+regular4=6b65da
+bright4=6264fe
+regular5=af38db
+bright5=ff4de7
+regular6=43e7e9
+bright6=53f7f9
+regular7=eecd73
+bright7=fedd83
+urls=ff0000
 #+end_src
 
-* LabWC
+* Wayfire
 
 ** Font
 
-#+begin_src conf :tangle labwc.ini
+#+begin_src conf :tangle wayfire.ini
+shell = /usr/bin/zsh
+
 font = SpaceMono Nerd Font:pixelsize=19:antialias=true
 font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
 font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
@@ -183,11 +143,11 @@ font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=
 
 ** Preferences
 
-#+begin_src conf :tangle labwc.ini
+#+begin_src conf :tangle wayfire.ini
 dpi-aware=yes
 pad=9x9 center
 vertical-letter-offset=-4px
-line-height=25px
+line-height=24px
 letter-spacing=-1px
 bold-text-in-bright=palette-based
 resize-delay-ms=90
@@ -195,7 +155,7 @@ resize-delay-ms=90
 
 ** Appearance
 
-#+begin_src conf :tangle labwc.ini
+#+begin_src conf :tangle wayfire.ini
 [cursor]
 style=beam
 blink=yes
@@ -208,7 +168,7 @@ alpha=0.6
 
 ** Colors
 
-#+begin_src conf :tangle labwc.ini
+#+begin_src conf :tangle wayfire.ini
 regular0=000000
 bright0=121212
 regular1=c77188
@@ -227,10 +187,81 @@ regular7=edc9b9
 bright7=fdd9c9
 #+end_src
 
+* Hyprland
+
+** Font
+
+#+begin_src conf :tangle hyprland.ini
+shell = /usr/bin/zsh
+
+font = SpaceMono Nerd Font:pixelsize=19:antialias=true
+font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
+font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
+font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
+#+end_src
+
+** Preferences
+
+#+begin_src conf :tangle hyprland.ini
+dpi-aware=yes
+pad=9x9 center
+notify=notify-send -i ${app-id} ${title} ${body}
+vertical-letter-offset=-4px
+line-height=24px
+letter-spacing=-1px
+bold-text-in-bright=palette-based
+resize-delay-ms=80
+#+end_src
+
+** Appearance
+
+#+begin_src conf :tangle hyprland.ini
+[cursor]
+style=beam
+blink=yes
+
+[bell]
+urgent=yes
+notify=yes
+visual=yes
+
+[url]
+launch=xdg-open ${url}
+
+[colors]
+background=100002
+foreground=fdeadb
+alpha=0.6
+#+end_src
+
+** Colors
+
+This is where you edit the actual color scheme.
+
+#+begin_src conf :tangle hyprland.ini
+regular0=000000
+bright0=121212
+regular1=c03b3e
+bright1=d04b4e
+regular2=15b082
+bright2=25c192
+regular3=e27725
+bright3=f28735
+regular4=3996c0
+bright4=49a6d0
+regular5=e73d7b
+bright5=f74e8b
+regular6=c8988a
+bright6=d8a89a
+regular7=eddacb
+bright7=fdeadb
+#+end_src
+
+
 #+BEGIN_EXPORT html
 <footer>
     <center>
-    <p>Copyright &copy; 2022 Tanner Babcock.</p>
+    <p>Copyright &copy; 2026 Tanner Babcock.</p>
     <p><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp;
     <a href="https://github.com/Babkock/Babkock.github.io" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
     <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;

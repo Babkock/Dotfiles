@@ -131,6 +131,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#temperature-2][Temperature]]
   - [[#network-2][Network]]
   - [[#cava-1][Cava]]
+  - [[#keyboard-state-2][Keyboard State]]
   - [[#tray-2][Tray]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-8][Appearance]]
@@ -148,16 +149,16 @@ every single one of the modules, if I don't have to. The modules and their order
 
 ** Appearance
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 [{
     "position": "bottom",
-    "height": 42,
+    "height": 48,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,
@@ -185,7 +186,7 @@ every single one of the modules, if I don't have to. The modules and their order
 
 ** MPD
 
-    #+begin_src json :tangle config.json
+    #+begin_src json :tangle sway.json
     "mpd": {
         "server": "127.0.0.2",
         "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
@@ -220,39 +221,43 @@ every single one of the modules, if I don't have to. The modules and their order
 
 ** Image
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "image#album-art": {
     "path": "/tmp/mpd_cover.jpg",
-    "size": 40,
+    "size": 38,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg"
+    "on-click": "swayimg /tmp/mpd_cover.jpg",
+    "on-click-right": "footclient -e ncmpcpp"
 },
 #+end_src
 
 ** Clock
 
-#+begin_src json :tangle config.json
-    "custom/clock": {
-        "exec": "date +'%I:%M:%S  %a, %b %d'",
-        "interval": 1,
-        "format": " {}",
-        "align": 1,
-        "tooltip": false
-    },
+#+begin_src json :tangle sway.json
+"custom/clock": {
+    "exec": "date +'%I:%M:%S  %a, %b %d'",
+    "interval": 1,
+    "format": " {}",
+    "align": 1,
+    "tooltip": false,
+    "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
+    "on-click-right": "pkill -x eww"
+},
 #+end_src
 
 ** CPU
 
-#+begin_src json :tangle config.json
-    "cpu": {
-        "format": " {usage}%",
-        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
-    },
+#+begin_src json :tangle sway.json
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
+},
 #+end_src
 
 ** Memory
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
     "memory": {
         "format": " {}%",
         "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
@@ -262,20 +267,21 @@ every single one of the modules, if I don't have to. The modules and their order
 
 ** Disk
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "disk": {
     "path": "/mnt/mega/",
     "interval": 1,
     "format": "󰋊 <span style=\"italic\">{free}</span>",
     "format-alt": "󰋊 {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pcmanfm /mnt/mega"
 },
 #+end_src
 
 ** Battery
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "battery": {
     "states": {
         "good": 99,
@@ -296,7 +302,7 @@ every single one of the modules, if I don't have to. The modules and their order
 
 ** Backlight
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "backlight": {
     "device": "intel_backlight",
     "tooltip": false,
@@ -312,7 +318,7 @@ every single one of the modules, if I don't have to. The modules and their order
 
 ** Pulseaudio
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "pulseaudio": {
     "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
@@ -345,16 +351,16 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Appearance
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 }, {
     "position": "bottom",
-    "height": 43,
+    "height": 50,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
-    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "cava", "keyboard-state", "tray"],
+    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -379,7 +385,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Scratchpad
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "sway/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
@@ -391,7 +397,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Window
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "sway/window": {
     "format": "{title}",
     "separate-outputs": false,
@@ -407,20 +413,28 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Shutdown": " ",
         "cava": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
+        "DeaDBeeF - (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
+        "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
         "YouTube": " ",
         "GitHub": " ",
         "Explore GitHub": " ",
         "GitHub Dashboard": " ",
+        "Bitcoin Core": " ",
+        "Node window": " ",
+        "Yazi: (.*)": " $1",
+        "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Void Linux Handbook — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Zen Browser": "󰑍 $1 <span style=\"italic\">$2</span>",
         "Tumblr": " ",
         "(.*) Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) - Gmail": "󰊫 <span style=\"italic\">$1</span>",
@@ -428,64 +442,94 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Stack Overflow": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Stack Overflow — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Stack Overflow — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Ask Ubuntu — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
         "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) on Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
         "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) · GitLab": " <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki — Mozilla Firefox": "󰣇 <span style=\"italic\">$1</span>",
-        "(.*) - Wikipedia — Mozilla Firefox": "󰖬 <span style=\"italic\">$1</span>",
+        "(.*) - ArchWiki — Zen Browser": "󰣇 <span style=\"italic\">$1</span>",
+        "(.*) - Wikipedia — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) :: PassThePopcorn — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) :: Empornium — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Wikipedia — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) :: PassThePopcorn — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) :: Empornium — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) :: PassThePopcorn": " <span style=\"italic\">$1</span>",
         "(.*) :: Empornium": " <span style=\"italic\">$1</span>",
         "(.*) :: Orpheus": " <span style=\"italic\">$1</span>",
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - IPTorrents - \\#1 Private Tracker — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
         "Letterboxd • Social film discovery.": "󰇙 ",
         "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "(.*) • Letterboxd — Zen Browser": "󰇙 <span style=\"italic\">$1</span>",
         "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Hacker News": " ",
-        "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
+        "(.*) - Rate Your Music — Zen Browser": " <span style=\"italic\">$1</span>",
+        "Hacker News": " ",
+        "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - YouTube — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Invidious — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - YouTube — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious": " <span style=\"italic\">$1</span>",
         "(.*) - YouTube": " <span style=\"italic\">$1</span>",
         "(.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - 4chan — Zen Browser": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - (.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - (.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - (.*) - 4chan — Zen Browser": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - Gmail — Mozilla Firefox": "󰊫 <span style=\"italic\">$1</span>",
+        "(.*) - Gmail — Zen Browser": "󰊫 <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) - Google Search": " <span style=\"italic\">$1</span>",
         "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Google Search — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| Proton Mail — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Proton Mail — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Hacker News — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
+        "(.*) at DuckDuckGo — Zen Browser": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) · GitLab — Zen Browser": " <span style=\"italic\">$1</span>",
         "• Discord \\| (.*) \\| (.*) — (.*)": " <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Stash — Zen Browser": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
         "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
         "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Zen Browser": " <span style=\"italic\">$1</span>",
         "Hyprland Wiki": " ",
         "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi Documentation — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi Documentation — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Zen Browser": "󰪥 <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
@@ -512,33 +556,65 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴",
+        "(.*) - Wikipedia": " <span style=\"italic\">$1</span>",
+        "Wikipedia, the free encyclopedia": " ",
+        "Wikipedia": " ",
+        "Nicotine\\+": "󰒴 ",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
         "MDN Web Docs": " ",
         "Transmission Web Interface": " ",
         "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN Blog": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN Blog — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) Redlib": "󰑍 $1",
+        "(.*) Redlib — Mozilla Firefox": "󰑍 $1",
+        "(.*) Redlib — Zen Browser": "󰑍 $1",
         "Redlib": "󰑍 ",
         "reddit: the front page of the internet": "󰑍 ",
         "(.*) - r/(.*)": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Zen Browser": "󰑍 $1 <span style=\"italic\">$2</span>",
         "Packagist": " ",
         "(.*) - Packagist": " <span style=\"italic\">$1</span>",
         "(.*) - Packagist — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Packagist — Zen Browser": " <span style=\"italic\">$1</span>",
         "Composer": " ",
         "(.*) - Composer": " <span style=\"italic\">$1</span>",
         "(.*) - Composer — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Composer — Zen Browser": " <span style=\"italic\">$1</span>",
         "Fosstodon": " ",
         "(.*) - Fosstodon": " <span style=\"italic\">$1</span>",
         "(.*) - Fosstodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Fosstodon — Zen Browser": " <span style=\"italic\">$1</span>",
         "Mastodon": " ",
         "(.*) - Mastodon": " <span style=\"italic\">$1</span>",
         "(.*) - Mastodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Mastodon — Zen Browser": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*) — Zen Browser": " <span style=\"italic\">$1</span>",
         "Pi-hole - (.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>"
+        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp": " $1",
+        "(.*) \\| Erases Eraser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp — Mozilla Firefox": " $1",
+        "(.*) \\| Erases Eraser — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp — Zen Browser": " $1",
+        "(.*) \\| Erases Eraser — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings — Zen Browser": " <span style=\"italic\">$1</span>"
     },
     "max-length": 86,
     "all-outputs": true
@@ -547,7 +623,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Idle Inhibit
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -561,7 +637,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Network
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "network": {
     "interface": "enp0s31f6",
     "interval": 1,
@@ -572,12 +648,13 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "tooltip": true,
     "tooltip-format-ethernet": "{ifname} {gwaddr}",
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+    "on-click-right": "footclient -e neomutt -F /home/babkock/.muttrc"
 },
 #+end_src
 
 ** Wireplumber
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "wireplumber": {
     "format": "{icon} <span style=\"italic\">{volume}%</span>",
     "format-muted": " {volume}%",
@@ -587,13 +664,14 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum"
+    "on-click-right": "helvum",
+    "on-click-middle": "footclient -e pw-top"
 },
 #+end_src
 
 ** Bluetooth
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "bluetooth": {
     "format-on": " {controller_alias}",
     "format-disabled": "",
@@ -604,13 +682,14 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "tooltip-format-off": "{controller_address} {controller_address_type}",
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
+    "on-click-right": "footclient -e bluetoothctl"
 },
 #+end_src
 
 ** Privacy
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "privacy": {
     "icon-spacing": 8,
     "icon-size": 24,
@@ -637,7 +716,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Temperature
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "temperature": {
     "thermal-zone": 1,
     "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
@@ -648,20 +727,21 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Disk
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "disk": {
     "path": "/",
     "interval": 1,
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pcmanfm"
 },
 #+end_src
 
 ** Keyboard State
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "keyboard-state": {
     "numlock": true,
     "capslock": true,
@@ -678,7 +758,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Cava
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "cava": {
     "framerate": 30,
     "autosens": 1,
@@ -694,15 +774,16 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "waves": false,
     "monstercat": false,
     "hide_on_silence": false,
-    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "alacritty -e cava"
 },
 #+end_src
 
 ** Tray
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "tray": {
-    "icon-size": 33,
+    "icon-size": 35,
     "spacing": 1,
     "show-passive-items": true
 }
@@ -712,11 +793,11 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Appearance
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 43,
+    "height": 48,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],
@@ -745,7 +826,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Weather
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 8,
@@ -755,7 +836,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Bluetooth
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "bluetooth": {
     "format-on": " {controller_alias}",
     "format-disabled": "",
@@ -766,13 +847,14 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "tooltip-format-off": "{controller_address} {controller_address_type}",
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
+    "on-click": "footclient -e bluetoothctl"
 },
 #+end_src
 
 ** Memory
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
@@ -782,7 +864,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** Disk
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
 "disk": {
     "path": "/mnt/drive/",
     "interval": 1,
@@ -795,22 +877,25 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 
 ** CPU
 
-#+begin_src json :tangle config.json
-    "cpu": {
-        "format": " {usage}%",
-        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
-    },
+#+begin_src json :tangle sway.json
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
+},
 #+end_src
 
 ** Clock
 
-#+begin_src json :tangle config.json
+#+begin_src json :tangle sway.json
     "custom/clock": {
         "exec": "date +'%I:%M:%S  %a, %b %d'",
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
+        "on-click-right": "pkill -x eww"
     }
 }]
 #+end_src
@@ -821,7 +906,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Appearance
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 [{
     "position": "bottom",
     "height": 40,
@@ -846,7 +931,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** MPD
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "mpd": {
     "server": "127.0.0.2",
     "format": "{consumeIcon}{artist} - {title} {singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
@@ -881,7 +966,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Clock
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
     "custom/clock": {
         "exec": "date +'%I:%M:%S  %a, %b %d'",
         "interval": 1,
@@ -893,7 +978,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** CPU
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
     "cpu": {
         "format": " {usage}%",
         "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
@@ -902,7 +987,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Battery
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "battery": {
     "states": {
         "good": 99,
@@ -923,7 +1008,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Memory
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
     "memory": {
         "format": " {}%",
         "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
@@ -933,7 +1018,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Backlight
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "backlight": {
     "device": "intel_backlight",
     "tooltip": false,
@@ -949,7 +1034,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Disk
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "disk": {
     "path": "/mnt/mega/",
     "interval": 1,
@@ -962,7 +1047,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Pulseaudio
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "pulseaudio": {
     "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
@@ -989,10 +1074,10 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 ** Image
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "image#album-art": {
     "path": "/tmp/mpd_cover.jpg",
-    "size": 40,
+    "size": 35,
     "interval": 1
 }
 #+end_src
@@ -1003,10 +1088,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Appearance
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 }, {
     "position": "bottom",
-    "height": 41,
+    "height": 50,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
@@ -1061,7 +1146,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "(.*) · GitLab": " <span style=\"italic\">$1</span>",
             "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
             "(.*) - ArchWiki — Mozilla Firefox": "󰣇 <span style=\"italic\">$1</span>",
-            "(.*) - Wikipedia — Mozilla Firefox": "󰖬 <span style=\"italic\">$1</span>",
+            "(.*) - Wikipedia — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) :: PassThePopcorn — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) :: Empornium — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) :: PassThePopcorn": " <span style=\"italic\">$1</span>",
@@ -1074,8 +1159,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "Letterboxd • Social film discovery.": " ",
             "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
             "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-            "Hacker News": " ",
-            "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
+            "Hacker News": " ",
+            "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
             "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) - YouTube — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) - Invidious": " <span style=\"italic\">$1</span>",
@@ -1089,7 +1174,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "(.*) - Google Search": " <span style=\"italic\">$1</span>",
             "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) \\| Proton Mail — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-            "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+            "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
             "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
             "• Discord \\| (.*) \\| (.*) — (.*)": "<span style=\"italic\">$1</span>: $2",
@@ -1117,14 +1202,14 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             " \\*Minibuf-1\\* – Doom Emacs":  " ",
             " \\*Minibuf-2\\* — Doom Emacs": " ",
             " \\*Minibuf-2\\* – Doom Emacs":  " ",
-            "Nicotine\\+": "󰒴"
+            "Nicotine\\+": "󰒴 "
         }
     },
 #+end_src
 
 ** Disk
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "disk": {
     "path": "/",
     "interval": 1,
@@ -1137,7 +1222,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Network
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "network": {
     "interface": "enp0s31f6",
     "interval": 1,
@@ -1153,7 +1238,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Idle Inhibit
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -1167,7 +1252,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Wireplumber
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "wireplumber": {
     "format": "{icon} <span style=\"italic\">{volume}%</span>",
     "format-muted": " {volume}%",
@@ -1183,7 +1268,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Bluetooth
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "bluetooth": {
     "format-on": " {controller_alias}",
     "format-disabled": "",
@@ -1200,7 +1285,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Temperature
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "temperature": {
     "thermal-zone": 1,
     "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
@@ -1211,7 +1296,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Keyboard State
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "keyboard-state": {
     "numlock": true,
     "capslock": true,
@@ -1228,7 +1313,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Tray
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "tray": {
     "icon-size": 32,
     "spacing": 1,
@@ -1240,7 +1325,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Appearance
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 }, {
     "position": "bottom",
     "output": "DP-1",
@@ -1264,7 +1349,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Weather
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 4,
@@ -1274,7 +1359,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Bluetooth
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "bluetooth": {
     "format-on": " {controller_alias}",
     "format-disabled": "",
@@ -1291,7 +1376,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Memory
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "memory": {
     "format": " {}%",
     "format-alt": "󰍛 {used:0.1f} GB  {swapUsed:0.1f} GB",
@@ -1301,7 +1386,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Disk
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "disk": {
     "path": "/mnt/drive/",
     "interval": 1,
@@ -1314,7 +1399,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Privacy
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
 "privacy": {
     "icon-spacing": 8,
     "icon-size": 24,
@@ -1341,7 +1426,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** CPU
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
     "cpu": {
         "format": " {usage}%",
         "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
@@ -1350,7 +1435,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Clock
 
-#+begin_src json :tangle wconfig.json
+#+begin_src json :tangle wayfire.json
     "custom/clock": {
         "exec": "date +'%I:%M:%S  %a, %b %d'",
         "interval": 1,
@@ -1365,20 +1450,23 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Appearance
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 42,
+    "height": 48,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
-    "modules-right": ["mpd", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "backlight", "disk", "custom/clock"],
     "hyprland/workspaces": {
         "all-outputs": false,
         "move-to-monitor": true,
         "disable-scroll": false,
+        "show-special": true,
+        "special-visible-only": true,
+        "expand": true,
         "format": "{icon}",
         "format-icons": {
             "1": "",
@@ -1401,7 +1489,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Disk (External HD)
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "disk": {
     "path": "/mnt/mega/",
     "interval": 1,
@@ -1414,7 +1502,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** MPD
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "mpd": {
     "server": "127.0.0.2",
     "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
@@ -1449,7 +1537,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Clock
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "custom/clock": {
     "exec": "date +'%I:%M:%S  %a, %b %d'",
     "interval": 1,
@@ -1461,7 +1549,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** CPU
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
     "cpu": {
         "format": " {usage}%",
         "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
@@ -1470,7 +1558,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Memory
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
     "memory": {
         "format": " {}%",
         "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
@@ -1480,7 +1568,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Battery
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "battery": {
     "states": {
         "good": 99,
@@ -1501,7 +1589,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Backlight
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "backlight": {
     "device": "intel_backlight",
     "tooltip": false,
@@ -1517,7 +1605,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Pulseaudio
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "pulseaudio": {
     "format": "{icon} <span style=\"italic\">{volume}%</span> {format_source}",
     "format-bluetooth": "{icon}  <span style=\"italic\">{volume}%</span>",
@@ -1545,11 +1633,12 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Image
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "image#album-art": {
     "path": "/tmp/mpd_cover.jpg",
-    "size": 40,
-    "interval": 1
+    "size": 42,
+    "interval": 1,
+    "on-click": "swayimg /tmp/mpd_cover.jpg"
 }
 #+end_src
 
@@ -1558,19 +1647,22 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Appearance
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 }, {
     "position": "bottom",
     "layer": "top",
-    "height": 44,
+    "height": 50,
     "spacing": 0,
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "cava", "temperature", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "keyboard-state", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
+         "show-special": true,
+         "special-visible-only": true,
+         "expand": true,
          "format": "{icon}",
          "format-icons": {
              "1": "",
@@ -1593,7 +1685,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Window
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "hyprland/window": {
     "format": "{title}",
     "separate-outputs": false,
@@ -1603,96 +1695,128 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Alacritty": " ",
         "st": " ",
         "\\[spaceman\\] (.*)": " $1",
-        "\\[spaceman\\] exit(.*)": " $1",
+        "\\[spaceman\\] exit (.*)": " $1",
         "Steam": " ",
         "Sign in to Steam": " ",
         "Shutdown": " ",
-        "cava": "",
+        "cava": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
+        "Yazi: (.*)": " $1",
+        "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
         "YouTube": " ",
-        "Wikipedia, the free encyclopedia": "󰖬 ",
-        "Wikipedia": "󰖬 ",
-        "(.*) - Wikipedia": "󰖬 <span style=\"italic\">$1</span>",
         "GitHub": " ",
         "Explore GitHub": " ",
         "GitHub Dashboard": " ",
+        "Bitcoin Core": " ",
+        "Node window": " ",
+        "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "(.*) at master · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "(.*) at main · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "Release (.*) · (.*) — Mozilla Firefox": " <b>$1</b> <span style=\"italic\">$2</span>",
-        "Tumblr": " ",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Void Linux Handbook — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Zen Browser": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "Tumblr": " ",
         "(.*) Tumblr": " <span style=\"italic\">$1</span>",
-        "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - Gmail": "󰊫 <span style=\"italic\">$1</span>",
         "(.*) \\| Proton Mail": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Stack Overflow": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Stack Overflow — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Stack Overflow — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
-        "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
-        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Ask Ubuntu — Zen Browser": " <span style=\"italic\">$2</span>",
         "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
         "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) on Tumblr": " <span style=\"italic\">$1</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Mozilla Firefox": " <span style=\"italic\">$2</span>",
+        "(.*) - (.*) - Unix &amp; Linux Stack Exchange — Zen Browser": " <span style=\"italic\">$2</span>",
+        "(.*) Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) on Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Last.fm — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) · GitLab": " <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki": "󰣇 <span style=\"italic\">$1</span>",
         "(.*) - ArchWiki — Mozilla Firefox": "󰣇 <span style=\"italic\">$1</span>",
-        "(.*) - Wikipedia — Mozilla Firefox": "󰖬 <span style=\"italic\">$1</span>",
+        "(.*) - ArchWiki — Zen Browser": "󰣇 <span style=\"italic\">$1</span>",
+        "(.*) - Wikipedia — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) :: PassThePopcorn — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) :: Empornium — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Wikipedia — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) :: PassThePopcorn — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) :: Empornium — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) :: PassThePopcorn": " <span style=\"italic\">$1</span>",
         "(.*) :: Empornium": " <span style=\"italic\">$1</span>",
         "(.*) :: Orpheus": " <span style=\"italic\">$1</span>",
         "(.*) :: Orpheus — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker": " <span style=\"italic\">$1</span>",
         "(.*) - IPTorrents - \\#1 Private Tracker — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - IPTorrents - \\#1 Private Tracker — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) • Letterboxd": "󰇙 <span style=\"italic\">$1</span>",
         "Letterboxd • Social film discovery.": "󰇙 ",
         "(.*) • Letterboxd — Mozilla Firefox": "󰇙 <span style=\"italic\">$1</span>",
+        "(.*) • Letterboxd — Zen Browser": "󰇙 <span style=\"italic\">$1</span>",
         "Letterboxd • Social film discovery. — Mozilla Firefox": "󰇙 ",
         "(.*) - Rate Your Music": " <span style=\"italic\">$1</span>",
         "(.*) - Rate Your Music — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Hacker News": " ",
-        "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
-        "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
-        "(.*) - Google Search": " <span style=\"italic\">$1</span>",
-        "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Rate Your Music — Zen Browser": " <span style=\"italic\">$1</span>",
+        "Hacker News": " ",
+        "(.*) \\| Hacker News": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - YouTube — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Invidious — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - YouTube — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) - Invidious": " <span style=\"italic\">$1</span>",
         "(.*) - YouTube": " <span style=\"italic\">$1</span>",
         "(.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - 4chan — Zen Browser": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - (.*) - 4chan": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - (.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
-        "(.*) - 4chan — Mozilla Firefox": "󰠖 <span style=\"italic\">$1</span>",
+        "(.*) - (.*) - 4chan — Zen Browser": "󰠖 <span style=\"italic\">$1</span>",
         "(.*) - Gmail — Mozilla Firefox": "󰊫 <span style=\"italic\">$1</span>",
+        "(.*) - Gmail — Zen Browser": "󰊫 <span style=\"italic\">$1</span>",
+        "(.*) at DuckDuckGo": "󰇥 <span style=\"italic\">$1</span>",
+        "(.*) - Google Search": " <span style=\"italic\">$1</span>",
+        "(.*) - Google Search — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Google Search — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| Proton Mail — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Proton Mail — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Hacker News — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Hacker News — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) at DuckDuckGo — Mozilla Firefox": "󰇥 <span style=\"italic\">$1</span>",
+        "(.*) at DuckDuckGo — Zen Browser": "󰇥 <span style=\"italic\">$1</span>",
         "(.*) · GitLab — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
-        "• Discord \\| (.*) \\| (.*) — (.*)": "  <span style=\"italic\">$1</span>: $2",
+        "(.*) · GitLab — Zen Browser": " <span style=\"italic\">$1</span>",
+        "• Discord \\| (.*) \\| (.*) — (.*)": " <span style=\"italic\">$1</span>: $2",
         "(.*) \\| Stash": " <span style=\"italic\">$1</span>",
         "Stash":  " ",
         "(.*) \\| Stash — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Stash — Zen Browser": " <span style=\"italic\">$1</span>",
         "Stash — Mozilla Firefox":  " ",
         "(.*) – Hyprland Wiki": " <span style=\"italic\">$1</span>",
         "(.*) – Hyprland Wiki — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) – Hyprland Wiki — Zen Browser": " <span style=\"italic\">$1</span>",
         "Hyprland Wiki": " ",
         "Hyprland": " ",
         "(.*) - Raspberry Pi Documentation": " <span style=\"italic\">$1</span>",
         "(.*) - Raspberry Pi": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi Documentation — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi Documentation — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) - Raspberry Pi — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) — Zen Browser": "󰪥 <span style=\"italic\">$1</span>",
         "(.*) — Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "(.*) - Mozilla Thunderbird": " <span style=\"italic\">$1</span>",
         "GNU Emacs at thing": " ",
@@ -1709,9 +1833,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Current Media Information": "󰕼 ",
         "Simple Preferences": "󰕼 ",
         "Adjustments and Effects": "󰕼 ",
+        "File Upload": " ",
         "(.*) - Discord": "  <span style=\"italic\">$1</span>",
         "Discord Updater": " ",
-        "Discord": " ",
         "• Discord \\| (.*) \\| (.*)": "  <span style=\"italic\">$1</span>: $2",
         "(.*) - Sublime Text \\(UNREGISTERED\\)": " <span style=\"italic\">$1</span>",
         "(.*) - Sublime Text": " $1",
@@ -1719,46 +1843,73 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         " \\*Minibuf-1\\* – Doom Emacs":  " ",
         " \\*Minibuf-2\\* — Doom Emacs": " ",
         " \\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴",
-        "\\*Minibuf-1\\* — Doom Emacs": " ",
-        "\\*Minibuf-1\\* – Doom Emacs":  " ",
-        "\\*Minibuf-2\\* — Doom Emacs": " ",
-        "\\*Minibuf-2\\* – Doom Emacs":  " ",
-        "Nicotine\\+": "󰒴",
+        "(.*) - Wikipedia": " <span style=\"italic\">$1</span>",
+        "Wikipedia, the free encyclopedia": " ",
+        "Wikipedia": " ",
+        "Nicotine\\+": "󰒴 ",
         "Volume Control": " ",
         "Helvum - Pipewire Patchbay": " ",
         "MDN Web Docs": " ",
         "Transmission Web Interface": " ",
         "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN Blog": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN Blog — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| MDN Blog — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) Redlib": "󰑍 $1",
+        "(.*) Redlib — Mozilla Firefox": "󰑍 $1",
+        "(.*) Redlib — Zen Browser": "󰑍 $1",
         "Redlib": "󰑍 ",
         "reddit: the front page of the internet": "󰑍 ",
         "(.*) - r/(.*)": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Mozilla Firefox": "󰑍 $1 <span style=\"italic\">$2</span>",
+        "(.*) - r/(.*) — Zen Browser": "󰑍 $1 <span style=\"italic\">$2</span>",
         "Packagist": " ",
         "(.*) - Packagist": " <span style=\"italic\">$1</span>",
         "(.*) - Packagist — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Packagist — Zen Browser": " <span style=\"italic\">$1</span>",
         "Composer": " ",
         "(.*) - Composer": " <span style=\"italic\">$1</span>",
         "(.*) - Composer — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Composer — Zen Browser": " <span style=\"italic\">$1</span>",
         "Fosstodon": " ",
         "(.*) - Fosstodon": " <span style=\"italic\">$1</span>",
         "(.*) - Fosstodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Fosstodon — Zen Browser": " <span style=\"italic\">$1</span>",
         "Mastodon": " ",
         "(.*) - Mastodon": " <span style=\"italic\">$1</span>",
         "(.*) - Mastodon — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Mastodon — Zen Browser": " <span style=\"italic\">$1</span>",
+        "Pi-hole - (.*) — Zen Browser": " <span style=\"italic\">$1</span>",
         "Pi-hole - (.*) — Mozilla Firefox": " <span style=\"italic\">$1</span>",
-        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>"
+        "Pi-hole - (.*)": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp": " $1",
+        "(.*) \\| Erases Eraser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp — Mozilla Firefox": " $1",
+        "(.*) \\| Erases Eraser — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Bandcamp — Zen Browser": " $1",
+        "(.*) \\| Erases Eraser — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Tantrum Throwers — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Kristin Critical — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Culture Chester — Zen Browser": " <span style=\"italic\">$1</span>",
+        "(.*) \\| Records Recordings — Zen Browser": " <span style=\"italic\">$1</span>"
     },
-    "max-length": 67
+   "max-length": 67
 },
 #+end_src
 
 ** Disk (Internal SSD)
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "disk": {
     "path": "/",
     "interval": 1,
@@ -1771,7 +1922,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Privacy
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "privacy": {
     "icon-spacing": 8,
     "icon-size": 24,
@@ -1798,7 +1949,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Wireplumber
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "wireplumber": {
     "format": "{icon} <span style=\"italic\">{volume}%</span>",
     "format-muted": " {volume}%",
@@ -1814,7 +1965,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Idle Inhibit
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -1828,7 +1979,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Temperature
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "temperature": {
     "thermal-zone": 1,
     "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
@@ -1839,7 +1990,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Network
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "network": {
     "interface": "enp0s31f6",
     "interval": 1,
@@ -1855,7 +2006,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Cava
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "cava": {
     "framerate": 30,
     "autosens": 1,
@@ -1875,9 +2026,26 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 },
 #+end_src
 
+** Keyboard State
+
+#+begin_src json :tangle hyprland.json
+"keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": {
+        "numlock": " {icon}",
+        "capslock": "󰪛 {icon}"
+    },
+    "format-icons": {
+        "locked": " ",
+        "unlocked": " "
+    }
+},
+#+end_src
+
 ** Tray
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "tray": {
     "icon-size": 33,
     "spacing": 2,
@@ -1890,12 +2058,12 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Appearance
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 }, {
     "position": "bottom",
     "layer": "top",
     "output": "DP-1",
-    "height": 43,
+    "height": 48,
     "spacing": 0,
     "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
@@ -1903,6 +2071,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "hyprland/workspaces": {
         "disable-scroll": false,
         "all-outputs": false,
+        "show-special": true,
+        "special-visible-only": true,
+        "expand": true,
         "format": "{icon}",
         "format-icons": {
             "1": "",
@@ -1925,7 +2096,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Weather
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
     "interval": 8,
@@ -1935,7 +2106,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Bluetooth
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "bluetooth": {
     "format-on": " {controller_alias}",
     "format-disabled": "",
@@ -1952,7 +2123,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Memory
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
@@ -1962,7 +2133,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Disk
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
 "disk": {
     "path": "/mnt/drive/",
     "interval": 1,
@@ -1975,7 +2146,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** CPU
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
     "cpu": {
         "format": " {usage}%",
         "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
@@ -1984,7 +2155,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 ** Clock
 
-#+begin_src json :tangle hconfig.json
+#+begin_src json :tangle hyprland.json
     "custom/clock": {
         "exec": "date +'%I:%M:%S  %a, %b %d'",
         "interval": 1,

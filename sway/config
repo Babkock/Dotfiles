@@ -14,8 +14,10 @@ set $down j
 set $up k
 set $right l
 
-set $term alacritty --config-file "$HOME/.config/alacritty/sway.toml"
+#set $term alacritty --config-file "$HOME/.config/alacritty/sway.toml"
+set $term footclient
 
+exec foot --config "$HOME/.config/foot/sway.ini" --server &
 exec pgrep pulseaudio | xargs kill
 exec pkill -x pulseaudio
 exec pkill -x pipewire
@@ -32,16 +34,16 @@ exec pkill -x stash
 exec stash &
 
 output "eDP-1" {
-	mode 1920x1080@60.008Hz
+	mode 1920x1080@60.00Hz
 	pos 0 0
 	transform normal
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/glitchcircle.png fill
+	bg /home/babkock/.config/sway/mountainsaurora.jpg fill
 }
 output "HDMI-A-2" {
-	mode 1920x1080@60.0Hz
+	mode 1920x1080@60.00Hz
 	pos 1920 0
 	transform normal
 	scale 1.0
@@ -97,26 +99,37 @@ input "2362:9488:PixArt_USB_Optical_Mouse" {
 	middle_emulation enabled
 }
 
+input "12994:18:HS6209_2.4G_Wireless_Receiver_Mouse" {
+	pointer_accel 1.0
+	scroll_factor 1.2
+	accel_profile "adaptive"
+	natural_scroll enabled
+}
+
 input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 300
-input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 60
+input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 55
 input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_delay 300
 input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_rate 55
 input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_delay 300
 input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 55
 
+focus_on_window_activation focus
+
 blur enable
-blur_passes 1
-blur_radius 2
+blur_passes 2
+blur_radius 3
+blur_brightness 1.0
 corner_radius 35
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 2
 shadow_color #ee000999
+shadow_inactive_color #ee000999
 default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
 
-#layer_effects "waybar" blur enable; shadows disable; corner_radius 0
+layer_effects "waybar" blur enable; blur_ignore_transparent enable; shadows disable; corner_radius 0
 
 hide_edge_borders smart_no_gaps
 
@@ -135,23 +148,15 @@ smart_borders on
 gaps inner 4
 gaps outer 3
 
-exec pkill -x eww
-exec eww --force-wayland daemon
-exec eww open calendar
-exec eww open mem
-exec eww open power
-
-exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color a9df11aa --ring-wrong-color fe021988 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 10101066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/glitchcirclelock.png -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color 74c280aa --ring-wrong-color fe021999 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 00000066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/glitchcirclelock.png -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill"
+exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color a9df11aa --ring-wrong-color fe021988 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 10101066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/mountainsauroralock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color 74c280aa --ring-wrong-color fe021999 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 00000066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/mountainsauroralock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill"
 
 exec mako -c "$HOME/.config/mako/swayconfig" &
-exec waybar -c "$HOME/.config/waybar/config.json" -l off &
+exec waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &
 exec pkill -x emacs
 exec emacs --daemon &
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
 exec mpdas -d
-
-# rules for HDMI-A-2 only apply when it is connected
 
 workspace 1 output eDP-1
 workspace 2 output HDMI-A-2
@@ -189,6 +194,7 @@ assign [app_id="^thunderbird$"] 7
 assign [class="Thunderbird"] 7
 assign [app_id="Thunderbird"] 7
 assign [title="Mozilla Thunderbird"] 7
+assign [app_id="org.bitcoin.bitcoin-qt"] 7
 assign [app_id="vlc"] 7
 assign [class="vlc"] 7
 assign [class="VLC"] 7
@@ -252,6 +258,7 @@ for_window [app_id="Swayimg"] floating enable
 for_window [class="Swayimg"] floating enable
 for_window [app_id="pcmanfm"] floating enable
 for_window [app_id="PCManFM"] floating enable
+for_window [app_id="org.bitcoin.bitcoin-qt"] floating enable
 for_window [app_id="com.obsproject.Studio"] focus
 for_window [app_id="com.obsproject.Studio"] move workspace to output eDP-1
 for_window [app_id="Firefox"] focus
@@ -300,13 +307,15 @@ bindsym $mod+Shift+semicolon exec virt-manager
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
 
+bindsym $mod+Equal workspace number 7; exec QT_QPA_PLATFORMTHEME="qt5ct" bitcoin-qt -datadir="/mnt/mega/.bitcoin" -shutdownnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin' 'Shutting down Bitcoin Core...'" -walletnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin Transaction' '%w %h %b %s'" -startupnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin' 'Starting up Bitcoin Core...'" -alertnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin Alert' '%s'" -blocknotify="notify-send -i '/usr/share/icons/breeze-dark/48/bitcoin128.svg' 'Bitcoin' 'Best Block Change %s'" -upnp -dbcache=300 -timeout=7000 -maxorphantx=50 -walletdir="/home/babkock/Wallets" -maxmempool=200 -maxreceivebuffer=10000 -maxsendbuffer=2000 -pid="/home/babkock/.bitcoin.pid" -torcontrol="127.0.0.1:9051" -maxconnections=150 -server
+
 bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin12345@127.0.0.1:9091'
 
 bindsym $mod+Shift+backspace exec transmission-remote-gtk
 
 bindsym $mod+backslash workspace number 7; exec thunderbird
 
-bindsym $mod+Shift+backslash workspace number 5; exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations
+bindsym $mod+Shift+backslash workspace number 5; exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-zero-copy --enable-features=WebRTCPipeWireCapturer
 
 floating_modifier $mod normal
 

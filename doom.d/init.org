@@ -249,18 +249,18 @@ I don't know why, but these next snippets of code must be in this file, (=init.e
 Conditionally set the title of the frame (or X window) with project name and buffer name (file name).
 
 #+begin_src emacs-lisp :tangle yes
-;(setq frame-title-format
-;    '(""
-;        (:eval
-;            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
-;                (replace-regexp-in-string
-;                    ".*/[0-9]*-?" "☰ "
-;                    (subst-char-in-string ?_ ?  buffer-file-name))
-;                "► %b"))
-;        (:eval
-;            (let ((project-name (projectile-project-name)))
-;                (unless (string= "-" project-name)
-;                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
+(setq frame-title-format
+    '(""
+        (:eval
+            (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+                (replace-regexp-in-string
+                    ".*/[0-9]*-?" "☰ "
+                    (subst-char-in-string ?_ ?  buffer-file-name))
+                "► %b"))
+        (:eval
+            (let ((project-name (projectile-project-name)))
+                (unless (string= "-" project-name)
+                (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
 #+end_src
 
 ** Fallback Buffer Name
@@ -270,8 +270,8 @@ The default buffer name.
 #+begin_src emacs-lisp :tangle yes
 (setq doom-fallback-buffer-name "*doom*"
     doom-dashboard-name "*doom*")
-;(setq doom-fallback-buffer-name "*dashboard*")
-;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+(setq doom-fallback-buffer-name "*dashboard*")
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -333,7 +333,7 @@ Show a custom image on the splash screen, and hide cursor and mode line.
 ** Modeline
 
 #+begin_src emacs-lisp :tangle yes
-(setq inhibit-compacting-font-caches t)
+;(setq inhibit-compacting-font-caches t)
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)
