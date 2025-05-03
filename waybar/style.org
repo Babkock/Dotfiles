@@ -73,7 +73,6 @@ These are the cosmetic CSS files for my [[https://babkock.github.io/configs/wayb
   - [[#memorybacklight-2][Memory/Backlight]]
   - [[#workspaces-1][Workspaces]]
   - [[#battery-2][Battery]]
-  - [[#clock][Clock]]
   - [[#cava-1][Cava]]
   - [[#network][Network]]
   - [[#bluetooth-2][Bluetooth]]
@@ -481,6 +480,13 @@ tooltip {
     border-radius:0px 40px 40px 0px;
     box-shadow:3px 2px rgba(228, 207, 19, 0.4);
 }
+
+#bluetooth.discovering:hover, #bluetooth.connected:hover, #bluetooth.discoverable:hover, #bluetooth.pairable:hover, #bluetooth.off:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+    box-shadow:3px 2px rgba(100, 100, 100, 0.5);
+}
 #+end_src
 
 ** Clock/Network
@@ -866,16 +872,16 @@ tooltip {
 #+begin_src css :tangle hyprland.css
 #cpu, #wireplumber.muted, #pulseaudio.muted, #privacy {
     color:#e6727a;
-    background:linear-gradient(0deg, rgba(238, 75, 80, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(238, 75, 80, 0.5), rgba(0, 0, 0, 0.2));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    text-shadow:2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #cpu:hover {
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
     color:#efefef;
     text-shadow:2px 2px rgba(150, 150, 150, 0.5);
 }
@@ -894,18 +900,26 @@ tooltip {
 #+begin_src css :tangle hyprland.css
 #pulseaudio, #disk {
     color:#ffee60;
-    background:linear-gradient(0deg, rgba(233, 212, 167, 0.7), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(233, 212, 167, 0.5), rgba(0, 0, 0, 0.2));
     margin-left:1px;
     margin-right:0px;
     border-radius:40px 0px 0px 40px;
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    transition:all 0.2s ease 0s;
 }
 
 #pulseaudio:hover {
     color:#efefef;
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.7), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+    box-shadow:3px 2px rgba(140, 140, 140, 0.5);
+}
+
+#disk:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
     text-shadow:2px 2px rgba(150, 150, 150, 0.5);
 }
 
@@ -924,25 +938,36 @@ tooltip {
 #+begin_src css :tangle hyprland.css
 #memory, #backlight, #wireplumber {
     color:#c3eb59;
-    background:linear-gradient(0deg, rgba(201, 223, 146, 0.7), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(201, 223, 146, 0.5), rgba(0, 0, 0, 0.2));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    transition:all 0.2s ease 0s;
 }
 #backlight {
     border-radius:0px 40px 40px 0px;
     margin-right:2px;
     box-shadow:3px 2px rgba(201, 223, 146, 0.5);
 }
+#backlight:hover {
+    box-shadow:3px 2px rgba(140, 140, 140, 0.5);
+}
+
+#memory:hover, #wireplumber:hover, #backlight:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+}
+
 #+end_src
 
 ** Workspaces
 
 #+begin_src css :tangle hyprland.css
 #workspaces button, #tags button {
-    background:linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
     padding-left:16px;
     padding-right:18px;
     margin-left:2px;
@@ -952,6 +977,7 @@ tooltip {
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
     box-shadow:2px 2px rgba(0, 0, 0, 0.5);
     outline:0;
+    transition:all 0.2s ease 0s;
 }
 
 #workspaces button * {
@@ -959,7 +985,7 @@ tooltip {
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(0deg, rgba(238, 75, 80, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(238, 75, 80, 0.6), rgba(0, 0, 0, 0.5));
     text-shadow:inherit;
     margin-left:2px;
     margin-right:3px;
@@ -971,7 +997,7 @@ tooltip {
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied, #workspaces button.active {
-    background:linear-gradient(0deg, rgba(201, 223, 146, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(201, 223, 146, 0.6), rgba(0, 0, 0, 0.2));
     box-shadow:3px 2px rgba(201, 223, 146, 0.5);
 }
 
@@ -980,26 +1006,37 @@ tooltip {
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover, #workspaces button.active:hover {
-    text-shadow:3px 3px rgba(201, 223, 146, 0.7);
+    text-shadow:3px 3px rgba(201, 223, 146, 0.5);
 }
 
 #tags button.occupied {
-    background:linear-gradient(0deg, rgba(201, 223, 146, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(201, 223, 146, 0.6), rgba(0, 0, 0, 0.2));
 }
 #+end_src
 
 ** Battery
 
 #+begin_src css :tangle hyprland.css
+#battery, #idle_inhibitor {
+    transition:all 0.2s ease 0s;
+}
+
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
     color:#44bdda;
-    background:linear-gradient(0deg, rgba(77, 119, 213, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(77, 119, 213, 0.5), rgba(0, 0, 0, 0.2));
     margin-left:0;
     margin-right:0;
     padding-left:11px;
     padding-right:11px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
 }
+
+#battery:hover, #idle_inhibitor:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+}
+
 #idle_inhibitor, #pulseaudio.bluetooth {
     border-radius:40px 0px 0px 40px;
     margin-left:2px;
@@ -1009,6 +1046,14 @@ tooltip {
     margin-left:0;
     border-radius:0px 40px 40px 0px;
     box-shadow:3px 3px rgba(77, 119, 213, 0.5);
+    transition:all 0.2s ease 0s;
+}
+
+#temperature:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+    box-shadow:3px 3px rgba(60, 60, 60, 0.5);
 }
 
 #pulseaudio.bluetooth {
@@ -1037,22 +1082,6 @@ tooltip {
 }
 #+end_src
 
-** Clock
-
-#+begin_src css :tangle hyprland.css
-#custom-clock {
-    color:#ffee60;
-    background:linear-gradient(0deg, rgba(233, 212, 167, 0.7), rgba(0, 0, 0, 0.2));
-    border-radius:0px 40px 40px 0px;
-    margin-left:0;
-    margin-right:2px;
-    padding-left:12px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    box-shadow:2px 2px rgba(233, 212, 167, 0.6);
-}
-#+end_src
-
 ** Cava
 
 #+begin_src css :tangle hyprland.css
@@ -1066,30 +1095,47 @@ tooltip {
     margin-right:0;
     text-shadow:2px 2px rgba(233, 212, 167, 0.4);
 }
+
+#cava:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+}
 #+end_src
 
 ** Network
 
 #+begin_src css :tangle hyprland.css
-#network {
+#network, #custom-clock {
    color:#d170cb;
-   background:linear-gradient(0deg, rgba(196, 139, 155, 0.7), rgba(0, 0, 0, 0.1));
+   background:linear-gradient(0deg, rgba(196, 139, 155, 0.5), rgba(0, 0, 0, 0.2));
    border-radius:0px 40px 40px 0px;
    margin-left:0;
    margin-right:3px;
    padding-left:11px;
    padding-right:11px;
-   text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-   box-shadow:3px 2px rgba(196, 139, 155, 0.6);
+   text-shadow:2px 2px rgba(0, 0, 0, 0.5);
+   box-shadow:3px 2px rgba(196, 139, 155, 0.5);
+   transition:all 0.2s ease 0s;
+}
+
+#network:hover, #custom-clock:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+    box-shadow:3px 2px rgba(140, 140, 140, 0.5);
 }
 #+end_src
 
 ** Bluetooth
 
 #+begin_src css :tangle hyprland.css
+#bluetooth {
+    transition:all 0.2s ease 0s;
+}
 #bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#e6727a;
-    background:linear-gradient(0deg, rgba(238, 75, 80, 0.7), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(238, 75, 80, 0.5), rgba(0, 0, 0, 0.2));
     border-radius:0px 40px 40px 0px;
     box-shadow:3px 2px rgba(238, 75, 80, 0.5);
     margin-left:0;
@@ -1101,7 +1147,7 @@ tooltip {
 
 #bluetooth.connected, #bluetooth.connected.pairable {
     color:#b3da49;
-    background:linear-gradient(0deg, rgba(154, 176, 99, 0.7), rgba(0, 0, 0, 0.2));
+    background:linear-gradient(0deg, rgba(154, 176, 99, 0.5), rgba(0, 0, 0, 0.2));
     border-radius:0px 40px 40px 0px;
     margin-left:0;
     margin-right:4px;
@@ -1113,7 +1159,7 @@ tooltip {
 
 #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
     color:#54cdea;
-    background:linear-gradient(0deg, rgba(77, 119, 213, 0.7), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(77, 119, 213, 0.5), rgba(0, 0, 0, 0.2));
     border-radius:0px 40px 40px 0px;
     margin-left:0;
     margin-right:4px;
@@ -1125,7 +1171,7 @@ tooltip {
 
 #bluetooth.discovering {
     color:#ffee60;
-    background:linear-gradient(0deg, rgba(233, 212, 167, 0.6), rgba(0, 0, 0, 0.1));
+    background:linear-gradient(0deg, rgba(233, 212, 167, 0.5), rgba(0, 0, 0, 0.2));
     border-radius:0px 40px 40px 0px;
     margin-left:0;
     margin-right:4px;
@@ -1133,6 +1179,13 @@ tooltip {
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
     box-shadow:3px 2px rgba(233, 212, 167, 0.5);
+}
+
+#bluetooth.discovering:hover, #bluetooth.connected:hover, #bluetooth.discoverable:hover, #bluetooth.pairable:hover, #bluetooth.off:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
+    box-shadow:3px 2px rgba(140, 140, 140, 0.5);
 }
 #+end_src
 

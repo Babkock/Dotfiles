@@ -77,7 +77,8 @@
     "align": 1,
     "tooltip": false,
     "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-    "on-click-right": "pkill -x eww"
+    "on-click-right": "eww close-all",
+    "on-click-middle": "pkill -x eww"
 },
 
 "cpu": {
@@ -89,7 +90,8 @@
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
 },
 
 "disk": {
@@ -99,7 +101,7 @@
     "format-alt": "󰋊 {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})",
-    "on-click-right": "pcmanfm /mnt/mega"
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/mega"
 },
 
 "battery": {
@@ -467,7 +469,7 @@
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 24,
+    "icon-size": 30,
     "transition-duration": 350,
     "modules": [
         {
@@ -502,7 +504,7 @@
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})",
-    "on-click-right": "pcmanfm"
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm"
 },
 
 "keyboard-state": {
@@ -534,7 +536,7 @@
     "monstercat": false,
     "hide_on_silence": false,
     "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-click": "alacritty -e cava"
+    "on-click": "footclient -e cava"
 },
 
 "tray": {
@@ -595,7 +597,8 @@
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
 },
 
 "disk": {
@@ -604,7 +607,8 @@
     "format": "  <span style=\"italic\">{free}</span>",
     "format-alt": "  {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/drive"
 },
 
 "cpu": {
@@ -620,6 +624,7 @@
         "align": 1,
         "tooltip": false,
         "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-        "on-click-right": "pkill -x eww"
+        "on-click-right": "eww close-all",
+        "on-click-middle": "pkill -x eww"
     }
 }]

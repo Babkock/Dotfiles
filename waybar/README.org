@@ -131,7 +131,6 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#temperature-2][Temperature]]
   - [[#network-2][Network]]
   - [[#cava-1][Cava]]
-  - [[#keyboard-state-2][Keyboard State]]
   - [[#tray-2][Tray]]
 - [[#hyprland-tv-bar][Hyprland TV Bar]]
   - [[#appearance-8][Appearance]]
@@ -241,7 +240,8 @@ every single one of the modules, if I don't have to. The modules and their order
     "align": 1,
     "tooltip": false,
     "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-    "on-click-right": "pkill -x eww"
+    "on-click-right": "eww close-all",
+    "on-click-middle": "pkill -x eww"
 },
 #+end_src
 
@@ -258,11 +258,12 @@ every single one of the modules, if I don't have to. The modules and their order
 ** Memory
 
 #+begin_src json :tangle sway.json
-    "memory": {
-        "format": " {}%",
-        "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-        "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
-    },
+"memory": {
+    "format": " {}%",
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
+},
 #+end_src
 
 ** Disk
@@ -275,7 +276,7 @@ every single one of the modules, if I don't have to. The modules and their order
     "format-alt": "󰋊 {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})",
-    "on-click-right": "pcmanfm /mnt/mega"
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/mega"
 },
 #+end_src
 
@@ -692,7 +693,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle sway.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 24,
+    "icon-size": 30,
     "transition-duration": 350,
     "modules": [
         {
@@ -735,7 +736,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "format-alt": " {used}",
     "tooltip": true,
     "tooltip-format": "{path} ({percentage_used}% of {total})",
-    "on-click-right": "pcmanfm"
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm"
 },
 #+end_src
 
@@ -775,7 +776,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "monstercat": false,
     "hide_on_silence": false,
     "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-click": "alacritty -e cava"
+    "on-click": "footclient -e cava"
 },
 #+end_src
 
@@ -858,7 +859,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
 },
 #+end_src
 
@@ -871,7 +873,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "format": "  <span style=\"italic\">{free}</span>",
     "format-alt": "  {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/drive"
 },
 #+end_src
 
@@ -895,7 +898,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "align": 1,
         "tooltip": false,
         "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-        "on-click-right": "pkill -x eww"
+        "on-click-right": "eww close-all",
+        "on-click-middle": "pkill -x eww"
     }
 }]
 #+end_src
@@ -1496,7 +1500,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format": "󰋊 <span style=\"italic\">{free}</span>",
     "format-alt": "󰋊 {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/mega"
 },
 #+end_src
 
@@ -1550,20 +1555,22 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 ** CPU
 
 #+begin_src json :tangle hyprland.json
-    "cpu": {
-        "format": " {usage}%",
-        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
-    },
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
+},
 #+end_src
 
 ** Memory
 
 #+begin_src json :tangle hyprland.json
-    "memory": {
-        "format": " {}%",
-        "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-        "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
-    },
+"memory": {
+    "format": " {}%",
+    "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
+},
 #+end_src
 
 ** Battery
@@ -1638,7 +1645,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "path": "/tmp/mpd_cover.jpg",
     "size": 42,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg"
+    "on-click": "swayimg /tmp/mpd_cover.jpg",
+    "on-click-right": "footclient -e ncmpcpp"
 }
 #+end_src
 
@@ -1656,7 +1664,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "keyboard-state", "temperature", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -1916,7 +1924,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm"
 },
 #+end_src
 
@@ -1925,7 +1934,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hyprland.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 24,
+    "icon-size": 30,
     "transition-duration": 400,
     "modules": [
         {
@@ -1959,7 +1968,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum"
+    "on-click-right": "helvum",
+    "on-click-middle": "footclient -e pw-top"
 },
 #+end_src
 
@@ -2001,6 +2011,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip": true,
     "tooltip-format-ethernet": "{ifname} {gwaddr}",
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+    "on-click-right": "footclient -e neomutt -F /home/babkock/.muttrc"
 },
 #+end_src
 
@@ -2022,24 +2033,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "waves": false,
     "monstercat": false,
     "hide_on_silence": true,
-    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-},
-#+end_src
-
-** Keyboard State
-
-#+begin_src json :tangle hyprland.json
-"keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": {
-        "numlock": " {icon}",
-        "capslock": "󰪛 {icon}"
-    },
-    "format-icons": {
-        "locked": " ",
-        "unlocked": " "
-    }
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "footclient -e cava"
 },
 #+end_src
 
@@ -2117,7 +2112,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip-format-off": "{controller_address} {controller_address_type}",
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
+    "on-click-right": "footclient -e bluetoothctl"
 },
 #+end_src
 
@@ -2127,7 +2123,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
 },
 #+end_src
 
@@ -2140,17 +2137,19 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format": "  <span style=\"italic\">{free}</span>",
     "format-alt": "  {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/drive"
 },
 #+end_src
 
 ** CPU
 
 #+begin_src json :tangle hyprland.json
-    "cpu": {
-        "format": " {usage}%",
-        "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
-    },
+"cpu": {
+    "format": " {usage}%",
+    "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
+},
 #+end_src
 
 ** Clock
@@ -2161,7 +2160,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "eww --force-wayland daemon & eww open hymem; eww open hycalendar",
+        "on-click-right": "eww close-all",
+        "on-click-middle": "pkill -x eww"
     }
 }]
 #+end_src

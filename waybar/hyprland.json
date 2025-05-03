@@ -39,7 +39,8 @@
     "format": "󰋊 <span style=\"italic\">{free}</span>",
     "format-alt": "󰋊 {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/mega"
 },
 
 "mpd": {
@@ -84,12 +85,14 @@
 "cpu": {
     "format": " {usage}%",
     "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
 },
 
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
 },
 
 "battery": {
@@ -149,7 +152,8 @@
     "path": "/tmp/mpd_cover.jpg",
     "size": 42,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg"
+    "on-click": "swayimg /tmp/mpd_cover.jpg",
+    "on-click-right": "footclient -e ncmpcpp"
 }
 
 }, {
@@ -160,7 +164,7 @@
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "keyboard-state", "temperature", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -412,12 +416,13 @@
     "format": " <span style=\"italic\">{free}</span>",
     "format-alt": " {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm"
 },
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 24,
+    "icon-size": 30,
     "transition-duration": 400,
     "modules": [
         {
@@ -447,7 +452,8 @@
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum"
+    "on-click-right": "helvum",
+    "on-click-middle": "footclient -e pw-top"
 },
 
 "idle_inhibitor": {
@@ -477,6 +483,7 @@
     "tooltip": true,
     "tooltip-format-ethernet": "{ifname} {gwaddr}",
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
+    "on-click-right": "footclient -e neomutt -F /home/babkock/.muttrc"
 },
 
 "cava": {
@@ -494,20 +501,8 @@
     "waves": false,
     "monstercat": false,
     "hide_on_silence": true,
-    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-},
-
-"keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": {
-        "numlock": " {icon}",
-        "capslock": "󰪛 {icon}"
-    },
-    "format-icons": {
-        "locked": " ",
-        "unlocked": " "
-    }
+    "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "footclient -e cava"
 },
 
 "tray": {
@@ -566,13 +561,15 @@
     "tooltip-format-off": "{controller_address} {controller_address_type}",
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
+    "on-click-right": "footclient -e bluetoothctl"
 },
 
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
-    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB"
+    "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
+    "on-click-right": "footclient -e yazi"
 },
 
 "disk": {
@@ -581,12 +578,14 @@
     "format": "  <span style=\"italic\">{free}</span>",
     "format-alt": "  {used}",
     "tooltip": true,
-    "tooltip-format": "{path} ({percentage_used}% of {total})"
+    "tooltip-format": "{path} ({percentage_used}% of {total})",
+    "on-click-right": "pkill -9 pcmanfm; pcmanfm /mnt/drive"
 },
 
 "cpu": {
     "format": " {usage}%",
     "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
+    "on-click-right": "footclient -e htop"
 },
 
 "custom/clock": {
@@ -594,6 +593,9 @@
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "eww --force-wayland daemon & eww open hymem; eww open hycalendar",
+        "on-click-right": "eww close-all",
+        "on-click-middle": "pkill -x eww"
     }
 }]

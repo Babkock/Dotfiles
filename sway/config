@@ -116,7 +116,7 @@ input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 55
 focus_on_window_activation focus
 
 blur enable
-blur_passes 2
+blur_passes 1
 blur_radius 3
 blur_brightness 1.0
 corner_radius 35

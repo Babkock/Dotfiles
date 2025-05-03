@@ -203,7 +203,7 @@ c.qt.chromium.experimental_web_platform_features = "always"
 c.qt.workarounds.disable_hangouts_extension = True
 
 c.content.blocking.method = "adblock"
-c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "tabs", "progress", "clock"]
+c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
 
 # --- Fonts ---
 
@@ -297,6 +297,7 @@ config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4
 config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
+config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
 config.bind(',x', 'config-cycle fonts.statusbar "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
