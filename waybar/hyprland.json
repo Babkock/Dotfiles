@@ -85,14 +85,14 @@
 "cpu": {
     "format": " {usage}%",
     "format-alt": " {avg_frequency} GHz {max_frequency} GHz",
-    "on-click-right": "footclient -e htop"
+    "on-click-right": "alacritty -e htop"
 },
 
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "alacritty -e yazi"
 },
 
 "battery": {
@@ -153,7 +153,7 @@
     "size": 42,
     "interval": 1,
     "on-click": "swayimg /tmp/mpd_cover.jpg",
-    "on-click-right": "footclient -e ncmpcpp"
+    "on-click-right": "alacritty -e ncmpcpp"
 }
 
 }, {
@@ -453,7 +453,7 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "helvum",
-    "on-click-middle": "footclient -e pw-top"
+    "on-click-middle": "alacritty -e pw-top"
 },
 
 "idle_inhibitor": {
@@ -483,7 +483,7 @@
     "tooltip": true,
     "tooltip-format-ethernet": "{ifname} {gwaddr}",
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
-    "on-click-right": "footclient -e neomutt -F /home/babkock/.muttrc"
+    "on-click-right": "alacritty -e neomutt -F /home/babkock/.muttrc"
 },
 
 "cava": {
@@ -502,7 +502,7 @@
     "monstercat": false,
     "hide_on_silence": true,
     "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-click": "footclient -e cava"
+    "on-click": "alacritty -e cava"
 },
 
 "tray": {
@@ -562,14 +562,14 @@
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
     "format-icons": ["", "", "", "", ""],
-    "on-click-right": "footclient -e bluetoothctl"
+    "on-click-right": "alacritty -e bluetoothctl"
 },
 
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "alacritty -e yazi"
 },
 
 "disk": {
