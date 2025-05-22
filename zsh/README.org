@@ -199,10 +199,10 @@ else
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
             echo "Starting Hyprland..."
-            gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby
-            gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-            gsettings set org.gnome.desktop.interface cursor-size 32
+            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
             dbus-launch --exit-with-session Hyprland &> /dev/null
             pgrep hypridle | xargs kill 2> /dev/null
             pgrep stash | xargs kill 2> /dev/null
