@@ -1,0 +1,32 @@
+font=VictorMono Nerd Font 16
+background-color=#00000077
+text-color=#93eab9ee
+width=720
+height=340
+outer-margin=7
+margin=6
+padding=7
+border-size=2
+border-color=#ff2800bb
+border-radius=29
+max-icon-size=280
+default-timeout=3000
+max-visible=3
+text-alignment=right
+icon-location=right
+
+[urgency=critical]
+font=VictorMono Nerd Font 15
+background-color=#22000077
+text-color=#ffffffff
+border-radius=29
+width=720
+height=310
+outer-margin=8
+margin=6
+padding=7
+border-size=2
+border-color=#ff0000ff
+default-timeout=4000
+text-alignment=right
+

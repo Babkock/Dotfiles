@@ -24,8 +24,9 @@ exec pkill -x pipewire
 exec pipewire &
 exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
 exec --no-startup-id autotiling -l 2 &
+exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 exec gsettings set org.gnome.desktop.interface cursor-theme Adwaita
-exec gsettings set org.gnome.desktop.interface cursor-size 30
+exec gsettings set org.gnome.desktop.interface cursor-size 32
 exec pkill -x hydroxide
 exec pgrep hydroxide | xargs kill
 exec hydroxide imap &
@@ -61,7 +62,7 @@ output "DP-1" {
 	bg /home/babkock/.config/sway/colorfulnebula.png fill
 }
 
-seat seat0 xcursor_theme "Adwaita" 30
+seat seat0 xcursor_theme "Adwaita" 32
 seat seat0 hide_cursor 5000
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
@@ -117,12 +118,12 @@ focus_on_window_activation focus
 
 blur enable
 blur_passes 1
-blur_radius 3
+blur_radius 2
 blur_brightness 1.0
-corner_radius 35
+corner_radius 38
 shadows enable
 shadows_on_csd enable
-shadow_blur_radius 2
+shadow_blur_radius 1
 shadow_color #ee000999
 shadow_inactive_color #ee000999
 default_dim_inactive 0.1
@@ -150,10 +151,10 @@ gaps outer 3
 
 exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color a9df11aa --ring-wrong-color fe021988 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 10101066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/mountainsauroralock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color 74c280aa --ring-wrong-color fe021999 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 00000066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/mountainsauroralock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill"
 
-exec mako -c "$HOME/.config/mako/swayconfig" &
-exec waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &
+exec mako -c "$HOME/.config/mako/swayconfig" &> /dev/null &
+exec waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &> /dev/null &
 exec pkill -x emacs
-exec emacs --daemon &
+exec emacs --daemon &> /dev/null &
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
 exec mpdas -d

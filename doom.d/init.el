@@ -246,7 +246,13 @@
 (add-hook! 'after-init-hook #'global-hl-line-mode)
 (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
 
-;(setq inhibit-compacting-font-caches t)
+(setq circe-network-options
+    '(("Libera Chat"
+       :tls t
+       :nick "Babkock"
+       :channels ("#voidlinux" "#emacs"))))
+
+(setq inhibit-compacting-font-caches t)
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)

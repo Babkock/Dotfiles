@@ -45,6 +45,7 @@ This is the other, secondary Doom Emacs config file =init.org=, which tangles to
   - [[#frame-title][Frame Title]]
   - [[#fallback-buffer-name][Fallback Buffer Name]]
   - [[#doom-dashboard][Doom Dashboard]]
+  - [[#circe][Circe]]
   - [[#modeline][Modeline]]
   - [[#mpdel][MPDel]]
 
@@ -330,10 +331,20 @@ Show a custom image on the splash screen, and hide cursor and mode line.
 (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
 #+end_src
 
+** Circe
+
+#+begin_src emacs-lisp :tangle yes
+(setq circe-network-options
+    '(("Libera Chat"
+       :tls t
+       :nick "Babkock"
+       :channels ("#voidlinux" "#emacs"))))
+#+end_src
+
 ** Modeline
 
 #+begin_src emacs-lisp :tangle yes
-;(setq inhibit-compacting-font-caches t)
+(setq inhibit-compacting-font-caches t)
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)

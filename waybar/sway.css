@@ -72,7 +72,7 @@ tooltip {
 #disk {
     transition:all 0.2s ease 0s;
 }
-#disk:hover, #pulseaudio:hover {
+#disk:hover, #pulseaudio:hover, #pulseaudio.bluetooth:hover {
     background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
     color:#efefef;
     text-shadow:2px 2px rgba(80, 80, 80, 0.6);
@@ -87,7 +87,7 @@ tooltip {
     box-shadow:3px 3px rgba(228, 207, 19, 0.4);
     transition:all 0.2s ease 0s;
 }
-#pulseaudio:hover {
+#pulseaudio:hover, #pulseaudio.bluetooth:hover {
     box-shadow:3px 3px rgba(80, 80, 80, 0.6);
 }
 
