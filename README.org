@@ -23,53 +23,90 @@ so cloning may take a while as it is large and has many pictures. Try cloning wi
 
 ** fetch
 
-This collection includes my [[https://gitlab.com/Babkock/Dotfiles/-/blob/master/fetch.org][Dotfiles fetcher script]] which retrieves the most current
+This collection includes my [[https://github.com/Babkock/Dotfiles/blob/master/fetch.org][Dotfiles fetcher script]] which retrieves the most current
 configuration files from their specific spots on the system, overwrites their copies in
 this repo, and adds them to the Git staging area. I rely on this script for almost all of my commits.
 
-* Programs Included
+* What's in Here
 
 
 [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]] [[https://raw.githubusercontent.com/WillPower3309/swayfx/5e866d0345449f34ac51c6590a3aac285cb2f8bf/assets/swayfx_logo.svg]]
 
-** Other Orgs
+** Wayland Desktop Environments
 
-- [[https://github.com/Babkock/Dotfiles/tree/master/bspwm][Bspwm]]
-- [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/README.org][Doom Emacs config.org]]
-- [[https://github.com/Babkock/Dotfiles/blob/master/doom.d/init.org][Doom Emacs init.org]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/eww][Eww Widgets]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/foot][Foot]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]
-- [[https://github.com/Babkock/Dotfiles/blob/master/waybar/README.org][Waybar Config]]
-- [[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][Waybar Style]]
-- [[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zsh]]
+This repository includes startup scripts and configurations to launch four unique full-featured environments in four different Wayland compositors. *SwayFX*, *Wayfire*, *Hyprland*, and *Niri*. Each of these sessions include their own independent "rices", or color schemes, and configurations for Waybar, Foot or Alacritty, Mako, and Wob. There are shell functions to launch each of these desktop environments in my [[https://github.com/Babkock/Dotfiles/blob/master/zsh/README.org][Zsh config]]. Wallpapers not included, but you can find them in my [[https://gitlab.com/Babkock/wallpapers][wallpapers]] repository.
 
-** My Stack
+* Other Orgs
+
+An Org document is a literate configuration file (or a simple to-do list, or a poem, or a story) written in Emacs Org mode. Emacs is able to "tangle" the code blocks in an Org document to
+their respective configuration files. You can view these Org documents as web pages on my [[https://babkock.github.io/][GitHub Pages]] web site, and see the source code in [[https://github.com/Babkock/babkock.github.io][its repository]].
+
+- *[[https://github.com/Babkock/Dotfiles/tree/master/bspwm][Bspwm]]*
+- *[[https://github.com/Babkock/Dotfiles/blob/master/doom.d/README.org][Doom Emacs config.org]]*
+- *[[https://github.com/Babkock/Dotfiles/blob/master/doom.d/init.org][Doom Emacs init.org]]*
+- *[[https://github.com/Babkock/Dotfiles/tree/master/eww][Eww Widgets]]*
+- *[[https://github.com/Babkock/Dotfiles/tree/master/foot][Foot]]*
+- *[[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]*
+- *[[https://github.com/Babkock/Dotfiles/tree/master/polybar][Polybar]]*
+- *[[https://github.com/Babkock/Dotfiles/blob/master/waybar/README.org][Waybar Config]]*
+- *[[https://github.com/Babkock/Dotfiles/blob/master/waybar/style.org][Waybar Style]]*
+- *[[https://github.com/Babkock/Dotfiles/tree/master/zsh][Zsh]]*
+
+* My Stack
+
+** Wayland Compositors
+
+- [[https://github.com/hyprwm/Hyprland][Hyprland]]
+- [[https://github.com/YaLTeR/niri][Niri]]
+- [[https://github.com/WillPower3309/swayfx][SwayFX]] (I use this the most)
+- [[https://github.com/WayfireWM/wayfire][Wayfire]]
+
+** Terminals
 
 - [[https://github.com/alacritty/alacritty][Alacritty]]
-- [[https://github.com/baskerville/bspwm][Bspwm]]
-- [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
-- [[https://dunst-project.org][Dunst]]
 - [[https://codeberg.org/dnkl/foot][Foot]]
-- [[https://codeberg.org/dnkl/fuzzel][Fuzzel]]
-- [[https://github.com/hyprwm/Hyprland][Hyprland]]
-- [[https://github.com/emersion/mako][Mako]]
-- Mozilla Firefox
-- [[https://github.com/mpv-player/mpv][mpv]]
-- [[https://github.com/arybczak/ncmpcpp][ncmpcpp]]
-- [[https://github.com/polybar/polybar][Polybar]]
-- [[https://github.com/qutebrowser/qutebrowser][Qutebrowser]]
-- [[https://github.com/ranger/ranger][Ranger]]
-- [[https://github.com/baskerville/sxhkd][sxhkd]]
-- [[https://github.com/swaywm/sway][Sway]]
-- [[https://gitlab.com/tbcargo/Tinyserve][Tinyserve]]
-- [[https://github.com/tremc/tremc][Transmission]]
+
+** Text Editors
+
+- [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+- Sublime Text
 - [[https://www.vim.org][Vim]]
+
+** Bars and Other Tools
+
+- [[https://github.com/elkowar/eww][Eww]] (Widgets)
+- [[https://codeberg.org/dnkl/fuzzel][Fuzzel]] (App Launcher)
+- [[https://github.com/emersion/mako][Mako]] (Notifications)
+- [[https://github.com/polybar/polybar][Polybar]]
+- [[https://github.com/swaywm/swaylock][Swaylock]]
+- [[https://github.com/Babkock/Tinyserve][Tinyserve]]
+- [[https://github.com/tremc/tremc][Transmission]] (Torrents)
 - [[https://github.com/Alexays/Waybar][Waybar]]
+
+** Web Browsers
+
+- Mozilla Firefox
+- [[https://github.com/qutebrowser/qutebrowser][Qutebrowser]]
+
+** Command Line
+
+- [[https://github.com/gokcehan/lf][lf]] (File Manager)
+- [[https://github.com/mpv-player/mpv][mpv]]
+- [[https://github.com/arybczak/ncmpcpp][ncmpcpp]] (Music Player)
+- [[https://github.com/jarun/nnn][nnn]] (File Manager)
+- [[https://github.com/ranger/ranger][Ranger]]
+- [[https://yazi-rs.github.io/][Yazi]] (File Manager)
 - [[http://zsh.sourceforge.net][Zsh]]
 
+** Legacy X11 Stuff
+
+- [[https://github.com/baskerville/bspwm][Bspwm]]
+- [[https://dunst-project.org][Dunst]]
+- [[https://github.com/baskerville/sxhkd][sxhkd]]
+
 * Keybindings
+
+May vary across Wayland compositors, but almost all of these are implemented in the config files.
 
 | Key Combination        | Action                |
 |------------------------+-----------------------|
@@ -113,3 +150,5 @@ better now!
 - My fork of [[https://github.com/Babkock/st][st]]
 - My fork of [[https://github.com/Babkock/dmenu][dmenu]]
 - My fork of [[https://gitlab.com/tbsuckless/dwm][dwm]]
+
+Thanks for checking out my Dotfiles! Feel free to make a pull request if you think there's something I can improve.
