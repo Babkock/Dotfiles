@@ -322,8 +322,7 @@ spawn-at-startup "swayidle" "-w" "timeout" "780" "swaylock -F -f --font \"Victor
 
 spawn-at-startup "bash" "-c" "rm -f /home/babkock/.wob.sock && mkfifo /home/babkock/.wob.sock && tail -f /home/babkock/.wob.sock | wob -c /home/babkock/.config/wob/niri.ini"
 
-spawn-at-startup "pkill" "-x" "pipewire"
-spawn-at-startup "pipewire"
+spawn-at-startup "bash" "-c" "pkill -x pipewire; sleep 1; pipewire &"
 
 spawn-at-startup "dbus-update-activation-environment" "SDL_VIDEODRIVER" "GDK_BACKEND" "GTK_THEME" "XCURSOR_SIZE" "XCURSOR_THEME" "QT_QPA_PLATFORM" "XDG_CURRENT_DESKTOP" "XDG_SESSION_DESKTOP" "XDG_SESSION_TYPE" "MOZ_ENABLE_WAYLAND"
 spawn-at-startup "foot" "--server" "--config" "/home/babkock/.config/foot/niri.ini"
@@ -360,6 +359,11 @@ animations {
     slowdown 2.0
 }
 
+window-rule {
+    geometry-corner-radius 34
+    clip-to-geometry true
+}
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -384,15 +388,53 @@ window-rule {
 }
 
 window-rule {
+	match app-id="discord"
+	open-on-output "DP-1"
+	geometry-corner-radius 0
+	open-maximized true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match app-id="Firefox"
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
+	open-maximized true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
 	match app-id=r#"^org\.qutebrowser\.qutebrowser$"#
 	open-on-output "HDMI-A-2"
+	open-maximized true
+	geometry-corner-radius 0
 	default-column-width { proportion 1.0; }
 }
 
 window-rule {
 	match app-id=r#"^org\.nicotine_plus\.Nicotine$"#
 	open-on-output "DP-1"
+	geometry-corner-radius 0
 	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match title="Emacs"
+	open-maximized true
+	geometry-corner-radius 0
+	default-column-width { proportion 1.0; }
+}
+window-rule {
+	match app-id="emacs"
+	open-maximized true
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match app-id="swayimg"
+	open-floating true
 }
 
 // Example: block out two password managers from screen capture.
@@ -405,13 +447,6 @@ window-rule {
 
     // Use this instead if you want them visible on third-party screenshot tools.
     // block-out-from "screencast"
-}
-
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-window-rule {
-    geometry-corner-radius 34
-    clip-to-geometry true
 }
 
 binds {
@@ -435,7 +470,7 @@ binds {
 
 	Mod+Shift+Period hotkey-overlay-title="Mozilla Firefox" { spawn "firefox-wayland"; }
 
-	Mod+Period hotkey-overlay-title="Qutebrowser" { spawn "qutebrowser" "--qt-arg" "stylesheet" "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss"; }
+	Mod+Period hotkey-overlay-title="Qutebrowser" { spawn "qutebrowser" "-C" "/home/babkock/.config/qutebrowser/niri.py" "--qt-arg" "stylesheet" "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss"; }
 
 	Mod+Comma hotkey-overlay-title="Ncmpcpp" { spawn "footclient" "-e" "ncmpcpp"; }
 	Mod+Shift+Comma hotkey-overlay-title="Emacs" { spawn "emacsclient" "-c" "-a" "'emacs'" "-q"; }
