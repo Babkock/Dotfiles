@@ -195,7 +195,6 @@ assign [app_id="^thunderbird$"] 7
 assign [class="Thunderbird"] 7
 assign [app_id="Thunderbird"] 7
 assign [title="Mozilla Thunderbird"] 7
-assign [app_id="org.bitcoin.bitcoin-qt"] 7
 assign [app_id="vlc"] 7
 assign [class="vlc"] 7
 assign [class="VLC"] 7
@@ -259,7 +258,6 @@ for_window [app_id="Swayimg"] floating enable
 for_window [class="Swayimg"] floating enable
 for_window [app_id="pcmanfm"] floating enable
 for_window [app_id="PCManFM"] floating enable
-for_window [app_id="org.bitcoin.bitcoin-qt"] floating enable
 for_window [app_id="com.obsproject.Studio"] focus
 for_window [app_id="com.obsproject.Studio"] move workspace to output eDP-1
 for_window [app_id="Firefox"] focus
@@ -307,8 +305,6 @@ bindsym $mod+semicolon workspace number 7; exec nicotine
 bindsym $mod+Shift+semicolon exec virt-manager
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
-
-bindsym $mod+Equal workspace number 7; exec QT_QPA_PLATFORMTHEME="qt5ct" bitcoin-qt -datadir="/mnt/mega/.bitcoin" -shutdownnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin' 'Shutting down Bitcoin Core...'" -walletnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin Transaction' '%w %h %b %s'" -startupnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin' 'Starting up Bitcoin Core...'" -alertnotify="notify-send -i '/usr/share/icons/breeze-dark/apps/48/bitcoin128.svg' 'Bitcoin Alert' '%s'" -blocknotify="notify-send -i '/usr/share/icons/breeze-dark/48/bitcoin128.svg' 'Bitcoin' 'Best Block Change %s'" -upnp -dbcache=300 -timeout=7000 -maxorphantx=50 -walletdir="/home/babkock/Wallets" -maxmempool=200 -maxreceivebuffer=10000 -maxsendbuffer=2000 -pid="/home/babkock/.bitcoin.pid" -torcontrol="127.0.0.1:9051" -maxconnections=150 -server
 
 bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin12345@127.0.0.1:9091'
 
