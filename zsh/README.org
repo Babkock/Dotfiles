@@ -296,10 +296,6 @@ else
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
             echo "Starting Niri..."
-            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
-            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby
-            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
             dbus-launch --exit-with-session niri &> /dev/null
             pkill -x eww
             pgrep emacs | xargs kill 2> /dev/null

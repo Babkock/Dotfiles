@@ -42,7 +42,7 @@ input {
     mouse {
         // off
         natural-scroll
-        accel-speed 1.0
+        accel-speed 1.1
         accel-profile "adaptive"
         // scroll-method "no-scroll"
     }
@@ -322,8 +322,6 @@ spawn-at-startup "swayidle" "-w" "timeout" "780" "swaylock -F -f --font \"Victor
 
 spawn-at-startup "bash" "-c" "rm -f /home/babkock/.wob.sock && mkfifo /home/babkock/.wob.sock && tail -f /home/babkock/.wob.sock | wob -c /home/babkock/.config/wob/niri.ini"
 
-spawn-at-startup "bash" "-c" "pkill -x pipewire; sleep 1; pipewire &"
-
 spawn-at-startup "dbus-update-activation-environment" "SDL_VIDEODRIVER" "GDK_BACKEND" "GTK_THEME" "XCURSOR_SIZE" "XCURSOR_THEME" "QT_QPA_PLATFORM" "XDG_CURRENT_DESKTOP" "XDG_SESSION_DESKTOP" "XDG_SESSION_TYPE" "MOZ_ENABLE_WAYLAND"
 spawn-at-startup "foot" "--server" "--config" "/home/babkock/.config/foot/niri.ini"
 
@@ -431,10 +429,21 @@ window-rule {
 	geometry-corner-radius 0
 	default-column-width { proportion 1.0; }
 }
+window-rule {
+	match app-id="factorio"
+	open-fullscreen true
+	open-on-output "HDMI-A-2"
+}
 
 window-rule {
 	match app-id="swayimg"
 	open-floating true
+}
+
+window-rule {
+	match app-id="gamescope"
+	open-fullscreen true
+	open-on-output "HDMI-A-2"
 }
 
 // Example: block out two password managers from screen capture.
