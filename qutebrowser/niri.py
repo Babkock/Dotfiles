@@ -87,7 +87,12 @@ c.colors.tabs.selected.odd.bg = '#77000000'
 c.colors.tabs.selected.even.fg = '#eef36c97'
 c.colors.tabs.selected.even.bg = '#77000000'
 
-c.colors.webpage.darkmode.enabled = True
+c.colors.prompts.bg = '#99000000'
+c.colors.prompts.fg = '#ffefefef'
+c.colors.prompts.border = '1px solid black'
+c.colors.prompts.selected.bg = '#aa101010'
+c.colors.prompts.selected.fg = '#ffffffff'
+
 c.colors.webpage.darkmode.policy.images = "never"
 c.colors.webpage.preferred_color_scheme = "dark"
 
