@@ -44,7 +44,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
 </header>
 #+END_EXPORT
 
-# +# TOC: headlines 2
+# +#TOC: headlines 2
 
 * Table of Contents :toc:
 - [[#sway-laptop-bar][Sway Laptop Bar]]
@@ -58,7 +58,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#battery][Battery]]
   - [[#backlight][Backlight]]
   - [[#pulseaudio][Pulseaudio]]
-- [[#sway-monitor-bar][Sway Monitor Bar]]
+- [[#sway-left-monitor-bar][Sway Left Monitor Bar]]
   - [[#appearance-1][Appearance]]
   - [[#scratchpad][Scratchpad]]
   - [[#window][Window]]
@@ -72,7 +72,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#keyboard-state][Keyboard State]]
   - [[#cava][Cava]]
   - [[#tray][Tray]]
-- [[#sway-tv-bar][Sway TV Bar]]
+- [[#sway-right-monitor-bar][Sway Right Monitor Bar]]
   - [[#appearance-2][Appearance]]
   - [[#weather][Weather]]
   - [[#bluetooth-1][Bluetooth]]
@@ -91,7 +91,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#disk-3][Disk]]
   - [[#pulseaudio-1][Pulseaudio]]
   - [[#image-1][Image]]
-- [[#wayfire-monitor-bar][Wayfire Monitor Bar]]
+- [[#wayfire-left-monitor-bar][Wayfire Left Monitor Bar]]
   - [[#appearance-4][Appearance]]
   - [[#disk-4][Disk]]
   - [[#network-1][Network]]
@@ -101,7 +101,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#temperature-1][Temperature]]
   - [[#keyboard-state-1][Keyboard State]]
   - [[#tray-1][Tray]]
-- [[#wayfire-tv-bar][Wayfire TV Bar]]
+- [[#wayfire-right-monitor-bar][Wayfire Right Monitor Bar]]
   - [[#appearance-5][Appearance]]
   - [[#weather-1][Weather]]
   - [[#bluetooth-3][Bluetooth]]
@@ -121,7 +121,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#backlight-2][Backlight]]
   - [[#pulseaudio-2][Pulseaudio]]
   - [[#image-2][Image]]
-- [[#hyprland-monitor-bar][Hyprland Monitor Bar]]
+- [[#hyprland-left-monitor-bar][Hyprland Left Monitor Bar]]
   - [[#appearance-7][Appearance]]
   - [[#window-1][Window]]
   - [[#disk-internal-ssd][Disk (Internal SSD)]]
@@ -132,7 +132,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#network-2][Network]]
   - [[#cava-1][Cava]]
   - [[#tray-2][Tray]]
-- [[#hyprland-tv-bar][Hyprland TV Bar]]
+- [[#hyprland-right-monitor-bar][Hyprland Right Monitor Bar]]
   - [[#appearance-8][Appearance]]
   - [[#weather-2][Weather]]
   - [[#bluetooth-4][Bluetooth]]
@@ -376,7 +376,7 @@ every single one of the modules, if I don't have to. The modules and their order
 #+end_src
 
 
-* Sway Monitor Bar
+* Sway Left Monitor Bar
 
 This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2=), to the right of the bar detailed above.
 
@@ -820,7 +820,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 }
 #+end_src
 
-* Sway TV Bar
+* Sway Right Monitor Bar
 
 ** Appearance
 
@@ -1116,7 +1116,7 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 }
 #+end_src
 
-* Wayfire Monitor Bar
+* Wayfire Left Monitor Bar
 
 And finally, the sixth status bar, this is the second status bar that LabWC uses when my monitor (=HDMI-A-2=) is connected.
 
@@ -1355,7 +1355,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 }
 #+end_src
 
-* Wayfire TV Bar
+* Wayfire Right Monitor Bar
 
 ** Appearance
 
@@ -1681,7 +1681,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+end_src
 
 
-* Hyprland Monitor Bar
+* Hyprland Left Monitor Bar
 
 ** Appearance
 
@@ -2079,7 +2079,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+end_src
 
 
-* Hyprland TV Bar
+* Hyprland Right Monitor Bar
 
 ** Appearance
 

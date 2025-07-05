@@ -525,3 +525,86 @@ section.Settings h2 {
 .SearchHeader_settings a, .SearchHeader_settings a:hover, .SearchHeader_settings a:visited {
     color:#efefef;
 }
+
+div[style="margin-left:14px; margin-top:6px; margin-bottom:14px"] {
+    display:none;
+}
+
+div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] {
+  color: #dfdfdf;
+  font-size: 1.3em;
+  text-align: center;
+  margin-top:10px;
+  margin-bottom:17px;
+}
+
+div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] a, div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] a:link, div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] a:active, div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] a:visited {
+    color:#ffffff;
+    text-decoration:none;
+}
+
+div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] a:hover {
+    color:orange;
+    text-decoration:underline;
+}
+
+div[style="margin-left:36px; margin-top:6px; margin-bottom:12px"] {
+    color:#dfdfdf;
+    font-size:1.3em;
+    text-align:center;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+body[bgcolor="#ffffff"] center table[width="500"] {
+    width:800px;
+}
+
+body[bgcolor="#ffffff"] center table[width="500"] tbody tr td[bgcolor="#fafaf0"] {
+    background:rgba(0, 0, 0, 0.5);
+    padding:6px;
+    font-size:1.3em;
+    color:#dfdfdf;
+}
+
+td[bgcolor="#fafaf0"] p {
+    font-family:"Helvetica";
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+td[bgcolor="#fafaf0"] b {
+    font-size:1.6em;
+    color:#ffffff;
+    font-family:"Helvetica";
+}
+
+tr#bigbox td table[style="border-spacing: 7px 0px;"] tbody tr td {
+  font-family: "Arial" !important;
+  font-size: 1.3em;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background:rgba(0, 0, 0, 0.2);
+  padding-left: 5px;
+  color: #ddabab;
+}
+
+.submission .title {
+    padding-left:9px;
+}
+tr td.subtext {
+    padding-left:9px;
+}
+
+table[width="500"] tbody tr td[bgcolor="#fafaf0"] ul li {
+    font-family:"Arial" !important;
+    list-style-type:none;
+}
+
+div[style="margin-left:21px; margin-top:6px; margin-bottom:15px"] {
+  font-family: "Arial" !important;
+  font-size: 1.3em;
+  color: #f9f9f9;
+  text-align: center;
+  margin-top: 10px !important;
+}
