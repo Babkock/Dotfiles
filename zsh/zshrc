@@ -208,7 +208,7 @@ if [ -v TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "alacritty" || ${TERM} = "kitty" ]]; then
         # graphical terminal
         alias ls="eza --icons --group-directories-first --no-quotes -X -F"
-        alias l="eza --icons --group-directories-first --no-quotes -X -F"
+        #alias l="eza --icons --group-directories-first --no-quotes -X -F"
         alias lsla="eza --icons --group-directories-first --no-quotes -X -F -l -A --git --git-repos --time-style=relative -S"
         alias la="eza --icons --group-directories-first --no-quotes -X -F -A"
         alias ll="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
@@ -435,6 +435,24 @@ function j()
         . "$NNN_TMPFILE"
         rm -f "$NNN_TMPFILE" > /dev/null
     fi
+}
+
+function l()
+{
+    editor="vim -n -T alacritty"
+    cd "$(lf -print-last-dir)"
+}
+
+function vf()
+{
+    fzf -i --walker=file,dir,follow,hidden --walker-skip=.git,node_modules --header="Select a file to edit" --input-label="Filename" --preview-label="Edit this file:" --preview="bat --color=always --style=plain,changes,numbers {}" --preview-window="border:rounded" --border=double --scroll-off=3 --prompt="$ " --pointer="->" --layout=reverse --multi=3 > /tmp/fzf.txt
+    xargs -r -o -a /tmp/fzf.txt vim -n -T alacritty -o
+}
+
+function yz()
+{
+    yazi --cwd-file=/tmp/yazi.txt
+    cd "$(cat /tmp/yazi.txt)"
 }
 
 function wb() {
@@ -682,7 +700,7 @@ alias xxl="cd $VOIDPKG; ./xbps-src list; cd $OLDPWD"
 #alias xs="./xbps-src show"
 alias xlu="cd $VOIDPKG; ./xbps-src show-local-updates; cd $OLDPWD"
 alias xsu="cd $VOIDPKG; ./xbps-src show-sys-updates; cd $OLDPWD"
-alias yz="yazi"
+#alias yz="yazi"
 alias z="bluetoothctl"
 
 fpath+=$HOME/.zsh/typewritten
@@ -706,6 +724,7 @@ source $HOME/.zsh/nix-zsh-completions/nix-zsh-completions.plugin.zsh
 source $HOME/.zsh/correction.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/colored-man-pages.plugin.zsh
+source $HOME/.zsh/niri.zsh
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift+Tab
 bindkey -M menuselect '^@' reverse-menu-complete
@@ -743,8 +762,112 @@ if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-25
     elif [[ "$random" == "2" ]]; then
         pokemon-colorscripts --no-title -s -r 1-3
     else
+        echo -e '\e[5;31m'
         colorscript -r
     fi
 else
     colorscript -r
+fi
+random=$(shuf -i 1-20 -n 1)
+if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
+    if [[ "$random" == "1" ]]; then
+        echo -e '\e[5;30m'
+        fortune anarchism | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "2" ]]; then
+        echo -e '\e[5;30m'
+        fortune drugs | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "3" ]]; then
+        echo -e '\e[5;30m'
+        fortune linux | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "4" ]]; then
+        echo -e '\e[5;30m'
+        fortune void | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "5" ]]; then
+        echo -e '\e[5;30m'
+        fortune computers | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "6" ]]; then
+        echo -e '\e[5;30m'
+        fortune paradoxum | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "7" ]]; then
+        echo -e '\e[5;30m'
+        fortune men-women | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "8" ]]; then
+        echo -e '\e[5;30m'
+        fortune linux | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "9" ]]; then
+        echo -e '\e[5;30m'
+        fortune magic | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "10" ]]; then
+        echo -e '\e[5;30m'
+        fortune linuxcookie | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "11" ]]; then
+        echo -e '\e[5;30m'
+        fortune wisdom | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "12" ]]; then
+        echo -e '\e[5;30m'
+        fortune ethnic | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "13" ]]; then
+        echo -e '\e[5;30m'
+        fortune literature | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "14" ]]; then
+        fortune ascii-art | lolcat --random -b -v 0.3
+    elif [[ "$random" == "15" ]]; then
+        fortune ascii-art | lolcat --random -b -v 0.3
+    elif [[ "$random" == "16" ]]; then
+        echo -e '\e[5;30m'
+        fortune void | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "17" ]]; then
+        echo -e '\e[5;30m'
+        fortune computers | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "18" ]]; then
+        echo -e '\e[5;30m'
+        fortune law | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "19" ]]; then
+        fortune ascii-art | lolcat --random -b -v 0.3
+    else
+        echo -e '\e[5;30m'
+        fortune humorists | cowsay -w | lolcat --random -b -v 0.2
+    fi
+else
+    if [[ "$random" == "1" ]]; then
+        fortune anarchism | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "2" ]]; then
+        fortune linux | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "3" ]]; then
+        fortune drugs | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "4" ]]; then
+        fortune void | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "5" ]]; then
+        fortune computers | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "6" ]]; then
+        fortune linuxcookie | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "7" ]]; then
+        fortune paradoxum | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "8" ]]; then
+        fortune men-women | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "9" ]]; then
+        fortune wisdom | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "10" ]]; then
+        fortune magic | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "11" ]]; then
+        fortune humorists | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "12" ]]; then
+        fortune ethnic | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "13" ]]; then
+        fortune void | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "14" ]]; then
+        fortune law | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "15" ]]; then
+        fortune literature | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "16" ]]; then
+        fortune cookie | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "17" ]]; then
+        fortune politics | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "18" ]]; then
+        fortune linux | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "19" ]]; then
+        fortune law | cowsay -w | lolcat --random -x
+    else
+        fortune ascii-art | lolcat --random -x
+    fi
 fi

@@ -548,7 +548,7 @@
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 48,
+    "height": 50,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],

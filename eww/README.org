@@ -225,7 +225,7 @@ Yuck is based on Lisp, so Emacs is really good with the the syntax highlighting,
 #+begin_src emacs-lisp :tangle eww.yuck
 (defwindow mem
 	:wm-ignore: true
-	:monitor 2
+	:monitor 0
 	:geometry (geometry :x "50px"
 						:y "40px"
 						:width "350px"

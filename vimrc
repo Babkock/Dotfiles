@@ -7,6 +7,7 @@ set cursorcolumn
 set tabstop=4
 set softtabstop=4
 set lazyredraw
+set ttyfast
 set mouse=a
 set encoding=utf-8
 set t_Co=256

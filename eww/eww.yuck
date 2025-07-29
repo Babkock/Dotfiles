@@ -142,7 +142,7 @@
 
 (defwindow mem
 	:wm-ignore: true
-	:monitor 2
+	:monitor 0
 	:geometry (geometry :x "50px"
 						:y "40px"
 						:width "350px"

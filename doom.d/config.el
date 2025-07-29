@@ -52,7 +52,7 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-(setq doom-theme 'doom-ayu-dark)
+(setq doom-theme 'doom-molokai)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -62,7 +62,8 @@
 (setq doom-font (font-spec :family "Space Mono Nerd Font" :size 18 :height 1.0)
       doom-big-font (font-spec :family "Space Mono Nerd Font" :size 20 :height 1.0)
       doom-unicode-font (font-spec :family "Space Mono Nerd Font" :size 18 :height 1.0)
-      doom-variable-pitch-font (font-spec :family "NotoSerif Nerd Font" :size 18 :height 1.1))
+      doom-variable-pitch-font (font-spec :family "NotoSerif Nerd Font" :size 18 :height 1.1)
+      doom-serif-font (font-spec :family "NotoSerif Nerd Font" :size 18))
 (set-frame-font "Space Mono Nerd Font 18" nil t)
 
 (custom-set-faces
@@ -106,7 +107,9 @@
     (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
     (doom-themes-org-config)
-    (doom-themes-visual-bell-config))
+    (doom-themes-visual-bell-config)
+    (doom-themes-neotree-config)
+    (doom-themes-treemacs-config))
 
 (custom-set-faces!
     '(font-lock-comment-face :slant italic)

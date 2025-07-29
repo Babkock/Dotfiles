@@ -1,0 +1,191 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    default_album_art_path: None,
+    show_song_table_header: false,
+    draw_borders: true,
+    browser_column_widths: [33, 33, 33],
+    background_color: None,
+    text_color: "#efefef",
+    header_background_color: None,
+    modal_background_color: None,
+    tab_bar: (
+        enabled: false,
+        active_style: (fg: "black", bg: "red", modifiers: "Bold"),
+        inactive_style: (),
+    ),
+    highlighted_item_style: (fg: "black", bg: "blue", modifiers: "Reversed"),
+    current_item_style: (fg: None, bg: "green", modifiers: "Reversed"),
+    borders_style: (fg: "white"),
+    highlight_border_style: (fg: "magenta"),
+    symbols: (song: "", dir: "", playlist: "󰧔", marker: "\u{e0b0}"),
+	preview_label_style: (fg: "green", modifiers: "Italic"),
+	preview_metadata_group_style: (fg: "cyan", modifiers: "Italic"),
+	progress_bar: (
+        symbols: ["󱞙", "󱞙", "󰈸", "󰞦 ", " "],
+        track_style: (fg: "#33ef00", bg: None),
+        elapsed_style: (fg: "#606060", bg: None),
+        thumb_style: (fg: "#ff9500", bg: None),
+	),
+    scrollbar: (
+        symbols: ["│", "█", "", ""],
+        track_style: (fg: "blue", bg: "black"),
+        ends_style: (),
+        thumb_style: (fg: "blue", bg: "black"),
+    ),
+    song_table_format: [
+        (
+            prop: (kind: Property(Duration),
+                default: (kind: Text("-"))
+            ),
+            width: "5",
+            alignment: Left,
+        ),
+		(
+			prop: (kind: Property(Track), style: (fg: "blue"),
+				default: (kind: Text("-"))
+			),
+			width: "2",
+		),
+        (
+            prop: (kind: Property(Title), style: (fg: "red"),
+                default: (kind: Text("Unknown"), style: (fg: "red"))
+            ),
+            width: "35%",
+        ),
+        (
+            prop: (kind: Property(Artist), style: (fg: "green"),
+                default: (kind: Text("Unknown Artist"), style: (fg: "green"))
+            ),
+            width: "25%",
+			alignment: Right,
+        ),
+        (
+            prop: (kind: Property(Album), style: (fg: "magenta", modifiers: "Italic"),
+                default: (kind: Text("Unknown Album"), style: (fg: "magenta"))
+            ),
+            width: "30%",
+        ),
+		(
+			prop: (kind: Property(Other("date")), style: (fg: "yellow"),
+				default: (kind: Text("0000"))
+			),
+			width: "4",
+			alignment: Right,
+		),
+    ],
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                pane: Pane(Header),
+                size: "3",
+				borders: "BOTTOM",
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                pane: Pane(ProgressBar),
+                size: "2",
+				borders: "TOP",
+            ),
+        ],
+    ),
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "yellow", modifiers: "Bold")),
+                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "yellow", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "yellow", modifiers: "Bold"))
+                ],
+                center: [
+                    (kind: Property(Song(Title)), style: (fg: "red", modifiers: "Bold"),
+                        default: (kind: Text("No Song"), style: (fg: "red", modifiers: "Bold"))
+                    )
+                ],
+                right: [
+                    (kind: Property(Widget(Volume)), style: (fg: "green"))
+                ]
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "yellow")),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(Duration)), style: (fg: "yellow")),
+                    (kind: Text(" (")),
+                    (kind: Property(Status(Bitrate)), style: (fg: "cyan", modifiers: "Bold")),
+                    (kind: Text(" kbps) -")),
+					(kind: Property(Status(QueueTimeRemaining())), style: (fg: "blue", modifiers: "Italic")),
+					(kind: Text("/")),
+					(kind: Property(Status(QueueTimeTotal())), style: (fg: "blue", modifiers: "Bold | Italic")),
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "green", modifiers: "Bold"),
+                        default: (kind: Text("Unknown"), style: (fg: "blue"))
+                    ),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Album)), style: (fg: "magenta", modifiers: "Bold | Italic"),
+                        default: (kind: Text("Unknown Album"), style: (fg: "magenta", modifiers: "Italic"))
+                    ),
+					(kind: Text(" (")),
+					(kind: Property(Song(Other("date"))), style: (fg: "yellow"),
+						default: (kind: Text("xxxx"), style: (fg: "yellow")),
+					),
+					(kind: Text(")")),
+                ],
+                right: [
+                    (
+						kind: Property(Status(SingleV2(on_label: " ", off_label: " ", oneshot_label: "1 ", on_style: (fg: "red", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim"), oneshot_style: (fg: "blue", modifiers: "Bold"))))
+                    ),
+					(
+						kind: Property(Status(RepeatV2(on_label: " ", off_label: " ", on_style: (fg: "blue", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim"))))
+					),
+					(
+						kind: Property(Status(RandomV2(on_label: " ", off_label: " ", on_style: (fg: "green", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim"))))
+					),
+					(
+						kind: Property(Status(ConsumeV2(on_label: "󰮯 ", off_label: "󰮯 ", on_style: (fg: "magenta", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim"))))
+					)
+                ]
+            ),
+        ],
+    ),
+	browser_song_sort: [Disc, Track],
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Property(Title),
+            default: (kind: Property(Filename))
+        ),
+    ],
+	artists: (
+		album_display_mode: SplitByDate,
+		album_sort_by: Date,
+	),
+	cava: (
+		bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+		bg_color: None,
+		bar_width: 2,
+		bar_color: Gradient({
+			0: "#101010",
+			5: "#59cc33",
+			10: "#80cc33",
+			25: "#a6cc33",
+			40: "#cccc33",
+			50: "#cca633",
+			60: "#cc8033",
+			70: "#cc5933",
+			80: "#cc3333",
+		})
+	),
+)
+

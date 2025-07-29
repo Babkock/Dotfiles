@@ -379,7 +379,7 @@ c.auto_save.interval = 20000
 
 c.url.open_base_url = True
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!o': 'https://odysee.com/$/search?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!p': 'https://iptorrents.me/t?89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&q={}&qf=ti#torrents' }
+c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!o': 'https://odysee.com/$/search?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!p': 'https://iptorrents.me/t?101=&89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&720p=on&1080p=on&2160p=on&q={}&qf=ti#torrents' }
 #+end_src
 
 How to handle selecting a file for upload:
@@ -412,8 +412,11 @@ config.bind(',7', 'open https://boards.4channel.org/g/catalog')
 config.bind(',8', 'open https://news.ycombinator.com/news')
 config.bind(',9', 'open https://old.reddit.com')
 config.bind(',0', 'open https://babkock.github.io')
-config.bind(',-', 'open https://www.messenger.com')
-config.bind(',=', 'open https://en.wikipedia.org/wiki/Main_Page')
+
+config.bind(',-', 'navigate prev')
+config.bind(',=', 'navigate next')
+config.bind(',/', 'navigate increment')
+config.bind(',.', 'navigate decrement')
 #+end_src
 
 As you can see, I am a master of productivity and imagination. Don't ask me about any of these bookmarks or styles. They're all in this repository. I have bound the capital "M" for playing a selected link in MPV.
@@ -424,6 +427,7 @@ As you can see, I am a master of productivity and imagination. Don't ask me abou
 | ,a                | 4chan Style |
 | ,b                | Reddit Style |
 | ,e                | Empornium Style |
+| ,h                | Hacker News Style |
 | ,z                | Change Default Font Size |
 | ,x                | Toggle Font Size of Statusbar |
 | ,p                | Font Size of Selected Tab  |

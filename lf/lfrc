@@ -1,0 +1,11 @@
+set ifs "\n"
+set tabstop 4
+set shell sh
+set icons
+set scrolloff 3
+set hiddenfiles true
+set previewer ~/.config/lf/preview.sh
+set sixel true
+set incsearch true
+set mouse true
+
