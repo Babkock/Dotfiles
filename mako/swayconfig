@@ -1,5 +1,5 @@
 anchor=top-right
-font=VictorMono Nerd Font 15
+font=GoMono Nerd Font Propo 16
 background-color=#00000077
 text-color=#fe0219dd
 width=710
@@ -18,7 +18,7 @@ icon-location=right
 
 [urgency=critical]
 anchor=top-right
-font=VictorMono Nerd Font 15
+font=GoMono Nerd Font Propo 16
 background-color=#33000088
 text-color=#ffffffff
 border-radius=30

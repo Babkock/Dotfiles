@@ -1,4 +1,4 @@
-font=VictorMono Nerd Font 16
+font=GoMono Nerd Font 17
 background-color=#00000077
 text-color=#93eab9ee
 width=720
@@ -16,7 +16,7 @@ text-alignment=right
 icon-location=right
 
 [urgency=critical]
-font=VictorMono Nerd Font 15
+font=GoMono Nerd Font 17
 background-color=#22000077
 text-color=#ffffffff
 border-radius=29
