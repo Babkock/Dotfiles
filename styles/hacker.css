@@ -72,7 +72,7 @@ b.hnname a {
 }
 
 .title {
-    font-size:1.3em;
+    font-size:1.6em;
     font-family:"Helvetica";
     padding-top:4px;
     padding-bottom:4px;
@@ -123,6 +123,7 @@ tr.athing.submission td.title {
 
 .commtext.c00, .reply p font, .athing td .comment, .commtext.c9C {
     font-size:1.1em;
+	line-height:1.5;
 }
 
 .c00, .c9C {
@@ -137,7 +138,7 @@ tr.athing.submission td.title {
 }
 
 #hnmain tbody tr td table tbody tr.athing.submission:first-child td.title {
-  font-size: 1.85em;
+  font-size: 2.3em;
   padding-top: 7px;
   padding-bottom: 7px;
 }
@@ -556,6 +557,19 @@ div[style="margin-left:36px; margin-top:6px; margin-bottom:12px"] {
     margin-bottom:15px;
 }
 
+div[style="margin-left:36px; margin-top:6px; margin-bottom:14px"] a:hover {
+    color:orange;
+    text-decoration:underline;
+}
+
+div[style="margin-left:36px; margin-top:6px; margin-bottom:12px"] {
+    color:#dfdfdf;
+    font-size:1.3em;
+    text-align:center;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
 body[bgcolor="#ffffff"] center table[width="500"] {
     width:800px;
 }
@@ -580,13 +594,13 @@ td[bgcolor="#fafaf0"] b {
 }
 
 tr#bigbox td table[style="border-spacing: 7px 0px;"] tbody tr td {
-  font-family: "Arial" !important;
-  font-size: 1.3em;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  background:rgba(0, 0, 0, 0.2);
-  padding-left: 5px;
-  color: #ddabab;
+	font-family: "Arial" !important;
+	font-size: 1.3em;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	background:rgba(0, 0, 0, 0.2);
+	padding-left: 5px;
+	color: #ddabab;
 }
 
 .submission .title {
@@ -602,9 +616,24 @@ table[width="500"] tbody tr td[bgcolor="#fafaf0"] ul li {
 }
 
 div[style="margin-left:21px; margin-top:6px; margin-bottom:15px"] {
-  font-family: "Arial" !important;
-  font-size: 1.3em;
-  color: #f9f9f9;
-  text-align: center;
-  margin-top: 10px !important;
+	font-family: "Arial" !important;
+	font-size: 1.3em;
+	color: #f9f9f9;
+	text-align: center;
+	margin-top: 10px !important;
+}
+
+.commtext.c5A {
+	font-size:1.1em !important;
+}
+
+.commtext.cdd {
+	font-size:1.1em !important;
+	color:#efefef;
+}
+
+td.votelinks center font[color="#ff6600"] {
+	margin-top:3px;
+	color:lime;
+	font-size:1.3em !important;
 }

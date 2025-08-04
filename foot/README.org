@@ -66,10 +66,10 @@ This is the configuration for the [[https://codeberg.org/dnkl/foot][Foot]] termi
 #+begin_src conf :tangle sway.ini
 shell = /usr/bin/zsh
 
-font = SpaceMono Nerd Font:pixelsize=19:antialias=true
-font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
-font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
-font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
+font = GoMono Nerd Font:pixelsize=20:antialias=true
+font-bold = GoMono Nerd Font:style=Bold:pixelsize=20:antialias=true
+font-italic = GoMono Nerd Font:style=Italic:pixelsize=20:antialias=true
+font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=true
 #+end_src
 
 ** Preferences
@@ -77,7 +77,7 @@ font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=
 #+begin_src conf :tangle sway.ini
 dpi-aware=yes
 pad=9x9 center
-vertical-letter-offset=-4px
+vertical-letter-offset=-1px
 notify=notify-send -i ${app-id} {$title} {$body}
 line-height=24px
 letter-spacing=-1px
@@ -140,10 +140,10 @@ urls=ff0000
 #+begin_src conf :tangle wayfire.ini
 shell = /usr/bin/zsh
 
-font = SpaceMono Nerd Font:pixelsize=19:antialias=true
-font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
-font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
-font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
+font = GoMono Nerd Font:pixelsize=20:antialias=true
+font-bold = GoMono Nerd Font:style=Bold:pixelsize=20:antialias=true
+font-italic = GoMono Nerd Font:style=Italic:pixelsize=20:antialias=true
+font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=true
 #+end_src
 
 ** Preferences
@@ -151,7 +151,7 @@ font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=
 #+begin_src conf :tangle wayfire.ini
 dpi-aware=yes
 pad=9x9 center
-vertical-letter-offset=-4px
+vertical-letter-offset=-1px
 line-height=24px
 letter-spacing=-1px
 bold-text-in-bright=palette-based
@@ -199,10 +199,10 @@ bright7=fdd9c9
 #+begin_src conf :tangle hyprland.ini
 shell = /usr/bin/zsh
 
-font = SpaceMono Nerd Font:pixelsize=19:antialias=true
-font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
-font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
-font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
+font = GoMono Nerd Font:pixelsize=20:antialias=true
+font-bold = GoMono Nerd Font:style=Bold:pixelsize=20:antialias=true
+font-italic = GoMono Nerd Font:style=Italic:pixelsize=20:antialias=true
+font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=true
 #+end_src
 
 ** Preferences
@@ -211,7 +211,7 @@ font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=
 dpi-aware=yes
 pad=9x9 center
 notify=notify-send -i ${app-id} ${title} ${body}
-vertical-letter-offset=-4px
+vertical-letter-offset=-1px
 line-height=24px
 letter-spacing=-1px
 bold-text-in-bright=palette-based
@@ -269,10 +269,10 @@ bright7=fdeadb
 #+begin_src conf :tangle niri.ini
 shell = /usr/bin/zsh
 
-font = SpaceMono Nerd Font:pixelsize=19:antialias=true
-font-bold = SpaceMono Nerd Font:style=Bold:pixelsize=19:antialias=true
-font-italic = SpaceMono Nerd Font:style=Italic:pixelsize=19:antialias=true
-font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=true
+font = GoMono Nerd Font:pixelsize=20:antialias=true
+font-bold = GoMono Nerd Font:style=Bold:pixelsize=20:antialias=true
+font-italic = GoMono Nerd Font:style=Italic:pixelsize=20:antialias=true
+font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=true
 #+end_src
 
 ** Preferences
@@ -280,7 +280,7 @@ font-bold-italic = SpaceMono Nerd Font:style=Bold Italic:pixelsize=19:antialias=
 #+begin_src conf :tangle niri.ini
 dpi-aware=yes
 pad=9x9 center
-vertical-letter-offset=-4px
+vertical-letter-offset=-1px
 notify=notify-send -i ${app-id} {$title} {$body}
 line-height=24px
 letter-spacing=-1px
