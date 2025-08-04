@@ -670,6 +670,7 @@ alias sy="pkill -x waybar; waybar -c '$HOME/.config/waybar/hyprland.json' -s '$H
 alias sn="pkill -x waybar; waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
 alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; pipewire &"
 alias sz="sudo pkill -x wpa_supplicant; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
+alias svi="sudo vim -n -T alacritty"
 alias ta="tar xvf"
 alias td="tar czf"
 alias ti="transmission-remote --auth='$TRANS_PASS' -l"

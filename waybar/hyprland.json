@@ -45,15 +45,17 @@
 
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+	"port": 6602,
+	"password": "passgasgrassorazz",
+    "format": "{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{consumeIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
     "title-len": 42,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
-    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
-    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
+    "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
+    "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
+    "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
     "consume-icons": {
         "on": " "
     },
@@ -65,7 +67,7 @@
         "on": " "
     },
     "single-icons": {
-        "on": "1 "
+        "on": " 1 "
     },
     "state-icons": {
         "playing": " ",
@@ -149,10 +151,10 @@
 },
 
 "image#album-art": {
-    "path": "/tmp/mpd_cover.jpg",
+    "path": "/tmp/rmpc/notification",
     "size": 42,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg",
+    "on-click": "swayimg /tmp/rmpc/notification",
     "on-click-right": "alacritty -e ncmpcpp"
 }
 
@@ -217,6 +219,11 @@
         "GitHub Dashboard": " ",
         "Bitcoin Core": " ",
         "Node window": " ",
+        "Yazi: (.*)": " $1",
+        "GIMP Startup": " ",
+        "GNU Image Manipulation Program": " ",
+        "(.*) – GIMP": " <i>$1</i>",
+        "(.*) (.*) \\((.*)\\) (.*) – GIMP": " ($4) <i>$1</i>",
         "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",

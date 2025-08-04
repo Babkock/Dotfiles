@@ -475,13 +475,13 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
-    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "bash" "-c" "dmenu_path | fuzzel -b 4bc8dc88 -t efefefef --prompt-color=ff2800ef --input-color=efefefef -s 81c071bb -S 93eab9ff -m e3af67ff -M fdcb46ff -f 'SpaceMono Nerd Font:pixelsize=24:antialias=true' --counter --counter-color ff2800ee --use-bold --dpi-aware=yes -y 4 --placeholder-color=efefef66 --placeholder='Run command...' -w 40 -x 6 -r 45 -B 2 -l 17 -P 1 -d -p '$ ' -C e04a00cc -d | sh"; } 
+    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "bash" "-c" "dmenu_path | fuzzel -b 4bc8dc66 -t efefefef --prompt-color=ff2800ef --input-color=efefefef -s 81c071bb -S 93eab9ff -m e3af67ff -M fdcb46ff -f 'GoMono Nerd Font Propo:pixelsize=26:antialias=true' --counter --counter-color ff2800ee --use-bold --dpi-aware=yes -y 4 --placeholder-color=efefef66 --placeholder='Run command...' -w 60 -x 6 -r 45 -B 2 -l 19 -P 1 -d -p '$ ' -C e04a00cc -d | sh"; } 
 
 	Mod+Shift+Period hotkey-overlay-title="Mozilla Firefox" { spawn "firefox-wayland"; }
 
 	Mod+Period hotkey-overlay-title="Qutebrowser" { spawn "qutebrowser" "-C" "/home/babkock/.config/qutebrowser/niri.py" "--qt-arg" "stylesheet" "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss"; }
 
-	Mod+Comma hotkey-overlay-title="Ncmpcpp" { spawn "footclient" "-e" "ncmpcpp"; }
+	Mod+Comma hotkey-overlay-title="RMPC Music Player" { spawn "footclient" "-e" "rmpc" "-c" "/home/babkock/.config/rmpc/config.ron"; }
 	Mod+Shift+Comma hotkey-overlay-title="Emacs" { spawn "emacsclient" "-c" "-a" "'emacs'" "-q"; }
 
 	Mod+Slash hotkey-overlay-title="Sublime Text" { spawn "subl3"; }

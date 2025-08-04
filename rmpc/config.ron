@@ -2,8 +2,8 @@
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
-    address: "127.0.0.2:6600",
-    password: None,
+    address: "127.0.0.2:6602",
+    password: "passgasgrassorazz",
     theme: Some("theme"),
     cache_dir: "/home/babkock/.cache/rmpc/",
     on_song_change: ["/home/babkock/.config/rmpc/notify.sh"],
@@ -157,7 +157,7 @@
 		autosens: true,
 		sensitivity: 100,
 		input: (
-			method: Pulse,
+			method: Pipewire,
 			source: "auto",
 		),
 		smoothing: (

@@ -218,15 +218,17 @@ every single one of the modules, if I don't have to. The modules and their order
     #+begin_src json :tangle sway.json
     "mpd": {
         "server": "127.0.0.2",
-        "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
+		"port": 6602,
+		"password": "passgasgrassorazz",
+        "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
         "format-disconnected": " ",
         "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
         "title-len": 42,
         "unknown-tag": "N/A",
         "interval": 1,
-        "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
-        "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
-        "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
+        "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
+        "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
+        "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
         "consume-icons": {
             "on": " "
         },
@@ -238,7 +240,7 @@ every single one of the modules, if I don't have to. The modules and their order
             "on": " "
         },
         "single-icons": {
-            "on": "1 "
+            "on": " 1 "
         },
         "state-icons": {
             "playing": " ",
@@ -252,11 +254,11 @@ every single one of the modules, if I don't have to. The modules and their order
 
 #+begin_src json :tangle sway.json
 "image#album-art": {
-    "path": "/tmp/mpd_cover.jpg",
+    "path": "/tmp/rmpc/notification",
     "size": 38,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg",
-    "on-click-right": "footclient -e ncmpcpp"
+    "on-click": "swayimg /tmp/rmpc/notification",
+    "on-click-right": "footclient -e rmpc -a '127.0.0.2:6600' -c /home/babkock/.config/rmpc/config.ron"
 },
 #+end_src
 
@@ -457,6 +459,10 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Bitcoin Core": " ",
         "Node window": " ",
         "Yazi: (.*)": " $1",
+        "GIMP Startup": " ",
+        "GNU Image Manipulation Program": " ",
+        "(.*) – GIMP": " <i>$1</i>",
+        "(.*) (.*) \\((.*)\\) (.*) – GIMP": " ($4) <i>$1</i>",
         "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
@@ -860,7 +866,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle sway.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 8,
+    "interval": 10,
     "format": "{}"
 },
 #+end_src
@@ -968,7 +974,9 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 #+begin_src json :tangle wayfire.json
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - {title} {singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+	"port": 6602,
+	"password": "passgasgrassorazz",
+    "format": "{artist} - {title} {consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
     "title-len": 40,
@@ -978,23 +986,23 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
         "on": " "
     },
     "random-icons": {
-        "off": "",
+        "off": " ",
         "on": " "
     },
     "repeat-icons": {
         "on": " "
     },
     "single-icons": {
-        "on": "1 "
+        "on": " 1 "
     },
     "state-icons": {
         "playing": " ",
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
-    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
-    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
-    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
+    "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
+    "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
+    "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
 },
 #+end_src
 
@@ -1110,9 +1118,10 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
 
 #+begin_src json :tangle wayfire.json
 "image#album-art": {
-    "path": "/tmp/mpd_cover.jpg",
+    "path": "/tmp/rmpc/notification",
     "size": 35,
-    "interval": 1
+    "interval": 1,
+    "on-click": "swayimg /tmp/rmpc/notification"
 }
 #+end_src
 
@@ -1386,7 +1395,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle wayfire.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 4,
+    "interval": 10,
     "format": "{}"
 },
 #+end_src
@@ -1540,15 +1549,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hyprland.json
 "mpd": {
     "server": "127.0.0.2",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
+	"port": 6602,
+	"password": "passgasgrassorazz",
+    "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
     "title-len": 42,
     "unknown-tag": "N/A",
     "interval": 1,
-    "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
-    "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
-    "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
+    "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
+    "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
+    "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
     "consume-icons": {
         "on": " "
     },
@@ -1560,7 +1571,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "on": " "
     },
     "single-icons": {
-        "on": "1 "
+        "on": " 1 "
     },
     "state-icons": {
         "playing": " ",
@@ -1672,10 +1683,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle hyprland.json
 "image#album-art": {
-    "path": "/tmp/mpd_cover.jpg",
+    "path": "/tmp/rmpc/notification",
     "size": 42,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg",
+    "on-click": "swayimg /tmp/rmpc/notification",
     "on-click-right": "alacritty -e ncmpcpp"
 }
 #+end_src
@@ -1751,6 +1762,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "GitHub Dashboard": " ",
         "Bitcoin Core": " ",
         "Node window": " ",
+        "Yazi: (.*)": " $1",
+        "GIMP Startup": " ",
+        "GNU Image Manipulation Program": " ",
+        "(.*) – GIMP": " <i>$1</i>",
+        "(.*) (.*) \\((.*)\\) (.*) – GIMP": " ($4) <i>$1</i>",
         "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
@@ -1964,7 +1980,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hyprland.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 30,
+    "icon-size": 32,
     "transition-duration": 400,
     "modules": [
         {
@@ -2124,7 +2140,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hyprland.json
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 8,
+    "interval": 10,
     "format": "{}"
 },
 #+end_src
@@ -2230,6 +2246,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
         },
+		"on-scroll-up": "niri msg action focus-workspace-up",
+		"on-scroll-down": "niri msg action focus-workspace-down",
     },
 #+end_src
 
@@ -2238,27 +2256,29 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle niri.json
     "mpd": {
         "server": "127.0.0.2",
-        "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
+		"port": 6602,
+		"password": "passgasgrassorazz",
+        "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
         "format-disconnected": " ",
         "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
         "title-len": 42,
         "unknown-tag": "N/A",
         "interval": 1,
-        "on-click": "mpc --host=127.0.0.2 toggle > /dev/null",
-        "on-click-right": "mpc --host=127.0.0.2 next > /dev/null",
-        "on-click-middle": "mpc --host=127.0.0.2 prev > /dev/null",
+        "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
+        "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
+        "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
         "consume-icons": {
-            "on": " "
+            "on": "  "
         },
         "random-icons": {
-            "off": " ",
+            "off": "  ",
             "on": " "
         },
         "repeat-icons": {
             "on": " "
         },
         "single-icons": {
-            "on": "1 "
+            "on": " 1 "
         },
         "state-icons": {
             "playing": " ",
@@ -2272,11 +2292,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 
 #+begin_src json :tangle niri.json
 "image#album-art": {
-    "path": "/tmp/mpd_cover.jpg",
+    "path": "/tmp/rmpc/notification",
     "size": 38,
     "interval": 1,
-    "on-click": "swayimg /tmp/mpd_cover.jpg",
-    "on-click-right": "footclient -e ncmpcpp"
+    "on-click": "swayimg /tmp/rmpc/notification",
+    "on-click-right": "footclient -e rmpc -a '127.0.0.2:6600' -c '/home/babkock/.config/rmpc/config.ron'"
 },
 #+end_src
 
@@ -2425,7 +2445,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "urgent": "",
             "focused": "",
             "default": ""
-        }
+        },
+		"on-scroll-up": "niri msg action focus-workspace-up",
+		"on-scroll-down": "niri msg action focus-workspace-down",
     },
 #+end_src
 
@@ -2461,6 +2483,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Bitcoin Core": " ",
         "Node window": " ",
         "Yazi: (.*)": " $1",
+        "GIMP Startup": " ",
+        "GNU Image Manipulation Program": " ",
+        "(.*) – GIMP": " <i>$1</i>",
+        "(.*) (.*) \\((.*)\\) (.*) – GIMP": " ($4) <i>$1</i>",
         "Bitcoin Core - (.*)": " <span style=\"italic\">$1</span>",
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
@@ -2708,7 +2734,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle niri.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 30,
+    "icon-size": 32,
     "transition-duration": 350,
     "modules": [
         {
@@ -2821,6 +2847,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
         },
+		"on-scroll-up": "niri msg action focus-workspace-up",
+		"on-scroll-down": "niri msg action focus-workspace-down",
     },
 #+end_src
 
