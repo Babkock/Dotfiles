@@ -8,4 +8,9 @@ set previewer ~/.config/lf/preview.sh
 set sixel true
 set incsearch true
 set mouse true
+set drawbox
+set roundbox
+set calcdirsize
+set info "size"
+map <enter> "select" $f
 

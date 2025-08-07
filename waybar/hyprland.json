@@ -47,7 +47,7 @@
     "server": "127.0.0.2",
 	"port": 6602,
 	"password": "passgasgrassorazz",
-    "format": "{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{consumeIcon}{stateIcon}",
+    "format": "{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{consumeIcon}{stateIcon} ",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
     "title-len": 42,
@@ -60,7 +60,7 @@
         "on": " "
     },
     "random-icons": {
-        "off": " ",
+        "off": "",
         "on": " "
     },
     "repeat-icons": {
@@ -74,6 +74,7 @@
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
+	"expand": true
 },
 
 "custom/clock": {
@@ -554,7 +555,7 @@
 
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 8,
+    "interval": 10,
     "format": "{}"
 },
 

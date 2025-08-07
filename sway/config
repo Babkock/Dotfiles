@@ -289,7 +289,7 @@ bindsym $mod+Shift+Return workspace number 5; exec $term
 bindsym $mod+Shift+c kill
 
 # Start your launcher
-bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf -S 74c280ef -m bbaa00ef -M fbb73eef -f "GoMono Nerd Font:pixelsize=26:antialias=true" --counter --counter-color=f30219ee --prompt-color=f30219ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d | sh
+bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf -S 74c280ef -m bbaa00ef -M fbb73eef -f "GoMono Nerd Font Propo:pixelsize=26:antialias=true" --counter --counter-color=f30219ee --prompt-color=f30219ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d --no-exit-on-keyboard-focus-loss | sh
 
 bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5
 

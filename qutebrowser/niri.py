@@ -142,25 +142,25 @@ c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
 
 # --- Fonts ---
 
-c.fonts.default_family = 'GoMono Nerd Font'
+c.fonts.default_family = 'GoMono Nerd Font Propo'
 c.fonts.default_size = '16pt'
 c.fonts.messages.error = '16pt GoMono Nerd Font'
 c.fonts.messages.info = '16pt GoMono Nerd Font'
 c.fonts.messages.warning = '16pt GoMono Nerd Font'
-c.fonts.statusbar = '16pt GoMono Nerd Font'
-c.fonts.downloads = '16pt GoMono Nerd Font'
+c.fonts.statusbar = '16pt GoMono Nerd Font Propo'
+c.fonts.downloads = '16pt GoMono Nerd Font Propo'
 c.fonts.prompts = '16pt Victor Mono Nerd Font'
 c.fonts.keyhint = '16pt GoMono Nerd Font'
 c.fonts.hints = '16pt GoMono Nerd Font'
-c.fonts.contextmenu = '17pt GoMono Nerd Font'
+c.fonts.contextmenu = '16pt GoMono Nerd Font Propo'
 c.fonts.completion.category = 'bold 16pt Victor Mono Nerd Font'
 c.fonts.tooltip = '16pt Victor Mono Nerd Font'
-c.fonts.completion.entry = '16pt GoMono Nerd Font'
-c.fonts.tabs.selected = 'italic 16pt GoMono Nerd Font'
-c.fonts.tabs.unselected = '16pt GoMono Nerd Font'
-c.fonts.messages.info = 'italic 16pt GoMono Nerd Font'
-c.fonts.messages.error = 'italic 16pt GoMono Nerd Font'
-c.fonts.messages.warning = 'italic 16pt GoMono Nerd Font'
+c.fonts.completion.entry = '16pt GoMono Nerd Font Propo'
+c.fonts.tabs.selected = 'italic 16pt GoMono Nerd Font Propo'
+c.fonts.tabs.unselected = '16pt GoMono Nerd Font Propo'
+c.fonts.messages.info = 'italic 16pt GoMono Nerd Font Propo'
+c.fonts.messages.error = 'italic 16pt GoMono Nerd Font Propo'
+c.fonts.messages.warning = 'italic 16pt GoMono Nerd Font Propo'
 
 # --- Appearance ---
 

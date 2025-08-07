@@ -42,7 +42,7 @@ input {
     mouse {
         // off
         natural-scroll
-        accel-speed 1.2
+        accel-speed 1.3
         accel-profile "adaptive"
         // scroll-method "no-scroll"
     }
@@ -260,10 +260,10 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        left 2
-        right 2
-        top 2
-        bottom 2
+        left 0
+        right 0
+        top 0
+        bottom 0
     }
 }
 
@@ -358,7 +358,7 @@ animations {
 }
 
 window-rule {
-    geometry-corner-radius 34
+    geometry-corner-radius 35
     clip-to-geometry true
 }
 
@@ -387,6 +387,14 @@ window-rule {
 
 window-rule {
 	match app-id="discord"
+	open-on-output "DP-1"
+	geometry-corner-radius 0
+	open-maximized true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match app-id="GIMP"
 	open-on-output "DP-1"
 	geometry-corner-radius 0
 	open-maximized true
@@ -475,7 +483,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
-    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "bash" "-c" "dmenu_path | fuzzel -b 4bc8dc66 -t efefefef --prompt-color=ff2800ef --input-color=efefefef -s 81c071bb -S 93eab9ff -m e3af67ff -M fdcb46ff -f 'GoMono Nerd Font Propo:pixelsize=26:antialias=true' --counter --counter-color ff2800ee --use-bold --dpi-aware=yes -y 4 --placeholder-color=efefef66 --placeholder='Run command...' -w 60 -x 6 -r 45 -B 2 -l 19 -P 1 -d -p '$ ' -C e04a00cc -d | sh"; } 
+    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "bash" "-c" "dmenu_path | fuzzel -b 4bc8dc66 -t efefefef --prompt-color=ff2800ef --input-color=efefefef -s 81c071bb -S 93eab9ff -m e3af67ff -M fdcb46ff -f 'GoMono Nerd Font Propo:pixelsize=26:antialias=true' --counter --counter-color ff2800ee --use-bold --dpi-aware=yes -y 4 --placeholder-color=efefef66 --placeholder='Run command...' -w 60 -x 6 -r 45 -B 2 -l 19 -P 1 -d -p '$ ' -C e04a00cc -d --no-exit-on-keyboard-focus-loss | sh"; } 
 
 	Mod+Shift+Period hotkey-overlay-title="Mozilla Firefox" { spawn "firefox-wayland"; }
 

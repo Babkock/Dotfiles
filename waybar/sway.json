@@ -62,6 +62,7 @@
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
+	"expand": true
 },
 
 "image#album-art": {
@@ -582,7 +583,7 @@
 
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 8,
+    "interval": 10,
     "format": "{}"
 },
 

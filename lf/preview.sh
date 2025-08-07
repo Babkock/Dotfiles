@@ -41,6 +41,10 @@ case "$(file -Lb --mime-type -- "$1")" in
 		mediainfo "$1"
 		;;
 
+	video/mp4)
+		mediainfo "$1"
+		;;
+
 	application/x-pie-executable)
 		objdump -d "$1"
 		;;

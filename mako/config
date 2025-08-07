@@ -1,8 +1,8 @@
-font=VictorMono Nerd Font 16
+font=GoMono Nerd Font 17
 background-color=#00000077
 text-color=#c3eb59ee
 width=720
-height=340
+height=380
 outer-margin=7
 margin=6
 padding=7
@@ -16,12 +16,12 @@ text-alignment=right
 icon-location=right
 
 [urgency=critical]
-font=VictorMono Nerd Font 15
+font=VictorMono Nerd Font 17
 background-color=#ee4b5055
 text-color=#ffffffff
 border-radius=29
 width=720
-height=310
+height=380
 outer-margin=8
 margin=6
 padding=7
