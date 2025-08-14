@@ -157,7 +157,7 @@ exec pkill -x emacs
 exec emacs --daemon &> /dev/null &
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
-exec mpdas -d
+exec mpdas -d -c '/home/babkock/.config/mpdasrc' &
 
 workspace 1 output eDP-1
 workspace 2 output HDMI-A-2
@@ -297,7 +297,7 @@ bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$H
 
 bindsym $mod+Shift+period workspace number 2; exec firefox-wayland
 
-bindsym $mod+comma workspace number 3; exec $term -e rmpc -a '127.0.0.2:6600' -c '/home/babkock/.config/rmpc/config.ron'
+bindsym $mod+comma workspace number 3; exec $term -e rmpc -c '/home/babkock/.config/rmpc/config.ron'
 
 bindsym $mod+Shift+comma workspace number 4; exec emacsclient -c -a "emacs"
 

@@ -33,9 +33,10 @@
             "1":       SwitchToTab("Queue"),
             "2":       SwitchToTab("Directories"),
             "3":       SwitchToTab("Artists"),
-            "4":       SwitchToTab("Albums"),
-            "5":       SwitchToTab("Playlists"),
-            "6":       SwitchToTab("Search"),
+			"4":       SwitchToTab("AlbumArtists"),
+            "5":       SwitchToTab("Albums"),
+            "6":       SwitchToTab("Playlists"),
+            "7":       SwitchToTab("Search"),
             "q":       Quit,
             ">":       NextTrack,
             "p":       TogglePause,
@@ -52,6 +53,8 @@
             "P":       ShowDecoders,
         },
         navigation: {
+			"<PageUp>":  PageUp,
+			"<PageDown>": PageDown,
             "k":         Up,
             "j":         Down,
             "h":         Left,
@@ -126,6 +129,7 @@
 						],
 					), borders: "ALL"),
 				],
+				scroll_speed: 1.1,
 			),
 		),
         (
@@ -138,6 +142,11 @@
             pane: Pane(Artists),
 			borders: "ALL",
         ),
+		(
+			name: "AlbumArtists",
+			pane: Pane(AlbumArtists),
+			borders: "ALL",
+		),
         (
             name: "Albums",
             pane: Pane(Albums),

@@ -201,7 +201,11 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-            echo "Starting Hyprland..."
+			echo -e '\e[1;31m'
+			banner "Starting"
+			sleep 1
+            echo -e '\e[1;32m'
+			figlet -W -f ivrit "dnalrpyH"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -234,7 +238,11 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-            echo "Starting Sway..."
+			echo -e '\e[1;31m'
+			banner "Starting"
+			sleep 1
+            echo -e '\e[1;33m'
+			figlet -W -f ivrit "yawS"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -266,7 +274,11 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-            echo "Starting Wayfire..."
+			echo -e '\e[1;31m'
+			banner "Starting"
+			sleep 1
+            echo -e '\e[1;35m'
+			figlet -W -f ivrit "erifyaW"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -298,7 +310,11 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-            echo "Starting Niri..."
+			echo -e '\e[1;31m'
+			banner "Starting"
+			sleep 1
+            echo -e '\e[1;34m'
+			figlet -W -f ivrit "iriN"
             dbus-launch --exit-with-session niri &> /dev/null
             pkill -x eww
             pgrep emacs | xargs kill 2> /dev/null

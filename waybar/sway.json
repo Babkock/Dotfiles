@@ -35,7 +35,7 @@
     "server": "127.0.0.2",
 	"port": 6602,
 	"password": "passgasgrassorazz",
-    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
+    "format": "{consumeIcon}{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
     "format-disconnected": "",
     "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
     "title-len": 42,
@@ -55,7 +55,7 @@
         "on": " "
     },
     "single-icons": {
-        "on": "1 "
+        "on": " 1 "
     },
     "state-icons": {
         "playing": " ",
@@ -421,6 +421,7 @@
         "(.*) \\| Records Recordings — Zen Browser": " <span style=\"italic\">$1</span>"
     },
     "max-length": 86,
+	"expand": true,
     "all-outputs": true
 },
 
