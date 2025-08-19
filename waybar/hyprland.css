@@ -211,7 +211,7 @@ tooltip {
 
 #battery.warning {
     color:#ffee60;
-    border-radius:0px 40px 40px 0px;
+    border-radius:0px 0px 0px 0px;
     background:linear-gradient(0deg, rgba(233, 212, 167, 0.5), rgba(0, 0, 0, 0.3));
     margin-left:0;
     margin-right:3px;
@@ -220,7 +220,7 @@ tooltip {
 
 #battery.critical {
     color:#e6727a;
-    border-radius:0px 40px 40px 0px;
+    border-radius:0px 0px 0px 0px;
     font-weight:bold;
     background:linear-gradient(0deg, rgba(238, 75, 80, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0px;

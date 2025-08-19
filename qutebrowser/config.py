@@ -300,13 +300,7 @@ config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/r
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
-
-config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
-config.bind(',x', 'config-cycle fonts.statusbar "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
-config.bind(',p', 'config-cycle fonts.tabs.selected "italic 16pt Space Mono Nerd Font" "italic 14pt Space Mono Nerd Font"')
-config.bind(',v', 'config-cycle fonts.downloads "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
-config.bind(',n', 'config-cycle fonts.completion.category "17pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
-config.bind(',m', 'config-cycle fonts.completion.entry "17pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
+config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
 
 # --- Keybindings: UI ---
 

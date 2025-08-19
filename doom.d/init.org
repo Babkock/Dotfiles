@@ -237,7 +237,7 @@ This is my list of enabled and installed packages. I try to have a small and min
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       ;;literate
+       literate
        (default +bindings +smartparens))
 #+end_src
 

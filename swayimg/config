@@ -1,0 +1,56 @@
+[general]
+decoration=yes
+
+[viewer]
+transparency = #00000088
+antialiasing = bilinear
+history = 5
+preload = 2
+
+[info]
+info_timeout = 3
+
+[info.viewer]
+top_left = name,path,filesize,format,imagesize,exif
+bottom_right = status,scale,index
+
+[gallery]
+antialiasing = bilinear
+border = #00bb22ee
+shadow = #00000077
+background = #00000000
+cache = 500
+
+[keys.gallery]
+ScrollUp = prev_file
+ScrollDown = next_file
+Up = step_up
+Down = step_down
+Left = step_left
+Right = step_right
+KP_Up = step_up
+KP_Down = step_down
+KP_Left = step_left
+KP_Right = step_right
+h = step_left
+j = step_up
+k = step_down
+l = step_right
+
+[keys.viewer]
+ScrollUp = prev_file
+ScrollDown = next_file
+Space = mode
+Ctrl+ScrollUp = zoom +10
+Ctrl+ScrollDown = zoom -10
+
+[list]
+all = no
+recursive = yes
+
+[font]
+name = GoMono Nerd Font
+size = 17
+color = #ef9090ee
+background = #00000020
+shadow = #000000c0

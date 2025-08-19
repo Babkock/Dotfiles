@@ -328,7 +328,7 @@ spawn-at-startup "foot" "--server" "--config" "/home/babkock/.config/foot/niri.i
 spawn-at-startup "waybar" "-c" "'/home/babkock/.config/waybar/niri.json'" "-s" "'/home/babkock/.config/waybar/niri.css'" "-l" "off"
 
 spawn-at-startup "emacs" "--daemon"
-spawn-at-startup "mpdas" "-d"
+spawn-at-startup "mpdas" "-d" "-c" "/home/babkock/.config/mpdasrc"
 spawn-at-startup "stash"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -398,6 +398,15 @@ window-rule {
 	open-on-output "DP-1"
 	geometry-corner-radius 0
 	open-maximized true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match app-id="gimp"
+	open-on-output "DP-1"
+	geometry-corner-radius 0
+	open-maximized true
+	open-floating true
 	default-column-width { proportion 1.0; }
 }
 

@@ -444,6 +444,7 @@ config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/r
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
+config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
 config.bind(',x', 'config-cycle fonts.statusbar "16pt GoMono Nerd Font" "14pt GoMono Nerd Font"')

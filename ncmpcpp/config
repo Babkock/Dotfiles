@@ -176,7 +176,7 @@ song_window_title_format = zncmpcpp {%a - }{%t}|{%f}
 ##
 song_columns_list_format = (8)[white]{l} (6f)[blue]{NE} (28)[red]{t|f:Title} (25)[green]{a} (22)[magenta]{b} (4)[yellow]{yE}
 
-execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh & eww reload &"
+execute_on_song_change = "/home/babkock/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh &"
 
 ## The environment variable MPD_PLAYER_STATE is set to the current
 ## state (either unknown, play, pause, or stop).

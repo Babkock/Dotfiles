@@ -222,8 +222,11 @@ config.bind(',7', 'open https://boards.4channel.org/g/catalog')
 config.bind(',8', 'open https://news.ycombinator.com/news')
 config.bind(',9', 'open https://old.reddit.com')
 config.bind(',0', 'open https://babkock.github.io')
-config.bind(',-', 'open https://www.messenger.com')
-config.bind(',=', 'open https://en.wikipedia.org/wiki/Main_Page')
+
+config.bind(',-', 'navigate prev')
+config.bind(',=', 'navigate next')
+config.bind(',/', 'navigate increment')
+config.bind(',.', 'navigate decrement')
 
 # --- Keybindings: Stylesheets ---
 
@@ -233,13 +236,7 @@ config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/r
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
-
-config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
-config.bind(',x', 'config-cycle fonts.statusbar "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
-config.bind(',p', 'config-cycle fonts.tabs.selected "italic 16pt Space Mono Nerd Font" "italic 14pt Space Mono Nerd Font"')
-config.bind(',v', 'config-cycle fonts.downloads "16pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
-config.bind(',n', 'config-cycle fonts.completion.category "17pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
-config.bind(',m', 'config-cycle fonts.completion.entry "17pt Space Mono Nerd Font" "14pt Space Mono Nerd Font"')
+config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
 
 # --- Keybindings: UI ---
 

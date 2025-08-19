@@ -10,7 +10,8 @@ set incsearch true
 set mouse true
 set drawbox
 set roundbox
-set calcdirsize
 set info "size"
-map <enter> "select" $f
+map <enter> "select $f"
+map \ clear
+map <backspace2> calcdirsize
 
