@@ -1,0 +1,14 @@
+bind r reload-all
+bind m exec mpv "%l"
+bind f exec feh "%l"
+scrolloff 3
+list-entry-date-format "%D"
+feeds-menu-paramount-explore true
+reload-period 5
+database-analyze-on-startup true
+
+set color-list-feed-unread green default
+set color-list-item-unread green default
+set color-list-section-unread magenta default
+
+

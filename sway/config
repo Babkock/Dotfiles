@@ -293,7 +293,7 @@ bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf 
 
 bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5
 
-bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$HOME/.local/share/qutebrowser/fix-tooltips.qss"
+bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$HOME/.local/share/qutebrowser/fix-tooltips.qss" --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization
 
 bindsym $mod+Shift+period workspace number 2; exec firefox-wayland
 

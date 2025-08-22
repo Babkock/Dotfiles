@@ -857,6 +857,12 @@ function pv() {
 }
 #+end_src
 
+#+begin_src sh :tangle .zshrc
+function uu() {
+	BROWSER="qutebrowser --qt-arg stylesheet '/home/babkock/.local/share/qutebrowser/fix-tooltips.qss' --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization" newsraft
+}
+#+end_src
+
 * Aliases
 
 This is my collection of aliases. Each letter of the alphabet should have its own command, to make the overall way of life easier.
@@ -972,7 +978,7 @@ the GNU coreutils they're modeled after. These projects are worth checking out.
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white' --wm-format '$XDG_CURRENT_DESKTOP'"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --color-keys blue"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat

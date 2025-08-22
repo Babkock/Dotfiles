@@ -575,10 +575,14 @@ function pv() {
     pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
 }
 
+function uu() {
+	BROWSER="qutebrowser --qt-arg stylesheet '/home/babkock/.local/share/qutebrowser/fix-tooltips.qss' --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-gpu --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization" newsraft
+}
+
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --packages-disabled 'nix' --color-keys 'red' --color-title 'cyan' --title-color-user 'green' --logo-color-1 'blue' --logo-color-2 'white' --wm-format '$XDG_CURRENT_DESKTOP'"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --color-keys blue"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
