@@ -114,10 +114,10 @@ May vary across Wayland compositors, but almost all of these are implemented in 
 | Super + Return         | Foot or [[https://github.com/Babkock/Dotfiles/blob/master/alacritty.yml][Alacritty]] |
 | Super + Period         | [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]       |
 | Super + Shift + Period | [[https://github.com/Babkock/Dotfiles/tree/master/chrome][Mozilla Firefox]] |
-| Super + Comma          | Terminal with [[https://github.com/Babkock/Dotfiles/blob/master/ncmpcpp/config][Ncmpcpp]] |
+| Super + Comma          | Terminal with Rmpc |
 | Super + Shift + Comma  | [[https://github.com/Babkock/Dotfiles/tree/master/doom.d][Emacs]]           |
 | Super + Semicolon      | Nicotine              |
-| Super + Shift + Semicolon | Virt-Manager       |
+| Super + Shift + Semicolon | Monero Core      |
 | Super + Backslash         | Mozilla Thunderbird   |
 | Super + Shift + Backslash | Discord            |
 | Super + Slash             | Sublime Text       |
