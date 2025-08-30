@@ -682,7 +682,7 @@ function j()
 #+begin_src sh :tangle .zshrc
 function l()
 {
-    editor="vim -n -T alacritty"
+    export EDITOR="vim -n -T alacritty"
     cd "$(lf -print-last-dir)"
 }
 #+end_src
@@ -1346,4 +1346,4 @@ fi
     </center>
 </footer>
 #+END_EXPORT
- 
+> 
