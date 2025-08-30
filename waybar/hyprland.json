@@ -211,6 +211,8 @@
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
         "Yazi: (.*)": " $1",
+		"Monero": " ",
+		"Monero - (.*)": " <span style=\"italic\">$1</span>",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",

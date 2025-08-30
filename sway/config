@@ -22,7 +22,7 @@ exec pgrep pulseaudio | xargs kill
 exec pkill -x pulseaudio
 exec pkill -x pipewire
 exec pipewire &
-exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
+exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY WLR_RENDERER WLR_DRM_NO_ATOMIC GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
 exec --no-startup-id autotiling -l 2 &
 exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 exec gsettings set org.gnome.desktop.interface cursor-theme Adwaita
@@ -180,6 +180,7 @@ assign [app_id="com.obsproject.Studio"] 8
 assign [app_id="org.qutebrowser.qutebrowser"] 2
 assign [app_id="org.nicotine_plus.Nicotine"] 7
 assign [app_id="com.sublimetext.three"] 4
+assign [class="monero-core"] 7
 assign [app_id="sublime"] 4
 assign [app_id="Steam"] 6
 assign [class="Steam"] 6
@@ -256,6 +257,7 @@ for_window [class="Gimp"] floating enable
 for_window [class="feh"] floating enable
 for_window [instance="feh"] floating enable
 for_window [class="Sxiv"] floating enable
+for_window [class="monero-core"] floating enable
 for_window [app_id="openmw-launcher"] floating enable
 for_window [app_id="Swayimg"] floating enable
 for_window [class="Swayimg"] floating enable
@@ -305,7 +307,7 @@ bindsym $mod+slash workspace number 4; exec subl3
 
 bindsym $mod+semicolon workspace number 7; exec nicotine
 
-bindsym $mod+Shift+semicolon exec virt-manager
+bindsym $mod+Shift+semicolon workspace number 7; exec QT_QPA_PLATFORM="xcb" QT_QPA_PLATFORMTHEME="qt5ct" monero-wallet-gui
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
 

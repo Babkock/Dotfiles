@@ -76,6 +76,8 @@ else
 # functions only for login shells
     if [[ "$TERM" == "linux" ]]; then
         function shy() {
+            export WLR_RENDERER="vulkan"
+            export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
             export SDL_VIDEODRIVER="wayland"
@@ -94,11 +96,13 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-			echo -e '\e[1;31m'
-			banner "Starting"
-			sleep 1
-			echo -e '\e[1;32m'
-			figlet -W -f ivrit "dnalrpyH"
+            echo -e '\e[1;31m'
+            banner "Starting"
+            sleep 1
+            pkill -x pipewire
+            pkill -x pipewire-pul
+            echo -e '\e[1;32m'
+            figlet -W -f ivrit "dnalrpyH"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -115,6 +119,8 @@ else
             true
         }
         function swa() {
+            export WLR_RENDERER="vulkan"
+            export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
             export SDL_VIDEODRIVER="wayland"
@@ -131,11 +137,13 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-			echo -e '\e[1;31m'
-			banner "Starting"
-			sleep 1
-			echo -e '\e[1;33m'
-			figlet -W -f ivrit "yawS"
+            echo -e '\e[1;31m'
+            banner "Starting"
+            pkill -x pipewire
+            pkill -x pipewire-pul
+            sleep 1
+            echo -e '\e[1;33m'
+            figlet -W -f ivrit "yawS"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -151,6 +159,8 @@ else
             true
         }
         function swf() {
+            export WLR_RENDERER="vulkan"
+            export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
             export SDL_VIDEODRIVER="wayland"
@@ -170,6 +180,8 @@ else
             echo -e '\e[1;31m'
 			banner "Starting"
 			sleep 1
+            pkill -x pipewire
+            pkill -x pipewire-pul
 			echo -e '\e[1;35m'
 			figlet -W -f ivrit "erifyaW"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
@@ -582,7 +594,7 @@ function uu() {
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --color-keys blue"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --color-keys blue --color-title red --logo-color-1 black --logo-color-2 green"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
@@ -591,6 +603,7 @@ alias ct="cargo test --release"
 alias df="duf -hide-mp \"/run/systemd,/boot/efi,/run,/run/user,/sys/fs/cgroup,/dev/shm\"" # like df
 # fzf file picker with preview
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
+alias fp="ftp -t -v $FTP_ADDRESS"
 alias i="tig"
 alias h="htop"
 # encrypt file with GPG

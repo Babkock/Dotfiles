@@ -168,7 +168,7 @@
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/scratchpad", "sway/window"],
-    "modules-right": ["disk", "privacy", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
+    "modules-right": ["disk", "privacy",  "cava", "network", "idle_inhibitor", "wireplumber", "temperature", "keyboard-state", "tray"],
     "sway/workspaces": {
         "disable-scroll": false,
         "disable-scroll-wraparound": true,
@@ -226,6 +226,8 @@
         "Bitcoin Core": " ",
         "Node window": " ",
         "Yazi: (.*)": " $1",
+		"Monero - (.*)": " <span style=\"italic\">$1</span>",
+		"Monero": " ",
         "GIMP Startup": " ",
         "GNU Image Manipulation Program": " ",
         "(.*) – GIMP": " <i>$1</i>",
