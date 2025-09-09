@@ -13,8 +13,6 @@ export VOIDPKG="/home/babkock/git/void-packages"
 source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
 
-#LSCOLORS=$LS_COLORS
-#ZLS_COLORS=$LS_COLORS
 if [ -v $TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
         export LS_COLORS="$(vivid generate $VIVID_THEME)"
@@ -26,7 +24,7 @@ else
 fi
 
 export LSCOLORS=$LS_COLORS
-ZLS_COLORS=$LS_COLORS
+export ZLS_COLORS=$LS_COLORS
 
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 zstyle ':completion:*' use-cache on
@@ -75,8 +73,25 @@ else
 
 # functions only for login shells
     if [[ "$TERM" == "linux" ]]; then
+        function pu() {
+            hydroxide imap &> /dev/null &
+            hydroxide smtp &> /dev/null &
+            tmux new-session "neomutt -F $HOME/.muttrc" \; split-window -v "BROWSER='lynx -accept_all_cookies -nomargins -nostatus' newsraft -c $HOME/.config/newsraft/config"
+            fg
+            pkill -x hydroxide
+            true
+        }
+        function pn() {
+            pkill -x pipewire
+            pipewire &> /dev/null &
+            sleep 1
+            tmux new-session "/usr/bin/zsh -c \"EDITOR=vim lf -command 'set icons false; set drawbox false;'\"" \; split-window -v "ncmpcpp --host '$MPD_PASS' --port 6602"
+            fg
+            pkill -x pipewire
+            true
+        }
         function shy() {
-            export WLR_RENDERER="vulkan"
+            #export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -119,7 +134,7 @@ else
             true
         }
         function swa() {
-            export WLR_RENDERER="vulkan"
+            #export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -139,9 +154,9 @@ else
             pgrep pulseaudio | xargs kill 2> /dev/null
             echo -e '\e[1;31m'
             banner "Starting"
+            sleep 1
             pkill -x pipewire
             pkill -x pipewire-pul
-            sleep 1
             echo -e '\e[1;33m'
             figlet -W -f ivrit "yawS"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
@@ -159,8 +174,6 @@ else
             true
         }
         function swf() {
-            export WLR_RENDERER="vulkan"
-            export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
             export SDL_VIDEODRIVER="wayland"
@@ -178,12 +191,10 @@ else
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
             echo -e '\e[1;31m'
-			banner "Starting"
-			sleep 1
-            pkill -x pipewire
-            pkill -x pipewire-pul
-			echo -e '\e[1;35m'
-			figlet -W -f ivrit "erifyaW"
+            banner "Starting"
+            sleep 1
+            echo -e '\e[1;35m'
+            figlet -W -f ivrit "erifyaW"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -199,6 +210,8 @@ else
             true
         }
         function sni() {
+            #export WLR_RENDERER="vulkan"
+            export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
             export SDL_VIDEODRIVER="wayland"
@@ -215,11 +228,13 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-			echo -e '\e[1;31m'
-			banner "Starting"
-			sleep 1
+            echo -e '\e[1;31m'
+            banner "Starting"
+            sleep 1
+            pkill -x pipewire
+            pkill -x pipewire-pul
             echo -e '\e[1;34m'
-			figlet -W -f ivrit "iriN"
+            figlet -W -f ivrit "iriN"
             dbus-launch --exit-with-session niri &> /dev/null
             pkill -x eww
             pgrep emacs | xargs kill 2> /dev/null
@@ -257,7 +272,7 @@ if [ -v TERM ]; then
         #alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/bspwm/bspwm.org\" &"
 	    #alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/polybar/config.org\" &"
         alias eq="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/qutebrowser/config.org\" &"
-		alias ec="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/init.org\" &"
+        alias ec="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/init.org\" &"
         alias ed="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/config.org\" &"
         alias ew="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/config.org\" &"
         alias es="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/style.org\" &"
@@ -272,10 +287,6 @@ if [ -v TERM ]; then
         alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5"
         alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=30 --window-scale=0.55"
-        alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
-#    elif [[ ${TERM} = "screen-256color" ]]; then
-        # tmux
-#        alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
     else
         # login shell or SSH
         alias ls="ls --group-directories-first -F --color=auto"
@@ -467,7 +478,7 @@ function j()
 
 function l()
 {
-    export EDITOR="vim -n -T alacritty"
+    export EDITOR="vim"
     cd "$(lf -print-last-dir)"
 }
 
@@ -588,13 +599,13 @@ function pv() {
 }
 
 function uu() {
-	BROWSER="qutebrowser --qt-arg stylesheet '/home/babkock/.local/share/qutebrowser/fix-tooltips.qss' --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-gpu --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization" newsraft
+	BROWSER="qutebrowser --qt-arg stylesheet '/home/babkock/.local/share/qutebrowser/fix-tooltips.qss' --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization" newsraft
 }
 
 # show weather in Denver today
 alias ba="ansiweather -l '$CITY' -u imperial -H true -h false -p false -i false -s true"
 # neofetch
-alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --color-keys blue --color-title red --logo-color-1 black --logo-color-2 green"
+alias bb="fastfetch -s 'Title:OS:Host:Kernel:Packages:Uptime:Break:WM:Shell:Terminal:Break:CPU:GPU:CPUUsage:Memory:Swap:Break:Display:Disk:Break:Colors' --color-keys blue"
 alias cb="cargo build --release"
 alias co="btm"
 alias c="bat" # like cat
@@ -603,7 +614,7 @@ alias ct="cargo test --release"
 alias df="duf -hide-mp \"/run/systemd,/boot/efi,/run,/run/user,/sys/fs/cgroup,/dev/shm\"" # like df
 # fzf file picker with preview
 alias f="fzf --preview=\"bat --color=always --style=plain {}\" --preview-window=\"border:rounded\" --border=rounded --prompt=\"$ \" --pointer=\"->\""
-alias fp="ftp -t -v $FTP_ADDRESS"
+alias fp="ftp -t -v '$FTP_ADDRESS'"
 alias i="tig"
 alias h="htop"
 # encrypt file with GPG
@@ -664,7 +675,6 @@ alias mt="mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
 alias mn="man"
 alias tl="tldr"
 alias n="rmpc -c '$HOME/.config/rmpc/config.ron'"
-alias ne="ncmpcpp"
 alias npi="nix profile install"
 alias npl="nix profile list"
 alias npr="nix profile remove"

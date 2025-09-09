@@ -445,7 +445,7 @@ tooltip {
     transition:all 0.2s ease 0s;
 }
 
-#bluetooth.on, #bluetooth.off {
+#bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#fe0219;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;
@@ -651,7 +651,7 @@ tooltip {
 ** Bluetooth
 
 #+begin_src css :tangle wayfire.css
-#bluetooth.on, #bluetooth.off {
+#bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#f63117;
     background:linear-gradient(180deg, rgba(206, 40, 40, 0.8), rgba(0, 0, 0, 0.5));
     margin-left:0;

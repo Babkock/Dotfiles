@@ -299,7 +299,7 @@ tooltip {
     transition:all 0.2s ease 0s;
 }
 
-#bluetooth.on, #bluetooth.off {
+#bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#fe0219;
     background:linear-gradient(0deg, rgba(238, 0, 10, 0.5), rgba(0, 0, 0, 0.4));
     margin-left:0;

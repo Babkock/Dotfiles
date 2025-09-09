@@ -87,8 +87,8 @@ This is my list of enabled and installed packages. I try to have a small and min
        ligatures           ; ligatures and symbols to make your code pretty again
        ;;minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
-       ;;nav-flash         ; blink cursor line after big motions
-       ;;neotree           ; a project drawer, like NERDTree for vim
+       nav-flash         ; blink cursor line after big motions
+       neotree           ; a project drawer, like NERDTree for vim
        ophints            ; highlight the region an operation acts on
        (popup +all +defaults)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
@@ -102,7 +102,7 @@ This is my list of enabled and installed packages. I try to have a small and min
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
-       ;;file-templates    ; auto-snippets for empty files
+       file-templates    ; auto-snippets for empty files
        ;;fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
@@ -141,7 +141,7 @@ This is my list of enabled and installed packages. I try to have a small and min
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
-       ;;gist              ; interacting with github gists
+       gist              ; interacting with github gists
        ;;lookup              ; navigate your code and its documentation
        ;;lsp               ; M-x vscode
        (magit +delta)               ; a git porcelain for Emacs
@@ -229,7 +229,7 @@ This is my list of enabled and installed packages. I try to have a small and min
        ;;(wanderlust +gmail)
 
        :app
-       ;;calendar
+       calendar
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        irc                 ; how neckbeards socialize
@@ -349,12 +349,17 @@ Show a custom image on the splash screen, and hide cursor and mode line.
 (setq version-control t)
 (setq vc-follow-symlinks t)
 
-(setq doom-modeline-buffer-file-name-style 'auto
-      doom-modeline-icon (display-graphic-p)
+(setq doom-modeline-buffer-file-name-style 'relative-to-project
+      doom-modeline-icon t
+      doom-modeline-irc t
+      doom-modeline-irc-buffers t
+      doom-modeline-vcs-icon t
       doom-modeline-major-mode-icon t
       doom-modeline-major-mode-color-icon t
       doom-modeline-persp-icon t
-      doom-modeline-unicode-fallback nil)
+      doom-modeline-unicode-fallback nil
+      doom-modeline-time t
+      doom-modeline-time-icon t)
 
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
 (setq browse-url-browser-function 'eww-browse-url)

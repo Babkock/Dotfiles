@@ -95,8 +95,6 @@ export VOIDPKG="/home/babkock/git/void-packages"
 source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
 
-#LSCOLORS=$LS_COLORS
-#ZLS_COLORS=$LS_COLORS
 if [ -v $TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
         export LS_COLORS="$(vivid generate $VIVID_THEME)"
@@ -108,7 +106,7 @@ else
 fi
 
 export LSCOLORS=$LS_COLORS
-ZLS_COLORS=$LS_COLORS
+export ZLS_COLORS=$LS_COLORS
 #+end_src
 
 ** Completion Styles
@@ -182,8 +180,25 @@ else
 #+begin_src sh :tangle .zshrc
     # functions only for login shells
     if [[ "$TERM" == "linux" ]]; then
+        function pu() {
+            hydroxide imap &> /dev/null &
+            hydroxide smtp &> /dev/null &
+            tmux new-session "neomutt -F $HOME/.muttrc" \; split-window -v "BROWSER='lynx -accept_all_cookies -nomargins -nostatus' newsraft -c $HOME/.config/newsraft/config"
+            fg
+            pkill -x hydroxide
+            true
+        }
+        function pn() {
+            pkill -x pipewire
+            pipewire &> /dev/null &
+            sleep 1
+            tmux new-session "/usr/bin/zsh -c \"EDITOR=vim lf -command 'set icons false; set drawbox false;'\"" \; split-window -v "ncmpcpp --host '$MPD_PASS' --port 6602"
+            fg
+            pkill -x pipewire
+            true
+        }
         function shy() {
-            export WLR_RENDERER="vulkan"
+            #export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -226,7 +241,7 @@ else
             true
         }
         function swa() {
-            export WLR_RENDERER="vulkan"
+            #export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -282,11 +297,11 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
-			echo -e '\e[1;31m'
-			banner "Starting"
-			sleep 1
+            echo -e '\e[1;31m'
+            banner "Starting"
+            sleep 1
             echo -e '\e[1;35m'
-			figlet -W -f ivrit "erifyaW"
+            figlet -W -f ivrit "erifyaW"
             gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
             gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
             gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
@@ -302,7 +317,7 @@ else
             true
         }
         function sni() {
-            export WLR_RENDERER="vulkan"
+            #export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -411,7 +426,7 @@ if [ -v TERM ]; then
         #alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/bspwm/bspwm.org\" &"
 	    #alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/polybar/config.org\" &"
         alias eq="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/qutebrowser/config.org\" &"
-		alias ec="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/init.org\" &"
+        alias ec="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/init.org\" &"
         alias ed="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/config.org\" &"
         alias ew="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/config.org\" &"
         alias es="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/style.org\" &"
@@ -426,10 +441,6 @@ if [ -v TERM ]; then
         alias mo="mpv av://v4l2:/dev/video2 --vo=gpu --hwdec=vaapi --untimed --profile=low-latency --no-osc --ontop --cache=no"
         alias me="mpv av://v4l2:/dev/video2 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5"
         alias mj="mpv av://v4l2:/dev/video0 --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=30 --window-scale=0.55"
-        alias jt="tmux new-session \"export NNN_FIFO=/tmp/nnn.fifo; export NNN_PLUG='p:preview-tui'; nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui\""
-#    elif [[ ${TERM} = "screen-256color" ]]; then
-        # tmux
-#        alias j="nnn -d -i -l 2 -H -G -U -R -Q -D -P preview-tui & ~/.config/nnn/plugins/preview-tui; fg"
     else
         # login shell or SSH
         alias ls="ls --group-directories-first -F --color=auto"
@@ -458,6 +469,8 @@ if [ -v TERM ]; then
     fi
 fi
 #+end_src
+
+#+RESULTS:
 
 * Functions
 
@@ -682,7 +695,7 @@ function j()
 #+begin_src sh :tangle .zshrc
 function l()
 {
-    export EDITOR="vim -n -T alacritty"
+    export EDITOR="vim"
     cd "$(lf -print-last-dir)"
 }
 #+end_src

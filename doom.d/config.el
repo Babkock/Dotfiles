@@ -52,24 +52,24 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-(setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-bluloco-dark)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
       +doom-dashboard-banner-padding '(0 . 0))
 (add-hook! 'doom-switch-buffer-hook 'garbage-collect)
 
-(setq doom-font (font-spec :family "Space Mono Nerd Font" :size 18 :height 1.0)
-      doom-big-font (font-spec :family "Space Mono Nerd Font" :size 20 :height 1.0)
-      doom-unicode-font (font-spec :family "Space Mono Nerd Font" :size 18 :height 1.0)
+(setq doom-font (font-spec :family "GoMono Nerd Font Propo" :size 19 :height 1.0)
+      doom-big-font (font-spec :family "GoMono Nerd Font Propo" :size 21 :height 1.0)
+      doom-unicode-font (font-spec :family "GoMono Nerd Font Propo" :size 19 :height 1.0)
       doom-variable-pitch-font (font-spec :family "NotoSerif Nerd Font" :size 18 :height 1.1)
       doom-serif-font (font-spec :family "NotoSerif Nerd Font" :size 18))
-(set-frame-font "Space Mono Nerd Font 18" nil t)
+(set-frame-font "GoMono Nerd Font 19" nil t)
 
 (custom-set-faces
-  '(mode-line ((t (:family "Space Mono Nerd Font" :size 18))))
-  '(mode-line-active ((t (:family "Space Mono Nerd Font" :size 18))))
-  '(mode-line-inactive ((t (:family "Space Mono Nerd Font" :size 18)))))
+  '(mode-line ((t (:family "GoMono Nerd Font Propo" :size 19))))
+  '(mode-line-active ((t (:family "GoMono Nerd Font" :size 19))))
+  '(mode-line-inactive ((t (:family "GoMono Nerd Font" :size 19)))))
 
 (setq-default ls-lisp-format-time-list '("%m/%d/%Y %I:%M:%S" "%m/%d/%Y %I:%M:%S"))
 (setq ls-lisp-use-localized-time-format t
@@ -94,8 +94,8 @@
 ;(set-frame-parameter (selected-frame) 'alpha '(70 70))
 (set-frame-parameter (selected-frame) 'alpha 90)
 (add-to-list 'default-frame-alist '(alpha 90 90))
-(add-hook! 'dired-mode-hook 'nerd-icons-dired-mode)
-;(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
+;(add-hook! 'dired-mode-hook 'nerd-icons-dired-mode)
+(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
 (add-hook! 'dired-mode-hook 'garbage-collect)
 
 (setq warning-minimum-level :emergency)
@@ -570,9 +570,11 @@
 (add-hook! 'mastodon-toot-mode-hook
     (lambda () (auto-fill-mode -1)))
 
-(after! modeline
+(after! modeline 
     (setq doom-modeline-buffer-file-name-style 'relative-to-project
-          doom-modeline-icon (display-graphic-p)
+          doom-modeline-icon t
+          doom-modeline-irc t
+          doom-modeline-irc-buffers t
           doom-modeline-major-mode-icon t
           doom-modeline-major-mode-color-icon t
           doom-modeline-env-version t
@@ -581,10 +583,14 @@
           doom-modeline-buffer-state-icon nil
           doom-modeline-height 30
           doom-modeline-hud t
+          doom-modeline-vcs-icon t
           doom-modeline-indent-info t
           doom-modeline-buffer-modification-icon nil)
     (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
 (setq-default doom-modeline-major-mode-icon t
+              doom-modeline-icon t
+              doom-modeline-irc t
+              doom-modeline-irc-buffers t
               doom-modeline-major-mode-color-icon t
               doom-modeline-buffer-file-name-style 'relative-to-project
               doom-modeline-env-version t
