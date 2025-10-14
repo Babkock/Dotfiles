@@ -18,7 +18,7 @@
 
 Welcome to my Dotfiles. This repository contains my personal configuration files for various
 GNU/Linux programs. You can view the configurations that are literate/self-documenting [[https://babkock.github.io/][on my GitHub Pages]] - and these can be
-tangled via Emacs Org mode. [[https://gitlab.com/Babkock/Dotfiles][This repository is mirrored here, on GitLab.]] This repository is old, from 2019, when I knew less about Linux,
+tangled via Emacs Org mode. This repository has mirrors [[https://gitlab.com/Babkock/Dotfiles][here, on Gitlab]], as well as [[https://codeberg.org/Babkock/Dotfiles][here, on Codeberg.]] This repository is old, from 2019, when I knew less about Linux,
 so cloning may take a while as it is large and has many pictures. Try cloning with =git clone --depth 1 https://github.com/Babkock/Dotfiles.git=
 
 ** fetch
