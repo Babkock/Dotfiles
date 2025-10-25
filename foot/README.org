@@ -105,9 +105,9 @@ alternate-scroll-mode=no
 launch=xdg-open ${url}
 
 [colors]
-background=020202
+background=0a0202
 foreground=eeeeee
-alpha=0.6
+alpha=0.5
 flash=ffffff
 #+end_src
 
@@ -116,20 +116,20 @@ flash=ffffff
 #+begin_src conf :tangle sway.ini
 regular0=000000
 bright0=121212
-regular1=ee0009
-bright1=fe0219
-regular2=99cf01
-bright2=a9df11
-regular3=e4cf13
-bright3=f4df23
-regular4=6b65da
-bright4=6264fe
-regular5=af38db
-bright5=ff4de7
-regular6=43e7e9
-bright6=53f7f9
-regular7=eecd73
-bright7=fedd83
+regular1=e2071b
+bright1=f2172b
+regular2=95da8a
+bright2=a5ea9a
+regular3=dac863
+bright3=ead972
+regular4=3f9cb9
+bright4=4facca
+regular5=e3496e
+bright5=f3597f
+regular6=93ece6
+bright6=a3fcf6
+regular7=eeeeee
+bright7=ffffff
 urls=ff0000
 #+end_src
 

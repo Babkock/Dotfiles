@@ -25,15 +25,15 @@
             "focused": "",
             "default": ""
         },
-		"on-scroll-up": "niri msg action focus-workspace-up",
-		"on-scroll-down": "niri msg action focus-workspace-down"
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
     },
 
 "mpd": {
     "server": "127.0.0.2",
-	"port": 6602,
-	"password": "passgasgrassorazz",
-    "format": "{artist} - <span style=\"italic\">{title}</span>{singleIcon}{repeatIcon}{randomIcon}{consumeIcon}{stateIcon} ",
+    "port": 6602,
+    "password": "passgasgrassorazz",
+    "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
     "title-len": 42,
@@ -43,24 +43,23 @@
     "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
     "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
     "consume-icons": {
-        "on": " "
+        "on": " 󰮯"
     },
     "random-icons": {
-        "off": " ",
-        "on": " "
+        "off": "  ",
+        "on": "  "
     },
     "repeat-icons": {
-        "on": " "
+        "on": "  "
     },
     "single-icons": {
-        "on": " 1 "
+        "on": "  1 "
     },
     "state-icons": {
         "playing": " ",
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
-	"expand": true,
 },
 
 "image#album-art": {
@@ -68,7 +67,7 @@
     "size": 38,
     "interval": 1,
     "on-click": "swayimg /tmp/rmpc/notification",
-    "on-click-right": "footclient -e rmpc -a '127.0.0.2:6600' -c '/home/babkock/.config/rmpc/config.ron'"
+    "on-click-right": "footclient -e rmpc -c '/home/babkock/.config/rmpc/config.ron'"
 },
 
 "custom/clock": {
@@ -183,8 +182,8 @@
             "focused": "",
             "default": ""
         },
-		"on-scroll-up": "niri msg action focus-workspace-up",
-		"on-scroll-down": "niri msg action focus-workspace-down"
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
     },
 
 "niri/window": {
@@ -206,8 +205,6 @@
         "DeaDBeeF - (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
-		"Monero - (.*)": " <span style=\"italic\">$1</span>",
-		"Monero": " ",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
@@ -218,6 +215,10 @@
         "Bitcoin Core": " ",
         "Node window": " ",
         "Yazi: (.*)": " $1",
+        "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
+        "Monero - (.*)": " <span style=\"italic\">$1</span>",
+        "Monero": " ",
+        "(.*) | Cloudflare": " <span style=\"italic\">$1</span>",
         "GIMP Startup": " ",
         "GNU Image Manipulation Program": " ",
         "(.*) – GIMP": " <i>$1</i>",
@@ -453,7 +454,7 @@
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 30,
+    "icon-size": 32,
     "transition-duration": 350,
     "modules": [
         {
@@ -543,11 +544,13 @@
             "focused": "",
             "default": ""
         },
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
     },
 
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 10,
+    "interval": 8,
     "format": "{}"
 },
 

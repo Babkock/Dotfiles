@@ -131,6 +131,7 @@ Thanks for checking out my [[https://github.com/Alexays/Waybar][Waybar]] literat
   - [[#temperature-2][Temperature]]
   - [[#network-2][Network]]
   - [[#cava-1][Cava]]
+  - [[#hyprsunset][Hyprsunset]]
   - [[#tray-2][Tray]]
 - [[#hyprland-right-monitor-bar][Hyprland Right Monitor Bar]]
   - [[#appearance-8][Appearance]]
@@ -199,11 +200,11 @@ every single one of the modules, if I don't have to. The modules and their order
              "2": "󰖟",
              "3": "",
              "4": "",
-             "5": "󰭹",
+             "5": "",
              "6": "",
-             "7": "",
+             "7": "",
              "8": "󰨜",
-             "9": "",
+             "9": "",
              "urgent": "",
              "default": ""
          }
@@ -218,11 +219,11 @@ every single one of the modules, if I don't have to. The modules and their order
     #+begin_src json :tangle sway.json
     "mpd": {
         "server": "127.0.0.2",
-		"port": 6602,
-		"password": "passgasgrassorazz",
-        "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
+        "port": 6602,
+        "password": "passgasgrassorazz",
+        "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon}",
         "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
+        "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}",
         "title-len": 42,
         "unknown-tag": "N/A",
         "interval": 1,
@@ -230,17 +231,17 @@ every single one of the modules, if I don't have to. The modules and their order
         "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
         "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
         "consume-icons": {
-            "on": " "
+            "on": " 󰮯 "
         },
         "random-icons": {
             "off": " ",
-            "on": " "
+            "on": "  "
         },
         "repeat-icons": {
-            "on": " "
+            "on": "  "
         },
         "single-icons": {
-            "on": " 1 "
+            "on": "  1"
         },
         "state-icons": {
             "playing": " ",
@@ -405,11 +406,11 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
             "2": "󰖟",
             "3": "",
             "4": "",
-            "5": "󰭹",
+            "5": "",
             "6": "",
-            "7": "",
+            "7": "",
             "8": "󰨜",
-            "9": "",
+            "9": "",
             "urgent": "",
             "default": ""
         }
@@ -449,8 +450,10 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "DeaDBeeF - (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
-		"Monero - (.*)": " <span style=\"italic\">$1</span>",
-		"Monero": " ",
+        "Monero - (.*)": " <span style=\"italic\">$1</span>",
+        "Monero": " ",
+        "(.*) | Cloudflare": " <span style=\"italic\">$1</span>",
+        "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
@@ -852,11 +855,11 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
             "2": "󰖟",
             "3": "",
             "4": "",
-            "5": "󰭹",
-            "6": "",
-            "7": "",
-            "8": "󰨜",
-            "9": "",
+             "5": "",
+             "6": "",
+             "7": "",
+             "8": "󰨜",
+             "9": "",
             "urgent": "",
             "default": ""
         }
@@ -878,8 +881,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle sway.json
 "bluetooth": {
     "format-on": " {controller_alias}",
-    "format-disabled": "",
-    "format-off": "󰂲",
+    "format-disabled": "󰂲 ",
+    "format-off": "󰂲 ",
     "format-connected": " {device_alias}",
     "format-connected-battery": " {icon} {device_alias}",
     "tooltip-format-on": "{controller_address} {controller_address_type}",
@@ -1518,11 +1521,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "2": "󰖟",
             "3": "",
             "4": "",
-            "5": "󰭹",
+            "5": "",
             "6": "",
-            "7": "",
+            "7": "",
             "8": "󰨜",
-            "9": "",
+            "9": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -1551,9 +1554,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hyprland.json
 "mpd": {
     "server": "127.0.0.2",
-	"port": 6602,
-	"password": "passgasgrassorazz",
-    "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon} ",
+    "port": 6602,
+    "password": "passgasgrassorazz",
+    "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
     "title-len": 42,
@@ -1563,17 +1566,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
     "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
     "consume-icons": {
-        "on": " "
+        "on": " 󰮯 "
     },
     "random-icons": {
         "off": " ",
-        "on": " "
+        "on": "  "
     },
     "repeat-icons": {
-        "on": " "
+        "on": "  "
     },
     "single-icons": {
-        "on": " 1 "
+        "on": "  1 "
     },
     "state-icons": {
         "playing": " ",
@@ -1707,7 +1710,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "custom/hyprsunset", "wireplumber", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -1720,11 +1723,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
              "2": "󰖟",
              "3": "",
              "4": "",
-             "5": "󰭹",
+             "5": "",
              "6": "",
-             "7": "",
+             "7": "",
              "8": "󰨜",
-             "9": "",
+             "9": "",
              "urgent": "",
              "focused": "",
              "default": ""
@@ -1757,6 +1760,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Yazi: (.*)": " $1",
         "Monero - (.*)": " <span style=\"italic\">$1</span>",
         "Monero": " ",
+        "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
@@ -2087,6 +2091,20 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 },
 #+end_src
 
+** Hyprsunset
+
+#+begin_src json :tangle hyprland.json
+"custom/hyprsunset": {
+    "format": " ",
+    "on-scroll-up": "hyprctl hyprsunset gamma +5% &> /dev/null",
+    "on-scroll-down": "hyprctl hyprsunset gamma -5 &> /dev/null",
+    "on-click-right": "hyprctl hyprsunset temperature 5900 &> /dev/null",
+    "on-click": "hyprctl hyprsunset temperature 4600 &> /dev/null",
+    "on-click-middle": "hyprctl hyprsunset gamma 100% &> /dev/null; hyprctl hyprsunset temperature 6000 &> /dev/null",
+    "tooltip": false
+},
+#+end_src
+
 ** Tray
 
 #+begin_src json :tangle hyprland.json
@@ -2124,11 +2142,11 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "2": "󰖟",
             "3": "",
             "4": "",
-            "5": "󰭹",
+            "5": "",
             "6": "",
-            "7": "",
+            "7": "",
             "8": "󰨜",
-            "9": "",
+            "9": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -2249,8 +2267,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
         },
-		"on-scroll-up": "niri msg action focus-workspace-up",
-		"on-scroll-down": "niri msg action focus-workspace-down",
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
     },
 #+end_src
 
@@ -2259,8 +2277,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle niri.json
     "mpd": {
         "server": "127.0.0.2",
-		"port": 6602,
-		"password": "passgasgrassorazz",
+        "port": 6602,
+        "password": "passgasgrassorazz",
         "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
         "format-disconnected": " ",
         "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
@@ -2271,17 +2289,17 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
         "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
         "consume-icons": {
-            "on": "  "
+            "on": " 󰮯"
         },
         "random-icons": {
             "off": "  ",
-            "on": " "
+            "on": "  "
         },
         "repeat-icons": {
-            "on": " "
+            "on": "  "
         },
         "single-icons": {
-            "on": " 1 "
+            "on": "  1 "
         },
         "state-icons": {
             "playing": " ",
@@ -2449,8 +2467,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
         },
-		"on-scroll-up": "niri msg action focus-workspace-up",
-		"on-scroll-down": "niri msg action focus-workspace-down",
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
     },
 #+end_src
 
@@ -2486,8 +2504,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Bitcoin Core": " ",
         "Node window": " ",
         "Yazi: (.*)": " $1",
+        "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
         "Monero - (.*)": " <span style=\"italic\">$1</span>",
         "Monero": " ",
+        "(.*) | Cloudflare": " <span style=\"italic\">$1</span>",
         "GIMP Startup": " ",
         "GNU Image Manipulation Program": " ",
         "(.*) – GIMP": " <i>$1</i>",
@@ -2852,8 +2872,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
             "focused": "",
             "default": ""
         },
-		"on-scroll-up": "niri msg action focus-workspace-up",
-		"on-scroll-down": "niri msg action focus-workspace-down",
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down",
     },
 #+end_src
 

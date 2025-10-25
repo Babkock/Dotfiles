@@ -15,11 +15,11 @@
         active_style: (fg: "black", bg: "red", modifiers: "Bold"),
         inactive_style: (),
     ),
-    highlighted_item_style: (fg: "black", bg: "blue", modifiers: "Reversed"),
+    highlighted_item_style: (fg: "light_blue", bg: "dark_gray", modifiers: "Bold"),
     current_item_style: (fg: None, bg: "green", modifiers: "Reversed"),
     borders_style: (fg: "white"),
     highlight_border_style: (fg: "magenta"),
-    symbols: (song: "", dir: "", playlist: "󰧔", marker: "\u{e0b0}"),
+    symbols: (song: "", dir: "", playlist: "󰧔", marker: "\u{e0b0}", song_style: (fg: "light_magenta"), dir_style: (fg: "light_yellow")),
 	preview_label_style: (fg: "green", modifiers: "Italic"),
 	preview_metadata_group_style: (fg: "cyan", modifiers: "Italic"),
 	progress_bar: (

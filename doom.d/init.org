@@ -46,6 +46,7 @@ This is the other, secondary Doom Emacs config file =init.org=, which tangles to
   - [[#fallback-buffer-name][Fallback Buffer Name]]
   - [[#doom-dashboard][Doom Dashboard]]
   - [[#circe][Circe]]
+  - [[#auth-sources][Auth Sources]]
   - [[#modeline][Modeline]]
   - [[#mpdel][MPDel]]
 
@@ -77,7 +78,7 @@ This is my list of enabled and installed packages. I try to have a small and min
 
        :ui
        ;;deft              ; notational velocity for Emacs
-       doom                ; what makes DOOM look the way it does
+       (doom +tabs)                ; what makes DOOM look the way it does
        doom-dashboard      ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        (emoji +unicode +ascii +github)  ; 🙂
@@ -115,9 +116,9 @@ This is my list of enabled and installed packages. I try to have a small and min
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired +icons)    ; making dired pretty [functional]
+       (dired +dirvish +icons)    ; making dired pretty [functional]
        ;;electric          ; smarter, keyword-based electric-indent
-       ;;(ibuffer +icons)    ; interactive buffer management
+       (ibuffer +icons)    ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -128,7 +129,7 @@ This is my list of enabled and installed packages. I try to have a small and min
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       ;;syntax              ; tasing you for every semicolon you forget
+       syntax              ; tasing you for every semicolon you forget
        ;;(spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
@@ -144,7 +145,7 @@ This is my list of enabled and installed packages. I try to have a small and min
        gist              ; interacting with github gists
        ;;lookup              ; navigate your code and its documentation
        ;;lsp               ; M-x vscode
-       (magit +delta)               ; a git porcelain for Emacs
+       (magit +delta +forge)               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass                ; password manager for nerds
        ;;pdf               ; pdf enhancements
@@ -200,7 +201,7 @@ This is my list of enabled and installed packages. I try to have a small and min
        ;;nim               ; python + lisp at the speed of c
        ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +dragandrop +modern)                 ; organize your plain life in plain text
+       (org +pretty +dragandrop +modern +forge)                 ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -316,6 +317,7 @@ Show a custom image on the splash screen, and hide cursor and mode line.
                  "3demacs.png"
                  "3demacsborder.png"
                  "tangnu.png"
+                 "doom-emacs-dark.svg"
                  "fancyEmacs.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"
@@ -338,7 +340,16 @@ Show a custom image on the splash screen, and hide cursor and mode line.
     '(("Libera Chat"
        :tls t
        :nick "Babkock"
+       :realname "Tanner Babcock"
+       :nickserv-nick "Babkock"
+       :nickserv-password "tanner9"
        :channels ("#voidlinux" "#emacs"))))
+#+end_src
+
+** Auth Sources
+
+#+begin_src emacs-lisp :tangle yes
+(setq auth-sources '("~/.authinfo"))
 #+end_src
 
 ** Modeline
@@ -348,6 +359,7 @@ Show a custom image on the splash screen, and hide cursor and mode line.
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)
+(display-time-mode t)
 
 (setq doom-modeline-buffer-file-name-style 'relative-to-project
       doom-modeline-icon t
@@ -357,8 +369,11 @@ Show a custom image on the splash screen, and hide cursor and mode line.
       doom-modeline-major-mode-icon t
       doom-modeline-major-mode-color-icon t
       doom-modeline-persp-icon t
+      doom-modeline-persp-name t
       doom-modeline-unicode-fallback nil
       doom-modeline-time t
+      doom-modeline-time-live-icon t
+      doom-modeline-time-analogue-clock t
       doom-modeline-time-icon t)
 
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)

@@ -12,5 +12,6 @@ if ! rmpc albumart --output "$ALBUM_ART_PATH"; then
 fi
 
 notify-send -i "${ALBUM_ART_PATH}" "$TITLE" "<b>$ARTIST</b> - <i>$ALBUM</i> ($DATE)"
-eww reload &> /dev/null
+echo "$ARTIST - $TITLE" > "$TMP_DIR/title"
+echo "$ALBUM" > "$TMP_DIR/album"
 

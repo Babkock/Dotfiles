@@ -55,7 +55,25 @@ tooltip {
     margin-left:2px;
     margin-right:0px;
     padding-left:12px;
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
+}
+
+#custom-hyprsunset {
+    color:#ffee60;
+    background:linear-gradient(0deg, rgba(233, 212, 167, 0.5), rgba(0, 0, 0, 0.2));
+    border-radius:0px;
+    margin-left:0px;
+    margin-right:0px;
+    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
+    transition:all 0.1s ease 0s;
+    padding-left:13px;
+    padding-right:9px;
+}
+
+#custom-hyprsunset:hover {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
+    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
 }
 
 #pulseaudio, #disk {
@@ -67,7 +85,7 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #pulseaudio:hover, #pulseaudio.bluetooth:hover {
@@ -100,7 +118,7 @@ tooltip {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 #backlight {
     border-radius:0px 40px 40px 0px;
@@ -128,7 +146,7 @@ tooltip {
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
     box-shadow:2px 2px rgba(0, 0, 0, 0.5);
     outline:0;
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #workspaces button * {
@@ -165,7 +183,7 @@ tooltip {
 }
 
 #battery, #idle_inhibitor {
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
@@ -193,7 +211,7 @@ tooltip {
     margin-left:0;
     border-radius:0px 40px 40px 0px;
     box-shadow:3px 3px rgba(77, 119, 213, 0.5);
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #temperature:hover {
@@ -255,7 +273,7 @@ tooltip {
    padding-right:11px;
    text-shadow:2px 2px rgba(0, 0, 0, 0.5);
    box-shadow:3px 2px rgba(196, 139, 155, 0.5);
-   transition:all 0.2s ease 0s;
+   transition:all 0.1s ease 0s;
 }
 
 #network:hover, #custom-clock:hover {
@@ -266,7 +284,7 @@ tooltip {
 }
 
 #bluetooth {
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 #bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#e6727a;

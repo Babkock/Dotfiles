@@ -482,6 +482,10 @@ function l()
     cd "$(lf -print-last-dir)"
 }
 
+function trybg() {
+    swaybg -o eDP-1 -i "$1" -o HDMI-A-2 -i "$2" -o DP-1 -i "$3" &
+}
+
 function vf()
 {
     fzf -i --walker=file,dir,follow,hidden --walker-skip=.git,node_modules --header="Select a file to edit" --input-label="Filename" --preview-label="Edit this file:" --preview="bat --color=always --style=plain,changes,numbers {}" --preview-window="border:rounded" --border=double --scroll-off=3 --prompt="$ " --pointer="->" --layout=reverse --multi=3 > /tmp/fzf.txt
@@ -544,9 +548,10 @@ function b() {
     pkill -x ssh-agent
     eval $(ssh-agent) > /dev/null 2>&1
     printf "SSH identities loaded\n"
-    ssh-add "$HOME/.ssh/gitlab_rsa"
-    ssh-add "$HOME/.ssh/github_rsa"
-    ssh-add "$HOME/.ssh/tbcom_ssh"
+    ssh-add "$HOME/.ssh/gitlab_new" &> /dev/null
+    ssh-add "$HOME/.ssh/github_rsa" &> /dev/null
+    ssh-add "$HOME/.ssh/tbcom_ssh" &> /dev/null
+    ssh-add "$HOME/.ssh/codeberg" &> /dev/null
 }
 
 function pcp() {
@@ -621,9 +626,9 @@ alias h="htop"
 alias ncr="gpg --encrypt --armor -r Tanner"
 # decrypt file and output (use > direct)
 alias dcr="gpg --decrypt"
-alias g="ug -I --depth=4 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
+alias g="rg"
 alias gz="ug -I --depth=2 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
-alias gh="ug -I --context=4 --depth=4 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
+alias gh="rg --context=4"
 alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 10 1 4"
 alias gp="gpg"
 alias gs="git status -sb"
@@ -687,16 +692,16 @@ alias nr="nix repl"
 alias o="pkill -x"
 alias oa="eww active-windows"
 alias oc="eww close"
-alias of="eww open waymem; eww open waycalendar; eww open waypower; eww open wayfiles"
+alias of="eww open waymem; eww open waycalendar"
 alias oi="eww inspector"
 alias ol="eww list-windows"
 alias oo="eww open"
 alias or="eww reload"
-alias ow="eww open mem; eww open calendar; eww open power; eww open files"
+alias ow="eww open mem; eww open calendar"
 #alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
 alias u="neomutt -F '$HOME/.muttrc'"
 alias spi="TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
-alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.15"
+alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.17"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="swayimg"
@@ -720,8 +725,8 @@ alias ti="transmission-remote --auth='$TRANS_PASS' -l"
 alias ts="transmission-remote --auth='$TRANS_PASS' -si"
 alias tt="transmission-remote --auth='$TRANS_PASS' -st"
 alias tr="transmission-remote --auth='$TRANS_PASS'"
-alias ub="umount /mnt/Baby; echo Unmounted"
-alias ud="umount /mnt/drive; echo Unmounted"
+alias ub="sudo umount /mnt/Baby; echo Unmounted"
+alias ud="sudo umount /mnt/drive; echo Unmounted"
 alias k="make"
 alias kc="make clean"
 alias ki="sudo make install"
@@ -812,7 +817,7 @@ if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-25
 else
     colorscript -r
 fi
-random=$(shuf -i 1-20 -n 1)
+random=$(shuf -i 1-35 -n 1)
 if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
     if [[ "$random" == "1" ]]; then
         echo -e '\e[5;30m'
@@ -854,12 +859,14 @@ if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-25
         echo -e '\e[5;30m'
         fortune literature | cowsay -w | lolcat --random -b -v 0.2
     elif [[ "$random" == "14" ]]; then
-        fortune ascii-art | lolcat --random -b -v 0.3
+        echo -e '\e[5;30m'
+        fortune art | cowsay -w | lolcat --random -b -v 0.2
     elif [[ "$random" == "15" ]]; then
-        fortune ascii-art | lolcat --random -b -v 0.3
+        echo -e '\e[5;30m'
+        fortune platitudes | cowsay -w | lolcat --random -b -v 0.2
     elif [[ "$random" == "16" ]]; then
         echo -e '\e[5;30m'
-        fortune void | cowsay -w | lolcat --random -b -v 0.2
+        fortune pets | cowsay -w | lolcat --random -b -v 0.2
     elif [[ "$random" == "17" ]]; then
         echo -e '\e[5;30m'
         fortune computers | cowsay -w | lolcat --random -b -v 0.2
@@ -868,6 +875,51 @@ if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-25
         fortune law | cowsay -w | lolcat --random -b -v 0.2
     elif [[ "$random" == "19" ]]; then
         fortune ascii-art | lolcat --random -b -v 0.3
+    elif [[ "$random" == "20" ]]; then
+        echo -e '\e[5;30m'
+        fortune cookie | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "21" ]]; then
+        echo -e '\e[5;30m'
+        fortune definitions | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "22" ]]; then
+        echo -e '\e[5;30m'
+        fortune miscellaneous | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "23" ]]; then
+        echo -e '\e[5;30m'
+        fortune goedel | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "24" ]]; then
+        echo -e '\e[5;30m'
+        fortune news | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "25" ]]; then
+        echo -e '\e[5;30m'
+        fortune people | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "26" ]]; then
+        echo -e '\e[5;30m'
+        fortune science | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "27" ]]; then
+        echo -e '\e[5;30m'
+        fortune art | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "28" ]]; then
+        echo -e '\e[5;30m'
+        fortune perl | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "29" ]]; then
+        echo -e '\e[5;30m'
+        fortune songs-poems | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "30" ]]; then
+        echo -e '\e[5;30m'
+        fortune fortunes | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "31" ]]; then
+        echo -e '\e[5;30m'
+        fortune knghtbrd | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "32" ]]; then
+        echo -e '\e[5;30m'
+        fortune zippy | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "33" ]]; then
+        echo -e '\e[5;30m'
+        fortune love | cowsay -w | lolcat --random -b -v 0.2
+    elif [[ "$random" == "34" ]]; then
+        echo -e '\e[5;30m'
+        fortune work | cowsay -w | lolcat --random -b -v 0.2
     else
         echo -e '\e[5;30m'
         fortune humorists | cowsay -w | lolcat --random -b -v 0.2
@@ -911,6 +963,36 @@ else
         fortune linux | cowsay -w | lolcat --random -x
     elif [[ "$random" == "19" ]]; then
         fortune law | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "20" ]]; then
+        fortune art | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "21" ]]; then
+        fortune people | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "22" ]]; then
+        fortune fortunes | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "23" ]]; then
+        fortune knghtbrd | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "24" ]]; then
+        fortune zippy | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "25" ]]; then
+        fortune science | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "26" ]]; then
+        fortune news | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "27" ]]; then
+        fortune miscellaneous | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "28" ]]; then
+        fortune perl | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "29" ]]; then
+        fortune goedel | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "30" ]]; then
+        fortune love | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "31" ]]; then
+        fortune definitions | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "32" ]]; then
+        fortune platitudes | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "33" ]]; then
+        fortune work | cowsay -w | lolcat --random -x
+    elif [[ "$random" == "34" ]]; then
+        fortune pets | cowsay -w | lolcat --random -x
     else
         fortune ascii-art | lolcat --random -x
     fi

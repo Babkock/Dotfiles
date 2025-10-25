@@ -44,7 +44,7 @@ window {
     margin-left:2px;
     margin-right:0px;
     padding-left:12px;
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #pulseaudio, #disk {
@@ -56,7 +56,7 @@ window {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #pulseaudio:hover, #pulseaudio.bluetooth:hover {
@@ -92,7 +92,7 @@ window {
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
     box-shadow:2px 2px rgba(0, 0, 0, 0.5);
     outline:0;
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #workspaces button * {
@@ -129,7 +129,7 @@ window {
 }
 
 #battery, #idle_inhibitor {
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #battery, #idle_inhibitor, #pulseaudio.bluetooth, #temperature {
@@ -157,7 +157,7 @@ window {
     margin-left:0;
     border-radius:0px 40px 40px 0px;
     box-shadow:3px 3px rgba(93, 135, 229, 0.5);
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 
 #temperature:hover {
@@ -200,7 +200,7 @@ window {
     padding-left:10px;
     padding-right:10px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 #wireplumber {
     border-radius:38px 0px 0px 38px;
@@ -246,7 +246,7 @@ window {
    padding-right:11px;
    text-shadow:2px 2px rgba(0, 0, 0, 0.5);
    box-shadow:3px 2px rgba(229, 111, 149, 0.5);
-   transition:all 0.2s ease 0s;
+   transition:all 0.1s ease 0s;
 }
 
 #network:hover, #custom-clock:hover {
@@ -257,7 +257,7 @@ window {
 }
 
 #bluetooth {
-    transition:all 0.2s ease 0s;
+    transition:all 0.1s ease 0s;
 }
 #bluetooth.on, #bluetooth.off, #bluetooth.disabled {
     color:#ff2800;

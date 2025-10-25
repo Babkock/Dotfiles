@@ -32,7 +32,7 @@ hi CursorLine term=bold cterm=bold ctermbg=235
 hi CursorLineNr term=none cterm=none ctermbg=235 ctermfg=1
 hi CursorColumn ctermbg=234 ctermfg=239
 hi SignColumn ctermbg=none cterm=bold term=bold
-hi Search ctermfg=0 ctermbg=0 cterm=underline term=underline
+hi Search ctermfg=12 ctermbg=0 cterm=underline term=underline
 hi VertSplit ctermbg=0 ctermfg=0
 hi Visual ctermbg=14 ctermfg=232
 hi LineNr ctermfg=248

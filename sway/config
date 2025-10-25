@@ -41,7 +41,7 @@ output "eDP-1" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/mountainsaurora.jpg fill
+	bg /home/babkock/.config/sway/fogstreetcar.jpg fill
 }
 output "HDMI-A-2" {
 	mode 1920x1080@60.00Hz
@@ -50,7 +50,7 @@ output "HDMI-A-2" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/mountainsaturn.png fill
+	bg /home/babkock/.config/sway/rainycity.png fill
 }
 output "DP-1" {
 	mode 1920x1080@60.0Hz
@@ -59,7 +59,7 @@ output "DP-1" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/colorfulnebula.png fill
+	bg /home/babkock/.config/sway/carwash.jpg fill
 }
 
 seat seat0 xcursor_theme "Adwaita" 32
@@ -101,18 +101,18 @@ input "2362:9488:PixArt_USB_Optical_Mouse" {
 }
 
 input "12994:18:HS6209_2.4G_Wireless_Receiver_Mouse" {
-	pointer_accel 0.9
-	scroll_factor 1.2
+	pointer_accel 0.95
+	scroll_factor 1.7
 	accel_profile "adaptive"
 	natural_scroll enabled
 }
 
-input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 300
-input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 55
-input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_delay 300
-input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_rate 55
-input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_delay 300
-input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 55
+input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 305
+input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 50
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_delay 305
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard" repeat_rate 50
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_delay 305
+input "3141:30311:iQunix_iQunix_F96_Mechanical_keyboard_Keyboard" repeat_rate 50
 
 focus_on_window_activation focus
 
@@ -124,8 +124,8 @@ corner_radius 38
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 1
-shadow_color #ee000999
-shadow_inactive_color #ee000999
+shadow_color #95da8a99
+shadow_inactive_color #e2071b99
 default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
@@ -134,27 +134,27 @@ layer_effects "waybar" blur enable; blur_ignore_transparent enable; shadows disa
 
 hide_edge_borders smart_no_gaps
 
-client.focused #ee0009af #fe0219af #efefefef #ee00098f
+client.focused #a5ea9add #95da8add #efefefef #a5ea9abb
 client.focused_tab_title #74c2808f #74c2808f #efefefef #99cf0188
-client.focused_inactive #a9df118d #a9df118d #000000ef #99cf0188
-client.unfocused #a9df11af #a9df11dd #000000dd #99cf0188
+client.focused_inactive #f2172bdd #e2071bdd #000000ef #e2071bbb
+client.unfocused #f2172bdd #e2071bdd #000000dd #f2172bbb
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
 
-font pango:SpaceMono Nerd Font Medium 14
+font pango:GoMono Nerd Font 15
 
 smart_gaps on
 smart_borders on
 gaps inner 4
-gaps outer 3
+gaps outer 2
 
-exec swayidle -w timeout 780 "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color a9df11aa --ring-wrong-color fe021988 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 10101066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/mountainsauroralock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"VictorMono Nerd Font\" --font-size 22 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a9df1199 --text-ver-color 74c280aa --ring-wrong-color fe021999 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color f4df23aa --ring-clear-color e4cf1399 --inside-clear-color 00000066 --key-hl-color ff4de7aa --bs-hl-color ee0009aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/colorfulnebulalock.png -s fill -i eDP-1:/home/babkock/.config/sway/mountainsauroralock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/mountainsaturnlock.png -s fill"
+exec swayidle -w timeout 780 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill" timeout 1800 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill"
 
 exec mako -c "$HOME/.config/mako/swayconfig" &> /dev/null &
 exec waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &> /dev/null &
 exec pkill -x emacs
-exec emacs --daemon &> /dev/null &
+exec emacs --daemon &
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
 exec mpdas -d -c '/home/babkock/.config/mpdasrc' &
@@ -178,7 +178,7 @@ assign [class="Firefox"] 2
 assign [app_id="qutebrowser"] 2
 assign [app_id="com.obsproject.Studio"] 8
 assign [app_id="org.qutebrowser.qutebrowser"] 2
-assign [app_id="org.nicotine_plus.Nicotine"] 7
+assign [app_id="org.nicotine_plus.Nicotine"] 9
 assign [app_id="com.sublimetext.three"] 4
 assign [class="monero-core"] 7
 assign [app_id="sublime"] 4
@@ -291,11 +291,11 @@ bindsym $mod+Shift+Return workspace number 5; exec $term
 bindsym $mod+Shift+c kill
 
 # Start your launcher
-bindsym $mod+space exec dmenu_path | fuzzel -b 5b55ca6f -t 4ca4b6ff -s 64b270bf -S 74c280ef -m bbaa00ef -M fbb73eef -f "GoMono Nerd Font Propo:pixelsize=26:antialias=true" --counter --counter-color=f30219ee --prompt-color=f30219ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d --no-exit-on-keyboard-focus-loss | sh
+bindsym $mod+space exec dmenu_path | fuzzel -b e3496e8f -t a3fcf6ff -s 95da8abf -S a5ea9aef -m dac863ef -M ead972ef -f "GoMono Nerd Font Propo:pixelsize=26:antialias=true" --counter --counter-color=ead972ee --prompt-color=ead972ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d --no-exit-on-keyboard-focus-loss | sh
 
 bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5
 
-bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$HOME/.local/share/qutebrowser/fix-tooltips.qss" --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization
+bindsym $mod+period workspace number 2; exec qutebrowser --qt-arg stylesheet "$HOME/.local/share/qutebrowser/fix-tooltips.qss" --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag enable-features=UseOzonePlatform --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-accelerated-mjpeg-decode --qt-flag enable-native-gpu-memory-buffers --qt-flag ignore-gpu-blacklist --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization
 
 bindsym $mod+Shift+period workspace number 2; exec firefox-wayland
 
@@ -305,7 +305,7 @@ bindsym $mod+Shift+comma workspace number 4; exec emacsclient -c -a "emacs"
 
 bindsym $mod+slash workspace number 4; exec subl3
 
-bindsym $mod+semicolon workspace number 7; exec nicotine
+bindsym $mod+semicolon workspace number 9; exec nicotine
 
 bindsym $mod+Shift+semicolon workspace number 7; exec QT_QPA_PLATFORM="xcb" QT_QPA_PLATFORMTHEME="qt5ct" monero-wallet-gui
 

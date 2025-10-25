@@ -20,11 +20,11 @@
             "2": "󰖟",
             "3": "",
             "4": "",
-            "5": "󰭹",
+            "5": "",
             "6": "",
-            "7": "",
+            "7": "",
             "8": "󰨜",
-            "9": "",
+            "9": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -45,9 +45,9 @@
 
 "mpd": {
     "server": "127.0.0.2",
-	"port": 6602,
-	"password": "passgasgrassorazz",
-    "format": "{artist} - <span style=\"italic\">{title}</span> {singleIcon}{randomIcon}{repeatIcon}{consumeIcon}{stateIcon} ",
+    "port": 6602,
+    "password": "passgasgrassorazz",
+    "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{singleIcon}{randomIcon}{repeatIcon}",
     "title-len": 42,
@@ -57,24 +57,23 @@
     "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
     "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
     "consume-icons": {
-        "on": " "
+        "on": " 󰮯 "
     },
     "random-icons": {
-        "off": "",
-        "on": " "
+        "off": " ",
+        "on": "  "
     },
     "repeat-icons": {
-        "on": " "
+        "on": "  "
     },
     "single-icons": {
-        "on": " 1 "
+        "on": "  1 "
     },
     "state-icons": {
         "playing": " ",
         "paused": " "
     },
     "tooltip-format": "{artist} - {album} ({date})",
-	"expand": true
 },
 
 "custom/clock": {
@@ -156,7 +155,7 @@
     "size": 42,
     "interval": 1,
     "on-click": "swayimg /tmp/rmpc/notification",
-    "on-click-right": "footclient -e rmpc -c /home/babkock/.config/rmpc/config.ron"
+    "on-click-right": "footclient -e rmpc -c '/home/babkock/.config/rmpc/config.ron'",
 }
 
 }, {
@@ -167,7 +166,7 @@
     "reload_style_on_change": true,
     "output": "HDMI-A-2",
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "wireplumber", "temperature", "tray"],
+    "modules-right": ["disk", "network", "idle_inhibitor", "privacy", "custom/hyprsunset", "wireplumber", "temperature", "tray"],
     "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": false,
@@ -180,11 +179,11 @@
              "2": "󰖟",
              "3": "",
              "4": "",
-             "5": "󰭹",
+             "5": "",
              "6": "",
-             "7": "",
+             "7": "",
              "8": "󰨜",
-             "9": "",
+             "9": "",
              "urgent": "",
              "focused": "",
              "default": ""
@@ -211,8 +210,9 @@
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
         "Yazi: (.*)": " $1",
-		"Monero": " ",
-		"Monero - (.*)": " <span style=\"italic\">$1</span>",
+        "Monero - (.*)": " <span style=\"italic\">$1</span>",
+        "Monero": " ",
+        "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
@@ -222,7 +222,6 @@
         "GitHub Dashboard": " ",
         "Bitcoin Core": " ",
         "Node window": " ",
-        "Yazi: (.*)": " $1",
         "GIMP Startup": " ",
         "GNU Image Manipulation Program": " ",
         "(.*) – GIMP": " <i>$1</i>",
@@ -417,8 +416,7 @@
         "(.*) \\| Culture Chester — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) \\| Records Recordings — Zen Browser": " <span style=\"italic\">$1</span>"
     },
-   "max-length": 70,
-   "expand": true
+   "max-length": 67
 },
 
 "disk": {
@@ -433,7 +431,7 @@
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 30,
+    "icon-size": 32,
     "transition-duration": 400,
     "modules": [
         {
@@ -494,7 +492,7 @@
     "tooltip": true,
     "tooltip-format-ethernet": "{ifname} {gwaddr}",
     "tooltip-format-wifi": "{ifname} {essid} ({signalStrength}%)",
-    "on-click-right": "footclient -e neomutt -F /home/babkock/.muttrc"
+    "on-click-right": "alacritty -e neomutt -F /home/babkock/.muttrc"
 },
 
 "cava": {
@@ -513,11 +511,21 @@
     "monstercat": false,
     "hide_on_silence": true,
     "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-click": "footclient -e cava"
+    "on-click": "alacritty -e cava"
+},
+
+"custom/hyprsunset": {
+    "format": " ",
+    "on-scroll-up": "hyprctl hyprsunset gamma +5% &> /dev/null",
+    "on-scroll-down": "hyprctl hyprsunset gamma -5 &> /dev/null",
+    "on-click-right": "hyprctl hyprsunset temperature 5900 &> /dev/null",
+    "on-click": "hyprctl hyprsunset temperature 4600 &> /dev/null",
+    "on-click-middle": "hyprctl hyprsunset gamma 100% &> /dev/null; hyprctl hyprsunset temperature 6000 &> /dev/null",
+    "tooltip": false
 },
 
 "tray": {
-    "icon-size": 34,
+    "icon-size": 33,
     "spacing": 2,
     "show-passive-items": true
 }
@@ -543,11 +551,11 @@
             "2": "󰖟",
             "3": "",
             "4": "",
-            "5": "󰭹",
+            "5": "",
             "6": "",
-            "7": "",
+            "7": "",
             "8": "󰨜",
-            "9": "",
+            "9": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -573,14 +581,14 @@
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
     "format-icons": ["", "", "", "", ""],
-    "on-click-right": "footclient -e bluetoothctl"
+    "on-click-right": "alacritty -e bluetoothctl"
 },
 
 "memory": {
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e lf"
+    "on-click-right": "footclient -e lf",
 },
 
 "disk": {

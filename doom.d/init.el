@@ -15,7 +15,7 @@
 
        :ui
        ;;deft              ; notational velocity for Emacs
-       doom                ; what makes DOOM look the way it does
+       (doom +tabs)                ; what makes DOOM look the way it does
        doom-dashboard      ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        (emoji +unicode +ascii +github)  ; 🙂
@@ -53,9 +53,9 @@
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired +icons)    ; making dired pretty [functional]
+       (dired +dirvish +icons)    ; making dired pretty [functional]
        ;;electric          ; smarter, keyword-based electric-indent
-       ;;(ibuffer +icons)    ; interactive buffer management
+       (ibuffer +icons)    ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -66,7 +66,7 @@
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       ;;syntax              ; tasing you for every semicolon you forget
+       syntax              ; tasing you for every semicolon you forget
        ;;(spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
@@ -82,7 +82,7 @@
        gist              ; interacting with github gists
        ;;lookup              ; navigate your code and its documentation
        ;;lsp               ; M-x vscode
-       (magit +delta)               ; a git porcelain for Emacs
+       (magit +delta +forge)               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass                ; password manager for nerds
        ;;pdf               ; pdf enhancements
@@ -138,7 +138,7 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +dragandrop +modern)                 ; organize your plain life in plain text
+       (org +pretty +dragandrop +modern +forge)                 ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -232,6 +232,7 @@
                  "3demacs.png"
                  "3demacsborder.png"
                  "tangnu.png"
+                 "doom-emacs-dark.svg"
                  "fancyEmacs.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"
@@ -250,12 +251,18 @@
     '(("Libera Chat"
        :tls t
        :nick "Babkock"
+       :realname "Tanner Babcock"
+       :nickserv-nick "Babkock"
+       :nickserv-password "tanner9"
        :channels ("#voidlinux" "#emacs"))))
+
+(setq auth-sources '("~/.authinfo"))
 
 (setq inhibit-compacting-font-caches t)
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)
+(display-time-mode t)
 
 (setq doom-modeline-buffer-file-name-style 'relative-to-project
       doom-modeline-icon t
@@ -265,8 +272,11 @@
       doom-modeline-major-mode-icon t
       doom-modeline-major-mode-color-icon t
       doom-modeline-persp-icon t
+      doom-modeline-persp-name t
       doom-modeline-unicode-fallback nil
       doom-modeline-time t
+      doom-modeline-time-live-icon t
+      doom-modeline-time-analogue-clock t
       doom-modeline-time-icon t)
 
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)

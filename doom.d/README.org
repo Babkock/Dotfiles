@@ -56,7 +56,6 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#functions][Functions]]
   - [[#menu][Menu]]
   - [[#keybindings-1][Keybindings]]
-- [[#elcord][Elcord]]
 - [[#elfeed][Elfeed]]
   - [[#preferences-1][Preferences]]
   - [[#elfeed-tube][Elfeed-Tube]]
@@ -66,7 +65,6 @@ This literate configuration is available online on my [[https://babkock.github.i
 - [[#keybindings-3][Keybindings]]
   - [[#global-keybindings][Global Keybindings]]
 - [[#magit][Magit]]
-- [[#mastodon][Mastodon]]
 - [[#modeline][Modeline]]
 - [[#mpdel][MPDel]]
   - [[#functions-1][Functions]]
@@ -129,7 +127,7 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
       mouse-wheel-follow-mouse 't
       display-line-numbers-type t
       scroll-step 1
-      scroll-margin 2
+      scroll-margin 3
       scroll-up-aggressively 0.01
       scroll-down-aggressively 0.01
       hscroll-step 1
@@ -153,7 +151,7 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 Now the fun stuff, where I set the fonts, theme, and colors.
 
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'doom-bluloco-dark)
+(setq doom-theme 'doom-city-lights)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -417,6 +415,24 @@ My customized dashboard. These first two lines are just for setting up my Multip
     "Opens Dotfiles repository"
     (interactive)
     (dired "~/git/Dotfiles"))
+
+(defun tb/gnus1 ()
+    "Connect to Eternal September Usenet"
+    (interactive)
+    (setq gnus-select-method '(nntp "news.eternal-september.org")
+          nntp-open-connection-function 'nntp-open-tls-stream
+          nntp-port-number 563
+          gnus-posting-styles '((".*"
+                                 (name "Anonymous")
+                                 (address "babkock@protonmail.com")
+                                 (reply-to "babkock@protonmail.com"))))
+    (gnus))
+
+(defun tb/gnus2 ()
+    "Connect to Gwene Usenet"
+    (interactive)
+    (setq gnus-select-method '(nntp "gwene" (nntp-address "news.gwene.org")))
+    (gnus))
 #+end_src
 
 The code above defines functions and variables for making my customized Dashboard menu work. If you, later on, wish to swap out these quick shortcuts for other files or project
@@ -450,10 +466,6 @@ directories, make sure you change the variable names too, and change the content
         :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-blue :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
         :action tb/open-dotfiles)
-      ("Mastodon"
-        :icon (all-the-icons-material "chat" :face 'all-the-icons-maroon :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-maroon) :height 0.95)
-        :action mastodon)
       ("RSS Feeds"
         :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.95)
@@ -463,14 +475,14 @@ directories, make sure you change the variable names too, and change the content
         :when (file-directory-p doom-private-dir)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lgreen) :height 0.95)
         :action tb/open-config-org)
+      ("Usenet News"
+        :icon (all-the-icons-faicon "newspaper-o" :face 'all-the-icons-maroon :height 0.95)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
+        :action tb/gnus1)
       ("Doom Reload"
         :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.95)
-        :action doom/reload)
-      ("Music Player"
-        :icon (all-the-icons-faicon "music" :face 'all-the-icons-cyan :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan) :height 0.95)
-        :action mpdel-playlist-open)))
+        :action doom/reload)))
 #+end_src
 
 Each menu item should share a similar color with its respective icon. Using a value for the height other than =0.94= or =0.95= will cause the menu to appear crooked.
@@ -517,8 +529,8 @@ Dashboard menu sections.
 | =V=          | Open video.org                  |
 | =w=          | Open Waybar Config              |
 | =W=          | Open Waybar Style               |
-| =x=          | Mastodon Followed Tags          |
-| =X=          | Stack Exchange Front Page       |
+| =x=          | Start GNUs with Eternal September |
+| =X=          | Start GNUs with Gwene           |
 | =z=          | Open ZSH Config                 |
 | =Z=          | Open ZSH Theme                  |
 | =?=          | Doom Help                       |
@@ -551,14 +563,13 @@ Dashboard menu sections.
     :desc "Open Foot Config" :ne "F" #'tb/open-foot-org
     :desc "Open Waybar Config" :ne "w" (cmd! (find-file "~/.config/waybar/config.org"))
     :desc "Open Waybar Style" :ne "W" (cmd! (find-file "~/.config/waybar/style.org"))
-    :desc "Mastodon" :ne "m" #'mastodon
-    :desc "Mastodon Local" :ne "M" #'mastodon-tl--get-local-timeline
+    :desc "Calendar" :ne "m" #'calendar 
     :desc "Open TBcom" :ne "t" #'tb/open-tbcom
     :desc "Open Dotfiles" :ne "D" #'tb/open-dotfiles
     :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
     :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
-    :desc "Stack Exchange Front Page" :ne "X" #'sx-tab-frontpage
-    :desc "Mastodon Followed Tags" :ne "x" #'mastodon-tl--followed-tags-timeline
+    :desc "GNUs Gwene News Server" :ne "X" #'tb/gnus2
+    :desc "GNUs Eternal September News Server" :ne "x" #'tb/gnus1
     :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
     :desc "Open MPDel Playlist" :ne ";" #'mpdel-playlist-open
@@ -593,17 +604,6 @@ This part removes other elements of the Dashboard.
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
 #+end_src
 
-* Elcord
-
-#+begin_src emacs-lisp :tangle yes
-(require 'elcord)
-(after! elcord
-    (add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
-    (add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
-    (add-hook! 'mastodon-mode-hook (elcord-mode -1))
-    (add-hook! 'circe-channel-mode-hook (elcord-mode -1))
-    (add-hook! 'circe-server-connected-hook (elcord-mode -1)))
-#+end_src
 
 * Elfeed
 
@@ -617,12 +617,14 @@ This first block of code defines font faces per Elfeed tags, font faces for UI e
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (after! elfeed
+    (elfeed-set-timeout 30)
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
+          url-queue-timeout 5
           elfeed-use-curl t
-          elfeed-curl-max-connections 20
-          elfeed-curl-timeout 8
+          elfeed-curl-max-connections 8
+          elfeed-curl-timeout 6
           elfeed-curl-extra-arguments '("--insecure" "--fail-early" "--tcp-fastopen" "--ssl-allow-beast"))
     (defface git-entry
         '((t :foreground "#d04b4e"))
@@ -764,7 +766,7 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
 
 #+begin_src emacs-lisp :tangle yes
 (after! helm
-    (setq helm-show-completion-min-window-height 9))
+    (setq helm-show-completion-min-window-height 10))
 #+end_src
 
 ** Helm Org Rifle
@@ -835,7 +837,7 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
     :desc "Play song in MPDel" "z" #'mpdnotify-play
     :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
     :desc "Org Tangle" "l" #'org-babel-tangle
-    :desc "Mastodon Toggle Boost" "m" #'mastodon-toot--toggle-boost
+    :desc "Calendar" "m" #'calendar
     :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
     :desc "MPDel Next Song" "]" #'libmpdel-playback-next
     :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
@@ -888,51 +890,56 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
 (add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 #+end_src
 
-* Mastodon
-
-#+begin_src emacs-lisp :tangle yes
-(use-package mastodon
-    :config
-    (setq mastodon-instance-url "https://fosstodon.org"
-          mastodon-active-user "babkock"))
-(add-hook! 'mastodon-toot-mode-hook
-    (lambda () (auto-fill-mode -1)))
-#+end_src
-
 * Modeline
 
 #+begin_src emacs-lisp :tangle yes
-(after! modeline 
+(after! modeline
+    (display-time-mode 1)
     (setq doom-modeline-buffer-file-name-style 'relative-to-project
           doom-modeline-icon t
           doom-modeline-irc t
           doom-modeline-irc-buffers t
+          doom-modeline-gnus t
           doom-modeline-major-mode-icon t
           doom-modeline-major-mode-color-icon t
           doom-modeline-env-version t
           doom-modeline-persp-icon t
+          doom-modeline-persp-name t
           doom-modeline-unicode-fallback nil
           doom-modeline-buffer-state-icon nil
           doom-modeline-height 30
           doom-modeline-hud t
           doom-modeline-vcs-icon t
           doom-modeline-indent-info t
-          doom-modeline-buffer-modification-icon nil)
+          doom-modeline-buffer-modification-icon t
+          doom-modeline-time t
+          doom-modeline-time-icon t
+          doom-modeline-time-live-icon t
+          doom-modeline-time-clock-size 0.8
+          doom-modeline-time-analogue-clock t)
     (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
 (setq-default doom-modeline-major-mode-icon t
               doom-modeline-icon t
               doom-modeline-irc t
               doom-modeline-irc-buffers t
+              doom-modeline-gnus t
               doom-modeline-major-mode-color-icon t
               doom-modeline-buffer-file-name-style 'relative-to-project
               doom-modeline-env-version t
               doom-modeline-persp-icon t
+              doom-modeline-persp-name t
               doom-modeline-buffer-state-icon nil
               doom-modeline-unicode-fallback nil
               doom-modeline-hud t
               doom-modeline-height 30
+              doom-modeline-vcs-icon t
               doom-modeline-indent-info t
-              doom-modeline-buffer-modification-icon nil)
+              doom-modeline-buffer-modification-icon t
+              doom-modeline-time t
+              doom-modeline-time-icon t
+              doom-modeline-time-live-icon t
+              doom-modeline-time-clock-size 0.8
+              doom-modeline-time-analogue-clock t)
 #+end_src
 
 * MPDel
@@ -1112,7 +1119,7 @@ This is a list of faces for the MPDel interface. After this list is where I add 
 #+BEGIN_EXPORT html
 <footer>
     <center>
-    <p>Copyright &copy; 2023 Tanner Babcock.</p>
+    <p>Copyright &copy; 2023-2026 Tanner Babcock.</p>
     <p>This page licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (CC-BY-NC 4.0).</p>
     <p class="nav"><a href="https://babkock.github.io">Home</a> &nbsp;&bull;&nbsp; <a href="https://github.com/Babkock/Babkock.github.io/blob/main/configs/doom.html" target="_blank">Source Code</a> &nbsp;&bull;&nbsp;
     <a href="https://tannerbabcock.com/home">Website</a> &nbsp;&bull;&nbsp;

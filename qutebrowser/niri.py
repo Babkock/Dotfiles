@@ -153,7 +153,7 @@ c.fonts.prompts = '16pt Victor Mono Nerd Font'
 c.fonts.keyhint = '16pt GoMono Nerd Font'
 c.fonts.hints = '16pt GoMono Nerd Font'
 c.fonts.contextmenu = '16pt GoMono Nerd Font Propo'
-c.fonts.completion.category = 'bold 16pt Victor Mono Nerd Font'
+c.fonts.completion.category = 'bold 17pt GoMono Nerd Font Propo'
 c.fonts.tooltip = '16pt Victor Mono Nerd Font'
 c.fonts.completion.entry = '16pt GoMono Nerd Font Propo'
 c.fonts.tabs.selected = 'italic 16pt GoMono Nerd Font Propo'
@@ -234,7 +234,7 @@ config.bind(',c', 'config-cycle content.user_stylesheets "" ""')
 config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4chan.css ""')
 config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
-config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
+config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
 

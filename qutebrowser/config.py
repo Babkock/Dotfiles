@@ -28,48 +28,48 @@ base0F = "#fefefe"
 
 # May be a single color to use for
 # all columns or a list of three colors, one for each column.
-c.colors.completion.fg = '#88fedd83'
-c.colors.completion.odd.bg = '#77101010'
-c.colors.completion.even.bg = '#77100000'
+c.colors.completion.fg = '#aaead972'
+c.colors.completion.odd.bg = '#66000000'
+c.colors.completion.even.bg = '#66000000'
 
 # Foreground color of completion widget category headers.
 c.colors.completion.category.fg = base0F
-c.colors.completion.category.bg = '#77000000'
-c.colors.completion.category.border.top = '#77fe0219'
-c.colors.completion.category.border.bottom = '#77a9df11'
+c.colors.completion.category.bg = '#66000000'
+c.colors.completion.category.border.top = '#77f2172b'
+c.colors.completion.category.border.bottom = '#77a5ea9a'
 c.colors.completion.item.selected.fg = base00
-c.colors.completion.item.selected.bg = '#ccf4df23'
-c.colors.completion.item.selected.border.top = '#dde4cf13'
-c.colors.completion.item.selected.border.bottom = '#dde4cf13'
+c.colors.completion.item.selected.bg = '#cca3fcf6'
+c.colors.completion.item.selected.border.top = '#cc93ece6'
+c.colors.completion.item.selected.border.bottom = '#cc93ece6'
 c.colors.completion.item.selected.match.fg = base0F
-c.colors.completion.match.fg = base0A
+c.colors.completion.match.fg = '#ccf3597f'
 # Color of the scrollbar handle in the completion view.
-c.colors.completion.scrollbar.fg = '#aba9df11'
+c.colors.completion.scrollbar.fg = '#883f9cb9'
 # Color of the scrollbar in the completion view.
-c.colors.completion.scrollbar.bg = '#55101010'
+c.colors.completion.scrollbar.bg = '#55000000'
 
 c.colors.tooltip.bg = '#aa000000'
-c.colors.tooltip.fg = '#eefedd83'
+c.colors.tooltip.fg = '#eeefefef'
 
 # --- Context menu ---
 
 c.colors.contextmenu.disabled.bg = '#77000000'
 c.colors.contextmenu.disabled.fg = base01
 # Background color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.bg = '#99101010'
+c.colors.contextmenu.menu.bg = '#99000000'
 c.colors.contextmenu.menu.fg =  base0F
-c.colors.contextmenu.selected.bg = '#ddf4df23'
+c.colors.contextmenu.selected.bg = '#ddf3597f'
 c.colors.contextmenu.selected.fg = base00
 
 # --- Downloads ---
 
-c.colors.downloads.bar.bg = '#88101010'
+c.colors.downloads.bar.bg = '#77000000'
 #c.colors.downloads.start.fg = base00
 #c.colors.downloads.start.bg = base0D
-c.colors.downloads.start.fg = base0D
-c.colors.downloads.start.bg = '#00101010'
-c.colors.downloads.stop.fg = base0C
-c.colors.downloads.stop.bg = '#77101010'
+c.colors.downloads.start.fg = '#88f2172b'
+c.colors.downloads.start.bg = '#00000000'
+c.colors.downloads.stop.fg = '#88a5ea9a'
+c.colors.downloads.stop.bg = '#00000000'
 c.colors.downloads.error.fg = base09
 c.colors.downloads.system.bg = 'hsv'
 
@@ -77,22 +77,22 @@ c.colors.downloads.system.bg = 'hsv'
 
 c.colors.hints.fg = base0E
 # Note that you can use a `rgba(...)` value for transparency.
-c.colors.hints.bg = '#88101010'
+c.colors.hints.bg = '#88000000'
 c.colors.hints.match.fg = base05
 c.colors.keyhint.fg = base05
 # Highlight color for keys to complete the current keychain.
 c.colors.keyhint.suffix.fg = base05
-c.colors.keyhint.bg = '#88101010'
+c.colors.keyhint.bg = '#88000000'
 
 # --- Messages ---
 
-c.colors.messages.error.fg = base09
+c.colors.messages.error.fg = '#bbf2172b'
 c.colors.messages.error.bg = '#66000000'
-c.colors.messages.error.border = base09
-c.colors.messages.warning.fg = base09
+c.colors.messages.error.border = '#aae2071b'
+c.colors.messages.warning.fg = '#bbead972'
 c.colors.messages.warning.bg = '#77000000'
-c.colors.messages.warning.border = base09
-c.colors.messages.info.fg = base01
+c.colors.messages.warning.border = '#aadac863'
+c.colors.messages.info.fg = '#bbfefefe'
 c.colors.messages.info.bg = '#66000000'
 c.colors.messages.info.border = '#99000000'
 
@@ -100,42 +100,42 @@ c.colors.messages.info.border = '#99000000'
 
 c.colors.prompts.fg = base0F
 # Border used around UI elements in prompts.
-c.colors.prompts.border = '#ef53f7f9'
-c.colors.prompts.bg = '#ef000000'
-c.colors.prompts.selected.bg = '#ef000000'
-c.colors.prompts.selected.fg = base00
+c.colors.prompts.border = '#eff2172b'
+c.colors.prompts.bg = '#88000000'
+c.colors.prompts.selected.bg = '#88000000'
+c.colors.prompts.selected.fg = '#bbefefef'
 
 # --- Status bar ---
 
-c.colors.statusbar.normal.fg = base05
+c.colors.statusbar.normal.fg = '#bb4facca'
 c.colors.statusbar.normal.bg = '#77000000'
-c.colors.statusbar.insert.fg = base08
-c.colors.statusbar.insert.bg = '#aaa9df11'
-c.colors.statusbar.passthrough.fg = base0A
+c.colors.statusbar.insert.fg = '#bb000000'
+c.colors.statusbar.insert.bg = '#aaa5ea9a'
+c.colors.statusbar.passthrough.fg = '#bbf3597f'
 c.colors.statusbar.passthrough.bg = '#88000000'
 # Foreground color of the statusbar in private browsing mode.
-c.colors.statusbar.private.fg = base0E
+c.colors.statusbar.private.fg = '#bb000000'
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = '#ddaf38db'
-c.colors.statusbar.command.fg = base04
+c.colors.statusbar.private.bg = '#aae3496e'
+c.colors.statusbar.command.fg = '#bb4facca'
 c.colors.statusbar.command.bg = '#77000000'
-c.colors.statusbar.command.private.fg = base0E
-c.colors.statusbar.command.private.bg = '#ccaf38db'
+c.colors.statusbar.command.private.fg = '#bb000000'
+c.colors.statusbar.command.private.bg = '#aaf2172b'
 c.colors.statusbar.caret.fg = base0D
 c.colors.statusbar.caret.bg = '#77000000'
 c.colors.statusbar.caret.selection.fg = base0D
 c.colors.statusbar.caret.selection.bg = '#77000000'
-c.colors.statusbar.progress.bg = base0D
+c.colors.statusbar.progress.bg = '#aaa5ea9a'
 
 # --- Status bar URL ---
 
-c.colors.statusbar.url.fg = base05
+c.colors.statusbar.url.fg = '#bbead972'
 c.colors.statusbar.url.error.fg = base08
 # Foreground color of the URL in the statusbar for hovered links.
-c.colors.statusbar.url.hover.fg = base0B
-c.colors.statusbar.url.success.http.fg = base0C
-c.colors.statusbar.url.success.https.fg = base0C
-c.colors.statusbar.url.warn.fg = base09
+c.colors.statusbar.url.hover.fg = '#bbead972'
+c.colors.statusbar.url.success.http.fg = '#bba5ea9a'
+c.colors.statusbar.url.success.https.fg = '#bba5ea9a'
+c.colors.statusbar.url.warn.fg = '#bbead972'
 
 # --- Tabs ---
 
@@ -143,24 +143,24 @@ c.colors.tabs.bar.bg = '#10000000'
 c.colors.tabs.indicator.start = base03
 c.colors.tabs.indicator.stop = base0B
 c.colors.tabs.indicator.error = base08
-c.colors.tabs.odd.fg = base02
+c.colors.tabs.odd.fg = '#bbf2172b'
 c.colors.tabs.odd.bg = '#66000000'
-c.colors.tabs.even.fg = base03
+c.colors.tabs.even.fg = '#bbf2172b'
 c.colors.tabs.even.bg = '#66000000'
 c.colors.tabs.pinned.even.bg = '#66000000'
-c.colors.tabs.pinned.even.fg = base00
+c.colors.tabs.pinned.even.fg = '#bba5ea9a'
 c.colors.tabs.pinned.odd.bg = '#66000000'
-c.colors.tabs.pinned.odd.fg = base00
-c.colors.tabs.pinned.selected.even.bg = '#bb99cf01'
+c.colors.tabs.pinned.odd.fg = '#bba5ea9a'
+c.colors.tabs.pinned.selected.even.bg = '#bba5ea9a'
 c.colors.tabs.pinned.selected.even.fg = base00
-c.colors.tabs.pinned.selected.odd.bg = '#bb99cf01'
+c.colors.tabs.pinned.selected.odd.bg = '#bba5ea9a'
 c.colors.tabs.pinned.selected.odd.fg = base00
 
 # --- Selected tabs ---
-c.colors.tabs.selected.odd.fg = base0A
+c.colors.tabs.selected.odd.fg = '#bba5ea9a'
 c.colors.tabs.selected.odd.bg = '#77000000'
-c.colors.tabs.selected.even.fg = base0A
-c.colors.tabs.selected.even.bg = '#77100000'
+c.colors.tabs.selected.even.fg = '#bba5ea9a'
+c.colors.tabs.selected.even.bg = '#77000000'
 # Default page background when there is none
 c.colors.webpage.bg = '#ffffff'
 
@@ -264,7 +264,7 @@ c.auto_save.interval = 20000
 
 c.url.open_base_url = True
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!o': 'https://odysee.com/$/search?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!p': 'https://iptorrents.me/t?101=&89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&720p=on&1080p=on&2160p=on&q={}&qf=ti#torrents', '!f': 'https://find.4chan.org/?q={}' }
+c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}', '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!o': 'https://odysee.com/$/search?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!p': 'https://iptorrents.me/t?101=&89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&720p=on&1080p=on&2160p=on&q={}&qf=ti#torrents' }
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
@@ -301,6 +301,13 @@ config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/e
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
 config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
+
+config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
+config.bind(',x', 'config-cycle fonts.statusbar "16pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
+config.bind(',p', 'config-cycle fonts.tabs.selected "italic 16pt GoMono Nerd Font" "italic 14pt GoMono Nerd Font"')
+config.bind(',v', 'config-cycle fonts.downloads "16pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
+config.bind(',n', 'config-cycle fonts.completion.category "17pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
+config.bind(',m', 'config-cycle fonts.completion.entry "17pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
 
 # --- Keybindings: UI ---
 

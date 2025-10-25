@@ -34,7 +34,7 @@
       mouse-wheel-follow-mouse 't
       display-line-numbers-type t
       scroll-step 1
-      scroll-margin 2
+      scroll-margin 3
       scroll-up-aggressively 0.01
       scroll-down-aggressively 0.01
       hscroll-step 1
@@ -52,7 +52,7 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
-(setq doom-theme 'doom-bluloco-dark)
+(setq doom-theme 'doom-city-lights)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -267,6 +267,24 @@
     (interactive)
     (dired "~/git/Dotfiles"))
 
+(defun tb/gnus1 ()
+    "Connect to Eternal September Usenet"
+    (interactive)
+    (setq gnus-select-method '(nntp "news.eternal-september.org")
+          nntp-open-connection-function 'nntp-open-tls-stream
+          nntp-port-number 563
+          gnus-posting-styles '((".*"
+                                 (name "Anonymous")
+                                 (address "babkock@protonmail.com")
+                                 (reply-to "babkock@protonmail.com"))))
+    (gnus))
+
+(defun tb/gnus2 ()
+    "Connect to Gwene Usenet"
+    (interactive)
+    (setq gnus-select-method '(nntp "gwene" (nntp-address "news.gwene.org")))
+    (gnus))
+
 (setq-default +doom-dashboard-menu-sections
     '(("Kill All Buffers"
         :icon (all-the-icons-octicon "alert" :face 'all-the-icons-red :height 0.95)
@@ -292,10 +310,6 @@
         :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-blue :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
         :action tb/open-dotfiles)
-      ("Mastodon"
-        :icon (all-the-icons-material "chat" :face 'all-the-icons-maroon :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-maroon) :height 0.95)
-        :action mastodon)
       ("RSS Feeds"
         :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.95)
@@ -305,14 +319,14 @@
         :when (file-directory-p doom-private-dir)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lgreen) :height 0.95)
         :action tb/open-config-org)
+      ("Usenet News"
+        :icon (all-the-icons-faicon "newspaper-o" :face 'all-the-icons-maroon :height 0.95)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
+        :action tb/gnus1)
       ("Doom Reload"
         :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.95)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.95)
-        :action doom/reload)
-      ("Music Player"
-        :icon (all-the-icons-faicon "music" :face 'all-the-icons-cyan :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lcyan) :height 0.95)
-        :action mpdel-playlist-open)))
+        :action doom/reload)))
 
 (setq +doom-dashboard-mode-map (make-sparse-keymap))
 (map! :map +doom-dashboard-mode-map
@@ -333,14 +347,13 @@
     :desc "Open Foot Config" :ne "F" #'tb/open-foot-org
     :desc "Open Waybar Config" :ne "w" (cmd! (find-file "~/.config/waybar/config.org"))
     :desc "Open Waybar Style" :ne "W" (cmd! (find-file "~/.config/waybar/style.org"))
-    :desc "Mastodon" :ne "m" #'mastodon
-    :desc "Mastodon Local" :ne "M" #'mastodon-tl--get-local-timeline
+    :desc "Calendar" :ne "m" #'calendar 
     :desc "Open TBcom" :ne "t" #'tb/open-tbcom
     :desc "Open Dotfiles" :ne "D" #'tb/open-dotfiles
     :desc "Open Dotfiles Fetch" :ne "h" (cmd! (find-file "~/git/Dotfiles/fetch.org"))
     :desc "Open Dotfiles README" :ne "H" (cmd! (find-file "~/git/Dotfiles/README.org"))
-    :desc "Stack Exchange Front Page" :ne "X" #'sx-tab-frontpage
-    :desc "Mastodon Followed Tags" :ne "x" #'mastodon-tl--followed-tags-timeline
+    :desc "GNUs Gwene News Server" :ne "X" #'tb/gnus2
+    :desc "GNUs Eternal September News Server" :ne "x" #'tb/gnus1
     :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
     :desc "Open MPDel Playlist" :ne ";" #'mpdel-playlist-open
@@ -370,25 +383,19 @@
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
 
-(require 'elcord)
-(after! elcord
-    (add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
-    (add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
-    (add-hook! 'mastodon-mode-hook (elcord-mode -1))
-    (add-hook! 'circe-channel-mode-hook (elcord-mode -1))
-    (add-hook! 'circe-server-connected-hook (elcord-mode -1)))
-
 (require 'elfeed-goodies)
 (require 'elfeed-org)
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (after! elfeed
+    (elfeed-set-timeout 30)
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
+          url-queue-timeout 5
           elfeed-use-curl t
-          elfeed-curl-max-connections 20
-          elfeed-curl-timeout 8
+          elfeed-curl-max-connections 8
+          elfeed-curl-timeout 6
           elfeed-curl-extra-arguments '("--insecure" "--fail-early" "--tcp-fastopen" "--ssl-allow-beast"))
     (defface git-entry
         '((t :foreground "#d04b4e"))
@@ -492,7 +499,7 @@
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
 
 (after! helm
-    (setq helm-show-completion-min-window-height 9))
+    (setq helm-show-completion-min-window-height 10))
 
 (after! helm-org-rifle
     (setq helm-org-rifle-show-path t
@@ -515,7 +522,7 @@
     :desc "Play song in MPDel" "z" #'mpdnotify-play
     :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
     :desc "Org Tangle" "l" #'org-babel-tangle
-    :desc "Mastodon Toggle Boost" "m" #'mastodon-toot--toggle-boost
+    :desc "Calendar" "m" #'calendar
     :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
     :desc "MPDel Next Song" "]" #'libmpdel-playback-next
     :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
@@ -563,44 +570,53 @@
 (add-hook! 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
 (add-hook! 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
-(use-package mastodon
-    :config
-    (setq mastodon-instance-url "https://fosstodon.org"
-          mastodon-active-user "babkock"))
-(add-hook! 'mastodon-toot-mode-hook
-    (lambda () (auto-fill-mode -1)))
-
-(after! modeline 
+(after! modeline
+    (display-time-mode 1)
     (setq doom-modeline-buffer-file-name-style 'relative-to-project
           doom-modeline-icon t
           doom-modeline-irc t
           doom-modeline-irc-buffers t
+          doom-modeline-gnus t
           doom-modeline-major-mode-icon t
           doom-modeline-major-mode-color-icon t
           doom-modeline-env-version t
           doom-modeline-persp-icon t
+          doom-modeline-persp-name t
           doom-modeline-unicode-fallback nil
           doom-modeline-buffer-state-icon nil
           doom-modeline-height 30
           doom-modeline-hud t
           doom-modeline-vcs-icon t
           doom-modeline-indent-info t
-          doom-modeline-buffer-modification-icon nil)
+          doom-modeline-buffer-modification-icon t
+          doom-modeline-time t
+          doom-modeline-time-icon t
+          doom-modeline-time-live-icon t
+          doom-modeline-time-clock-size 0.8
+          doom-modeline-time-analogue-clock t)
     (add-hook! 'doom-modeline-mode-hook 'garbage-collect))
 (setq-default doom-modeline-major-mode-icon t
               doom-modeline-icon t
               doom-modeline-irc t
               doom-modeline-irc-buffers t
+              doom-modeline-gnus t
               doom-modeline-major-mode-color-icon t
               doom-modeline-buffer-file-name-style 'relative-to-project
               doom-modeline-env-version t
               doom-modeline-persp-icon t
+              doom-modeline-persp-name t
               doom-modeline-buffer-state-icon nil
               doom-modeline-unicode-fallback nil
               doom-modeline-hud t
               doom-modeline-height 30
+              doom-modeline-vcs-icon t
               doom-modeline-indent-info t
-              doom-modeline-buffer-modification-icon nil)
+              doom-modeline-buffer-modification-icon t
+              doom-modeline-time t
+              doom-modeline-time-icon t
+              doom-modeline-time-live-icon t
+              doom-modeline-time-clock-size 0.8
+              doom-modeline-time-analogue-clock t)
 
 (defun mpdnotify ()
     (interactive)
