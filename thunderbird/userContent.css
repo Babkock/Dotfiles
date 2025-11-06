@@ -1,0 +1,151 @@
+/* @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+*/
+
+* {
+	font-family:"GoMono Nerd Font";
+/*	font-weight:bold; */
+    font-size:15px;
+}
+
+html|ul#folderTree {
+	font-family:"GoMono Nerd Font" !important;
+	font-size:16px !important;
+}
+
+html|tree-view#threadTree {
+	font-family:"GoMono Nerd Font" !important;
+	font-size:2i2px !important;
+	font-style:italic !important;
+}
+
+panelview * {
+	font-family:"GoMono Nerd Font" !important;
+}
+
+.moz-text-plain[style="font-family: -moz-fixed; font-size: 12px;"] pre.moz-quote-pre {
+	font-family:"GoMono Nerd Font" !important;
+	font-size:15px !important;
+}
+
+tr.table-layout td div div span {
+	font-family:"GoMono Nerd Font" !important;
+	font-size:16px !important;
+}
+
+#threadTree table[is="tree-view-table"] > tbody > tr > td * {
+	-moz-appearance:none !important;
+	appearance:none !important;
+	font-family:"GoMono Nerd Font" !important;
+}
+
+#threadTree treecol.subjectCol, #threadTree treecol.subjectCol * {
+	font-family:"GoMono Nerd Font" !important;
+	-moz-appearance:none !important;
+	appearance:none !important;
+}
+
+#threadTree treecol.dateCol, #threadTree treecol.dateCol * {
+	font-family:"GoMono Nerd Font" !important;
+	-moz-appearance:none !important;
+	appearance:none !important;
+}
+
+#messagepane body .moz-text-plain, #messagepane body .moz-text-plain pre, .moz-text-plain pre, pre.moz-quote-pre, .moz-text-flowed, #messagepane body {
+	font-family:"GoMono Nerd Font" !important;
+	font-size:16px !important;
+	appearance:none !important;
+	-moz-appearance:none !important;
+}
+
+#messagepane body * {
+	font-family:"GoMono Nerd Font" !important;
+	appearance:none !important;
+	-moz-appearance:none !important;
+}
+
+treechildren::-moz-tree-cell(read) * {
+	font-family:"GoMono Nerd Font" !important;
+	appearance:none !important;
+}
+
+treechildren::-moz-tree-cell-text(read) * {
+	font-family:"GoMono Nerd Font" !important;
+	appearance:none !important;
+}
+
+treechildren::-moz-tree-cell(unread) * {
+	font-family:"GoMono Nerd Font" !important;
+	appearance:none !important;
+}
+
+treechildren::-moz-tree-cell-text(unread) * {
+	font-family:"GoMono Nerd Font" !important;
+	appearance:none !important;
+}
+
+.collapsed.selected.current {
+	background-color:#00ff22ee !important;
+	color:#000000 !important;
+}
+
+[is="tree-view-table-body"] > .selected {
+	background-color:#006611dd !important;
+	font-style:italic !important;
+	color:#000000 !important;
+}
+
+[is="tree-view-table-body"] > .selected:hover {
+	background-color:#00ff22ee !important;
+	border:1px solid #00ff22 !important;
+	color:#000000 !important;
+}
+
+#threadTree tr:hover {
+	background-color:#001166dd !important;
+	border:1px solid #001166 !important;
+	color:#ffffff !important;
+}
+
+#threadTree tr:nth-child(2n) {
+	background-color:#10101099 !important;
+}
+
+#threadTree tr:nth-child(2n).selected {
+	background-color:#00ff22ee !important;
+	color:#000000 !important;
+	font-style:italic !important;
+}
+
+#threadTree tr:nth-child(2n):hover {
+	background-color:#001166dd !important;
+	border:1px solid #001166 !important;
+	color:#ffffff !important;
+}
+
+.message-header-container {
+	row-gap:1px !important;
+}
+
+div#expandedsubjectBox span {
+	font-size:24px !important;
+}
+
+html body #headingWrapper h1#heading span {
+	font-family:"GoMono Nerd Font Propo" !important;
+}
+html body #headingWrapper h1#heading span#summaryTitle {
+	font-size:24px !important;
+	font-family:"GoMono Nerd Font Propo" !important;
+}
+
+ul#messageList li h2.item-header span span {
+	font-size:22px !important;
+	font-family:"GoMono Nerd Font Propo" !important;
+}
+
+ul#messageList li p.snippet {
+	font-family:"GoMono Nerd Font Propo" !important;
+	font-size:18px !important;
+}
+

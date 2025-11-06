@@ -38,10 +38,10 @@ c.colors.completion.category.bg = '#66000000'
 c.colors.completion.category.border.top = '#77f2172b'
 c.colors.completion.category.border.bottom = '#77a5ea9a'
 c.colors.completion.item.selected.fg = base00
-c.colors.completion.item.selected.bg = '#cca3fcf6'
-c.colors.completion.item.selected.border.top = '#cc93ece6'
-c.colors.completion.item.selected.border.bottom = '#cc93ece6'
-c.colors.completion.item.selected.match.fg = base0F
+c.colors.completion.item.selected.bg = '#ccf3597f'
+c.colors.completion.item.selected.border.top = '#cce3496e'
+c.colors.completion.item.selected.border.bottom = '#cce3496e'
+c.colors.completion.item.selected.match.fg = '#aaffffff'
 c.colors.completion.match.fg = '#ccf3597f'
 # Color of the scrollbar handle in the completion view.
 c.colors.completion.scrollbar.fg = '#883f9cb9'
@@ -133,8 +133,8 @@ c.colors.statusbar.url.fg = '#bbead972'
 c.colors.statusbar.url.error.fg = base08
 # Foreground color of the URL in the statusbar for hovered links.
 c.colors.statusbar.url.hover.fg = '#bbead972'
-c.colors.statusbar.url.success.http.fg = '#bba5ea9a'
-c.colors.statusbar.url.success.https.fg = '#bba5ea9a'
+c.colors.statusbar.url.success.http.fg = '#bbf3597f'
+c.colors.statusbar.url.success.https.fg = '#bbf3597f'
 c.colors.statusbar.url.warn.fg = '#bbead972'
 
 # --- Tabs ---

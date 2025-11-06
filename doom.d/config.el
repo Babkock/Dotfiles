@@ -52,6 +52,9 @@
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
 
+(require 'rainbow-delimiters)
+(rainbow-delimiters-mode)
+
 (setq doom-theme 'doom-city-lights)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
@@ -497,6 +500,9 @@
         :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
         :desc "Set filter" :ne "S" #'elfeed-search-set-filter
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
+
+(setq smtpmail-smtp-service 465)
+(setq smtpmail-stream-type 'ssl)
 
 (after! helm
     (setq helm-show-completion-min-window-height 10))

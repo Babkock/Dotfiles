@@ -60,6 +60,7 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#preferences-1][Preferences]]
   - [[#elfeed-tube][Elfeed-Tube]]
   - [[#keybindings-2][Keybindings]]
+- [[#gnus][GNUs]]
 - [[#helm][Helm]]
   - [[#helm-org-rifle][Helm Org Rifle]]
 - [[#keybindings-3][Keybindings]]
@@ -144,6 +145,9 @@ Fix the garbage collector, enable zoom in and zoom out keybindings.
 (add-hook! 'minibuffer-setup-hook 'garbage-collect)
 (add-hook! '+popup-mode-hook (hide-mode-line-mode 1))
 (add-hook! '+popup-mode-hook 'garbage-collect)
+
+(require 'rainbow-delimiters)
+(rainbow-delimiters-mode)
 #+end_src
 
 ** Appearance
@@ -596,6 +600,8 @@ Dashboard menu sections.
     :desc "Quit" :ne "Q" #'save-buffers-kill-terminal)
 #+end_src
 
+#+RESULTS:
+
 This part removes other elements of the Dashboard.
 
 #+begin_src emacs-lisp :tangle yes
@@ -760,6 +766,13 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
         :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
         :desc "Set filter" :ne "S" #'elfeed-search-set-filter
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
+#+end_src
+
+* GNUs
+
+#+begin_src emacs-lisp :tangle yes
+(setq smtpmail-smtp-service 465)
+(setq smtpmail-stream-type 'ssl)
 #+end_src
 
 * Helm

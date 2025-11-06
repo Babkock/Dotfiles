@@ -845,8 +845,8 @@ tooltip {
 
 #+begin_src css :tangle hyprland.css
  * {
-    font-family:"VictorMono Nerd Font";
-    font-size:24px;
+    font-family:"GoMono Nerd Font";
+    font-size:23px;
     color:#fdeadb;
 }
 
@@ -1239,7 +1239,7 @@ tooltip {
 
 #+begin_src css :tangle niri.css
  * {
-    font-family:"VictorMono Nerd Font";
+    font-family:"GoMono Nerd Font";
     font-size:24px;
     color:#efefef;
 }

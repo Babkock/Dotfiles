@@ -14,7 +14,6 @@
 (package! dashboard)
 (package! dired-sidebar)
 (package! dired-hacks)
-(package! elcord)
 (package! elfeed-org)     ;; Elfeed
 (package! elfeed-goodies) ;; Elfeed
 (package! elfeed-tube)    ;; YouTube
@@ -28,5 +27,6 @@
 (package! org-fancy-priorities)
 (package! org-modern)
 (package! pinentry)
+(package! rainbow-delimiters)
 (package! sx)
 
