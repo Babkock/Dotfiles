@@ -5,17 +5,17 @@
 * {
 	font-family:"GoMono Nerd Font";
 /*	font-weight:bold; */
-    font-size:15px;
+    font-size:16px;
 }
 
 html|ul#folderTree {
 	font-family:"GoMono Nerd Font" !important;
-	font-size:16px !important;
+	font-size:17px !important;
 }
 
 html|tree-view#threadTree {
 	font-family:"GoMono Nerd Font" !important;
-	font-size:2i2px !important;
+	font-size:22px !important;
 	font-style:italic !important;
 }
 
@@ -25,7 +25,7 @@ panelview * {
 
 .moz-text-plain[style="font-family: -moz-fixed; font-size: 12px;"] pre.moz-quote-pre {
 	font-family:"GoMono Nerd Font" !important;
-	font-size:15px !important;
+	font-size:16px !important;
 }
 
 tr.table-layout td div div span {
@@ -37,6 +37,12 @@ tr.table-layout td div div span {
 	-moz-appearance:none !important;
 	appearance:none !important;
 	font-family:"GoMono Nerd Font" !important;
+}
+
+#threadTree table > thead > tr > th > div > button {
+	background-color:#441010ee !important;
+	color:#efefef !important;
+	border:1px solid #551e1e !important;
 }
 
 #threadTree treecol.subjectCol, #threadTree treecol.subjectCol * {
@@ -90,7 +96,7 @@ treechildren::-moz-tree-cell-text(unread) * {
 }
 
 [is="tree-view-table-body"] > .selected {
-	background-color:#006611dd !important;
+	background-color:#00ff11dd !important;
 	font-style:italic !important;
 	color:#000000 !important;
 }
@@ -102,9 +108,9 @@ treechildren::-moz-tree-cell-text(unread) * {
 }
 
 #threadTree tr:hover {
-	background-color:#001166dd !important;
-	border:1px solid #001166 !important;
-	color:#ffffff !important;
+	background-color:#10ddffee !important;
+	border:1px solid #10ddff !important;
+	color:#000000 !important;
 }
 
 #threadTree tr:nth-child(2n) {
@@ -118,13 +124,13 @@ treechildren::-moz-tree-cell-text(unread) * {
 }
 
 #threadTree tr:nth-child(2n):hover {
-	background-color:#001166dd !important;
-	border:1px solid #001166 !important;
-	color:#ffffff !important;
+	background-color:#10ddffdd !important;
+	border:1px solid #10ddff !important;
+	color:#000000 !important;
 }
 
 .message-header-container {
-	row-gap:1px !important;
+	row-gap:2px !important;
 }
 
 div#expandedsubjectBox span {
