@@ -239,7 +239,6 @@
             (nth (random (length banners)) banners))))
 
 (add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
-(add-hook! '+doom-dashboard-mode-hook (elcord-mode -1))
 (add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'after-init-hook #'doom-modeline-mode)

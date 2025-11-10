@@ -683,12 +683,10 @@ Define additional font faces and hooks.
 (add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-(add-hook! 'elfeed-search-mode-hook (elcord-mode -1))
+;(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-show-mode-hook #'visual-line-mode)
 (add-hook! 'elfeed-show-mode-hook #'mixed-pitch-mode)
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
-(add-hook! 'elfeed-show-mode-hook (elcord-mode -1))
 (add-hook! 'elfeed-search-mode-hook (setq header-line-format nil))
 (add-hook! 'elfeed-show-mode-hook (setq header-line-format nil)))
 #+end_src
@@ -869,7 +867,6 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
     :desc "Switch Buffer" "," #'helm-buffers-list
     :desc "Mastodon Toggle Favorite" "-" #'mastodon-toot--toggle-favourite
-    :desc "Toggle Elcord Mode" "o" (cmd! (elcord-mode 'toggle))
     :desc "Org Time Stamp" "=" #'org-time-stamp
     :desc "Org Priority Up" "\\" #'org-priority-up
     :desc "Org Priority Down" "'" #'org-priority-down)
