@@ -205,9 +205,9 @@ c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
-c.fileselect.single_file.command = ['alacritty', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+c.fileselect.single_file.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-x', '-i',  '-GQ', '-p', '{}']
 #c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
-c.fileselect.multiple_files.command = ['alacritty', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-p', '{}']
+c.fileselect.multiple_files.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R',  '-x', '-i', '-GQ', '-p', '{}']
 
 # --- Keybindings: Bookmarks ---
 
@@ -227,6 +227,10 @@ config.bind(',-', 'navigate prev')
 config.bind(',=', 'navigate next')
 config.bind(',/', 'navigate increment')
 config.bind(',.', 'navigate decrement')
+
+# --- Keybindings: UI elements ---
+config.bind(',m', 'config-cycle fonts.completion.entry "17pt GoMono Nerd Font Propo" "15pt GoMono Nerd Font Propo"')
+config.bind(',n', 'config-cycle fonts.completion.category "17pt GoMono Nerd Font Propo" "15pt GoMono Nerd Font Propo"')
 
 # --- Keybindings: Stylesheets ---
 

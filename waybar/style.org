@@ -101,7 +101,7 @@ Notice the space before the asterisk.
 #+begin_src css :tangle sway.css
  * {
     font-family:"GoMono Nerd Font";
-    font-size:23px;
+    font-size:21px;
     /* background:rgba(0, 0, 0, 0); */
     color:#fefefe;
 }
@@ -846,7 +846,7 @@ tooltip {
 #+begin_src css :tangle hyprland.css
  * {
     font-family:"GoMono Nerd Font";
-    font-size:23px;
+    font-size:21px;
     color:#fdeadb;
 }
 
@@ -1240,7 +1240,7 @@ tooltip {
 #+begin_src css :tangle niri.css
  * {
     font-family:"GoMono Nerd Font";
-    font-size:24px;
+    font-size:21px;
     color:#efefef;
 }
 

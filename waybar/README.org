@@ -182,7 +182,7 @@ every single one of the modules, if I don't have to. The modules and their order
 #+begin_src json :tangle sway.json
 [{
     "position": "bottom",
-    "height": 48,
+    "height": 45,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
@@ -388,7 +388,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 #+begin_src json :tangle sway.json
 }, {
     "position": "bottom",
-    "height": 50,
+    "height": 45,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
@@ -839,7 +839,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 50,
+    "height": 45,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],
@@ -1502,7 +1502,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 48,
+    "height": 42,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
@@ -2242,7 +2242,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle niri.json
 [{
     "position": "bottom",
-    "height": 48,
+    "height": 45,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
@@ -2279,9 +2279,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "server": "127.0.0.2",
         "port": 6602,
         "password": "passgasgrassorazz",
-        "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{singleIcon}{repeatIcon}{randomIcon}{stateIcon} ",
+        "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{repeatIcon}{randomIcon}{stateIcon}",
         "format-disconnected": " ",
-        "format-stopped": "{consumeIcon}{singleIcon}{repeatIcon}{randomIcon} ",
+        "format-stopped": "{consumeIcon}{repeatIcon}{randomIcon}",
         "title-len": 42,
         "unknown-tag": "N/A",
         "interval": 1,
@@ -2289,7 +2289,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
         "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
         "consume-icons": {
-            "on": " 󰮯"
+            "on": " 󰮯 "
         },
         "random-icons": {
             "off": "  ",
@@ -2297,9 +2297,6 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         },
         "repeat-icons": {
             "on": "  "
-        },
-        "single-icons": {
-            "on": "  1 "
         },
         "state-icons": {
             "playing": " ",
@@ -2443,7 +2440,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "position": "bottom",
     "output": "HDMI-A-2",
     "spacing": 0,
-    "height": 50,
+    "height": 45,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["niri/workspaces", "niri/window"],
@@ -2848,7 +2845,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 50,
+    "height": 45,
     "spacing": 0,
     "reload_style_on_change": true,
     "mode": "dock",
