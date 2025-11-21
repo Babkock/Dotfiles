@@ -42,6 +42,7 @@ input {
     mouse {
         // off
         natural-scroll
+		scroll-factor 1.7
         accel-speed 1.0
         accel-profile "adaptive"
         // scroll-method "no-scroll"
@@ -315,6 +316,8 @@ environment {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "xwayland-satellite"
 
+spawn-at-startup "pipewire"
+
 spawn-at-startup "swaybg" "-o" "eDP-1" "-i" "/home/babkock/.config/niri/triangletexture.png" "-o" "HDMI-A-2" "-i" "/home/babkock/.config/niri/abstractpaintsplash.jpg" "-o" "DP-1" "-i" "/home/babkock/.config/niri/blueorangeswirl.jpg"
 spawn-at-startup "mako" "-c" "/home/babkock/.config/mako/niriconfig"
 
@@ -328,7 +331,7 @@ spawn-at-startup "bash" "-c" "rm -f /home/babkock/.wob.sock && mkfifo /home/babk
 spawn-at-startup "dbus-update-activation-environment" "SDL_VIDEODRIVER" "GDK_BACKEND" "GTK_THEME" "XCURSOR_SIZE" "XCURSOR_THEME" "QT_QPA_PLATFORM" "XDG_CURRENT_DESKTOP" "XDG_SESSION_DESKTOP" "XDG_SESSION_TYPE" "MOZ_ENABLE_WAYLAND"
 spawn-at-startup "foot" "--server" "--config" "/home/babkock/.config/foot/niri.ini"
 
-spawn-at-startup "waybar" "-c" "'/home/babkock/.config/waybar/niri.json'" "-s" "'/home/babkock/.config/waybar/niri.css'" "-l" "off"
+spawn-at-startup "waybar" "-c" "/home/babkock/.config/waybar/niri.json" "-s" "/home/babkock/.config/waybar/niri.css" "-l" "off"
 
 spawn-at-startup "emacs" "--daemon"
 spawn-at-startup "mpdas" "-d" "-c" "/home/babkock/.config/mpdasrc"
@@ -422,6 +425,22 @@ window-rule {
 }
 
 window-rule {
+	match app-id="Thunderbird"
+	open-on-output "DP-1"
+	geometry-corner-radius 0
+	open-maximized true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match app-id="steam"
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
+	open-maximized true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
 	match app-id=r#"^org\.qutebrowser\.qutebrowser$"#
 	open-on-output "HDMI-A-2"
 	open-maximized true
@@ -432,6 +451,7 @@ window-rule {
 window-rule {
 	match app-id=r#"^org\.nicotine_plus\.Nicotine$"#
 	open-on-output "DP-1"
+	open-maximized true
 	geometry-corner-radius 0
 	default-column-width { proportion 1.0; }
 }
@@ -450,8 +470,10 @@ window-rule {
 	default-column-width { proportion 1.0; }
 }
 window-rule {
+	match title="Factorio"
 	match app-id="factorio"
 	open-fullscreen true
+	geometry-corner-radius 0
 	open-on-output "HDMI-A-2"
 }
 
@@ -496,6 +518,8 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "bash" "-c" "dmenu_path | fuzzel -b 4bc8dc66 -t efefefef --prompt-color=ff2800ef --input-color=efefefef -s 81c071bb -S 93eab9ff -m e3af67ff -M fdcb46ff -f 'GoMono Nerd Font Propo:pixelsize=26:antialias=true' --counter --counter-color ff2800ee --use-bold --dpi-aware=yes -y 4 --placeholder-color=efefef66 --placeholder='Run command...' -w 60 -x 6 -r 45 -B 2 -l 19 -P 1 -d -p '$ ' -C e04a00cc -d --no-exit-on-keyboard-focus-loss | sh"; } 
+
+	Mod+Shift+Space hotkey-overlay-title="Show webcam" { spawn "mpv" "av://v4l2:/dev/video2" "--untimed" "--profile=low-latency" "--no-osc" "--ontop" "--cache=no" "--demuxer-lavf-format=video4linux2" "--demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30" "--window-scale=0.5"; }
 
 	Mod+Shift+Period hotkey-overlay-title="Mozilla Firefox" { spawn "firefox-wayland"; }
 
@@ -556,8 +580,8 @@ binds {
     // the first or last window in a column.
     // Mod+J     { focus-window-or-workspace-down; }
     // Mod+K     { focus-window-or-workspace-up; }
-    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+    //Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
+    //Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
 
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
@@ -715,8 +739,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+S       { toggle-window-floating; }
+    Mod+Shift+S { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,

@@ -101,7 +101,7 @@ input "2362:9488:PixArt_USB_Optical_Mouse" {
 }
 
 input "12994:18:HS6209_2.4G_Wireless_Receiver_Mouse" {
-	pointer_accel 0.95
+	pointer_accel 0.98
 	scroll_factor 1.7
 	accel_profile "adaptive"
 	natural_scroll enabled
