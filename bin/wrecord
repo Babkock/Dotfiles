@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function record() {
+	parecord --channels 2 -d "alsa_input.pci-0000_00_1f.3.analog-stereo" "$1.wav"
+}
+
+if [ $# -ne 1 ]; then
+	printf "USAGE: $0 [output file]\n" > /dev/stderr
+	false
+else
+	printf "Starting Video in 3...\n"
+	sleep 1
+	printf "2...\n"
+	sleep 1
+	printf "1...\n"
+	sleep 1
+	notify-send --urgency=critical -w "Recording Now\!"
+	record "$1" &
+	wf-recorder -o HDMI-A-2 -c libx264rgb -r 60 -f "$1.mkv"
+	true
+fi
+
