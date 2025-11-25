@@ -42,6 +42,7 @@ This is the other, secondary Doom Emacs config file =init.org=, which tangles to
 - [[#lexical-binding][Lexical Binding]]
 - [[#packages][Packages]]
 - [[#preferences][Preferences]]
+  - [[#theme][Theme]]
   - [[#frame-title][Frame Title]]
   - [[#fallback-buffer-name][Fallback Buffer Name]]
   - [[#doom-dashboard][Doom Dashboard]]
@@ -246,6 +247,12 @@ This is my list of enabled and installed packages. I try to have a small and min
 
 I don't know why, but these next snippets of code must be in this file, (=init.el=) and not =config.el=.
 
+** Theme
+
+#+begin_src emacs-lisp :tangle yes
+(setq doom-theme 'doom-city-lights)
+#+end_src
+
 ** Frame Title
 
 Conditionally set the title of the frame (or X window) with project name and buffer name (file name).
@@ -272,8 +279,8 @@ The default buffer name.
 #+begin_src emacs-lisp :tangle yes
 (setq doom-fallback-buffer-name "*doom*"
     doom-dashboard-name "*doom*")
-(setq doom-fallback-buffer-name "*dashboard*")
-(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+;(setq doom-fallback-buffer-name "*dashboard*")
+;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -342,7 +349,7 @@ Show a custom image on the splash screen, and hide cursor and mode line.
        :realname "Tanner Babcock"
        :nickserv-nick "Babkock"
        :nickserv-password "tanner9"
-       :channels ("#voidlinux" "#emacs"))))
+       :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux"))))
 #+end_src
 
 ** Auth Sources

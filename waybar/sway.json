@@ -1,6 +1,6 @@
 [{
     "position": "bottom",
-    "height": 48,
+    "height": 45,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,
@@ -161,7 +161,7 @@
 
 }, {
     "position": "bottom",
-    "height": 50,
+    "height": 45,
     "spacing": 0,
     "output": "HDMI-A-2",
     "reload_style_on_change": true,
@@ -558,7 +558,7 @@
 }, {
     "position": "bottom",
     "output": "DP-1",
-    "height": 50,
+    "height": 45,
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces"],

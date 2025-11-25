@@ -167,13 +167,13 @@ p.message {
 }
 
 p.message .message-style .ib-msg-txt {
-	font-size:18px !important;
+	font-size:17px !important;
 }
 
 p.message:hover {
 	background:linear-gradient(180deg, rgba(100, 100, 100, 0.5), rgba(0, 0, 0, 0.5)) !important;
 	color:#fdfdfd !important;
-	border-top:1px solid white !important;
+	border-top:1px solid #bfbfbf !important;
 }
 
 p.message:hover a {
@@ -192,7 +192,7 @@ p.event-messages {
 }
 
 p.event-messages:hover {
-	border-top:1px solid #efefef !important;
+	border-top:1px solid #bfbfbf !important;
 	border-bottom:1px solid transparent !important;
 	line-height:1.4 !important;
 	margin-top:1px !important;
@@ -222,8 +222,8 @@ li[is="folder-tree-row"] div.container span {
 }
 
 hr#unread-ruler {
-	border-top:4px dashed #c9c9c9 !important;
-	border-bottom:4px dashed #c8c8c8 !important;
+	border-top:2px dashed #c9c9c9 !important;
+	border-bottom:2px dashed #c8c8c8 !important;
 	margin-top:1px !important;
 	margin-bottom:1px !important;
 }
@@ -232,8 +232,8 @@ p.message span.pseudo span.ib-sender, .ib-msg-txt .ib-person span, .ib-msg-txt s
 	font-style:italic !important;
 }
 
-p.message span.pseudo span.ib-sender, .ib-msg-txt .ib-person span, .ib-msg-txt a, p.message .ib-msg-txt span.ib-nick {
-	font-size:18px !important;
+p.message span.pseudo span.ib-sender, .ib-msg-txt .ib-person span, .ib-msg-txt a, p.message .ib-msg-txt span.ib-nick, p.message .ib-msg-txt strong {
+	font-size:17px !important;
 }
 
 div#Chat {
@@ -258,6 +258,24 @@ browser#messagepane, browser#messagepane html body {
 }
 
 tr.table-layout[style="height: 21px;"] {
-	height:28px !important;
+	height:26px !important;
 	margin-top:2px !important;
 }
+
+richlistitem[is="chat-imconv-richlistitem"][attention] {
+	color:#ffed00 !important;
+}
+richlistitem[is="chat-imconv-richlistitem"][unread] {
+	color:#ff4040 !important;
+}
+
+.new-messages > .container > .name {
+	color:#ff4040 !important;
+}
+
+.new-messages > .container > .unread-count {
+	background:#dd1010 !important;
+	color:#fefefe !important;
+}
+
+

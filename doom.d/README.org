@@ -202,7 +202,7 @@ These next two lines are where the alpha channel for the window is defined. The 
 (set-frame-parameter (selected-frame) 'alpha 90)
 (add-to-list 'default-frame-alist '(alpha 90 90))
 ;(add-hook! 'dired-mode-hook 'nerd-icons-dired-mode)
-(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
+;(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
 (add-hook! 'dired-mode-hook 'garbage-collect)
 
 (setq warning-minimum-level :emergency)
@@ -576,13 +576,6 @@ Dashboard menu sections.
     :desc "GNUs Eternal September News Server" :ne "x" #'tb/gnus1
     :desc "Increase Font Size" :ne "+" #'doom/increase-font-size
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
-    :desc "Open MPDel Playlist" :ne ";" #'mpdel-playlist-open
-    :desc "Open MPDel Browser" :ne "/" #'mpdel-browser-open
-    :desc "Toggle Play/Pause" :ne "," #'libmpdel-playback-play-pause
-    :desc "Open MPDel Artists" :ne "g" #'mpdel-core-open-artists
-    :desc "Play Next Song" :ne "]" #'libmpdel-playback-next
-    :desc "Play Previous Song" :ne "[" #'libmpdel-playback-previous
-    :desc "Clear Current Playlist" :ne "O" #'mpdel-core-replace-current-playlist
     :desc "Doom Help" :ne "?" #'doom/help
     :desc "Open Circe" :ne "." #'circe
     :desc "Agenda" :ne "a" #'org-agenda

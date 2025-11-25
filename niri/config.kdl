@@ -125,6 +125,8 @@ layout {
     // Set gaps around windows in logical pixels.
     gaps 2
 
+	background-color "transparent"
+
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
     //   or right edge of the screen.
@@ -287,6 +289,26 @@ overview {
 	}
 }
 
+recent-windows {
+	open-delay-ms 200
+	highlight {
+		active-color "#da3a0099"
+		urgent-color "#ff2800ee"
+		padding 20
+		corner-radius 36
+	}
+
+	previews {
+		max-height 500
+		max-scale 0.6
+	}
+
+	binds {
+		Mod+Tab { next-window; }
+		Mod+Shift+Tab { previous-window; }
+	}
+}
+
 hotkey-overlay {
 	skip-at-startup
 }
@@ -360,7 +382,29 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 2.0
+    slowdown 1.6
+	workspace-switch {
+		spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+	}
+	window-open {
+		duration-ms 200
+		curve "ease-out-expo"
+	}
+	window-close {
+		duration-ms 200
+		curve "ease-out-quad"
+	}
+	horizontal-view-movement {
+		spring damping-ratio=1.0 stiffness=500 epsilon=0.0001
+	}
+	window-movement {
+		spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
+	}
+}
+
+layer-rule {
+	match namespace="^wallpaper$"
+	place-within-backdrop true
 }
 
 window-rule {
@@ -471,7 +515,7 @@ window-rule {
 }
 window-rule {
 	match title="Factorio"
-	match app-id="factorio"
+	match app-id="factorio$"
 	open-fullscreen true
 	geometry-corner-radius 0
 	open-on-output "HDMI-A-2"

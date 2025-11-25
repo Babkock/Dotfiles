@@ -1,7 +1,7 @@
 [{
     "position": "bottom",
     "layer": "top",
-    "height": 48,
+    "height": 42,
     "spacing": 0,
     "output": "eDP-1",
     "reload_style_on_change": true,

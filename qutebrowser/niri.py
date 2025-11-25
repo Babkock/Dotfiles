@@ -205,9 +205,9 @@ c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
-c.fileselect.single_file.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-x', '-i',  '-GQ', '-p', '{}']
+c.fileselect.single_file.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-i', '-x', '-GQ', '-p', '{}']
 #c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
-c.fileselect.multiple_files.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R',  '-x', '-i', '-GQ', '-p', '{}']
+c.fileselect.multiple_files.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-i', '-x', '-GQ', '-p', '{}']
 
 # --- Keybindings: Bookmarks ---
 
@@ -231,6 +231,7 @@ config.bind(',.', 'navigate decrement')
 # --- Keybindings: UI elements ---
 config.bind(',m', 'config-cycle fonts.completion.entry "17pt GoMono Nerd Font Propo" "15pt GoMono Nerd Font Propo"')
 config.bind(',n', 'config-cycle fonts.completion.category "17pt GoMono Nerd Font Propo" "15pt GoMono Nerd Font Propo"')
+config.bind(',x', 'config-cycle fonts.statusbar "18pt GoMono Nerd Font Propo" "16pt GoMono Nerd Font Propo"')
 
 # --- Keybindings: Stylesheets ---
 

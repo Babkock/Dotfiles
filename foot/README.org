@@ -78,7 +78,6 @@ font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=tru
 dpi-aware=yes
 pad=9x9 center
 vertical-letter-offset=-1px
-notify=notify-send -i ${app-id} {$title} {$body}
 line-height=24px
 letter-spacing=-1px
 bold-text-in-bright=palette-based
@@ -210,7 +209,6 @@ font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=tru
 #+begin_src conf :tangle hyprland.ini
 dpi-aware=yes
 pad=9x9 center
-notify=notify-send -i ${app-id} ${title} ${body}
 vertical-letter-offset=-1px
 line-height=24px
 letter-spacing=-1px
@@ -281,7 +279,6 @@ font-bold-italic = GoMono Nerd Font:style=Bold Italic:pixelsize=20:antialias=tru
 dpi-aware=yes
 pad=9x9 center
 vertical-letter-offset=-1px
-notify=notify-send -i ${app-id} {$title} {$body}
 line-height=24px
 letter-spacing=-1px
 bold-text-in-bright=palette-based

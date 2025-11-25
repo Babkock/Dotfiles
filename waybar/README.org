@@ -2347,7 +2347,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "footclient -e lf"
 },
 #+end_src
 

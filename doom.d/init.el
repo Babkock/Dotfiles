@@ -178,6 +178,8 @@
        literate
        (default +bindings +smartparens))
 
+(setq doom-theme 'doom-city-lights)
+
 (setq frame-title-format
     '(""
         (:eval
@@ -193,8 +195,8 @@
 
 (setq doom-fallback-buffer-name "*doom*"
     doom-dashboard-name "*doom*")
-(setq doom-fallback-buffer-name "*dashboard*")
-(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+;(setq doom-fallback-buffer-name "*dashboard*")
+;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 (setq-default x-stretch-cursor t)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -253,7 +255,7 @@
        :realname "Tanner Babcock"
        :nickserv-nick "Babkock"
        :nickserv-password "tanner9"
-       :channels ("#voidlinux" "#emacs"))))
+       :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux"))))
 
 (setq auth-sources '("~/.authinfo"))
 
