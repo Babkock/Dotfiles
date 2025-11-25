@@ -30,7 +30,11 @@ this repo, and adds them to the Git staging area. I rely on this script for almo
 * What's in Here
 
 
-[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]] [[https://raw.githubusercontent.com/WillPower3309/swayfx/5e866d0345449f34ac51c6590a3aac285cb2f8bf/assets/swayfx_logo.svg]]
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/qutebrowser.png]] [[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/emacs.png]]
+
+[[https://raw.githubusercontent.com/WillPower3309/swayfx/5e866d0345449f34ac51c6590a3aac285cb2f8bf/assets/swayfx_logo.svg]]
+
+[[https://gitlab.com/Babkock/Dotfiles/-/raw/master/pics/programs/niri-icon.svg]]
 
 ** Wayland Desktop Environments
 

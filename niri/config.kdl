@@ -270,6 +270,12 @@ layout {
     }
 }
 
+gestures {
+	hot-corners {
+		off
+	}
+}
+
 cursor {
 	xcursor-theme "Adwaita"
 	xcursor-size 32
