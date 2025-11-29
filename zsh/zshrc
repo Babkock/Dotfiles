@@ -56,7 +56,7 @@ if [[ -n $SSH_CONNECTION ]]; then
     alias cat="/usr/bin/cat"
     alias grep="/usr/bin/grep --color=auto"
     alias g="/usr/bin/grep --color=auto"
-    alias gh="/usr/bin/grep --color=auto --context=4"
+    alias gy="/usr/bin/grep --color=auto --context=4"
     alias xx="echo Can not reboot from SSH > /dev/stderr"
     alias reboot="echo Can not reboot from SSH > /dev/stderr"
     alias shutdown="echo Can not shutdown from SSH > /dev/stderr"
@@ -64,9 +64,9 @@ else
     alias c="bat"
     alias cat="bat"
     alias d="fd"
-    alias grep="ug"
-    alias g="ug"
-    alias gh="ug --context=4"
+    alias grep="rg"
+    alias g="rg"
+    alias gy="rg --context=4"
     alias reboot="loginctl reboot"
     alias shutdown="sudo /usr/bin/shutdown -h now"
     alias xx="loginctl reboot"
@@ -560,8 +560,46 @@ function pcp() {
         false
     elif [[ -z "$2" ]]; then
         scp -i "$HOME/.ssh/comp2pinew" "$1" pi@192.168.0.13:~
+        true
     else
         scp -i "$HOME/.ssh/comp2pinew" "$1" "$2" pi@192.168.0.13:~
+        true
+    fi
+}
+
+function gst() {
+    if [[ -z "$1" ]]; then
+        printf "USAGE: $0 [file to upload] [description]\n" > /dev/stderr
+        false
+    elif [[ -z "$2" ]]; then
+        printf "USAGE: $0 '$1' [description]\n" > /dev/stderr
+        false
+    else
+        gh gist create "$1" -d "$2" -p -w
+        true
+    fi
+}
+
+function gic() {
+    if [[ -z "$1" ]]; then
+        printf "USAGE: $0 [title] [body]\n" > /dev/stderr
+        false
+    elif [[ -z "$2" ]]; then
+        gh issue create --title "$1"
+        true
+    else
+        gh issue create --title "$1" --body "$2"
+        true
+    fi
+}
+
+function gfk() {
+    if [[ -z "$1" ]]; then
+        printf "USAGE: $0 'OWNER/REPO'\n" > /dev/stderr
+        false
+    else
+        gh repo fork "$1"
+        true
     fi
 }
 
@@ -628,7 +666,7 @@ alias ncr="gpg --encrypt --armor -r Tanner"
 alias dcr="gpg --decrypt"
 alias g="rg"
 alias gz="ug -I --depth=2 --exclude-dir='node_modules' --exclude-dir='vendor' --exclude-dir='.git'"
-alias gh="rg --context=4"
+alias gy="rg --context=4"
 alias gb="onefetch --no-color-palette -d head dependencies --text-colors 7 9 1 10 1 4"
 alias gp="gpg"
 alias gs="git status -sb"
@@ -665,6 +703,14 @@ alias gpulm="git pull origin main"
 alias gpash="git push all master; git pull origin master; git pull upstream master"
 # push 'main' to multiple remotes
 alias gpasm="git push all main; git pull origin main; git pull upstream main"
+alias gstl="gh gist list"
+alias gste="gh gist edit"
+alias gstd="gh gist delete"
+alias gpr="gh pr co"
+alias gprc="gh pr create --web"
+alias gpu="gh pr update-branch"
+alias gpl="gh pr list --limit 20"
+alias gil="gh issue list --limit 20"
 alias v="vim -n -T alacritty"
 alias vh="vim -n -T alacritty -o"
 alias vv="vim -n -T alacritty -O"
@@ -698,7 +744,6 @@ alias ol="eww list-windows"
 alias oo="eww open"
 alias or="eww reload"
 alias ow="eww open mem; eww open calendar"
-#alias oh="pgrep Hyprland | xargs kill 2> /dev/null ; pgrep mako | xargs kill 2> /dev/null"
 alias u="neomutt -F '$HOME/.muttrc'"
 alias spi="TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
 alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.17"
@@ -763,6 +808,9 @@ source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=""
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=""
+
+export GH_BROWSER="qutebrowser --qt-arg stylesheet '/home/babkock/.local/share/qutebrowser/fix-tooltips.qss' --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag enable-features=UseOzonePlatform --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-accelerated-mjpeg-decode --qt-flag enable-native-gpu-memory-buffers --qt-flag ignore-gpu-blacklist --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization"
+export GH_EDITOR="vim -n -T alacritty"
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.zsh/zsh-autopair/autopair.zsh
 source $HOME/.zsh/zsh-fzf-history-search/zsh-fzf-history-search.zsh
