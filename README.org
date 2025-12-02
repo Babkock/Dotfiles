@@ -115,6 +115,7 @@ May vary across Wayland compositors, but almost all of these are implemented in 
 | Key Combination        | Action                |
 |------------------------+-----------------------|
 | Super + Space          | Fuzzel                |
+| Super + Shift + Space  | Webcam Image in MPV   |
 | Super + Return         | Foot or [[https://github.com/Babkock/Dotfiles/blob/master/alacritty.yml][Alacritty]] |
 | Super + Period         | [[https://github.com/Babkock/Dotfiles/tree/master/qutebrowser][Qutebrowser]]       |
 | Super + Shift + Period | [[https://github.com/Babkock/Dotfiles/tree/master/chrome][Mozilla Firefox]] |
@@ -127,7 +128,7 @@ May vary across Wayland compositors, but almost all of these are implemented in 
 | Super + Slash             | Sublime Text       |
 | Super + Shift + Slash     | Steam              |
 | Super + Backspace         | Terminal with Tremc |
-| Super + Shift + Backspace | Transmission GTK   |
+| Super + Shift + Backspace | Virt-Manager       |
 | Super + Shift + C         | Close window       |
 | Super + Shift + Q         | Exit Session       |
 
