@@ -313,7 +313,7 @@ bindsym $mod+Shift+Slash workspace number 6; exec steam
 
 bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin12345@127.0.0.1:9091'
 
-bindsym $mod+Shift+backspace exec transmission-remote-gtk
+bindsym $mod+Shift+backspace workspace number 6; exec virt-manager
 
 bindsym $mod+backslash workspace number 7; exec thunderbird
 
