@@ -58,6 +58,10 @@ their respective configuration files. You can view these Org documents as web pa
 
 * My Stack
 
+** Zsh theme
+
+- [[https://typewritten.dev][typewritten]]
+
 ** Wayland Compositors
 
 - [[https://github.com/hyprwm/Hyprland][Hyprland]]
