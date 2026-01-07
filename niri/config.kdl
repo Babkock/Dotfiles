@@ -244,7 +244,7 @@ layout {
         // pixels and match the CSS box-shadow properties.
 
         // Softness controls the shadow blur radius.
-        softness 20
+        softness 10
 
         // Spread expands the shadow.
         spread 4
@@ -288,8 +288,8 @@ overview {
 	backdrop-color "#202020"
 
 	workspace-shadow {
-		softness 30
-		spread 9
+		softness 20
+		spread 8
 		offset x=1 y=10
 		color "#00000050"
 	}
@@ -390,21 +390,21 @@ animations {
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     slowdown 1.6
 	workspace-switch {
-		spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
 	}
 	window-open {
-		duration-ms 200
+		duration-ms 250
 		curve "ease-out-expo"
 	}
 	window-close {
-		duration-ms 200
+		duration-ms 250
 		curve "ease-out-quad"
 	}
 	horizontal-view-movement {
 		spring damping-ratio=1.0 stiffness=500 epsilon=0.0001
 	}
 	window-movement {
-		spring damping-ratio=1.0 stiffness=700 epsilon=0.0001
+		spring damping-ratio=1.0 stiffness=600 epsilon=0.0001
 	}
 }
 
@@ -487,17 +487,28 @@ window-rule {
 window-rule {
 	match app-id="Thunderbird"
 	open-on-output "DP-1"
+	open-floating true
+}
+
+window-rule {
+	match title="Mozilla Thunderbird$"
+	open-maximized-to-edges true
+	geometry-corner-radius 0
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match title="^Steam$"
+	open-on-output "HDMI-A-2"
 	geometry-corner-radius 0
 	open-maximized-to-edges true
 	default-column-width { proportion 1.0; }
 }
 
 window-rule {
-	match app-id="steam"
+	match title="^Sign in to Steam$"
 	open-on-output "HDMI-A-2"
-	geometry-corner-radius 0
-	open-maximized-to-edges true
-	default-column-width { proportion 1.0; }
+	open-floating true
 }
 
 window-rule {
@@ -537,6 +548,13 @@ window-rule {
 	open-fullscreen true
 	geometry-corner-radius 0
 	open-on-output "HDMI-A-2"
+}
+
+window-rule {
+	match app-id="monero-core"
+	open-maximized true
+	geometry-corner-radius 0
+	default-column-width { proportion 1.0; }
 }
 
 window-rule {
@@ -745,15 +763,15 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }

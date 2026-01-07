@@ -77,10 +77,7 @@
     "interval": 1,
     "format": " {}",
     "align": 1,
-    "tooltip": false,
-    "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-    "on-click-right": "eww close-all",
-    "on-click-middle": "pkill -x eww"
+    "tooltip": false
 },
 
 "cpu": {
@@ -222,6 +219,8 @@
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
+        "(.*) on QEMU/KVM": " <span style=\"italic\">$1</span>",
+        "Virtual Machine Manager": " ",
         "YouTube": " ",
         "GitHub": " ",
         "Explore GitHub": " ",
@@ -608,7 +607,7 @@
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "footclient -e lf"
 },
 
 "disk": {
@@ -632,9 +631,6 @@
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false,
-        "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-        "on-click-right": "eww close-all",
-        "on-click-middle": "pkill -x eww"
+        "tooltip": false
     }
 }]

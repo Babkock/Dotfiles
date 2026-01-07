@@ -271,10 +271,7 @@ every single one of the modules, if I don't have to. The modules and their order
     "interval": 1,
     "format": " {}",
     "align": 1,
-    "tooltip": false,
-    "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-    "on-click-right": "eww close-all",
-    "on-click-middle": "pkill -x eww"
+    "tooltip": false
 },
 #+end_src
 
@@ -457,6 +454,8 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
         "Mozilla Thunderbird": " ",
+        "(.*) on QEMU/KVM": " <span style=\"italic\">$1</span>",
+        "Virtual Machine Manager": " ",
         "YouTube": " ",
         "GitHub": " ",
         "Explore GitHub": " ",
@@ -901,7 +900,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "footclient -e lf"
 },
 #+end_src
 
@@ -937,10 +936,7 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false,
-        "on-click": "eww --force-wayland daemon & eww open mem; eww open calendar",
-        "on-click-right": "eww close-all",
-        "on-click-middle": "pkill -x eww"
+        "tooltip": false
     }
 }]
 #+end_src
@@ -1450,7 +1446,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle wayfire.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 24,
+    "icon-size": 30,
     "transition-duration": 400,
     "modules": [
         {
@@ -1754,6 +1750,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Sign in to Steam": " ",
         "Shutdown": " ",
         "cava": " ",
+        "(.*) on QEMU/KVM": " <span style=\"italic\">$1</span>",
+        "Virtual Machine Manager": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
@@ -1987,7 +1985,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle hyprland.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 32,
+    "icon-size": 30,
     "transition-duration": 400,
     "modules": [
         {
@@ -2180,7 +2178,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
     "format-icons": ["", "", "", "", ""],
-    "on-click-right": "alacritty -e bluetoothctl"
+    "on-click-right": "footclient -e bluetoothctl"
 },
 #+end_src
 
@@ -2227,10 +2225,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false,
-        "on-click": "eww --force-wayland daemon & eww open hymem; eww open hycalendar",
-        "on-click-right": "eww close-all",
-        "on-click-middle": "pkill -x eww"
+        "tooltip": false
     }
 }]
 #+end_src
@@ -2289,7 +2284,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
         "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
         "consume-icons": {
-            "on": " 󰮯 "
+            "on": " 󰮯"
         },
         "random-icons": {
             "off": "  ",
@@ -2444,7 +2439,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["niri/workspaces", "niri/window"],
-    "modules-right": ["disk", "privacy", "network", "wireplumber", "temperature", "tray"],
+    "modules-right": ["disk", "privacy", "idle_inhibitor", "network", "wireplumber", "temperature", "tray"],
     "niri/workspaces": {
         "disable-click": false,
         "expand": false,
@@ -2490,6 +2485,8 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "DeaDBeeF - (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
+        "(.*) on QEMU/KVM": " <span style=\"italic\">$1</span>",
+        "Virtual Machine Manager": " ",
         "ranger:(.*)": " $1",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
@@ -2756,7 +2753,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
 #+begin_src json :tangle niri.json
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 32,
+    "icon-size": 30,
     "transition-duration": 350,
     "modules": [
         {
@@ -2909,7 +2906,7 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "footclient -e lf"
 },
 #+end_src
 

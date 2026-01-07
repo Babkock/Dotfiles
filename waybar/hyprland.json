@@ -206,6 +206,8 @@
         "Sign in to Steam": " ",
         "Shutdown": " ",
         "cava": " ",
+        "(.*) on QEMU/KVM": " <span style=\"italic\">$1</span>",
+        "Virtual Machine Manager": " ",
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "ranger:(.*)": " $1",
@@ -431,7 +433,7 @@
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 32,
+    "icon-size": 30,
     "transition-duration": 400,
     "modules": [
         {
@@ -581,7 +583,7 @@
     "tooltip-format-connected": "{device_address} {controller_alias}",
     "tooltip-format-connected-battery": "{device_battery_percentage}% {device_address} {controller_alias}",
     "format-icons": ["", "", "", "", ""],
-    "on-click-right": "alacritty -e bluetoothctl"
+    "on-click-right": "footclient -e bluetoothctl"
 },
 
 "memory": {
@@ -612,9 +614,6 @@
         "interval": 1,
         "format": " {}",
         "align": 1,
-        "tooltip": false,
-        "on-click": "eww --force-wayland daemon & eww open hymem; eww open hycalendar",
-        "on-click-right": "eww close-all",
-        "on-click-middle": "pkill -x eww"
+        "tooltip": false
     }
 }]

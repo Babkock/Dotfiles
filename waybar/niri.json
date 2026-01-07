@@ -43,7 +43,7 @@
     "on-click-right": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 next > /dev/null",
     "on-click-middle": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 prev > /dev/null",
     "consume-icons": {
-        "on": " 󰮯 "
+        "on": " 󰮯"
     },
     "random-icons": {
         "off": "  ",
@@ -159,7 +159,7 @@
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["niri/workspaces", "niri/window"],
-    "modules-right": ["disk", "privacy", "network", "wireplumber", "temperature", "tray"],
+    "modules-right": ["disk", "privacy", "idle_inhibitor", "network", "wireplumber", "temperature", "tray"],
     "niri/workspaces": {
         "disable-click": false,
         "expand": false,
@@ -201,6 +201,8 @@
         "ncmpcpp (.*)": " <span style=\"italic\">$1</span>",
         "DeaDBeeF - (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
         "zncmpcpp (.*) - (.*)": " $1 - <span style=\"italic\">$2</span>",
+        "(.*) on QEMU/KVM": " <span style=\"italic\">$1</span>",
+        "Virtual Machine Manager": " ",
         "ranger:(.*)": " $1",
         "Zen Browser": "󰪥 ",
         "Mozilla Firefox": " ",
@@ -451,7 +453,7 @@
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 32,
+    "icon-size": 30,
     "transition-duration": 350,
     "modules": [
         {
@@ -569,7 +571,7 @@
     "format": " {}%",
     "format-alt": " {used:0.1f} GB  {swapUsed:0.1f} GB",
     "tooltip-format": " {used:0.2f} GB  {swapUsed:0.2f} GB",
-    "on-click-right": "footclient -e yazi"
+    "on-click-right": "footclient -e lf"
 },
 
 "disk": {

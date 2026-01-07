@@ -169,6 +169,7 @@ workspace 7 output DP-1
 workspace 8 output eDP-1
 workspace 9 output DP-1
 
+assign [app_id="virt-manager"] 6
 assign [app_id="Emacs"] 4
 assign [class="Emacs"] 4
 assign [app_id="emacs"] 4
@@ -180,7 +181,8 @@ assign [app_id="com.obsproject.Studio"] 8
 assign [app_id="org.qutebrowser.qutebrowser"] 2
 assign [app_id="org.nicotine_plus.Nicotine"] 9
 assign [app_id="com.sublimetext.three"] 4
-assign [class="monero-core"] 7
+assign [app_id="com.github.wwmm.easyeffects"] 1
+assign [app_id="monero-core"] 7
 assign [app_id="sublime"] 4
 assign [app_id="Steam"] 6
 assign [class="Steam"] 6
@@ -317,7 +319,7 @@ bindsym $mod+Shift+backspace workspace number 6; exec virt-manager
 
 bindsym $mod+backslash workspace number 7; exec thunderbird
 
-bindsym $mod+Shift+backslash workspace number 5; exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization --enable-gpu --enable-zero-copy --enable-features=WebRTCPipeWireCapturer
+bindsym $mod+Shift+backslash workspace number 1; exec easyeffects
 
 floating_modifier $mod normal
 
