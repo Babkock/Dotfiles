@@ -1285,6 +1285,10 @@ window {
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
 }
 
+#privacy span {
+    color:#ff2800;
+}
+
 #cpu:hover {
     background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
     color:#efefef;
@@ -1412,7 +1416,7 @@ window {
     text-shadow:2px 2px rgba(150, 150, 150, 0.5);
 }
 
-#idle_inhibitor, #pulseaudio.bluetooth {
+#pulseaudio.bluetooth {
     border-radius:40px 0px 0px 40px;
     margin-left:2px;
 }

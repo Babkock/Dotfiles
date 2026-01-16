@@ -201,6 +201,7 @@ c.scrolling.smooth = False
 c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss", "enable-gpu-rasterization", "ignore-gpu-blocklist", "use-gl=egl", "enable-accelerated-video-decode"]
 c.qt.chromium.experimental_web_platform_features = "always"
 c.qt.workarounds.disable_hangouts_extension = True
+c.input.insert_mode.plugins = True
 
 c.content.blocking.method = "adblock"
 c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]

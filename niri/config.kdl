@@ -543,11 +543,15 @@ window-rule {
 }
 
 window-rule {
-	match title="Factorio"
+	match title="Factorio: Space Age 2.0.72"
 	match app-id=r#"^factorio$"#
 	open-fullscreen true
 	geometry-corner-radius 0
 	open-on-output "HDMI-A-2"
+}
+
+window-rule {
+	match
 }
 
 window-rule {
@@ -616,7 +620,7 @@ binds {
 
 	Mod+Backslash hotkey-overlay-title="Mozilla Thunderbird" { spawn "thunderbird"; }
 
-	Mod+Shift+Backslash hotkey-overlay-title="Discord" { spawn "discord" "--enable-features=UzeOzonePlatform" "--ozone-platform=wayland" "--enable-features=WaylandWindowDecorations" "--enable-accelerated-mjpeg-decode" "--enable-accelerated-video" "--ignore-gpu-blacklist" "--enable-native-gpu-memory-buffers" "--enable-gpu-rasterization" "--enable-gpu" "--enable-zero-copy" "--enable-features=WebRTCPipeWireCapturer"; }
+	Mod+Shift+Backslash hotkey-overlay-title="Easyeffects" { spawn "easyeffects"; }
 
 	Mod+Shift+Semicolon hotkey-overlay-title="Monero" { spawn  "bash" "-c" "QT_QPA_PLATFORM='xcb' QT_QPA_PLATFORMTHEME='qt5ct' monero-wallet-gui"; }
 

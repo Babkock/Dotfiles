@@ -204,6 +204,8 @@ c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss
 c.qt.chromium.experimental_web_platform_features = "always"
 c.qt.workarounds.disable_hangouts_extension = True
 c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
+c.input.insert_mode.plugins = True
+c.tabs.mode_on_change = 'restore'
 
 # --- Fonts ---
 

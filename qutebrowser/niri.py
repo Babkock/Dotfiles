@@ -194,6 +194,7 @@ c.tabs.show_switching_delay = 700
 c.tabs.pinned.frozen = False
 c.completion.shrink = True
 c.auto_save.interval = 20000
+c.input.insert_mode.plugins = True
 
 c.completion.cmd_history_max_items = 20
 c.completion.favorite_paths = ["file:///home/babkock/.config/qutebrowser/index.html"]

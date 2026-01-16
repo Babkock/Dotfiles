@@ -394,7 +394,7 @@
 
 "privacy": {
     "icon-spacing": 8,
-    "icon-size": 24,
+    "icon-size": 30,
     "transition-duration": 400,
     "modules": [
         {

@@ -302,6 +302,8 @@ c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss
 c.qt.chromium.experimental_web_platform_features = "always"
 c.qt.workarounds.disable_hangouts_extension = True
 c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
+c.input.insert_mode.plugins = True
+
 #+end_src
 
 ** Fonts
@@ -353,6 +355,7 @@ c.colors.downloads.start.bg = '#00000000'
 c.colors.downloads.stop.bg = '#00000000'
 c.colors.downloads.stop.fg = '#eea9df11'
 
+c.tabs.mode_on_change = 'restore'
 c.tabs.padding = {
     "left": 5,
     "right": 3,

@@ -218,6 +218,7 @@
         "Monero - (.*)": " <span style=\"italic\">$1</span>",
         "Monero": " ",
         "(.*) | Cloudflare": " <span style=\"italic\">$1</span>",
+        "(.*) :: GazelleGames.net": "󰊖 <span style=\"italic\">$1</span>",
         "GIMP Startup": " ",
         "GNU Image Manipulation Program": " ",
         "(.*) – GIMP": " <i>$1</i>",

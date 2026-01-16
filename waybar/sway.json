@@ -252,6 +252,7 @@
         "(.*) - (.*) - Ask Ubuntu": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Mozilla Firefox": " <span style=\"italic\">$2</span>",
         "(.*) - (.*) - Ask Ubuntu — Zen Browser": " <span style=\"italic\">$2</span>",
+        "(.*) :: GazelleGames.net": "󰊖 <span style=\"italic\">$1</span>",
         "(.*) \\| Ubuntu": " <span style=\"italic\">$1</span>",
         "(.*) \\| Ubuntu — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - (.*) - Unix &amp; Linux Stack Exchange": " <span style=\"italic\">$2</span>",

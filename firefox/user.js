@@ -21,7 +21,9 @@ user_pref("browser.urlbar.suggest.bookmark", true);
 user_pref("browser.urlbar.suggest.history", true);
 user_pref("browser.urlbar.suggest.openpage", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.chrome.site_icons", false);
+user_pref("browser.urlbar.trimURLs", false);
+user_pref("browser.urlbar.merino.endpointURL", "");
+user_pref("browser.chrome.site_icons", true);
 user_pref("browser.chrome.errorReporter.infoURL", "");
 user_pref("browser.cache.offline.enable", false);
 user_pref("browser.contentblocking.category", "strict");
@@ -98,8 +100,8 @@ user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.socialtracking.notification.max", 1);
-user_pref("privacy.trackingprotection.cryptomining.enabled", false);
-user_pref("privacy.trackingprotection.fingerprinting.enabled", false);
+user_pref("privacy.trackingprotection.cryptomining.enabled", true);
+user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 user_pref("reader.color_scheme", "dark");
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.ssl.errorReporting.enabled", false);
@@ -118,9 +120,14 @@ user_pref("toolkit.telemetry.bhrPing.enabled", false);
 user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
 user_pref("toolkit.telemetry.updatePing.enabled", false);
+user_pref("toolkit.telemetry.dap.helper.url", "");
+user_pref("toolkit.telemetry.dap.leader.url", "");
 user_pref("webextensions.storage.sync.serverURL", "");
 
 user_pref("dom.security.unexpected_system_load_telemetry_enabled", false);
 user_pref("security.certerrors.recordEventTelemetry", false);
 user_pref("security.protectionspopup.recordEventTelemetry", false);
+
+user_pref("nimbus.telemetry.targetingContextEnabled", false);
+
 

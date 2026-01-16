@@ -232,6 +232,7 @@
         "(.*) at master · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "(.*) at main · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
         "Release (.*) · (.*)": " <b>$1</b> <span style=\"italic\">$2</span>",
+        "(.*) :: GazelleGames.net": "󰊖 <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) - Void Linux Handbook — Zen Browser": " <span style=\"italic\">$1</span>",
