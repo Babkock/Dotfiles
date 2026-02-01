@@ -128,10 +128,10 @@ May vary across Wayland compositors, but almost all of these are implemented in 
 | Super + Semicolon      | Nicotine              |
 | Super + Shift + Semicolon | Monero Core      |
 | Super + Backslash         | Mozilla Thunderbird   |
-| Super + Shift + Backslash | Discord            |
+| Super + Shift + Backslash | EasyEffects        |
 | Super + Slash             | Sublime Text       |
 | Super + Shift + Slash     | Steam              |
-| Super + Backspace         | Terminal with Tremc |
+| Super + Backspace         | Chromium            |
 | Super + Shift + Backspace | Virt-Manager       |
 | Super + Shift + C         | Close window       |
 | Super + Shift + Q         | Exit Session       |
