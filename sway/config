@@ -186,6 +186,7 @@ assign [app_id="monero-core"] 7
 assign [app_id="sublime"] 4
 assign [app_id="Steam"] 6
 assign [class="Steam"] 6
+assign [app_id="puddletag"] 6
 assign [app_id="GIMP"] 5
 assign [class="GIMP"] 5
 assign [app_id="Gimp"] 5
@@ -207,6 +208,8 @@ assign [class="steam"] 6
 assign [title="Steam"] 6
 assign [app_id="factorio"] 6
 assign [app_id="gamescope"] 6
+assign [class="Minecraft 1.20.4"] 6
+assign [class="Minecraft\* 1.20.4"] 6
 assign [app_id="openmw-launcher"] 6
 assign [app_id="gimp"] 5
 #assign [app_id="PCManFM"] 5
@@ -217,6 +220,7 @@ assign [app_id="gimp"] 5
 for_window [app_id="mpv"] {
 	floating enable
 	focus
+	fullscreen enable
 	inhibit_idle fullscreen
 }
 for_window [class="mpv"] {
@@ -224,6 +228,18 @@ for_window [class="mpv"] {
 	focus
 	inhibit_idle fullscreen
 }
+
+for_window [class="Minecraft 1.20.4"] {
+	focus
+	inhibit_idle fullscreen
+}
+
+for_window [title="Minecraft\* 1.20.4"] {
+	focus
+	fullscreen enable
+	inhibit_idle fullscreen
+}
+
 for_window [title="VLC media player"] {
 	floating enable
 	focus
@@ -238,11 +254,13 @@ for_window [window_role="GtkFileChooserDialog"] {
 
 for_window [app_id="gamescope"] {
 	inhibit_idle fullscreen
+	fullscreen enable
 	focus
 }
 
 for_window [app_id="factorio"] {
 	inhibit_idle fullscreen
+	fullscreen enable
 	focus
 }
 
@@ -313,7 +331,7 @@ bindsym $mod+Shift+semicolon workspace number 7; exec QT_QPA_PLATFORM="xcb" QT_Q
 
 bindsym $mod+Shift+Slash workspace number 6; exec steam
 
-bindsym $mod+backspace exec $term -e tremc --ssl -X -r -c 'tababcock0987:kristin12345@127.0.0.1:9091'
+bindsym $mod+backspace workspace number 2; exec chromium
 
 bindsym $mod+Shift+backspace workspace number 6; exec virt-manager
 

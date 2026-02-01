@@ -205,7 +205,6 @@ c.qt.chromium.experimental_web_platform_features = "always"
 c.qt.workarounds.disable_hangouts_extension = True
 c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
 c.input.insert_mode.plugins = True
-c.tabs.mode_on_change = 'restore'
 
 # --- Fonts ---
 
@@ -244,6 +243,7 @@ c.colors.downloads.start.bg = '#00000000'
 c.colors.downloads.stop.bg = '#00000000'
 c.colors.downloads.stop.fg = '#eea9df11'
 
+c.tabs.mode_on_change = 'restore'
 c.tabs.padding = {
     "left": 5,
     "right": 3,
@@ -302,12 +302,12 @@ config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/r
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
+config.bind(',v', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/mtv.css ""')
 config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
 
 config.bind(',z', 'config-cycle fonts.default_size "16pt" "14pt"')
 config.bind(',x', 'config-cycle fonts.statusbar "16pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
 config.bind(',p', 'config-cycle fonts.tabs.selected "italic 16pt GoMono Nerd Font" "italic 14pt GoMono Nerd Font"')
-config.bind(',v', 'config-cycle fonts.downloads "16pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
 config.bind(',n', 'config-cycle fonts.completion.category "17pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
 config.bind(',m', 'config-cycle fonts.completion.entry "17pt GoMono Nerd Font" "14pt GoMono Nerd Font"')
 

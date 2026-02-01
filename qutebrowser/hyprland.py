@@ -303,6 +303,7 @@ config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/e
 config.bind(',w', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/wikipedia.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
 config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
+config.bind(',v', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/mtv.css ""')
 
 # --- Keybindings: UI ---
 

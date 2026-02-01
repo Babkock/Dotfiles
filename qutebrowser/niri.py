@@ -242,6 +242,7 @@ config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/r
 config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
 config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
 config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
+config.bind(',v', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/mtv.css ""')
 config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
 
 # --- Keybindings: UI ---

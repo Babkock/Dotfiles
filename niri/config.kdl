@@ -551,7 +551,18 @@ window-rule {
 }
 
 window-rule {
-	match
+	match title="Half-Life"
+	match app-id="hl_linux"
+	open-fullscreen true
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
+}
+
+window-rule {
+	match app-id="Minecraft 1.20.4"
+	open-fullscreen true
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
 }
 
 window-rule {
@@ -620,9 +631,11 @@ binds {
 
 	Mod+Backslash hotkey-overlay-title="Mozilla Thunderbird" { spawn "thunderbird"; }
 
-	Mod+Shift+Backslash hotkey-overlay-title="Easyeffects" { spawn "easyeffects"; }
+	Mod+Shift+Backslash hotkey-overlay-title="Easyeffects" { spawn  "bash" "-c" "pkill -9 easyeffects; easyeffects"; }
 
 	Mod+Shift+Semicolon hotkey-overlay-title="Monero" { spawn  "bash" "-c" "QT_QPA_PLATFORM='xcb' QT_QPA_PLATFORMTHEME='qt5ct' monero-wallet-gui"; }
+
+	Mod+Backspace hotkey-overlay-title="Chromium" { spawn "chromium"; }
 
 	Mod+Shift+Backspace hotkey-overlay-title="Virt-Manager" { spawn "virt-manager"; }
 
