@@ -339,6 +339,8 @@ bindsym $mod+backslash workspace number 7; exec thunderbird
 
 bindsym $mod+Shift+backslash workspace number 1; exec easyeffects
 
+bindsym $mod+equal workspace number 6; exec lutris
+
 floating_modifier $mod normal
 
 # Reload the configuration file

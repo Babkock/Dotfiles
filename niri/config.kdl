@@ -477,7 +477,22 @@ window-rule {
 }
 
 window-rule {
+	match app-id="net.lutris.Lutris"
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
+	open-maximized true
+}
+
+window-rule {
 	match app-id="Firefox"
+	open-on-output "HDMI-A-2"
+	geometry-corner-radius 0
+	open-maximized-to-edges true
+	default-column-width { proportion 1.0; }
+}
+
+window-rule {
+	match app-id="chromium"
 	open-on-output "HDMI-A-2"
 	geometry-corner-radius 0
 	open-maximized-to-edges true
@@ -638,6 +653,8 @@ binds {
 	Mod+Backspace hotkey-overlay-title="Chromium" { spawn "chromium"; }
 
 	Mod+Shift+Backspace hotkey-overlay-title="Virt-Manager" { spawn "virt-manager"; }
+
+	Mod+Equal hotkey-overlay-title="Lutris" { spawn "lutris"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -830,8 +847,8 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    //Mod+Minus { set-column-width "-10%"; }
+    //Mod+Equal { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
     Mod+Shift+Minus { set-window-height "-10%"; }

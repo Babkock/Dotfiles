@@ -133,6 +133,7 @@ May vary across Wayland compositors, but almost all of these are implemented in 
 | Super + Shift + Slash     | Steam              |
 | Super + Backspace         | Chromium            |
 | Super + Shift + Backspace | Virt-Manager       |
+| Super + Equals            | Lutris             |
 | Super + Shift + C         | Close window       |
 | Super + Shift + Q         | Exit Session       |
 
