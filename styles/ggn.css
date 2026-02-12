@@ -1,0 +1,647 @@
+.box#freeleech .stats.nobullet .group_torrent {
+	font-size:11pt !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+.box#freeleech .stats.nobullet .group_torrent a {
+	font-size:11pt !important;
+}
+
+button[type="button"] {
+	color:black !important;
+}
+button[type="button"]:hover {
+	background:radial-gradient(circle, #eecdcd 0%, #ccbfbf 90%) !important;
+}
+
+input[type="submit"], input[type="button"], button[type="button"] {
+	padding:7px 12px 7px 12px !important;
+	margin-left:3px !important;
+	margin-right:3px !important;
+	font-size:14pt !important;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, button[type="button"] {
+	color:#dd0000 !important;
+	border-color:rgba(240, 10, 10, 0.6) !important;
+	text-shadow:1px 2px #bb0000 !important;
+}
+
+select:hover {
+	color:#dd0000 !important;
+	border-color:rgba(240, 10, 10, 0.6) !important;
+	text-shadow:1px 2px #bb0000 !important;
+}
+
+#menu ul li#nav_index, #menu ul li#nav_staff {
+	display:none !important;
+}
+
+#menu ul li.active {
+	text-decoration:underline !important;
+	font-style:italic !important;
+}
+
+#menu ul li a {
+	font-size:17pt !important;
+}
+
+form .item_description {
+	font-size:12pt !important;
+}
+
+form .item_info h3.center * {
+	margin-top:2px !important;
+	font-size:1.3em !important;
+}
+
+ul#userinfo_stats li {
+	font-size:12pt !important;
+	margin-top:0px !important;
+	margin-bottom:0px !important;
+}
+
+ul li#searchbar_log, ul li#searchbar_users {
+	display:none !important;
+}
+
+#searchbars ul li form input[type="text"] {
+	font-size:12.5pt !important;
+	width:190px !important;
+	margin-top:2px !important;
+	margin-bottom:3px !important;
+	padding-top:3px !important;
+	padding-left:6px !important;
+	padding-right:6px !important;
+	padding-bottom:3px !important;
+	border-radius:5px !important;
+	transition:all 0.2s ease 0s;
+}
+
+#searchbars ul li form input[type="text"]:active {
+	text-align:center !important;
+	border:1px solid #cfcfcf !important;
+}
+
+li#stats_gold span.stat {
+	color:goldenrod !important;
+	text-shadow:1px 2px yellow !important;
+}
+
+#cost_info strong {
+	color:goldenrod !important;
+	text-shadow:2px 2px yellow !important;
+	font-style:italic !important;
+	margin-right:3px !important;
+	margin-top:4px !important;
+}
+
+li#nav_userinfo.welcome {
+	font-size:13pt !important;
+}
+
+li#nav_userinfo.welcome a.username {
+	font-size:13pt !important;
+}
+
+td select {
+	font-size:13pt !important;
+	padding:5px 10px 10px 5px !important;
+	background-color:#c09a9a !important;
+}
+td select:hover {
+	background:radial-gradient(circle, #e85066 0%, #c09a9a 90%);
+}
+
+.submit input[type="reset"] {
+	font-size:13pt !important;
+	padding:5px 10px 10px 5px !important;
+	margin-left:4px !important;
+}
+
+.submit input[type="reset"]:hover {
+	color:#dd0000 !important;
+	text-shadow:1px 2px #bb0000 !important;
+	border:1px solid red !important;
+}
+
+#items_navigation #categories li {
+	font-size:13pt !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+
+#items_navigation #shop_links li, #items_navigation #account_links li {
+	font-size:14pt !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+
+#items_navigation #shop_links li a, #items_navigation #shop_links li a:active, #items_navigation #shop_links li a:link {
+	color:#10ef00 !important;
+	text-shadow:1px 2px #00cf00 !important;
+}
+
+#shop h3.center {
+	margin-top:-40px !important;
+	font-style:italic !important;
+	font-size:15pt !important;
+}
+
+#items_navigation #shop_links li a:hover, #items_navigation #account_links li a:hover {
+	color:#efefef !important;
+	text-shadow:1px 2px #bbbbbb !important;
+	text-decoration:underline !important;
+}
+
+#items_navigation #account_links li a, #items_navigation #account_links li a:active, #items_navigation #account_links a:link {
+	color:#10ddef !important;
+	text-shadow:1px 2px #00bdcf !important;
+}
+
+table#box_gold_scrollbar {
+	overflow-x:hidden !important;
+}
+
+table#box_gold_scrollbar tbody tr td {
+	font-size:11pt !important;
+	color:goldenrod !important;
+	border:1px solid yellow !important;
+}
+
+table#box_gold_scrollbar thead tr td {
+	font-size:11pt !important;
+	font-weight:bold !important;
+	color:orange !important;
+	border:1px solid orange !important;
+}
+
+#user .box.box_links ul.stats li {
+	font-size:13pt !important;
+	text-align:right !important;
+	margin-top:3px !important;
+	margin-right:3px !important;
+}
+#user .box.box_links ul.stats li a, #user .box.box_links ul.stats li a:link, #user .box.box_links ul.stats li a:active {
+	color:#20ef20 !important;
+	text-shadow:1px 2px green !important;
+}
+
+#user .box.box_links ul.stats li a:hover {
+	color:#efefef !important;
+	text-shadow:1px 2px magenta !important;
+}
+
+#user .box.box_gold >#box_gold_scrollbar {
+	overflow-x:hidden !important;
+}
+
+#content div div h2 {
+	display:block !important;
+	font-size:17pt !important;
+	line-height:1.4 !important;
+}
+
+td#displayname span#groupplatform, strong span#groupplatform, td#displayname span#groupname, strong a, td#displayname span#groupyear, strong span#groupyear, td#displayname span#grouprating, strong span#grouprating {
+	font-size:13pt !important;
+	line-height:1.4 !important;
+}
+
+td#displayname .tags_ratings .tags, td[colspan="5"] .tags {
+	font-size:11pt !important;
+	line-height:1.3 !important;
+}
+
+.group_torrent td * {
+	font-size:11pt !important;
+}
+
+.group_torrent td.edition_info {
+	padding-top:8px !important;
+	padding-left:8px !important;
+	color:#bfbfbf !important;
+	font-style:italic !important;
+}
+
+.group_torrent {
+	font-size:11pt !important;
+}
+
+.group_torrent td {
+	padding:6px !important;
+	line-height:1.1 !important;
+}
+
+#torrents .save_message {
+	margin-top:20px !important;
+	margin-bottom:15px !important;
+}
+
+div.linkbox.groupoptions a, div.linkbox.groupoptions a:link, div.linkbox.groupoptions a:active {
+	font-size:12pt !important;
+	margin-left:2px !important;
+	margin-right:2px !important;
+	line-height:1.2 !important;
+	color:hotpink !important;
+	transition:all 0.2s ease 0s !important;
+}
+
+div.linkbox.groupoptions a:hover {
+	font-size:12pt !important;
+	color:#efefef !important;
+	text-decoration:underline !important;
+}
+
+.group_torrent td[colspan="6"].edition_info {
+	font-size:13pt !important;
+	padding-top:7px !important;
+	padding-bottom:7px !important;
+}
+
+span.freeleech_expiry {
+	color:#ef1087 !important;
+	font-weight:bold !important;
+	font-size:13pt !important;
+	background:linear-gradient(180deg, rgba(90, 40, 40, 0.4), rgba(10, 10, 10, 0.4));
+	text-shadow:2px 2px magenta !important;
+}
+
+.group_torrent td.number_column {
+	font-size:12pt !important;
+}
+
+div.profile .linkbox {
+	font-size:12pt !important;
+	line-height:1.2 !important;
+	color:rgba(0, 0, 0, 0) !important;
+}
+
+.forum_list .linkbox {
+	font-size:12pt !important;
+	line-height:1.2 !important;
+	color:rgba(0, 0, 0, 0) !important;
+}
+
+.forum_2 .linkbox:not(.pager) {
+	font-size:12pt !important;
+	line-height:1.2 !important;
+	color:rgba(0, 0, 0, 0) !important;
+}
+
+h2#username strong a.username {
+	font-size:17pt !important;
+}
+
+div.header .linkbox a.brackets, div.thin .linkbox:not(.pager) a, .forum_list .linkbox a, div.header .linkbox a.brackets:active, div.thin .linkbox:not(.pager) a:active, .forum_list .linkbox a:active, div.thin .linkbox:not(.pager) a:link, .forum_list .linkbox a:link, div.header .linkbox a.brackets:link {
+	color:hotpink !important;
+	font-size:12pt !important;
+	margin-left:5px !important;
+	margin-right:4px !important;
+	text-shadow:1px 1px pink !important;
+	transition:all 0.2s ease 0s !important;
+}
+
+div.header .linkbox a.brackets::before {
+	content:" " !important;
+}
+div.header .linkbox a.brackets::after {
+	content:" " !important;
+}
+
+span.time {
+	font-size:9pt !important;
+}
+
+div.header .linkbox a.brackets:hover, div.thin .linkbox a:hover, .forum_list .linkbox a:hover {
+	color:#ffeff2 !important;
+	text-shadow:1px 1px gray !important;
+	text-decoration:underline !important;
+}
+
+div.profile .linkbox a, div.profile .linkbox a:active, div.profile .linkbox a:link, div.profile .linkbox a:visited {
+	color:hotpink !important;
+	transition:all 0.2s ease 0s !important;
+	margin-top:3px !important;
+}
+
+div.profile .linkbox a:hover {
+	color:#ffeff2 !important;
+	margin-top:3px !important;
+	text-decoration:underline !important;
+}
+
+table.forum_index tbody tr td {
+	font-size:12pt !important;
+	padding:5px !important;
+}
+
+.forum_list h3 {
+	font-size:14pt !important;
+	font-weight:bold !important;
+	margin-top:9px !important;
+	margin-bottom:9px !important;
+}
+
+.thin h3 {
+	margin-bottom:12px !important;
+	margin-top:13px !important;
+	font-size:14pt !important;
+	font-weight:bold !important;
+}
+
+a#color_seeding, a#color_seeding:link, #color_seeding, #color_seeding .torrent_info_tags, #color_seeding a, #color_seeding a:link {
+	color:lime !important;
+	font-weight:bold !important;
+}
+
+li#nav_donate, li#nav_donate strong a, li#nav_logout {
+	display:none !important;
+}
+
+a#color_seeding:hover, #color_seeding:hover a:hover, #color_seeding:hover .torrent_info_tags, a#color_snatched:hover {
+	color:#efefef !important;
+}
+
+a#color_snatched, a#color_snatched:link, #color_snatched, #color_snatched .torrent_info_tags, #color_snatched a, #color_snatched a:link {
+	color:magenta !important;
+	font-weight:bold !important;
+}
+
+textarea#quickpost {
+	background:#121212 !important;
+	color:#efefef !important;
+	font-size:12pt !important;
+	border:1px solid black !important;
+	transition:all 0.2s ease 0s;
+}
+
+textarea#quickpost:hover {
+	background:#191919 !important;
+	color:#ffffff !important;
+	font-size:12pt !important;
+	border:1px solid #dfdfdf !important;
+}
+
+textarea#quickpost:focus {
+	background:#1b1b1b !important;
+	color:#efefef !important;
+	border:1px solid #efefef !important;
+}
+
+#torrents blockquote {
+	margin-top:12px !important;
+	padding:11px 22px !important;
+}
+
+blockquote strong, blockquote ul.postlist li {
+	font-size:12pt !important;
+	font-style:italic !important;
+}
+
+.box {
+	font-size:11pt !important;
+}
+
+div#group_tags .tag_type_header {
+	font-size:13pt !important;
+	line-height:1.5 !important;
+	margin-bottom:2px !important;
+	font-weight:bold !important;
+}
+div#group_tags .group_tag a {
+	font-size:12pt !important;
+	line-height:1.3 !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+
+div#group_tags .group_tag span a, div#group_tags .group_tag span span {
+	font-size:11pt !important;
+}
+
+.torrent_details .sidebar .box.box_freeleech, .torrent_details .sidebar .box.box_torrent_checking {
+	display:none !important;
+}
+
+#searchbars ul li form input:focus {
+	text-align:center !important;
+	border:1px solid #ffefef !important;
+	color:#efefef !important;
+	background-color:#181818 !important;
+}
+
+#searchbars ul li form input:hover {
+	text-align:center !important;
+	border:1px solid #ccbfbf !important;
+	color:#dedede !important;
+	background-color:#202020 !important;
+}
+
+form tr td.label {
+	font-size:12pt !important;
+}
+
+select option {
+	font-size:12pt !important;
+	background:rgba(50, 4, 4, 0.5) !important;
+	color:#cfcfcf !important;
+}
+
+select option:hover {
+	background:rgba(100, 4, 4, 0.5) !important;
+	color:#ff0000 !important;
+}
+
+#search_terms td[colspan="3"] input[type="text"], .pad form.search_form input[type="search"] {
+	font-size:13pt !important;
+	border-radius:6px !important;
+	padding:7px 8px !important;
+	line-height:1.3 !important;
+	margin-top:3px !important;
+	margin-right:3px !important;
+	margin-bottom:4px !important;
+	font-style:normal !important;
+}
+
+.pad form.search_form input[type="search"] {
+	text-align:left !important;
+	font-style:normal !important;
+	height:24px !important;
+}
+
+form[action="user.php"] table tbody tr td input[type="text"] {
+	line-height:1.3 !important;
+	font-size:13pt !important;
+	border-radius:6px !important;
+	font-size:13pt !important;
+	padding:7px 8px !important;
+	margin-right:2px !important;
+	margin-bottom:3px !important;
+	text-align:left !important;
+	font-style:normal !important;
+}
+
+td[colspan="2"] input#search_query, input[type="search"], td[colspan="7"] input[type="text"] {
+	font-size:13pt !important;
+	border-radius:6px !important;
+	padding:7px 8px !important;
+	line-height:1.3 !important;
+	margin-top:3px !important;
+	margin-right:2px !important;
+	margin-bottom:3px !important;
+}
+
+.forum_index tbody tr.colhead {
+	font-size:13pt !important;
+	background:linear-gradient(180deg, rgba(213, 176, 154, 0.3), rgba(0, 0, 0, 0.1)) !important;
+	height:28px !important;
+}
+
+#artist .main_column #torrent_table[class="torrent_table grouping"] tbody .colhead, #artist .main_column_bg .main_column .box #requests tbody .colhead_dark, #user .box_gold td.label, #user .thin .sidebar .box.box_gold #box_gold_scrollbar tbody .colhead td, #user .main_column_bg .main_column .main_column_sortable .box.box_requests #requests table.border tbody, #torrents #requests #requests_list >tbody >tr:first-child >td, .colhead_dark, .torrent_edit #upload_table #releaseinfo td.label, #user_fight_attacks .label {
+	background:linear-gradient(180deg, rgba(213, 176, 154, 0.3), rgba(0, 0, 0, 0.1)) !important;
+}
+
+.forum_post tbody tr td div span.time {
+	font-size:11pt !important;
+}
+
+.forumstat {
+	font-size:10pt !important;
+}
+
+#forums .breadcrumbs {
+	text-align:center;
+	margin-top:2px !important;
+	font-size:12pt !important;
+	color:rgba(40, 40, 40, 0.2) !important;
+}
+#forums .breadcrumbs a, #forums .breadcrumbs a:link, #forums .breadcrumbs a:active, #forums .breadcrumbs a:visited {
+	color:hotpink !important;
+	font-size:12.5pt !important;
+	text-shadow:1px 1px pink !important;
+}
+
+.box_personal ul.stats li span.time {
+	font-size:11pt !important;
+}
+
+.box_personal ul.stats li, .box_personal ul.stats li * {
+	font-size:11pt !important;
+	line-height:1.2 !important;
+}
+
+div.thin .linkbox {
+	color:rgba(0, 0, 0, 0) !important;
+	margin-top:5px !important;
+	margin-bottom:5px !important;
+	font-size:12pt !important;
+}
+
+div.thin .forum_list .linkbox {
+	margin-top:5px !important;
+	font-size:12pt !important;
+}
+
+ul#items_list .item_li {
+	background:rgba(0, 0, 0, 0.6) !important;
+	border-radius:13px !important;
+	padding-left:2px !important;
+	border:1px solid #cfcfcf !important;
+	box-shadow:2px 2px rgba(40, 160, 40, 0.4) !important;
+}
+
+ul#items_list .item_li:hover {
+	background:rgba(0, 0, 0, 0.9) !important;
+	color:#fefefe !important;
+	border:1px solid #efefef !important;
+	box-shadow:3px 3px rgba(50, 180, 50, 0.4) !important;
+}
+
+#items_list .item_li.no_access {
+	opacity:0.5 !important;
+	color:#787878 !important;
+}
+
+#items_list .item_li.nostock {
+	display:none !important;
+}
+
+#items_list .item_li.no_access:before {
+	border-radius:0px 0px 13px 13px !important;
+	border-bottom:1px solid white !important;
+	font-size:12pt !important;
+	padding-top:5px !important;
+	padding-bottom:6px !important;
+}
+
+#userinfo_minor li a {
+	font-size:14pt !important;
+}
+#userinfo_minor li a:hover {
+	color:#707070 !important;
+}
+
+#userinfo_minor #nav_upload, #userinfo_minor #nav_invite, .freeleech_shop_main .box_add_freeleech {
+	display:none !important;
+}
+
+.individual_buff {
+	background:rgba(0, 0, 0, 0.4) !important;
+	box-shadow:2px 2px magenta !important;
+	transition:all 0.2s ease 0s;
+	border-radius:19px 0px 0px 19px !important;
+	margin-right:-5px !important;
+}
+
+.individual_buff:hover {
+	background:rgba(10, 10, 10, 0.5) !important;
+	box-shadow:3px 3px purple !important;
+	border-radius:19px 0px 0px 19px !important;
+}
+
+.individual_buff a * {
+	font-size:20px !important;
+	font-style:italic !important;
+}
+.individual_buff a i.fa-fl-pots {
+	font-size:60px !important;
+}
+
+td label, td.label {
+	font-size:12pt !important;
+}
+
+div.box div.body ol.navigation_list li a, div.box div.body ol.navigation_list li a:link, div.box div.body ol.navigation_list li a:active {
+	font-size:13pt !important;
+	color:#ef1230 !important;
+	text-decoration:none !important;
+}
+
+div.box div.body ol.navigation_list li a:hover {
+	color:#efefef !important;
+	text-decoration:underline !important;
+}
+
+#progress_bar, #progress_bar * {
+	height:90px !important;
+}
+
+
+td.achlabel span.bold {
+	font-size:12.5pt !important;
+	margin-bottom:3px !important;
+}
+td.achlabel span.italic {
+	font-size:12pt !important;
+}
+
+#content div.flleft.linkbox {
+	font-size:13pt !important;
+	color:#fefefe !important;
+}
+
+#content div.flright.linkbox {
+	font-size:13pt !important;
+	color:#fefefe !important;
+}
+

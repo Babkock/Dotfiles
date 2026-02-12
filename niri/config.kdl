@@ -42,7 +42,7 @@ input {
     mouse {
         // off
         natural-scroll
-		scroll-factor 1.7
+		scroll-factor 2.1
         accel-speed 1.0
         accel-profile "adaptive"
         // scroll-method "no-scroll"
@@ -349,7 +349,7 @@ spawn-at-startup "pipewire"
 spawn-at-startup "swaybg" "-o" "eDP-1" "-i" "/home/babkock/.config/niri/redgraysplash.jpg" "-o" "HDMI-A-2" "-i" "/home/babkock/.config/niri/abstractpaintsplash.jpg" "-o" "DP-1" "-i" "/home/babkock/.config/niri/blueorangeswirl.jpg"
 spawn-at-startup "mako" "-c" "/home/babkock/.config/mako/niriconfig"
 
-spawn-at-startup "swayidle" "-w" "timeout" "780" "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color efefef99 --inside-ver-color 00000066 --ring-ver-color 71b06199 --text-ver-color 83daa9aa --ring-wrong-color ff280088 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color fdcb46aa --ring-clear-color e3af6788 --inside-clear-color 10101066 --key-hl-color 83daa9aa --bs-hl-color ff2800aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/niri/blueorangeswirllock.jpg -s fill -i eDP-1:/home/babkock/.config/niri/redgraysplashlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/niri/abstractpaintsplashlock.jpg -s fill" "timeout" "1800" "niri msg action power-off-monitors" "before-sleep" "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color efefef99 --inside-ver-color 00000066 --ring-ver-color 71b06199 --text-ver-color 83daa9aa --ring-wrong-color ff280088 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color fdcb46aa --ring-clear-color e3af6788 --inside-clear-color 10101066 --key-hl-color 83daa9aa --bs-hl-color ff2800aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/niri/blueorangeswirllock.jpg -s fill -i eDP-1:/home/babkock/.config/niri/redgraysplashlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/niri/abstractpaintsplashlock.jpg -s fill"
+spawn-at-startup "swayidle" "-w" "timeout" "880" "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color efefef99 --inside-ver-color 00000066 --ring-ver-color 71b06199 --text-ver-color 83daa9aa --ring-wrong-color ff280088 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color fdcb46aa --ring-clear-color e3af6788 --inside-clear-color 10101066 --key-hl-color 83daa9aa --bs-hl-color ff2800aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/niri/blueorangeswirllock.jpg -s fill -i eDP-1:/home/babkock/.config/niri/redgraysplashlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/niri/abstractpaintsplashlock.jpg -s fill" "timeout" "1900" "niri msg action power-off-monitors" "before-sleep" "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color efefef99 --inside-ver-color 00000066 --ring-ver-color 71b06199 --text-ver-color 83daa9aa --ring-wrong-color ff280088 --text-wrong-color ee0009aa --inside-wrong-color 10101066 --text-clear-color fdcb46aa --ring-clear-color e3af6788 --inside-clear-color 10101066 --key-hl-color 83daa9aa --bs-hl-color ff2800aa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/niri/blueorangeswirllock.jpg -s fill -i eDP-1:/home/babkock/.config/niri/redgraysplashlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/niri/abstractpaintsplashlock.jpg -s fill"
 
 spawn-at-startup "hydroxide" "imap"
 spawn-at-startup "hydroxide" "smtp"
@@ -650,11 +650,9 @@ binds {
 
 	Mod+Shift+Semicolon hotkey-overlay-title="Monero" { spawn  "bash" "-c" "QT_QPA_PLATFORM='xcb' QT_QPA_PLATFORMTHEME='qt5ct' monero-wallet-gui"; }
 
-	Mod+Backspace hotkey-overlay-title="Chromium" { spawn "chromium"; }
+	Mod+Backspace hotkey-overlay-title="Lutris" { spawn "lutris"; }
 
 	Mod+Shift+Backspace hotkey-overlay-title="Virt-Manager" { spawn "virt-manager"; }
-
-	Mod+Equal hotkey-overlay-title="Lutris" { spawn "lutris"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

@@ -23,6 +23,11 @@ panelview * {
 	font-family:"GoMono Nerd Font" !important;
 }
 
+.moz-text-plain, .moz-text-plain pre {
+	font-size:18px !important;
+	line-height:1.1 !important;
+}
+
 .moz-text-plain[style="font-family: -moz-fixed; font-size: 12px;"] pre.moz-quote-pre {
 	font-family:"GoMono Nerd Font" !important;
 	font-size:16px !important;
@@ -278,4 +283,93 @@ richlistitem[is="chat-imconv-richlistitem"][unread] {
 	color:#fefefe !important;
 }
 
+.conv-hbox .convUnreadTargetedCount {
+    padding:0px !important;
+    margin:0px !important;
+    background-color:rgba(0, 0, 0, 0.9) !important;
+    border-radius:0px !important;
+}
+
+.conv-hbox .convUnreadTargetedCount .convUnreadTargetedCountLabel {
+    color:lime !important;
+    font-style:italic !important;
+    margin-inline:5px 4px !important;
+}
+
+#previousConversations {
+    display:none !important;
+}
+
+textarea.conv-textbox div {
+	background:linear-gradient(180deg, rgba(30, 30, 30, 0.5), rgba(10, 10, 10, 0.5)) !important;
+	border-top:1px solid gray !important;
+	padding:5px !important;
+}
+
+textarea.conv-textbox, textarea.conv-textbox div {
+	font-size:1.25em !important;
+}
+
+browser#messagepane {
+	padding-left:10px !important;
+}
+
+div.moz-text-html a, div.moz-text-html a:link, div.moz-text-html a:active, div.moz-text-html div.md a, div.moz-text-html div.md a:link, div.moz-text-html div.md a:active, div.moz-text-plain pre a, div.moz-text-plain pre a:link, div.moz-text-plain pre a:active, div.moz-text-plain a, div.moz-text-plain a:link, div.moz-text-plain a:active {
+	color:hotpink !important;
+}
+
+div.moz-text-html a:hover, div.moz-text-html div.md a:hover, div.moz-text-html div.md p a:hover, div.moz-text-plain a:hover {
+	color:#fedddd !important;
+}
+
+div.moz-text-html, div.moz-text-html div.md a, div.moz-text-html div.md p a {
+	font-size:18px !important;
+	line-height:1.12 !important;
+}
+
+div.moz-text-html div.md p, div.moz-text-html p {
+	font-size:18px !important;
+	line-height:1.12 !important;
+	margin-top:3px !important;
+}
+
+#header-view-toolbar toolbarbutton, .toolbarbutton-1 {
+	padding:4px 6px !important;
+	background:linear-gradient(180deg, purple, #101010) !important;
+	border-radius:6px !important;
+	margin-left:4px !important;
+	margin-right:4px !important;
+	border:1px solid black !important;
+}
+
+#header-view-toolbar toolbarbutton:hover, .toolbarbutton-1:hover {
+	background:linear-gradient(180deg, magenta, #191919) !important;
+	border:1px solid purple !important;
+	border-radius:6px !important;
+}
+
+#header-view-toolbar toolbarbutton label {
+	font-size:19px !important;
+	font-weight:bold !important;
+}
+
+#calendar-show-todaypane-panel {
+	display:none !important;
+}
+
+ol.tags-list li.tag {
+	padding:8px !important;
+	line-height:1.2 !important;
+	background:#000 !important;
+	color:#aa9900 !important;
+	border:1px solid darkorange !important;
+	border-radius:5px !important;
+	margin-bottom:7px !important;
+}
+
+.tree-table-cell-container button:hover {
+	background:#a9a9a9 !important;
+	color:#000 !important;
+	border-bottom:1px solid #dd0000 !important;
+}
 
