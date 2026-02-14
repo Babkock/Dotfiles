@@ -358,12 +358,12 @@ div.moz-text-html div.md p, div.moz-text-html p {
 }
 
 ol.tags-list li.tag {
-	padding:8px !important;
+	padding:5px !important;
 	line-height:1.2 !important;
 	background:#000 !important;
 	color:#aa9900 !important;
 	border:1px solid darkorange !important;
-	border-radius:5px !important;
+	border-radius:9px !important;
 	margin-bottom:7px !important;
 }
 

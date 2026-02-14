@@ -84,13 +84,13 @@ ul li#searchbar_log, ul li#searchbar_users {
 }
 
 li#stats_gold span.stat {
-	color:goldenrod !important;
-	text-shadow:1px 2px yellow !important;
+	color:yellow !important;
+	text-shadow:1px 2px goldenrod !important;
 }
 
 #cost_info strong {
-	color:goldenrod !important;
-	text-shadow:2px 2px yellow !important;
+	color:yellow !important;
+	text-shadow:2px 2px goldenrod !important;
 	font-style:italic !important;
 	margin-right:3px !important;
 	margin-top:4px !important;
@@ -104,12 +104,12 @@ li#nav_userinfo.welcome a.username {
 	font-size:13pt !important;
 }
 
-td select {
+td select, form #global_buff_select {
 	font-size:13pt !important;
 	padding:5px 10px 10px 5px !important;
 	background-color:#c09a9a !important;
 }
-td select:hover {
+td select:hover, form #global_buff_select:hover {
 	background:radial-gradient(circle, #e85066 0%, #c09a9a 90%);
 }
 
@@ -165,8 +165,8 @@ table#box_gold_scrollbar {
 
 table#box_gold_scrollbar tbody tr td {
 	font-size:11pt !important;
-	color:goldenrod !important;
-	border:1px solid yellow !important;
+	color:yellow !important;
+	border:1px solid gold !important;
 }
 
 table#box_gold_scrollbar thead tr td {
@@ -262,8 +262,14 @@ span.freeleech_expiry {
 	color:#ef1087 !important;
 	font-weight:bold !important;
 	font-size:13pt !important;
-	background:linear-gradient(180deg, rgba(90, 40, 40, 0.4), rgba(10, 10, 10, 0.4));
+	background:linear-gradient(180deg, rgba(90, 40, 40, 0.3), rgba(5, 5, 5, 0.3));
 	text-shadow:2px 2px magenta !important;
+}
+
+span.freeleech_expiry span.time {
+	font-size:13pt !important;
+	color:lime !important;
+	text-shadow:2px 2px green !important;
 }
 
 .group_torrent td.number_column {
@@ -294,11 +300,19 @@ h2#username strong a.username {
 
 div.header .linkbox a.brackets, div.thin .linkbox:not(.pager) a, .forum_list .linkbox a, div.header .linkbox a.brackets:active, div.thin .linkbox:not(.pager) a:active, .forum_list .linkbox a:active, div.thin .linkbox:not(.pager) a:link, .forum_list .linkbox a:link, div.header .linkbox a.brackets:link {
 	color:hotpink !important;
-	font-size:12pt !important;
+	font-size:13pt !important;
 	margin-left:5px !important;
 	margin-right:4px !important;
 	text-shadow:1px 1px pink !important;
 	transition:all 0.2s ease 0s !important;
+}
+
+div.profile .linkbox a:hover {
+	color:#efefef !important;
+}
+
+div.thin .linkbox a:hover, .forum_list .linkbox a:hover, div.header .linkbox a.brackets:hover {
+	color:#efefef !important;
 }
 
 div.header .linkbox a.brackets::before {
@@ -308,8 +322,36 @@ div.header .linkbox a.brackets::after {
 	content:" " !important;
 }
 
+ul#user_stats li#gold span.stat {
+	color:goldenrod !important;
+	text-shadow:2px 2px yellow !important;
+	font-weight:bold !important;
+}
+
+ul#user_stats li#upload span {
+	font-size:1.1em !important;
+	margin-bottom:2px !important;
+}
+
+ul#user_stats li#upload span.stat {
+	color:lime !important;
+	text-shadow:2px 2px green !important;
+	font-weight:bold !important;
+}
+
+ul#user_stats li#download span {
+	font-size:1.1em !important;
+	margin-bottom:2px !important;
+}
+
+ul#user_stats li#download span.stat {
+	color:#ff3030 !important;
+	text-shadow:2px 2px brown !important;
+	font-weight:bold !important;
+}
+
 span.time {
-	font-size:9pt !important;
+	font-size:9.5pt !important;
 }
 
 div.header .linkbox a.brackets:hover, div.thin .linkbox a:hover, .forum_list .linkbox a:hover {
@@ -349,6 +391,26 @@ table.forum_index tbody tr td {
 	font-weight:bold !important;
 }
 
+table#seeding_table tbody tr td span#color_seeding * {
+	font-size:13pt !important;
+}
+
+table#torrent_history_table tbody tr td:nth-child(11) {
+	color:yellow !important;
+	text-shadow:1px 2px goldenrod !important;
+	font-size:11.5pt !important;
+	border:1px dotted gold !important;
+}
+
+table#torrent_history_table tbody tr td:nth-child(3) span, table#torrent_history_table tbody tr td:nth-child(8) span {
+	font-size:11pt !important;
+	font-style:italic !important;
+}
+
+table#torrent_history_table tbody tr.colhead td:nth-child(12), table#torrent_history_table tbody tr td:nth-child(12) {
+	display:none !important;
+}
+
 a#color_seeding, a#color_seeding:link, #color_seeding, #color_seeding .torrent_info_tags, #color_seeding a, #color_seeding a:link {
 	color:lime !important;
 	font-weight:bold !important;
@@ -358,7 +420,7 @@ li#nav_donate, li#nav_donate strong a, li#nav_logout {
 	display:none !important;
 }
 
-a#color_seeding:hover, #color_seeding:hover a:hover, #color_seeding:hover .torrent_info_tags, a#color_snatched:hover {
+a#color_seeding:hover em, a#color_seeding:hover .release_title_suffix, #color_seeding:hover a:hover, #color_seeding:hover a:hover .release_title_suffix, #color_seeding:hover .torrent_info_tags, a#color_snatched:hover {
 	color:#efefef !important;
 }
 
@@ -367,24 +429,38 @@ a#color_snatched, a#color_snatched:link, #color_snatched, #color_snatched .torre
 	font-weight:bold !important;
 }
 
-textarea#quickpost {
+textarea#quickpost, textarea#message {
 	background:#121212 !important;
-	color:#efefef !important;
-	font-size:12pt !important;
+	color:#dfdfdf !important;
+	font-size:12.5pt !important;
+	line-height:1.3 !important;
 	border:1px solid black !important;
 	transition:all 0.2s ease 0s;
+	padding:7px !important;
+	border-radius:9px !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
 }
 
-textarea#quickpost:hover {
+textarea#quickpost:hover, textarea#message:hover {
 	background:#191919 !important;
 	color:#ffffff !important;
-	font-size:12pt !important;
+	line-height:1.3 !important;
+	font-size:12.5pt !important;
 	border:1px solid #dfdfdf !important;
+	padding:7px !important;
+	border-radius:9px !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
 }
 
-textarea#quickpost:focus {
+textarea#quickpost:focus, textarea#message:focus {
 	background:#1b1b1b !important;
 	color:#efefef !important;
+	line-height:1.3 !important;
+	border-radius:9px !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
 	border:1px solid #efefef !important;
 }
 
@@ -452,7 +528,74 @@ select option:hover {
 	color:#ff0000 !important;
 }
 
-#search_terms td[colspan="3"] input[type="text"], .pad form.search_form input[type="search"] {
+table#th_search tbody tr td input#search_query, table#th_search tr td input[name="tags"] {
+	font-size:13pt !important;
+	border-radius:6px !important;
+	padding:6px 7px !important;
+	line-height:1.3 !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+	font-style:normal !important;
+	text-align:left !important;
+	border:1px solid black !important;
+	color:#dfdfdf !important;
+}
+
+table#th_search tbody tr td input#search_query:hover, table#th_search tr td input[name="tags"]:hover {
+	border:1px solid gray !important;
+	font-size:13pt !important;
+	line-height:1.3 !important;
+	color:#fefefe !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+	text-align:left !important;
+}
+
+.center form table tbody tr td input[type="text"] {
+	font-size:13pt !important;
+	border-radius:6px !important;
+	padding:6px 7px !important;
+	line-height:1.3 !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+	font-style:normal !important;
+	color:#dfdfdf !important;
+	border:1px solid black !important;
+}
+
+.center form table tbody tr td input[type="text"]:hover {
+	font-size:13pt !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+	color:#efefef !important;
+	border:1px solid gray !important;
+}
+
+#torrents .submit {
+	height:55px !important;
+	margin-bottom:13px !important;
+	margin-top:11px !important;
+}
+
+#otherop tbody tr#filters td input[type="text"] {
+	width:48% !important;
+	margin-left:6px !important;
+	font-size:13pt !important;
+	border-radius:6px !important;
+	padding:7px 8px !important;
+	line-height:1.3 !important;
+	margin-top:3px !important;
+	font-style:normal !important;
+	color:#e2dfdf !important;
+	border:1px solid black !important;
+}
+
+#otherop tbody tr#filters td input[type="text"]:hover {
+	color:#efefef !important;
+	border:1px solid gray !important;
+}
+
+#search_terms td[colspan="3"] input[type="text"], #search_terms td input[type="text"], .pad form.search_form input[type="search"] {
 	font-size:13pt !important;
 	border-radius:6px !important;
 	padding:7px 8px !important;
@@ -461,12 +604,36 @@ select option:hover {
 	margin-right:3px !important;
 	margin-bottom:4px !important;
 	font-style:normal !important;
+	border:1px solid black !important;
+}
+
+div.faqwarning {
+	font-size:12.5pt !important;
+	text-align:center !important;
+	width:90% !important;
+	margin-left:10% !important;
+	padding-top:8px !important;
+	font-style:italic !important;
 }
 
 .pad form.search_form input[type="search"] {
 	text-align:left !important;
 	font-style:normal !important;
-	height:24px !important;
+	border:1px solid black !important;
+	padding:6px 7px !important;
+	color:#dfdfdf !important;
+	height:40px !important;
+}
+.pad form.search_form input[type="search"]:hover {
+	color:#efefef !important;
+	padding:6px 7px !important;
+	border:1px solid gray !important;
+	height:40px !important;
+}
+
+.forum_index tbody tr td:nth-child(4) {
+	text-align:right !important;
+	padding-right:4px !important;
 }
 
 form[action="user.php"] table tbody tr td input[type="text"] {
@@ -481,7 +648,7 @@ form[action="user.php"] table tbody tr td input[type="text"] {
 	font-style:normal !important;
 }
 
-td[colspan="2"] input#search_query, input[type="search"], td[colspan="7"] input[type="text"] {
+td[colspan="2"] input#search_query, input[type="search"], td[colspan="7"] input[type="text"], tr#tagfilter td div#tags_div input[type="text"] {
 	font-size:13pt !important;
 	border-radius:6px !important;
 	padding:7px 8px !important;
@@ -489,16 +656,249 @@ td[colspan="2"] input#search_query, input[type="search"], td[colspan="7"] input[
 	margin-top:3px !important;
 	margin-right:2px !important;
 	margin-bottom:3px !important;
+	border:1px solid black !important;
+	text-align:left !important;
+	font-style:normal !important;
 }
 
-.forum_index tbody tr.colhead {
+td[colspan="2"] input#search_query:hover, input[type="search"]:hover, td[colspan="7"] input[type="text"]:hover, tr#tagfilter td div#tags_div input[type="text"]:hover {
+	color:#efefef !important;
+	border:1px solid gray !important;
+}
+
+.forum_index tbody tr.colhead, form#messageform table tbody tr.colhead {
 	font-size:13pt !important;
-	background:linear-gradient(180deg, rgba(213, 176, 154, 0.3), rgba(0, 0, 0, 0.1)) !important;
-	height:28px !important;
+	background:linear-gradient(180deg, rgba(213, 176, 154, 0.25), rgba(0, 0, 0, 0.1)) !important;
+	height:29px !important;
 }
 
-#artist .main_column #torrent_table[class="torrent_table grouping"] tbody .colhead, #artist .main_column_bg .main_column .box #requests tbody .colhead_dark, #user .box_gold td.label, #user .thin .sidebar .box.box_gold #box_gold_scrollbar tbody .colhead td, #user .main_column_bg .main_column .main_column_sortable .box.box_requests #requests table.border tbody, #torrents #requests #requests_list >tbody >tr:first-child >td, .colhead_dark, .torrent_edit #upload_table #releaseinfo td.label, #user_fight_attacks .label {
+form#messageform table tbody tr.colhead td {
+	text-align:center !important;
+	font-weight:bold !important;
+}
+
+form#messageform table tbody tr td span.time {
+	font-size:12pt !important;
+	margin-left:4px !important;
+	font-style:italic !important;
+}
+
+#footer #copyright, #footer #server_stats, #footer #toplink {
+	font-size:11pt !important;
+	margin-top:3px !important;
+}
+
+#footer #disclaimer_container {
+	font-size:12pt !important;
+	border-radius:10px !important;
+	margin-right:9% !important;
+	margin-top:4px !important;
+	padding:9px 8px !important;
+	color:#dc1010 !important;
+	display:block;
+	width:80% !important;
+	margin-left:10% !important;
+	border:1px dashed red !important;
+	line-height:1.2 !important;
+}
+
+#footer #toplink a, #footer #toplink a:link {
+	font-size:12pt !important;
+	font-weight:bold !important;
+}
+
+#artist .main_column #torrent_table[class="torrent_table grouping"] tbody .colhead, #running_freeleech tbody tr.colhead td, #existing_freeleech_pots tbody tr.colhead td, #artist .main_column_bg .main_column .box #requests tbody .colhead_dark, #user .box_gold td.label, #user .thin .sidebar .box.box_gold #box_gold_scrollbar tbody .colhead td, #user .main_column_bg .main_column .main_column_sortable .box.box_requests #requests table.border tbody, #torrents #requests #requests_list >tbody >tr:first-child >td, .colhead_dark, .torrent_edit #upload_table #releaseinfo td.label, #user_fight_attacks .labeli,
+.torrent_history table tbody tr.colhead, table#seeding_table tbody tr.colhead,
+#running_buffs tbody tr.colhead, #existing_buff_pots tbody tr.colhead,
+#rules .box.pad table tbody tr.colhead {
+	background:linear-gradient(180deg, rgba(210, 174, 149, 0.3), rgba(0, 0, 0, 0.1)) !important;
+}
+
+#rules .box.pad table tbody tr td {
+	font-size:12.5pt !important;
+	padding:3px !important;
+	line-height:1.3 !important;
+	text-align:center !important;
+}
+
+#rules .box.pad table tbody tr.colhead td {
+	font-weight:bold !important;
+	padding-bottom:6px !important;
+}
+
+td input.input_tog, input[name="fromyear"], input[name="toyear"], form[action="user.php"] table tbody tr td input[name="label"] {
+	transition:all 0.2s ease 0s !important;
+}
+
+form[action="user.php"] table tbody tr td input[name="label"]:hover {
+	background:#191919 !important;
+	border:1px solid gray !important;
+	color:#efefef !important;
+}
+
+td input.input_tog:hover, input[name="fromyear"]:hover, input[name="toyear"]:hover {
+	background:#191919 !important;
+	border:1px solid gray !important;
+	color:#efefef !important;
+}
+
+.torrent_history table tbody tr td:nth-child(2) span[style="float: right;"] {
+	display:none !important;
+}
+
+table#seeding_table tbody tr.rowa td span#groupplatform, table#seeding_table tbody tr.rowb td span#groupplatform, table#seeding_table tbody tr.rowa td span a {
+	font-size:13pt !important;
+	line-height:1.3 !important;
+	margin-top:2px !important;
+}
+
+table#seeding_table tbody tr.rowa td:nth-child(2) span * {
+	font-size:13pt !important;
+}
+
+table#seeding_table tbody tr td.nobr span.time {
+	font-size:12pt !important;
+}
+
+table#seeding_table tbody tr.rowa td .tags *, table#seeding_table tbody tr.rowb td .tags * {
+	font-size:12pt !important;
+	line-height:1.2 !important;
+	margin-bottom:2px !important;
+}
+
+table#seeding_table tbody tr td span[style="float: right;"] {
+	display:none !important;
+}
+
+.torrent_history table tbody tr td:nth-child(6) {
+	color:lime !important;
+	font-size:12pt !important;
+}
+
+.torrent_history table tbody tr td:nth-child(7) {
+	color:red !important;
+	font-size:11.5pt !important;
+}
+
+table#existing_freeleech_pots tbody tr:not(.colhead) td:first-child span#groupplatform, table#existing_freeleech_pots tbody tr:not(.colhead) td:first-child a:nth-child(2) {
+	font-size:12.5pt !important;
+}
+
+table#existing_freeleech_pots tbody tr:not(.colhead) td:first-child a:nth-child(3) {
+	display:none !important;
+}
+
+table#existing_freeleech_pots tbody tr:not(.colhead) td:nth-child(3), table#existing_freeleech_pots tbody tr:not(.colhead) td:nth-child(4), table#existing_freeleech_pots tbody tr:not(.colhead) td:nth-child(5), #existing_buff_pots tbody tr:not(.colhead) td:nth-child(3), #existing_buff_pots tbody tr:not(.colhead) td:nth-child(4), #existing_buff_pots tbody tr:not(.colhead) td:nth-child(5) {
+	border:1px dotted goldenrod !important;
+	color:yellow !important;
+	font-size:12pt !important;
+	text-shadow:1px 2px goldenrod !important;
+	padding:3px !important;
+}
+
+table#existing_freeleech_pots tbody tr.colhead td *, table#existing_buff_pots tbody tr.colhead td *, table#running_buffs tbody tr.colhead td * {
+	font-weight:bold !important;
+	font-size:12.5pt !important;
+}
+
+table#existing_freeleech_pots tbody tr.colhead td, table#existing_buff_pots tbody tr.colhead td, table#running_buffs tbody tr.colhead td {
+	padding:4px !important;
+	text-align:center !important;
+}
+
+#running_freeleech >tbody tr[class^="group_torrent row_"] >td >strong a {
+	font-size:13pt !important;
+	line-height:1.3 !important;
+}
+
+#running_freeleech >tbody tr[class^="group_torrent row_"] >td >div.tags {
+	font-size:11.5pt !important;
+	line-height:1.2 !important;
+}
+
+#running_freeleech tbody tr.colhead, #existing_freeleech_pots tbody tr.colhead {
 	background:linear-gradient(180deg, rgba(213, 176, 154, 0.3), rgba(0, 0, 0, 0.1)) !important;
+}
+
+#running_freeleech tbody tr td span.time {
+	font-size:12pt !important;
+}
+
+div.torrent_history table tbody tr td:nth-child(3) span.time, div.torrent_history table tbody tr td:nth-child(8) {
+	font-size:12pt !important;
+	font-style:italic !important;
+}
+
+input[type="number"] {
+	background:#121212 !important;
+	color:#efefef !important;
+	font-size:13pt !important;
+	padding:7px 8px !important;
+	border:1px solid black !important;
+	margin-left:2px !important;
+	margin-right:2px !important;
+	border-radius:5px !important;
+}
+
+.pad .search_form[action="wiki.php"] input[type="search"] {
+	font-size:13pt !important;
+	text-align:left !important;
+	padding:7px 8px !important;
+	border:1px solid black !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+	line-height:1.3 !important;
+	border-radius:6px !important;
+	text-align:left !important;
+	color:#dfdfdf !important;
+}
+
+.pad .search_form[action="wiki.php"] input[type="search"]:hover {
+	font-size:13pt !important;
+	padding:7px 8px !important;
+	border:1px solid gray !important;
+	border-radius:6px !important;
+	color:#fefefe !important;
+	text-align:left !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+}
+
+.wiki_article .pad, .wiki_article .pad a, .wiki_article .pad ul li, .wiki_article .pad ul li a {
+	font-size:12pt !important;
+}
+
+form#request_form {
+	font-size:12pt !important;
+}
+
+form#request_form strong, form#request_form span#new_gold {
+	color:yellow !important;
+	font-size:13pt !important;
+	text-shadow:1px 2px goldenrod !important;
+}
+
+input[type="number"]:hover {
+	background:#141414 !important;
+	color:#fefefe !important;
+	font-size:13pt !important;
+	padding:7px 8px !important;
+	border:1px solid gray !important;
+	margin-left:2px !important;
+	margin-right:2px !important;
+}
+
+.box.vertical_space div.head {
+	background:linear-gradient(180deg, rgba(213, 176, 153, 0.25), rgba(0, 0, 0, 0.1)) !important;
+	font-size:12pt !important;
+	padding-top:6px !important;
+	padding-bottom:4px !important;
+}
+
+.box.vertical_space div.head span.time {
+	font-size:12pt !important;
+	color:#a2a2a2 !important;
+	font-style:italic !important;
 }
 
 .forum_post tbody tr td div span.time {
@@ -506,6 +906,7 @@ td[colspan="2"] input#search_query, input[type="search"], td[colspan="7"] input[
 }
 
 .forumstat {
+	color:#a9a9a9 !important;
 	font-size:10pt !important;
 }
 
@@ -574,6 +975,23 @@ ul#items_list .item_li:hover {
 	padding-bottom:6px !important;
 }
 
+.item_li form p {
+	font-size:11pt !important;
+	line-height:1.2 !important;
+}
+
+.item_li form div #extended_info h4 {
+	font-size:12.5pt !important;
+	margin-top:1px !important;
+	margin-bottom:2px !important;
+}
+
+.item_li form div #extended_info p {
+	font-size:12pt !important;
+	margin-top:1px !important;
+	margin-bottom:1px !important;
+}
+
 #userinfo_minor li a {
 	font-size:14pt !important;
 }
@@ -586,17 +1004,46 @@ ul#items_list .item_li:hover {
 }
 
 .individual_buff {
-	background:rgba(0, 0, 0, 0.4) !important;
-	box-shadow:2px 2px magenta !important;
-	transition:all 0.2s ease 0s;
-	border-radius:19px 0px 0px 19px !important;
-	margin-right:-5px !important;
+	transition:all 0.3s ease 0s;
+	border-radius:24px 0px 0px 24px !important;
+	margin-right:-6px !important;
+	margin-top:10px !important;
+	margin-bottom:11px !important;
+	background:rgba(0, 0, 0, 0.5) !important;
+	box-shadow:3px 3px magenta !important;
+	border-top:2px solid magenta !important;
+	border-left:2px solid magenta !important;
+	padding-top:7px !important;
+	padding-bottom:5px !important;
+	padding-right:6px !important;
+	min-width:87px !important;
+	width:87px !important;
+	margin-left:0px !important;
 }
 
 .individual_buff:hover {
+	min-width:98px !important;
+	width:98px !important;
+	margin-left:-10px !important;
+	margin-right:2px !important;
+	padding-top:7px !important;
+	padding-right:9px !important;
+	padding-bottom:5px !important;
 	background:rgba(10, 10, 10, 0.5) !important;
+	border-radius:24px 0px 0px 24px !important;
 	box-shadow:3px 3px purple !important;
-	border-radius:19px 0px 0px 19px !important;
+	border-top:2px solid purple !important;
+	border-left:2px solid purple !important;
+}
+
+.individual_buff#pots {
+	background:rgba(10, 0, 15, 0.5) !important;
+	box-shadow:2px 2px magenta !important;
+}
+
+.individual_buff#pots:hover {
+	background:rgba(20, 0, 30, 0.5) !important;
+	box-shadow:3px 3px purple !important;
 }
 
 .individual_buff a * {
@@ -605,6 +1052,76 @@ ul#items_list .item_li:hover {
 }
 .individual_buff a i.fa-fl-pots {
 	font-size:60px !important;
+}
+
+.individual_buff#buff_download a .buff_text span.buff_multiplier, .individual_buff#buff_chance a .buff_text span.buff_multiplier, .individual_buff#buff_upload a .buff_text span.buff_multiplier {
+	font-size:38px !important;
+	line-height:1.2 !important;
+}
+
+.individual_buff#buff_upload {
+	box-shadow:3px 3px lime !important;
+	border-left:2px solid lime !important;
+	border-top:2px solid lime !important;
+	background:rgba(0, 30, 0, 0.5) !important;
+}
+
+.individual_buff#buff_upload:hover {
+	box-shadow:3px 3px green !important;
+	background:rgba(1, 40, 2, 0.5) !important;
+	border-left:2px solid green !important;
+	border-top:2px solid green !important;
+}
+
+.individual_buff#buff_chance {
+	background:rgba(50, 50, 0, 0.5) !important;
+	border-left:2px solid yellow !important;
+	border-top:2px solid yellow !important;
+	box-shadow:3px 3px yellow !important;
+}
+
+.individual_buff#buff_chance:hover {
+	box-shadow:3px 3px gold !important;
+	border-top:2px solid gold !important;
+	border-left:2px solid gold !important;
+}
+
+.individual_buff#buff_chance a div span.buff_multiplier {
+	color:gold !important;
+	text-shadow:2px 2px goldenrod !important;
+}
+
+.individual_buff#buff_chance:hover a:hover div span.buff_multiplier {
+	color:yellow !important;
+	text-shadow:2px 2px gold !important;
+}
+
+.individual_buff#buff_download {
+	background:rgba(50, 0, 5, 0.5) !important;
+	box-shadow:3px 3px red !important;
+	border-top:2px solid red !important;
+	border-left:2px solid red !important;
+}
+
+.individual_buff#buff_download a div span.buff_multiplier {
+	color:red !important;
+	text-shadow:2px 2px brown !important;
+}
+
+.individual_buff#buff_download a:hover div span.buff_multiplier {
+	color:hotpink !important;
+	text-shadow:2px 2px red !important;
+}
+
+.individual_buff#buff_download:hover {
+	background:rgba(60, 0, 7, 0.5) !important;
+	box-shadow:3px 3px brown !important;
+	border-top:2px solid brown !important;
+	border-left:2px solid brown !important;
+}
+
+.inventory .item_li img.trash_icon {
+	display:none !important;
 }
 
 td label, td.label {
@@ -626,7 +1143,6 @@ div.box div.body ol.navigation_list li a:hover {
 	height:90px !important;
 }
 
-
 td.achlabel span.bold {
 	font-size:12.5pt !important;
 	margin-bottom:3px !important;
@@ -643,5 +1159,190 @@ td.achlabel span.italic {
 #content div.flright.linkbox {
 	font-size:13pt !important;
 	color:#fefefe !important;
+}
+
+#requests_list tbody tr td:first-child {
+	font-size:12pt !important;
+	padding-top:6px !important;
+	padding-bottom:6px !important;
+}
+
+#requests_list tbody tr td:first-child a, #requests_list tbody tr td:first-child a:link {
+	font-size:13pt !important;
+}
+
+#requests_list tbody tr td:first-child div.tags a, #requests_list tbody tr td:first-child div.tags a:link {
+	font-size:11pt !important;
+}
+#requests_list tbody tr:not(.colhead_dark):not(.colhead) td:nth-child(3) {
+	font-size:12pt !important;
+	color:yellow !important;
+	font-weight:bold !important;
+	text-shadow:1px 2px goldenrod !important;
+	border:1px dotted gold !important;
+	border-right:2px dotted gold !important;
+	border-bottom:2px dotted gold !important;
+}
+
+#requests_list tbody tr:not(.colhead_dark):not(.colhead) td:nth-child(7) span.time, #requests_list tbody tr:not(.colhead_dark):not(.colhead) td:nth-child(8) span.time {
+	font-size:11pt !important;
+	text-align:right !important;
+	font-style:italic !important;
+}
+
+tr#bounty td span#formatted_bounty {
+	color:yellow !important;
+	font-size:13pt !important;
+	font-weight:bold !important;
+	margin-right:4px !important;
+	margin-left:2px !important;
+	text-shadow:1px 2px goldenrod !important;
+}
+
+#items_inner input#search_query {
+	font-size:13pt !important;
+	line-height:1.2 !important;
+	padding:6px 7px !important;
+	border:1px solid black !important;
+	border-radius:6px !important;
+	color:#dfdfdf !important;
+	margin-left:3px !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+
+#items_inner input#search_query:hover {
+	font-size:13pt !important;
+	line-height:1.2 !important;
+	padding:6px 7px !important;
+	border:1px solid gray !important;
+	color:#fefefe !important;
+	margin-left:3px !important;
+	border-radius:6px !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+
+#backpack #items #search_query, #crafting_panel #items #search_query, .equipment #search_query, #trading_panel #items #search_query {
+	width:250px !important;
+	top:6px !important;
+}
+
+.forum_index tbody tr.colhead td {
+	text-align:center !important;
+	padding:4px !important;
+	font-weight:bold !important;
+	margin-top:2px !important;
+}
+
+div input[type="text"][name="link"], #one_time_inputs input[type="text"] {
+	font-size:13pt !important;
+	padding:5px 6px !important;
+	border:1px solid black !important;
+	border-radius:6px !important;
+	color:#dfdfdf !important;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
+
+div input[type="text"][name="link"]:hover, #one_time_inputs input[type="text"]:hover {
+	color:#efefef !important;
+	border-radius:6px !important;
+	border:1px solid gray !important;
+	font-size:13pt !important;
+	padding:5px 6px !important;
+}
+
+tr td:nth-child(2) span.time {
+	font-size:12pt !important;
+}
+
+#requests .box_votes table tbody tr td:first-child {
+	font-size:12pt !important;
+	text-align:right !important;
+}
+
+#requests .box_votes table tbody tr td:nth-child(2) {
+	border:1px dotted gold !important;
+	font-size:12pt !important;
+	color:yellow !important;
+	text-shadow:1px 2px goldenrod !important;
+	text-align:left !important;
+	margin-left:4px !important;
+}
+
+#requests_list tbody tr td:last-child, #requests_list tbody tr td:nth-child(7) {
+	font-size:12pt !important;
+}
+
+.linkbox.groupoptions a:hover {
+	color:#efefef !important;
+	text-shadow:1px 2px white !important;
+}
+
+div.theme_collections {
+	padding-left:5px !important;
+}
+
+div.theme_collections * {
+	font-size:12pt !important;
+	line-height:1.2 !important;
+}
+.box_theme_collections div.head {
+	font-size:13pt !important;
+}
+div.theme_collections > div {
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+	margin-left:5px !important;
+}
+
+.box.pad form#messageform table tbody tr td {
+	font-size:12pt !important;
+	padding-top:5px !important;
+	padding-bottom:6px !important;
+	line-height:1.2 !important;
+}
+
+.box.pad form#messageform table tbody tr.colhead td {
+	font-weight:bold !important;
+	font-size:12pt !important;
+	line-height:1.2 !important;
+}
+
+div.torrent_history table tbody tr td span#groupplatform, div.torrent_history table tbody tr td a, div.torrent_history table tbody tr td a em {
+	font-size:13pt !important;
+	line-height:1.3 !important;
+}
+
+div.torrent_history table tbody tr td div.tags {
+	font-size:12pt !important;
+	line-height:1.1 !important;
+}
+
+table#running_buffs tbody tr td, table#existing_buff_pots tbody tr td {
+	font-size:12pt !important;
+	padding:3px !important;
+}
+
+form#new_pm .comp tbody tr td input[type="text"] {
+	font-size:13pt !important;
+	padding:6px 7px !important;
+	border-radius:6px !important;
+	border:1px solid black !important;
+	line-height:1.3 !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+	color:#dfdfdf !important;
+}
+
+form#new_pm .comp tbody tr td input[type="text"]:hover {
+	font-size:13pt !important;
+	color:#fefefe !important;
+	border:1px solid gray !important;
+	line-height:1.3 !important;
+	margin-top:3px !important;
+	margin-bottom:3px !important;
+	padding:6px 7px !important;
 }
 
