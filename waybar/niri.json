@@ -36,7 +36,7 @@
     "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{repeatIcon}{randomIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{repeatIcon}{randomIcon}",
-    "title-len": 42,
+    "title-len": 40,
     "unknown-tag": "N/A",
     "interval": 1,
     "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
