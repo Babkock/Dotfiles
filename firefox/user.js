@@ -1,3 +1,7 @@
+user_pref("gfx.webrender.all", true);
+user_pref("media.ffmpeg.vaapi.enabled", true);
+user_pref("widget.wayland-dmabuf-vaapi.enabled", true);
+
 user_pref("accessibility.force_disabled", 1);
 user_pref("accessibility.support.url", "");
 user_pref("app.feedback.baseURL", "");
@@ -30,6 +34,9 @@ user_pref("browser.contentblocking.category", "strict");
 user_pref("browser.contentblocking.reportBreakage.url", "");
 user_pref("browser.library.activity-stream.enabled", false);
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
+user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.ml.linkPreview.enabled", false);
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtabpage.activity-stream.discoverystream.endpoints", "");
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
@@ -46,6 +53,7 @@ user_pref("browser.startup.homepage", "http://localhost:8000");
 user_pref("browser.uidensity", 1);
 user_pref("browser.uitour.url", "");
 user_pref("browser.tabs.crashReporting.sendReport", false);
+user_pref("browser.tabs.groups.smart.enabled", false);
 user_pref("browser.tabs.unloadOnLowMemory", true);
 user_pref("datareporting.healthreport.infoURL", "");
 user_pref("datareporting.healthreport.uploadEnabled", false);
