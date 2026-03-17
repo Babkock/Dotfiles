@@ -637,3 +637,47 @@ td.votelinks center font[color="#ff6600"] {
 	color:lime;
 	font-size:1.3em !important;
 }
+a[href="formatdoc"] {
+    display:none !important;
+}
+
+.hnuser font[color="#3c963c"] {
+    color:lime !important;
+}
+
+tr#bigbox td table[style="border-spacing: 7px 0px;"] {
+    padding:2px !important;
+    border:1px solid gray !important;
+    border-spacing:2px 2px !important;
+}
+
+td.ind {
+  background: rgba(0, 0, 0, 0.3) !important;
+  padding-left: 4px !important;
+  border-radius: 11px 0px 0px 11px !important;
+}
+
+td.ind[indent="1"] {
+    background:rgba(50, 0, 0, 0.3) !important;
+}
+
+td.ind[indent="2"] {
+    background:rgba(20, 22, 70, 0.3) !important;
+}
+
+td.ind[indent="3"] {
+    background:rgba(1, 70, 20, 0.3) !important;
+}
+
+td.ind[indent="4"] {
+    background:rgba(70, 1, 70, 0.3) !important;
+}
+
+td.ind[indent="5"] {
+    background:rgba(70, 80, 1, 0.3) !important;
+}
+
+td.ind[indent="6"] {
+    background:rgba(1, 80, 80, 0.3) !important;
+}
+

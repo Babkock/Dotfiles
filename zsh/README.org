@@ -194,7 +194,7 @@ else
         }
         function pn() {
             pkill -x pipewire
-            pipewire &> /dev/null &
+            env PULSE_LATENCY_MSEC=60 pipewire &> /dev/null &
             sleep 1
             tmux new-session "/usr/bin/zsh -c \"EDITOR=vim lf -command 'set icons false; set drawbox false;'\"" \; split-window -v "ncmpcpp --host '$MPD_PASS' --port 6602"
             fg
@@ -219,6 +219,7 @@ else
             export MOZ_WEBRENDER=1
             export WLR_DRM_NO_MODIFIERS=1
             export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/renderD128"
+            export PULSE_LATENCY_MSEC=80
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
@@ -260,6 +261,7 @@ else
             export XCURSOR_SIZE=32
             export MOZ_ENABLE_WAYLAND=1
             export MOZ_WEBRENDER=1
+            export PULSE_LATENCY_MSEC=80
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
@@ -298,6 +300,7 @@ else
             export XCURSOR_SIZE=32
             export MOZ_ENABLE_WAYLAND=1
             export MOZ_WEBRENDER=1
+            export PULSE_LATENCY_MSEC=80
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
@@ -336,6 +339,7 @@ else
             export XCURSOR_SIZE=32
             export MOZ_ENABLE_WAYLAND=1
             export MOZ_WEBRENDER=1
+            export PULSE_LATENCY_MSEC=80
             pgrep mpdas | xargs kill 2> /dev/null
             pgrep pipewire | xargs kill 2> /dev/null
             pgrep pulseaudio | xargs kill 2> /dev/null
@@ -1136,10 +1140,10 @@ alias vim="vim -n -T alacritty"
 alias vm="virt-manager"
 alias lb="lsblk --paths --fs --perms"
 alias r="ranger"
-alias m="mpv"
+alias m="env PULSE_LATENCY_MSEC=60 mpv"
 alias mb="mount /mnt/Baby; echo 'sdb Mounted'"
 alias md="mount /mnt/drive; echo 'sdb Mounted'"
-alias mi="mpv --mute=yes"
+alias mi="env PULSE_LATENCY_MSEC=60 mpv --mute=yes"
 alias mt="mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
 alias mn="man"
 alias tl="tldr"
@@ -1174,12 +1178,12 @@ alias qg="gimp"
 alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
 alias sb="sudo sv restart bluez-alsa; sudo sv restart bluetoothd"
 alias se="pkill -x emacs; emacs --daemon"
-alias sw="pkill -x waybar; waybar -c '$HOME/.config/waybar/sway.json' -s '$HOME/.config/waybar/sway.css' -l off &"
-alias sf="pkill -x waybar; waybar -c '$HOME/.config/waybar/wayfire.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
+alias sw="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/sway.json' -s '$HOME/.config/waybar/sway.css' -l off &"
+alias sf="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/wayfire.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
 alias so="pkill -x eww"
-alias sy="pkill -x waybar; waybar -c '$HOME/.config/waybar/hyprland.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
-alias sn="pkill -x waybar; waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
-alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; pipewire &"
+alias sy="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/hyprland.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
+alias sn="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
+alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; env PULSE_LATENCY_MSEC=60 pipewire &"
 alias sz="sudo pkill -x wpa_supplicant; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
 alias svi="sudo vim -n -T alacritty"
 alias ta="tar xvf"
@@ -1301,6 +1305,7 @@ export WOBSOCK="$HOME/.wob.sock"
 
 #+begin_src sh :tangle .zshrc
 prompt_nix_shell_setup "$@"
+export PULSE_LATENCY_MSEC=60
 
 random=$(shuf -i 1-3 -n 1)
 if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then

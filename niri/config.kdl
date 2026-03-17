@@ -344,7 +344,7 @@ environment {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "xwayland-satellite"
 
-spawn-at-startup "pipewire"
+spawn-at-startup "env" "PULSE_LATENCY_MSEC=60" "pipewire"
 
 spawn-at-startup "swaybg" "-o" "eDP-1" "-i" "/home/babkock/.config/niri/redgraysplash.jpg" "-o" "HDMI-A-2" "-i" "/home/babkock/.config/niri/abstractpaintsplash.jpg" "-o" "DP-1" "-i" "/home/babkock/.config/niri/blueorangeswirl.jpg"
 spawn-at-startup "mako" "-c" "/home/babkock/.config/mako/niriconfig"
@@ -359,7 +359,7 @@ spawn-at-startup "bash" "-c" "rm -f /home/babkock/.wob.sock && mkfifo /home/babk
 spawn-at-startup "dbus-update-activation-environment" "SDL_VIDEODRIVER" "GDK_BACKEND" "GTK_THEME" "XCURSOR_SIZE" "XCURSOR_THEME" "QT_QPA_PLATFORM" "XDG_CURRENT_DESKTOP" "XDG_SESSION_DESKTOP" "XDG_SESSION_TYPE" "MOZ_ENABLE_WAYLAND"
 spawn-at-startup "foot" "--server" "--config" "/home/babkock/.config/foot/niri.ini"
 
-spawn-at-startup "waybar" "-c" "/home/babkock/.config/waybar/niri.json" "-s" "/home/babkock/.config/waybar/niri.css" "-l" "off"
+spawn-at-startup "env" "PULSE_LATENCY_MSEC=60" "waybar" "-c" "/home/babkock/.config/waybar/niri.json" "-s" "/home/babkock/.config/waybar/niri.css" "-l" "off"
 
 spawn-at-startup "emacs" "--daemon"
 spawn-at-startup "mpdas" "-d" "-c" "/home/babkock/.config/mpdasrc"
@@ -631,22 +631,22 @@ binds {
 
 	Mod+Shift+Space hotkey-overlay-title="Show webcam" { spawn "mpv" "av://v4l2:/dev/video2" "--untimed" "--profile=low-latency" "--no-osc" "--ontop" "--cache=no" "--demuxer-lavf-format=video4linux2" "--demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30" "--window-scale=0.5"; }
 
-	Mod+Shift+Period hotkey-overlay-title="Mozilla Firefox" { spawn "firefox-wayland"; }
+	Mod+Shift+Period hotkey-overlay-title="Mozilla Firefox" { spawn  "env" "PULSE_LATENCY_MSEC=80" "firefox-wayland"; }
 
-	Mod+Period hotkey-overlay-title="Qutebrowser" { spawn "qutebrowser" "-C" "/home/babkock/.config/qutebrowser/niri.py" "--qt-arg" "stylesheet" "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss" "-R" "--qt-wrapper" "PyQt6" "--backend" "webengine" "--qt-flag" "enable-features=WebRTCPipeWireCapturer" "--qt-flag" "enable-gpu" "--qt-flag" "enable-accelerated-video" "--qt-flag" "enable-gpu-rasterization" "--qt-flag" "enable-native-gpu-memory-buffers" "--qt-flag" "ozone-platform-hint=wayland"; }
+	Mod+Period hotkey-overlay-title="Qutebrowser" { spawn "env" "PULSE_LATENCY_MSEC=80" "qutebrowser" "-C" "/home/babkock/.config/qutebrowser/niri.py" "--qt-arg" "stylesheet" "/home/babkock/.local/share/qutebrowser/fix-tooltips.qss" "-R" "--qt-wrapper" "PyQt6" "--backend" "webengine" "--qt-flag" "enable-features=WebRTCPipeWireCapturer" "--qt-flag" "enable-gpu" "--qt-flag" "enable-accelerated-video" "--qt-flag" "enable-gpu-rasterization" "--qt-flag" "enable-native-gpu-memory-buffers" "--qt-flag" "ozone-platform-hint=wayland"; }
 
-	Mod+Comma hotkey-overlay-title="RMPC Music Player" { spawn "footclient" "-e" "rmpc" "-c" "/home/babkock/.config/rmpc/config.ron"; }
+	Mod+Comma hotkey-overlay-title="RMPC Music Player" { spawn "footclient" "-e" "env" "PULSE_LATENCY_MSEC=60" "rmpc" "-c" "/home/babkock/.config/rmpc/config.ron"; }
 	Mod+Shift+Comma hotkey-overlay-title="Emacs" { spawn "emacsclient" "-c" "-a" "'emacs'" "-q"; }
 
 	Mod+Slash hotkey-overlay-title="Sublime Text" { spawn "subl3"; }
 
 	Mod+Semicolon hotkey-overlay-title="Nicotine" { spawn "nicotine"; }
 
-	Mod+Shift+Slash hotkey-overlay-title="Steam" { spawn "steam"; }
+	Mod+Shift+Slash hotkey-overlay-title="Steam" { spawn "env" "PULSE_LATENCY_MSEC=60" "steam"; }
 
 	Mod+Backslash hotkey-overlay-title="Mozilla Thunderbird" { spawn "thunderbird"; }
 
-	Mod+Shift+Backslash hotkey-overlay-title="Easyeffects" { spawn  "bash" "-c" "pkill -9 easyeffects; easyeffects"; }
+	Mod+Shift+Backslash hotkey-overlay-title="Easyeffects" { spawn  "bash" "-c" "pkill -9 easyeffects; env PULSE_LATENCY_MSEC=60 easyeffects"; }
 
 	Mod+Shift+Semicolon hotkey-overlay-title="Monero" { spawn  "bash" "-c" "QT_QPA_PLATFORM='xcb' QT_QPA_PLATFORMTHEME='qt5ct' monero-wallet-gui"; }
 

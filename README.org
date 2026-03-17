@@ -131,9 +131,8 @@ May vary across Wayland compositors, but almost all of these are implemented in 
 | Super + Shift + Backslash | EasyEffects        |
 | Super + Slash             | Sublime Text       |
 | Super + Shift + Slash     | Steam              |
-| Super + Backspace         | Chromium            |
+| Super + Backspace         | Lutris             |
 | Super + Shift + Backspace | Virt-Manager       |
-| Super + Equals            | Lutris             |
 | Super + Shift + C         | Close window       |
 | Super + Shift + Q         | Exit Session       |
 
