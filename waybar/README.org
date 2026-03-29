@@ -368,10 +368,10 @@ every single one of the modules, if I don't have to. The modules and their order
         "car": "",
         "default": ["", "", ""]
     },
-    "on-click-right": "pavucontrol",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 pavucontrol",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
 }
 #+end_src
 
@@ -449,6 +449,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
         "ranger:(.*)": " $1",
         "Monero - (.*)": " <span style=\"italic\">$1</span>",
         "Monero": " ",
+        "Lutris": "󰊖 ",
+        "DOSBox": " ",
+        "DOSBox (.*)": " <span style=\"italic\">$1</span>",
         "(.*) | Cloudflare": " <span style=\"italic\">$1</span>",
         "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
         "(.*) | Cloudflare — Mozilla Firefox": " <span style=\"italic\">$1</span>",
@@ -715,9 +718,9 @@ This is the second bar that Sway uses, and it places it on my monitor (=HDMI-A-2
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 helvum",
     "on-click-middle": "footclient -e pw-top"
 },
 #+end_src
@@ -1121,9 +1124,9 @@ This is the first and primary status bar that LabWC uses, for my laptop's screen
         "default": ["", "", ""]
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "pavucontrol"
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 pavucontrol"
 },
 #+end_src
 
@@ -1316,9 +1319,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum"
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 helvum"
 },
 #+end_src
 
@@ -1686,9 +1689,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "default": ["", "", ""]
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "pavucontrol"
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 pavucontrol"
 },
 #+end_src
 
@@ -2040,9 +2043,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 helvum",
     "on-click-middle": "footclient -e pw-top"
 },
 #+end_src
@@ -2441,10 +2444,10 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "car": "",
         "default": ["", "", ""]
     },
-    "on-click-right": "pavucontrol",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 pavucontrol",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
 }
 #+end_src
 
@@ -2521,6 +2524,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
         "Bitcoin Core": " ",
         "Node window": " ",
         "Yazi: (.*)": " $1",
+        "Lutris": "󰊖 ",
+        "DOSBox": " ",
+        "DOSBox (.*)": " <span style=\"italic\">$1</span>",
         "(.*) - Codeberg.org": " <span style=\"italic\">$1</span>",
         "(.*) - Codeberg.org — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "Monero - (.*)": " <span style=\"italic\">$1</span>",
@@ -2776,9 +2782,9 @@ And finally, the sixth status bar, this is the second status bar that LabWC uses
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-click-right": "helvum",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click-right": "env PULSE_LATENCY_MSEC=60 helvum",
     "on-click-middle": "footclient -e pw-top"
 },
 #+end_src

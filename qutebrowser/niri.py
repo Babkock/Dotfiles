@@ -135,7 +135,6 @@ c.scrolling.bar = "always"
 c.scrolling.smooth = False
 c.qt.args = ["stylesheet /home/babkock/.local/share/qutebrowser/fix-tooltips.qss", "enable-gpu-rasterization", "ignore-gpu-blocklist", "use-gl=egl", "enable-accelerated-video-decode"]
 c.qt.chromium.experimental_web_platform_features = "always"
-c.qt.workarounds.disable_hangouts_extension = True
 
 c.content.blocking.method = "adblock"
 c.statusbar.widgets = ["keypress", "search_match", "url", "progress", "clock"]
@@ -196,33 +195,40 @@ c.completion.shrink = True
 c.auto_save.interval = 20000
 c.input.insert_mode.plugins = True
 
-c.completion.cmd_history_max_items = 20
+c.completion.cmd_history_max_items = 30
 c.completion.favorite_paths = ["file:///home/babkock/.config/qutebrowser/index.html"]
 
 # --- Search engines ---
 
 c.url.start_pages = ["file:///home/babkock/.config/qutebrowser/index.html"]
-c.url.searchengines = { 'DEFAULT': 'https://duckduckgo.com/?ia=web&q={}', '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',  '!e': 'https://www.empornium.is/torrents.php?taglist={}', '!g': 'https://google.com/search?hl=en&q={}', '!i': 'https://google.com/search?hl=en&tbm=isch&q={}', '!m': 'https://google.com/maps?q={}', '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}', '!h': 'https://github.com/search?q={}',  '!o': 'https://odysee.com/$/search?q={}', '!t': 'https://www.tumblr.com/search/{}?src=typed_query', '!y': 'https://youtube.com/results?search_query={}', '!n': 'https://yandex.ru/search/?text={}', '!p': 'https://iptorrents.me/t?101=89=&90=&6=&48=&62=&38=&20=&100=&26=&23=&24=&82=&65=&83=&79=&22=&5=&99=&21=&69=&720p=on&1080p=on&2160p=on&q={}&qf=ti#torrents', '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}', '!f': 'https://find.4chan.org/?q={}' }
+c.url.searchengines = {
+    'DEFAULT': 'https://4get.ca/web?s={}',
+    '!a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
+    '!b': 'https://bandcamp.com/search?q={}',
+    '!d': 'https://duckduckgo.com/?ia=web&q={}',
+    '!e': 'https://www.empornium.sx/torrents.php?taglist={}',
+    '!f': 'https://find.4chan.org/?q={}',
+    '!g': 'https://google.com/search?hl=en&q={}',
+    '!h': 'https://github.com/search?q={}',
+    '!i': 'https://google.com/search?hl=en&tbm=isch&q={}',
+    '!l': 'https://letterboxd.com/search/{}/?adult',
+    '!m': 'https://google.com/maps?q={}',
+    '!n': 'https://yandex.ru/search/?text={}',
+    '!o': 'https://odysee.com/$/search?q={}',
+    '!p': 'https://orpheus.network/torrents.php?searchstr={}',
+    '!r': 'https://www.morethantv.me/show/search?searchtext={}',
+    '!t': 'https://www.tumblr.com/search/{}?src=typed_query',
+    '!v': 'https://voidlinux.org/packages/?arch=x86_64&q={}',
+    '!w': 'https://en.wikipedia.org/w/index.php?title=Special%3ASearch&search={}',
+    '!y': 'https://youtube.com/results?search_query={}',
+    '!z': 'https://4get.ca/images?s={}'
+}
 
 c.fileselect.handler = 'external'
 #c.fileselect.single_file.command = ['st', '-e', 'ranger', '--choosefile={}']
 c.fileselect.single_file.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-i', '-x', '-GQ', '-p', '{}']
 #c.fileselect.multiple_files.command = ['st', '-e', 'ranger', '--choosefiles={}']
 c.fileselect.multiple_files.command = ['footclient', '-e', 'nnn', '-d', '-l', '2', '-U', '-D', '-R', '-i', '-x', '-GQ', '-p', '{}']
-
-# --- Keybindings: Bookmarks ---
-
-config.bind(',`', 'open https://github.com/Babkock')
-config.bind(',1', 'open https://gitlab.com/Babkock/')
-config.bind(',2', 'open https://yt.funami.tech/feed/subscriptions')
-config.bind(',3', 'open https://proton.me')
-config.bind(',4', 'open https://tannerbabcock.com/home')
-config.bind(',5', 'open https://passthepopcorn.me')
-config.bind(',6', 'open https://empornium.is')
-config.bind(',7', 'open https://boards.4channel.org/g/catalog')
-config.bind(',8', 'open https://news.ycombinator.com/news')
-config.bind(',9', 'open https://old.reddit.com')
-config.bind(',0', 'open https://babkock.github.io')
 
 config.bind(',-', 'navigate prev')
 config.bind(',=', 'navigate next')
@@ -237,13 +243,8 @@ config.bind(',x', 'config-cycle fonts.statusbar "18pt GoMono Nerd Font Propo" "1
 # --- Keybindings: Stylesheets ---
 
 config.bind(',c', 'config-cycle content.user_stylesheets "" ""')
-config.bind(',a', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/4chan.css ""')
-config.bind(',b', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/reddit.css ""')
-config.bind(',e', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/empornium.css ""')
-config.bind(',s', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/scaruffi.css ""')
-config.bind(',h', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/hacker.css ""')
-config.bind(',v', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/mtv.css ""')
 config.bind(',q', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/qutebrowser.css ""')
+
 
 # --- Keybindings: UI ---
 
