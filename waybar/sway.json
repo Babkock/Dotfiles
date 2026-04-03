@@ -151,9 +151,9 @@
         "default": ["", "", ""]
     },
     "on-click-right": "env PULSE_LATENCY_MSEC=60 pavucontrol",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 wpctl set-volume @DEFAULT_SINK@ 2%+ && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 wpctl set-volume @DEFAULT_SINK@ 2%- && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
 }
 
 }, {
@@ -470,9 +470,9 @@
     "tooltip": true,
     "tooltip-format": "{node_name}",
     "format-icons": ["", "", ""],
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ +2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
-    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 pactl set-sink-volume @DEFAULT_SINK@ -2% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-up": "env PULSE_LATENCY_MSEC=60 wpctl set-volume @DEFAULT_SINK@ 2%+ && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
+    "on-scroll-down": "env PULSE_LATENCY_MSEC=60 wpctl set-volume @DEFAULT_SINK@ 2%- && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > /home/babkock/.wob.sock",
     "on-click-right": "env PULSE_LATENCY_MSEC=60 helvum",
     "on-click-middle": "footclient -e pw-top"
 },

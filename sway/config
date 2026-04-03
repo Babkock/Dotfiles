@@ -17,21 +17,15 @@ set $right l
 #set $term alacritty --config-file "$HOME/.config/alacritty/sway.toml"
 set $term footclient
 
+exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY WLR_RENDERER WLR_DRM_NO_ATOMIC GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME PULSE_LATENCY_MSEC MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
 exec pgrep pulseaudio | xargs kill
 exec pkill -x pulseaudio
 exec pkill -x pipewire
-exec env PULSE_LATENCY_MSEC=60 pipewire
-exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY WLR_RENDERER WLR_DRM_NO_ATOMIC GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME PULSE_LATENCY_MSEC MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
+exec env PULSE_LATENCY_MSEC=60 pipewire &
 exec --no-startup-id autotiling -l 2 &
 exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 exec gsettings set org.gnome.desktop.interface cursor-theme Adwaita
 exec gsettings set org.gnome.desktop.interface cursor-size 32
-exec pkill -x hydroxide
-exec pgrep hydroxide | xargs kill
-exec hydroxide imap &
-exec hydroxide smtp &
-exec pkill -x stash
-exec stash
 
 exec foot --config "$HOME/.config/foot/sway.ini" --server &
 
@@ -150,7 +144,7 @@ smart_borders on
 gaps inner 4
 gaps outer 2
 
-exec swayidle -w timeout 880 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill" timeout 1900 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill"
+exec swayidle -w timeout 880 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill" timeout 1900 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill" 
 
 exec mako -c "$HOME/.config/mako/swayconfig" &> /dev/null &
 exec env PULSE_LATENCY_MSEC=60 waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &> /dev/null &
@@ -159,6 +153,13 @@ exec emacs --daemon &
 exec rm -f "$HOME/.wob.sock" && mkfifo "$HOME/.wob.sock" && tail -f "$HOME/.wob.sock" | wob -c "$HOME/.config/wob/sway.ini" &
 exec pkill -x mpdas
 exec mpdas -d -c '/home/babkock/.config/mpdasrc' &
+
+exec pkill -x hydroxide
+exec pgrep hydroxide | xargs kill
+exec hydroxide imap &
+exec hydroxide smtp &
+exec pkill -x stash
+exec stash
 
 workspace 1 output eDP-1
 workspace 2 output HDMI-A-2
