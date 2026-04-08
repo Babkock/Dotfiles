@@ -188,7 +188,7 @@ every single one of the modules, if I don't have to. The modules and their order
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "battery", "disk", "backlight", "custom/clock"],
     "sway/workspaces": {
          "disable-scroll": false,
          "disable-scroll-wraparound": true,

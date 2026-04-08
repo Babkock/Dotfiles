@@ -36,7 +36,7 @@ output "eDP-1" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/fogstreetcar.jpg fill
+	bg /home/babkock/.config/sway/bg/oceansunset.png fill
 }
 output "HDMI-A-2" {
 	mode 1920x1080@60.00Hz
@@ -45,7 +45,7 @@ output "HDMI-A-2" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/rainycity.png fill
+	bg /home/babkock/.config/sway/bg/foggyridge.jpg fill
 }
 output "DP-1" {
 	mode 1920x1080@60.0Hz
@@ -54,7 +54,7 @@ output "DP-1" {
 	scale 1.0
 	adaptive_sync on
 	dpms on
-	bg /home/babkock/.config/sway/carwash.jpg fill
+	bg /home/babkock/.config/sway/bg/macosmojaverocks.jpg fill
 }
 
 seat seat0 xcursor_theme "Adwaita" 32
@@ -119,8 +119,8 @@ corner_radius 38
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 1
-shadow_color #95da8a99
-shadow_inactive_color #e2071b99
+shadow_color #04040477
+shadow_inactive_color #02020266
 default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
@@ -129,10 +129,13 @@ layer_effects "waybar" blur enable; blur_ignore_transparent enable; shadows disa
 
 hide_edge_borders smart_no_gaps
 
-client.focused #a5ea9add #95da8add #efefefef #a5ea9abb
+#client.focused #a5ea9add #95da8add #efefefef #a5ea9abb
+client.focused #efefefaa #dfdfdfaa #000000ef #efefefaa
 client.focused_tab_title #74c2808f #74c2808f #efefefef #99cf0188
-client.focused_inactive #f2172bdd #e2071bdd #000000ef #e2071bbb
-client.unfocused #f2172bdd #e2071bdd #000000dd #f2172bbb
+#client.focused_inactive #f2172bdd #e2071bdd #000000ef #e2071bbb
+#client.unfocused #f2172bdd #e2071bdd #000000dd #f2172bbb
+client.unfocused #101010aa #000000aa #efefefef #101010aa
+client.focused_inactive #101010aa #000000aa #efefefef #101010aa
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
@@ -144,7 +147,7 @@ smart_borders on
 gaps inner 4
 gaps outer 2
 
-exec swayidle -w timeout 880 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill" timeout 1900 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/carwashlock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/fogstreetcarlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/rainycitylock.png -s fill" 
+exec swayidle -w timeout 880 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/bg/macosmojaverockslock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/bg/oceansunsetlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/bg/foggyridgelock.jpg -s fill" timeout 1900 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/bg/macosmojaverockslock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/bg/oceansunsetlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/bg/foggyridgelock.jpg -s fill" 
 
 exec mako -c "$HOME/.config/mako/swayconfig" &> /dev/null &
 exec env PULSE_LATENCY_MSEC=60 waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &> /dev/null &

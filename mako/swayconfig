@@ -1,14 +1,14 @@
 anchor=top-right
 font=GoMono Nerd Font Propo 16
 background-color=#00000077
-text-color=#a5ea9aee
+text-color=#abc584ee
 width=730
 height=360
 outer-margin=12
 margin=14
 padding=10
 border-size=2
-border-color=#93ece6cc
+border-color=#f27248cc
 border-radius=35
 max-icon-size=300
 default-timeout=3000
@@ -28,7 +28,7 @@ outer-margin=12
 margin=15
 padding=10
 border-size=3
-border-color=#ff0000ff
+border-color=#f9406aff
 default-timeout=4000
 text-alignment=right
 

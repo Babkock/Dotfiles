@@ -26,13 +26,13 @@ tooltip {
 }
 
 #mpd {
-    color:#fedd83;
+    color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
 }
 
 #cpu, #wireplumber.muted, #pulseaudio.muted, #privacy {
-    color:#f2172b;
-    background:linear-gradient(0deg, rgba(226, 7, 27, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(15, 15, 15, 0.4), rgba(0, 0, 0, 0.4));
     margin-right:0;
     padding-left:10px;
     padding-right:10px;
@@ -41,8 +41,8 @@ tooltip {
 }
 
 #cpu:hover, #wireplumber.muted:hover, #pulseaudio.muted:hover {
-    color:#efefef;
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+    color:#f9406a;
+    background:linear-gradient(0deg, rgba(233, 48, 90, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(60, 60, 60, 0.6);
 }
 
@@ -59,8 +59,8 @@ tooltip {
 }
 
 #pulseaudio, #disk {
-    color:#ead872;
-    background:linear-gradient(0deg, rgba(219, 201, 99, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(0, 0, 0, 0.4));
     margin-left:2px;
     margin-right:0;
     padding-left:10px;
@@ -72,10 +72,14 @@ tooltip {
 #disk {
     transition:all 0.2s ease 0s;
 }
-#disk:hover, #pulseaudio:hover, #pulseaudio.bluetooth:hover {
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
-    color:#efefef;
+#disk:hover, #pulseaudio:hover {
+    background:linear-gradient(0deg, rgba(194, 173, 101, 0.5), rgba(0, 0, 0, 0.4));
+    color:#d2bd75;
     text-shadow:2px 2px rgba(80, 80, 80, 0.6);
+}
+
+#pulseaudio:hover {
+    box-shadow:3px 3px rgba(194, 173, 101, 0.4);
 }
 
 #pulseaudio {
@@ -84,19 +88,22 @@ tooltip {
     padding-right:12px;
     margin-right:4px;
     margin-left:1px;
-    box-shadow:3px 3px rgba(219, 201, 99, 0.4);
     transition:all 0.1s ease 0s;
 }
-#pulseaudio:hover, #pulseaudio.bluetooth:hover {
+#pulseaudio, #pulseaudio.bluetooth {
     box-shadow:3px 3px rgba(80, 80, 80, 0.6);
 }
 
 #pulseaudio.muted {
     margin-left:2px;
     margin-right:4px;
-    box-shadow:3px 3px rgba(226, 7, 27, 0.4);
+    box-shadow:3px 3px rgba(40, 40, 40, 0.6);
     padding-left:12px;
     padding-right:12px;
+}
+
+#pulseaudio.muted:hover {
+    box-shadow:3px 3px rgba(233, 48, 90, 0.5) !important;
 }
 
 #privacy-item {
@@ -111,8 +118,8 @@ tooltip {
 }
 
 #memory, #backlight, #wireplumber {
-    color:#a5ea9a;
-    background:linear-gradient(0deg, rgba(149, 218, 138, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:0;
     padding-left:10px;
@@ -122,13 +129,13 @@ tooltip {
 }
 
 #memory:hover, #backlight:hover, #wireplumber:hover {
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
-    color:#efefef;
+    background:linear-gradient(0deg, rgba(155, 181, 116, 0.5), rgba(0, 0, 0, 0.4));
+    color:#abc684;
     text-shadow:2px 2px rgba(50, 50, 50, 0.6);
 }
 
 #workspaces button, #tags button {
-    background:linear-gradient(0deg, rgba(5, 5, 5, 0.5), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(10, 10, 10, 0.4), rgba(0, 0, 0, 0.5));
     padding-left:16px;
     padding-right:18px;
     margin-left:2px;
@@ -148,31 +155,31 @@ tooltip {
 }
 
 #workspaces button:hover, #tags button:hover {
-    background:linear-gradient(0deg, rgba(226, 7, 27, 0.5), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(233, 48, 90, 0.4), rgba(0, 0, 0, 0.5));
     text-shadow:inherit;
     margin-left:2px;
     margin-right:3px;
     border-radius:40px 40px 40px 40px;
     border:0px solid transparent;
-    text-shadow:3px 3px rgba(226, 7, 27, 0.5);
-    box-shadow:3px 2px rgba(226, 7, 27, 0.5);
+    text-shadow:3px 3px rgba(233, 48, 90, 0.5);
+    box-shadow:3px 2px rgba(233, 48, 90, 0.5);
 }
 
 #workspaces button:hover label {
-    color:#f2172b;
+    color:#f9406a;
 }
 
 #workspaces button.focused, #tags button.focused, #tags button.focused.occupied {
-    background:linear-gradient(0deg, rgba(149, 218, 139, 0.5), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(135, 167, 205, 0.4), rgba(0, 0, 0, 0.5));
     color:#efefef;
-    box-shadow:3px 2px rgba(149, 218, 138, 0.5);
+    box-shadow:3px 2px rgba(135, 167, 205, 0.5);
 }
 #workspaces button.focused label {
-    color:#a5ea9a;
+    color:#a7c7ec;
 }
 
 #workspaces button.focused:hover, #tags button.focused:hover, #tags button.focused.occupied:hover {
-    text-shadow:3px 3px rgba(149, 218, 138, 0.5);
+    text-shadow:3px 3px rgba(135, 167, 205, 0.5);
 }
 
 #tags button.occupied {
@@ -191,33 +198,33 @@ tooltip {
 #keyboard-state {
     padding-left:8px;
     padding-right:5px;
-    background:linear-gradient(0deg, rgba(209, 201, 99, 0.5), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(0, 0, 0, 0.4));
     border-radius:0px 40px 40px 0px;
-    box-shadow:3px 2px rgba(209, 201, 99, 0.4);
+    box-shadow:3px 2px rgba(40, 40, 40, 0.4);
     margin-right:4px;
     margin-left:0px;
     transition:all 0.1s ease 0s;
 }
 
 #keyboard-state label {
-    color:#ead972;
+    color:#efefef;
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
 }
 
 #keyboard-state:hover {
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.5));
+    background:linear-gradient(0deg, rgba(194, 173, 101, 0.5), rgba(0, 0, 0, 0.5));
     border-radius:0px 40px 40px 0px;
-    box-shadow:3px 2px rgba(150, 150, 150, 0.4);
+    box-shadow:3px 2px rgba(194, 173, 101, 0.4);
 }
 
 #keyboard-state:hover label {
-    color:#efefef;
+    color:#d2bd75;
     text-shadow:2px 2px rgba(60, 60, 60, 0.5);
 }
 
 #keyboard-state label.locked {
     color:#ffffff;
-    text-shadow:2px 2px rgba(238, 0, 10, 0.5);
+    text-shadow:2px 2px rgba(233, 48, 90, 0.5);
 }
 
 #image {
@@ -233,16 +240,26 @@ tooltip {
 }
 
 #battery, #idle_inhibitor, #pulseaudio.bluetooth {
-    color:#4facca;
-    background:linear-gradient(0deg, rgba(63, 156, 185, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(0, 0, 0, 0.6);
     transition:all 0.1s ease 0s;
 }
 
-#battery:hover, #idle_inhibitor:hover, #pulseaudio.bluetooth:hover, #temperature:hover {
-    color:#efefef;
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
+#battery:hover, #idle_inhibitor:hover, #pulseaudio.bluetooth:hover {
+    color:#97b7dc;
+    background:linear-gradient(0deg, rgba(135, 167, 205, 0.5), rgba(0, 0, 0, 0.4));
     text-shadow:2px 2px rgba(60, 60, 60, 0.6);
+}
+
+#temperature {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(40, 40, 40, 0.4), rgba(0, 0, 0, 0.4));
+}
+
+#temperature:hover {
+    color:#a3fcf6;
+    background:linear-gradient(0deg, rgba(147, 236, 230, 0.5), rgba(0, 0, 0, 0.4));
 }
 
 #pulseaudio.bluetooth, #temperature {
@@ -258,11 +275,11 @@ tooltip {
     margin-right:3px;
     padding-left:11px;
     padding-right:13px;
-    box-shadow:3px 2px rgba(63, 156, 185, 0.5);
+    box-shadow:3px 2px rgba(40, 40, 40, 0.5);
 }
 
-#pulseaudio:hover {
-    box-shadow:3px 2px rgba(150, 150, 150, 0.5);
+#pulseaudio.bluetooth:hover {
+    box-shadow:3px 2px rgba(135, 167, 205, 0.5);
 }
 
 #battery {
@@ -271,7 +288,11 @@ tooltip {
     padding-right:12px;
     margin-left:0;
     margin-right:3px;
-    box-shadow:3px 2px rgba(140, 154, 187, 0.4);
+    box-shadow:3px 2px rgba(40, 40, 40, 0.5);
+}
+
+#battery:hover {
+    box-shadow:3px 2px rgba(135, 167, 205, 0.5);
 }
 
 #battery.warning {
@@ -305,77 +326,56 @@ tooltip {
     transition:all 0.1s ease 0s;
 }
 
-#bluetooth.on, #bluetooth.off, #bluetooth.disabled {
-    color:#f2172b;
-    background:linear-gradient(0deg, rgba(226, 7, 27, 0.5), rgba(0, 0, 0, 0.4));
+#bluetooth.on, #bluetooth.off, #bluetooth.disabled, #bluetooth.connected, #bluetooth.connected.pairable, #bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:4px;
     padding-left:11px;
     padding-right:12px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.7);
     border-radius:0px 40px 40px 0px;
-    box-shadow:3px 2px rgba(226, 7, 27, 0.4);
+    box-shadow:3px 2px rgba(40, 40, 40, 0.4);
 }
 
-#bluetooth.connected, #bluetooth.connected.pairable {
+#bluetooth.on:hover, #bluetooth.off:hover, #bluetooth.disabled:hover {
+    color:#f9406a;
+    background:linear-gradient(0deg, rgba(227, 73, 110, 0.4), rgba(0, 0, 0, 0.4));
+}
+
+#bluetooth.connected:hover, #bluetooth.connected.pairable:hover {
     color:#a5ea9a;
     background:linear-gradient(0deg, rgba(149, 218, 138, 0.5), rgba(0, 0, 0, 0.4));
-    margin-left:0;
-    margin-right:4px;
-    padding-left:11px;
-    padding-right:12px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    border-radius:0px 40px 40px 0px;
     box-shadow:3px 2px rgba(149, 218, 138, 0.5);
 }
 
-#bluetooth.pairable:not(.connected), #bluetooth.discoverable {
+#bluetooth.pairable:hover, #bluetooth.discoverable:hover {
     color:#4facca;
     background:linear-gradient(0deg, rgba(63, 156, 185, 0.5), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:4px;
-    padding-left:11px;
-    padding-right:12px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    border-radius:0px 40px 40px 0px;
     box-shadow:3px 2px rgba(63, 156, 185, 0.4);
 }
 
-#bluetooth.discovering {
+#bluetooth.discovering:hover {
     color:#f9ca62;
     background:linear-gradient(0deg, rgba(224, 181, 31, 0.5), rgba(0, 0, 0, 0.1));
-    margin-left:0;
-    margin-right:4px;
-    padding-left:11px;
-    padding-right:11px;
-    text-shadow:2px 2px rgba(0, 0, 0, 0.7);
-    border-radius:0px 40px 40px 0px;
     box-shadow:3px 2px rgba(224, 181, 31, 0.4);
 }
 
-#bluetooth.discovering:hover, #bluetooth.connected:hover, #bluetooth.discoverable:hover, #bluetooth.pairable:hover, #bluetooth.off:hover {
-    color:#efefef;
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.2));
-    text-shadow:2px 2px rgba(150, 150, 150, 0.5);
-    box-shadow:3px 2px rgba(100, 100, 100, 0.5);
-}
-
 #custom-clock, #network {
-    color:#a3fcf6;
-    background:linear-gradient(0deg, rgba(147, 236, 230, 0.5), rgba(0, 0, 0, 0.4));
+    color:#efefef;
+    background:linear-gradient(0deg, rgba(20, 20, 20, 0.4), rgba(0, 0, 0, 0.4));
     margin-left:0;
     margin-right:4px;
     padding-left:12px;
     padding-right:10px;
     border-radius:0px 40px 40px 0px;
     text-shadow:2px 2px rgba(0, 0, 0, 0.5);
-    box-shadow:3px 2px rgba(147, 236, 230, 0.4);
+    box-shadow:3px 2px rgba(40, 40, 40, 0.4);
     transition:all 0.1s ease 0s;
 }
 
 #custom-clock:hover, #network:hover {
-    color:#efefef;
-    background:linear-gradient(0deg, rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.4));
-    text-shadow:2px 2px rgba(60, 60, 60, 0.6);
-    box-shadow:3px 2px rgba(150, 150, 150, 0.4);
+    color:#f27248;
+    background:linear-gradient(0deg, rgba(226, 98, 57, 0.5), rgba(0, 0, 0, 0.4));
+    box-shadow:3px 3px rgba(226, 98, 57, 0.4);
 }
