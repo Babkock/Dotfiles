@@ -23,7 +23,7 @@
        ;;hydra
        indent-guides     ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
-       ;;minimap             ; show a map of the code on the side
+       minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
        neotree           ; a project drawer, like NERDTree for vim
@@ -100,7 +100,7 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       ;;(cc +lsp)         ; C > C++ == 1
+       (cc +lsp)         ; C > C++ == 1
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -178,8 +178,6 @@
        literate
        (default +bindings +smartparens))
 
-(setq doom-theme 'doom-city-lights)
-
 (setq frame-title-format
     '(""
         (:eval
@@ -200,6 +198,11 @@
 
 (setq-default x-stretch-cursor t)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+(require 'notifications)
+(notifications-notify
+    :title "Emacs Started"
+    :body "Emacs init.el loaded. Hold on a second...")
 
 (let ((banners '("squaree.png"
                  "bluee.png"
@@ -241,21 +244,9 @@
             (nth (random (length banners)) banners))))
 
 (add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
-(add-hook! 'mpdel-playlist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
-(add-hook! 'mpdel-tablist-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'after-init-hook #'doom-modeline-mode)
-(add-hook! 'after-init-hook #'fancy-battery-mode)
 (add-hook! 'after-init-hook #'global-hl-line-mode)
 (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
-
-(setq circe-network-options
-    '(("Libera Chat"
-       :tls t
-       :nick "Babkock"
-       :realname "Tanner Babcock"
-       :nickserv-nick "Babkock"
-       :nickserv-password "tanner9"
-       :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux"))))
 
 (setq auth-sources '("~/.authinfo"))
 
@@ -282,8 +273,6 @@
 
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
 (setq browse-url-browser-function 'eww-browse-url)
-
-(setq libmpdel-hostname "127.0.0.2")
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))

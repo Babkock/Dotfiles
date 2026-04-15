@@ -1,5 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; no-byte-compile: t; coding: utf-8-unix; -*-
 
+(load-file "/home/babkock/.doom.d/passwords.el")
 (setq user-full-name "Tanner Babcock"
       user-mail-address (concat "babkock" "@" "protonmail" "." "com"))
 (use-package all-the-icons)
@@ -44,7 +45,7 @@
       writeroom-extra-line-spacing 0.1
       writeroom-maximize-window t
       +zen-text-scale 1)
-(setq fancy-battery-show-percentage t)
+;(setq fancy-battery-show-percentage t)
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
 
@@ -55,7 +56,7 @@
 (require 'rainbow-delimiters)
 (rainbow-delimiters-mode)
 
-(setq doom-theme 'doom-city-lights)
+(setq doom-theme 'doom-monokai-ristretto)
 (setq which-key-idle-delay 0.2
       which-key-idle-secondary-delay 0.05
       +doom-dashboard--width 95
@@ -134,8 +135,40 @@
     '(circe-prompt-face :foreground "#0ef")
     '(circe-server-face :foreground "#ee0")
     '(circe-my-message-face :weight bold :foreground "#f44")
-    '(circe-originator-face :foreground "b4f"))
-  (add-hook! 'circe-mode-hook 'garbage-collect))
+    '(circe-originator-face :foreground "#b4f"))
+  (add-hook! 'circe-channel-mode-hook 'variable-pitch-mode)
+  (add-hook! 'circe-mode-hook 'garbage-collect)
+  (add-hook! 'circe-server-connected-hook 'garbage-collect)
+  (setq circe-default-quit-message "Using Circe from Doom Emacs. Have a good night")
+  (setq circe-network-options
+        `(("Gazelle Games"
+           :host ,trackernet1
+           :port 7000
+           :tls t
+           :nick "Babkock"
+           :sasl-username "Babkock"
+           :sasl-password ,trackernickserv1)
+        ("Anthelion"
+           :host ,trackernet2
+           :port 6697
+           :tls t
+           :nick "Babkock"
+           :sasl-username "Babkock"
+           :sasl-password ,trackernickserv2)
+        ("PassThePopcorn"
+           :host ,trackernet3
+           :port 7000
+           :tls t
+           :nick "Babkock"
+           :sasl-username "Babkock"
+           :sasl-password ,trackernickserv3)
+        ("Libera Chat"
+           :tls t
+           :nick "Babkock"
+           :realname "Tanner Babcock"
+           :nickserv-nick "Babkock"
+           :nickserv-password ,liberapass
+           :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux")))))
 
 (setq dired-open-extensions '(("jpg" . "sxiv")
                               ("png" . "sxiv")
@@ -145,7 +178,7 @@
 (require 'notifications)
 (notifications-notify
     :title "Emacs Started"
-    :body "Emacs configuration loaded. Welcome!")
+    :body "Emacs config.el loaded. Welcome!")
 
 (evil-define-key 'normal dired-mode-map
     (kbd "J") 'image-dired-previous-line-and-display
@@ -216,7 +249,8 @@
         (buffer-string))))
         (split-string
             (with-temp-buffer
-                (insert (splash-phrase))
+                ;(insert (splash-phrase))
+                (insert (shell-command-to-string "fortune -s"))
                  (setq fill-column (min 70 (/ (* 2 (window-width)) 3)))
                  (fill-region (point-min) (point-max))
                  (buffer-string))
@@ -233,6 +267,7 @@
             'face 'doom-dashboard-footer-icon)
         "\n"
         (doom-dashboard-phrase)
+        ;(shell-command-to-string "fortune -s")
     "\n"))
 
 (global-set-key (kbd "C-S-<mouse-1>") '+multiple-cursors/evil-mc-toggle-cursor-here)
@@ -288,54 +323,70 @@
     (setq gnus-select-method '(nntp "gwene" (nntp-address "news.gwene.org")))
     (gnus))
 
+(defun tb/startement ()
+    "Start Ement"
+    (interactive)
+    (ement-connect :user-id matrixuserid :password matrixpassword))
+
 (setq-default +doom-dashboard-menu-sections
-    '(("Kill All Buffers"
-        :icon (all-the-icons-octicon "alert" :face 'all-the-icons-red :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.95)
-        :action doom/kill-all-buffers)
-      ("Open Recent File"
-        :icon (all-the-icons-faicon "clock-o" :face 'all-the-icons-blue :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
+    '(("Open Recent File"
+        :icon (all-the-icons-faicon "clock-o" :face 'all-the-icons-blue :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.9)
         :action helm-recentf)
       ("Open Project"
-        :icon (all-the-icons-octicon "repo" :face 'all-the-icons-red :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.95)
+        :icon (all-the-icons-faicon "folder" :face 'all-the-icons-red :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.9)
         :action projectile-find-file)
-      ("Open TBcom"
-        :icon (all-the-icons-alltheicon "git" :face 'all-the-icons-pink :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.95)
-        :action tb/open-tbcom)
-      ; ("Org Agenda"
-      ;  :icon (all-the-icons-faicon "calendar" :face 'all-the-icons-maroon :height 0.95)
-      ;  :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
-      ;  :action org-agenda)
-      ("Open Dotfiles"
-        :icon (all-the-icons-faicon "floppy-o" :face 'all-the-icons-blue :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.95)
-        :action tb/open-dotfiles)
+      ("Dired"
+        :icon (all-the-icons-faicon "folder-open" :face 'all-the-icons-lpink :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.9)
+        :action dired)
+      ("Hacker News"
+        :icon (all-the-icons-faicon "hacker-news" :face 'all-the-icons-lorange :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-orange) :height 0.9)
+        :action hackernews-modern)
+      ("Stack Exchange"
+        :icon (all-the-icons-faicon "stack-exchange" :face 'all-the-icons-blue :height 0.9) 
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lblue) :height 0.9)
+        :action sx-tab-hot)
       ("RSS Feeds"
-        :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.95)
+        :icon (all-the-icons-faicon "rss" :face 'all-the-icons-yellow :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lyellow) :height 0.9)
         :action elfeed)
-      ("Open config.org"
-        :icon (all-the-icons-faicon "cogs" :face 'all-the-icons-green :height 0.95)
-        :when (file-directory-p doom-private-dir)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lgreen) :height 0.95)
-        :action tb/open-config-org)
+      ("IRC Chats"
+        :icon (all-the-icons-faicon "comment" :face 'all-the-icons-lpink :height 0.9) 
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.9)
+        :action circe)
+      ("Matrix Rooms"
+        :icon (all-the-icons-faicon "eye" :face 'all-the-icons-cyan :height 0.9)
+        :when (package-installed-p 'ement)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-cyan) :height 0.9)
+        :action tb/startement)
       ("Usenet News"
-        :icon (all-the-icons-faicon "newspaper-o" :face 'all-the-icons-maroon :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.95)
+        :icon (all-the-icons-faicon "newspaper-o" :face 'all-the-icons-maroon :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lmaroon) :height 0.9)
         :action tb/gnus1)
+      ("Private Configuration"
+        :icon (all-the-icons-faicon "cogs" :face 'all-the-icons-green :height 0.9)
+        :when (file-directory-p doom-private-dir)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lgreen) :height 0.9)
+        :action tb/open-config-org)
       ("Doom Reload"
-        :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.95)
-        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.95)
-        :action doom/reload)))
+        :icon (all-the-icons-faicon "refresh" :face 'all-the-icons-orange :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lorange) :height 0.9)
+        :action doom/reload)
+      ("Close Frame"
+        :icon (all-the-icons-faicon "power-off" :face 'all-the-icons-lred :height 0.9)
+        :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.9)
+        :when (and (boundp 'server-process) server-process)
+        :action doom/delete-frame-with-prompt)))
 
 (setq +doom-dashboard-mode-map (make-sparse-keymap))
 (map! :map +doom-dashboard-mode-map
     :desc "Forward" :ne "<down>" #'+doom-dashboard/forward-button
     :desc "Backward" :ne "<up>" #'+doom-dashboard/backward-button
     :desc "Find File" :ne "f" #'helm-find-files
+    :desc "Open Ement Matrix Rooms" :ne "/" #'tb/startement
     :desc "Recent Files" :ne "r" #'helm-recentf
     :desc "Doom Reload" :ne "R" #'doom/reload
     :desc "Open Project" :ne "p" #'projectile-find-file
@@ -361,6 +412,8 @@
     :desc "Decrease Font Size" :ne "-" #'doom/decrease-font-size
     :desc "Doom Help" :ne "?" #'doom/help
     :desc "Open Circe" :ne "." #'circe
+    :desc "Open Hacker News" :ne "," #'hackernews-modern
+    :desc "Open Stack Exchange" :ne ";" #'sx-tab-hot
     :desc "Agenda" :ne "a" #'org-agenda
     :desc "Open agenda.org" :ne "A" #'open-agenda-org
     :desc "Open todo.org" :ne "V" (cmd! (find-file "~/org/todo.org"))
@@ -377,6 +430,7 @@
 
 ;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+(add-hook! '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
 
 (require 'elfeed-goodies)
@@ -388,11 +442,11 @@
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
-          url-queue-timeout 5
-          elfeed-use-curl t
+          url-queue-timeout 6
+          elfeed-use-curl nil
           elfeed-curl-max-connections 8
           elfeed-curl-timeout 6
-          elfeed-curl-extra-arguments '("--insecure" "--fail-early" "--tcp-fastopen" "--ssl-allow-beast"))
+          elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
     (defface git-entry
         '((t :foreground "#d04b4e"))
         "Entry for Git")
@@ -433,10 +487,13 @@
     '(elfeed-search-title-face :inherit variable-pitch :slant italic)
     '(elfeed-search-date-face :foreground "#d8a89a")
     '(elfeed-search-last-update-face :foreground "#49a6d0"))
-(add-hook! 'elfeed-search-update-hook (hide-mode-line-mode 1))
+;(add-hook! 'elfeed-search-update-hook #'elfeed-unjam)
+;(add-hook! 'elfeed-search-update-hook 'garbage-collect)
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-;(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+;(add-hook! 'elfeed-search-mode-hook #'elfeed-unjam)
+(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+(add-hook! 'elfeed-search-mode-hook 'garbage-collect)
 (add-hook! 'elfeed-show-mode-hook #'visual-line-mode)
 (add-hook! 'elfeed-show-mode-hook #'mixed-pitch-mode)
 (add-hook! 'elfeed-show-mode-hook 'garbage-collect)
@@ -450,20 +507,6 @@
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
           elfeed-goodies/tag-column-width 20))
-
-(require 'elfeed-tube)
-(elfeed-tube-setup)
-(setq elfeed-tube-auto-save-p t)
-(define-key! elfeed-show-mode-map (kbd "F") 'elfeed-tube-fetch)
-(define-key! elfeed-search-mode-map (kbd "F") 'elfeed-tube-fetch)
-
-(require 'elfeed-tube-mpv)
-(define-key! elfeed-show-mode-map (kbd "f") 'elfeed-tube-mpv-follow-mode)
-(define-key! elfeed-show-mode-map (kbd "w") 'elfeed-tube-mpv-where)
-
-;(elfeed-tube-add-feeds '("https://www.youtube.com/@BarelySociable"
-;                         "https://www.youtube.com/@MentalOutlaw"
-;                         "https://www.youtube.com/@ShroudedHand"))
 
 (after! elfeed-goodies
     (evil-define-key 'normal elfeed-show-mode-map
@@ -492,6 +535,18 @@
         :desc "Set filter" :ne "S" #'elfeed-search-set-filter
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
 
+(after! ement
+    (setq ement-save-sessions t
+          ement-room-list-avatar-generation t
+          ement-room-use-variable-pitch t
+          ement-room-send-typing nil)
+    (add-hook! 'ement-room-mode-hook 'garbage-collect)
+    (custom-set-faces!
+      '(ement-room-variable-pitch-face :inherit variable-pitch)
+      '(ement-room-message-text :inherit variable-pitch)
+      '(ement-room-timestamp-header :inherit variable-pitch :foreground "#f23")
+      '(ement-room-timestamp :inherit variable-pitch :foreground "#fe2")))
+
 (setq smtpmail-smtp-service 465)
 (setq smtpmail-stream-type 'ssl)
 
@@ -515,14 +570,14 @@
 (map! :leader
     :desc "Toggle Zen" "a" #'+zen/toggle
     :desc "Beacon Mode" "b" #'beacon-mode
-    :desc "Rainbow Mode" "r" #'rainbow-mode
-    :desc "Play song in MPDel" "z" #'mpdnotify-play
+    :desc "Rainbow Delimiters Mode" "r" #'rainbow-delimiters-mode
+    :desc "Delete Other Windows" "z" #'delete-other-windows
     :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
     :desc "Org Tangle" "l" #'org-babel-tangle
     :desc "Calendar" "m" #'calendar
-    :desc "Add Song to MPDel Playlist" "/" #'mpdel-core-add-to-current-playlist
-    :desc "MPDel Next Song" "]" #'libmpdel-playback-next
-    :desc "MPDel Previous Song" "[" #'libmpdel-playback-previous
+    :desc "IRC Hummingbird Auth" "/" (lambda () (interactive) (circe-command-MSG (concat "Humming" "bird") (concat "ENTER" " Babkock " (concat trackerirclong " #PassThePopcorn"))))
+    :desc "IRC Sauron Auth" "]" (lambda () (interactive) (circe-command-MSG "Sauron" (concat "knock" " #ant " "Babkock " littlepass)))
+    :desc "IRC Vertigo Auth" "[" (lambda () (interactive) (circe-command-MSG (concat "Vert" "igo") (concat "ENTER" " Babkock " littlepass)))
     :desc "Helm Org Rifle Org" "f" #'helm-org-rifle-org-directory
     :desc "Helm Org Rifle Directories" "v" #'helm-org-rifle-directories
     :desc "Org Mark Done" "d" #'org-todo
@@ -739,6 +794,16 @@
 (font-lock-add-keywords 'org-mode
     '(("^ *\\([-]\\) "
         (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(set-popup-rule! "^\\*Ement" :ignore t)
+(set-popup-rule! "^\\*hackernews-modern" :ignore t)
+(set-popup-rule! "^\\*Summary" :ignore t)
+(set-popup-rule! "^\\*Article" :ignore t :modeline nil)
+(set-popup-rule! "^\\*sx-question" :ignore t :modeline nil)
+(add-to-list 'display-buffer-alist
+             '("^\\*Ement Room List\\*$" . (display-buffer-same-window)))
+(add-to-list 'display-buffer-alist
+             '("^\\*hackernews-modern top stories\\*$" . (display-buffer-same-window)))
 
 (after! sx
     (add-hook! 'sx-question-mode-hook (setq header-line-format nil))

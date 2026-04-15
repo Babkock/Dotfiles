@@ -9,8 +9,8 @@
 (package! all-the-icons)
 ;(package! all-the-icons-dired)
 (package! beacon)         ;; Honestly really nice
-;(package! cl-lib)
-;(package! cl-libify)      ;; This is important to suppress errors
+(package! cl-lib)
+(package! cl-libify)      ;; This is important to suppress errors
 (package! dashboard)
 (package! dired-sidebar)
 (package! dired-hacks)
@@ -18,7 +18,9 @@
 (package! elfeed-goodies) ;; Elfeed
 (package! elfeed-tube)    ;; YouTube
 (package! elfeed-tube-mpv) ;; MPV
-(package! fancy-battery)  ;; Not neccessary but neat
+;(package! fancy-battery)  ;; Not neccessary but neat
+(package! ement)
+(package! hackernews-modern)
 (package! helm-org-rifle)
 (package! ivy-mpdel)
 (package! libmpdel)
