@@ -12,7 +12,8 @@
       create-lockfiles nil
       vc-follow-symlinks t
       native-comp-async-report-warnings-errors nil
-      load-prefer-newer t)
+      load-prefer-newer t
+      tab-always-indent 'complete)
 (set-language-environment "UTF-8")
 (set-locale-environment "en_US.UTF-8")
 (set-selection-coding-system 'utf-8-unix)
@@ -136,39 +137,47 @@
     '(circe-server-face :foreground "#ee0")
     '(circe-my-message-face :weight bold :foreground "#f44")
     '(circe-originator-face :foreground "#b4f"))
-  (add-hook! 'circe-channel-mode-hook 'variable-pitch-mode)
+  (add-hook! 'circe-channel-mode-hook 'garbage-collect)
   (add-hook! 'circe-mode-hook 'garbage-collect)
   (add-hook! 'circe-server-connected-hook 'garbage-collect)
   (setq circe-default-quit-message "Using Circe from Doom Emacs. Have a good night")
-  (setq circe-network-options
-        `(("Gazelle Games"
-           :host ,trackernet1
-           :port 7000
-           :tls t
-           :nick "Babkock"
-           :sasl-username "Babkock"
-           :sasl-password ,trackernickserv1)
-        ("Anthelion"
-           :host ,trackernet2
-           :port 6697
-           :tls t
-           :nick "Babkock"
-           :sasl-username "Babkock"
-           :sasl-password ,trackernickserv2)
-        ("PassThePopcorn"
-           :host ,trackernet3
-           :port 7000
-           :tls t
-           :nick "Babkock"
-           :sasl-username "Babkock"
-           :sasl-password ,trackernickserv3)
-        ("Libera Chat"
-           :tls t
-           :nick "Babkock"
-           :realname "Tanner Babcock"
-           :nickserv-nick "Babkock"
-           :nickserv-password ,liberapass
-           :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux")))))
+
+(setq circe-network-options
+      `(("GGN"
+         :host ,trackernet1
+         :port 7000
+         :tls t
+         :nick "Babkock"
+         :sasl-username "Babkock"
+         :sasl-password ,trackernickserv1)
+      ("Anthelion"
+         :host ,trackernet2
+         :port 6697
+         :tls t
+         :nick "Babkock"
+         :sasl-username "Babkock"
+         :sasl-password ,trackernickserv2)
+      ("PTP"
+         :host ,trackernet3
+         :port 7000
+         :tls t
+         :nick "Babkock"
+         :sasl-username "Babkock"
+         :sasl-password ,trackernickserv3)
+      ("Orpheus"
+         :host ,trackernet4
+         :port 7000
+         :tls t
+         :nick "Babkock"
+         :sasl-username "Babkock"
+         :sasl-password ,trackernickserv1)
+      ("Libera Chat"
+         :tls t
+         :nick "Babkock"
+         :realname "Tanner Babcock"
+         :nickserv-nick "Babkock"
+         :nickserv-password ,liberapass
+         :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#lisp" "#org-mode" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux")))))
 
 (setq dired-open-extensions '(("jpg" . "sxiv")
                               ("png" . "sxiv")
@@ -183,6 +192,10 @@
 (evil-define-key 'normal dired-mode-map
     (kbd "J") 'image-dired-previous-line-and-display
     (kbd "K") 'image-dired-next-line-and-display)
+
+(after! dirvish
+    (setq dirvish-use-mode-line t
+          dirvish-override-dired-mode t))
 
 (defvar splash-phrase-source-folder
     (expand-file-name "phrases/" doom-private-dir)
@@ -337,10 +350,10 @@
         :icon (all-the-icons-faicon "folder" :face 'all-the-icons-red :height 0.9)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lred) :height 0.9)
         :action projectile-find-file)
-      ("Dired"
+      ("Dirvish"
         :icon (all-the-icons-faicon "folder-open" :face 'all-the-icons-lpink :height 0.9)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-lpink) :height 0.9)
-        :action dired)
+        :action dirvish)
       ("Hacker News"
         :icon (all-the-icons-faicon "hacker-news" :face 'all-the-icons-lorange :height 0.9)
         :face (:inherit (doom-dashboard-menu-title bold) :inherit (all-the-icons-orange) :height 0.9)
@@ -442,7 +455,7 @@
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
-          url-queue-timeout 6
+          url-queue-timeout 7
           elfeed-use-curl nil
           elfeed-curl-max-connections 8
           elfeed-curl-timeout 6
@@ -503,6 +516,7 @@
 (after! elfeed-goodies
     (elfeed-goodies/setup)
     (setq elfeed-goodies/entry-pane-size 0.5
+          elfeed-goodies/powerline-default-separator "curve"
           elfeed-goodies/wide-threshold 0.2
           elfeed-goodies/show-mode-padding 1
           elfeed-goodies/feed-source-column-width 20
@@ -551,6 +565,7 @@
 (setq smtpmail-stream-type 'ssl)
 
 (after! helm
+    (setq helm-buffers-show-icons nil)
     (setq helm-show-completion-min-window-height 10))
 
 (after! helm-org-rifle
@@ -586,13 +601,13 @@
     :desc "Delete Buffer" "u" #'evil-delete-buffer
     :desc "Org Export to HTML" "p" #'org-html-export-to-html
     :desc "Multiple Cursors Toggle" "c" #'+multiple-cursors/evil-mc-toggle-cursors
-    :desc "Dired Sidebar" "s" #'dired-sidebar-toggle-sidebar
+    :desc "Dirvish Sidebar" "s" #'+dired/dirvish-side-and-follow
     :desc "Magit Log" "e" #'magit-log-all
     :desc "Magit Stage File" "t" #'magit-stage-file
     :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
     :desc "Switch Buffer" "," #'helm-buffers-list
-    :desc "Mastodon Toggle Favorite" "-" #'mastodon-toot--toggle-favourite
+    :desc "IRC Hermes Auth" "-" (lambda () (interactive) (circe-command-MSG "Hermes" (concat "enter " "#orpheus " "Babkock " littlepass)))
     :desc "Org Time Stamp" "=" #'org-time-stamp
     :desc "Org Priority Up" "\\" #'org-priority-up
     :desc "Org Priority Down" "'" #'org-priority-down)
