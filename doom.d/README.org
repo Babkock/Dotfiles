@@ -62,17 +62,18 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#preferences-1][Preferences]]
   - [[#keybindings-2][Keybindings]]
 - [[#ement][Ement]]
+  - [[#keybindings-3][Keybindings]]
 - [[#gnus][GNUs]]
 - [[#helm][Helm]]
   - [[#helm-org-rifle][Helm Org Rifle]]
-- [[#keybindings-3][Keybindings]]
+- [[#keybindings-4][Keybindings]]
   - [[#global-keybindings][Global Keybindings]]
 - [[#magit][Magit]]
 - [[#modeline][Modeline]]
 - [[#mpdel][MPDel]]
   - [[#functions-1][Functions]]
   - [[#preferences-2][Preferences]]
-  - [[#keybindings-4][Keybindings]]
+  - [[#keybindings-5][Keybindings]]
 - [[#org][Org]]
 - [[#popup-rules][Popup Rules]]
 - [[#stack-exchange][Stack Exchange]]
@@ -265,7 +266,10 @@ This is a simple list of font faces for various Circe UI elements.
   (add-hook! 'circe-channel-mode-hook 'garbage-collect)
   (add-hook! 'circe-mode-hook 'garbage-collect)
   (add-hook! 'circe-server-connected-hook 'garbage-collect)
-  (setq circe-default-quit-message "Using Circe from Doom Emacs. Have a good night")
+  (setq circe-default-quit-message "Using Circe from Doom Emacs. Have a good night"
+        circe-use-tls t
+        circe-sasl-strict t
+        circe-realname "Tanner Babcock")
 #+end_src
 
 ** IRC Servers
@@ -310,8 +314,8 @@ These variables are defined in the =passwords.el= file, which is not included in
          :tls t
          :nick "Babkock"
          :realname "Tanner Babcock"
-         :nickserv-nick "Babkock"
-         :nickserv-password ,liberapass
+         :sasl-username "Babkock"
+         :sasl-password ,liberapass
          :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#lisp" "#org-mode" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux")))))
 #+end_src
 
@@ -328,7 +332,7 @@ These variables are defined in the =passwords.el= file, which is not included in
 (require 'notifications)
 (notifications-notify
     :title "Emacs Started"
-    :body "Emacs config.el loaded. Welcome!")
+    :body (concat "Emacs " (number-to-string emacs-major-version) "." (number-to-string emacs-minor-version) "." (number-to-string emacs-build-number) " " emacs-build-system " config.el loaded. Welcome!"))
 #+end_src
 
 ** Keybindings
@@ -679,7 +683,6 @@ Dashboard menu sections.
 This part removes other elements of the Dashboard.
 
 #+begin_src emacs-lisp :tangle yes
-;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 (add-hook! '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
@@ -700,13 +703,18 @@ This first block of code defines font faces per Elfeed tags, font faces for UI e
 (after! elfeed
     (elfeed-set-timeout 30)
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
+#+end_src
+
+There are variables set for *Curl*. But don't ever change =elfeed-use-curl= from =nil=, it will completely lock up Emacs.
+
+#+begin_src emacs-lisp :tangle yes
     (setq elfeed-search-filter "@1-weeks-ago +unread"
           elfeed-show-entry-switch #'pop-to-buffer
-          url-queue-timeout 7
+          url-queue-timeout 11
           elfeed-use-curl nil
           elfeed-curl-max-connections 8
-          elfeed-curl-timeout 6
-          elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
+          elfeed-curl-timeout 12)
+          ;elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
     (defface git-entry
         '((t :foreground "#d04b4e"))
         "Entry for Git")
@@ -755,11 +763,9 @@ Define additional font faces and hooks.
     '(elfeed-search-title-face :inherit variable-pitch :slant italic)
     '(elfeed-search-date-face :foreground "#d8a89a")
     '(elfeed-search-last-update-face :foreground "#49a6d0"))
-;(add-hook! 'elfeed-search-update-hook #'elfeed-unjam)
-;(add-hook! 'elfeed-search-update-hook 'garbage-collect)
+
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-;(add-hook! 'elfeed-search-mode-hook #'elfeed-unjam)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
 (add-hook! 'elfeed-show-mode-hook #'visual-line-mode)
@@ -829,7 +835,7 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
 
 * Ement
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle config.el :cache yes
 (after! ement
     (setq ement-save-sessions t
           ement-room-list-avatar-generation t
@@ -840,7 +846,20 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
       '(ement-room-variable-pitch-face :inherit variable-pitch)
       '(ement-room-message-text :inherit variable-pitch)
       '(ement-room-timestamp-header :inherit variable-pitch :foreground "#f23")
-      '(ement-room-timestamp :inherit variable-pitch :foreground "#fe2")))
+      '(ement-room-timestamp :inherit variable-pitch :foreground "#fe2"))
+#+end_src
+
+** Keybindings
+
+Here are some keybindings, for comfier browsing Matrix rooms.
+
+#+begin_src emacs-lisp :tangle config.el :cache yes
+(evil-define-key 'normal ement-room-mode-map
+     (kbd "e") 'ement-room-send-reaction
+     (kbd "m") 'ement-room-send-image
+     (kbd "w") 'ement-room-send-file)
+(evil-define-key 'normal ement-room-list-mode-map
+     (kbd "<mouse-2>") (lambda () (interactive) (ement-room-list-mouse-ement-room-list-kill-buffer))))
 #+end_src
 
 * GNUs
@@ -988,6 +1007,8 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
           doom-modeline-irc t
           doom-modeline-irc-buffers t
           doom-modeline-gnus t
+          doom-modeline-github t
+          doom-modeline-github-interval (* 30 60)
           doom-modeline-major-mode-icon t
           doom-modeline-major-mode-color-icon t
           doom-modeline-env-version t

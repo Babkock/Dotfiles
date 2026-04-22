@@ -140,7 +140,10 @@
   (add-hook! 'circe-channel-mode-hook 'garbage-collect)
   (add-hook! 'circe-mode-hook 'garbage-collect)
   (add-hook! 'circe-server-connected-hook 'garbage-collect)
-  (setq circe-default-quit-message "Using Circe from Doom Emacs. Have a good night")
+  (setq circe-default-quit-message "Using Circe from Doom Emacs. Have a good night"
+        circe-use-tls t
+        circe-sasl-strict t
+        circe-realname "Tanner Babcock")
 
 (setq circe-network-options
       `(("GGN"
@@ -175,8 +178,8 @@
          :tls t
          :nick "Babkock"
          :realname "Tanner Babcock"
-         :nickserv-nick "Babkock"
-         :nickserv-password ,liberapass
+         :sasl-username "Babkock"
+         :sasl-password ,liberapass
          :channels ("#archlinux" "#archlinux-offtopic" "#emacs" "#gentoo" "#gentoo-portage" "#git" "#lf" "#linux" "#lisp" "#org-mode" "#raspberrypi" "#reddit-sysadmin" "#sway" "#tmux" "#ubuntu" "#ubuntu-offtopic" "#voidlinux")))))
 
 (setq dired-open-extensions '(("jpg" . "sxiv")
@@ -187,7 +190,7 @@
 (require 'notifications)
 (notifications-notify
     :title "Emacs Started"
-    :body "Emacs config.el loaded. Welcome!")
+    :body (concat "Emacs " (number-to-string emacs-major-version) "." (number-to-string emacs-minor-version) "." (number-to-string emacs-build-number) " " emacs-build-system " config.el loaded. Welcome!"))
 
 (evil-define-key 'normal dired-mode-map
     (kbd "J") 'image-dired-previous-line-and-display
@@ -441,7 +444,6 @@
     :desc "Open video.org" :ne "v" (cmd! (find-file "~/org/video.org"))
     :desc "Quit" :ne "Q" #'save-buffers-kill-terminal)
 
-;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 (add-hook! '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (add-hook! '+doom-dashboard-functions (hide-mode-line-mode))
@@ -453,37 +455,38 @@
 (after! elfeed
     (elfeed-set-timeout 30)
     (defun elfeed-search-format-date (date) (format-time-string "%m/%d/%Y %I:%M:%S" (seconds-to-time date)))
-    (setq elfeed-search-filter "@1-weeks-ago +unread"
-          elfeed-show-entry-switch #'pop-to-buffer
-          url-queue-timeout 7
-          elfeed-use-curl nil
-          elfeed-curl-max-connections 8
-          elfeed-curl-timeout 6
-          elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
-    (defface git-entry
-        '((t :foreground "#d04b4e"))
-        "Entry for Git")
-    (defface reddit-entry
-        '((t :foreground "#f28735"))
-        "Entry for Reddit")
-    (defface youtube-entry
-        '((t :foreground "#f74e8b"))
-        "Entry for YouTube")
-    (defface torrents-entry
-        '((t :foreground "#fdeadb"))
-        "Entry for torrents")
-    (defface stack-entry
-        '((t :foreground "#25c192"))
-        "Entry for Stack")
-    (defface news-entry
-        '((t :foreground "#49a6d0"))
-        "Entry for News")
-    (defface tumblr-entry
-        '((t :foreground "#d8a89a"))
-        "Entry for Tumblr")
-    (defface tech-entry
-        '((t :foreground "#ffff00"))
-        "Entry for Tech")
+
+(setq elfeed-search-filter "@1-weeks-ago +unread"
+      elfeed-show-entry-switch #'pop-to-buffer
+      url-queue-timeout 11
+      elfeed-use-curl nil
+      elfeed-curl-max-connections 8
+      elfeed-curl-timeout 12)
+      ;elfeed-curl-extra-arguments '("--insecure" "--fail-early"))
+(defface git-entry
+    '((t :foreground "#d04b4e"))
+    "Entry for Git")
+(defface reddit-entry
+    '((t :foreground "#f28735"))
+    "Entry for Reddit")
+(defface youtube-entry
+    '((t :foreground "#f74e8b"))
+    "Entry for YouTube")
+(defface torrents-entry
+    '((t :foreground "#fdeadb"))
+    "Entry for torrents")
+(defface stack-entry
+    '((t :foreground "#25c192"))
+    "Entry for Stack")
+(defface news-entry
+    '((t :foreground "#49a6d0"))
+    "Entry for News")
+(defface tumblr-entry
+    '((t :foreground "#d8a89a"))
+    "Entry for Tumblr")
+(defface tech-entry
+    '((t :foreground "#ffff00"))
+    "Entry for Tech")
 
 (push '(git git-entry) elfeed-search-face-alist)
 (push '(reddit reddit-entry) elfeed-search-face-alist)
@@ -500,11 +503,9 @@
     '(elfeed-search-title-face :inherit variable-pitch :slant italic)
     '(elfeed-search-date-face :foreground "#d8a89a")
     '(elfeed-search-last-update-face :foreground "#49a6d0"))
-;(add-hook! 'elfeed-search-update-hook #'elfeed-unjam)
-;(add-hook! 'elfeed-search-update-hook 'garbage-collect)
+
 (add-hook! 'elfeed-search-mode-hook (hide-mode-line-mode 1))
 (add-hook! 'elfeed-show-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
-;(add-hook! 'elfeed-search-mode-hook #'elfeed-unjam)
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (add-hook! 'elfeed-search-mode-hook 'garbage-collect)
 (add-hook! 'elfeed-show-mode-hook #'visual-line-mode)
@@ -559,7 +560,14 @@
       '(ement-room-variable-pitch-face :inherit variable-pitch)
       '(ement-room-message-text :inherit variable-pitch)
       '(ement-room-timestamp-header :inherit variable-pitch :foreground "#f23")
-      '(ement-room-timestamp :inherit variable-pitch :foreground "#fe2")))
+      '(ement-room-timestamp :inherit variable-pitch :foreground "#fe2"))
+
+(evil-define-key 'normal ement-room-mode-map
+     (kbd "e") 'ement-room-send-reaction
+     (kbd "m") 'ement-room-send-image
+     (kbd "w") 'ement-room-send-file)
+(evil-define-key 'normal ement-room-list-mode-map
+     (kbd "<mouse-2>") (lambda () (interactive) (ement-room-list-mouse-ement-room-list-kill-buffer))))
 
 (setq smtpmail-smtp-service 465)
 (setq smtpmail-stream-type 'ssl)
@@ -643,6 +651,8 @@
           doom-modeline-irc t
           doom-modeline-irc-buffers t
           doom-modeline-gnus t
+          doom-modeline-github t
+          doom-modeline-github-interval (* 30 60)
           doom-modeline-major-mode-icon t
           doom-modeline-major-mode-color-icon t
           doom-modeline-env-version t

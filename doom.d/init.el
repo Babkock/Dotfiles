@@ -1,4 +1,4 @@
-;;; init.el -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; init.el -*- lexical-binding: t; no-byte-compile: t; coding: utf-8-unix; -*-
 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
@@ -23,7 +23,7 @@
        ;;hydra
        indent-guides     ; highlighted indent columns
        ligatures           ; ligatures and symbols to make your code pretty again
-       minimap             ; show a map of the code on the side
+       ;;minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
        neotree           ; a project drawer, like NERDTree for vim
@@ -238,6 +238,8 @@
                  "3demacsborder.png"
                  "tangnu.png"
                  "doom-emacs-dark.svg"
+                 "doomemacsbanner.png"
+                 "emacsprideflags.png"
                  "fancyEmacs.png")))
     (setq fancy-splash-image
         (concat doom-private-dir "splash/"
