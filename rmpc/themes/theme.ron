@@ -15,8 +15,8 @@
         active_style: (fg: "black", bg: "red", modifiers: "Bold"),
         inactive_style: (),
     ),
-    highlighted_item_style: (fg: "light_blue", bg: "dark_gray", modifiers: "Bold"),
-    current_item_style: (fg: None, bg: "green", modifiers: "Reversed"),
+    highlighted_item_style: (fg: None, bg: "black", modifiers: "Bold"),
+    current_item_style: (fg: "white", bg: None, modifiers: "Reversed"),
     borders_style: (fg: "white"),
     highlight_border_style: (fg: "magenta"),
     symbols: (song: "", dir: "", playlist: "󰧔", marker: "\u{e0b0}", song_style: (fg: "light_magenta"), dir_style: (fg: "light_yellow")),
@@ -52,7 +52,7 @@
             prop: (kind: Property(Title), style: (fg: "red"),
                 default: (kind: Text("Unknown"), style: (fg: "red"))
             ),
-            width: "35%",
+            width: "31%",
         ),
         (
             prop: (kind: Property(Artist), style: (fg: "green"),
@@ -65,7 +65,7 @@
             prop: (kind: Property(Album), style: (fg: "magenta", modifiers: "Italic"),
                 default: (kind: Text("Unknown Album"), style: (fg: "magenta"))
             ),
-            width: "30%",
+            width: "33%",
         ),
 		(
 			prop: (kind: Property(Other("date")), style: (fg: "yellow"),

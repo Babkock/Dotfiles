@@ -8,7 +8,7 @@
     cache_dir: "/home/babkock/.cache/rmpc/",
     on_song_change: ["/home/babkock/.config/rmpc/notify.sh"],
     volume_step: 2,
-    max_fps: 30,
+    max_fps: 29,
     wrap_navigation: true,
     enable_mouse: true,
     status_update_interval_ms: 500,
