@@ -9,6 +9,7 @@
 (package! all-the-icons)
 ;(package! all-the-icons-dired)
 (package! beacon)         ;; Honestly really nice
+(package! centaur-tabs)
 (package! cl-lib)
 (package! cl-libify)      ;; This is important to suppress errors
 (package! dashboard)

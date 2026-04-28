@@ -44,9 +44,22 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
 - [[#preferences][Preferences]]
 - [[#conditional-aliases][Conditional Aliases]]
   - [[#ssh][SSH]]
-  - [[#login-shell-functions][Login Shell Functions]]
-  - [[#terminal][Terminal]]
-- [[#functions][Functions]]
+- [[#login-shell-functions][Login Shell Functions]]
+  - [[#start-tmux-session][Start Tmux Session]]
+  - [[#hyprland][Hyprland]]
+  - [[#sway][Sway]]
+  - [[#wayfire][Wayfire]]
+  - [[#niri][Niri]]
+- [[#gui-terminal-functions][GUI Terminal Functions]]
+  - [[#edit-doom-emacs-initorg][Edit Doom Emacs init.org]]
+  - [[#edit-doom-emacs-configorg][Edit Doom Emacs config.org]]
+  - [[#edit-foot-footorg][Edit Foot foot.org]]
+  - [[#edit-qutebrowser-configorg][Edit Qutebrowser config.org]]
+  - [[#edit-waybar-styleorg][Edit Waybar style.org]]
+  - [[#edit-waybar-configorg][Edit Waybar config.org]]
+  - [[#edit-zshorg][Edit .zsh.org]]
+  - [[#aliases][Aliases]]
+- [[#global-functions][Global Functions]]
   - [[#tbef][tbef]]
   - [[#tbem][tbem]]
   - [[#pf][pf]]
@@ -72,7 +85,7 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#cheatsh-lookup][Cheat.sh Lookup]]
   - [[#cheatsh-learn][Cheat.sh Learn]]
   - [[#fix-pulseaudio-sink][Fix PulseAudio Sink]]
-- [[#aliases][Aliases]]
+- [[#aliases-1][Aliases]]
 - [[#plugins][Plugins]]
   - [[#keybindings][Keybindings]]
 - [[#environment-variables][Environment Variables]]
@@ -179,7 +192,11 @@ else
     alias xx="loginctl reboot"
 #+end_src
 
-** Login Shell Functions
+* Login Shell Functions
+
+These functions are only available when you are logged into the TTY.
+
+** Start Tmux Session
 
 #+begin_src sh :tangle .zshrc
     # functions only for login shells
@@ -201,6 +218,11 @@ else
             pkill -x pipewire
             true
         }
+#+end_src
+
+** Hyprland
+
+#+begin_src sh :tangle .zshrc
         function shy() {
             #export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
@@ -245,8 +267,13 @@ else
             pkill -x mpdas
             true
         }
+#+end_src
+
+** Sway
+
+#+begin_src sh :tangle .zshrc :cache yes
         function swa() {
-            #export WLR_RENDERER="vulkan"
+            export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -286,6 +313,11 @@ else
             pkill -x mpdas
             true
         }
+#+end_src
+
+** Wayfire
+
+#+begin_src sh :tangle .zshrc :cache yes
         function swf() {
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -323,8 +355,13 @@ else
             pkill -x mpdas
             true
         }
+#+end_src
+
+** Niri
+
+#+begin_src sh :tangle .zshrc :cache yes
         function sni() {
-            #export WLR_RENDERER="vulkan"
+            export WLR_RENDERER="vulkan"
             export WLR_DRM_NO_ATOMIC=1
             export GTK_THEME="Vimix-dark-ruby"
             export GDK_BACKEND="wayland"
@@ -350,7 +387,7 @@ else
             pkill -x pipewire-pul
             echo -e '\e[1;34m'
             figlet -W -f ivrit "iriN"
-            dbus-launch --exit-with-session niri &> /dev/null
+            dbus-launch --exit-with-session niri --session &> /dev/null
             pkill -x eww
             pgrep emacs | xargs kill 2> /dev/null
             pgrep stash | xargs kill 2> /dev/null
@@ -359,15 +396,187 @@ else
             pgrep mpdas | xargs kill 2> /dev/null
             true
         }
+#+end_src
+
+* GUI Terminal Functions
+
+These functions will only be available if you are logged in to a GUI terminal.
+
+** Edit Doom Emacs init.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+    else
+        # Doom Emacs init
+        function ec() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing Doom Emacs init.org with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.doom.d/init.org" &
+        }
+#+end_src
+
+** Edit Doom Emacs config.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+        # Doom Emacs config
+        function ed() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing Doom Emacs config.org with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.doom.d/config.org" &
+        }
+#+end_src
+
+** Edit Foot foot.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+        # Foot config
+        function ef() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing Foot foot.org with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.config/foot/foot.org" &
+        }
+#+end_src
+
+** Edit Qutebrowser config.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+        # Qutebrowser config
+        function eq() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing Qutebrowser config with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.config/qutebrowser/config.org" &
+        }
+#+end_src
+
+** Edit Waybar style.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+        # Waybar style
+        function es() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing Waybar style with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.config/waybar/style.org" &
+        }
+#+end_src
+
+** Edit Waybar config.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+        # Waybar config
+        function ew() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing Waybar config with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.config/waybar/config.org" &
+        }
+#+end_src
+
+** Edit .zsh.org
+
+#+begin_src sh :tangle .zshrc :cache yes
+        # Zshrc
+        function ez() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing .Zshrc with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.zsh.org" &
+        }
     fi
 fi
 #+end_src
 
-** Terminal
-
-Here is where I check if the Zsh shell is being loaded in a graphical terminal, or an actual tty. If I change my terminal away from
-*st*, then I will have to modify this part. Nerd Font icons do not render in the tty, so we should use the standard versions of fancy programs in
-that context.
+** Aliases
 
 All of these =ls= commands have flags to show directories first, show human-readable file sizes, and show file symbols. All of the =exa= commands show icons and group directories first, also.
 
@@ -389,15 +598,8 @@ All of these =ls= commands have flags to show directories first, show human-read
 | =a=       | Run YT-DLP on the given URL                        | N/A                               |
 | =al=      | Eza long listing, all files                        | Same, without icons               |
 | =e=       | Opens new Emacs window                             | Opens Emacs in Console            |
-| =ez=      | Edit zsh.org in new Emacs window                   | Edit zsh.org in Console           |
 | =eb=      | Edit bspwm.org in new Emacs window                 | Edit bspwm.org in Console         |
 | =ep=      | Edit Polybar config in new Emacs window            | Edit Polybar in Console           |
-| =eq=      | Edit Qutebrowser config in new Emacs window        | Edit Qutebrowser in Console       |
-| =ec=      | Edit init.org in new Emacs window                  | Edit init.org in Console          |
-| =ed=      | Edit config.org in new Emacs window                | Edit config.org in Console        |
-| =ew=      | Edit Waybar config in new Emacs window             | Edit Waybar in Console            |
-| =es=      | Edit Waybar style.org in new Emacs window          | Edit style.org in Console         |
-| =ef=      | Edit foot.org in new Emacs window                  | Edit foot.org in Console          |
 | =egp=     | Run Magit Push on repository inside Emacs          | Run Magit Push in Console         |
 | =egs=     | Run Magit Status on repository inside Emacs        | Run Magit Status in Console       |
 | =ei=      | Run Magit Log on repository inside Emacs           | Run Magit Log in Console          |
@@ -408,7 +610,7 @@ All of these =ls= commands have flags to show directories first, show human-read
 | =me=      | Open webcam image in MPV in Wayland                | N/A                               |
 | =mx=      | Open webcam image in MPV in X.org                  | N/A                               |
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 if [ -v TERM ]; then
     if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "alacritty" || ${TERM} = "kitty" ]]; then
         # graphical terminal
@@ -425,20 +627,11 @@ if [ -v TERM ]; then
         alias lc="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
         alias lct="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
-        alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
+        alias a="yt-dlp -k -f 'bv*[ext=mp4][height<=1080]+ba[ext=m4a]' --remux-video 'mkv' --embed-metadata --embed-subs --embed-chapters --sleep-requests 2 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
         alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
         alias e="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q"
         alias ee="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r . &"
-        alias ea="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/alacritty/config.org\" &"
-        alias ez="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.zsh.org\" &"
-        #alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/bspwm/bspwm.org\" &"
-	    #alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/polybar/config.org\" &"
-        alias eq="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/qutebrowser/config.org\" &"
-        alias ec="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/init.org\" &"
-        alias ed="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/config.org\" &"
-        alias ew="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/config.org\" &"
-        alias es="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/style.org\" &"
-        alias ef="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/foot/foot.org\" &"
+        #alias ea="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/alacritty/config.org\" &"
         alias egp="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r --eval \"(magit-push)\" > /dev/null &"
         alias egs="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r --eval \"(magit-status)\" > /dev/null &"
         alias ei="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r --eval \"(magit-log-all)\" > /dev/null &"
@@ -478,9 +671,7 @@ if [ -v TERM ]; then
 fi
 #+end_src
 
-#+RESULTS:
-
-* Functions
+* Global Functions
 
 ** tbef
 

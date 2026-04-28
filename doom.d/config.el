@@ -82,8 +82,12 @@
       display-time-default-load-average nil
       confirm-kill-emacs t
       confirm-kill-processes nil
+      evil-shift-width 4
       tab-width 4
-      indent-tabs-mode t
+      tab-stop-list (number-sequence 4 200 4)
+      indent-tabs-mode nil
+      c-default-style "linux"
+      c-basic-offset 4
       indent-line-function 'insert-tab
       require-final-newline t
       next-line-add-newlines nil
@@ -91,22 +95,35 @@
       initial-scratch-message nil
       large-file-warning-threshold nil)
 (setq-default shell-file-name "/bin/zsh")
+(setq-default ls-lisp-use-localized-time-format t
+              display-time-format "%I:%M"
+              display-time-default-load-average nil
+              confirm-kill-emacs t
+              confirm-kill-processes nil
+              evil-shift-width 4
+              tab-width 4
+              tab-stop-list (number-sequence 4 200 4)
+              indent-tabs-mode nil
+              c-default-style "linux"
+              c-basic-offset 4
+              indent-line-function 'insert-tab
+              require-final-newline t
+              next-line-add-newlines nil
+              inhibit-startup-message t
+              initial-scratch-message nil
+              large-file-warning-threshold nil)
 
 (add-hook! 'helpful-mode-hook 'mixed-pitch-mode)
 (add-hook! 'writeroom-mode-enable-hook 'mixed-pitch-mode)
 (add-hook! 'writeroom-mode-disable-hook 'mixed-pitch-mode)
 
-;(set-frame-parameter (selected-frame) 'alpha '(70 70))
-(set-frame-parameter (selected-frame) 'alpha 90)
-(add-to-list 'default-frame-alist '(alpha 90 90))
-;(add-hook! 'dired-mode-hook 'nerd-icons-dired-mode)
-;(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
+(set-frame-parameter (selected-frame) 'alpha '(90 87))
+(add-to-list 'default-frame-alist '(alpha 90 87))
 (add-hook! 'dired-mode-hook 'garbage-collect)
 
 (setq warning-minimum-level :emergency)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-;(scroll-bar-mode -1)
 
 (after! doom-themes
     (setq doom-themes-enable-bold t
@@ -126,10 +143,25 @@
 (add-hook! 'doom-first-file-hook 'garbage-collect)
 (add-hook! 'kill-emacs-hook 'garbage-collect)
 (add-hook! 'after-init-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'rainbow-delimiters-mode)
 (add-hook! 'after-init-hook 'beacon-mode)
 (add-hook! 'doom-init-ui-hook 'garbage-collect)
 (add-hook! 'doom-after-init-modules-hook 'garbage-collect)
 (add-hook! 'eww-mode-hook 'garbage-collect)
+
+(after! centaur-tabs
+    (centaur-tabs-mode t)
+    (setq centaur-tabs-icon-type 'nerd-icons
+          centaur-tabs-set-icons t
+          centaur-tabs-height 40
+          centaur-tabs-set-bar 'over
+          centaur-tabs-set-modified-marker t
+          centaur-tabs-show-count nil
+          centaur-tabs-show-navigation-buttons t)
+    (centaur-tabs-change-fonts "NotoSerif Nerd Font" 140)
+    (add-hook! 'dired-mode-hook 'centaur-tabs-local-mode)
+    (add-hook! 'dirvish-peek-mode (centaur-tabs-mode -1))
+    (add-hook! 'gnus-mode-hook (centaur-tabs-mode -1)))
 
 (after! circe
   (custom-set-faces!
@@ -197,7 +229,9 @@
     (kbd "K") 'image-dired-next-line-and-display)
 
 (after! dirvish
+    (add-hook! 'dirvish-peek-mode (centaur-tabs-mode -1))
     (setq dirvish-use-mode-line t
+          dirvish-use-header-line t
           dirvish-override-dired-mode t))
 
 (defvar splash-phrase-source-folder

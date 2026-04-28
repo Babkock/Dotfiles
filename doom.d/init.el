@@ -202,7 +202,7 @@
 (require 'notifications)
 (notifications-notify
     :title "Emacs Started"
-    :body "Emacs init.el loaded. Hold on a second...")
+    :body (concat "init.el loaded. " emacs-copyright))
 
 (let ((banners '("squaree.png"
                  "bluee.png"

@@ -72,181 +72,329 @@ else
     alias xx="loginctl reboot"
 
 # functions only for login shells
-    if [[ "$TERM" == "linux" ]]; then
-        function pu() {
-            hydroxide imap &> /dev/null &
-            hydroxide smtp &> /dev/null &
-            tmux new-session "neomutt -F $HOME/.muttrc" \; split-window -v "BROWSER='lynx -accept_all_cookies -nomargins -nostatus' newsraft -c $HOME/.config/newsraft/config"
-            fg
-            pkill -x hydroxide
-            true
-        }
-        function pn() {
-            pkill -x pipewire
-            env PULSE_LATENCY_MSEC=60 pipewire &> /dev/null &
+if [[ "$TERM" == "linux" ]]; then
+    function pu() {
+        hydroxide imap &> /dev/null &
+        hydroxide smtp &> /dev/null &
+        tmux new-session "neomutt -F $HOME/.muttrc" \; split-window -v "BROWSER='lynx -accept_all_cookies -nomargins -nostatus' newsraft -c $HOME/.config/newsraft/config"
+        fg
+        pkill -x hydroxide
+        true
+    }
+    function pn() {
+        pkill -x pipewire
+        env PULSE_LATENCY_MSEC=60 pipewire &> /dev/null &
+        sleep 1
+        tmux new-session "/usr/bin/zsh -c \"EDITOR=vim lf -command 'set icons false; set drawbox false;'\"" \; split-window -v "ncmpcpp --host '$MPD_PASS' --port 6602"
+        fg
+        pkill -x pipewire
+        true
+    }
+
+function shy() {
+    #export WLR_RENDERER="vulkan"
+    export WLR_DRM_NO_ATOMIC=1
+    export GTK_THEME="Vimix-dark-ruby"
+    export GDK_BACKEND="wayland"
+    export SDL_VIDEODRIVER="wayland"
+    export XDG_CURRENT_DESKTOP="Hyprland"
+    export XDG_SESSION_DESKTOP="Hyprland"
+    export XDG_SESSION_TYPE="wayland"
+    export QT_QPA_PLATFORM="wayland-egl"
+    export QT_QPA_PLATFORMTHEME="qt6ct"
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export XCURSOR_THEME="Adwaita"
+    export XCURSOR_SIZE=32
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    export WLR_DRM_NO_MODIFIERS=1
+    export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/renderD128"
+    export PULSE_LATENCY_MSEC=80
+    pgrep mpdas | xargs kill 2> /dev/null
+    pgrep pipewire | xargs kill 2> /dev/null
+    pgrep pulseaudio | xargs kill 2> /dev/null
+    echo -e '\e[1;31m'
+    banner "Starting"
+    sleep 1
+    pkill -x pipewire
+    pkill -x pipewire-pul
+    echo -e '\e[1;32m'
+    figlet -W -f ivrit "dnalrpyH"
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+    gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
+    gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+    gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
+    dbus-launch --exit-with-session Hyprland &> /dev/null
+    pgrep hypridle | xargs kill 2> /dev/null
+    pgrep stash | xargs kill 2> /dev/null
+    pgrep mako | xargs kill 2> /dev/null
+    pgrep emacs | xargs kill 2> /dev/null
+    pgrep hydroxide | xargs kill 2> /dev/null
+    pkill -x hydroxide
+    pgrep mpdas | xargs kill 2> /dev/null
+    pkill -x mpdas
+    true
+}
+
+function swa() {
+    export WLR_RENDERER="vulkan"
+    export WLR_DRM_NO_ATOMIC=1
+    export GTK_THEME="Vimix-dark-ruby"
+    export GDK_BACKEND="wayland"
+    export SDL_VIDEODRIVER="wayland"
+    export XDG_CURRENT_DESKTOP="sway"
+    export XDG_SESSION_DESKTOP="sway"
+    export XDG_SESSION_TYPE="wayland"
+    export QT_QPA_PLATFORM="wayland-egl"
+    export QT_QPA_PLATFORMTHEME="qt6ct"
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export XCURSOR_THEME="Adwaita"
+    export XCURSOR_SIZE=32
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    export PULSE_LATENCY_MSEC=80
+    pgrep mpdas | xargs kill 2> /dev/null
+    pgrep pipewire | xargs kill 2> /dev/null
+    pgrep pulseaudio | xargs kill 2> /dev/null
+    echo -e '\e[1;31m'
+    banner "Starting"
+    sleep 1
+    pkill -x pipewire
+    pkill -x pipewire-pul
+    echo -e '\e[1;33m'
+    figlet -W -f ivrit "yawS"
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+    gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
+    gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+    gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
+    dbus-launch --exit-with-session sway &> /dev/null
+    pkill -x eww
+    pgrep emacs | xargs kill 2> /dev/null
+    pgrep stash | xargs kill 2> /dev/null
+    pgrep hydroxide | xargs kill 2> /dev/null
+    pkill -x hydroxide
+    pgrep mpdas | xargs kill 2> /dev/null
+    pkill -x mpdas
+    true
+}
+
+function swf() {
+    export GTK_THEME="Vimix-dark-ruby"
+    export GDK_BACKEND="wayland"
+    export SDL_VIDEODRIVER="wayland"
+    export XDG_CURRENT_DESKTOP="sway"
+    export XDG_SESSION_DESKTOP="sway"
+    export XDG_SESSION_TYPE="wayland"
+    export QT_QPA_PLATFORM="wayland-egl"
+    export QT_QPA_PLATFORMTHEME="qt6ct"
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export XCURSOR_THEME="Adwaita"
+    export XCURSOR_SIZE=32
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    export PULSE_LATENCY_MSEC=80
+    pgrep mpdas | xargs kill 2> /dev/null
+    pgrep pipewire | xargs kill 2> /dev/null
+    pgrep pulseaudio | xargs kill 2> /dev/null
+    echo -e '\e[1;31m'
+    banner "Starting"
+    sleep 1
+    echo -e '\e[1;35m'
+    figlet -W -f ivrit "erifyaW"
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
+    gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
+    gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
+    gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
+    dbus-launch --exit-with-session wayfire &> /dev/null
+    pkill -x eww
+    pgrep emacs | xargs kill 2> /dev/null
+    pgrep stash | xargs kill 2> /dev/null
+    pgrep hydroxide | xargs kill 2> /dev/null
+    pkill -x hydroxide
+    pgrep mpdas | xargs kill 2> /dev/null
+    pkill -x mpdas
+    true
+}
+
+function sni() {
+    export WLR_RENDERER="vulkan"
+    export WLR_DRM_NO_ATOMIC=1
+    export GTK_THEME="Vimix-dark-ruby"
+    export GDK_BACKEND="wayland"
+    export SDL_VIDEODRIVER="wayland"
+    export XDG_CURRENT_DESKTOP="niri"
+    export XDG_SESSION_DESKTOP="niri"
+    export XDG_SESSION_TYPE="wayland"
+    export QT_QPA_PLATFORM="wayland-egl"
+    export QT_QPA_PLATFORMTHEME="qt6ct"
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    export XCURSOR_THEME="Adwaita"
+    export XCURSOR_SIZE=32
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    export PULSE_LATENCY_MSEC=80
+    pgrep mpdas | xargs kill 2> /dev/null
+    pgrep pipewire | xargs kill 2> /dev/null
+    pgrep pulseaudio | xargs kill 2> /dev/null
+    echo -e '\e[1;31m'
+    banner "Starting"
+    sleep 1
+    pkill -x pipewire
+    pkill -x pipewire-pul
+    echo -e '\e[1;34m'
+    figlet -W -f ivrit "iriN"
+    dbus-launch --exit-with-session niri --session &> /dev/null
+    pkill -x eww
+    pgrep emacs | xargs kill 2> /dev/null
+    pgrep stash | xargs kill 2> /dev/null
+    pgrep hydroxide | xargs kill 2> /dev/null
+    pkill -x hydroxide
+    pgrep mpdas | xargs kill 2> /dev/null
+    true
+}
+
+else
+    # Doom Emacs init
+    function ec() {
+        case "$(pidof emacs | wc -w)" in
+            0)
+                echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                emacs --daemon &> /dev/null
+                if [ "$?" -ne 0 ]; then
+                    echo -e "\e[1;31mCould not start Emacs daemon"
+                    exit 1
+                fi
+                sleep 1
+                ;;
+            1)
+                echo -e "\e[1;33mEditing Doom Emacs init.org with Daemon $(pidof emacs)..."
+                ;;
+        esac
+        swaymsg "workspace 4" &> /dev/null
+        hyprctl dispatch workspace 4 &> /dev/null
+        emacsclient -c -a 'emacs' -q -r "$HOME/.doom.d/init.org" &
+    }
+
+# Doom Emacs config
+function ed() {
+    case "$(pidof emacs | wc -w)" in
+        0)
+            echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+            emacs --daemon &> /dev/null
+            if [ "$?" -ne 0 ]; then
+                echo -e "\e[1;31mCould not start Emacs daemon"
+                exit 1
+            fi
             sleep 1
-            tmux new-session "/usr/bin/zsh -c \"EDITOR=vim lf -command 'set icons false; set drawbox false;'\"" \; split-window -v "ncmpcpp --host '$MPD_PASS' --port 6602"
-            fg
-            pkill -x pipewire
-            true
-        }
-        function shy() {
-            #export WLR_RENDERER="vulkan"
-            export WLR_DRM_NO_ATOMIC=1
-            export GTK_THEME="Vimix-dark-ruby"
-            export GDK_BACKEND="wayland"
-            export SDL_VIDEODRIVER="wayland"
-            export XDG_CURRENT_DESKTOP="Hyprland"
-            export XDG_SESSION_DESKTOP="Hyprland"
-            export XDG_SESSION_TYPE="wayland"
-            export QT_QPA_PLATFORM="wayland-egl"
-            export QT_QPA_PLATFORMTHEME="qt6ct"
-            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-            export XCURSOR_THEME="Adwaita"
-            export XCURSOR_SIZE=32
-            export MOZ_ENABLE_WAYLAND=1
-            export MOZ_WEBRENDER=1
-            export WLR_DRM_NO_MODIFIERS=1
-            export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/renderD128"
-            export PULSE_LATENCY_MSEC=80
-            pgrep mpdas | xargs kill 2> /dev/null
-            pgrep pipewire | xargs kill 2> /dev/null
-            pgrep pulseaudio | xargs kill 2> /dev/null
-            echo -e '\e[1;31m'
-            banner "Starting"
+            ;;
+        1)
+            echo -e "\e[1;33mEditing Doom Emacs config.org with Daemon $(pidof emacs)..."
+            ;;
+    esac
+    swaymsg "workspace 4" &> /dev/null
+    hyprctl dispatch workspace 4 &> /dev/null
+    emacsclient -c -a 'emacs' -q -r "$HOME/.doom.d/config.org" &
+}
+
+# Foot config
+function ef() {
+    case "$(pidof emacs | wc -w)" in
+        0)
+            echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+            emacs --daemon &> /dev/null
             sleep 1
-            pkill -x pipewire
-            pkill -x pipewire-pul
-            echo -e '\e[1;32m'
-            figlet -W -f ivrit "dnalrpyH"
-            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
-            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
-            dbus-launch --exit-with-session Hyprland &> /dev/null
-            pgrep hypridle | xargs kill 2> /dev/null
-            pgrep stash | xargs kill 2> /dev/null
-            pgrep mako | xargs kill 2> /dev/null
-            pgrep emacs | xargs kill 2> /dev/null
-            pgrep hydroxide | xargs kill 2> /dev/null
-            pkill -x hydroxide
-            pgrep mpdas | xargs kill 2> /dev/null
-            pkill -x mpdas
-            true
-        }
-        function swa() {
-            #export WLR_RENDERER="vulkan"
-            export WLR_DRM_NO_ATOMIC=1
-            export GTK_THEME="Vimix-dark-ruby"
-            export GDK_BACKEND="wayland"
-            export SDL_VIDEODRIVER="wayland"
-            export XDG_CURRENT_DESKTOP="sway"
-            export XDG_SESSION_DESKTOP="sway"
-            export XDG_SESSION_TYPE="wayland"
-            export QT_QPA_PLATFORM="wayland-egl"
-            export QT_QPA_PLATFORMTHEME="qt6ct"
-            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-            export XCURSOR_THEME="Adwaita"
-            export XCURSOR_SIZE=32
-            export MOZ_ENABLE_WAYLAND=1
-            export MOZ_WEBRENDER=1
-            export PULSE_LATENCY_MSEC=80
-            pgrep mpdas | xargs kill 2> /dev/null
-            pgrep pipewire | xargs kill 2> /dev/null
-            pgrep pulseaudio | xargs kill 2> /dev/null
-            echo -e '\e[1;31m'
-            banner "Starting"
+            ;;
+        1)
+            echo -e "\e[1;33mEditing Foot foot.org with Daemon $(pidof emacs)..."
+            ;;
+    esac
+    swaymsg "workspace 4" &> /dev/null
+    hyprctl dispatch workspace 4 &> /dev/null
+    emacsclient -c -a 'emacs' -q -r "$HOME/.config/foot/foot.org" &
+}
+
+# Qutebrowser config
+function eq() {
+    case "$(pidof emacs | wc -w)" in
+        0)
+            echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+            emacs --daemon &> /dev/null
+            if [ "$?" -ne 0 ]; then
+                echo -e "\e[1;31mCould not start Emacs daemon"
+                exit 1
+            fi
             sleep 1
-            pkill -x pipewire
-            pkill -x pipewire-pul
-            echo -e '\e[1;33m'
-            figlet -W -f ivrit "yawS"
-            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
-            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
-            dbus-launch --exit-with-session sway &> /dev/null
-            pkill -x eww
-            pgrep emacs | xargs kill 2> /dev/null
-            pgrep stash | xargs kill 2> /dev/null
-            pgrep hydroxide | xargs kill 2> /dev/null
-            pkill -x hydroxide
-            pgrep mpdas | xargs kill 2> /dev/null
-            pkill -x mpdas
-            true
-        }
-        function swf() {
-            export GTK_THEME="Vimix-dark-ruby"
-            export GDK_BACKEND="wayland"
-            export SDL_VIDEODRIVER="wayland"
-            export XDG_CURRENT_DESKTOP="sway"
-            export XDG_SESSION_DESKTOP="sway"
-            export XDG_SESSION_TYPE="wayland"
-            export QT_QPA_PLATFORM="wayland-egl"
-            export QT_QPA_PLATFORMTHEME="qt6ct"
-            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-            export XCURSOR_THEME="Adwaita"
-            export XCURSOR_SIZE=32
-            export MOZ_ENABLE_WAYLAND=1
-            export MOZ_WEBRENDER=1
-            export PULSE_LATENCY_MSEC=80
-            pgrep mpdas | xargs kill 2> /dev/null
-            pgrep pipewire | xargs kill 2> /dev/null
-            pgrep pulseaudio | xargs kill 2> /dev/null
-            echo -e '\e[1;31m'
-            banner "Starting"
+            ;;
+        1)
+            echo -e "\e[1;33mEditing Qutebrowser config with Daemon $(pidof emacs)..."
+            ;;
+    esac
+    swaymsg "workspace 4" &> /dev/null
+    hyprctl dispatch workspace 4 &> /dev/null
+    emacsclient -c -a 'emacs' -q -r "$HOME/.config/qutebrowser/config.org" &
+}
+
+# Waybar style
+function es() {
+    case "$(pidof emacs | wc -w)" in
+        0)
+            echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+            emacs --daemon &> /dev/null
+            if [ "$?" -ne 0 ]; then
+                echo -e "\e[1;31mCould not start Emacs daemon"
+                exit 1
+            fi
             sleep 1
-            echo -e '\e[1;35m'
-            figlet -W -f ivrit "erifyaW"
-            gsettings set org.gnome.desktop.interface color-scheme prefer-dark &> /dev/null
-            gsettings set org.gnome.desktop.interface gtk-theme Vimix-dark-ruby &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-theme Adwaita &> /dev/null
-            gsettings set org.gnome.desktop.interface cursor-size 32 &> /dev/null
-            dbus-launch --exit-with-session wayfire &> /dev/null
-            pkill -x eww
-            pgrep emacs | xargs kill 2> /dev/null
-            pgrep stash | xargs kill 2> /dev/null
-            pgrep hydroxide | xargs kill 2> /dev/null
-            pkill -x hydroxide
-            pgrep mpdas | xargs kill 2> /dev/null
-            pkill -x mpdas
-            true
-        }
-        function sni() {
-            #export WLR_RENDERER="vulkan"
-            export WLR_DRM_NO_ATOMIC=1
-            export GTK_THEME="Vimix-dark-ruby"
-            export GDK_BACKEND="wayland"
-            export SDL_VIDEODRIVER="wayland"
-            export XDG_CURRENT_DESKTOP="niri"
-            export XDG_SESSION_DESKTOP="niri"
-            export XDG_SESSION_TYPE="wayland"
-            export QT_QPA_PLATFORM="wayland-egl"
-            export QT_QPA_PLATFORMTHEME="qt6ct"
-            export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-            export XCURSOR_THEME="Adwaita"
-            export XCURSOR_SIZE=32
-            export MOZ_ENABLE_WAYLAND=1
-            export MOZ_WEBRENDER=1
-            export PULSE_LATENCY_MSEC=80
-            pgrep mpdas | xargs kill 2> /dev/null
-            pgrep pipewire | xargs kill 2> /dev/null
-            pgrep pulseaudio | xargs kill 2> /dev/null
-            echo -e '\e[1;31m'
-            banner "Starting"
+            ;;
+        1)
+            echo -e "\e[1;33mEditing Waybar style with Daemon $(pidof emacs)..."
+            ;;
+    esac
+    swaymsg "workspace 4" &> /dev/null
+    hyprctl dispatch workspace 4 &> /dev/null
+    emacsclient -c -a 'emacs' -q -r "$HOME/.config/waybar/style.org" &
+}
+
+# Waybar config
+function ew() {
+    case "$(pidof emacs | wc -w)" in
+        0)
+            echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+            emacs --daemon &> /dev/null
+            if [ "$?" -ne 0 ]; then
+                echo -e "\e[1;31mCould not start Emacs daemon"
+                exit 1
+            fi
             sleep 1
-            pkill -x pipewire
-            pkill -x pipewire-pul
-            echo -e '\e[1;34m'
-            figlet -W -f ivrit "iriN"
-            dbus-launch --exit-with-session niri &> /dev/null
-            pkill -x eww
-            pgrep emacs | xargs kill 2> /dev/null
-            pgrep stash | xargs kill 2> /dev/null
-            pgrep hydroxide | xargs kill 2> /dev/null
-            pkill -x hydroxide
-            pgrep mpdas | xargs kill 2> /dev/null
-            true
+            ;;
+        1)
+            echo -e "\e[1;33mEditing Waybar config with Daemon $(pidof emacs)..."
+            ;;
+    esac
+    swaymsg "workspace 4" &> /dev/null
+    hyprctl dispatch workspace 4 &> /dev/null
+    emacsclient -c -a 'emacs' -q -r "$HOME/.config/waybar/config.org" &
+}
+
+# Zshrc
+        function ez() {
+            case "$(pidof emacs | wc -w)" in
+                0)
+                    echo -e "\e[1;33mStarting Daemon $(emacs --version | head -1)..."
+                    emacs --daemon &> /dev/null
+                    if [ "$?" -ne 0 ]; then
+                        echo -e "\e[1;31mCould not start Emacs daemon"
+                        exit 1
+                    fi
+                    sleep 1
+                    ;;
+                1)
+                    echo -e "\e[1;33mEditing .Zshrc with Daemon $(pidof emacs)..."
+                    ;;
+            esac
+            swaymsg "workspace 4" &> /dev/null
+            hyprctl dispatch workspace 4 &> /dev/null
+            emacsclient -c -a 'emacs' -q -r "$HOME/.zsh.org" &
         }
     fi
 fi
@@ -267,20 +415,11 @@ if [ -v TERM ]; then
         alias lc="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S"
         alias lct="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
         alias lctl="eza --icons --group-directories-first --no-quotes -X -F -l -A --total-size --git --git-repos --time-style=relative -S -T --level 3"
-        alias a="yt-dlp --remux-video 'mkv' --embed-metadata --embed-chapters --sleep-requests 3 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
+        alias a="yt-dlp -k -f 'bv*[ext=mp4][height<=1080]+ba[ext=m4a]' --remux-video 'mkv' --embed-metadata --embed-subs --embed-chapters --sleep-requests 2 --limit-rate 9M --exec '/home/babkock/bin/ytdone'"
         alias al="eza --icons --group-directories-first --no-quotes -X -F -l --git --git-repos --time-style=relative -S"
         alias e="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q"
         alias ee="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r . &"
-        alias ea="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/alacritty/config.org\" &"
-        alias ez="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.zsh.org\" &"
-        #alias eb="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/bspwm/bspwm.org\" &"
-	    #alias ep="hyprctl dispatch workspace 4 2> /dev/null; swaymsg \"workspace 4\" 2> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/polybar/config.org\" &"
-        alias eq="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/qutebrowser/config.org\" &"
-        alias ec="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/init.org\" &"
-        alias ed="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.doom.d/config.org\" &"
-        alias ew="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/config.org\" &"
-        alias es="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/waybar/style.org\" &"
-        alias ef="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/foot/foot.org\" &"
+        #alias ea="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r \"$HOME/.config/alacritty/config.org\" &"
         alias egp="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r --eval \"(magit-push)\" > /dev/null &"
         alias egs="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r --eval \"(magit-status)\" > /dev/null &"
         alias ei="swaymsg \"workspace 4\" 2> /dev/null; hyprctl dispatch workspace 4 &> /dev/null; emacsclient -c -a 'emacs' -q -r --eval \"(magit-log-all)\" > /dev/null &"

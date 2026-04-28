@@ -47,6 +47,7 @@ This literate configuration is available online on my [[https://babkock.github.i
   - [[#appearance][Appearance]]
   - [[#doom-themes][Doom Themes]]
   - [[#garbage-collection][Garbage Collection]]
+- [[#centaur-tabs][Centaur Tabs]]
 - [[#circe][Circe]]
   - [[#irc-servers][IRC Servers]]
 - [[#dired][Dired]]
@@ -186,8 +187,12 @@ Now the fun stuff, where I set the fonts, theme, and colors.
       display-time-default-load-average nil
       confirm-kill-emacs t
       confirm-kill-processes nil
+      evil-shift-width 4
       tab-width 4
-      indent-tabs-mode t
+      tab-stop-list (number-sequence 4 200 4)
+      indent-tabs-mode nil
+      c-default-style "linux"
+      c-basic-offset 4
       indent-line-function 'insert-tab
       require-final-newline t
       next-line-add-newlines nil
@@ -195,6 +200,23 @@ Now the fun stuff, where I set the fonts, theme, and colors.
       initial-scratch-message nil
       large-file-warning-threshold nil)
 (setq-default shell-file-name "/bin/zsh")
+(setq-default ls-lisp-use-localized-time-format t
+              display-time-format "%I:%M"
+              display-time-default-load-average nil
+              confirm-kill-emacs t
+              confirm-kill-processes nil
+              evil-shift-width 4
+              tab-width 4
+              tab-stop-list (number-sequence 4 200 4)
+              indent-tabs-mode nil
+              c-default-style "linux"
+              c-basic-offset 4
+              indent-line-function 'insert-tab
+              require-final-newline t
+              next-line-add-newlines nil
+              inhibit-startup-message t
+              initial-scratch-message nil
+              large-file-warning-threshold nil)
 
 (add-hook! 'helpful-mode-hook 'mixed-pitch-mode)
 (add-hook! 'writeroom-mode-enable-hook 'mixed-pitch-mode)
@@ -203,18 +225,14 @@ Now the fun stuff, where I set the fonts, theme, and colors.
 
 These next two lines are where the alpha channel for the window is defined. The Emacs window can only be transparent on X.org.
 
-#+begin_src emacs-lisp :tangle yes
-;(set-frame-parameter (selected-frame) 'alpha '(70 70))
-(set-frame-parameter (selected-frame) 'alpha 90)
-(add-to-list 'default-frame-alist '(alpha 90 90))
-;(add-hook! 'dired-mode-hook 'nerd-icons-dired-mode)
-;(add-hook! 'dired-mode-hook 'all-the-icons-dired-mode)
+#+begin_src emacs-lisp :tangle yes :cache yes
+(set-frame-parameter (selected-frame) 'alpha '(90 87))
+(add-to-list 'default-frame-alist '(alpha 90 87))
 (add-hook! 'dired-mode-hook 'garbage-collect)
 
 (setq warning-minimum-level :emergency)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-;(scroll-bar-mode -1)
 #+end_src
 
 ** Doom Themes
@@ -246,17 +264,36 @@ Just do it all the time.
 (add-hook! 'doom-first-file-hook 'garbage-collect)
 (add-hook! 'kill-emacs-hook 'garbage-collect)
 (add-hook! 'after-init-hook 'garbage-collect)
+(add-hook! 'after-init-hook 'rainbow-delimiters-mode)
 (add-hook! 'after-init-hook 'beacon-mode)
 (add-hook! 'doom-init-ui-hook 'garbage-collect)
 (add-hook! 'doom-after-init-modules-hook 'garbage-collect)
 (add-hook! 'eww-mode-hook 'garbage-collect)
 #+end_src
 
+* Centaur Tabs
+
+#+begin_src emacs-lisp :tangle yes :cache yes
+(after! centaur-tabs
+    (centaur-tabs-mode t)
+    (setq centaur-tabs-icon-type 'nerd-icons
+          centaur-tabs-set-icons t
+          centaur-tabs-height 40
+          centaur-tabs-set-bar 'over
+          centaur-tabs-set-modified-marker t
+          centaur-tabs-show-count nil
+          centaur-tabs-show-navigation-buttons t)
+    (centaur-tabs-change-fonts "NotoSerif Nerd Font" 140)
+    (add-hook! 'dired-mode-hook 'centaur-tabs-local-mode)
+    (add-hook! 'dirvish-peek-mode (centaur-tabs-mode -1))
+    (add-hook! 'gnus-mode-hook (centaur-tabs-mode -1)))
+#+end_src
+
 * Circe
 
 This is a simple list of font faces for various Circe UI elements.
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle yes :cache yes
 (after! circe
   (custom-set-faces!
     '(circe-prompt-face :foreground "#0ef")
@@ -347,7 +384,9 @@ These variables are defined in the =passwords.el= file, which is not included in
 
 #+begin_src emacs-lisp :tangle yes
 (after! dirvish
+    (add-hook! 'dirvish-peek-mode (centaur-tabs-mode -1))
     (setq dirvish-use-mode-line t
+          dirvish-use-header-line t
           dirvish-override-dired-mode t))
 #+end_src
 
