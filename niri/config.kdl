@@ -476,6 +476,7 @@ binds {
     Mod+O repeat=false { toggle-overview; }
 
     Mod+C repeat=false { close-window; }
+	Mod+Shift+C repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }

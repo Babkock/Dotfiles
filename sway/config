@@ -310,6 +310,7 @@ bindsym $mod+Shift+Return workspace number 5; exec $term
 
 # Kill focused window
 bindsym $mod+c kill
+bindsym $mod+Shift+c kill
 
 # Start your launcher
 bindsym $mod+space exec dmenu_path | fuzzel -b 10101077 -t a3fcf6ff -s 9bb474bf -S abc584ef -m c2ad65ef -M d2bd75ef -f "GoMono Nerd Font Propo:pixelsize=26:antialias=true" --counter --counter-color=d2bd75ee --prompt-color=d2bd75ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d --no-exit-on-keyboard-focus-loss | sh

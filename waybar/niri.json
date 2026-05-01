@@ -6,7 +6,7 @@
     "reload_style_on_change": true,
     "mode": "dock",
     "modules-left": ["niri/workspaces"],
-    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "memory", "battery", "disk", "backlight", "custom/clock"],
+    "modules-right": ["mpd", "image#album-art", "pulseaudio", "cpu", "battery", "disk", "backlight", "custom/clock"],
     "niri/workspaces": {
         "disable-click": false,
         "all-outputs": false,
@@ -36,7 +36,7 @@
     "format": "{artist} - <span style=\"italic\">{title}</span>{consumeIcon}{repeatIcon}{randomIcon}{stateIcon}",
     "format-disconnected": " ",
     "format-stopped": "{consumeIcon}{repeatIcon}{randomIcon}",
-    "title-len": 40,
+    "title-len": 41,
     "unknown-tag": "N/A",
     "interval": 1,
     "on-click": "mpc --host='passgasgrassorazz@127.0.0.2' --port=6602 toggle > /dev/null",
