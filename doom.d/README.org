@@ -62,6 +62,7 @@ This literate configuration is available online on my [[https://babkock.github.i
 - [[#elfeed][Elfeed]]
   - [[#preferences-1][Preferences]]
   - [[#keybindings-2][Keybindings]]
+  - [[#elfeed-tube][Elfeed-Tube]]
 - [[#ement][Ement]]
   - [[#keybindings-3][Keybindings]]
 - [[#gnus][GNUs]]
@@ -531,7 +532,9 @@ My customized dashboard. These first two lines are just for setting up my Multip
 (defun tb/gnus1 ()
     "Connect to Eternal September Usenet"
     (interactive)
-    (setq gnus-select-method '(nntp "news.eternal-september.org")
+    (setq gnus-select-method '(nntp "news.eternal-september.org"
+                (nntp-open-connection-function nntp-open-tls-stream)
+                (nntp-port-number 563))
           nntp-open-connection-function 'nntp-open-tls-stream
           nntp-port-number 563
           gnus-posting-styles '((".*"
@@ -823,7 +826,7 @@ This second block of code sets preferences for the =elfeed-goodies= package.
           elfeed-goodies/powerline-default-separator "curve"
           elfeed-goodies/wide-threshold 0.2
           elfeed-goodies/show-mode-padding 1
-          elfeed-goodies/feed-source-column-width 20
+          elfeed-goodies/feed-source-column-width 25
           elfeed-goodies/tag-column-width 20))
 #+end_src
 
@@ -870,6 +873,22 @@ I have custom key bindings for Elfeed that will filter the feed list by tag name
         :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
         :desc "Set filter" :ne "S" #'elfeed-search-set-filter
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
+#+end_src
+
+** Elfeed-Tube
+
+#+begin_src emacs-lisp :tangle config.el :cache yes
+(after! elfeed-tube
+    (elfeed-tube-setup)
+    (elfeed-tube-add-feeds '("https://www.youtube.com/@DistroTube"
+                             "https://www.youtube.com/@BrodieRobertson"
+                             "https://www.youtube.com/@MentalOutlaw"))
+    (evil-define-key 'normal elfeed-show-mode-map
+        (kbd "F") 'elfeed-tube-fetch)
+    (evil-define-key 'normal elfeed-search-mode-map
+        (kbd "F") 'elfeed-tube-fetch)    
+    (define-key elfeed-show-mode-map [remap save-buffer] 'elfeed-tube-save) 
+    (define-key elfeed-search-mode-map [remap save-buffer] 'elfeed-tube-save))
 #+end_src
 
 * Ement
@@ -947,7 +966,7 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
 
 | Keybinding | Action                      |
 |------------+-----------------------------|
-| =SPC DEL=    | Clear MPDel Playlist        |
+| =SPC DEL=    | Centaur Tabs Mode           |
 | =SPC a=      | Toggle Zen Mode             |
 | =SPC b=      | Toggle Beacon Mode          |
 | =SPC c=      | Toggle Multiple Cursors     |
@@ -958,12 +977,12 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
 | =SPC j=      | Magit Pull                  |
 | =SPC k=      | Magit Push Remote           |
 | =SPC l=      | Org Tangle                  |
-| =SPC m=      | Mastodon Boost Toot         |
+| =SPC m=      | Calendar                    |
 | =SPC n=      | Open MPDel Browser          |
 | =SPC o=      | Toggle Elcord Mode          |
 | =SPC p=      | Org Export to HTML          |
 | =SPC r=      | Toggle Rainbow Mode         |
-| =SPC s=      | Toggle Dired Sidebar        |
+| =SPC s=      | Toggle Dirvish Sidebar      |
 | =SPC t=      | Magit Stage File            |
 | =SPC u=      | Delete Active Buffer        |
 | =SPC v=      | Helm Org Rifle on Directory |
@@ -985,7 +1004,7 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
     :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
     :desc "Org Tangle" "l" #'org-babel-tangle
     :desc "Calendar" "m" #'calendar
-    :desc "IRC Hummingbird Auth" "/" (lambda () (interactive) (circe-command-MSG (concat "Humming" "bird") (concat "ENTER" " Babkock " (concat trackerirclong " #PassThePopcorn"))))
+    :desc "IRC Hummingbird Auth" "/" (lambda () (interactive) (circe-command-MSG (concat "Humming" "bird") (concat "ENTER" " Babkock " (concat trackerirclong " #Pass" "The" "Popcorn"))))
     :desc "IRC Sauron Auth" "]" (lambda () (interactive) (circe-command-MSG "Sauron" (concat "knock" " #ant " "Babkock " littlepass)))
     :desc "IRC Vertigo Auth" "[" (lambda () (interactive) (circe-command-MSG (concat "Vert" "igo") (concat "ENTER" " Babkock " littlepass)))
     :desc "Helm Org Rifle Org" "f" #'helm-org-rifle-org-directory
@@ -1001,6 +1020,7 @@ Obviously, it is not possible to tangle an Org document, if you are not editing 
     :desc "Magit Stage File" "t" #'magit-stage-file
     :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
+    :desc "Centaur Tabs Mode" "DEL" #'centaur-tabs-mode
     :desc "Switch Buffer" "," #'helm-buffers-list
     :desc "IRC Hermes Auth" "-" (lambda () (interactive) (circe-command-MSG "Hermes" (concat "enter " "#orpheus " "Babkock " littlepass)))
     :desc "Org Time Stamp" "=" #'org-time-stamp

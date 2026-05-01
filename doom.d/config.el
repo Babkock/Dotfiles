@@ -358,7 +358,9 @@
 (defun tb/gnus1 ()
     "Connect to Eternal September Usenet"
     (interactive)
-    (setq gnus-select-method '(nntp "news.eternal-september.org")
+    (setq gnus-select-method '(nntp "news.eternal-september.org"
+                (nntp-open-connection-function nntp-open-tls-stream)
+                (nntp-port-number 563))
           nntp-open-connection-function 'nntp-open-tls-stream
           nntp-port-number 563
           gnus-posting-styles '((".*"
@@ -554,7 +556,7 @@
           elfeed-goodies/powerline-default-separator "curve"
           elfeed-goodies/wide-threshold 0.2
           elfeed-goodies/show-mode-padding 1
-          elfeed-goodies/feed-source-column-width 20
+          elfeed-goodies/feed-source-column-width 25
           elfeed-goodies/tag-column-width 20))
 
 (after! elfeed-goodies
@@ -583,6 +585,18 @@
         :desc "Show selected entry" :ne "RET" #'elfeed-search-show-entry
         :desc "Set filter" :ne "S" #'elfeed-search-set-filter
         :desc "Clear filter" :ne "c" #'elfeed-search-clear-filter))
+
+(after! elfeed-tube
+    (elfeed-tube-setup)
+    (elfeed-tube-add-feeds '("https://www.youtube.com/@DistroTube"
+                             "https://www.youtube.com/@BrodieRobertson"
+                             "https://www.youtube.com/@MentalOutlaw"))
+    (evil-define-key 'normal elfeed-show-mode-map
+        (kbd "F") 'elfeed-tube-fetch)
+    (evil-define-key 'normal elfeed-search-mode-map
+        (kbd "F") 'elfeed-tube-fetch)    
+    (define-key elfeed-show-mode-map [remap save-buffer] 'elfeed-tube-save) 
+    (define-key elfeed-search-mode-map [remap save-buffer] 'elfeed-tube-save))
 
 (after! ement
     (setq ement-save-sessions t
@@ -632,7 +646,7 @@
     :desc "Toggle Fullscreen Zen" "i" #'+zen/toggle-fullscreen
     :desc "Org Tangle" "l" #'org-babel-tangle
     :desc "Calendar" "m" #'calendar
-    :desc "IRC Hummingbird Auth" "/" (lambda () (interactive) (circe-command-MSG (concat "Humming" "bird") (concat "ENTER" " Babkock " (concat trackerirclong " #PassThePopcorn"))))
+    :desc "IRC Hummingbird Auth" "/" (lambda () (interactive) (circe-command-MSG (concat "Humming" "bird") (concat "ENTER" " Babkock " (concat trackerirclong " #Pass" "The" "Popcorn"))))
     :desc "IRC Sauron Auth" "]" (lambda () (interactive) (circe-command-MSG "Sauron" (concat "knock" " #ant " "Babkock " littlepass)))
     :desc "IRC Vertigo Auth" "[" (lambda () (interactive) (circe-command-MSG (concat "Vert" "igo") (concat "ENTER" " Babkock " littlepass)))
     :desc "Helm Org Rifle Org" "f" #'helm-org-rifle-org-directory
@@ -648,6 +662,7 @@
     :desc "Magit Stage File" "t" #'magit-stage-file
     :desc "Magit Push Remote" "k" #'magit-push-current-to-pushremote
     :desc "Magit Pull" "j" #'magit-pull-from-pushremote
+    :desc "Centaur Tabs Mode" "DEL" #'centaur-tabs-mode
     :desc "Switch Buffer" "," #'helm-buffers-list
     :desc "IRC Hermes Auth" "-" (lambda () (interactive) (circe-command-MSG "Hermes" (concat "enter " "#orpheus " "Babkock " littlepass)))
     :desc "Org Time Stamp" "=" #'org-time-stamp

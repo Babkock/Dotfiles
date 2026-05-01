@@ -14,7 +14,6 @@ set $down j
 set $up k
 set $right l
 
-#set $term alacritty --config-file "$HOME/.config/alacritty/sway.toml"
 set $term footclient
 
 exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY WLR_RENDERER WLR_DRM_NO_ATOMIC GTK_THEME QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME PULSE_LATENCY_MSEC MOZ_ENABLE_WAYLAND MOZ_WEBRENDER QT_WAYLAND_DISABLE_WINDOWDECORATION XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP GDK_BACKEND SDL_VIDEODRIVER
@@ -67,7 +66,7 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 	middle_emulation enabled
 	accel_profile "adaptive"
 	pointer_accel 1.0
-	scroll_factor 1.2
+	scroll_factor 1.4
 	tap_button_map lrm
 }
 
@@ -119,8 +118,8 @@ corner_radius 38
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 1
-shadow_color #04040477
-shadow_inactive_color #02020266
+shadow_color #87a7cc88
+shadow_inactive_color #e9305a77
 default_dim_inactive 0.1
 titlebar_separator disable
 titlebar_border_thickness 1
@@ -129,13 +128,10 @@ layer_effects "waybar" blur enable; blur_ignore_transparent enable; shadows disa
 
 hide_edge_borders smart_no_gaps
 
-#client.focused #a5ea9add #95da8add #efefefef #a5ea9abb
-client.focused #efefefaa #dfdfdfaa #000000ef #efefefaa
+client.focused #97b7dcaa #97b7dcaa #000000ef #97b7dcaa
 client.focused_tab_title #74c2808f #74c2808f #efefefef #99cf0188
-#client.focused_inactive #f2172bdd #e2071bdd #000000ef #e2071bbb
-#client.unfocused #f2172bdd #e2071bdd #000000dd #f2172bbb
-client.unfocused #101010aa #000000aa #efefefef #101010aa
-client.focused_inactive #101010aa #000000aa #efefefef #101010aa
+client.unfocused #e9305aaa #e9305aaa #efefefef #e9305aaa
+client.focused_inactive #e9305aaa #e9305aaa #efefefef #e9305aaa
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
@@ -147,7 +143,7 @@ smart_borders on
 gaps inner 4
 gaps outer 2
 
-exec swayidle -w timeout 880 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/bg/macosmojaverockslock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/bg/oceansunsetlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/bg/foggyridgelock.jpg -s fill" timeout 1900 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/bg/macosmojaverockslock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/bg/oceansunsetlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/bg/foggyridgelock.jpg -s fill" 
+exec swayidle -w timeout 960 "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 10101066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/bg/macosmojaverockslock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/bg/oceansunsetlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/bg/foggyridgelock.jpg -s fill" timeout 2100 "swaymsg \"output * power off\"" resume "swaymsg \"output * power on\"" before-sleep "swaylock -F -f --font \"GoMono Nerd Font\" --font-size 24 --ring-color 00000066 --inside-color 00000066 --text-color dfdfdf99 --inside-ver-color 00000066 --ring-ver-color a5ea9a99 --text-ver-color 95da8abb --ring-wrong-color f2172b99 --text-wrong-color e2071bbb --inside-wrong-color 10101066 --text-clear-color 93ece6bb --ring-clear-color a3fcf699 --inside-clear-color 00000066 --key-hl-color 4faccaaa --bs-hl-color e2071baa --indicator-radius 90 -L -r -i DP-1:/home/babkock/.config/sway/bg/macosmojaverockslock.jpg -s fill -i eDP-1:/home/babkock/.config/sway/bg/oceansunsetlock.jpg -s fill -i HDMI-A-2:/home/babkock/.config/sway/bg/foggyridgelock.jpg -s fill" 
 
 exec mako -c "$HOME/.config/mako/swayconfig" &> /dev/null &
 exec env PULSE_LATENCY_MSEC=60 waybar -c "$HOME/.config/waybar/sway.json" -s "$HOME/.config/waybar/sway.css" -l off &> /dev/null &
@@ -313,10 +309,10 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return workspace number 5; exec $term
 
 # Kill focused window
-bindsym $mod+Shift+c kill
+bindsym $mod+c kill
 
 # Start your launcher
-bindsym $mod+space exec dmenu_path | fuzzel -b e3496e8f -t a3fcf6ff -s 95da8abf -S a5ea9aef -m dac863ef -M ead972ef -f "GoMono Nerd Font Propo:pixelsize=26:antialias=true" --counter --counter-color=ead972ee --prompt-color=ead972ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d --no-exit-on-keyboard-focus-loss | sh
+bindsym $mod+space exec dmenu_path | fuzzel -b 10101077 -t a3fcf6ff -s 9bb474bf -S abc584ef -m c2ad65ef -M d2bd75ef -f "GoMono Nerd Font Propo:pixelsize=26:antialias=true" --counter --counter-color=d2bd75ee --prompt-color=d2bd75ee --use-bold --dpi-aware=yes --list-executables-in-path --input-color=efefefee -w 60 -l 18 --placeholder-color=efefef66 --placeholder="Run command..." -x 6 -y 4 -r 45 -B 2 -P 1 -p "$ " -C 000000cc -d --no-exit-on-keyboard-focus-loss | sh
 
 bindsym $mod+Shift+space exec mpv "av://v4l2:/dev/video2" --untimed --profile=low-latency --no-osc --ontop --cache=no --demuxer-lavf-format=video4linux2 --demuxer-lavf-o=video_size=960x720,input_format=mjpeg,framerate=30 --window-scale=0.5
 

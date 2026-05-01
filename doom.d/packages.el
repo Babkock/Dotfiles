@@ -15,10 +15,12 @@
 (package! dashboard)
 (package! dired-sidebar)
 (package! dired-hacks)
-(package! elfeed-org)     ;; Elfeed
+(package! dirvish)
 (package! elfeed-goodies) ;; Elfeed
+(package! elfeed-org)     ;; Elfeed
 (package! elfeed-tube)    ;; YouTube
-(package! elfeed-tube-mpv) ;; MPV
+(package! elfeed-webkit)
+;(package! elfeed-tube-mpv) ;; MPV
 ;(package! fancy-battery)  ;; Not neccessary but neat
 (package! ement)
 (package! hackernews-modern)
