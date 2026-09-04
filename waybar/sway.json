@@ -268,6 +268,8 @@
         "(.*) on Tumblr — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
         "(.*) on Tumblr — Zen Browser": " <span style=\"italic\">$1</span>",
+		"(.*) - Subvert": " <span style=\"italic\">$1</span>",
+		"(.*) - Subvert — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) \\| Last.fm": " <span style=\"italic\">$1</span>",
         "(.*) \\| Last.fm — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) \\| Last.fm — Zen Browser": " <span style=\"italic\">$1</span>",
@@ -432,10 +434,14 @@
         "(.*) \\| Records Recordings — Zen Browser": " <span style=\"italic\">$1</span>",
         "Easy Effects": " ",
         "(.*) 1.20.4": "󰍳 ",
+        "(.*) :: Nebulance.io": "󰻅 <span style=\"italic\">$1</span>",
+        "(.*) - Luminarr": "󰻅 <span style=\"italic\">$1</span>",
         "(.*) :: MoreThanTV": "󰻅 <span style=\"italic\">$1</span>",
         "(.*) :: Anthelion": " <span style=\"italic\">$1</span>",
         "(.*) :: MoreThanTV — Mozilla Firefox": "󰻅 <span style=\"italic\">$1</span>",
+		"(.*) :: Nebulance.io — Mozilla Firefox": "󰻅 <span style=\"italic\">$1</span>",
         "(.*) :: Anthelion — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Luminarr — Mozilla Firefox": "󰻅 <span style=\"italic\">$1</span>",
     },
     "max-length": 87,
     "all-outputs": true
@@ -600,7 +606,7 @@
 
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 10,
+    "interval": 20,
     "format": "{}"
 },
 

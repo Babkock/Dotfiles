@@ -369,6 +369,8 @@
         "Helvum - Pipewire Patchbay": " ",
         "MDN Web Docs": " ",
         "Transmission Web Interface": " ",
+		"(.*) - Subvert": " <span style=\"italic\">$1</span>",
+		"(.*) - Subvert — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN — Mozilla Firefox": " <span style=\"italic\">$1</span>",
         "(.*) \\| MDN — Zen Browser": " <span style=\"italic\">$1</span>",
@@ -423,9 +425,13 @@
         "Easy Effects": " ",
         "(.*) 1.20.4": "󰍳 ",
         "(.*) :: MoreThanTV": "󰻅 <span style=\"italic\">$1</span>",
+        "(.*) :: Nebulance.io": "󰻅 <span style=\"italic\">$1</span>",
         "(.*) :: Anthelion": " <span style=\"italic\">$1</span>",
         "(.*) :: MoreThanTV — Mozilla Firefox": "󰻅 <span style=\"italic\">$1</span>",
+        "(.*) :: Nebulance.io — Mozilla Firefox": "󰻅 <span style=\"italic\">$1</span>",
         "(.*) :: Anthelion — Mozilla Firefox": " <span style=\"italic\">$1</span>",
+        "(.*) - Luminarr": "󰻅 <span style=\"italic\">$1</span>",
+        "(.*) - Luminarr — Mozilla Firefox": "󰻅 <span style=\"italic\">$1</span>",
     },
     "max-length": 87
 },
@@ -564,7 +570,7 @@
 
 "custom/weather": {
     "exec": "ansiweather -a false -l Arvada -u imperial -H true -h false -p false -i false -s true",
-    "interval": 8,
+    "interval": 20,
     "format": "{}"
 },
 

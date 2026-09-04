@@ -20,7 +20,7 @@ exec_always --no-startup-id dbus-update-activation-environment DISPLAY I3SOCK SW
 exec pgrep pulseaudio | xargs kill
 exec pkill -x pulseaudio
 exec pkill -x pipewire
-exec env PULSE_LATENCY_MSEC=60 pipewire &
+exec env PULSE_LATENCY_MSEC=60 PIPEWIRE_DAEMON=1 PIPEWIRE_AUTOCONNECT=1 PIPEWIRE_CONFIG_DIR=/home/babkock/.config/pipewire/ pipewire &
 exec --no-startup-id autotiling -l 2 &
 exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 exec gsettings set org.gnome.desktop.interface cursor-theme Adwaita

@@ -4,11 +4,12 @@
 #  / /_(__  ) / / / /  / /__
 # /___/____/_/ /_/_/   \___/
 
-export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$HOME/.zsh/forgit/bin:$PATH
+export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:/usr/local/i686elf/bin:$HOME/.zsh/forgit/bin:$PATH
 
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
-export VOIDPKG="/home/babkock/git/void-packages"
+#export VOIDPKG="/home/babkock/git/void-packages"
+export VOIDPKG="/mnt/mega/void-packages"
 
 source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
@@ -641,10 +642,6 @@ function yz()
     cd "$(cat /tmp/yazi.txt)"
 }
 
-function wb() {
-    swaybg -o eDP-1 -i "$1" -o HDMI-A-2 -i "$2"
-}
-
 function backup() {
     if [ -z "$1" ]; then
         printf "Please specify directory to store backup in\n" > /dev/stderr
@@ -664,10 +661,10 @@ function record() {
         printf "USAGE: %s [display] [output file]\n" "$0" > /dev/stderr
         false
     elif [ -z "$2" ]; then
-        wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o HDMI-A-2 -c libx264rgb -r 60 -f "$1"
+        env PULSE_LATENCY_MSEC=60 wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o HDMI-A-2 -c libx264rgb -r 60 -f "$1"
         true
     else
-        wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o "$1" -c libx264rgb -r 60 -f "$2"
+        env PULSE_LATENCY_MSEC=60 wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o "$1" -c libx264rgb -r 60 -f "$2"
         true
     fi
 }
@@ -858,17 +855,17 @@ alias v="vim -n -T alacritty"
 alias vh="vim -n -T alacritty -o"
 alias vv="vim -n -T alacritty -O"
 alias vim="vim -n -T alacritty"
-alias vm="virt-manager"
+alias vm="env PULSE_LATENCY_MSEC=60 virt-manager"
 alias lb="lsblk --paths --fs --perms"
 alias r="ranger"
 alias m="env PULSE_LATENCY_MSEC=60 mpv"
 alias mb="mount /mnt/Baby; echo 'sdb Mounted'"
 alias md="mount /mnt/drive; echo 'sdb Mounted'"
 alias mi="env PULSE_LATENCY_MSEC=60 mpv --mute=yes"
-alias mt="mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
+alias mt="env PULSE_LATENCY_MSEC=60 mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
 alias mn="man"
 alias tl="tldr"
-alias n="rmpc -c '$HOME/.config/rmpc/config.ron'"
+alias n="env PULSE_LATENCY_MSEC=60 rmpc -c '$HOME/.config/rmpc/config.ron'"
 alias npi="nix profile install"
 alias npl="nix profile list"
 alias npr="nix profile remove"
@@ -888,8 +885,8 @@ alias oo="eww open"
 alias or="eww reload"
 alias ow="eww open mem; eww open calendar"
 alias u="neomutt -F '$HOME/.muttrc'"
-alias spi="TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
-alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.17"
+alias spi="env TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
+alias sk="env TERM=xterm-256color ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.17"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="swayimg"
@@ -899,13 +896,13 @@ alias qg="gimp"
 alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
 alias sb="sudo sv restart bluez-alsa; sudo sv restart bluetoothd"
 alias se="pkill -x emacs; emacs --daemon"
-alias sw="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/sway.json' -s '$HOME/.config/waybar/sway.css' -l off &"
-alias sf="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/wayfire.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
+alias sw="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/sway.json' -s '$HOME/.config/waybar/sway.css' -l off &"
+alias sf="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/wayfire.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
 alias so="pkill -x eww"
-alias sy="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/hyprland.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
-alias sn="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
-alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; env PULSE_LATENCY_MSEC=60 pipewire &"
-alias sz="sudo pkill -x wpa_supplicant; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
+alias sy="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/hyprland.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
+alias sn="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
+alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; pkill -9 easyeffects; env PULSE_LATENCY_MSEC=60 PIPEWIRE_DAEMON=1 PIPEWIRE_AUTOCONNECT=1 PIPEWIRE_CONFIG_DIR=/home/babkock/.config/pipewire pipewire &"
+alias sz="sudo pkill -x wpa_supplicant; sleep 1; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
 alias svi="sudo vim -n -T alacritty"
 alias ta="tar xvf"
 alias td="tar czf"
@@ -929,15 +926,11 @@ alias xl="sudo xbps-query -l"
 alias xr="sudo xbps-remove"
 alias xo="sudo xbps-query -O"
 alias xu="sudo xbps-install -Su"
-#alias xb="./xbps-src build -C -f -j 4"
-#alias xp="./xbps-src pkg -C -f -Q -j 4"
-#alias xxr="./xbps-src remove"
 alias xxu="cd $VOIDPKG; ./xbps-src update-sys; cd $OLDPWD"
 alias xxl="cd $VOIDPKG; ./xbps-src list; cd $OLDPWD"
-#alias xs="./xbps-src show"
 alias xlu="cd $VOIDPKG; ./xbps-src show-local-updates; cd $OLDPWD"
 alias xsu="cd $VOIDPKG; ./xbps-src show-sys-updates; cd $OLDPWD"
-#alias yz="yazi"
+alias yz="yazi"
 alias z="bluetoothctl"
 
 fpath+=$HOME/.zsh/typewritten
@@ -1009,7 +1002,7 @@ if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-25
 else
     colorscript -r
 fi
-random=$(shuf -i 1-35 -n 1)
+local random=$(shuf -i 1-35 -n 1)
 if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
     if [[ "$random" == "1" ]]; then
         echo -e '\e[5;30m'

@@ -71,7 +71,6 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#trybg][trybg]]
   - [[#vf][vf]]
   - [[#yz][yz]]
-  - [[#wb][wb]]
   - [[#backup-website][Backup Website]]
   - [[#twitch][Twitch]]
   - [[#make-a-video-with-audio][Make a Video with Audio]]
@@ -85,6 +84,7 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
   - [[#cheatsh-lookup][Cheat.sh Lookup]]
   - [[#cheatsh-learn][Cheat.sh Learn]]
   - [[#fix-pulseaudio-sink][Fix PulseAudio Sink]]
+  - [[#newsraft-with-qutebrowser][Newsraft with Qutebrowser]]
 - [[#aliases-1][Aliases]]
 - [[#plugins][Plugins]]
   - [[#keybindings][Keybindings]]
@@ -96,18 +96,21 @@ Welcome to my Zshrc. This configuration does not use any package managers or fra
 This first block of code sets the =$PATH= environment variable, and sources my =$LS_COLORS= script from [[https://github.com/trapd00r/LS_COLORS][this project]]. I have a cross-compiler installed, and
 that's what those other variables are for.
 
-#+begin_src sh :tangle .zshrc
+There are environment variables defined in =secrets.zsh= which is not a part of this repository.
+
+#+begin_src sh :tangle .zshrc :cache yes
 #              __
 #  ____  _____/ /_  __________
 # /_  / / ___/ __ \/ ___/ ___/
 #  / /_(__  ) / / / /  / /__
 # /___/____/_/ /_/_/   \___/
 
-export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:$HOME/.zsh/forgit/bin:$PATH
+export PATH=/sbin:$HOME/bin:$HOME/.emacs.d/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/go/bin:/usr/local/i386elfgcc/bin:/usr/local/i686elf/bin:$HOME/.zsh/forgit/bin:$PATH
 
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
-export VOIDPKG="/home/babkock/git/void-packages"
+#export VOIDPKG="/home/babkock/git/void-packages"
+export VOIDPKG="/mnt/mega/void-packages"
 
 source "$HOME/.ssh/zsh/secrets.zsh"
 VIVID_THEME="alabaster_dark"
@@ -130,7 +133,7 @@ export ZLS_COLORS=$LS_COLORS
 
 These are my styles for the various TAB-completion menus that appear in ZSH themes.
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:' cache-path "$HOME/.cache/zsh/.zcompcache"
@@ -149,7 +152,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 Set some preferences. Auto CD, and no duplicates in history.
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 export LANG=en_US.UTF-8
 
 source <(fzf --zsh)
@@ -168,7 +171,7 @@ with too many colors or icons. The shell should behave and feel differently.
 
 ** SSH
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
     alias d="fd"
@@ -198,7 +201,7 @@ These functions are only available when you are logged into the TTY.
 
 ** Start Tmux Session
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
     # functions only for login shells
     if [[ "$TERM" == "linux" ]]; then
         function pu() {
@@ -929,16 +932,6 @@ function yz()
 }
 #+end_src
 
-** wb
-
-Set the wallpaper with two images, one for the left, and one for the right.
-
-#+begin_src sh :tangle .zshrc
-function wb() {
-    swaybg -o eDP-1 -i "$1" -o HDMI-A-2 -i "$2"
-}
-#+end_src
-
 ** Backup Website
 
 This shell function backs up my website. It takes one argument, the output directory to store the backup in.
@@ -971,10 +964,10 @@ function record() {
         printf "USAGE: %s [display] [output file]\n" "$0" > /dev/stderr
         false
     elif [ -z "$2" ]; then
-        wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o HDMI-A-2 -c libx264rgb -r 60 -f "$1"
+        env PULSE_LATENCY_MSEC=60 wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o HDMI-A-2 -c libx264rgb -r 60 -f "$1"
         true
     else
-        wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o "$1" -c libx264rgb -r 60 -f "$2"
+        env PULSE_LATENCY_MSEC=60 wf-recorder --audio=alsa_input.pci-0000_00_1f.3.analog-stereo -o "$1" -c libx264rgb -r 60 -f "$2"
         true
     fi
 }
@@ -1011,7 +1004,7 @@ function um() {
 
 I have to do this every time I use Git, or log in to my website.
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function b() {
     pkill -x ssh-agent
     eval $(ssh-agent) > /dev/null 2>&1
@@ -1025,7 +1018,7 @@ function b() {
 
 ** Raspberry Pi Copy
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function pcp() {
     if [[ -z "$1" ]]; then
         printf "No file specified\n" > /dev/stderr
@@ -1042,7 +1035,7 @@ function pcp() {
 
 ** Create GitHub Gist
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function gst() {
     if [[ -z "$1" ]]; then
         printf "USAGE: $0 [file to upload] [description]\n" > /dev/stderr
@@ -1059,7 +1052,7 @@ function gst() {
 
 ** Create GitHub Issue
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function gic() {
     if [[ -z "$1" ]]; then
         printf "USAGE: $0 [title] [body]\n" > /dev/stderr
@@ -1076,7 +1069,7 @@ function gic() {
 
 ** Fork GitHub Repo
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function gfk() {
     if [[ -z "$1" ]]; then
         printf "USAGE: $0 'OWNER/REPO'\n" > /dev/stderr
@@ -1090,7 +1083,7 @@ function gfk() {
 
 ** Cheat.sh Lookup
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function ch() {
     if [[ -z "$1" ]]; then
         printf "No command to look up\n" > /dev/stderr
@@ -1107,7 +1100,7 @@ function ch() {
 
 ** Cheat.sh Learn
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function chp() {
     if [[ -z "$1" ]]; then
         printf "Enter a programming language to learn\n" > /dev/stderr
@@ -1119,7 +1112,7 @@ function chp() {
 }
 #+end_src
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function chl() {
     if [[ -z "$1" ]]; then
         printf "Enter a programming language to list topics for\n" > /dev/stderr
@@ -1133,14 +1126,16 @@ function chl() {
 
 ** Fix PulseAudio Sink
 
-#+begin_src sh :tangle .zshrc
+#+begin_src sh :tangle .zshrc :cache yes
 function pv() {
     pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
     pactl set-default-source alsa_input.pci-0000_00_1f.3.analog-stereo
 }
 #+end_src
 
-#+begin_src sh :tangle .zshrc
+** Newsraft with Qutebrowser
+
+#+begin_src sh :tangle .zshrc :cache yes
 function uu() {
 	BROWSER="qutebrowser --qt-arg stylesheet '/home/babkock/.local/share/qutebrowser/fix-tooltips.qss' --qt-wrapper PyQt6 --backend webengine --qt-flag enable-features=WebRTCPipeWireCapturer --qt-flag ozone-platform-hint=wayland --qt-flag enable-accelerated-video --qt-flag enable-gpu --qt-flag enable-native-gpu-memory-buffers --qt-flag enable-zero-copy --qt-flag enable-gpu-rasterization" newsraft
 }
@@ -1328,17 +1323,17 @@ alias v="vim -n -T alacritty"
 alias vh="vim -n -T alacritty -o"
 alias vv="vim -n -T alacritty -O"
 alias vim="vim -n -T alacritty"
-alias vm="virt-manager"
+alias vm="env PULSE_LATENCY_MSEC=60 virt-manager"
 alias lb="lsblk --paths --fs --perms"
 alias r="ranger"
 alias m="env PULSE_LATENCY_MSEC=60 mpv"
 alias mb="mount /mnt/Baby; echo 'sdb Mounted'"
 alias md="mount /mnt/drive; echo 'sdb Mounted'"
 alias mi="env PULSE_LATENCY_MSEC=60 mpv --mute=yes"
-alias mt="mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
+alias mt="env PULSE_LATENCY_MSEC=60 mpv --audio-device=alsa/hdmi:CARD=PCH,DEV=1"
 alias mn="man"
 alias tl="tldr"
-alias n="rmpc -c '$HOME/.config/rmpc/config.ron'"
+alias n="env PULSE_LATENCY_MSEC=60 rmpc -c '$HOME/.config/rmpc/config.ron'"
 alias npi="nix profile install"
 alias npl="nix profile list"
 alias npr="nix profile remove"
@@ -1358,8 +1353,8 @@ alias oo="eww open"
 alias or="eww reload"
 alias ow="eww open mem; eww open calendar"
 alias u="neomutt -F '$HOME/.muttrc'"
-alias spi="TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
-alias sk="ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.17"
+alias spi="env TERM=xterm-256color ssh -i '$HOME/.ssh/comp2pinew' pi@192.168.0.13"
+alias sk="env TERM=xterm-256color ssh -i '$HOME/.ssh/me2newmac' kristinowens@192.168.0.17"
 alias po="gotop"
 alias p="sudo flowtop -46UTDISs -t 2"
 alias q="swayimg"
@@ -1369,13 +1364,13 @@ alias qg="gimp"
 alias s="ssh $WEBSITE_ADDRESS -p 2222 -i '$HOME/.ssh/tbcom_ssh'"
 alias sb="sudo sv restart bluez-alsa; sudo sv restart bluetoothd"
 alias se="pkill -x emacs; emacs --daemon"
-alias sw="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/sway.json' -s '$HOME/.config/waybar/sway.css' -l off &"
-alias sf="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/wayfire.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
+alias sw="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/sway.json' -s '$HOME/.config/waybar/sway.css' -l off &"
+alias sf="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/wayfire.json' -s '$HOME/.config/waybar/wayfire.css' -l off &"
 alias so="pkill -x eww"
-alias sy="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/hyprland.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
-alias sn="pkill -x waybar; env PULSE_LATENCY_MSEC=80 waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
-alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; env PULSE_LATENCY_MSEC=60 pipewire &"
-alias sz="sudo pkill -x wpa_supplicant; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
+alias sy="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/hyprland.json' -s '$HOME/.config/waybar/hyprland.css' -l off &"
+alias sn="pkill -x waybar; env PULSE_LATENCY_MSEC=60 waybar -c '$HOME/.config/waybar/niri.json' -s '$HOME/.config/waybar/niri.css' -l off &"
+alias sp="pkill -x pipewire; pkill -x pulseaudio; pkill -x pipewire; pkill -9 easyeffects; env PULSE_LATENCY_MSEC=60 PIPEWIRE_DAEMON=1 PIPEWIRE_AUTOCONNECT=1 PIPEWIRE_CONFIG_DIR=/home/babkock/.config/pipewire pipewire &"
+alias sz="sudo pkill -x wpa_supplicant; sleep 1; sudo wpa_supplicant -B -Dwired -ienp0s31f6 -c/etc/wpa_supplicant/wpa_supplicant.conf"
 alias svi="sudo vim -n -T alacritty"
 alias ta="tar xvf"
 alias td="tar czf"
@@ -1399,15 +1394,11 @@ alias xl="sudo xbps-query -l"
 alias xr="sudo xbps-remove"
 alias xo="sudo xbps-query -O"
 alias xu="sudo xbps-install -Su"
-#alias xb="./xbps-src build -C -f -j 4"
-#alias xp="./xbps-src pkg -C -f -Q -j 4"
-#alias xxr="./xbps-src remove"
 alias xxu="cd $VOIDPKG; ./xbps-src update-sys; cd $OLDPWD"
 alias xxl="cd $VOIDPKG; ./xbps-src list; cd $OLDPWD"
-#alias xs="./xbps-src show"
 alias xlu="cd $VOIDPKG; ./xbps-src show-local-updates; cd $OLDPWD"
 alias xsu="cd $VOIDPKG; ./xbps-src show-sys-updates; cd $OLDPWD"
-#alias yz="yazi"
+alias yz="yazi"
 alias z="bluetoothctl"
 #+end_src
 
@@ -1511,7 +1502,7 @@ if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-25
 else
     colorscript -r
 fi
-random=$(shuf -i 1-35 -n 1)
+local random=$(shuf -i 1-35 -n 1)
 if [[ ${TERM} = "st-256color" || ${TERM} = "rxvt-unicode" || ${TERM} = "xterm-256color" || ${TERM} = "foot" || ${TERM} = "kitty" || ${TERM} = "alacritty" ]]; then
     if [[ "$random" == "1" ]]; then
         echo -e '\e[5;30m'
@@ -1705,4 +1696,4 @@ fi
     </center>
 </footer>
 #+END_EXPORT
-> 
+ 

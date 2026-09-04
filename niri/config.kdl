@@ -199,7 +199,7 @@ environment {
 
 spawn-at-startup "xwayland-satellite"
 
-spawn-at-startup "env" "PULSE_LATENCY_MSEC=60" "pipewire"
+spawn-at-startup "env" "PULSE_LATENCY_MSEC=60" "PIPEWIRE_DAEMON=1" "PIPEWIRE_AUTOCONNECT=1" "PIPEWIRE_CONFIG_DIR=/home/babkock/.config/pipewire/" "pipewire"
 
 spawn-at-startup "swaybg" "-o" "eDP-1" "-i" "/home/babkock/.config/niri/redgraysplash.jpg" "-o" "HDMI-A-2" "-i" "/home/babkock/.config/niri/abstractpaintsplash.jpg" "-o" "DP-1" "-i" "/home/babkock/.config/niri/blueorangeswirl.jpg"
 spawn-at-startup "mako" "-c" "/home/babkock/.config/mako/niriconfig"
