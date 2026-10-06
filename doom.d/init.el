@@ -16,13 +16,13 @@
        :ui
        ;;deft              ; notational velocity for Emacs
        (doom +tabs)                ; what makes DOOM look the way it does
-       doom-dashboard      ; a nifty splash screen for Emacs
+       dashboard      ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        (emoji +unicode +ascii +github)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        indent-guides     ; highlighted indent columns
-       ligatures           ; ligatures and symbols to make your code pretty again
+       ;;ligatures           ; ligatures and symbols to make your code pretty again
        ;;minimap             ; show a map of the code on the side
        modeline            ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
@@ -83,7 +83,7 @@
        ;;lookup              ; navigate your code and its documentation
        ;;lsp               ; M-x vscode
        (magit +delta +forge)               ; a git porcelain for Emacs
-       ;;make              ; run make tasks from Emacs
+       make              ; run make tasks from Emacs
        ;;pass                ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -191,18 +191,17 @@
                 (unless (string= "-" project-name)
                 (format (if (buffer-modified-p)  " ◉ %s" " ● %s") project-name))))))
 
-(setq doom-fallback-buffer-name "*doom*"
-    doom-dashboard-name "*doom*")
-;(setq doom-fallback-buffer-name "*dashboard*")
-;(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-
 (setq-default x-stretch-cursor t)
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (require 'notifications)
 (notifications-notify
     :title "Emacs Started"
-    :body (concat "init.el loaded. " emacs-copyright))
+    :body (concat "init.el loaded. " emacs-copyright)
+    :timeout 500
+    :x 20
+    :y 20)
 
 (let ((banners '("squaree.png"
                  "bluee.png"
@@ -242,13 +241,13 @@
                  "emacsprideflags.png"
                  "fancyEmacs.png")))
     (setq fancy-splash-image
-        (concat doom-private-dir "splash/"
+        (concat "/home/babkock/.doom.d/" "splash/"
             (nth (random (length banners)) banners))))
 
-(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
+(add-hook! '+dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode))
 (add-hook! 'after-init-hook #'doom-modeline-mode)
 (add-hook! 'after-init-hook #'global-hl-line-mode)
-(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
+(setq-hook! '+dashboard-mode-hook evil-normal-state-cursor (list nil))
 
 (setq auth-sources '("~/.authinfo"))
 
@@ -256,8 +255,16 @@
 (setq find-file-visit-truename t)
 (setq version-control t)
 (setq vc-follow-symlinks t)
+(setq show-paren-context-when-offscreen t)
+(blink-cursor-mode 1)
+(show-paren-mode t)
+(show-paren-local-mode)
+(add-hook! 'find-file-hook #'show-paren-mode)
+(add-hook! 'find-file-hook #'show-paren-local-mode)
 (display-time-mode t)
 
+(setq doom-theme 'doom-tomorrow-night)
+(setq-default doom-theme 'doom-tomorrow-night)
 (setq doom-modeline-buffer-file-name-style 'relative-to-project
       doom-modeline-icon t
       doom-modeline-irc t
